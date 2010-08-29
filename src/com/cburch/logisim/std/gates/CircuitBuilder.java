@@ -147,7 +147,7 @@ public class CircuitBuilder {
 				
 				AttributeSet attrs = factory.createAttributeSet();
 				attrs.setValue(GateAttributes.ATTR_SIZE, GateAttributes.SIZE_NARROW);
-				attrs.setValue(GateAttributes.ATTR_INPUTS, Integer.valueOf(3));
+				attrs.setValue(GateAttributes.ATTR_INPUTS, Integer.valueOf(2));
 	
 				// determine layout's width
 				Bounds bds = factory.getOffsetBounds(attrs);
@@ -205,12 +205,16 @@ public class CircuitBuilder {
 		int width = subWidth + betweenWidth + bds.getWidth();
 		
 		// determine outputY and layout's height.
-		int midIndex = sub.length / 2;
-		int outputY = sub[midIndex].y + sub[midIndex].outputY; 
-		if (sub.length % 2 == 0) {
-			midIndex--;
-			int upper = sub[midIndex].y + sub[midIndex].outputY;
-			outputY = roundDown((outputY + upper) / 2);
+		int outputY;
+		if (sub.length % 2 == 1) { // odd number - match the middle input
+			int i = (sub.length - 1) / 2;
+			outputY = sub[i].y + sub[i].outputY; 
+		} else { // even number - halfway between middle two inputs
+			int i0 = (sub.length / 2) - 1;
+			int i1 = (sub.length / 2);
+			int o0 = sub[i0].y + sub[i0].outputY;
+			int o1 = sub[i1].y + sub[i1].outputY;
+			outputY = roundDown((o0 + o1) / 2);
 		}
 		int height = subHeight;
 		int minOutputY = roundUp(-bds.getY());
@@ -311,7 +315,9 @@ public class CircuitBuilder {
 		Component parent = layout.factory.createComponent(compOutput,
 				layout.attrs);
 		result.add(parent);
-		if (!compOutput.equals(output)) result.add(Wire.create(compOutput, output));
+		if (!compOutput.equals(output)) {
+			result.add(Wire.create(compOutput, output));
+		}
 		
 		// handle a NOT gate pattern implemented with NAND as a special case
 		if (layout.factory == NandGate.FACTORY && layout.subLayouts.length == 1
@@ -371,14 +377,23 @@ public class CircuitBuilder {
 			}
 			
 			Location subOutput;
+			int numSubs = layout.subLayouts.length;
 			if (subOutputY == subDest.getY()) {
 				subOutput = subDest;
 			} else {
 				int back;
-				if (i < layout.subLayouts.length / 2) {
-					back = i;
+				if (i < numSubs / 2) {
+					if (subOutputY < subDest.getY()) { // bending upward
+						back = i;
+					} else {
+						back = ((numSubs - 1) / 2) - i;
+					}
 				} else {
-					back = layout.subLayouts.length - 1 - i;
+					if (subOutputY > subDest.getY()) { // bending downward
+						back = numSubs - 1 - i;
+					} else {
+						back = i - (numSubs / 2);
+					}
 				}
 				int subOutputX = subDest.getX() - 20 - 10 * back;
 				subOutput = Location.create(subOutputX, subOutputY);
@@ -412,7 +427,7 @@ public class CircuitBuilder {
 	private static void placeInputs(CircuitMutation result, InputData inputData) {
 		ArrayList<Location> forbiddenYs = new ArrayList<Location>();
 		Comparator<Location> compareYs = new CompareYs();
-		final int curX = 40;
+		int curX = 40;
 		int curY = 30;
 		for (int i = 0; i < inputData.names.length; i++) {
 			String name = inputData.names[i];
