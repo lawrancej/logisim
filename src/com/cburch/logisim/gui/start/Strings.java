@@ -11,22 +11,22 @@ import com.cburch.logisim.util.StringGetter;
 import com.cburch.logisim.util.StringUtil;
 
 class Strings {
-    private static LocaleManager source
-        = new LocaleManager("resources/logisim", "start");
+	private static LocaleManager source
+		= new LocaleManager("resources/logisim", "start");
 
-    public static String get(String key) {
-        return source.get(key);
-    }
-    public static String get(String key, String arg) {
-        return StringUtil.format(source.get(key), arg);
-    }
-    public static StringGetter getter(String key) {
-        return source.getter(key);
-    }
-    public static Locale[] getLocaleOptions() {
-        return source.getLocaleOptions();
-    }
-    public static JMenuItem createLocaleMenuItem() {
-        return source.createLocaleMenuItem();
-    }
+	public static String get(String key) {
+		return source.get(key);
+	}
+	public static String get(String key, String arg) {
+		return StringUtil.format(source.get(key), arg);
+	}
+	public static StringGetter getter(String key) {
+		return source.getter(key);
+	}
+	public static Locale[] getLocaleOptions() {
+		return source.getLocaleOptions();
+	}
+	public static JMenuItem createLocaleMenuItem() {
+		return source.createLocaleMenuItem();
+	}
 }

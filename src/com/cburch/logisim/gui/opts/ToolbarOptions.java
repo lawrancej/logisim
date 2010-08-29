@@ -32,184 +32,184 @@ import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.TableLayout;
 
 class ToolbarOptions extends OptionsPanel {
-    private class Listener
-            implements Explorer.Listener, ActionListener,
-                ListSelectionListener, ItemListener, AttributeListener {
-        public void selectionChanged(Event event) {
-            computeEnabled();
-        }
+	private class Listener
+			implements Explorer.Listener, ActionListener,
+				ListSelectionListener, ItemListener, AttributeListener {
+		public void selectionChanged(Event event) {
+			computeEnabled();
+		}
 
-        public void doubleClicked(Event event) {
-            Object target = event.getTarget();
-            if (target instanceof Tool) doAddTool((Tool) target);
-        }
-        
-        public void moveRequested(Event event, AddTool dragged, AddTool target) { }
-        public void deleteRequested(Event event) { }
-        public JPopupMenu menuRequested(Event event) { return null; }
+		public void doubleClicked(Event event) {
+			Object target = event.getTarget();
+			if (target instanceof Tool) doAddTool((Tool) target);
+		}
+		
+		public void moveRequested(Event event, AddTool dragged, AddTool target) { }
+		public void deleteRequested(Event event) { }
+		public JPopupMenu menuRequested(Event event) { return null; }
 
-        public void actionPerformed(ActionEvent event) {
-            Object src = event.getSource();
-            if (src == addTool) {
-                doAddTool(explorer.getSelectedTool().cloneTool());
-            } else if (src == addSeparator) {
-                getOptions().getToolbarData().addSeparator();
-            } else if (src == moveUp) {
-                doMove(-1);
-            } else if (src == moveDown) {
-                doMove(1);
-            } else if (src == remove) {
-                int index = list.getSelectedIndex();
-                if (index >= 0) {
-                    getProject().doAction(ToolbarActions.removeTool(getOptions().getToolbarData(), index));
-                    list.clearSelection();
-                }
-            }
-        }
+		public void actionPerformed(ActionEvent event) {
+			Object src = event.getSource();
+			if (src == addTool) {
+				doAddTool(explorer.getSelectedTool().cloneTool());
+			} else if (src == addSeparator) {
+				getOptions().getToolbarData().addSeparator();
+			} else if (src == moveUp) {
+				doMove(-1);
+			} else if (src == moveDown) {
+				doMove(1);
+			} else if (src == remove) {
+				int index = list.getSelectedIndex();
+				if (index >= 0) {
+					getProject().doAction(ToolbarActions.removeTool(getOptions().getToolbarData(), index));
+					list.clearSelection();
+				}
+			}
+		}
 
-        public void valueChanged(ListSelectionEvent event) {
-            computeEnabled();
-        }
-        
-        private void computeEnabled() {
-            int index = list.getSelectedIndex();
-            addTool.setEnabled(explorer.getSelectedTool() != null);
-            moveUp.setEnabled(index > 0);
-            moveDown.setEnabled(index >= 0 && index < list.getModel().getSize() - 1);
-            remove.setEnabled(index >= 0);
-        }
-        
-        private void doAddTool(Tool tool) {
-            if (tool != null) {
-                getProject().doAction(ToolbarActions.addTool(getOptions().getToolbarData(), tool));
-            }
-        }
-        
-        private void doMove(int delta) {
-            int oldIndex = list.getSelectedIndex();
-            int newIndex = oldIndex + delta;
-            ToolbarData data = getOptions().getToolbarData();
-            if (oldIndex >= 0 && newIndex >= 0 && newIndex < data.size()) {
-                getProject().doAction(ToolbarActions.moveTool(data,
-                        oldIndex, newIndex));
-                list.setSelectedIndex(newIndex);
-            }
-        }
+		public void valueChanged(ListSelectionEvent event) {
+			computeEnabled();
+		}
+		
+		private void computeEnabled() {
+			int index = list.getSelectedIndex();
+			addTool.setEnabled(explorer.getSelectedTool() != null);
+			moveUp.setEnabled(index > 0);
+			moveDown.setEnabled(index >= 0 && index < list.getModel().getSize() - 1);
+			remove.setEnabled(index >= 0);
+		}
+		
+		private void doAddTool(Tool tool) {
+			if (tool != null) {
+				getProject().doAction(ToolbarActions.addTool(getOptions().getToolbarData(), tool));
+			}
+		}
+		
+		private void doMove(int delta) {
+			int oldIndex = list.getSelectedIndex();
+			int newIndex = oldIndex + delta;
+			ToolbarData data = getOptions().getToolbarData();
+			if (oldIndex >= 0 && newIndex >= 0 && newIndex < data.size()) {
+				getProject().doAction(ToolbarActions.moveTool(data,
+						oldIndex, newIndex));
+				list.setSelectedIndex(newIndex);
+			}
+		}
 
-        public void itemStateChanged(ItemEvent event) {
-            Object src = event.getSource();
-            if (src == locChoice) {
-                AttributeSet attrs = getOptions().getAttributeSet();
-                attrs.setValue(Options.ATTR_TOOLBAR_LOC, locChoice.getSelectedItem());
-            }
-        }
+		public void itemStateChanged(ItemEvent event) {
+			Object src = event.getSource();
+			if (src == locChoice) {
+				AttributeSet attrs = getOptions().getAttributeSet();
+				attrs.setValue(Options.ATTR_TOOLBAR_LOC, locChoice.getSelectedItem());
+			}
+		}
 
-        public void attributeListChanged(AttributeEvent e) { }
+		public void attributeListChanged(AttributeEvent e) { }
 
-        public void attributeValueChanged(AttributeEvent e) {
-            if (e.getAttribute() == Options.ATTR_TOOLBAR_LOC) {
-                Object value = e.getValue();
-                if (locChoice.getSelectedItem() != value) {
-                    locChoice.setSelectedItem(value);
-                }
-            }
-        }
-    }
-    
-    private Listener listener = new Listener();
-    
-    private Explorer explorer;
-    private JButton addTool;
-    private JButton addSeparator;
-    private JButton moveUp;
-    private JButton moveDown;
-    private JButton remove;
-    private JLabel locLabel;
-    private JComboBox locChoice;
-    private ToolbarList list;
-    
-    public ToolbarOptions(OptionsFrame window) {
-        super(window);
-        explorer = new Explorer(getProject());
-        addTool = new JButton();
-        addSeparator = new JButton();
-        moveUp = new JButton();
-        moveDown = new JButton();
-        remove = new JButton();
-        locLabel = new JLabel();
-        Object locChoiceOpt = Options.ATTR_TOOLBAR_LOC.getCellEditor(window,
-                getOptions().getAttributeSet().getValue(Options.ATTR_TOOLBAR_LOC));
-        if (locChoiceOpt instanceof JComboBox) {
-            locChoice = (JComboBox) locChoiceOpt;
-        } else {
-            locChoice = new JComboBox();
-            locChoice.setSelectedItem(getOptions().getAttributeSet().getValue(Options.ATTR_TOOLBAR_LOC));
-        }
+		public void attributeValueChanged(AttributeEvent e) {
+			if (e.getAttribute() == Options.ATTR_TOOLBAR_LOC) {
+				Object value = e.getValue();
+				if (locChoice.getSelectedItem() != value) {
+					locChoice.setSelectedItem(value);
+				}
+			}
+		}
+	}
+	
+	private Listener listener = new Listener();
+	
+	private Explorer explorer;
+	private JButton addTool;
+	private JButton addSeparator;
+	private JButton moveUp;
+	private JButton moveDown;
+	private JButton remove;
+	private JLabel locLabel;
+	private JComboBox locChoice;
+	private ToolbarList list;
+	
+	public ToolbarOptions(OptionsFrame window) {
+		super(window);
+		explorer = new Explorer(getProject());
+		addTool = new JButton();
+		addSeparator = new JButton();
+		moveUp = new JButton();
+		moveDown = new JButton();
+		remove = new JButton();
+		locLabel = new JLabel();
+		Object locChoiceOpt = Options.ATTR_TOOLBAR_LOC.getCellEditor(window,
+				getOptions().getAttributeSet().getValue(Options.ATTR_TOOLBAR_LOC));
+		if (locChoiceOpt instanceof JComboBox) {
+			locChoice = (JComboBox) locChoiceOpt;
+		} else {
+			locChoice = new JComboBox();
+			locChoice.setSelectedItem(getOptions().getAttributeSet().getValue(Options.ATTR_TOOLBAR_LOC));
+		}
 
-        list = new ToolbarList(getOptions().getToolbarData());
+		list = new ToolbarList(getOptions().getToolbarData());
 
-        TableLayout middleLayout = new TableLayout(1);
-        JPanel middle = new JPanel(middleLayout);
-        middle.add(addTool);
-        middle.add(addSeparator);
-        middle.add(moveUp);
-        middle.add(moveDown);
-        middle.add(remove);
-        middleLayout.setRowWeight(4, 1.0);
-        middle.add(locLabel);
-        middle.add(locChoice);
-        
-        explorer.setListener(listener);
-        addTool.addActionListener(listener);
-        addSeparator.addActionListener(listener);
-        moveUp.addActionListener(listener);
-        moveDown.addActionListener(listener);
-        remove.addActionListener(listener);
-        locChoice.addItemListener(listener);
-        list.addListSelectionListener(listener);
-        listener.computeEnabled();
-        getOptions().getAttributeSet().addAttributeListener(listener);
-        
-        GridBagLayout gridbag = new GridBagLayout();
-        GridBagConstraints gbc = new GridBagConstraints();
-        setLayout(gridbag);
-        JScrollPane explorerPane = new JScrollPane(explorer,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        JScrollPane listPane = new JScrollPane(list,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gridbag.setConstraints(explorerPane, gbc); add(explorerPane);
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.anchor = GridBagConstraints.NORTH;
-        gbc.weightx = 0.0;
-        gridbag.setConstraints(middle, gbc); add(middle);
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1.0;
-        gridbag.setConstraints(listPane, gbc); add(listPane);
-    }
+		TableLayout middleLayout = new TableLayout(1);
+		JPanel middle = new JPanel(middleLayout);
+		middle.add(addTool);
+		middle.add(addSeparator);
+		middle.add(moveUp);
+		middle.add(moveDown);
+		middle.add(remove);
+		middleLayout.setRowWeight(4, 1.0);
+		middle.add(locLabel);
+		middle.add(locChoice);
+		
+		explorer.setListener(listener);
+		addTool.addActionListener(listener);
+		addSeparator.addActionListener(listener);
+		moveUp.addActionListener(listener);
+		moveDown.addActionListener(listener);
+		remove.addActionListener(listener);
+		locChoice.addItemListener(listener);
+		list.addListSelectionListener(listener);
+		listener.computeEnabled();
+		getOptions().getAttributeSet().addAttributeListener(listener);
+		
+		GridBagLayout gridbag = new GridBagLayout();
+		GridBagConstraints gbc = new GridBagConstraints();
+		setLayout(gridbag);
+		JScrollPane explorerPane = new JScrollPane(explorer,
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane listPane = new JScrollPane(list,
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gridbag.setConstraints(explorerPane, gbc); add(explorerPane);
+		gbc.fill = GridBagConstraints.VERTICAL;
+		gbc.anchor = GridBagConstraints.NORTH;
+		gbc.weightx = 0.0;
+		gridbag.setConstraints(middle, gbc); add(middle);
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1.0;
+		gridbag.setConstraints(listPane, gbc); add(listPane);
+	}
 
-    @Override
-    public String getTitle() {
-        return Strings.get("toolbarTitle");
-    }
+	@Override
+	public String getTitle() {
+		return Strings.get("toolbarTitle");
+	}
 
-    @Override
-    public String getHelpText() {
-        return Strings.get("toolbarHelp");
-    }
-    
-    @Override
-    public void localeChanged() {
-        addTool.setText(Strings.get("toolbarAddTool"));
-        addSeparator.setText(Strings.get("toolbarAddSeparator"));
-        moveUp.setText(Strings.get("toolbarMoveUp"));
-        moveDown.setText(Strings.get("toolbarMoveDown"));
-        remove.setText(Strings.get("toolbarRemove"));
-        locLabel.setText(Strings.get("toolbarLocation"));
-        list.localeChanged();
-    }
+	@Override
+	public String getHelpText() {
+		return Strings.get("toolbarHelp");
+	}
+	
+	@Override
+	public void localeChanged() {
+		addTool.setText(Strings.get("toolbarAddTool"));
+		addSeparator.setText(Strings.get("toolbarAddSeparator"));
+		moveUp.setText(Strings.get("toolbarMoveUp"));
+		moveDown.setText(Strings.get("toolbarMoveDown"));
+		remove.setText(Strings.get("toolbarRemove"));
+		locLabel.setText(Strings.get("toolbarLocation"));
+		list.localeChanged();
+	}
 }

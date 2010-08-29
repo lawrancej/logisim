@@ -31,180 +31,180 @@ import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenuItemManager;
 
 public class HexFrame extends JFrame {
-    private class WindowMenuManager extends WindowMenuItemManager
-            implements LocaleListener {
-        WindowMenuManager() {
-            super(Strings.get("hexFrameMenuItem"), false);
-            LocaleManager.addLocaleListener(this);
-        }
-        
-        @Override
-        public JFrame getJFrame(boolean create) {
-            return HexFrame.this;
-        }
-        
-        public void localeChanged() {
-            setText(Strings.get("hexFrameMenuItem"));
-        }
-    }
+	private class WindowMenuManager extends WindowMenuItemManager
+			implements LocaleListener {
+		WindowMenuManager() {
+			super(Strings.get("hexFrameMenuItem"), false);
+			LocaleManager.addLocaleListener(this);
+		}
+		
+		@Override
+		public JFrame getJFrame(boolean create) {
+			return HexFrame.this;
+		}
+		
+		public void localeChanged() {
+			setText(Strings.get("hexFrameMenuItem"));
+		}
+	}
 
-    private class MyListener
-            implements ActionListener, LocaleListener {
-        private File lastFile = null;
-        
-        public void actionPerformed(ActionEvent event) {
-            Object src = event.getSource();
-            if (src == open) {
-                JFileChooser chooser = JFileChoosers.createSelected(lastFile);
-                chooser.setDialogTitle(Strings.get("openButton"));
-                int choice = chooser.showOpenDialog(HexFrame.this);
-                if (choice == JFileChooser.APPROVE_OPTION) {
-                    File f = chooser.getSelectedFile();
-                    try {
-                        HexFile.open(model, f);
-                        lastFile = f;
-                    } catch (IOException e) {
-                        JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
-                                Strings.get("hexOpenErrorTitle"), JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            } else if (src == save) {
-                JFileChooser chooser = JFileChoosers.createSelected(lastFile);
-                chooser.setDialogTitle(Strings.get("saveButton"));
-                int choice = chooser.showSaveDialog(HexFrame.this);
-                if (choice == JFileChooser.APPROVE_OPTION) {
-                    File f = chooser.getSelectedFile();
-                    try {
-                        HexFile.save(f, model);
-                        lastFile = f;
-                    } catch (IOException e) {
-                        JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
-                            Strings.get("hexSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            } else if (src == close) {
-                WindowEvent e = new WindowEvent(HexFrame.this,
-                        WindowEvent.WINDOW_CLOSING);
-                HexFrame.this.processWindowEvent(e);
-            }
-        }
-        
-        public void localeChanged() {
-            setTitle(Strings.get("hexFrameTitle"));
-            open.setText(Strings.get("openButton"));
-            save.setText(Strings.get("saveButton"));
-            close.setText(Strings.get("closeButton"));
-        }
-    }
-    
-    private class EditListener implements ActionListener, ChangeListener {
-        private Clip clip = null;
-        
-        private Clip getClip() {
-            if (clip == null) clip = new Clip(editor);
-            return clip;
-        }
-        
-        private void register(LogisimMenuBar menubar) {
-            menubar.addActionListener(LogisimMenuBar.CUT, this);
-            menubar.addActionListener(LogisimMenuBar.COPY, this);
-            menubar.addActionListener(LogisimMenuBar.PASTE, this);
-            menubar.addActionListener(LogisimMenuBar.DELETE, this);
-            menubar.addActionListener(LogisimMenuBar.SELECT_ALL, this);
-            enableItems(menubar);
-        }
-        
-        public void actionPerformed(ActionEvent e) {
-            Object src = e.getSource();
-            if (src == LogisimMenuBar.CUT) {
-                getClip().copy();
-                editor.delete();
-            } else if (src == LogisimMenuBar.COPY) {
-                getClip().copy();
-            } else if (src == LogisimMenuBar.PASTE) {
-                getClip().paste();
-            } else if (src == LogisimMenuBar.DELETE) {
-                editor.delete();
-            } else if (src == LogisimMenuBar.SELECT_ALL) {
-                editor.selectAll();
-            }
-        }
-        
-        private void enableItems(LogisimMenuBar menubar) {
-            boolean sel = editor.selectionExists();
-            boolean clip = true; //TODO editor.clipboardExists();
-            menubar.setEnabled(LogisimMenuBar.CUT, sel);
-            menubar.setEnabled(LogisimMenuBar.COPY, sel);
-            menubar.setEnabled(LogisimMenuBar.PASTE, clip);
-            menubar.setEnabled(LogisimMenuBar.DELETE, sel);
-            menubar.setEnabled(LogisimMenuBar.SELECT_ALL, true);
-        }
+	private class MyListener
+			implements ActionListener, LocaleListener {
+		private File lastFile = null;
+		
+		public void actionPerformed(ActionEvent event) {
+			Object src = event.getSource();
+			if (src == open) {
+				JFileChooser chooser = JFileChoosers.createSelected(lastFile);
+				chooser.setDialogTitle(Strings.get("openButton"));
+				int choice = chooser.showOpenDialog(HexFrame.this);
+				if (choice == JFileChooser.APPROVE_OPTION) {
+					File f = chooser.getSelectedFile();
+					try {
+						HexFile.open(model, f);
+						lastFile = f;
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
+						        Strings.get("hexOpenErrorTitle"), JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			} else if (src == save) {
+				JFileChooser chooser = JFileChoosers.createSelected(lastFile);
+				chooser.setDialogTitle(Strings.get("saveButton"));
+				int choice = chooser.showSaveDialog(HexFrame.this);
+				if (choice == JFileChooser.APPROVE_OPTION) {
+					File f = chooser.getSelectedFile();
+					try {
+						HexFile.save(f, model);
+						lastFile = f;
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
+						    Strings.get("hexSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			} else if (src == close) {
+				WindowEvent e = new WindowEvent(HexFrame.this,
+						WindowEvent.WINDOW_CLOSING);
+				HexFrame.this.processWindowEvent(e);
+			}
+		}
+		
+		public void localeChanged() {
+			setTitle(Strings.get("hexFrameTitle"));
+			open.setText(Strings.get("openButton"));
+			save.setText(Strings.get("saveButton"));
+			close.setText(Strings.get("closeButton"));
+		}
+	}
+	
+	private class EditListener implements ActionListener, ChangeListener {
+		private Clip clip = null;
+		
+		private Clip getClip() {
+			if (clip == null) clip = new Clip(editor);
+			return clip;
+		}
+		
+		private void register(LogisimMenuBar menubar) {
+			menubar.addActionListener(LogisimMenuBar.CUT, this);
+			menubar.addActionListener(LogisimMenuBar.COPY, this);
+			menubar.addActionListener(LogisimMenuBar.PASTE, this);
+			menubar.addActionListener(LogisimMenuBar.DELETE, this);
+			menubar.addActionListener(LogisimMenuBar.SELECT_ALL, this);
+			enableItems(menubar);
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+			Object src = e.getSource();
+			if (src == LogisimMenuBar.CUT) {
+				getClip().copy();
+				editor.delete();
+			} else if (src == LogisimMenuBar.COPY) {
+				getClip().copy();
+			} else if (src == LogisimMenuBar.PASTE) {
+				getClip().paste();
+			} else if (src == LogisimMenuBar.DELETE) {
+				editor.delete();
+			} else if (src == LogisimMenuBar.SELECT_ALL) {
+				editor.selectAll();
+			}
+		}
+		
+		private void enableItems(LogisimMenuBar menubar) {
+			boolean sel = editor.selectionExists();
+			boolean clip = true; //TODO editor.clipboardExists();
+			menubar.setEnabled(LogisimMenuBar.CUT, sel);
+			menubar.setEnabled(LogisimMenuBar.COPY, sel);
+			menubar.setEnabled(LogisimMenuBar.PASTE, clip);
+			menubar.setEnabled(LogisimMenuBar.DELETE, sel);
+			menubar.setEnabled(LogisimMenuBar.SELECT_ALL, true);
+		}
 
-        public void stateChanged(ChangeEvent e) {
-            enableItems((LogisimMenuBar) getJMenuBar());
-        }
-    }
+		public void stateChanged(ChangeEvent e) {
+			enableItems((LogisimMenuBar) getJMenuBar());
+		}
+	}
 
-    private WindowMenuManager windowManager = new WindowMenuManager();
-    private EditListener editListener = new EditListener();
-    private MyListener myListener = new MyListener();
-    private HexModel model;
-    private HexEditor editor;
-    private JButton open = new JButton();
-    private JButton save = new JButton();
-    private JButton close = new JButton();
+	private WindowMenuManager windowManager = new WindowMenuManager();
+	private EditListener editListener = new EditListener();
+	private MyListener myListener = new MyListener();
+	private HexModel model;
+	private HexEditor editor;
+	private JButton open = new JButton();
+	private JButton save = new JButton();
+	private JButton close = new JButton();
 
-    public HexFrame(Project proj, HexModel model) {
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
+	public HexFrame(Project proj, HexModel model) {
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
 
-        LogisimMenuBar menubar = new LogisimMenuBar(this, proj);
-        setJMenuBar(menubar);
-        
-        this.model = model;
-        this.editor = new HexEditor(model);
+		LogisimMenuBar menubar = new LogisimMenuBar(this, proj);
+		setJMenuBar(menubar);
+		
+		this.model = model;
+		this.editor = new HexEditor(model);
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(open);
-        buttonPanel.add(save);
-        buttonPanel.add(close);
-        open.addActionListener(myListener);
-        save.addActionListener(myListener);
-        close.addActionListener(myListener);
-        
-        Dimension pref = editor.getPreferredSize();
-        JScrollPane scroll = new JScrollPane(editor,
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        pref.height = Math.min(pref.height, pref.width * 3 / 2);
-        scroll.setPreferredSize(pref);
-        scroll.getViewport().setBackground(editor.getBackground());
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(open);
+		buttonPanel.add(save);
+		buttonPanel.add(close);
+		open.addActionListener(myListener);
+		save.addActionListener(myListener);
+		close.addActionListener(myListener);
+		
+		Dimension pref = editor.getPreferredSize();
+		JScrollPane scroll = new JScrollPane(editor,
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		pref.height = Math.min(pref.height, pref.width * 3 / 2);
+		scroll.setPreferredSize(pref);
+		scroll.getViewport().setBackground(editor.getBackground());
 
-        Container contents = getContentPane();
-        contents.add(scroll, BorderLayout.CENTER);
-        contents.add(buttonPanel, BorderLayout.SOUTH);
+		Container contents = getContentPane();
+		contents.add(scroll, BorderLayout.CENTER);
+		contents.add(buttonPanel, BorderLayout.SOUTH);
 
-        LocaleManager.addLocaleListener(myListener);
-        myListener.localeChanged();
-        pack();
-        
-        Dimension size = getSize();
-        Dimension screen = getToolkit().getScreenSize();
-        if (size.width > screen.width || size.height > screen.height) {
-            size.width = Math.min(size.width, screen.width);
-            size.height = Math.min(size.height, screen.height);
-            setSize(size);
-        }
+		LocaleManager.addLocaleListener(myListener);
+		myListener.localeChanged();
+		pack();
+		
+		Dimension size = getSize();
+		Dimension screen = getToolkit().getScreenSize();
+		if (size.width > screen.width || size.height > screen.height) {
+			size.width = Math.min(size.width, screen.width);
+			size.height = Math.min(size.height, screen.height);
+			setSize(size);
+		}
 
-        editor.getCaret().addChangeListener(editListener);
-        editor.getCaret().setDot(0, false);
-        editListener.register(menubar);
-    }
-    
-    @Override
-    public void setVisible(boolean value) {
-        if (value && !isVisible()) {
-            windowManager.frameOpened(this);
-        }
-        super.setVisible(value);
-    }
+		editor.getCaret().addChangeListener(editListener);
+		editor.getCaret().setDot(0, false);
+		editListener.register(menubar);
+	}
+	
+	@Override
+	public void setVisible(boolean value) {
+		if (value && !isVisible()) {
+			windowManager.frameOpened(this);
+		}
+		super.setVisible(value);
+	}
 }

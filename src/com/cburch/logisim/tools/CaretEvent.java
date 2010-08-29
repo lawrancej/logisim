@@ -4,25 +4,25 @@
 package com.cburch.logisim.tools;
 
 public class CaretEvent {
-    private Caret caret;
-    private String oldtext;
-    private String newtext;
+	private Caret caret;
+	private String oldtext;
+	private String newtext;
 
-    public CaretEvent(Caret caret, String oldtext, String newtext) {
-        this.caret = caret;
-        this.oldtext = oldtext;
-        this.newtext = newtext;
-    }
+	public CaretEvent(Caret caret, String oldtext, String newtext) {
+		this.caret = caret;
+		this.oldtext = oldtext;
+		this.newtext = newtext;
+	}
 
-    public Caret getCaret() {
-        return caret;
-    }
+	public Caret getCaret() {
+		return caret;
+	}
 
-    public String getOldText() {
-        return oldtext;
-    }
+	public String getOldText() {
+		return oldtext;
+	}
 
-    public String getText() {
-        return newtext;
-    }
+	public String getText() {
+		return newtext;
+	}
 }

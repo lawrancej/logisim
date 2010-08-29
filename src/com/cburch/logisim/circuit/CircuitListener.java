@@ -4,5 +4,5 @@
 package com.cburch.logisim.circuit;
 
 public interface CircuitListener {
-    public void circuitChanged(CircuitEvent event);
+	public void circuitChanged(CircuitEvent event);
 }

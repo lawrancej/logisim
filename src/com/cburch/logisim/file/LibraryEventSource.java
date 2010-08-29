@@ -4,6 +4,6 @@
 package com.cburch.logisim.file;
 
 public interface LibraryEventSource {
-    public void addLibraryListener(LibraryListener listener);
-    public void removeLibraryListener(LibraryListener listener);
+	public void addLibraryListener(LibraryListener listener);
+	public void removeLibraryListener(LibraryListener listener);
 }

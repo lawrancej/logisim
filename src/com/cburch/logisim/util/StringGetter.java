@@ -4,5 +4,5 @@
 package com.cburch.logisim.util;
 
 public interface StringGetter {
-    public String get();
+	public String get();
 }

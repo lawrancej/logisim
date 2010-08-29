@@ -6,5 +6,5 @@ package com.cburch.logisim.tools;
 import com.cburch.logisim.comp.ComponentDrawContext;
 
 public interface CustomHandles {
-    public void drawHandles(ComponentDrawContext context);
+	public void drawHandles(ComponentDrawContext context);
 }

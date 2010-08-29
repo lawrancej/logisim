@@ -4,5 +4,5 @@
 package com.cburch.logisim.tools;
 
 public interface WireRepair {
-    public boolean shouldRepairWire(WireRepairData data);
+	public boolean shouldRepairWire(WireRepairData data);
 }

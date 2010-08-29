@@ -4,5 +4,5 @@
 package com.cburch.logisim.util;
 
 public interface LocaleListener {
-    public void localeChanged();
+	public void localeChanged();
 }

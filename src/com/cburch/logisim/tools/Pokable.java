@@ -6,5 +6,5 @@ package com.cburch.logisim.tools;
 import com.cburch.logisim.comp.ComponentUserEvent;
 
 public interface Pokable {
-    public Caret getPokeCaret(ComponentUserEvent event);
+	public Caret getPokeCaret(ComponentUserEvent event);
 }

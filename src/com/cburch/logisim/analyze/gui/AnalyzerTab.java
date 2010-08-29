@@ -6,6 +6,6 @@ package com.cburch.logisim.analyze.gui;
 import javax.swing.JPanel;
 
 abstract class AnalyzerTab extends JPanel {
-    abstract void updateTab();
-    abstract void localeChanged();
+	abstract void updateTab();
+	abstract void localeChanged();
 }

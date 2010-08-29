@@ -12,24 +12,24 @@ import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.proj.Project;
 
 public class CircuitAttributeListener implements AttributeTableListener {
-    private Project proj;
-    private Circuit circ;
-    
-    public CircuitAttributeListener(Project proj, Circuit circ) {
-        this.proj = proj;
-        this.circ = circ;
-    }
-    
-    public void valueChangeRequested(AttributeTable table,
-            AttributeSet attrs, Attribute<?> attr, Object value) {
-        if (!proj.getLogisimFile().contains(circ)) {
-            JOptionPane.showMessageDialog(proj.getFrame(),
-                Strings.get("cannotModifyCircuitError"));
-        } else {
-            CircuitMutation xn = new CircuitMutation(circ);
-            xn.setForCircuit(attr, value);
-            proj.doAction(xn.toAction(Strings.getter("changeCircuitAttrAction")));
-        }
-    }
+	private Project proj;
+	private Circuit circ;
+	
+	public CircuitAttributeListener(Project proj, Circuit circ) {
+		this.proj = proj;
+		this.circ = circ;
+	}
+	
+	public void valueChangeRequested(AttributeTable table,
+			AttributeSet attrs, Attribute<?> attr, Object value) {
+		if (!proj.getLogisimFile().contains(circ)) {
+			JOptionPane.showMessageDialog(proj.getFrame(),
+				Strings.get("cannotModifyCircuitError"));
+		} else {
+			CircuitMutation xn = new CircuitMutation(circ);
+			xn.setForCircuit(attr, value);
+			proj.doAction(xn.toAction(Strings.getter("changeCircuitAttrAction")));
+		}
+	}
 }
 

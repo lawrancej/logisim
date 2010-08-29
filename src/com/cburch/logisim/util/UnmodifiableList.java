@@ -6,19 +6,19 @@ package com.cburch.logisim.util;
 import java.util.AbstractList;
 
 public class UnmodifiableList<E> extends AbstractList<E> {
-    private E[] data;
-    
-    public UnmodifiableList(E[] data) {
-        this.data = data;
-    }
+	private E[] data;
+	
+	public UnmodifiableList(E[] data) {
+		this.data = data;
+	}
 
-    @Override
-    public E get(int index) {
-        return data[index];
-    }
+	@Override
+	public E get(int index) {
+		return data[index];
+	}
 
-    @Override
-    public int size() {
-        return data.length;
-    }
+	@Override
+	public int size() {
+		return data.length;
+	}
 }

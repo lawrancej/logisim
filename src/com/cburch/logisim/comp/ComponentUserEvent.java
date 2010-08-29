@@ -8,33 +8,33 @@ import com.cburch.logisim.gui.main.Canvas;
 
 
 public class ComponentUserEvent {
-    private Canvas canvas;
-    private int x = 0;
-    private int y = 0;
+	private Canvas canvas;
+	private int x = 0;
+	private int y = 0;
 
-    ComponentUserEvent(Canvas canvas) {
-        this.canvas = canvas;
-    }
+	ComponentUserEvent(Canvas canvas) {
+		this.canvas = canvas;
+	}
 
-    public ComponentUserEvent(Canvas canvas, int x, int y) {
-        this.canvas = canvas;
-        this.x = x;
-        this.y = y;
-    }
+	public ComponentUserEvent(Canvas canvas, int x, int y) {
+		this.canvas = canvas;
+		this.x = x;
+		this.y = y;
+	}
 
-    public Canvas getCanvas() {
-        return canvas;
-    }
+	public Canvas getCanvas() {
+		return canvas;
+	}
 
-    public CircuitState getCircuitState() {
-        return canvas.getCircuitState();
-    }
+	public CircuitState getCircuitState() {
+		return canvas.getCircuitState();
+	}
 
-    public int getX() {
-        return x;
-    }
+	public int getX() {
+		return x;
+	}
 
-    public int getY() {
-        return y;
-    }
+	public int getY() {
+		return y;
+	}
 }

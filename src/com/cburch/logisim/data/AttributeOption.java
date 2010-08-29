@@ -6,26 +6,26 @@ package com.cburch.logisim.data;
 import com.cburch.logisim.util.StringGetter;
 
 public class AttributeOption implements AttributeOptionInterface {
-    private Object value;
-    private String name;
-    private StringGetter desc;
+	private Object value;
+	private String name;
+	private StringGetter desc;
 
-    public AttributeOption(Object value, StringGetter desc) {
-        this.value = value;
-        this.name = value.toString();
-        this.desc = desc;
-    }
+	public AttributeOption(Object value, StringGetter desc) {
+		this.value = value;
+		this.name = value.toString();
+		this.desc = desc;
+	}
 
-    public AttributeOption(Object value, String name, StringGetter desc) {
-        this.value = value;
-        this.name = name;
-        this.desc = desc;
-    }
+	public AttributeOption(Object value, String name, StringGetter desc) {
+		this.value = value;
+		this.name = name;
+		this.desc = desc;
+	}
 
-    public Object getValue() { return value; }
+	public Object getValue() { return value; }
 
-    @Override
-    public String toString() { return name; }
+	@Override
+	public String toString() { return name; }
 
-    public String toDisplayString() { return desc.get(); }
+	public String toDisplayString() { return desc.get(); }
 }

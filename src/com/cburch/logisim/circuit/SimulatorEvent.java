@@ -4,13 +4,13 @@
 package com.cburch.logisim.circuit;
 
 public class SimulatorEvent {
-    private Simulator source;
+	private Simulator source;
 
-    public SimulatorEvent(Simulator source) {
-        this.source = source;
-    }
+	public SimulatorEvent(Simulator source) {
+		this.source = source;
+	}
 
-    public Simulator getSource() {
-        return source;
-    }
+	public Simulator getSource() {
+		return source;
+	}
 }

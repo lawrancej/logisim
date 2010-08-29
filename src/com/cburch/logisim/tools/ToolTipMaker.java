@@ -6,5 +6,5 @@ package com.cburch.logisim.tools;
 import com.cburch.logisim.comp.ComponentUserEvent;
 
 public interface ToolTipMaker {
-    public String getToolTip(ComponentUserEvent event);
+	public String getToolTip(ComponentUserEvent event);
 }

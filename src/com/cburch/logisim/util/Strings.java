@@ -7,13 +7,13 @@ import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.StringGetter;
 
 class Strings {
-    static LocaleManager source
-        = new LocaleManager("resources/logisim", "util");
+	static LocaleManager source
+		= new LocaleManager("resources/logisim", "util");
 
-    public static String get(String key) {
-        return source.get(key);
-    }
-    public static StringGetter getter(String key) {
-        return source.getter(key);
-    }
+	public static String get(String key) {
+		return source.get(key);
+	}
+	public static StringGetter getter(String key) {
+		return source.getter(key);
+	}
 }

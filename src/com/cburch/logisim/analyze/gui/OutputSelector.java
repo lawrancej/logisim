@@ -17,127 +17,127 @@ import com.cburch.logisim.analyze.model.VariableListEvent;
 import com.cburch.logisim.analyze.model.VariableListListener;
 
 class OutputSelector extends JPanel {
-    private class Model extends AbstractListModel
-            implements ComboBoxModel, VariableListListener {
-        private Object selected;
+	private class Model extends AbstractListModel
+			implements ComboBoxModel, VariableListListener {
+		private Object selected;
 
-        public void setSelectedItem(Object value) {
-            selected = value;
-        }
+		public void setSelectedItem(Object value) {
+			selected = value;
+		}
 
-        public Object getSelectedItem() {
-            return selected;
-        }
+		public Object getSelectedItem() {
+			return selected;
+		}
 
-        public int getSize() {
-            return source.size();
-        }
+		public int getSize() {
+			return source.size();
+		}
 
-        public Object getElementAt(int index) {
-            return source.get(index);
-        }
+		public Object getElementAt(int index) {
+			return source.get(index);
+		}
 
-        public void listChanged(VariableListEvent event) {
-            int index;
-            String variable;
-            Object selection;
-            switch (event.getType()) {
-            case VariableListEvent.ALL_REPLACED:
-                computePrototypeValue();
-                fireContentsChanged(this, 0, getSize());
-                if (source.isEmpty()) {
-                    select.setSelectedItem(null);
-                } else {
-                    select.setSelectedItem(source.get(0));
-                }
-                break;
-            case VariableListEvent.ADD:
-                variable = event.getVariable();
-                if (prototypeValue == null || variable.length() > prototypeValue.length()) {
-                    computePrototypeValue();
-                }
-                
-                index = source.indexOf(variable);
-                fireIntervalAdded(this, index, index);
-                if (select.getSelectedItem() == null) {
-                    select.setSelectedItem(variable);
-                }
-                break;
-            case VariableListEvent.REMOVE:
-                variable = event.getVariable();
-                if (variable.equals(prototypeValue)) computePrototypeValue();
-                index = ((Integer) event.getData()).intValue();
-                fireIntervalRemoved(this, index, index);
-                selection = select.getSelectedItem();
-                if (selection != null && selection.equals(variable)) {
-                    selection = source.isEmpty() ? null : source.get(0);
-                    select.setSelectedItem(selection);
-                }
-                break;
-            case VariableListEvent.MOVE:
-                fireContentsChanged(this, 0, getSize());
-                break;
-            case VariableListEvent.REPLACE:
-                variable = event.getVariable();
-                if (variable.equals(prototypeValue)) computePrototypeValue();
-                index = ((Integer) event.getData()).intValue();
-                fireContentsChanged(this, index, index);
-                selection = select.getSelectedItem();
-                if (selection != null && selection.equals(variable)) {
-                    select.setSelectedItem(event.getSource().get(index));
-                }
-                break;
-            }
-        }
-    }
+		public void listChanged(VariableListEvent event) {
+			int index;
+			String variable;
+			Object selection;
+			switch (event.getType()) {
+			case VariableListEvent.ALL_REPLACED:
+				computePrototypeValue();
+				fireContentsChanged(this, 0, getSize());
+				if (source.isEmpty()) {
+					select.setSelectedItem(null);
+				} else {
+					select.setSelectedItem(source.get(0));
+				}
+				break;
+			case VariableListEvent.ADD:
+				variable = event.getVariable();
+				if (prototypeValue == null || variable.length() > prototypeValue.length()) {
+					computePrototypeValue();
+				}
+				
+				index = source.indexOf(variable);
+				fireIntervalAdded(this, index, index);
+				if (select.getSelectedItem() == null) {
+					select.setSelectedItem(variable);
+				}
+				break;
+			case VariableListEvent.REMOVE:
+				variable = event.getVariable();
+				if (variable.equals(prototypeValue)) computePrototypeValue();
+				index = ((Integer) event.getData()).intValue();
+				fireIntervalRemoved(this, index, index);
+				selection = select.getSelectedItem();
+				if (selection != null && selection.equals(variable)) {
+					selection = source.isEmpty() ? null : source.get(0);
+					select.setSelectedItem(selection);
+				}
+				break;
+			case VariableListEvent.MOVE:
+				fireContentsChanged(this, 0, getSize());
+				break;
+			case VariableListEvent.REPLACE:
+				variable = event.getVariable();
+				if (variable.equals(prototypeValue)) computePrototypeValue();
+				index = ((Integer) event.getData()).intValue();
+				fireContentsChanged(this, index, index);
+				selection = select.getSelectedItem();
+				if (selection != null && selection.equals(variable)) {
+					select.setSelectedItem(event.getSource().get(index));
+				}
+				break;
+			}
+		}
+	}
 
-    private VariableList source;
-    private JLabel label = new JLabel();
-    private JComboBox select = new JComboBox();
-    private String prototypeValue = null;
-    
-    public OutputSelector(AnalyzerModel model) {
-        this.source = model.getOutputs();
-        
-        Model listModel = new Model();
-        select.setModel(listModel);
-        source.addVariableListListener(listModel);
-        
-        add(label);
-        add(select);
-    }
-    
-    void localeChanged() {
-        label.setText(Strings.get("outputSelectLabel"));
-    }
-    
-    public void addItemListener(ItemListener l) {
-        select.addItemListener(l);
-    }
-    
-    public void removeItemListener(ItemListener l) {
-        select.removeItemListener(l);
-    }
-    
-    public String getSelectedOutput() {
-        return (String) select.getSelectedItem();
-    }
-    
-    private void computePrototypeValue() {
-        String newValue;
-        if (source.isEmpty()) {
-            newValue = "xx";
-        } else {
-            newValue = "xx";
-            for (int i = 0, n = source.size(); i < n; i++) {
-                String candidate = source.get(i);
-                if (candidate.length() > newValue.length()) newValue = candidate;
-            }
-        }
-        if (prototypeValue == null || newValue.length() != prototypeValue.length()) {
-            prototypeValue = newValue;
-            select.setPrototypeDisplayValue(prototypeValue + "xx");
-            revalidate();
-        }
-    }
+	private VariableList source;
+	private JLabel label = new JLabel();
+	private JComboBox select = new JComboBox();
+	private String prototypeValue = null;
+	
+	public OutputSelector(AnalyzerModel model) {
+		this.source = model.getOutputs();
+		
+		Model listModel = new Model();
+		select.setModel(listModel);
+		source.addVariableListListener(listModel);
+		
+		add(label);
+		add(select);
+	}
+	
+	void localeChanged() {
+		label.setText(Strings.get("outputSelectLabel"));
+	}
+	
+	public void addItemListener(ItemListener l) {
+		select.addItemListener(l);
+	}
+	
+	public void removeItemListener(ItemListener l) {
+		select.removeItemListener(l);
+	}
+	
+	public String getSelectedOutput() {
+		return (String) select.getSelectedItem();
+	}
+	
+	private void computePrototypeValue() {
+		String newValue;
+		if (source.isEmpty()) {
+			newValue = "xx";
+		} else {
+			newValue = "xx";
+			for (int i = 0, n = source.size(); i < n; i++) {
+				String candidate = source.get(i);
+				if (candidate.length() > newValue.length()) newValue = candidate;
+			}
+		}
+		if (prototypeValue == null || newValue.length() != prototypeValue.length()) {
+			prototypeValue = newValue;
+			select.setPrototypeDisplayValue(prototypeValue + "xx");
+			revalidate();
+		}
+	}
 }

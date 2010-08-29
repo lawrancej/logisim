@@ -8,5 +8,5 @@ import javax.swing.JPopupMenu;
 import com.cburch.logisim.proj.Project;
 
 public interface MenuExtender {
-    public void configureMenu(JPopupMenu menu, Project proj);
+	public void configureMenu(JPopupMenu menu, Project proj);
 }

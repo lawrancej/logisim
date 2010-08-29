@@ -4,25 +4,25 @@
 package com.cburch.logisim.comp;
 
 public class TextFieldEvent {
-    private TextField field;
-    private String oldval;
-    private String newval;
+	private TextField field;
+	private String oldval;
+	private String newval;
 
-    public TextFieldEvent(TextField field, String old, String val) {
-        this.field = field;
-        this.oldval = old;
-        this.newval = val;
-    }
+	public TextFieldEvent(TextField field, String old, String val) {
+		this.field = field;
+		this.oldval = old;
+		this.newval = val;
+	}
 
-    public TextField getTextField() {
-        return field;
-    }
+	public TextField getTextField() {
+		return field;
+	}
 
-    public String getOldText() {
-        return oldval;
-    }
+	public String getOldText() {
+		return oldval;
+	}
 
-    public String getText() {
-        return newval;
-    }
+	public String getText() {
+		return newval;
+	}
 }

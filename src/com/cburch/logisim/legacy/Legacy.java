@@ -11,30 +11,30 @@ import com.cburch.logisim.tools.Tool;
 
 
 public class Legacy extends Library {
-    private static FactoryDescription[] DESCRIPTIONS = {
-        new FactoryDescription("Logisim 1.0 D Flip-Flop", Strings.getter("dFlipFlopComponent"),
-                "dFlipFlop.gif", "DFlipFlop"),
-        new FactoryDescription("Logisim 1.0 J-K Flip-Flop", Strings.getter("jkFlipFlopComponent"),
-                "jkFlipFlop.gif", "JKFlipFlop"),
-        new FactoryDescription("Logisim 1.0 Register", Strings.getter("registerComponent"),
-                "register.gif", "Register"),
-    };
+	private static FactoryDescription[] DESCRIPTIONS = {
+		new FactoryDescription("Logisim 1.0 D Flip-Flop", Strings.getter("dFlipFlopComponent"),
+				"dFlipFlop.gif", "DFlipFlop"),
+		new FactoryDescription("Logisim 1.0 J-K Flip-Flop", Strings.getter("jkFlipFlopComponent"),
+				"jkFlipFlop.gif", "JKFlipFlop"),
+		new FactoryDescription("Logisim 1.0 Register", Strings.getter("registerComponent"),
+				"register.gif", "Register"),
+	};
 
-    private List<Tool> tools = null;
+	private List<Tool> tools = null;
 
-    public Legacy() { }
+	public Legacy() { }
 
-    @Override
-    public String getName() { return "Legacy"; }
+	@Override
+	public String getName() { return "Legacy"; }
 
-    @Override
-    public String getDisplayName() { return Strings.get("legacyLibrary"); }
+	@Override
+	public String getDisplayName() { return Strings.get("legacyLibrary"); }
 
-    @Override
-    public List<Tool> getTools() {
-        if (tools == null) {
-            tools = FactoryDescription.getTools(Legacy.class, DESCRIPTIONS);
-        }
-        return tools;
-    }
+	@Override
+	public List<Tool> getTools() {
+		if (tools == null) {
+			tools = FactoryDescription.getTools(Legacy.class, DESCRIPTIONS);
+		}
+		return tools;
+	}
 }

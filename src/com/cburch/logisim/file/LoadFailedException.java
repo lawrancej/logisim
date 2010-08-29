@@ -4,7 +4,7 @@
 package com.cburch.logisim.file;
 
 public class LoadFailedException extends Exception {
-    LoadFailedException(String desc) {
-        super(desc);
-    }
+	LoadFailedException(String desc) {
+		super(desc);
+	}
 }

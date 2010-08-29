@@ -4,7 +4,7 @@
 package com.cburch.logisim.file;
 
 public class LoaderException extends RuntimeException {
-    LoaderException(String desc) {
-        super(desc);
-    }
+	LoaderException(String desc) {
+		super(desc);
+	}
 }

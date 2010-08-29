@@ -11,34 +11,34 @@ import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 
 public class Gates extends Library {
-    private List<Tool> tools = null;
+	private List<Tool> tools = null;
 
-    public Gates() {
-        tools = Arrays.asList(new Tool[] {
-            new AddTool(Constant.FACTORY),
-            new AddTool(NotGate.FACTORY),
-            new AddTool(Buffer.FACTORY),
-            new AddTool(AndGate.FACTORY),
-            new AddTool(OrGate.FACTORY),
-            new AddTool(NandGate.FACTORY),
-            new AddTool(NorGate.FACTORY),
-            new AddTool(XorGate.FACTORY),
-            new AddTool(XnorGate.FACTORY),
-            new AddTool(OddParityGate.FACTORY),
-            new AddTool(EvenParityGate.FACTORY),
-            new AddTool(ControlledBuffer.FACTORY_BUFFER),
-            new AddTool(ControlledBuffer.FACTORY_INVERTER),
-        });
-    }
+	public Gates() {
+		tools = Arrays.asList(new Tool[] {
+			new AddTool(Constant.FACTORY),
+			new AddTool(NotGate.FACTORY),
+			new AddTool(Buffer.FACTORY),
+			new AddTool(AndGate.FACTORY),
+			new AddTool(OrGate.FACTORY),
+			new AddTool(NandGate.FACTORY),
+			new AddTool(NorGate.FACTORY),
+			new AddTool(XorGate.FACTORY),
+			new AddTool(XnorGate.FACTORY),
+			new AddTool(OddParityGate.FACTORY),
+			new AddTool(EvenParityGate.FACTORY),
+			new AddTool(ControlledBuffer.FACTORY_BUFFER),
+			new AddTool(ControlledBuffer.FACTORY_INVERTER),
+		});
+	}
 
-    @Override
-    public String getName() { return "Gates"; }
+	@Override
+	public String getName() { return "Gates"; }
 
-    @Override
-    public String getDisplayName() { return Strings.get("gatesLibrary"); }
+	@Override
+	public String getDisplayName() { return Strings.get("gatesLibrary"); }
 
-    @Override
-    public List<Tool> getTools() {
-        return tools;
-    }
+	@Override
+	public List<Tool> getTools() {
+		return tools;
+	}
 }

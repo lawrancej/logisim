@@ -23,74 +23,74 @@ import com.cburch.logisim.proj.Projects;
 import com.cburch.logisim.util.WindowMenuItemManager;
 
 public class WindowManagers {
-    private WindowManagers() { }
-    
-    public static void initialize() {
-        if (!initialized) {
-            initialized = true;
-            AnalyzerManager.initialize();
-            Projects.addPropertyChangeListener(Projects.projectListProperty, myListener);
-            computeListeners();
-        }
-    }
-    
-    private static boolean initialized = false;
-    private static MyListener myListener = new MyListener();
-    private static HashMap<Project,ProjectManager> projectMap
-        = new LinkedHashMap<Project,ProjectManager>();
-    
-    private static class MyListener implements PropertyChangeListener {
-        public void propertyChange(PropertyChangeEvent event) {
-            computeListeners();
-        }
-    }
+	private WindowManagers() { }
+	
+	public static void initialize() {
+		if (!initialized) {
+			initialized = true;
+			AnalyzerManager.initialize();
+			Projects.addPropertyChangeListener(Projects.projectListProperty, myListener);
+			computeListeners();
+		}
+	}
+	
+	private static boolean initialized = false;
+	private static MyListener myListener = new MyListener();
+	private static HashMap<Project,ProjectManager> projectMap
+		= new LinkedHashMap<Project,ProjectManager>();
+	
+	private static class MyListener implements PropertyChangeListener {
+		public void propertyChange(PropertyChangeEvent event) {
+			computeListeners();
+		}
+	}
 
-    private static class ProjectManager extends WindowMenuItemManager
-            implements ProjectListener, LibraryListener {
-        private Project proj;
-        
-        ProjectManager(Project proj) {
-            super(proj.getLogisimFile().getName(), false);
-            this.proj = proj;
-            proj.addProjectListener(this);
-            proj.addLibraryListener(this);
-            frameOpened(proj.getFrame());
-        }
-        
-        @Override
-        public JFrame getJFrame(boolean create) {
-            return proj.getFrame();
-        }
-        
-        public void projectChanged(ProjectEvent event) {
-            if (event.getAction() == ProjectEvent.ACTION_SET_FILE) {
-                setText(proj.getLogisimFile().getName());
-            }
-        }
+	private static class ProjectManager extends WindowMenuItemManager
+			implements ProjectListener, LibraryListener {
+		private Project proj;
+		
+		ProjectManager(Project proj) {
+			super(proj.getLogisimFile().getName(), false);
+			this.proj = proj;
+			proj.addProjectListener(this);
+			proj.addLibraryListener(this);
+			frameOpened(proj.getFrame());
+		}
+		
+		@Override
+		public JFrame getJFrame(boolean create) {
+			return proj.getFrame();
+		}
+		
+		public void projectChanged(ProjectEvent event) {
+			if (event.getAction() == ProjectEvent.ACTION_SET_FILE) {
+				setText(proj.getLogisimFile().getName());
+			}
+		}
 
-        public void libraryChanged(LibraryEvent event) {
-            if (event.getAction() == LibraryEvent.SET_NAME) {
-                setText((String) event.getData());
-            }           
-        }
-    }
-    
-    private static void computeListeners() {
-        List<Project> nowOpen = Projects.getOpenProjects();
-        
-        HashSet<Project> closed = new HashSet<Project>(projectMap.keySet());
-        closed.removeAll(nowOpen);
-        for (Project proj : closed) {
-            ProjectManager manager = projectMap.get(proj);
-            manager.frameClosed(manager.getJFrame(false));
-            projectMap.remove(proj);
-        }
-        
-        HashSet<Project> opened = new LinkedHashSet<Project>(nowOpen);
-        opened.removeAll(projectMap.keySet());
-        for (Project proj : opened) {
-            ProjectManager manager = new ProjectManager(proj);
-            projectMap.put(proj, manager);
-        }
-    }
+		public void libraryChanged(LibraryEvent event) {
+			if (event.getAction() == LibraryEvent.SET_NAME) {
+				setText((String) event.getData());
+			}           
+		}
+	}
+	
+	private static void computeListeners() {
+		List<Project> nowOpen = Projects.getOpenProjects();
+		
+		HashSet<Project> closed = new HashSet<Project>(projectMap.keySet());
+		closed.removeAll(nowOpen);
+		for (Project proj : closed) {
+			ProjectManager manager = projectMap.get(proj);
+			manager.frameClosed(manager.getJFrame(false));
+			projectMap.remove(proj);
+		}
+		
+		HashSet<Project> opened = new LinkedHashSet<Project>(nowOpen);
+		opened.removeAll(projectMap.keySet());
+		for (Project proj : opened) {
+			ProjectManager manager = new ProjectManager(proj);
+			projectMap.put(proj, manager);
+		}
+	}
 }

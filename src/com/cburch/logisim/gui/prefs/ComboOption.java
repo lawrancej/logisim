@@ -8,32 +8,32 @@ import javax.swing.JComboBox;
 import com.cburch.logisim.util.StringGetter;
 
 class ComboOption {
-    private Object value;
-    private StringGetter getter;
-    
-    ComboOption(String value, StringGetter getter) {
-        this.value = value;
-        this.getter = getter;
-    }
-    
-    @Override
-    public String toString() {
-        return getter.get();
-    }
-    
-    public Object getValue() {
-        return value;
-    }
-    
-    static void setSelected(JComboBox combo, Object value) {
-        for (int i = combo.getItemCount() - 1; i >= 0; i--) {
-            ComboOption opt = (ComboOption) combo.getItemAt(i);
-            if (opt.getValue().equals(value)) {
-                combo.setSelectedItem(opt);
-                return;
-            }
-        }
-        combo.setSelectedItem(combo.getItemAt(0));
-    }
+	private Object value;
+	private StringGetter getter;
+	
+	ComboOption(String value, StringGetter getter) {
+		this.value = value;
+		this.getter = getter;
+	}
+	
+	@Override
+	public String toString() {
+		return getter.get();
+	}
+	
+	public Object getValue() {
+		return value;
+	}
+	
+	static void setSelected(JComboBox combo, Object value) {
+		for (int i = combo.getItemCount() - 1; i >= 0; i--) {
+			ComboOption opt = (ComboOption) combo.getItemAt(i);
+			if (opt.getValue().equals(value)) {
+				combo.setSelectedItem(opt);
+				return;
+			}
+		}
+		combo.setSelectedItem(combo.getItemAt(0));
+	}
 
 }

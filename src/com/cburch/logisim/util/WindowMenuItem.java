@@ -10,22 +10,22 @@ import javax.swing.JFrame;
 import javax.swing.JRadioButtonMenuItem;
 
 class WindowMenuItem extends JRadioButtonMenuItem {
-    private WindowMenuItemManager manager;
-    
-    WindowMenuItem(WindowMenuItemManager manager) {
-        this.manager = manager;
-        setText(manager.getText());
-        setSelected(WindowMenuManager.getCurrentManager() == manager);
-    }
-    
-    public JFrame getJFrame() {
-        return manager.getJFrame(true);
-    }
-    
-    public void actionPerformed(ActionEvent event) {
-        JFrame frame = getJFrame();
-        frame.setExtendedState(Frame.NORMAL);
-        frame.setVisible(true);
-        frame.toFront();
-    }
+	private WindowMenuItemManager manager;
+	
+	WindowMenuItem(WindowMenuItemManager manager) {
+		this.manager = manager;
+		setText(manager.getText());
+		setSelected(WindowMenuManager.getCurrentManager() == manager);
+	}
+	
+	public JFrame getJFrame() {
+		return manager.getJFrame(true);
+	}
+	
+	public void actionPerformed(ActionEvent event) {
+		JFrame frame = getJFrame();
+		frame.setExtendedState(Frame.NORMAL);
+		frame.setVisible(true);
+		frame.toFront();
+	}
 }

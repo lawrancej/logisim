@@ -10,38 +10,38 @@ import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 
 public class Arithmetic extends Library {
-    private static FactoryDescription[] DESCRIPTIONS = {
-        new FactoryDescription("Adder", Strings.getter("adderComponent"),
-                "adder.gif", "Adder"),
-        new FactoryDescription("Subtractor", Strings.getter("subtractorComponent"),
-                "subtractor.gif", "Subtractor"),
-        new FactoryDescription("Multiplier", Strings.getter("multiplierComponent"),
-                "multiplier.gif", "Multiplier"),
-        new FactoryDescription("Divider", Strings.getter("dividerComponent"),
-                "divider.gif", "Divider"),
-        new FactoryDescription("Negator", Strings.getter("negatorComponent"),
-                "negator.gif", "Negator"),
-        new FactoryDescription("Comparator", Strings.getter("comparatorComponent"),
-                "comparator.gif", "Comparator"),
-        new FactoryDescription("Shifter", Strings.getter("shifterComponent"),
-                "shifter.gif", "Shifter"),
-    };
-    
-    private List<Tool> tools = null;
+	private static FactoryDescription[] DESCRIPTIONS = {
+		new FactoryDescription("Adder", Strings.getter("adderComponent"),
+				"adder.gif", "Adder"),
+		new FactoryDescription("Subtractor", Strings.getter("subtractorComponent"),
+				"subtractor.gif", "Subtractor"),
+		new FactoryDescription("Multiplier", Strings.getter("multiplierComponent"),
+				"multiplier.gif", "Multiplier"),
+		new FactoryDescription("Divider", Strings.getter("dividerComponent"),
+				"divider.gif", "Divider"),
+		new FactoryDescription("Negator", Strings.getter("negatorComponent"),
+				"negator.gif", "Negator"),
+		new FactoryDescription("Comparator", Strings.getter("comparatorComponent"),
+				"comparator.gif", "Comparator"),
+		new FactoryDescription("Shifter", Strings.getter("shifterComponent"),
+				"shifter.gif", "Shifter"),
+	};
+	
+	private List<Tool> tools = null;
 
-    public Arithmetic() { }
+	public Arithmetic() { }
 
-    @Override
-    public String getName() { return "Arithmetic"; }
+	@Override
+	public String getName() { return "Arithmetic"; }
 
-    @Override
-    public String getDisplayName() { return Strings.get("arithmeticLibrary"); }
+	@Override
+	public String getDisplayName() { return Strings.get("arithmeticLibrary"); }
 
-    @Override
-    public List<Tool> getTools() {
-        if (tools == null) {
-            tools = FactoryDescription.getTools(Arithmetic.class, DESCRIPTIONS);
-        }
-        return tools;
-    }
+	@Override
+	public List<Tool> getTools() {
+		if (tools == null) {
+			tools = FactoryDescription.getTools(Arithmetic.class, DESCRIPTIONS);
+		}
+		return tools;
+	}
 }

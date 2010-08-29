@@ -7,6 +7,6 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 
 public interface AttributeTableListener {
-    public void valueChangeRequested(AttributeTable table, AttributeSet attrs,
-            Attribute<?> attr, Object value);
+	public void valueChangeRequested(AttributeTable table, AttributeSet attrs,
+			Attribute<?> attr, Object value);
 }

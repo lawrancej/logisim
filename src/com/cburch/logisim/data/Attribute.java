@@ -10,42 +10,42 @@ import javax.swing.JTextField;
 import com.cburch.logisim.util.StringGetter;
 
 public abstract class Attribute<V> {
-    private String name;
-    private StringGetter disp;
+	private String name;
+	private StringGetter disp;
 
-    public Attribute(String name, StringGetter disp) {
-        this.name = name;
-        this.disp = disp;
-    }
+	public Attribute(String name, StringGetter disp) {
+		this.name = name;
+		this.disp = disp;
+	}
 
-    @Override
-    public String toString() {
-        return name;
-    }
+	@Override
+	public String toString() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getDisplayName() {
-        return disp.get();
-    }
+	public String getDisplayName() {
+		return disp.get();
+	}
 
-    public java.awt.Component getCellEditor(Window source, V value) {
-        return getCellEditor(value);
-    }
+	public java.awt.Component getCellEditor(Window source, V value) {
+		return getCellEditor(value);
+	}
 
-    protected java.awt.Component getCellEditor(V value) {
-        return new JTextField(toDisplayString(value));
-    }
+	protected java.awt.Component getCellEditor(V value) {
+		return new JTextField(toDisplayString(value));
+	}
 
-    public String toDisplayString(V value) {
-        return value == null ? "" : value.toString();
-    }
+	public String toDisplayString(V value) {
+		return value == null ? "" : value.toString();
+	}
 
-    public String toStandardString(V value) {
-        return value.toString();
-    }
+	public String toStandardString(V value) {
+		return value.toString();
+	}
 
-    public abstract V parse(String value);
+	public abstract V parse(String value);
 }

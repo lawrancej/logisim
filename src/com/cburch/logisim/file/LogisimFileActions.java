@@ -17,301 +17,301 @@ import com.cburch.logisim.tools.Tool;
 
 
 public class LogisimFileActions {
-    private LogisimFileActions() { }
+	private LogisimFileActions() { }
 
-    public static Action addCircuit(Circuit circuit) {
-        return new AddCircuit(circuit);
-    }
+	public static Action addCircuit(Circuit circuit) {
+		return new AddCircuit(circuit);
+	}
 
-    public static Action removeCircuit(Circuit circuit) {
-        return new RemoveCircuit(circuit);
-    }
-    
-    public static Action moveCircuit(AddTool tool, int toIndex) {
-        return new MoveCircuit(tool, toIndex);
-    }
+	public static Action removeCircuit(Circuit circuit) {
+		return new RemoveCircuit(circuit);
+	}
+	
+	public static Action moveCircuit(AddTool tool, int toIndex) {
+		return new MoveCircuit(tool, toIndex);
+	}
 
-    public static Action loadLibrary(Library lib) {
-        return new LoadLibraries(new Library[] { lib });
-    }
+	public static Action loadLibrary(Library lib) {
+		return new LoadLibraries(new Library[] { lib });
+	}
 
-    public static Action loadLibraries(Library[] libs) {
-        return new LoadLibraries(libs);
-    }
+	public static Action loadLibraries(Library[] libs) {
+		return new LoadLibraries(libs);
+	}
 
-    public static Action unloadLibrary(Library lib) {
-        return new UnloadLibraries(new Library[] { lib });
-    }
+	public static Action unloadLibrary(Library lib) {
+		return new UnloadLibraries(new Library[] { lib });
+	}
 
-    public static Action unloadLibraries(Library[] libs) {
-        return new UnloadLibraries(libs);
-    }
+	public static Action unloadLibraries(Library[] libs) {
+		return new UnloadLibraries(libs);
+	}
 
-    public static Action setMainCircuit(Circuit circuit) {
-        return new SetMainCircuit(circuit);
-    }
+	public static Action setMainCircuit(Circuit circuit) {
+		return new SetMainCircuit(circuit);
+	}
 
-    public static Action revertDefaults() {
-        return new RevertDefaults();
-    }
+	public static Action revertDefaults() {
+		return new RevertDefaults();
+	}
 
-    private static class AddCircuit extends Action {
-        private Circuit circuit;
+	private static class AddCircuit extends Action {
+		private Circuit circuit;
 
-        AddCircuit(Circuit circuit) {
-            this.circuit = circuit;
-        }
+		AddCircuit(Circuit circuit) {
+			this.circuit = circuit;
+		}
 
-        @Override
-        public String getName() {
-            return Strings.get("addCircuitAction");
-        }
+		@Override
+		public String getName() {
+			return Strings.get("addCircuitAction");
+		}
 
-        @Override
-        public void doIt(Project proj) {
-            proj.getLogisimFile().addCircuit(circuit);
-        }
+		@Override
+		public void doIt(Project proj) {
+			proj.getLogisimFile().addCircuit(circuit);
+		}
 
-        @Override
-        public void undo(Project proj) {
-            proj.getLogisimFile().removeCircuit(circuit);
-        }
-    }
+		@Override
+		public void undo(Project proj) {
+			proj.getLogisimFile().removeCircuit(circuit);
+		}
+	}
 
-    private static class RemoveCircuit extends Action {
-        private Circuit circuit;
+	private static class RemoveCircuit extends Action {
+		private Circuit circuit;
 
-        RemoveCircuit(Circuit circuit) {
-            this.circuit = circuit;
-        }
+		RemoveCircuit(Circuit circuit) {
+			this.circuit = circuit;
+		}
 
-        @Override
-        public String getName() {
-            return Strings.get("removeCircuitAction");
-        }
+		@Override
+		public String getName() {
+			return Strings.get("removeCircuitAction");
+		}
 
-        @Override
-        public void doIt(Project proj) {
-            proj.getLogisimFile().removeCircuit(circuit);
-        }
+		@Override
+		public void doIt(Project proj) {
+			proj.getLogisimFile().removeCircuit(circuit);
+		}
 
-        @Override
-        public void undo(Project proj) {
-            proj.getLogisimFile().addCircuit(circuit);
-        }
-    }
+		@Override
+		public void undo(Project proj) {
+			proj.getLogisimFile().addCircuit(circuit);
+		}
+	}
 
-    private static class MoveCircuit extends Action {
-        private AddTool tool;
-        private int fromIndex;
-        private int toIndex;
+	private static class MoveCircuit extends Action {
+		private AddTool tool;
+		private int fromIndex;
+		private int toIndex;
 
-        MoveCircuit(AddTool tool, int toIndex) {
-            this.tool = tool;
-            this.toIndex = toIndex;
-        }
+		MoveCircuit(AddTool tool, int toIndex) {
+			this.tool = tool;
+			this.toIndex = toIndex;
+		}
 
-        @Override
-        public String getName() {
-            return Strings.get("moveCircuitAction");
-        }
+		@Override
+		public String getName() {
+			return Strings.get("moveCircuitAction");
+		}
 
-        @Override
-        public void doIt(Project proj) {
-            fromIndex = proj.getLogisimFile().getTools().indexOf(tool);
-            proj.getLogisimFile().moveCircuit(tool, toIndex);
-        }
+		@Override
+		public void doIt(Project proj) {
+			fromIndex = proj.getLogisimFile().getTools().indexOf(tool);
+			proj.getLogisimFile().moveCircuit(tool, toIndex);
+		}
 
-        @Override
-        public void undo(Project proj) {
-            proj.getLogisimFile().moveCircuit(tool, fromIndex);
-        }
-        
-        @Override
-        public boolean shouldAppendTo(Action other) {
-            return other instanceof MoveCircuit
-                && ((MoveCircuit) other).tool == this.tool;
-        }
-        
-        @Override
-        public Action append(Action other) {
-            MoveCircuit ret = new MoveCircuit(tool, ((MoveCircuit) other).toIndex);
-            ret.fromIndex = this.fromIndex;
-            return ret.fromIndex == ret.toIndex ? null : ret;
-        }
-    }
+		@Override
+		public void undo(Project proj) {
+			proj.getLogisimFile().moveCircuit(tool, fromIndex);
+		}
+		
+		@Override
+		public boolean shouldAppendTo(Action other) {
+			return other instanceof MoveCircuit
+				&& ((MoveCircuit) other).tool == this.tool;
+		}
+		
+		@Override
+		public Action append(Action other) {
+			MoveCircuit ret = new MoveCircuit(tool, ((MoveCircuit) other).toIndex);
+			ret.fromIndex = this.fromIndex;
+			return ret.fromIndex == ret.toIndex ? null : ret;
+		}
+	}
 
-    private static class LoadLibraries extends Action {
-        private Library[] libs;
+	private static class LoadLibraries extends Action {
+		private Library[] libs;
 
-        LoadLibraries(Library[] libs) {
-            this.libs = libs;
-        }
+		LoadLibraries(Library[] libs) {
+			this.libs = libs;
+		}
 
-        @Override
-        public String getName() {
-            if (libs.length == 1) {
-                return Strings.get("loadLibraryAction");
-            } else {
-                return Strings.get("loadLibrariesAction");
-            }
-        }
+		@Override
+		public String getName() {
+			if (libs.length == 1) {
+				return Strings.get("loadLibraryAction");
+			} else {
+				return Strings.get("loadLibrariesAction");
+			}
+		}
 
-        @Override
-        public void doIt(Project proj) {
-            for (int i = 0; i < libs.length; i++) {
-                proj.getLogisimFile().addLibrary(libs[i]);
-            }
-        }
+		@Override
+		public void doIt(Project proj) {
+			for (int i = 0; i < libs.length; i++) {
+				proj.getLogisimFile().addLibrary(libs[i]);
+			}
+		}
 
-        @Override
-        public void undo(Project proj) {
-            for (int i = libs.length - 1; i >= 0; i--) {
-                proj.getLogisimFile().removeLibrary(libs[i]);
-            }
-        }
-    }
-    
-    private static class UnloadLibraries extends Action {
-        private Library[] libs;
+		@Override
+		public void undo(Project proj) {
+			for (int i = libs.length - 1; i >= 0; i--) {
+				proj.getLogisimFile().removeLibrary(libs[i]);
+			}
+		}
+	}
+	
+	private static class UnloadLibraries extends Action {
+		private Library[] libs;
 
-        UnloadLibraries(Library[] libs) {
-            this.libs = libs;
-        }
+		UnloadLibraries(Library[] libs) {
+			this.libs = libs;
+		}
 
-        @Override
-        public String getName() {
-            if (libs.length == 1) {
-                return Strings.get("unloadLibraryAction");
-            } else {
-                return Strings.get("unloadLibrariesAction");
-            }
-        }
+		@Override
+		public String getName() {
+			if (libs.length == 1) {
+				return Strings.get("unloadLibraryAction");
+			} else {
+				return Strings.get("unloadLibrariesAction");
+			}
+		}
 
-        @Override
-        public void doIt(Project proj) {
-            for (int i = libs.length - 1; i >= 0; i--) {
-                proj.getLogisimFile().removeLibrary(libs[i]);
-            }
-        }
+		@Override
+		public void doIt(Project proj) {
+			for (int i = libs.length - 1; i >= 0; i--) {
+				proj.getLogisimFile().removeLibrary(libs[i]);
+			}
+		}
 
-        @Override
-        public void undo(Project proj) {
-            for (int i = 0; i < libs.length; i++) {
-                proj.getLogisimFile().addLibrary(libs[i]);
-            }
-        }
-    }
+		@Override
+		public void undo(Project proj) {
+			for (int i = 0; i < libs.length; i++) {
+				proj.getLogisimFile().addLibrary(libs[i]);
+			}
+		}
+	}
 
-    private static class SetMainCircuit extends Action {
-        private Circuit oldval;
-        private Circuit newval;
+	private static class SetMainCircuit extends Action {
+		private Circuit oldval;
+		private Circuit newval;
 
-        SetMainCircuit(Circuit circuit) {
-            newval = circuit;
-        }
+		SetMainCircuit(Circuit circuit) {
+			newval = circuit;
+		}
 
-        @Override
-        public String getName() {
-            return Strings.get("setMainCircuitAction");
-        }
+		@Override
+		public String getName() {
+			return Strings.get("setMainCircuitAction");
+		}
 
-        @Override
-        public void doIt(Project proj) {
-            oldval = proj.getLogisimFile().getMainCircuit();
-            proj.getLogisimFile().setMainCircuit(newval);
-        }
+		@Override
+		public void doIt(Project proj) {
+			oldval = proj.getLogisimFile().getMainCircuit();
+			proj.getLogisimFile().setMainCircuit(newval);
+		}
 
-        @Override
-        public void undo(Project proj) {
-            proj.getLogisimFile().setMainCircuit(oldval);
-        }
-    }
-    
-    private static class RevertAttributeValue {
-        private AttributeSet attrs;
-        private Attribute<Object> attr;
-        private Object value;
-        
-        RevertAttributeValue(AttributeSet attrs, Attribute<Object> attr, Object value) {
-            this.attrs = attrs;
-            this.attr = attr;
-            this.value = value;
-        }
-    }
-    
-    private static class RevertDefaults extends Action {
-        private Options oldOpts;
-        private ArrayList<Library> libraries = null;
-        private ArrayList<RevertAttributeValue> attrValues;
+		@Override
+		public void undo(Project proj) {
+			proj.getLogisimFile().setMainCircuit(oldval);
+		}
+	}
+	
+	private static class RevertAttributeValue {
+		private AttributeSet attrs;
+		private Attribute<Object> attr;
+		private Object value;
+		
+		RevertAttributeValue(AttributeSet attrs, Attribute<Object> attr, Object value) {
+			this.attrs = attrs;
+			this.attr = attr;
+			this.value = value;
+		}
+	}
+	
+	private static class RevertDefaults extends Action {
+		private Options oldOpts;
+		private ArrayList<Library> libraries = null;
+		private ArrayList<RevertAttributeValue> attrValues;
 
-        RevertDefaults() {
-            libraries = null;
-            attrValues = new ArrayList<RevertAttributeValue>();
-        }
+		RevertDefaults() {
+			libraries = null;
+			attrValues = new ArrayList<RevertAttributeValue>();
+		}
 
-        @Override
-        public String getName() {
-            return Strings.get("revertDefaultsAction");
-        }
+		@Override
+		public String getName() {
+			return Strings.get("revertDefaultsAction");
+		}
 
-        @Override
-        public void doIt(Project proj) {
-            LogisimFile src = ProjectActions.createNewFile(proj);
-            LogisimFile dst = proj.getLogisimFile();
-            
-            copyToolAttributes(src, dst);
-            for (Library srcLib : src.getLibraries()) {
-                Library dstLib = dst.getLibrary(srcLib.getName());
-                if (dstLib == null) {
-                    String desc = src.getLoader().getDescriptor(srcLib);
-                    dstLib = dst.getLoader().loadLibrary(desc);
-                    proj.getLogisimFile().addLibrary(dstLib);
-                    if (libraries == null) libraries = new ArrayList<Library>();
-                    libraries.add(dstLib);
-                }
-                copyToolAttributes(srcLib, dstLib);
-            }
-            
-            Options newOpts = proj.getOptions();
-            oldOpts = new Options();
-            oldOpts.copyFrom(newOpts, dst);
-            newOpts.copyFrom(src.getOptions(), dst);
-        }
-        
-        private void copyToolAttributes(Library srcLib, Library dstLib) {
-            for (Tool srcTool : srcLib.getTools()) {
-                AttributeSet srcAttrs = srcTool.getAttributeSet();
-                Tool dstTool = dstLib.getTool(srcTool.getName());
-                if (srcAttrs != null && dstTool != null) {
-                    AttributeSet dstAttrs = dstTool.getAttributeSet();
-                    for (Attribute<?> attrBase : srcAttrs.getAttributes()) {
-                        @SuppressWarnings("unchecked")
-                        Attribute<Object> attr = (Attribute<Object>) attrBase;
-                        Object srcValue = srcAttrs.getValue(attr);
-                        Object dstValue = dstAttrs.getValue(attr);
-                        if (!dstValue.equals(srcValue)) {
-                            dstAttrs.setValue(attr, srcValue);
-                            attrValues.add(new RevertAttributeValue(dstAttrs, attr, dstValue));
-                        }
-                    }
-                }
-            }
-        }
+		@Override
+		public void doIt(Project proj) {
+			LogisimFile src = ProjectActions.createNewFile(proj);
+			LogisimFile dst = proj.getLogisimFile();
+			
+			copyToolAttributes(src, dst);
+			for (Library srcLib : src.getLibraries()) {
+				Library dstLib = dst.getLibrary(srcLib.getName());
+				if (dstLib == null) {
+					String desc = src.getLoader().getDescriptor(srcLib);
+					dstLib = dst.getLoader().loadLibrary(desc);
+					proj.getLogisimFile().addLibrary(dstLib);
+					if (libraries == null) libraries = new ArrayList<Library>();
+					libraries.add(dstLib);
+				}
+				copyToolAttributes(srcLib, dstLib);
+			}
+			
+			Options newOpts = proj.getOptions();
+			oldOpts = new Options();
+			oldOpts.copyFrom(newOpts, dst);
+			newOpts.copyFrom(src.getOptions(), dst);
+		}
+		
+		private void copyToolAttributes(Library srcLib, Library dstLib) {
+			for (Tool srcTool : srcLib.getTools()) {
+				AttributeSet srcAttrs = srcTool.getAttributeSet();
+				Tool dstTool = dstLib.getTool(srcTool.getName());
+				if (srcAttrs != null && dstTool != null) {
+					AttributeSet dstAttrs = dstTool.getAttributeSet();
+					for (Attribute<?> attrBase : srcAttrs.getAttributes()) {
+						@SuppressWarnings("unchecked")
+						Attribute<Object> attr = (Attribute<Object>) attrBase;
+						Object srcValue = srcAttrs.getValue(attr);
+						Object dstValue = dstAttrs.getValue(attr);
+						if (!dstValue.equals(srcValue)) {
+						    dstAttrs.setValue(attr, srcValue);
+						    attrValues.add(new RevertAttributeValue(dstAttrs, attr, dstValue));
+						}
+					}
+				}
+			}
+		}
 
-        @Override
-        public void undo(Project proj) {
-            proj.getOptions().copyFrom(oldOpts, proj.getLogisimFile());
-            
-            for (RevertAttributeValue attrValue : attrValues) {
-                attrValue.attrs.setValue(attrValue.attr, attrValue.value);
-            }
+		@Override
+		public void undo(Project proj) {
+			proj.getOptions().copyFrom(oldOpts, proj.getLogisimFile());
+			
+			for (RevertAttributeValue attrValue : attrValues) {
+				attrValue.attrs.setValue(attrValue.attr, attrValue.value);
+			}
 
-            if (libraries != null) {
-                for (Library lib : libraries) {
-                    proj.getLogisimFile().removeLibrary(lib);
-                }
-            }
-        }
-    }
+			if (libraries != null) {
+				for (Library lib : libraries) {
+					proj.getLogisimFile().removeLibrary(lib);
+				}
+			}
+		}
+	}
 }

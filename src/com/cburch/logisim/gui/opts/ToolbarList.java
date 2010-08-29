@@ -24,99 +24,99 @@ import com.cburch.logisim.proj.LogisimPreferences;
 import com.cburch.logisim.tools.Tool;
 
 class ToolbarList extends JList {
-    private static class ToolIcon implements Icon {
-        private Tool tool;
-        
-        ToolIcon(Tool tool) {
-            this.tool = tool;
-        }
+	private static class ToolIcon implements Icon {
+		private Tool tool;
+		
+		ToolIcon(Tool tool) {
+			this.tool = tool;
+		}
 
-        public void paintIcon(Component comp, Graphics g, int x, int y) {
-            Graphics gNew = g.create();
-            tool.paintIcon(new ComponentDrawContext(comp, null, null, g, gNew), x + 2, y + 2);
-            gNew.dispose();
-        }
+		public void paintIcon(Component comp, Graphics g, int x, int y) {
+			Graphics gNew = g.create();
+			tool.paintIcon(new ComponentDrawContext(comp, null, null, g, gNew), x + 2, y + 2);
+			gNew.dispose();
+		}
 
-        public int getIconWidth() {
-            return 20;
-        }
+		public int getIconWidth() {
+			return 20;
+		}
 
-        public int getIconHeight() {
-            return 20;
-        }
-    }
-    
-    private static class ListRenderer extends DefaultListCellRenderer {
-        @Override
-        public Component getListCellRendererComponent(JList list, Object value,
-                int index, boolean isSelected, boolean cellHasFocus) {
-            Component ret;
-            Icon icon;
-            if (value instanceof Tool) {
-                Tool t = (Tool) value;
-                ret = super.getListCellRendererComponent(list, t.getDisplayName(),
-                        index, isSelected, cellHasFocus);
-                icon = new ToolIcon(t);
-            } else if (value == null) {
-                ret = super.getListCellRendererComponent(list, "---",
-                        index, isSelected, cellHasFocus);
-                icon = null;
-            } else {
-                ret = super.getListCellRendererComponent(list, value.toString(),
-                        index, isSelected, cellHasFocus);
-                icon = null;
-            }
-            if (ret instanceof JLabel) {
-                ((JLabel) ret).setIcon(icon);
-            }
-            return ret;
-        }
-    }
-    
-    private class Model extends AbstractListModel
-            implements ToolbarListener, AttributeListener, PropertyChangeListener {
-        public int getSize() {
-            return base.size();
-        }
+		public int getIconHeight() {
+			return 20;
+		}
+	}
+	
+	private static class ListRenderer extends DefaultListCellRenderer {
+		@Override
+		public Component getListCellRendererComponent(JList list, Object value,
+				int index, boolean isSelected, boolean cellHasFocus) {
+			Component ret;
+			Icon icon;
+			if (value instanceof Tool) {
+				Tool t = (Tool) value;
+				ret = super.getListCellRendererComponent(list, t.getDisplayName(),
+						index, isSelected, cellHasFocus);
+				icon = new ToolIcon(t);
+			} else if (value == null) {
+				ret = super.getListCellRendererComponent(list, "---",
+						index, isSelected, cellHasFocus);
+				icon = null;
+			} else {
+				ret = super.getListCellRendererComponent(list, value.toString(),
+						index, isSelected, cellHasFocus);
+				icon = null;
+			}
+			if (ret instanceof JLabel) {
+				((JLabel) ret).setIcon(icon);
+			}
+			return ret;
+		}
+	}
+	
+	private class Model extends AbstractListModel
+			implements ToolbarListener, AttributeListener, PropertyChangeListener {
+		public int getSize() {
+			return base.size();
+		}
 
-        public Object getElementAt(int index) {
-            return base.get(index);
-        }
+		public Object getElementAt(int index) {
+			return base.get(index);
+		}
 
-        public void toolbarChanged() {
-            fireContentsChanged(this, 0, getSize());
-        }
+		public void toolbarChanged() {
+			fireContentsChanged(this, 0, getSize());
+		}
 
-        public void attributeListChanged(AttributeEvent e) { }
-        public void attributeValueChanged(AttributeEvent e) {
-            repaint();
-        }
-        
-        public void propertyChange(PropertyChangeEvent event) {
-            String prop = event.getPropertyName();
-            if (prop.equals(LogisimPreferences.GATE_SHAPE)) {
-                repaint();
-            }
-        }
-    }
+		public void attributeListChanged(AttributeEvent e) { }
+		public void attributeValueChanged(AttributeEvent e) {
+			repaint();
+		}
+		
+		public void propertyChange(PropertyChangeEvent event) {
+			String prop = event.getPropertyName();
+			if (prop.equals(LogisimPreferences.GATE_SHAPE)) {
+				repaint();
+			}
+		}
+	}
 
-    private ToolbarData base;
-    private Model model;
-    
-    public ToolbarList(ToolbarData base) {
-        this.base = base;
-        this.model = new Model();
+	private ToolbarData base;
+	private Model model;
+	
+	public ToolbarList(ToolbarData base) {
+		this.base = base;
+		this.model = new Model();
 
-        setModel(model);
-        setCellRenderer(new ListRenderer());
-        setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
-        LogisimPreferences.addPropertyChangeListener(LogisimPreferences.GATE_SHAPE, model);
-        base.addToolbarListener(model);
-        base.addToolAttributeListener(model);
-    }
-    
-    public void localeChanged() {
-        model.toolbarChanged();
-    }
+		setModel(model);
+		setCellRenderer(new ListRenderer());
+		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.GATE_SHAPE, model);
+		base.addToolbarListener(model);
+		base.addToolAttributeListener(model);
+	}
+	
+	public void localeChanged() {
+		model.toolbarChanged();
+	}
 }

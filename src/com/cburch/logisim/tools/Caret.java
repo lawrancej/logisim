@@ -10,25 +10,25 @@ import java.awt.event.MouseEvent;
 import com.cburch.logisim.data.Bounds;
 
 public interface Caret {
-    // listener methods
-    public void addCaretListener(CaretListener e);
-    public void removeCaretListener(CaretListener e);
+	// listener methods
+	public void addCaretListener(CaretListener e);
+	public void removeCaretListener(CaretListener e);
 
-    // query/Graphics methods
-    public String getText();
-    public Bounds getBounds(Graphics g);
-    public void draw(Graphics g);
+	// query/Graphics methods
+	public String getText();
+	public Bounds getBounds(Graphics g);
+	public void draw(Graphics g);
 
-    // finishing
-    public void commitText(String text);
-    public void cancelEditing();
-    public void stopEditing();
+	// finishing
+	public void commitText(String text);
+	public void cancelEditing();
+	public void stopEditing();
 
-    // events to handle
-    public void mousePressed(MouseEvent e);
-    public void mouseDragged(MouseEvent e);
-    public void mouseReleased(MouseEvent e);
-    public void keyPressed(KeyEvent e);
-    public void keyReleased(KeyEvent e);
-    public void keyTyped(KeyEvent e);
+	// events to handle
+	public void mousePressed(MouseEvent e);
+	public void mouseDragged(MouseEvent e);
+	public void mouseReleased(MouseEvent e);
+	public void keyPressed(KeyEvent e);
+	public void keyReleased(KeyEvent e);
+	public void keyTyped(KeyEvent e);
 }
