@@ -40,6 +40,7 @@ public class WiringTool extends Tool {
 	private boolean inCanvas = false;
 	private Location start = Location.create(0, 0);
 	private Location cur = Location.create(0, 0);
+	private boolean hasDragged = false;
 	private boolean startShortening = false;
 	private Wire shortening = null;
 	private Action lastAction = null;
@@ -184,8 +185,7 @@ public class WiringTool extends Tool {
 	}
 
 	@Override
-	public void mousePressed(Canvas canvas, Graphics g,
-			MouseEvent e) {
+	public void mousePressed(Canvas canvas, Graphics g, MouseEvent e) {
 		if (!canvas.getProject().getLogisimFile().contains(canvas.getCircuit())) {
 			exists = false;
 			canvas.setErrorMessage(Strings.getter("cannotModifyError"));
@@ -199,6 +199,7 @@ public class WiringTool extends Tool {
 			start = Location.create(e.getX(), e.getY());
 			cur = start;
 			exists = true;
+			hasDragged = false;
 			
 			startShortening = !canvas.getCircuit().getWires(start).isEmpty();
 			shortening = null;
@@ -209,13 +210,13 @@ public class WiringTool extends Tool {
 	}
 
 	@Override
-	public void mouseDragged(Canvas canvas, Graphics g,
-			MouseEvent e) {
+	public void mouseDragged(Canvas canvas, Graphics g, MouseEvent e) {
 		if (exists) {
 			Canvas.snapToGrid(e);
 			int curX = e.getX();
 			int curY = e.getY();
 			if (!computeMove(curX, curY)) return;
+			hasDragged = true;
 	
 			Rectangle rect = new Rectangle();
 			rect.add(start.getX(), start.getY());
@@ -257,7 +258,7 @@ public class WiringTool extends Tool {
 		if (computeMove(curX, curY)) {
 			cur = Location.create(curX, curY);
 		}
-		if (!cur.equals(start)) {
+		if (hasDragged) {
 			exists = false;
 			super.mouseReleased(canvas, g, e);
 	

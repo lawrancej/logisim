@@ -325,7 +325,7 @@ public class CircuitBuilder {
 			Layout sub = layout.subLayouts[0];
 			
 			Location input0 = parent.getEnd(1).getLocation();
-			Location input1 = parent.getEnd(3).getLocation();
+			Location input1 = parent.getEnd(2).getLocation();
 			
 			int midX = input0.getX() - 20;
 			Location subOutput = Location.create(midX, output.getY());
@@ -358,13 +358,6 @@ public class CircuitBuilder {
 			Layout sub = layout.subLayouts[i];
 			
 			int inputIndex = i + 1;
-			/*
-			if (layout.subLayouts.length % 2 == 0
-					&& i >= layout.subLayouts.length / 2
-					&& parent.getEnds().size() % 2 == 0) {
-				inputIndex++;
-			}
-			*/
 			Location subDest = parent.getEnd(inputIndex).getLocation();
 			
 			int subOutputY = y + sub.y + sub.outputY;
