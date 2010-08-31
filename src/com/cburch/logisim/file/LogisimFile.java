@@ -5,12 +5,14 @@ package com.cburch.logisim.file;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
-import java.io.Writer;
 import java.io.BufferedReader;
 import java.io.StringWriter;
 import java.io.IOException;
@@ -18,6 +20,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+
+import org.xml.sax.SAXException;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.comp.Component;
@@ -33,24 +41,24 @@ import com.cburch.logisim.util.StringUtil;
 
 public class LogisimFile extends Library implements LibraryEventSource {
 	private static class WritingThread extends Thread {
-		Writer writer;
+		OutputStream out;
 		LogisimFile file;
 
-		WritingThread(Writer writer, LogisimFile file) {
-			this.writer = writer;
+		WritingThread(OutputStream out, LogisimFile file) {
+			this.out = out;
 			this.file = file;
 		}
 
 		@Override
 		public void run() {
 			try {
-				file.write(writer, file.loader);
+				file.write(out, file.loader);
 			} catch (IOException e) {
 				file.loader.showError(StringUtil.format(
 					Strings.get("fileDuplicateError"), e.toString()));
 			}
 			try {
-				writer.close();
+				out.close();
 			} catch (IOException e) {
 				file.loader.showError(StringUtil.format(
 					Strings.get("fileDuplicateError"), e.toString()));
@@ -273,11 +281,19 @@ public class LogisimFile extends Library implements LibraryEventSource {
 	//
 	// other methods
 	//
-	void write(Writer writer, LibraryLoader loader)
-			throws java.io.IOException {
-		XmlWriter out = new XmlWriter(loader);
-		Object data = out.initialize(this);
-		out.output(data, writer);
+	void write(OutputStream out, LibraryLoader loader) throws IOException {
+		try {
+			XmlWriter.write(this, out, loader);
+		} catch (TransformerConfigurationException e) {
+			loader.showError("internal error configuring transformer");
+		} catch (ParserConfigurationException e) {
+			loader.showError("internal error configuring parser");
+		} catch (TransformerException e) {
+			String msg = e.getMessage();
+			String err = Strings.get("xmlConversionError");
+			if (msg == null) err += ": " + msg;
+			loader.showError(err);
+		}
 	}
 
 	public LogisimFile cloneLogisimFile(Loader newloader) {
@@ -290,7 +306,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
 				Strings.get("fileDuplicateError"), e.toString()));
 			return null;
 		}
-		new WritingThread(new OutputStreamWriter(writer), this).start();
+		new WritingThread(writer, this).start();
 		try {
 			return LogisimFile.load(reader, newloader);
 		} catch (IOException e) {
@@ -326,8 +342,50 @@ public class LogisimFile extends Library implements LibraryEventSource {
 		return ret;
 	}
 
+	public static LogisimFile load(File file, Loader loader)
+			throws IOException {
+		InputStream in = new FileInputStream(file);
+		boolean saxException = false;
+		try {
+			return loadSub(in, loader);
+		} catch (SAXException e) {
+			saxException = true;
+		} finally {
+			in.close();
+		}
+		
+		if (saxException) {
+			// We'll now try to do it using a reader. This is to work around
+			// Logisim versions prior to 2.5.1, when files were not saved using
+			// UTF-8 as the encoding (though the XML file reported otherwise).
+			in = new ReaderInputStream(new FileReader(file), "UTF8");
+			try {
+				return loadSub(in, loader);
+			} catch (SAXException e) {
+				loader.showError(StringUtil.format(
+						Strings.get("xmlFormatError"), e.toString()));
+			} finally {
+				in.close();
+			}
+		}
+		
+		return null;
+	}
+	
 	public static LogisimFile load(InputStream in, Loader loader)
 			throws IOException {
+		try {
+			return loadSub(in, loader);
+		} catch (SAXException e) {
+			loader.showError(StringUtil.format(
+				Strings.get("xmlFormatError"), e.toString()));
+			return null;
+
+		}
+	}
+
+	public static LogisimFile loadSub(InputStream in, Loader loader)
+			throws IOException, SAXException {
 		// fetch first line and then reset
 		in = new BufferedInputStream(in);
 		in.mark(512);

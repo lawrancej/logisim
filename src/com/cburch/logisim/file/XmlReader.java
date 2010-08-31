@@ -249,23 +249,17 @@ class XmlReader {
 		this.loader = loader;
 	}
 
-	LogisimFile readLibrary(InputStream is) throws IOException {
-		try {
-			Document doc = loadXmlFrom(is);
-			Element elt = doc.getDocumentElement();
-			considerRepairs(elt);
-			LogisimFile file = new LogisimFile((Loader) loader);
-			ReadContext context = new ReadContext(file);
-			context.toLogisimFile(elt);
-			if (file.getCircuitCount() == 0) {
-				file.addCircuit(new Circuit("main"));
-			}
-			return file;
-		} catch (SAXException e) {
-			loader.showError(StringUtil.format(
-				Strings.get("xmlFormatError"), e.toString()));
-			return null;
+	LogisimFile readLibrary(InputStream is) throws IOException, SAXException {
+		Document doc = loadXmlFrom(is);
+		Element elt = doc.getDocumentElement();
+		considerRepairs(elt);
+		LogisimFile file = new LogisimFile((Loader) loader);
+		ReadContext context = new ReadContext(file);
+		context.toLogisimFile(elt);
+		if (file.getCircuitCount() == 0) {
+			file.addCircuit(new Circuit("main"));
 		}
+		return file;
 	}
 	
 	private Document loadXmlFrom(InputStream is) throws SAXException, IOException {
@@ -274,7 +268,7 @@ class XmlReader {
 		DocumentBuilder builder = null;
 		try {
 			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException ex) { }  
+		} catch (ParserConfigurationException ex) { }
 		return builder.parse(is);
 	}
 	

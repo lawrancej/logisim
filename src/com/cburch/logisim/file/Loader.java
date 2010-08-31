@@ -4,8 +4,7 @@
 package com.cburch.logisim.file;
 
 import java.awt.Component;
-import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.File;
 import java.io.IOException;
@@ -178,12 +177,12 @@ public class Loader implements LibraryLoader {
 			return false;
 		}
 		
-		FileWriter fwrite = null;
+		FileOutputStream fwrite = null;
 		try {
 			try {
 				MacCompatibility.setFileCreatorAndType(dest, "LGSM", "circ");
 			} catch (IOException e) { }
-			fwrite = new FileWriter(dest);
+			fwrite = new FileOutputStream(dest);
 			file.write(fwrite, this);
 			file.setName(toProjectName(dest));
 
@@ -226,25 +225,15 @@ public class Loader implements LibraryLoader {
 			}
 		}
 
-		InputStream in = null;
 		LogisimFile ret = null;
 		filesOpening.push(actual);
 		try {
-			in = new FileInputStream(actual);
-			ret = LogisimFile.load(in, this);
+			ret = LogisimFile.load(actual, this);
 		} catch (IOException e) {
 			throw new LoadFailedException(StringUtil.format(Strings.get("logisimLoadError"),
 					toProjectName(actual), e.toString()));
 		} finally {
 			filesOpening.pop();
-			if (in != null) {
-				try {
-					in.close();
-				} catch (IOException e) {
-					throw new LoadFailedException(StringUtil.format(Strings.get("logisimLoadError"),
-						    toProjectName(actual), e.toString()));
-				}
-			}
 		}
 		ret.setName(toProjectName(actual));
 		return ret;

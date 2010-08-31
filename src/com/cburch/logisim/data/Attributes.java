@@ -188,7 +188,7 @@ public class Attributes {
 		}
 
 		@Override
-		public String toDisplayString(Object value) {
+		public String toDisplayString(V value) {
 			if (value instanceof AttributeOptionInterface) {
 				return ((AttributeOptionInterface) value).toDisplayString();
 			} else {
@@ -281,8 +281,8 @@ public class Attributes {
 		}
 
 		@Override
-		public String toDisplayString(Object value) {
-			if (value == vals[0]) return Strings.get("booleanTrueOption");
+		public String toDisplayString(Boolean value) {
+			if (value.booleanValue()) return Strings.get("booleanTrueOption");
 			else return Strings.get("booleanFalseOption");
 		}
 
@@ -341,8 +341,8 @@ public class Attributes {
 		}
 
 		@Override
-		public String toDisplayString(Object value) {
-			return ((Direction) value).toDisplayString();
+		public String toDisplayString(Direction value) {
+			return value.toDisplayString();
 		}
 
 		@Override
