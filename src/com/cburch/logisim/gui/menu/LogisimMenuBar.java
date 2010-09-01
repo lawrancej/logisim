@@ -32,6 +32,7 @@ public class LogisimMenuBar extends JMenuBar {
 	public static final LogisimMenuItem SET_MAIN_CIRCUIT = new LogisimMenuItem("SetMainCircuit");
 	public static final LogisimMenuItem REMOVE_CIRCUIT = new LogisimMenuItem("RemoveCircuit");
 	public static final LogisimMenuItem ANALYZE_CIRCUIT = new LogisimMenuItem("AnalyzeCircuit");
+	public static final LogisimMenuItem CIRCUIT_STATS = new LogisimMenuItem("GetCircuitStatistics");
 	public static final LogisimMenuItem SHOW_PROJECT_BAR = new LogisimMenuItem("ShowProjectToolbar");
 
 	private class MyListener implements LocaleListener {

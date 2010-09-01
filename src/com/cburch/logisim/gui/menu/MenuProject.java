@@ -63,6 +63,7 @@ class MenuProject extends Menu {
 	private JMenuItem loadJar = new JMenuItem();
 	private JMenuItem unload = new JMenuItem();
 	private MenuItem analyze = new MenuItem(this, LogisimMenuBar.ANALYZE_CIRCUIT);
+	private MenuItem stats = new MenuItem(this, LogisimMenuBar.CIRCUIT_STATS);
 	private MenuItem moveUp = new MenuItem(this, LogisimMenuBar.MOVE_CIRCUIT_UP);
 	private MenuItem moveDown = new MenuItem(this, LogisimMenuBar.MOVE_CIRCUIT_DOWN);
 	private MenuItem setAsMain = new MenuItem(this, LogisimMenuBar.SET_MAIN_CIRCUIT);
@@ -79,6 +80,7 @@ class MenuProject extends Menu {
 		loadJar.addActionListener(myListener);
 		unload.addActionListener(myListener);
 		menubar.registerItem(LogisimMenuBar.ANALYZE_CIRCUIT, analyze);
+		menubar.registerItem(LogisimMenuBar.CIRCUIT_STATS, stats);
 		menubar.registerItem(LogisimMenuBar.MOVE_CIRCUIT_UP, moveUp);
 		menubar.registerItem(LogisimMenuBar.MOVE_CIRCUIT_DOWN, moveDown);
 		menubar.registerItem(LogisimMenuBar.SET_MAIN_CIRCUIT, setAsMain);
@@ -96,11 +98,12 @@ class MenuProject extends Menu {
 		add(loadLibrary);
 		add(unload);
 		addSeparator();
-		add(analyze);
 		add(moveUp);
 		add(moveDown);
 		add(setAsMain);
 		add(remove);
+		add(analyze);
+		add(stats);
 		addSeparator();
 		add(showProjectToolbar);
 		add(options);
@@ -124,6 +127,7 @@ class MenuProject extends Menu {
 		loadJar.setText(Strings.get("projectLoadJarItem"));
 		unload.setText(Strings.get("projectUnloadLibrariesItem"));
 		analyze.setText(Strings.get("projectAnalyzeCircuitItem"));
+		stats.setText(Strings.get("projectGetCircuitStatisticsItem"));
 		moveUp.setText(Strings.get("projectMoveCircuitUpItem"));
 		moveDown.setText(Strings.get("projectMoveCircuitDownItem"));
 		setAsMain.setText(Strings.get("projectSetAsMainItem"));
@@ -137,6 +141,7 @@ class MenuProject extends Menu {
 		setEnabled(menubar.getProject() != null
 				|| addCircuit.hasListeners()
 				|| analyze.hasListeners()
+				|| stats.hasListeners()
 				|| moveUp.hasListeners()
 				|| moveDown.hasListeners()
 				|| setAsMain.hasListeners()

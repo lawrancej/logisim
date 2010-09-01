@@ -6,6 +6,7 @@ package com.cburch.logisim.circuit;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import com.cburch.logisim.circuit.Propagator.SetData;
@@ -123,7 +124,7 @@ public class CircuitState {
 
 	private CircuitWires.State wireData = null;
 	private HashMap<Component,Object> componentData = new HashMap<Component,Object>();
-	private HashMap<Location,Value> values = new HashMap<Location,Value>();
+	private Map<Location,Value> values = new HashMap<Location,Value>();
 	private SmallSet<Component> dirtyComponents = new SmallSet<Component>();
 	private SmallSet<Location> dirtyPoints = new SmallSet<Location>();
 	HashMap<Location,SetData> causes = new HashMap<Location,SetData>();

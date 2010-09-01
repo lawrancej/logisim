@@ -19,6 +19,7 @@ import com.cburch.logisim.data.Value;
 import com.cburch.logisim.file.LoadFailedException;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.file.LogisimFile;
+import com.cburch.logisim.file.FileStatistics;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.proj.Project;
@@ -26,6 +27,7 @@ import com.cburch.logisim.std.base.Pin;
 import com.cburch.logisim.std.io.Keyboard;
 import com.cburch.logisim.std.io.Tty;
 import com.cburch.logisim.std.memory.Ram;
+import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.util.StringUtil;
 
 public class TtyInterface {
@@ -33,6 +35,7 @@ public class TtyInterface {
 	public static final int FORMAT_SPEED = 2;
 	public static final int FORMAT_TTY = 4;
 	public static final int FORMAT_HALT = 8;
+	public static final int FORMAT_STATISTICS = 16;
 
 	private static boolean lastIsNewline = true;
 	
@@ -59,9 +62,18 @@ public class TtyInterface {
 			System.exit(-1);
 			return;
 		}
+		
+		int format = args.getTtyFormat();
+		if ((format & FORMAT_STATISTICS) != 0) {
+			format &= ~FORMAT_STATISTICS;
+			displayStatistics(file);
+		}
+		if (format == 0) { // no simulation remaining to perform, so just exit
+			System.exit(0);
+		}
+		
 		Project proj = new Project(file);
 		Circuit circuit = file.getMainCircuit();
-		
 		Map<Component,String> pinNames = Analyze.getPinLabels(circuit);
 		ArrayList<Instance> outputPins = new ArrayList<Instance>();
 		Instance haltPin = null;
@@ -95,6 +107,38 @@ public class TtyInterface {
 		int ttyFormat = args.getTtyFormat();
 		int simCode = runSimulation(circState, outputPins, haltPin, ttyFormat);
 		System.exit(simCode);
+	}
+	
+	private static void displayStatistics(LogisimFile file) {
+		FileStatistics stats = FileStatistics.compute(file, file.getMainCircuit());
+		int maxRecursive = 0;
+		int maxFlat = 0;
+		int maxName = 0;
+		for (FileStatistics.Count count : stats.getCounts()) {
+			maxRecursive = Math.max(maxRecursive, count.getRecursiveCount());
+			maxFlat = Math.max(maxFlat, count.getFlatCount());
+			String name = count.getFactory().getDisplayName();
+			maxName = Math.max(maxName, name.length());
+		}
+		String fmt = "%" + countDigits(maxFlat) + "d\t"
+			+ "%" + countDigits(maxRecursive) + "d\t"
+			+ "%-" + maxName + "s\t%s\n";
+		for (FileStatistics.Count count : stats.getCounts()) {
+			Library lib = count.getLibrary();
+			String libName = lib == null ? "-" : lib.getDisplayName();
+			System.out.printf(fmt, count.getFlatCount(), count.getRecursiveCount(),
+					count.getFactory().getDisplayName(), libName);
+		}
+	}
+	
+	private static int countDigits(int num) {
+		int digits = 1;
+		int lessThan = 10;
+		while (num >= lessThan) {
+			digits++;
+			lessThan *= 10;
+		}
+		return digits;
 	}
 	
 	private static boolean loadRam(CircuitState circState, File loadFile)

@@ -273,6 +273,8 @@ public class Startup {
 						    ret.ttyFormat |= TtyInterface.FORMAT_TTY;
 						} else if (fmt.equals("halt")) {
 						    ret.ttyFormat |= TtyInterface.FORMAT_HALT;
+						} else if (fmt.equals("stats")) {
+							ret.ttyFormat |= TtyInterface.FORMAT_STATISTICS;
 						} else {
 						    System.err.println(Strings.get("ttyFormatError")); //OK
 						}

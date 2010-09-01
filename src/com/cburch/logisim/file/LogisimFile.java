@@ -345,27 +345,29 @@ public class LogisimFile extends Library implements LibraryEventSource {
 	public static LogisimFile load(File file, Loader loader)
 			throws IOException {
 		InputStream in = new FileInputStream(file);
-		boolean saxException = false;
+		SAXException firstExcept = null;
 		try {
 			return loadSub(in, loader);
 		} catch (SAXException e) {
-			saxException = true;
+			firstExcept = e;
 		} finally {
 			in.close();
 		}
 		
-		if (saxException) {
+		if (firstExcept != null) {
 			// We'll now try to do it using a reader. This is to work around
 			// Logisim versions prior to 2.5.1, when files were not saved using
 			// UTF-8 as the encoding (though the XML file reported otherwise).
-			in = new ReaderInputStream(new FileReader(file), "UTF8");
 			try {
+				in = new ReaderInputStream(new FileReader(file), "UTF8");
 				return loadSub(in, loader);
-			} catch (SAXException e) {
+			} catch (Throwable t) {
 				loader.showError(StringUtil.format(
-						Strings.get("xmlFormatError"), e.toString()));
+						Strings.get("xmlFormatError"), firstExcept.toString()));
 			} finally {
-				in.close();
+				try {
+					in.close();
+				} catch (Throwable t) { }
 			}
 		}
 		

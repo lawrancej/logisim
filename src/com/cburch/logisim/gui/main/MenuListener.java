@@ -160,6 +160,7 @@ class MenuListener {
 			menubar.addActionListener(LogisimMenuBar.SET_MAIN_CIRCUIT, this);
 			menubar.addActionListener(LogisimMenuBar.REMOVE_CIRCUIT, this);
 			menubar.addActionListener(LogisimMenuBar.ANALYZE_CIRCUIT, this);
+			menubar.addActionListener(LogisimMenuBar.CIRCUIT_STATS, this);
 			
 			computeEnabled();
 		}
@@ -185,6 +186,8 @@ class MenuListener {
 				ProjectCircuitActions.doAddCircuit(proj);
 			} else if (src == LogisimMenuBar.ANALYZE_CIRCUIT) {
 				ProjectCircuitActions.doAnalyze(proj, cur);
+			} else if (src == LogisimMenuBar.CIRCUIT_STATS) {
+				StatisticsDialog.show(frame, proj.getLogisimFile(), cur);
 			} else if (src == LogisimMenuBar.MOVE_CIRCUIT_UP) {
 				ProjectCircuitActions.doMoveCircuit(proj, cur, -1);
 			} else if (src == LogisimMenuBar.MOVE_CIRCUIT_DOWN) {
@@ -219,6 +222,7 @@ class MenuListener {
 			
 			menubar.setEnabled(LogisimMenuBar.ADD_CIRCUIT, true);
 			menubar.setEnabled(LogisimMenuBar.ANALYZE_CIRCUIT, true);
+			menubar.setEnabled(LogisimMenuBar.CIRCUIT_STATS, true);
 			menubar.setEnabled(LogisimMenuBar.MOVE_CIRCUIT_UP, canMoveUp);
 			menubar.setEnabled(LogisimMenuBar.MOVE_CIRCUIT_DOWN, canMoveDown);
 			menubar.setEnabled(LogisimMenuBar.SET_MAIN_CIRCUIT, canSetMain);
