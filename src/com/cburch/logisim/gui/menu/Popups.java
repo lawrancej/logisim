@@ -6,14 +6,17 @@ package com.cburch.logisim.gui.menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.file.LoadedLibrary;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.file.LogisimFile;
+import com.cburch.logisim.gui.main.StatisticsDialog;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
@@ -91,6 +94,7 @@ public class Popups {
 		Circuit circuit;
 		JMenuItem view = new JMenuItem(Strings.get("projectViewCircuitItem"));
 		JMenuItem analyze = new JMenuItem(Strings.get("projectAnalyzeCircuitItem"));
+		JMenuItem stats = new JMenuItem(Strings.get("projectGetCircuitStatisticsItem"));
 		JMenuItem main = new JMenuItem(Strings.get("projectSetAsMainItem"));
 		JMenuItem remove = new JMenuItem(Strings.get("projectRemoveCircuitItem"));
 
@@ -102,6 +106,7 @@ public class Popups {
 
 			add(view); view.addActionListener(this);
 			add(analyze); analyze.addActionListener(this);
+			add(stats); stats.addActionListener(this);
 			addSeparator();
 			add(main); main.addActionListener(this);
 			add(remove); remove.addActionListener(this);
@@ -120,6 +125,9 @@ public class Popups {
 				proj.setCurrentCircuit(circuit);
 			} else if (source == analyze) {
 				ProjectCircuitActions.doAnalyze(proj, circuit);
+			} else if (source == stats) {
+				JFrame frame = (JFrame) SwingUtilities.getRoot(this);
+				StatisticsDialog.show(frame, proj.getLogisimFile(), circuit);
 			} else if (source == main) {
 				ProjectCircuitActions.doSetAsMainCircuit(proj, circuit);
 			} else if (source == remove) {

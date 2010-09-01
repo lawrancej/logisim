@@ -111,24 +111,27 @@ public class TtyInterface {
 	
 	private static void displayStatistics(LogisimFile file) {
 		FileStatistics stats = FileStatistics.compute(file, file.getMainCircuit());
-		int maxRecursive = 0;
-		int maxFlat = 0;
+		FileStatistics.Count total = stats.getTotalWithSubcircuits();
 		int maxName = 0;
 		for (FileStatistics.Count count : stats.getCounts()) {
-			maxRecursive = Math.max(maxRecursive, count.getRecursiveCount());
-			maxFlat = Math.max(maxFlat, count.getUniqueCount());
-			String name = count.getFactory().getDisplayName();
-			maxName = Math.max(maxName, name.length());
+			int nameLength = count.getFactory().getDisplayName().length();
+			if (nameLength > maxName) maxName = nameLength;
 		}
-		String fmt = "%" + countDigits(maxFlat) + "d\t"
-			+ "%" + countDigits(maxRecursive) + "d\t"
-			+ "%-" + maxName + "s\t%s\n";
+		String fmt = "%" + countDigits(total.getUniqueCount()) + "d\t"
+			+ "%" + countDigits(total.getRecursiveCount()) + "d\t";
+		String fmtNormal = fmt + "%-" + maxName + "s\t%s\n";
 		for (FileStatistics.Count count : stats.getCounts()) {
 			Library lib = count.getLibrary();
 			String libName = lib == null ? "-" : lib.getDisplayName();
-			System.out.printf(fmt, count.getUniqueCount(), count.getRecursiveCount(),
+			System.out.printf(fmtNormal, count.getUniqueCount(), //OK
+					count.getRecursiveCount(),
 					count.getFactory().getDisplayName(), libName);
 		}
+		FileStatistics.Count totalWithout = stats.getTotalWithoutSubcircuits();
+		System.out.printf(fmt + "%s\n", totalWithout.getUniqueCount(), //OK
+				totalWithout.getRecursiveCount(), Strings.get("statsTotalWithout"));
+		System.out.printf(fmt + "%s\n", total.getUniqueCount(), //OK
+				total.getRecursiveCount(), Strings.get("statsTotalWith"));
 	}
 	
 	private static int countDigits(int num) {

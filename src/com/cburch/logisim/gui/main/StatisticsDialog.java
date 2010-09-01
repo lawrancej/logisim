@@ -8,10 +8,12 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,19 +26,18 @@ import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.util.TableSorter;
 
 public class StatisticsDialog extends JDialog implements ActionListener {
-	public static void show(Frame parent, LogisimFile file, Circuit circuit) {
+	public static void show(JFrame parent, LogisimFile file, Circuit circuit) {
 		FileStatistics stats = FileStatistics.compute(file, circuit);
-		List<FileStatistics.Count> counts = stats.getCounts();
 		StatisticsDialog dlog = new StatisticsDialog(parent,
-				circuit.getDisplayName(), new StatisticsTableModel(counts));
+				circuit.getDisplayName(), new StatisticsTableModel(stats));
 		dlog.setVisible(true);
 	}
 	
 	private static class StatisticsTableModel extends AbstractTableModel {
-		private List<FileStatistics.Count> counts;
+		private FileStatistics stats;
 		
-		StatisticsTableModel(List<FileStatistics.Count> counts) {
-			this.counts = counts;
+		StatisticsTableModel(FileStatistics stats) {
+			this.stats = stats;
 		}
 
 		public int getColumnCount() {
@@ -44,44 +45,76 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 		}
 
 		public int getRowCount() {
-			return counts.size();
+			return stats.getCounts().size() + 2;
 		}
 		
 		@Override
 		public Class<?> getColumnClass(int column) {
-			return column < 3 ? Integer.class : String.class;
+			return column < 2 ? String.class : Integer.class;
 		}
 		
 		@Override
 		public String getColumnName(int column) {
 			switch (column) {
-			case 0: return Strings.get("statsSimpleCountColumn");
-			case 1: return Strings.get("statsUniqueCountColumn");
-			case 2: return Strings.get("statsRecursiveCountColumn");
-			case 3: return Strings.get("statsComponentColumn");
-			case 4: return Strings.get("statsLibraryColumn");
+			case 0: return Strings.get("statsComponentColumn");
+			case 1: return Strings.get("statsLibraryColumn");
+			case 2: return Strings.get("statsSimpleCountColumn");
+			case 3: return Strings.get("statsUniqueCountColumn");
+			case 4: return Strings.get("statsRecursiveCountColumn");
 			default: return "??"; // should never happen
 			}
 		}
 		
 		public Object getValueAt(int row, int column) {
-			if (row < 0 || row >= counts.size()) return "";
-			FileStatistics.Count count = counts.get(row);
+			List<FileStatistics.Count> counts = stats.getCounts();
+			int countsLen = counts.size();
+			if (row < 0 || row >= countsLen + 2) return "";
+			FileStatistics.Count count;
+			if (row < countsLen) count = counts.get(row);
+			else if (row == countsLen) count = stats.getTotalWithoutSubcircuits();
+			else count = stats.getTotalWithSubcircuits();
 			switch (column) {
-			case 0: return Integer.valueOf(count.getSimpleCount());
-			case 1: return Integer.valueOf(count.getUniqueCount());
-			case 2: return Integer.valueOf(count.getRecursiveCount());
-			case 3: return count.getFactory().getDisplayName();
-			case 4: 
-				Library lib = count.getLibrary();
-				return lib == null ? "-" : lib.getDisplayName();
+			case 0:
+				if (row < countsLen) {
+					return count.getFactory().getDisplayName();
+				} else if (row == countsLen) {
+					return Strings.get("statsTotalWithout");
+				} else {
+					return Strings.get("statsTotalWith");
+				}
+			case 1: 
+				if (row < countsLen) {
+					Library lib = count.getLibrary();
+					return lib == null ? "-" : lib.getDisplayName();
+				} else {
+					return "";
+				}
+			case 2: return Integer.valueOf(count.getSimpleCount());
+			case 3: return Integer.valueOf(count.getUniqueCount());
+			case 4: return Integer.valueOf(count.getRecursiveCount());
 			default: return ""; // should never happen
 			}
 		}
-		
 	}
 	
-	private StatisticsDialog(Frame parent, String circuitName,
+	private static class CompareString implements Comparator<String> {
+		private String[] fixedAtBottom;
+		
+		public CompareString(String... fixedAtBottom) {
+			this.fixedAtBottom = fixedAtBottom;
+		}
+		
+		public int compare(String a, String b) {
+			for (int i = fixedAtBottom.length - 1; i >= 0; i--) {
+				String s = fixedAtBottom[i];
+				if (a.equals(s)) return b.equals(s) ? 0 : 1;
+				if (b.equals(s)) return -1;
+			}
+			return a.compareToIgnoreCase(b);
+		}
+	}
+	
+	private StatisticsDialog(JFrame parent, String circuitName,
 			StatisticsTableModel model) {
 		super(parent, true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -89,7 +122,9 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 		
 		JTable table = new JTable();
 		TableSorter mySorter = new TableSorter(model, table.getTableHeader());
-		mySorter.setColumnComparator(String.class, String.CASE_INSENSITIVE_ORDER);
+		Comparator<String> comp = new CompareString("",
+				Strings.get("statsTotalWithout"), Strings.get("statsTotalWith"));
+		mySorter.setColumnComparator(String.class, comp);
 		table.setModel(mySorter);
 		JScrollPane tablePane = new JScrollPane(table);
 		

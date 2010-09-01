@@ -68,7 +68,8 @@ public class FileStatistics {
 		countMap = new HashMap<Circuit,Map<ComponentFactory,Count>>();
 		doRecursiveCount(circuit, include, countMap);
 		List<Count> countList = sortCounts(countMap.get(circuit), file);
-		return new FileStatistics(countList);
+		return new FileStatistics(countList, getTotal(countList, include),
+				getTotal(countList, null));
 	}
 	
 	private static Map<ComponentFactory,Count> doRecursiveCount(Circuit circuit,
@@ -146,13 +147,39 @@ public class FileStatistics {
 		return ret;
 	}
 	
-	private List<Count> counts;
+	private static Count getTotal(List<Count> counts, Set<Circuit> exclude) {
+		Count ret = new Count(null);
+		for (Count count : counts) {
+			ComponentFactory factory = count.getFactory();
+			if (exclude == null || !exclude.contains(factory)) {
+				ret.simpleCount += count.simpleCount;
+				ret.uniqueCount += count.uniqueCount;
+				ret.recursiveCount += count.recursiveCount;
+			}
+		}
+		return ret;
+	}
 	
-	private FileStatistics(List<Count> counts) {
+	private List<Count> counts;
+	private Count totalWithout;
+	private Count totalWith;
+	
+	private FileStatistics(List<Count> counts, Count totalWithout,
+			Count totalWith) {
 		this.counts = Collections.unmodifiableList(counts);
+		this.totalWithout = totalWithout;
+		this.totalWith = totalWith;
 	}
 	
 	public List<Count> getCounts() {
 		return counts;
+	}
+	
+	public Count getTotalWithoutSubcircuits() {
+		return totalWithout;
+	}
+	
+	public Count getTotalWithSubcircuits() {
+		return totalWith;
 	}
 }
