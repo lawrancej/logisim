@@ -116,7 +116,7 @@ public class TtyInterface {
 		int maxName = 0;
 		for (FileStatistics.Count count : stats.getCounts()) {
 			maxRecursive = Math.max(maxRecursive, count.getRecursiveCount());
-			maxFlat = Math.max(maxFlat, count.getFlatCount());
+			maxFlat = Math.max(maxFlat, count.getUniqueCount());
 			String name = count.getFactory().getDisplayName();
 			maxName = Math.max(maxName, name.length());
 		}
@@ -126,7 +126,7 @@ public class TtyInterface {
 		for (FileStatistics.Count count : stats.getCounts()) {
 			Library lib = count.getLibrary();
 			String libName = lib == null ? "-" : lib.getDisplayName();
-			System.out.printf(fmt, count.getFlatCount(), count.getRecursiveCount(),
+			System.out.printf(fmt, count.getUniqueCount(), count.getRecursiveCount(),
 					count.getFactory().getDisplayName(), libName);
 		}
 	}

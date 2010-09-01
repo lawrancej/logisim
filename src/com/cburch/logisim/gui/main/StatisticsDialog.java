@@ -40,7 +40,7 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 		}
 
 		public int getColumnCount() {
-			return 4;
+			return 5;
 		}
 
 		public int getRowCount() {
@@ -49,16 +49,17 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 		
 		@Override
 		public Class<?> getColumnClass(int column) {
-			return column < 2 ? Integer.class : String.class;
+			return column < 3 ? Integer.class : String.class;
 		}
 		
 		@Override
 		public String getColumnName(int column) {
 			switch (column) {
-			case 0: return Strings.get("statsFlatCountColumn");
-			case 1: return Strings.get("statsRecursiveCountColumn");
-			case 2: return Strings.get("statsComponentColumn");
-			case 3: return Strings.get("statsLibraryColumn");
+			case 0: return Strings.get("statsSimpleCountColumn");
+			case 1: return Strings.get("statsUniqueCountColumn");
+			case 2: return Strings.get("statsRecursiveCountColumn");
+			case 3: return Strings.get("statsComponentColumn");
+			case 4: return Strings.get("statsLibraryColumn");
 			default: return "??"; // should never happen
 			}
 		}
@@ -67,10 +68,11 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 			if (row < 0 || row >= counts.size()) return "";
 			FileStatistics.Count count = counts.get(row);
 			switch (column) {
-			case 0: return Integer.valueOf(count.getFlatCount());
-			case 1: return Integer.valueOf(count.getRecursiveCount());
-			case 2: return count.getFactory().getDisplayName();
-			case 3: 
+			case 0: return Integer.valueOf(count.getSimpleCount());
+			case 1: return Integer.valueOf(count.getUniqueCount());
+			case 2: return Integer.valueOf(count.getRecursiveCount());
+			case 3: return count.getFactory().getDisplayName();
+			case 4: 
 				Library lib = count.getLibrary();
 				return lib == null ? "-" : lib.getDisplayName();
 			default: return ""; // should never happen
@@ -103,7 +105,7 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 		this.pack();
 		
 		Dimension pref = contents.getPreferredSize();
-		if (pref.width > 500 || pref.height > 300) {
+		if (pref.width > 750 || pref.height > 550) {
 			if (pref.width > 750) pref.width = 750;
 			if (pref.height > 550) pref.height = 550;
 			this.setSize(pref);

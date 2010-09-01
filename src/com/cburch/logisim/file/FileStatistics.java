@@ -22,13 +22,15 @@ public class FileStatistics {
 	public static class Count {
 		private Library library;
 		private ComponentFactory factory;
-		private int flatCount;
+		private int simpleCount;
+		private int uniqueCount;
 		private int recursiveCount;
 		
 		private Count(ComponentFactory factory) {
 			this.library = null;
 			this.factory = factory;
-			this.flatCount = 0;
+			this.simpleCount = 0;
+			this.uniqueCount = 0;
 			this.recursiveCount = 0;
 		}
 		
@@ -40,8 +42,12 @@ public class FileStatistics {
 			return factory;
 		}
 		
-		public int getFlatCount() {
-			return flatCount;
+		public int getSimpleCount() {
+			return simpleCount;
+		}
+		
+		public int getUniqueCount() {
+			return uniqueCount;
 		}
 		
 		public int getRecursiveCount() {
@@ -75,11 +81,12 @@ public class FileStatistics {
 		Map<ComponentFactory,Count> counts = doSimpleCount(circuit);
 		countMap.put(circuit, counts);
 		for (Count count : counts.values()) {
-			count.recursiveCount = count.flatCount;
+			count.uniqueCount = count.simpleCount;
+			count.recursiveCount = count.simpleCount;
 		}
 		for (Circuit sub : include) {
 			if (counts.containsKey(sub)) {
-				int multiplier = counts.get(sub).flatCount;
+				int multiplier = counts.get(sub).simpleCount;
 				Map<ComponentFactory,Count> subCount;
 				subCount = doRecursiveCount(sub, include, countMap);
 				for (Count subcount : subCount.values()) {
@@ -89,7 +96,7 @@ public class FileStatistics {
 						supercount = new Count(subfactory);
 						counts.put(subfactory, supercount);
 					}
-					supercount.flatCount += subcount.flatCount;
+					supercount.uniqueCount += subcount.uniqueCount;
 					supercount.recursiveCount += multiplier * subcount.recursiveCount;
 				}
 			}
@@ -108,7 +115,7 @@ public class FileStatistics {
 				count = new Count(factory);
 				counts.put(factory, count);
 			}
-			count.flatCount++;
+			count.simpleCount++;
 		}
 		return counts;
 	}
