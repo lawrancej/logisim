@@ -59,6 +59,27 @@ makes the simulation go much slower. As just one comparison, the same circuit an
 ran at 714&nbsp;Hz above with just the <tt>speed</tt> option
 but 490&nbsp;Hz with the <tt>table</tt> option as well.</p></dd>
 
+<dt><tt>stats</tt></dt>
+<dd><p>Shows a tab-delimited table containing statistics about components
+used by the top-level <q>main</q> circuit in the project. The table includes
+four columns:</p>
+<ul>
+<li>Unique: The number of times that component appears in the circuit's hierarchy,
+where each subcircuit within the hierarchy is counted only once.</li>
+<li>Recursive: The number of times that component appears in the circuit's hierarchy,
+where we count each subcircuit as many times as it appears in the hierarchy.</li>
+<li>Component: The name of the component.</li>
+<li>Library: The name of the library from which the component came.</li>
+</ul>
+<p>The distinction between <q>Unique</q> and <q>Recursive</q> is explained
+further under <q><a href="../menu/project.html">Project menu</a></q> section.
+If the file uses circuits from a loaded Logisim library, those components are
+considered to be <q>black boxes</q>: The contents of the library's circuits are
+not included in the unique and recursive counts.</p>
+
+<p>(This feature can be useful for instructors who assign students to build
+projects using a subset of Logisim's libraries.)</p></dd>
+
 <dt><tt>table</tt></dt>
 <dd><p>(as already discussed)</p></dd>
 

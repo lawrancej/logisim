@@ -46,7 +46,7 @@ components.  By placing a controlled buffer between each component
 output and the bus, you can control whether that component's output is
 fed onto the bus or not.</p>
 
-<h2>Pins (assuming component faces east)</h2>
+<h2>Pins (assuming component faces east, control line right-handed)</h2>
 
 <dl>
 
@@ -78,6 +78,16 @@ and the arrow keys alter its <q>Facing</q> attribute.</p>
 
 <dt>Data Bits</dt>
 <dd>The bit width of the component's inputs and outputs.</dd>
+
+<dt>Gate Size</dt>
+<dd>(Controlled inverter only) Determines whether to draw a larger or a smaller
+version of the component.</dd>
+
+<dt>Control Line Location</dt>
+<dd>The location of the control line, imagining we are facing the output
+from the input: If the component faces east and is <q>right-handed,</q>
+the control line is to the south; but if it is <q>left-handed,</q>
+the control line is to the north.</dd>
 
 </dl>
 
