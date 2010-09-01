@@ -5,6 +5,9 @@ package com.cburch.logisim.std.gates;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Point2D;
 import java.util.HashMap;
 
 import com.cburch.logisim.data.Direction;
@@ -13,7 +16,50 @@ import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.util.GraphicsUtil;
 
-public class PainterShaped {
+public class PainterShaped {	
+	private static final GeneralPath PATH_NARROW;
+	private static final GeneralPath PATH_MEDIUM;
+	private static final GeneralPath PATH_WIDE;
+
+	private static final GeneralPath SHIELD_NARROW;
+	private static final GeneralPath SHIELD_MEDIUM;
+	private static final GeneralPath SHIELD_WIDE;
+	
+	static {
+		PATH_NARROW = new GeneralPath();
+		PATH_NARROW.moveTo(0, 0);
+		PATH_NARROW.quadTo(-10, -15, -30, -15);
+		PATH_NARROW.quadTo(-22,   0, -30,  15);
+		PATH_NARROW.quadTo(-10,  15,   0,   0);
+		PATH_NARROW.closePath();
+		
+		PATH_MEDIUM = new GeneralPath();
+		PATH_MEDIUM.moveTo(0, 0);
+		PATH_MEDIUM.quadTo(-20, -25, -50, -25);
+		PATH_MEDIUM.quadTo(-37,   0, -50,  25);
+		PATH_MEDIUM.quadTo(-20,  25,   0,   0);
+		PATH_MEDIUM.closePath();
+		
+		PATH_WIDE = new GeneralPath();
+		PATH_WIDE.moveTo(0, 0);
+		PATH_WIDE.quadTo(-25, -35, -70, -35);
+		PATH_WIDE.quadTo(-50,   0, -70,  35);
+		PATH_WIDE.quadTo(-25,  35,   0,   0);
+		PATH_WIDE.closePath();
+		
+		SHIELD_NARROW = new GeneralPath();
+		SHIELD_NARROW.moveTo(-30, -15);
+		SHIELD_NARROW.quadTo(-22,   0, -30,  15);
+		
+		SHIELD_MEDIUM = new GeneralPath();
+		SHIELD_MEDIUM.moveTo(-50, -25);
+		SHIELD_MEDIUM.quadTo(-37,   0, -50,  25);
+		
+		SHIELD_WIDE = new GeneralPath();
+		SHIELD_WIDE.moveTo(-70, -35);
+		SHIELD_WIDE.quadTo(-50,   0, -70,  35);
+	}
+
 	private PainterShaped() { }
 	
 	private static HashMap<Integer,int[]> INPUT_LENGTHS = new HashMap<Integer,int[]>();
@@ -34,14 +80,33 @@ public class PainterShaped {
 	static void paintOr(InstancePainter painter, int width, int height) {
 		Graphics g = painter.getGraphics();
 		GraphicsUtil.switchToWidth(g, 2);
-		if (width == 30) {
+		/* The following, used previous to version 2.5.1, didn't use GeneralPath
+		g.setColor(Color.LIGHT_GRAY);
+		if (width < 40) {
 			GraphicsUtil.drawCenteredArc(g, -30, -21, 36, -90, 53);
 			GraphicsUtil.drawCenteredArc(g, -30,  21, 36, 90, -53);
-		} else {
+		} else if (width < 60) {
 			GraphicsUtil.drawCenteredArc(g, -50, -37, 62, -90, 53);
 			GraphicsUtil.drawCenteredArc(g, -50,  37, 62, 90, -53);
+		} else {
+			GraphicsUtil.drawCenteredArc(g, -70, -50, 85, -90, 53);
+			GraphicsUtil.drawCenteredArc(g, -70,  50, 85, 90, -53);
 		}
 		paintShield(g, -width, 0, width, height);
+		*/
+		
+		GeneralPath path;
+		if (width < 40) {
+			path = PATH_NARROW;
+		} else if (width < 60) {
+			path = PATH_MEDIUM;
+		} else {
+			path = PATH_WIDE;
+		}
+		((Graphics2D) g).draw(path);
+		if (height > width) {
+			paintShield(g, 0, width, height);
+		}
 	}
 	
 	static void paintNot(InstancePainter painter) {
@@ -72,26 +137,57 @@ public class PainterShaped {
 	static void paintXor(InstancePainter painter, int width, int height) {
 		Graphics g = painter.getGraphics();
 		paintOr(painter, width - 10, width - 10);
-		paintShield(g, -width, 0, width - 10, height);
+		paintShield(g, -10, width - 10, height);
 	}
 
-	private static void paintShield(Graphics g, int x, int y,
+	private static void paintShield(Graphics g, int xlate,
 			int width, int height) {
 		GraphicsUtil.switchToWidth(g, 2);
-		if (width == 30) {
+		g.translate(xlate, 0);
+		((Graphics2D) g).draw(computeShield(width, height));
+		g.translate(-xlate, 0);
+
+		/* The following, used previous to version 2.5.1, didn't use GeneralPath
+		if (width < 40) {
 			GraphicsUtil.drawCenteredArc(g, x - 26, y, 30, -30, 60);
-		} else {
+		} else if (width < 60) {
 			GraphicsUtil.drawCenteredArc(g, x - 43, y, 50, -30, 60);
+		} else {
+			GraphicsUtil.drawCenteredArc(g, x - 60, y, 70, -30, 60);
 		}
-		if (height > width) {
-			int extra = (height - width) / 2;
-			int dx = (int) Math.round(extra * (Math.sqrt(3) / 2));
+		if (height > width) { // we need to draw the shield
 			GraphicsUtil.drawCenteredArc(g,
 				x - dx, y - (width + extra) / 2,
 				extra, -30, 60);
 			GraphicsUtil.drawCenteredArc(g,
 				x - dx, y + (width + extra) / 2,
 				extra, -30, 60);
+		}
+		*/
+	}
+	
+	private static GeneralPath computeShield(int width, int height) {
+		GeneralPath base;
+		if (width < 40) {
+			base = SHIELD_NARROW;
+		} else if (width < 60) {
+			base = SHIELD_MEDIUM;
+		} else {
+			base = SHIELD_WIDE;
+		}
+
+		if (height <= width) { // no wings
+			return base;
+		} else { // we need to add wings
+			int wingHeight = (height - width) / 2;
+			int dx = Math.min(20, wingHeight / 4);
+			
+			GeneralPath path = new GeneralPath();
+			path.moveTo(-width, -height / 2);
+			path.quadTo(-width + dx, -(width + height) / 4, -width, -width / 2);
+			path.append(base, true);
+			path.quadTo(-width + dx, (width + height) / 4, -width, height / 2);
+			return path;
 		}
 	}
 
@@ -151,11 +247,34 @@ public class PainterShaped {
 			return (int[]) ret;
 		}
 		
+		Direction facing = attrs.facing;
+		if (facing != Direction.EAST) {
+			attrs = (GateAttributes) attrs.clone();
+			attrs.facing = Direction.EAST;
+		}
+
 		int[] lengths = new int[inputs];
 		INPUT_LENGTHS.put(key, lengths);
-		Location loc0 = factory.getInputOffset(attrs, 0);
-		Location locn = factory.getInputOffset(attrs, inputs - 1);
+		int width = mainHeight;
+		Location loc0 = OrGate.FACTORY.getInputOffset(attrs, 0);
+		Location locn = OrGate.FACTORY.getInputOffset(attrs, inputs - 1);
 		int totalHeight = 10 + loc0.manhattanDistanceTo(locn);
+		if (totalHeight < width) totalHeight = width;
+		
+		GeneralPath path = computeShield(width, totalHeight);
+		for (int i = 0; i < inputs; i++) {
+			Location loci = OrGate.FACTORY.getInputOffset(attrs, i);
+			Point2D p = new Point2D.Float(loci.getX() + 1, loci.getY());
+			int iters = 0;
+			while (path.contains(p) && iters < 15) {
+				iters++;
+				p.setLocation(p.getX() + 1, p.getY());
+			}
+			if (iters >= 15) iters = 0;
+			lengths[i] = iters;
+		}
+		
+		/* used prior to 2.5.1, when moved to GeneralPath
 		int wingHeight = (totalHeight - mainHeight) / 2;
 		double wingCenterX = wingHeight * Math.sqrt(3) / 2;
 		double mainCenterX = mainHeight * Math.sqrt(3) / 2;
@@ -176,6 +295,7 @@ public class PainterShaped {
 			}
 			lengths[i] = (int) (dx - 0.5);
 		}
+		*/
 		return lengths;
 	}
 }

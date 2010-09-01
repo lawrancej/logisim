@@ -11,7 +11,9 @@ import javax.swing.Icon;
 
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.data.Attribute;
+import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.AttributeSet;
+import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Direction;
@@ -31,6 +33,14 @@ import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
 
 class ControlledBuffer extends InstanceFactory {
+	private static final AttributeOption RIGHT_HANDED
+		= new AttributeOption("right", Strings.getter("controlledRightHanded"));
+	private static final AttributeOption LEFT_HANDED
+		= new AttributeOption("left", Strings.getter("controlledLeftHanded"));
+	private static final Attribute<AttributeOption> ATTR_CONTROL
+		= Attributes.forOption("control", Strings.getter("controlledControlOption"),
+				new AttributeOption[] { RIGHT_HANDED, LEFT_HANDED });
+			
 	public static ComponentFactory FACTORY_BUFFER = new ControlledBuffer(false);
 	public static ComponentFactory FACTORY_INVERTER = new ControlledBuffer(true);
 	
@@ -44,15 +54,24 @@ class ControlledBuffer extends InstanceFactory {
 			isInverter ? Strings.getter("controlledInverterComponent")
 					: Strings.getter("controlledBufferComponent"));
 		this.isInverter = isInverter;
-		setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH },
-				new Object[] { Direction.EAST, BitWidth.ONE });
+		if (isInverter) {
+			setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH, NotGate.ATTR_SIZE, ATTR_CONTROL },
+					new Object[] { Direction.EAST, BitWidth.ONE, NotGate.SIZE_WIDE, RIGHT_HANDED });
+		} else {
+			setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH, ATTR_CONTROL },
+					new Object[] { Direction.EAST, BitWidth.ONE, RIGHT_HANDED });
+		}
 		setFacingAttribute(StdAttr.FACING);
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
 	}
 
 	@Override
 	public Bounds getOffsetBounds(AttributeSet attrs) {
-		int w = isInverter ? 30 : 20;
+		int w = 20;
+		if(isInverter &&
+				!NotGate.SIZE_NARROW.equals(attrs.getValue(NotGate.ATTR_SIZE))) {
+			w = 30;
+		}
 		Direction facing = attrs.getValue(StdAttr.FACING);
 		if (facing == Direction.NORTH) return Bounds.create(-10,  0, 20, w);
 		if (facing == Direction.SOUTH) return Bounds.create(-10, -w, 20, w);
@@ -95,7 +114,12 @@ class ControlledBuffer extends InstanceFactory {
 		// draw control wire
 		GraphicsUtil.switchToWidth(g, 3);
 		Location pt0 = painter.getInstance().getPortLocation(2);
-		Location pt1 = pt0.translate(face, 0, -6);
+		Location pt1;
+		if (painter.getAttributeValue(ATTR_CONTROL) == LEFT_HANDED) {
+			pt1 = pt0.translate(face, 0, 6);
+		} else {
+			pt1 = pt0.translate(face, 0, -6);
+		}
 		if (painter.getShowState()) {
 			g.setColor(painter.getPort(2).getColor());
 		}
@@ -125,12 +149,16 @@ class ControlledBuffer extends InstanceFactory {
 			((Graphics2D) g).rotate(rotate);
 		}
 
-		GraphicsUtil.switchToWidth(g, 2);
-		int d = isInverter ? 10 : 0;
-		int[] xp = new int[] { -d, -19 - d, -19 - d, -d };
-		int[] yp = new int[] {  0,  -7,       7,      0 };
-		g.drawPolyline(xp, yp, 4);
-		if (isInverter) g.drawOval(-9, -4, 9, 9);
+		if (isInverter) {
+			PainterShaped.paintNot(painter);
+		} else {
+			GraphicsUtil.switchToWidth(g, 2);
+			int d = isInverter ? 10 : 0;
+			int[] xp = new int[] { -d, -19 - d, -19 - d, -d };
+			int[] yp = new int[] {  0,  -7,       7,      0 };
+			g.drawPolyline(xp, yp, 4);
+			// if (isInverter) g.drawOval(-9, -4, 9, 9);
+		}
 		
 		if (rotate != 0.0) {
 			((Graphics2D) g).rotate(-rotate);
@@ -149,18 +177,26 @@ class ControlledBuffer extends InstanceFactory {
 	
 	@Override
 	protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
-		if (attr == StdAttr.FACING) {
+		if (attr == StdAttr.FACING || attr == NotGate.ATTR_SIZE) {
 			instance.recomputeBounds();
+			configurePorts(instance);
+		} else if (attr == ATTR_CONTROL) {
 			configurePorts(instance);
 		}
 	}
 
 	private void configurePorts(Instance instance) {
 		Direction facing = instance.getAttributeValue(StdAttr.FACING);
-		int d = isInverter ? 10 : 0;
+		Bounds bds = getOffsetBounds(instance.getAttributeSet());
+		int d = Math.max(bds.getWidth(), bds.getHeight()) - 20;
 		Location loc0 = Location.create(0, 0);
 		Location loc1 = loc0.translate(facing.reverse(), 20 + d);
-		Location loc2 = loc0.translate(facing.reverse(), 10 + d, -10);
+		Location loc2;
+		if (instance.getAttributeValue(ATTR_CONTROL) == LEFT_HANDED) {
+			loc2 = loc0.translate(facing.reverse(), 10 + d, 10);
+		} else {
+			loc2 = loc0.translate(facing.reverse(), 10 + d, -10);
+		}
 
 		Port[] ports = new Port[3];
 		ports[0] = new Port(0, 0, Port.OUTPUT, StdAttr.WIDTH);

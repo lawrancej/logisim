@@ -14,22 +14,25 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.instance.StdAttr;
 
 class GateAttributes extends AbstractAttributeSet {
-	static final int MAX_INPUTS = 16;
+	static final int MAX_INPUTS = 32;
 	static final int DELAY = 1;
 
 	static final AttributeOption SIZE_NARROW
 		= new AttributeOption(Integer.valueOf(30),
 			Strings.getter("gateSizeNarrowOpt"));
-	static final AttributeOption SIZE_WIDE
+	static final AttributeOption SIZE_MEDIUM
 		= new AttributeOption(Integer.valueOf(50),
+			Strings.getter("gateSizeNormalOpt"));
+	static final AttributeOption SIZE_WIDE
+		= new AttributeOption(Integer.valueOf(70),
 			Strings.getter("gateSizeWideOpt"));
 	public static final Attribute<AttributeOption> ATTR_SIZE
 		= Attributes.forOption("size", Strings.getter("gateSizeAttr"),
-			new AttributeOption[] { SIZE_NARROW, SIZE_WIDE });
+			new AttributeOption[] { SIZE_NARROW, SIZE_MEDIUM, SIZE_WIDE });
 
 	public static final Attribute<Integer> ATTR_INPUTS
 		= Attributes.forIntegerRange("inputs", Strings.getter("gateInputsAttr"),
-				2, 16);
+				2, MAX_INPUTS);
 
 	static final AttributeOption XOR_ONE
 		= new AttributeOption("1", Strings.getter("xorBehaviorOne"));
@@ -42,7 +45,7 @@ class GateAttributes extends AbstractAttributeSet {
 
 	Direction facing = Direction.EAST;
 	BitWidth width = BitWidth.ONE;
-	AttributeOption size = SIZE_WIDE;
+	AttributeOption size = SIZE_MEDIUM;
 	int inputs = 5;
 	int negated = 0;
 	AttributeOption xorBehave;

@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
 
+import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.util.GraphicsUtil;
@@ -28,7 +29,6 @@ class PainterDin {
 
 	static void paintOr(InstancePainter painter, int width, int height,
 			boolean drawBubble) {
-		paintOrLines(painter, width, height, true);
 		paint(painter, width, height, drawBubble, OR);
 	}
 
@@ -56,7 +56,7 @@ class PainterDin {
 		if (dinType == AND) {
 			; // nothing to do
 		} else if (dinType == OR) {
-			// TODO
+			paintOrLines(painter, width, height, drawBubble);
 		} else if (dinType == XOR || dinType == XNOR) {
 			int elen = Math.min(diam / 2 - 10, 20);
 			int ex0 = xMid + (diam / 2 - elen) / 2;
@@ -99,49 +99,43 @@ class PainterDin {
 
 	private static void paintOrLines(InstancePainter painter,
 			int width, int height, boolean hasBubble) {
-		Integer inObj = painter.getAttributeValue(GateAttributes.ATTR_INPUTS);
-		int inputs = inObj == null ? 1 : inObj.intValue();
-		int rx = 0;
-		int x0 = rx - width;
-		if (hasBubble) {
-			rx -= 4;
-			width -= 8;
-		}
+		GateAttributes baseAttrs = (GateAttributes) painter.getAttributeSet();
+		int inputs = baseAttrs.inputs;
+		GateAttributes attrs = (GateAttributes) OrGate.FACTORY.createAttributeSet();
+		attrs.inputs = inputs;
+		attrs.size = baseAttrs.size;
+
 		Graphics g = painter.getGraphics();
 		// draw state if appropriate
 		// ignore lines if in print view
-		int dy = (height - 10) / (inputs - 1);
 		int r = Math.min(height / 2, width);
 		Integer hash = Integer.valueOf(r << 4 | inputs);
 		int[] lens = orLenArrays.get(hash);
 		if (lens == null) {
 			lens = new int[inputs];
 			orLenArrays.put(hash, lens);
-			int y = -height / 2 + 5;
-			if (height <= 2 * r) {
-				for (int i = 0; i < inputs; i++) {
-					int a = y;
-					lens[i] = (int) (Math.sqrt(r * r - a * a) + 0.5);
-					y += dy;
-				}
-			} else {
-				for (int i = 0; i < inputs; i++) {
+			int yCurveStart = height / 2 - r;
+			for (int i = 0; i < inputs; i++) {
+				int y = OrGate.FACTORY.getInputOffset(attrs, i).getY();
+				if (y < 0) y = -y;
+				if (y <= yCurveStart) {
 					lens[i] = r;
-				}
-				int yy0 = -height / 2 + r;
-				for (int i = 0; y < yy0; i++, y += dy) {
-					int a = y - yy0;
-					lens[i] = (int) (Math.sqrt(r * r - a * a) + 0.5);
-					lens[lens.length - 1 - i] = lens[i];
+				} else {
+					int dy = y - yCurveStart;
+					lens[i] = (int) (Math.sqrt(r * r - dy * dy) + 0.5);
 				}
 			}
 		}
+		
+		AbstractGate factory = hasBubble ? NorGate.FACTORY : OrGate.FACTORY;
 		boolean printView = painter.isPrintView() && painter.getInstance() != null;
 		GraphicsUtil.switchToWidth(g, 2);
-		int y = -height / 2 + 5;
-		for (int i = 0; i < inputs; i++, y += dy) {
+		for (int i = 0; i < inputs; i++) {
 			if (!printView || painter.isPortConnected(i)) {
-				g.drawLine(x0, y, x0 + lens[i], y);
+				Location loc = factory.getInputOffset(attrs, i);
+				int x = loc.getX();
+				int y = loc.getY();
+				g.drawLine(x, y, x + lens[i], y);
 			}
 		}
 	}
