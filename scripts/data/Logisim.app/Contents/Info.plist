@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+	<key>CFBundleName</key>
+	<string>Logisim</string>
+	<key>CFBundleVersion</key>
+	<string>10.2</string>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<string>true</string>
+	<key>CFBundleExecutable</key>
+	<string>JavaApplicationStub</string>
+	<key>CFBundleIconFile</key>
+	<string>LogisimApp.icns</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.5.0</string>
+	<key>CFBundleSignature</key>
+	<string>LGSM</string>
+	<key>CFBundleGetInfoString</key>
+	<string>2.5.0. Copyright 2010 Carl Burch.  See accompanying license (GPL) for details.</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>Java</key>
+	<dict>
+		<key>MainClass</key>
+		<string>com.cburch.logisim.Main</string>
+		<key>JVMVersion</key>
+		<string>1.5+</string>
+		<key>ClassPath</key>
+			<array>
+			<string>$JAVAROOT/logisim.jar</string>
+			</array>
+		<key>Properties</key>
+		<dict>
+			<key>apple.laf.useScreenMenuBar</key>
+			<string>true</string>
+		</dict>
+	</dict>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array><string>circ</string></array>
+			<key>CFBundleTypeIconFile</key>
+			<string>LogisimDoc.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Logisim Project File</string>
+			<key>CFBundleTypeOSTypes</key>
+			<string>****</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+	</array>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright 2010 Carl Burch. See accompanying license (GPL) for details.</string>
+</dict>
+</plist>

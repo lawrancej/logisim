@@ -1,3 +1,17 @@
+LOGISIM 2.5.1 INTRODUCES STATS, IMPROVES GATES
+
+Logisim, a graphical design and simulation tool for logic circuits, is now at version 2.5.1. This release addresses a few significant bugs from the dramatic changes in the 2.5.0 release earlier this week, and it adds a few less significant features. The biggest of the bugs involves how on some platforms Logisim saved (and loaded) projects involving non-ASCII characters. Another bug could occur when loading multiple libraries, at least one of which is a Logisim project itself.
+
+Among the new features is the Project menu's new "Get Circuit Statistics" menu item, which displays a count of how many components are used within the circuit and within its hierarchy. This feature can also be accessed through the command line.
+
+The Gates library receives further attention in this release. Gates can now have up to 32 inputs, and an option has been added so that they can be drawn larger than the default. Also, you can now control on which side the control line is drawn for controlled buffers and controlled inverters. Finally, this version improves how the basic logic gates are drawn in several minor ways; for example, rectangular OR gates are now drawn using the standard label of "greater-than-or-equal 1."
+
+Finally, the integrated help system is now configured to support full-text search capabilities. Also, while not technically part of the download, the on-line documentation available through Logisim's Web page includes a navigation tree, analogous to the integrated help system.
+
+Educational institutions around the world use Logisim as an aid to teaching about digital logic and computer architecture. As a Java application, Logisim can run on most major operating systems. Read more about Logisim at http://www.cburch.com/logisim/, and download it from SourceForge.net at http://sourceforge.net/projects/circuit/.
+
+CHANGE LOG
+
 Feature: Added the "Get Project Statistics" menu item and the "-tty stats" command-line option.
 
 Feature: The integrated help system now includes full-text search. Also, the most recent version of the JavaHelp library is packaged with Logisim.
@@ -10,20 +24,22 @@ Feature: Added a third, larger Gate Size option to the multi-input logic gates, 
 
 Feature: The color and font dialogs were modified so that their strings could more easily be translated. A Russian translation is included.
 
+Interface change: The rectangular OR and NOR gates are drawn with the proper "&ge;1" label rather than "&gt;0".
+
+Interface change: The shaped OR, NOR, XOR, and XNOR gates are drawn slightly differently, using Java's GeneralPath class. As a result, the corners connect well and the "wings" for a large number of inputs don't get overly deep.
+
 Bug fix: In 2.5.0, Logisim projects were opened assuming a UTF-8 encoding, and it refused to open files with invalid encoding. It now first attempts opening the file assuming UTF-8 encoding (since that is now the default save format); but if that fails, it attempts to open the file using the platform's default encoding.
 
-Bug fix: An exception occurred when loading multiple Logisim libraries.
+Bug fix: An exception could occur when loading multiple libraries into a project, at least one of which is a Logisim file.
 
 Bug fix: It was reported that a race condition could occur when opening many files. (Thanks to Joshua Cranmer of Georgia Tech for providing the report and suggesting changes to fix it.)
 
 Bug fix: In previous versions, projects were saved using the platform's default encoding (even though the XML indicated it used UTF-8), leading files to be non-portable if they included non-ASCII characters. Now the file is always saved using UTF-8.
 
-Bug fix: Using DIN 40700 gate shapes, the OR and NOR gates were drawn improperly for even numbers of inputs.
+Bug fix: Using DIN 40700 gate shapes, the OR and NOR gates were drawn improperly for even numbers of inputs, and the NAND and NOR gates' output lines did not quite go as far as their input.
 
 Bug fix: With the font dialog library, changes to the selected language would not be reflected until the program was restarted.
 
-Bug fix: The documentation used the " />" idiom for childless elements like "<br />", but this confuses Java 5 systems (not Java 6) so that the ">" appears in the documentation. All instances of this idiom were removed.
+Bug fix: The documentation used the XHTML " />" idiom for childless elements like "<br />", but this confuses Java 5 systems (not Java 6) so that the ">" appears when viewing the pages in the integrated help system. All instances of this idiom were removed.
 
-Interface change: The shaped OR, NOR, XOR, and XNOR gates are drawn slightly differently, using Java's GeneralPath class. As a result, the corners connect well and the "wings" for a large number of inputs don't get overly deep. 
-
-Internal modification: All references to the JDOM library were removed, using Java's integrated XML libraries instead.
+Internal modification: All references to the JDOM library were removed. Logisim now uses Java's integrated XML support instead.
