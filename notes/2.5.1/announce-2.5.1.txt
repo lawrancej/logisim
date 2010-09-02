@@ -12,11 +12,17 @@ Feature: The color and font dialogs were modified so that their strings could mo
 
 Bug fix: In 2.5.0, Logisim projects were opened assuming a UTF-8 encoding, and it refused to open files with invalid encoding. It now first attempts opening the file assuming UTF-8 encoding (since that is now the default save format); but if that fails, it attempts to open the file using the platform's default encoding.
 
+Bug fix: An exception occurred when loading multiple Logisim libraries.
+
+Bug fix: It was reported that a race condition could occur when opening many files. (Thanks to Joshua Cranmer of Georgia Tech for providing the report and suggesting changes to fix it.)
+
 Bug fix: In previous versions, projects were saved using the platform's default encoding (even though the XML indicated it used UTF-8), leading files to be non-portable if they included non-ASCII characters. Now the file is always saved using UTF-8.
 
 Bug fix: Using DIN 40700 gate shapes, the OR and NOR gates were drawn improperly for even numbers of inputs.
 
 Bug fix: With the font dialog library, changes to the selected language would not be reflected until the program was restarted.
+
+Bug fix: The documentation used the " />" idiom for childless elements like "<br />", but this confuses Java 5 systems (not Java 6) so that the ">" appears in the documentation. All instances of this idiom were removed.
 
 Interface change: The shaped OR, NOR, XOR, and XNOR gates are drawn slightly differently, using Java's GeneralPath class. As a result, the corners connect well and the "wings" for a large number of inputs don't get overly deep. 
 
