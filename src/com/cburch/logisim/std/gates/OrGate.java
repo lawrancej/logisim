@@ -19,7 +19,7 @@ class OrGate extends AbstractGate {
 
 	private OrGate() {
 		super("OR Gate", Strings.getter("orGateComponent"));
-		setRectangularLabel(">0");
+		setRectangularLabel("\u2265" + "1");
 		setIconNames("orGate.gif", "orGateRect.gif", "dinOrGate.gif");
 		setPaintInputLines(true);
 	}

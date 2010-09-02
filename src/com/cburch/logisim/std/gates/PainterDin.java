@@ -79,7 +79,7 @@ class PainterDin {
 			Value val = painter.getPort(0);
 			g.setColor(val.getColor());
 		}
-		g.drawLine(x0 + diam, 0, x, 0);
+		g.drawLine(x0 + diam, 0, 0, 0);
 		g.setColor(oldColor);
 		if (height <= diam) {
 			g.drawArc(x0, y0, diam, diam, -90, 180);
@@ -94,6 +94,7 @@ class PainterDin {
 		g.drawLine(xMid, y0, xMid, y0 + height);
 		if (drawBubble) {
 			g.fillOval(x0 + diam - 4, -4, 8, 8);
+			xMid += 4;
 		}
 	}
 
