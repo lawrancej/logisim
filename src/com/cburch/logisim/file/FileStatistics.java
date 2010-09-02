@@ -67,6 +67,7 @@ public class FileStatistics {
 		Map<Circuit,Map<ComponentFactory,Count>> countMap;
 		countMap = new HashMap<Circuit,Map<ComponentFactory,Count>>();
 		doRecursiveCount(circuit, include, countMap);
+		doUniqueCounts(countMap.get(circuit), countMap);
 		List<Count> countList = sortCounts(countMap.get(circuit), file);
 		return new FileStatistics(countList, getTotal(countList, include),
 				getTotal(countList, null));
@@ -97,7 +98,6 @@ public class FileStatistics {
 						supercount = new Count(subfactory);
 						counts.put(subfactory, supercount);
 					}
-					supercount.uniqueCount += subcount.uniqueCount;
 					supercount.recursiveCount += multiplier * subcount.recursiveCount;
 				}
 			}
@@ -119,6 +119,21 @@ public class FileStatistics {
 			count.simpleCount++;
 		}
 		return counts;
+	}
+	
+	private static void doUniqueCounts(Map<ComponentFactory,Count> counts,
+			Map<Circuit,Map<ComponentFactory,Count>> circuitCounts) {
+		for (Count count : counts.values()) {
+			ComponentFactory factory = count.getFactory();
+			int unique = 0;
+			for (Circuit circ : circuitCounts.keySet()) {
+				Count subcount = circuitCounts.get(circ).get(factory);
+				if (subcount != null) {
+					unique += subcount.simpleCount;
+				}
+			}
+			count.uniqueCount = unique;
+		}
 	}
 	
 	private static List<Count> sortCounts(Map<ComponentFactory,Count> counts,
