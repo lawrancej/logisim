@@ -7,14 +7,14 @@
 <body bgcolor="FFFFFF">
 
 <table><tr><td>
-<img align="center" height="32" width="32" src="../../../en/icons/andGate.gif" />
-<img align="center" height="32" width="32" src="../../../en/icons/orGate.gif" />
-<img align="center" height="32" width="32" src="../../../en/icons/nandGate.gif" />
-<img align="center" height="32" width="32" src="../../../en/icons/norGate.gif" /><br />
-<img align="center" height="32" width="32" src="../../../en/icons/andGateRect.gif" />
-<img align="center" height="32" width="32" src="../../../en/icons/orGateRect.gif" />
-<img align="center" height="32" width="32" src="../../../en/icons/nandGateRect.gif" />
-<img align="center" height="32" width="32" src="../../../en/icons/norGateRect.gif" />
+<img align="center" height="32" width="32" src="../../../en/icons/andGate.gif">
+<img align="center" height="32" width="32" src="../../../en/icons/orGate.gif">
+<img align="center" height="32" width="32" src="../../../en/icons/nandGate.gif">
+<img align="center" height="32" width="32" src="../../../en/icons/norGate.gif"><br>
+<img align="center" height="32" width="32" src="../../../en/icons/andGateRect.gif">
+<img align="center" height="32" width="32" src="../../../en/icons/orGateRect.gif">
+<img align="center" height="32" width="32" src="../../../en/icons/nandGateRect.gif">
+<img align="center" height="32" width="32" src="../../../en/icons/norGateRect.gif">
 </td><td valign="center"><h1><em>Элементы И/ИЛИ/И-НЕ/ИЛИ-НЕ</em></h1></td></tr></table>
 
 <p><table>
@@ -23,8 +23,20 @@
 <tr><td><strong>Введён в:</strong></td>
 	<td>2.0 Beta 1</td></tr>
 <tr><td valign="top"><strong>Внешний вид:</strong></td>
-	<td valign="top"><img src="../images/basic.png" /></td></tr>
-</table></p>
+	<td valign="top"><table>
+	<tr><th></th>
+		<th width="50">И</th>
+		<th width="50">ИЛИ</th>
+		<th width="50">И-НЕ</th>
+		<th width="50">ИЛИ-НЕ</th></tr>
+	<tr><th valign="middle" height="65">Фигурные</th>
+	    <td rowspan="3" colspan="4">
+	       <img src="../../../en/libs/images/basegate.png" >
+	    </td></tr>
+	<tr><th valign="middle" height="65">Прямоугольные</th></tr>
+	<tr><th valign="middle" height="65">DIN 40700</th></tr>
+	</table></td>
+</tr></table></p>
 
 <h2>Поведение</h2>
 
@@ -72,7 +84,7 @@
 <dt>Западный край (входы, разрядность соответствует атрибуту Биты данных)</dt>
 <dd><p>Входы компонента. Их будет столько, сколько указано в атрибуте Количество входов.</p>
 
-<p>Заметьте, что если вы используете элементы с формой, то западный край элементов ИЛИ и ИЛИ-НЕ будет искривлён. Тем не менее, входные контакты расположены вряд. Logisim отрисовывает короткие отрезки чтобы показать это; если вы перекроете отрезок, программа будет без предупреждений предполагать, что вы не хотели перекрыть его. При использовании "Вида для печати", эти отрезки не будут отрисованы, если не подключены к проводам.</p></dd>
+<p>Заметьте, что если вы используете фигурные элементы, то западный край элементов ИЛИ и ИЛИ-НЕ будет искривлён. Тем не менее, входные контакты расположены вряд. Logisim отрисовывает короткие отрезки чтобы показать это; если вы перекроете отрезок, программа будет без предупреждений предполагать, что вы не хотели перекрыть его. При использовании "Вида для печати", эти отрезки не будут отрисованы, если не подключены к проводам.</p></dd>
 
 <dt>Восточный край (выход, разрядность соответствует атрибуту Биты данных)</dt>
 <dd><p>Выход элемента, значение на котором вычисляется на основании текущих значений на входах, как описано выше.</p></dd>
@@ -92,7 +104,7 @@
 <dd>Разрядность входов и выходов компонента.</dd>
 
 <dt>Размер элемента</dt>
-<dd>Определяет, следует отрисовывать широкую или узкую версию компонента. Это не влияет на количество входов, которое определяется атрибутом Количество входов; правда, если количество входов превышает 3 (для узкого компонента) или 5 (для широкого), то элемент будет отрисовываться с "крыльями", чтобы вместить запрошенное количество входов.</dd>
+<dd>Определяет, следует отрисовывать широкую или узкую версию компонента. Это не влияет на количество входов, которое задаётся атрибутом Количество входов. Однако, если выбраны фигурные элементы, то элемент будет отрисован с <q>крыльями</q>, чтобы вместить дополнительные входы помимо тех, которые фигура может вместить естественным образом.</dd>
 
 <dt>Количество входов</dt>
 <dd>Определяет, сколько контактов на западном крае будет иметь компонент.</dd>
