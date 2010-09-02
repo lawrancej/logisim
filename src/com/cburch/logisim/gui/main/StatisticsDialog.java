@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumn;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.file.FileStatistics;
@@ -114,13 +115,36 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 		}
 	}
 	
+	private static class StatisticsTable extends JTable {
+		@Override
+		public void setBounds(int x, int y, int width, int height) {
+			super.setBounds(x, y, width, height);
+			setPreferredColumnWidths(new double[] { 0.45, 0.25, 0.1, 0.1, 0.1 });
+		}
+		
+		protected void setPreferredColumnWidths(double[] percentages) {
+			Dimension tableDim = getPreferredSize();
+			
+			double total = 0;
+			for (int i = 0; i < getColumnModel().getColumnCount(); i++) {
+				total += percentages[i];
+			}
+			
+			for (int i = 0; i < getColumnModel().getColumnCount(); i++) {
+				TableColumn column = getColumnModel().getColumn(i);
+				double width = tableDim.width * (percentages[i] / total);
+				column.setPreferredWidth((int) width);
+			}
+		}
+	}
+	
 	private StatisticsDialog(JFrame parent, String circuitName,
 			StatisticsTableModel model) {
 		super(parent, true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTitle(Strings.get("statsDialogTitle", circuitName));
 		
-		JTable table = new JTable();
+		JTable table = new StatisticsTable();
 		TableSorter mySorter = new TableSorter(model, table.getTableHeader());
 		Comparator<String> comp = new CompareString("",
 				Strings.get("statsTotalWithout"), Strings.get("statsTotalWith"));

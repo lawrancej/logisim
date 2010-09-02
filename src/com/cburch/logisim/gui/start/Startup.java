@@ -167,16 +167,14 @@ public class Startup {
 		initialized = true;
 		
 		// load file
-		Project proj; // last project created
 		if (filesToOpen.isEmpty()) {
-			proj = ProjectActions.doNew(monitor);
-			proj.setStartupScreen(true); // so that Open will close it.
+			ProjectActions.doNew(monitor, true);
 			if (showSplash) monitor.close();
 		} else {
 			boolean first = true;
 			for (File fileToOpen : filesToOpen) {
 				try {
-					proj = ProjectActions.doOpen(monitor, fileToOpen, substitutions);
+					ProjectActions.doOpen(monitor, fileToOpen, substitutions);
 				} catch (LoadFailedException ex) {
 					System.err.println(fileToOpen.getName() + ": " + ex.getMessage()); //OK
 					System.exit(-1);

@@ -51,7 +51,7 @@ class LibraryManager {
 		@Override
 		public boolean equals(Object other) {
 			if (!(other instanceof LogisimProjectDescriptor)) return false;
-			JarDescriptor o = (JarDescriptor) other;
+			LogisimProjectDescriptor o = (LogisimProjectDescriptor) other;
 			return this.file.equals(o.file);
 		}
 		

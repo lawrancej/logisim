@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.file.LoadFailedException;
@@ -26,8 +27,34 @@ import com.cburch.logisim.util.StringUtil;
 
 public class ProjectActions {
 	private ProjectActions() { }
+	
+	private static class CreateFrame implements Runnable {
+		private Loader loader;
+		private Project proj;
+		private boolean isStartupScreen;
+		
+		public CreateFrame(Loader loader, Project proj, boolean isStartup) {
+			this.loader = loader;
+			this.proj = proj;
+			this.isStartupScreen = isStartup;
+		}
+		
+		public void run() {
+			Frame frame = new Frame(proj);
+			proj.setFrame(frame);
+			frame.setVisible(true);
+			frame.toFront();
+			frame.getCanvas().requestFocus();
+			loader.setParent(frame);
+			if (isStartupScreen) proj.setStartupScreen(true);
+		}
+	}
 
 	public static Project doNew(SplashScreen monitor) {
+		return doNew(monitor, false);
+	}
+
+	public static Project doNew(SplashScreen monitor, boolean isStartupScreen) {
 		if (monitor != null) monitor.setProgress(SplashScreen.FILE_CREATE);
 		Loader loader = new Loader(monitor);
 		InputStream templReader = LogisimPreferences.getTemplate().createStream();
@@ -42,7 +69,7 @@ public class ProjectActions {
 			try { templReader.close(); } catch (IOException e) { }
 		}
 		if (file == null) file = createEmptyFile(loader);
-		return completeProject(monitor, loader, file);
+		return completeProject(monitor, loader, file, isStartupScreen);
 	}
 	
 	private static void displayException(Component parent, Exception ex) {
@@ -67,17 +94,12 @@ public class ProjectActions {
 	}
 	
 	private static Project completeProject(SplashScreen monitor, Loader loader,
-			LogisimFile file) {
+			LogisimFile file, boolean isStartup) {
 		if (monitor != null) monitor.setProgress(SplashScreen.PROJECT_CREATE);
 		Project ret = new Project(file);
 		
 		if (monitor != null) monitor.setProgress(SplashScreen.FRAME_CREATE);
-		Frame frame = new Frame(ret);
-		ret.setFrame(frame);
-		frame.setVisible(true);
-		frame.toFront();
-		frame.getCanvas().requestFocus();
-		loader.setParent(frame);
+		SwingUtilities.invokeLater(new CreateFrame(loader, ret, isStartup));
 		return ret;
 	}
 
@@ -116,7 +138,7 @@ public class ProjectActions {
 		Loader loader = new Loader(monitor);
 		LogisimFile file = loader.openLogisimFile(source, substitutions);
 		
-		return completeProject(monitor, loader, file);
+		return completeProject(monitor, loader, file, false);
 	}
 
 	public static void doOpen(Component parent, Project baseProject) {

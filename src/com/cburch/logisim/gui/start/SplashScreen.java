@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JWindow;
+import javax.swing.SwingUtilities;
 
 public class SplashScreen extends JWindow implements ActionListener {
 	public static final int LIBRARIES = 0;
@@ -83,10 +84,14 @@ public class SplashScreen extends JWindow implements ActionListener {
 	}
 
 	public void setProgress(int markerId) {
-		Marker marker = markers == null ? null : markers[markerId];
+		final Marker marker = markers == null ? null : markers[markerId];
 		if (marker != null) {
-			progress.setString(marker.message);
-			progress.setValue(marker.count);
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					progress.setString(marker.message);
+					progress.setValue(marker.count);
+				}
+			});
 			if (PRINT_TIMES) {
 				System.err.println((System.currentTimeMillis() - startTime) //OK
 						+ " " + marker.message);
