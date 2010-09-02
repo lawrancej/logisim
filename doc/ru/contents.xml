@@ -128,7 +128,7 @@
 		<tocitem target="arith_divider" text="Делитель" />
 		<tocitem target="arith_negator" text="Отрицатель" />
 		<tocitem target="arith_comparator" text="Компаратор" />
-		<tocitem target="arith_shifter" text=" 	Сдвигатель" />
+		<tocitem target="arith_shifter" text="Сдвигатель" />
 	  </tocitem>
 	  <tocitem target="mem" text="Библиотека Память">
 		<tocitem target="mem_flipflops" text="D/T/J-K/S-R триггеры" />
