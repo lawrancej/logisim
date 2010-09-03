@@ -6,14 +6,18 @@ import shutil
 import sys
 import xml.dom
 import xml.dom.minidom
-import logisim_script
+from logisim_script import *
 
-lang = 'ru'
+lang = 'en'
 if len(sys.argv) > 1:
 	lang = sys.argv[1]
 
-# This is for my local setup. -Carl
-# os.chdir(r'C:\cygwin\home\burch\logisim\Scripts\www\docs\2.5.0\\' + lang)
+# see if we're on Carl Burch's platform, and if so reconfigure defaults
+if '\\home\\burch\\' in get_svn_dir():
+	lang = 'ru'
+	svn_dir = get_svn_dir()
+	home = svn_dir[:svn_dir.find('\\home\\burch\\') + 11]
+	os.chdir(build_path(home, 'logisim/Scripts/www/docs/2.5.0', lang))
 
 head_end = r'''
 <link rel="shortcut icon" href="{rel}/../../../logisim.ico" />
@@ -53,10 +57,10 @@ ddtreemenu.createTree("maptree");
 # determine the source and destination directories
 #
 dst_dir = os.getcwd()
-src_dir = logisim_script.get_svn_dir('doc', lang)
+src_dir = get_svn_dir('doc', lang)
 if not os.path.exists(src_dir):
 	sys.exit('source directory doc/{lang} not found, aborted'.format(lang=lang))
-if logisim_script.is_same_file(dst_dir, src_dir) or os.path.exists(os.path.join(dst_dir, 'map.jhm')):
+if is_same_file(dst_dir, src_dir) or os.path.exists(os.path.join(dst_dir, 'map.jhm')):
 	sys.exit('cannot place result into source directory')
 
 #
@@ -120,13 +124,6 @@ for root, dirs, files in os.walk(src_dir):
 	for file in files:
 		if file not in ['contents.xml', 'doc.hs', 'jhindexer.cfg', 'map.jhm']:
 			to_copy.append(os.path.join(rel_root, file))
-
-def get_input(prompt, accept):
-	while True:
-		ret = input(prompt + ' ')
-		ret = ret.rstrip()
-		if ret in accept:
-			return ret
 	
 delete_from_copy = []
 delete_rest = False
@@ -138,7 +135,7 @@ for file in to_copy:
 		else:
 			print('{file} already exists.'.format(file=file))
 			options = 'Replace ([y]es, [Y]es to all, [n]o, [N]o to all, [a]bort'
-			dispose = get_input('Replace (' + options + ')?', 'yYnNa')
+			dispose = prompt('Replace (' + options + ')?', 'yYnNa')
 			if dispose == 'y':
 				pass
 			elif dispose == 'Y':

@@ -46,8 +46,13 @@ public class CollectionUtil {
 
 		@Override
 		public E get(int index) {
-			return index < a.size() ? a.get(index)
-				: a.get(index - a.size());
+			E ret;
+			if (index < a.size()) {
+				ret = a.get(index);
+			} else {
+				ret = a.get(index - a.size());
+			}
+			return ret;
 		}
 	}
 

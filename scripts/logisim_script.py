@@ -1,17 +1,32 @@
 import os.path
+import platform
 import re
 import sys
 
-def build_path(first, *subdirs):
+def build_path(first, *subdirs, **kwargs):
 	dir = first
 	for subdir in subdirs:
 		for subsub in subdir.split('/'):
 			dir = os.path.join(dir, subsub)
-	return dir
+	if 'cygwin' in kwargs and not kwargs['cygwin']:
+		return uncygwin(dir)
+	else:
+		return dir
 
 def get_svn_dir(*subdirs):
 	script_parent = os.path.dirname(sys.path[0])
 	return build_path(script_parent, *subdirs)
+
+def uncygwin(path, verbose=False):
+	sys = platform.system()
+	if sys.startswith('CYGWIN'):
+		if path.startswith('/cygdrive/'):
+			path = path[10].upper() + ':' + path[11:]
+		elif path.startswith('/'):
+			path = 'C:/cygwin' + path
+		return path
+	else:
+		return path 
 
 def is_same_file(a, b):
 	samefile = getattr(os.path, 'samefile', None)
@@ -23,7 +38,7 @@ def is_same_file(a, b):
 		return samefile(a, b)
 
 def system(*args):
-	os.system(' '.join(args))
+	return os.system(' '.join(args))
 	
 def prompt(prompt, accept=None):
 	while True:
