@@ -62,12 +62,15 @@ class MenuProject extends Menu {
 	private JMenuItem loadLogisim = new JMenuItem();
 	private JMenuItem loadJar = new JMenuItem();
 	private JMenuItem unload = new JMenuItem();
-	private MenuItem analyze = new MenuItem(this, LogisimMenuBar.ANALYZE_CIRCUIT);
-	private MenuItem stats = new MenuItem(this, LogisimMenuBar.CIRCUIT_STATS);
 	private MenuItem moveUp = new MenuItem(this, LogisimMenuBar.MOVE_CIRCUIT_UP);
 	private MenuItem moveDown = new MenuItem(this, LogisimMenuBar.MOVE_CIRCUIT_DOWN);
-	private MenuItem setAsMain = new MenuItem(this, LogisimMenuBar.SET_MAIN_CIRCUIT);
 	private MenuItem remove = new MenuItem(this, LogisimMenuBar.REMOVE_CIRCUIT);
+	private MenuItem setAsMain = new MenuItem(this, LogisimMenuBar.SET_MAIN_CIRCUIT);
+	private MenuItem layout = new MenuItem(this, LogisimMenuBar.EDIT_LAYOUT);
+	private MenuItem appearance = new MenuItem(this, LogisimMenuBar.EDIT_APPEARANCE);
+	private MenuItem revertAppearance = new MenuItem(this, LogisimMenuBar.REVERT_APPEARANCE);
+	private MenuItem analyze = new MenuItem(this, LogisimMenuBar.ANALYZE_CIRCUIT);
+	private MenuItem stats = new MenuItem(this, LogisimMenuBar.CIRCUIT_STATS);
 	private JMenuItem options = new JMenuItem();
 	private JCheckBoxMenuItem showProjectToolbar = new JCheckBoxMenuItem();
 
@@ -79,12 +82,15 @@ class MenuProject extends Menu {
 		loadLogisim.addActionListener(myListener);
 		loadJar.addActionListener(myListener);
 		unload.addActionListener(myListener);
-		menubar.registerItem(LogisimMenuBar.ANALYZE_CIRCUIT, analyze);
-		menubar.registerItem(LogisimMenuBar.CIRCUIT_STATS, stats);
 		menubar.registerItem(LogisimMenuBar.MOVE_CIRCUIT_UP, moveUp);
 		menubar.registerItem(LogisimMenuBar.MOVE_CIRCUIT_DOWN, moveDown);
 		menubar.registerItem(LogisimMenuBar.SET_MAIN_CIRCUIT, setAsMain);
 		menubar.registerItem(LogisimMenuBar.REMOVE_CIRCUIT, remove);
+		menubar.registerItem(LogisimMenuBar.EDIT_LAYOUT, layout);
+		menubar.registerItem(LogisimMenuBar.EDIT_APPEARANCE, appearance);
+		menubar.registerItem(LogisimMenuBar.REVERT_APPEARANCE, revertAppearance);
+		menubar.registerItem(LogisimMenuBar.ANALYZE_CIRCUIT, analyze);
+		menubar.registerItem(LogisimMenuBar.CIRCUIT_STATS, stats);
 		options.addActionListener(myListener);
 		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.SHOW_PROJECT_TOOLBAR, myListener);
 		showProjectToolbar.setSelected(LogisimPreferences.getShowProjectToolbar());
@@ -102,6 +108,10 @@ class MenuProject extends Menu {
 		add(moveDown);
 		add(setAsMain);
 		add(remove);
+		addSeparator();
+		add(layout);
+		add(appearance);
+		add(revertAppearance);
 		add(analyze);
 		add(stats);
 		addSeparator();
@@ -126,12 +136,15 @@ class MenuProject extends Menu {
 		loadLogisim.setText(Strings.get("projectLoadLogisimItem"));
 		loadJar.setText(Strings.get("projectLoadJarItem"));
 		unload.setText(Strings.get("projectUnloadLibrariesItem"));
-		analyze.setText(Strings.get("projectAnalyzeCircuitItem"));
-		stats.setText(Strings.get("projectGetCircuitStatisticsItem"));
 		moveUp.setText(Strings.get("projectMoveCircuitUpItem"));
 		moveDown.setText(Strings.get("projectMoveCircuitDownItem"));
 		setAsMain.setText(Strings.get("projectSetAsMainItem"));
 		remove.setText(Strings.get("projectRemoveCircuitItem"));
+		layout.setText(Strings.get("projectEditCircuitLayoutItem"));
+		appearance.setText(Strings.get("projectEditCircuitAppearanceItem"));
+		revertAppearance.setText(Strings.get("projectRevertAppearanceItem"));
+		analyze.setText(Strings.get("projectAnalyzeCircuitItem"));
+		stats.setText(Strings.get("projectGetCircuitStatisticsItem"));
 		options.setText(Strings.get("projectOptionsItem"));
 		showProjectToolbar.setText(Strings.get("projectShowToolbarItem"));
 	}
@@ -140,11 +153,14 @@ class MenuProject extends Menu {
 	void computeEnabled() {
 		setEnabled(menubar.getProject() != null
 				|| addCircuit.hasListeners()
-				|| analyze.hasListeners()
-				|| stats.hasListeners()
 				|| moveUp.hasListeners()
 				|| moveDown.hasListeners()
 				|| setAsMain.hasListeners()
-				|| remove.hasListeners());
+				|| remove.hasListeners()
+				|| layout.hasListeners()
+				|| appearance.hasListeners()
+				|| revertAppearance.hasListeners()
+				|| analyze.hasListeners()
+				|| stats.hasListeners());
 	}
 }

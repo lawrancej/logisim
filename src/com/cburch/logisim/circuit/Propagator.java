@@ -323,7 +323,7 @@ public class Propagator {
 			// multiply the delay by 32 so that the random noise
 			// only changes the delay by 3%.
 			delay <<= randomShift;
-			if (!(cause instanceof Subcircuit)) {
+			if (!(cause.getFactory() instanceof SubcircuitFactory)) {
 				if (noiseCount > 0) {
 					noiseCount--;
 				} else {

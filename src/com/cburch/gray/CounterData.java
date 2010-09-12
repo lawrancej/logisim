@@ -15,13 +15,13 @@ class CounterData implements InstanceData, Cloneable {
 	 */
 	public static CounterData get(InstanceState state, BitWidth width) {
 		CounterData ret = (CounterData) state.getData();
-		if(ret == null) {
+		if (ret == null) {
 			// If it doesn't yet exist, then we'll set it up with our default
 			// values and put it into the circuit state so it can be retrieved
 			// in future propagations.
 			ret = new CounterData(null, Value.createKnown(width, 0));
 			state.setData(ret);
-		} else if(!ret.value.getBitWidth().equals(width)) {
+		} else if (!ret.value.getBitWidth().equals(width)) {
 			ret.value = ret.value.extendWidth(width.getWidth(), Value.FALSE);
 		}
 		return ret;

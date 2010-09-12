@@ -3,7 +3,7 @@
 
 package com.cburch.logisim.gui.menu;
 
-class LogisimMenuItem {
+public class LogisimMenuItem {
 	private String name;
 	
 	LogisimMenuItem(String name) {

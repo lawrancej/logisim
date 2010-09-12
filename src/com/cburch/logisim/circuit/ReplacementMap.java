@@ -124,6 +124,17 @@ public class ReplacementMap {
 				cSrc.addAll(as);
 			}
 		}
+		
+		for (Map.Entry<Component,HashSet<Component>> e : next.inverse.entrySet()) {
+			Component c = e.getKey();
+			if (!inverse.containsKey(c)) {
+				HashSet<Component> bs = e.getValue();
+				if (!bs.isEmpty()) {
+					System.err.println("internal error: component replaced but not represented"); //OK
+				}
+				inverse.put(c, new HashSet<Component>(3));
+			}
+		}
 	}
 
 	ReplacementMap getInverseMap() {

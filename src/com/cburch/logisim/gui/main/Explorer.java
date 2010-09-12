@@ -40,6 +40,7 @@ import javax.swing.tree.TreeSelectionModel;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitEvent;
 import com.cburch.logisim.circuit.CircuitListener;
+import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.file.LibraryEventSource;
@@ -197,12 +198,15 @@ public class Explorer extends JTree implements LocaleListener {
 
 	private class ToolIcon implements Icon {
 		Tool tool;
-		ComponentFactory circ = null;
+		Circuit circ = null;
 
 		ToolIcon(Tool tool) {
 			this.tool = tool;
 			if (tool instanceof AddTool) {
-				circ = ((AddTool) tool).getFactory(false);
+				ComponentFactory fact = ((AddTool) tool).getFactory(false);
+				if (fact instanceof SubcircuitFactory) {
+					circ = ((SubcircuitFactory) fact).getSubcircuit();
+				}
 			}
 		}
 
@@ -218,7 +222,7 @@ public class Explorer extends JTree implements LocaleListener {
 				int x, int y) {
 			// draw halo if appropriate
 			if (tool == haloedTool && proj.getFrame().getShowHalo()) {
-				g.setColor(AttributeTable.HALO_COLOR);
+				g.setColor(Canvas.HALO_COLOR);
 				g.fillRoundRect(x, y, 20, 20, 10, 10);
 				g.setColor(Color.BLACK);
 			}
@@ -450,17 +454,17 @@ public class Explorer extends JTree implements LocaleListener {
 			if (act == LibraryEvent.ADD_TOOL) {
 				if (event.getData() instanceof AddTool) {
 					AddTool tool = (AddTool) event.getData();
-					if (tool.getFactory() instanceof Circuit) {
-						Circuit circ = (Circuit) tool.getFactory();
-						circ.addCircuitListener(this);
+					if (tool.getFactory() instanceof SubcircuitFactory) {
+						SubcircuitFactory fact = (SubcircuitFactory) tool.getFactory();
+						fact.getSubcircuit().addCircuitListener(this);
 					}
 				}
 			} else if (act == LibraryEvent.REMOVE_TOOL) {
 				if (event.getData() instanceof AddTool) {
 					AddTool tool = (AddTool) event.getData();
-					if (tool.getFactory() instanceof Circuit) {
-						Circuit circ = (Circuit) tool.getFactory();
-						circ.removeCircuitListener(this);
+					if (tool.getFactory() instanceof SubcircuitFactory) {
+						SubcircuitFactory fact = (SubcircuitFactory) tool.getFactory();
+						fact.getSubcircuit().removeCircuitListener(this);
 					}
 				}
 			} else if (act == LibraryEvent.ADD_LIBRARY) {
@@ -502,11 +506,8 @@ public class Explorer extends JTree implements LocaleListener {
 			model.fireStructureChanged();
 			expandRow(0);
 
-			for (AddTool tool : lib.getTools()) {
-				ComponentFactory source = tool.getFactory();
-				if (source instanceof Circuit) {
-					((Circuit) source).addCircuitListener(this);
-				}
+			for (Circuit circ : lib.getCircuits()) {
+				circ.addCircuitListener(this);
 			}
 			
 			subListener = new SubListener(); // create new one so that old listeners die away

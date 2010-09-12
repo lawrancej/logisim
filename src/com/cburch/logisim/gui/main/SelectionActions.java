@@ -49,7 +49,7 @@ public class SelectionActions {
 	}
 
 	public static Action clear(Selection sel) {
-		return new Clear(sel);
+		return new Delete(sel);
 	}
 	
 	public static Action duplicate(Selection sel) {
@@ -125,17 +125,17 @@ public class SelectionActions {
 		}
 	}
 
-	private static class Clear extends Action {
+	private static class Delete extends Action {
 		private Selection sel;
 		private CircuitTransaction xnReverse;
 
-		Clear(Selection sel) {
+		Delete(Selection sel) {
 			this.sel = sel;
 		}
 
 		@Override
 		public String getName() {
-			return Strings.get("clearSelectionAction");
+			return Strings.get("deleteSelectionAction");
 		}
 
 		@Override
@@ -190,7 +190,7 @@ public class SelectionActions {
 
 		Cut(Selection sel) {
 			first = new Copy(sel);
-			second = new Clear(sel);
+			second = new Delete(sel);
 		}
 
 		@Override

@@ -49,7 +49,7 @@ class Measures {
 	}
 	
 	public long getBaseAddress(HexModel model) {
-		if(model == null) {
+		if (model == null) {
 			return 0;
 		} else {
 			long addr0 = model.getFirstOffset();
@@ -70,23 +70,23 @@ class Measures {
 
 	public long toAddress(int x, int y) {
 		HexModel model = hex.getModel();
-		if(model == null) return Integer.MIN_VALUE;
+		if (model == null) return Integer.MIN_VALUE;
 		long addr0 = model.getFirstOffset();
 		long addr1 = model.getLastOffset();
 
 		long base = getBaseAddress(model) + ((long) y / cellHeight) * cols;
 		int offs = (x - baseX) / (cellWidth + (spacerWidth + 2) / 4);
-		if(offs < 0) offs = 0;
-		if(offs >= cols) offs = cols - 1;
+		if (offs < 0) offs = 0;
+		if (offs >= cols) offs = cols - 1;
 		
 		long ret = base + offs;
-		if(ret > addr1) ret = addr1;
-		if(ret < addr0) ret = addr0;
+		if (ret > addr1) ret = addr1;
+		if (ret < addr0) ret = addr0;
 		return ret;
 	}
 	
 	void ensureComputed(Graphics g) {
-		if(guessed || cellWidth < 0) computeCellSize(g);
+		if (guessed || cellWidth < 0) computeCellSize(g);
 	}
 
 	void recompute() {
@@ -96,31 +96,31 @@ class Measures {
 	void widthChanged() {
 		int oldCols = cols;
 		int width;
-		if(guessed || cellWidth < 0) {
+		if (guessed || cellWidth < 0) {
 			cols = 16;
 			width = hex.getPreferredSize().width;
 		} else {
 			width = hex.getWidth();
 			int ret = (width - headerWidth) / (cellWidth + (spacerWidth + 3) / 4);
-			if(ret >= 16) cols = 16;
-			else if(ret >= 8) cols = 8;
+			if (ret >= 16) cols = 16;
+			else if (ret >= 8) cols = 8;
 			else cols = 4;
 		}
 		int lineWidth = headerWidth + cols * cellWidth
 			+ ((cols / 4) - 1) * spacerWidth;
 		int newBase = headerWidth + Math.max(0, (width - lineWidth) / 2);
-		if(baseX != newBase) {
+		if (baseX != newBase) {
 			baseX = newBase;
 			hex.repaint();
 		}
-		if(cols != oldCols) recompute();
+		if (cols != oldCols) recompute();
 	}
 	
 	private void computeCellSize(Graphics g) {
 		HexModel model = hex.getModel();
 		
 		// compute number of characters in headers and cells
-		if(model == null) {
+		if (model == null) {
 			headerChars = 4;
 			cellChars = 2;
 		} else {
@@ -138,11 +138,11 @@ class Measures {
 		int charWidth;
 		int spaceWidth;
 		int lineHeight;
-		if(fm == null) {
+		if (fm == null) {
 			charWidth = 8;
 			spaceWidth = 6;
 			Font font = hex.getFont();
-			if(font == null) {
+			if (font == null) {
 				lineHeight = 16;
 			} else {
 				lineHeight = font.getSize();
@@ -152,7 +152,7 @@ class Measures {
 			charWidth = 0;
 			for(int i = 0; i < 16; i++) {
 				int width = fm.stringWidth(Integer.toHexString(i));
-				if(width > charWidth) charWidth = width;
+				if (width > charWidth) charWidth = width;
 			}
 			spaceWidth = fm.stringWidth(" ");
 			lineHeight = fm.getHeight();
@@ -167,19 +167,19 @@ class Measures {
 		// compute preferred size
 		int width = headerWidth + cols * cellWidth + (cols / 4) * spacerWidth;
 		long height;
-		if(model == null) {
+		if (model == null) {
 			height = 16 * cellHeight;
 		} else {
 			long addr0 = getBaseAddress(model);
 			long addr1 = model.getLastOffset();
 			long rows = (int) (((addr1 - addr0 + 1) + cols - 1) / cols);
 			height = rows * cellHeight;
-			if(height > Integer.MAX_VALUE) height = Integer.MAX_VALUE;
+			if (height > Integer.MAX_VALUE) height = Integer.MAX_VALUE;
 		}
 
 		// update preferred size
 		Dimension pref = hex.getPreferredSize();
-		if(pref.width != width || pref.height != height) {
+		if (pref.width != width || pref.height != height) {
 			pref.width = width;
 			pref.height = (int) height;
 			hex.setPreferredSize(pref);

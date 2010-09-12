@@ -74,16 +74,16 @@ public class TtyInterface {
 		
 		Project proj = new Project(file);
 		Circuit circuit = file.getMainCircuit();
-		Map<Component,String> pinNames = Analyze.getPinLabels(circuit);
+		Map<Instance, String> pinNames = Analyze.getPinLabels(circuit);
 		ArrayList<Instance> outputPins = new ArrayList<Instance>();
 		Instance haltPin = null;
-		for (Component pinComp : pinNames.keySet()) {
-			Instance pinInstance = Instance.getInstanceFor(pinComp);
-			String pinName = pinNames.get(pinComp);
-			if (!Pin.FACTORY.isInputPin(pinInstance)) {
-				outputPins.add(pinInstance);
+		for (Map.Entry<Instance, String> entry : pinNames.entrySet()) {
+			Instance pin = entry.getKey();
+			String pinName = entry.getValue();
+			if (!Pin.FACTORY.isInputPin(pin)) {
+				outputPins.add(pin);
 				if (pinName.equals("halt")) {
-					haltPin = pinInstance;
+					haltPin = pin;
 				}
 			}
 		}
@@ -325,6 +325,7 @@ public class TtyInterface {
 			}
 		}
 		
+		@Override
 		public void run() {
 			InputStreamReader stdin = new InputStreamReader(System.in);
 			char[] buffer = new char[32];

@@ -8,10 +8,7 @@ import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.image.MemoryImageSource;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 
@@ -30,34 +27,34 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.file.Options;
+import com.cburch.logisim.gui.generic.GridPainter;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.GraphicsUtil;
 
 class CanvasPainter implements AttributeListener {
-	private static final int GRID_DOT_COLOR = 0xFF777777;
-	private static final int GRID_DOT_ZOOMED_COLOR = 0xFFCCCCCC;
-
-	private static final Color GRID_ZOOMED_OUT_COLOR = new Color(210, 210, 210);
 	private static final Set<Component> NO_COMPONENTS = Collections.emptySet();
 
 	private Canvas canvas;
-	private boolean showGrid = true;
+	private GridPainter grid;
 	private boolean printerView = false;
 	private boolean showHalo = true;
 	private Component haloedComponent = null;
 	private Circuit haloedCircuit = null;
 	private WireSet highlightedWires = WireSet.EMPTY;
-	private Image gridImage;
-	private int gridImageWidth;
 	
 	CanvasPainter(Canvas canvas) {
 		this.canvas = canvas;
+		this.grid = new GridPainter(canvas);
 	}
 	
 	//
 	// accessor methods
 	//
+	GridPainter getGridPainter() {
+		return grid;
+	}
+	
 	boolean getShowHalo() {
 		return showHalo;
 	}
@@ -72,7 +69,6 @@ class CanvasPainter implements AttributeListener {
 	void loadOptions(AttributeSet options) {
 		options.addAttributeListener(this);
 		printerView = options.getValue(Options.preview_attr).booleanValue();
-		showGrid = options.getValue(Options.showgrid_attr).booleanValue();
 		showHalo = options.getValue(Options.showhalo_attr).booleanValue();
 	}
 
@@ -109,10 +105,7 @@ class CanvasPainter implements AttributeListener {
 	public void attributeValueChanged(AttributeEvent e) {
 		Attribute<?> attr = e.getAttribute();
 		Object val = e.getValue();
-		if (attr == Options.showgrid_attr) {
-			showGrid = ((Boolean) val).booleanValue();
-			canvas.repaint();
-		} else if (attr == Options.preview_attr) {
+		if (attr == Options.preview_attr) {
 			printerView = ((Boolean) val).booleanValue();
 			canvas.repaint();
 		} else if (attr == Options.showhalo_attr) {
@@ -135,9 +128,7 @@ class CanvasPainter implements AttributeListener {
 		g.setColor(Color.white);
 		g.fillRect(clip.x, clip.y, clip.width, clip.height);
 
-		if (showGrid) {
-			paintGrid(g, zoomFactor, clip);
-		}
+		grid.paintGrid(g);
 		g.setColor(Color.black);
 
 		Graphics gScaled = g.create();
@@ -158,85 +149,6 @@ class CanvasPainter implements AttributeListener {
 		proj.getSimulator().drawStepPoints(ptContext);
 		gScaled.dispose();
 	}
-	
-	private void paintGrid(Graphics g, double zoomFactor, Rectangle clip) {
-		Image img = gridImage;
-		int w = gridImageWidth;
-		if (img == null) {
-			paintGridOld(g, zoomFactor, clip);
-			return;
-		}
-		double f = zoomFactor;
-		int x0 = 10 * (int) Math.ceil(clip.x / f / 10);
-		int y0 = 10 * (int) Math.ceil(clip.y / f / 10);
-		for (int x = 0; x < clip.width; x += w) {
-			for (int y = 0; y < clip.height; y += w) {
-				g.drawImage(gridImage, x0 + x, y0 + y, canvas);
-			}
-		}
-	}
-	
-	private void paintGridOld(Graphics g, double zoomFactor, Rectangle clip) {
-		g.setColor(Color.gray);
-		double f = zoomFactor;
-		if (f == 1.0) {
-			int start_x = ((clip.x + 9) / 10) * 10;
-			int start_y = ((clip.y + 9) / 10) * 10;
-			for (int x = 0; x < clip.width; x += 10) {
-				for (int y = 0; y < clip.height; y += 10) {
-					g.fillRect(start_x + x, start_y + y, 1, 1);
-				}
-			}
-		} else {
-			/* Kevin Walsh of Cornell suggested the code below instead. */
-			int x0 = 10 * (int) Math.ceil(clip.x / f / 10);
-			int x1 = x0 + (int) (clip.width / f);
-			int y0 = 10 * (int) Math.ceil(clip.y / f / 10);
-			int y1 = y0 + (int) (clip.height / f);
-			if (f <= 0.5) g.setColor(GRID_ZOOMED_OUT_COLOR);
-			for (double x = x0; x < x1; x += 10) {
-				for (double y = y0; y < y1; y += 10) {
-					int sx = (int) Math.round(f * x);
-					int sy = (int) Math.round(f * y);
-					g.fillRect(sx, sy, 1, 1);
-				}
-			}
-			if (f <= 0.5) { // make every 5th pixel darker
-				g.setColor(Color.gray);
-				x0 = 50 * (int) Math.ceil(clip.x / f / 50);
-				y0 = 50 * (int) Math.ceil(clip.y / f / 50);
-				for (double x = x0; x < x1; x += 50) {
-					for (double y = y0; y < y1; y += 50) {
-						int sx = (int) Math.round(f * x);
-						int sy = (int) Math.round(f * y);
-						g.fillRect(sx, sy, 1, 1);
-					}
-				}
-			}               
-			
-			/* Original code by Carl Burch
-			int x0 = 10 * (int) Math.ceil(clip.x / f / 10);
-			int x1 = x0 + (int)(clip.width / f);
-			int y0 = 10 * (int) Math.ceil(clip.y / f / 10);
-			int y1 = y0 + (int) (clip.height / f);
-			int s = f > 0.5 ? 1 : f > 0.25 ? 2 : 3;
-			int i0 = s - ((x0 + 10*s - 1) % (s * 10)) / 10 - 1;
-			int j0 = s - ((y1 + 10*s - 1) % (s * 10)) / 10 - 1;
-			for (int i = 0; i < s; i++) {
-				for (int x = x0+i*10; x < x1; x += s*10) {
-					for (int j = 0; j < s; j++) {
-						g.setColor(i == i0 && j == j0 ? Color.gray : GRID_ZOOMED_OUT_COLOR);
-						for (int y = y0+j*10; y < y1; y += s*10) {
-						    int sx = (int) Math.round(f * x);
-						    int sy = (int) Math.round(f * y);
-						    g.fillRect(sx, sy, 1, 1);
-						}
-					}
-				}
-			}
-			*/
-		}
-	}
 
 	private void drawWithUserState(Graphics base, Graphics g, Project proj) {
 		Circuit circ = proj.getCurrentCircuit();
@@ -254,7 +166,7 @@ class CanvasPainter implements AttributeListener {
 		if (showHalo && haloedComponent != null && haloedCircuit == circ
 				&& !hidden.contains(haloedComponent)) {
 			GraphicsUtil.switchToWidth(g, 3);
-			g.setColor(AttributeTable.HALO_COLOR);
+			g.setColor(Canvas.HALO_COLOR);
 			Bounds bds = haloedComponent.getBounds(g).expand(5);
 			int w = bds.getWidth();
 			int h = bds.getHeight();
@@ -316,52 +228,5 @@ class CanvasPainter implements AttributeListener {
 		}
 		g.setColor(Color.BLACK);
 		GraphicsUtil.switchToWidth(g, 1);
-	}
-
-	//
-	// creating the grid image
-	//
-	void updateGridImage(double f) {
-		double ww = f * 50;
-		while (2 * ww < 150) ww *= 2;
-		int w = (int) Math.round(ww);
-		int[] pix = new int[w * w];
-		Arrays.fill(pix, 0xFFFFFF);
-
-		if (f == 1.0) {
-			for (int j = 0; j < pix.length; j += 10 * w) {
-				for (int i = 0; i < w; i += 10) {
-					pix[i + j] = GRID_DOT_COLOR;
-				}
-			}
-		} else {
-			int dotColor = f <= 0.5 ? GRID_DOT_ZOOMED_COLOR : GRID_DOT_COLOR;
-			for (int j = 0; true; j += 10) {
-				int y = (int) Math.round(f * j);
-				if (y >= w) break;
-				y *= w;
-				
-				for (int i = 0; true; i += 10) {
-					int x = (int) Math.round(f * i);
-					if (x >= w) break;
-					pix[y + x] = dotColor;
-				}
-			}
-			if (f <= 0.5) { // make every 5th pixel darker
-				for (int j = 0; true; j += 50) {
-					int y = (int) Math.round(f * j);
-					if (y >= w) break;
-					y *= w;
-					
-					for (int i = 0; true; i += 50) {
-						int x = (int) Math.round(f * i);
-						if (x >= w) break;
-						pix[y + x] = GRID_DOT_COLOR;
-					}
-				}
-			}
-		}
-		gridImage = canvas.createImage(new MemoryImageSource(w, w, pix, 0, w));
-		gridImageWidth = w;
 	}
 }

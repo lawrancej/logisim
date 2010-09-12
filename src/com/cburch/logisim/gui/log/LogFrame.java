@@ -197,7 +197,7 @@ public class LogFrame extends JFrame {
 	}
 	
 	private static String computeTitle(Model data, Project proj) {
-		String name = data == null ? "???" : data.getCircuitState().getCircuit().getDisplayName();
+		String name = data == null ? "???" : data.getCircuitState().getCircuit().getName();
 		return StringUtil.format(Strings.get("logFrameTitle"), name,
 				proj.getLogisimFile().getDisplayName());
 	}

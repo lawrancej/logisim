@@ -17,6 +17,7 @@ import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.Instance;
+import com.cburch.logisim.instance.InstanceData;
 import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.proj.Project;
@@ -25,7 +26,7 @@ import com.cburch.logisim.std.base.Pin;
 import com.cburch.logisim.util.ArraySet;
 import com.cburch.logisim.util.SmallSet;
 
-public class CircuitState {
+public class CircuitState implements InstanceData {
 	private class MyCircuitListener implements CircuitListener {
 		public void circuitChanged(CircuitEvent event) {
 			int action = event.getAction();
@@ -40,7 +41,7 @@ public class CircuitState {
 				}
 			} else if (action == CircuitEvent.ACTION_REMOVE) {
 				Component comp = (Component) event.getData();
-				if (comp instanceof Subcircuit) {
+				if (comp.getFactory() instanceof SubcircuitFactory) {
 					// disconnect from tree
 					CircuitState substate = (CircuitState) getData(comp);
 					if (substate != null && substate.parentComp == comp) {
@@ -119,7 +120,7 @@ public class CircuitState {
 	private Circuit circuit; // circuit being simulated
 
 	private CircuitState parentState = null; // parent in tree of CircuitStates
-	private Subcircuit parentComp = null; // subcircuit component containing this state
+	private Component parentComp = null; // subcircuit component containing this state
 	private ArraySet<CircuitState> substates = new ArraySet<CircuitState>();
 
 	private CircuitWires.State wireData = null;
@@ -142,8 +143,13 @@ public class CircuitState {
 		return proj;
 	}
 	
-	Subcircuit getSubcircuit() {
+	Component getSubcircuit() {
 		return parentComp;
+	}
+	
+	@Override
+	public CircuitState clone() {
+		return cloneState();
 	}
 	
 	public CircuitState cloneState() {
@@ -233,7 +239,7 @@ public class CircuitState {
 	}
 
 	public void setData(Component comp, Object data) {
-		if (comp instanceof Subcircuit) {
+		if (data instanceof CircuitState) {
 			CircuitState oldState = (CircuitState) componentData.get(comp);
 			CircuitState newState = (CircuitState) data;
 			if (oldState != newState) {
@@ -251,7 +257,7 @@ public class CircuitState {
 					substates.add(newState);
 					newState.base = this.base;
 					newState.parentState = this;
-					newState.parentComp = (Subcircuit) comp;
+					newState.parentComp = comp;
 					newState.markAllComponentsDirty();
 				}
 			}
@@ -347,7 +353,7 @@ public class CircuitState {
 		wireData = null;
 		for (Iterator<Component> it = componentData.keySet().iterator(); it.hasNext(); ) {
 			Component comp = it.next();
-			if (!(comp instanceof Subcircuit)) it.remove();
+			if (!(comp.getFactory() instanceof SubcircuitFactory)) it.remove();
 		}
 		values.clear();
 		dirtyComponents.clear();

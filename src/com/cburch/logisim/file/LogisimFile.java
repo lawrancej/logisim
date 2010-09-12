@@ -16,8 +16,8 @@ import java.io.PipedOutputStream;
 import java.io.BufferedReader;
 import java.io.StringWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,6 +28,7 @@ import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
 
 import com.cburch.logisim.circuit.Circuit;
+import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.legacy.Version1Support;
@@ -132,8 +133,35 @@ public class LogisimFile extends Library implements LibraryEventSource {
 	public Circuit getCircuit(String name) {
 		if (name == null) return null;
 		for (AddTool tool : tools) {
-			Circuit circ = (Circuit) tool.getFactory();
-			if (name.equals(circ.getName())) return circ;
+			SubcircuitFactory factory = (SubcircuitFactory) tool.getFactory();
+			if (name.equals(factory.getName())) return factory.getSubcircuit();
+		}
+		return null;
+	}
+	
+	public boolean contains(Circuit circ) {
+		for (AddTool tool : tools) {
+			SubcircuitFactory factory = (SubcircuitFactory) tool.getFactory();
+			if (factory.getSubcircuit() == circ) return true;
+		}
+		return false;
+	}
+	
+	public List<Circuit> getCircuits() {
+		List<Circuit> ret = new ArrayList<Circuit>(tools.size());
+		for (AddTool tool : tools) {
+			SubcircuitFactory factory = (SubcircuitFactory) tool.getFactory();
+			ret.add(factory.getSubcircuit());
+		}
+		return ret;
+	}
+	
+	public AddTool getAddTool(Circuit circ) {
+		for (AddTool tool : tools) {
+			SubcircuitFactory factory = (SubcircuitFactory) tool.getFactory();
+			if (factory.getSubcircuit() == circ) {
+				return tool;
+			}
 		}
 		return null;
 	}
@@ -185,8 +213,12 @@ public class LogisimFile extends Library implements LibraryEventSource {
 	}
 
 	public void addCircuit(Circuit circuit) {
-		AddTool tool = new AddTool(circuit);
-		tools.add(tool);
+		addCircuit(circuit, tools.size());
+	}
+	
+	public void addCircuit(Circuit circuit, int index) {
+		AddTool tool = new AddTool(circuit.getSubcircuitFactory());
+		tools.add(index, tool);
 		if (tools.size() == 1) setMainCircuit(circuit);
 		fireEvent(LibraryEvent.ADD_TOOL, tool);
 	}
@@ -196,20 +228,14 @@ public class LogisimFile extends Library implements LibraryEventSource {
 			throw new RuntimeException("Cannot remove last circuit");
 		}
 
-		AddTool circuitTool = null;
-		for (Iterator<AddTool> it = tools.iterator(); it.hasNext(); ) {
-			AddTool tool = it.next();
-			if (tool.getFactory() == circuit) {
-				it.remove();
-				circuitTool = tool;
-				break;
-			}
-		}
-		if (circuitTool != null) {
+		int index = getCircuits().indexOf(circuit);
+		if (index >= 0) {
+			Tool circuitTool = tools.remove(index);
+
 			if (main == circuit) {
 				AddTool dflt_tool = tools.get(0);
-				Circuit dflt_circ = (Circuit) dflt_tool.getFactory();
-				setMainCircuit(dflt_circ);
+				SubcircuitFactory factory = (SubcircuitFactory) dflt_tool.getFactory();
+				setMainCircuit(factory.getSubcircuit());
 			}
 			fireEvent(LibraryEvent.REMOVE_TOOL, circuitTool);
 		}
@@ -338,7 +364,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
 		LogisimFile ret = new LogisimFile(loader);
 		ret.main = new Circuit("main");
 		// The name will be changed in LogisimPreferences
-		ret.tools.add(new AddTool(ret.main));
+		ret.tools.add(new AddTool(ret.main.getSubcircuitFactory()));
 		return ret;
 	}
 

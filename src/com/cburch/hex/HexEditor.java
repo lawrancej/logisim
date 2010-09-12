@@ -42,7 +42,7 @@ public class HexEditor extends JComponent implements Scrollable {
 		
 		setOpaque(true);
 		setBackground(Color.WHITE);
-		if(model != null) model.addHexModelListener(listener);
+		if (model != null) model.addHexModelListener(listener);
 		
 		measures.recompute();
 	}
@@ -68,23 +68,23 @@ public class HexEditor extends JComponent implements Scrollable {
 	}
 	
 	public void setModel(HexModel value) {
-		if(model == value) return;
-		if(model != null) model.removeHexModelListener(listener);
+		if (model == value) return;
+		if (model != null) model.removeHexModelListener(listener);
 		model = value;
 		highlighter.clear();
 		caret.setDot(-1, false);
-		if(model != null) model.addHexModelListener(listener);
+		if (model != null) model.addHexModelListener(listener);
 		measures.recompute();
 	}
 	
 	public void scrollAddressToVisible(int start, int end) {
-		if(start < 0 || end < 0) return;
+		if (start < 0 || end < 0) return;
 		int x0 = measures.toX(start);
 		int x1 = measures.toX(end) + measures.getCellWidth();
 		int y0 = measures.toY(start);
 		int y1 = measures.toY(end);
 		int h = measures.getCellHeight();
-		if(y0 == y1) {
+		if (y0 == y1) {
 			scrollRectToVisible(new Rectangle(x0, y0, x1 - x0, h));
 		} else {
 			scrollRectToVisible(new Rectangle(x0, y0, x1 - x0, (y1 + h) - y0));
@@ -108,7 +108,7 @@ public class HexEditor extends JComponent implements Scrollable {
 		measures.ensureComputed(g);
 		
 		Rectangle clip = g.getClipBounds();
-		if(isOpaque()) {
+		if (isOpaque()) {
 			g.setColor(getBackground());
 			g.fillRect(clip.x, clip.y, clip.width, clip.height);
 		}
@@ -117,7 +117,7 @@ public class HexEditor extends JComponent implements Scrollable {
 		long addr1 = model.getLastOffset();
 		
 		long xaddr0 = measures.toAddress(0, clip.y);
-		if(xaddr0 == addr0) xaddr0 = measures.getBaseAddress(model);
+		if (xaddr0 == addr0) xaddr0 = measures.getBaseAddress(model);
 		long xaddr1 = measures.toAddress(getWidth(), clip.y + clip.height) + 1;
 		highlighter.paint(g, xaddr0, xaddr1);
 
@@ -141,7 +141,7 @@ public class HexEditor extends JComponent implements Scrollable {
 			g.setFont(baseFont);
 			long b = a;
 			for(int j = 0; j < cols; j++, b++) {
-				if(b >= addr0 && b <= addr1) {
+				if (b >= addr0 && b <= addr1) {
 					String val = toHex(model.get(b), cellChars);
 					int x = measures.toX(b) + (cellWidth - baseFm.stringWidth(val)) / 2;
 					g.drawString(val, x, baseY);
@@ -155,13 +155,13 @@ public class HexEditor extends JComponent implements Scrollable {
 	private String toHex(long value, int chars) {
 		String ret = Long.toHexString(value);
 		int retLen = ret.length();
-		if(retLen < chars) {
+		if (retLen < chars) {
 			ret = "0" + ret;
 			for(int i = retLen + 1; i < chars; i++) {
 				ret = "0" + ret;
 			}
 			return ret;
-		} else if(retLen == chars) {
+		} else if (retLen == chars) {
 			return ret;
 		} else {
 			return ret.substring(retLen - chars);
@@ -183,8 +183,8 @@ public class HexEditor extends JComponent implements Scrollable {
 	public void delete() {
 		long p0 = caret.getMark();
 		long p1 = caret.getDot();
-		if(p0 < 0 || p1 < 0) return;
-		if(p0 > p1) {
+		if (p0 < 0 || p1 < 0) return;
+		if (p0 > p1) {
 			long t = p0; p0 = p1; p1 = t;
 		}
 		model.fill(p0, p1 - p0 + 1, 0);
@@ -199,12 +199,12 @@ public class HexEditor extends JComponent implements Scrollable {
 
 	public int getScrollableUnitIncrement(Rectangle vis,
 			int orientation, int direction) {
-		if(orientation == SwingConstants.VERTICAL) {
+		if (orientation == SwingConstants.VERTICAL) {
 			int ret = measures.getCellHeight();
-			if(ret < 1) {
+			if (ret < 1) {
 				measures.recompute();
 				ret = measures.getCellHeight();
-				if(ret < 1) return 1;
+				if (ret < 1) return 1;
 			}
 			return ret;
 		} else {
@@ -214,12 +214,12 @@ public class HexEditor extends JComponent implements Scrollable {
 
 	public int getScrollableBlockIncrement(Rectangle vis,
 			int orientation, int direction) {
-		if(orientation == SwingConstants.VERTICAL) {
+		if (orientation == SwingConstants.VERTICAL) {
 			int height = measures.getCellHeight();
-			if(height < 1) {
+			if (height < 1) {
 				measures.recompute();
 				height = measures.getCellHeight();
-				if(height < 1) return 19 * vis.height / 20;
+				if (height < 1) return 19 * vis.height / 20;
 			}
 			int lines = Math.max(1, (vis.height / height) - 1);
 			return lines * height;

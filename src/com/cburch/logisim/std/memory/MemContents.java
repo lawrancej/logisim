@@ -40,7 +40,7 @@ class MemContents implements Cloneable, HexModel {
 	public void removeHexModelListener(HexModelListener l) {
 		if (listeners == null) return;
 		listeners.add(l);
-		if (listeners.size() == 0) listeners = null; 
+		if (listeners.isEmpty()) listeners = null; 
 	}
 	
 	private void fireMetainfoChanged() {

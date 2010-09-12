@@ -11,11 +11,9 @@ import java.util.Vector;
 import javax.swing.JList;
 
 import com.cburch.logisim.circuit.Circuit;
-import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.tools.AddTool;
 
 class CircuitJList extends JList {
 	public CircuitJList(Project proj, boolean includeEmpty) {
@@ -23,14 +21,10 @@ class CircuitJList extends JList {
 		Circuit current = proj.getCurrentCircuit();
 		Vector<Circuit> options = new Vector<Circuit>();
 		boolean currentFound = false;
-		for (AddTool t : file.getTools()) {
-			ComponentFactory c = t.getFactory();
-			if (c instanceof Circuit) {
-				Circuit circ = (Circuit) c;
-				if (!includeEmpty || circ.getBounds() != Bounds.EMPTY_BOUNDS) {
-					if (circ == current) currentFound = true;
-					options.add(circ);
-				}
+		for (Circuit circ : file.getCircuits()) {
+			if (!includeEmpty || circ.getBounds() != Bounds.EMPTY_BOUNDS) {
+				if (circ == current) currentFound = true;
+				options.add(circ);
 			}
 		}
 		

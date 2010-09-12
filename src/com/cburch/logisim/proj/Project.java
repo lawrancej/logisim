@@ -13,6 +13,7 @@ import com.cburch.logisim.circuit.CircuitListener;
 import com.cburch.logisim.circuit.CircuitMutation;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.Simulator;
+import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.file.LibraryEvent;
@@ -24,6 +25,7 @@ import com.cburch.logisim.gui.main.Frame;
 import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.gui.main.SelectionActions;
 import com.cburch.logisim.gui.opts.OptionsFrame;
+import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.EventSourceWeakSupport;
@@ -55,8 +57,15 @@ public class Project {
 					setTool(null);
 				}
 			} else if (action == LibraryEvent.REMOVE_TOOL) {
-				if (event.getData() == getCurrentCircuit()) {
-					setCurrentCircuit(file.getMainCircuit());
+				Object data = event.getData();
+				if (data instanceof AddTool) {
+					Object factory = ((AddTool) data).getFactory();
+					if (factory instanceof SubcircuitFactory) {
+						SubcircuitFactory fact = (SubcircuitFactory) factory;
+						if (fact.getSubcircuit() == getCurrentCircuit()) {
+							setCurrentCircuit(file.getMainCircuit());
+						}
+					}
 				}
 			}
 		}

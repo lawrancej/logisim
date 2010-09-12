@@ -45,7 +45,7 @@ class MenuEdit extends Menu {
 	private MenuItem cut    = new MenuItem(this, LogisimMenuBar.CUT);
 	private MenuItem copy   = new MenuItem(this, LogisimMenuBar.COPY);
 	private MenuItem paste  = new MenuItem(this, LogisimMenuBar.PASTE);
-	private MenuItem clear  = new MenuItem(this, LogisimMenuBar.DELETE);
+	private MenuItem delete = new MenuItem(this, LogisimMenuBar.DELETE);
 	private MenuItem dup    = new MenuItem(this, LogisimMenuBar.DUPLICATE);
 	private MenuItem selall = new MenuItem(this, LogisimMenuBar.SELECT_ALL);
 	private MyListener myListener = new MyListener();
@@ -62,7 +62,7 @@ class MenuEdit extends Menu {
 			KeyEvent.VK_C, menuMask));
 		paste.setAccelerator(KeyStroke.getKeyStroke(
 			KeyEvent.VK_V, menuMask));
-		clear.setAccelerator(KeyStroke.getKeyStroke(
+		delete.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_DELETE, 0));
 		dup.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_D, menuMask));
@@ -74,7 +74,7 @@ class MenuEdit extends Menu {
 		add(cut);
 		add(copy);
 		add(paste);
-		add(clear);
+		add(delete);
 		add(dup);
 		add(selall);
 		
@@ -88,7 +88,7 @@ class MenuEdit extends Menu {
 		menubar.registerItem(LogisimMenuBar.CUT, cut);
 		menubar.registerItem(LogisimMenuBar.COPY, copy);
 		menubar.registerItem(LogisimMenuBar.PASTE, paste);
-		menubar.registerItem(LogisimMenuBar.DELETE, clear);
+		menubar.registerItem(LogisimMenuBar.DELETE, delete);
 		menubar.registerItem(LogisimMenuBar.DUPLICATE, dup);
 		menubar.registerItem(LogisimMenuBar.SELECT_ALL, selall);
 		computeEnabled();
@@ -100,7 +100,7 @@ class MenuEdit extends Menu {
 		cut.setText(Strings.get("editCutItem"));
 		copy.setText(Strings.get("editCopyItem"));
 		paste.setText(Strings.get("editPasteItem"));
-		clear.setText(Strings.get("editClearItem"));
+		delete.setText(Strings.get("editClearItem"));
 		dup.setText(Strings.get("editDuplicateItem"));
 		selall.setText(Strings.get("editSelectAllItem"));
 	}
@@ -111,7 +111,7 @@ class MenuEdit extends Menu {
 				|| cut.hasListeners()
 				|| copy.hasListeners()
 				|| paste.hasListeners()
-				|| clear.hasListeners()
+				|| delete.hasListeners()
 				|| dup.hasListeners()
 				|| selall.hasListeners());
 	}

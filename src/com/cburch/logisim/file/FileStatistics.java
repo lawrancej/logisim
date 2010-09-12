@@ -56,14 +56,7 @@ public class FileStatistics {
 	}
 	
 	public static FileStatistics compute(LogisimFile file, Circuit circuit) {
-		Set<Circuit> include = new HashSet<Circuit>();
-		for (AddTool tool : file.getTools()) {
-			ComponentFactory factory = tool.getFactory();
-			if (factory instanceof Circuit) {
-				include.add((Circuit) factory);
-			}
-		}
-		
+		Set<Circuit> include = new HashSet<Circuit>(file.getCircuits());
 		Map<Circuit,Map<ComponentFactory,Count>> countMap;
 		countMap = new HashMap<Circuit,Map<ComponentFactory,Count>>();
 		doRecursiveCount(circuit, include, countMap);

@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
@@ -70,7 +71,7 @@ class PropagationPoints {
 				g.drawOval(p.getX() - 4, p.getY() - 4, 8, 8);
 			} else if (stateMap.containsKey(e.state)) {
 				CircuitState substate = stateMap.get(e.state);
-				Subcircuit subcirc = substate.getSubcircuit();
+				Component subcirc = substate.getSubcircuit();
 				Bounds b = subcirc.getBounds();
 				g.drawRect(b.getX(), b.getY(), b.getWidth(), b.getHeight());
 			}

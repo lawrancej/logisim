@@ -9,7 +9,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.JDialog;
@@ -25,10 +24,11 @@ import com.cburch.logisim.analyze.model.AnalyzerModel;
 import com.cburch.logisim.circuit.Analyze;
 import com.cburch.logisim.circuit.AnalyzeException;
 import com.cburch.logisim.circuit.Circuit;
-import com.cburch.logisim.comp.Component;
-import com.cburch.logisim.comp.EndData;
 import com.cburch.logisim.file.LogisimFileActions;
+import com.cburch.logisim.instance.Instance;
+import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.proj.Project;
+import com.cburch.logisim.std.base.Pin;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.util.StringUtil;
@@ -102,19 +102,12 @@ public class ProjectCircuitActions {
 	}
 
 	public static void doMoveCircuit(Project proj, Circuit cur, int delta) {
-		List<AddTool> tools = proj.getLogisimFile().getTools();
-		AddTool tool = null;
-		int oldPos = -1;
-		for (AddTool t : tools) {
-			oldPos++;
-			if (t.getFactory() == cur) {
-				tool = t;
-				break;
-			}
-		}
+		AddTool tool = proj.getLogisimFile().getAddTool(cur);
 		if (tool != null) {
+			int oldPos = proj.getLogisimFile().getCircuits().indexOf(cur);
 			int newPos = oldPos + delta;
-			if (newPos >= 0 && newPos < tools.size()) {
+			int toolsCount = proj.getLogisimFile().getTools().size();
+			if (newPos >= 0 && newPos < toolsCount) {
 				proj.doAction(LogisimFileActions.moveCircuit(tool, newPos));
 			}
 		}
@@ -141,23 +134,22 @@ public class ProjectCircuitActions {
 	}
 	
 	public static void doAnalyze(Project proj, Circuit circuit) {
-		Map<Component,String> pinNames = Analyze.getPinLabels(circuit);
+		Map<Instance, String> pinNames = Analyze.getPinLabels(circuit);
 		ArrayList<String> inputNames = new ArrayList<String>();
 		ArrayList<String> outputNames = new ArrayList<String>();
-		for (Map.Entry<Component,String> entry : pinNames.entrySet()) {
-			Component pin = entry.getKey();
-			EndData pinEnd = pin.getEnd(0);
-			boolean isOutput = pinEnd.getType() != EndData.OUTPUT_ONLY;
-			if (Circuit.isInput(pin)) {
+		for (Map.Entry<Instance, String> entry : pinNames.entrySet()) {
+			Instance pin = entry.getKey();
+			boolean isInput = Pin.FACTORY.isInputPin(pin);
+			if (isInput) {
 				inputNames.add(entry.getValue());
 			} else {
 				outputNames.add(entry.getValue());
 			}
-			if (pin.getEnd(0).getWidth().getWidth() > 1) {
-				if (isOutput) {
-					analyzeError(proj, Strings.get("analyzeMultibitOutputError"));
-				} else {
+			if (pin.getAttributeValue(StdAttr.WIDTH).getWidth() > 1) {
+				if (isInput) {
 					analyzeError(proj, Strings.get("analyzeMultibitInputError"));
+				} else {
+					analyzeError(proj, Strings.get("analyzeMultibitOutputError"));
 				}
 				return;
 			}
@@ -181,7 +173,7 @@ public class ProjectCircuitActions {
 	}
 	
 	private static void configureAnalyzer(Project proj, Circuit circuit,
-			Analyzer analyzer, Map<Component,String> pinNames,
+			Analyzer analyzer, Map<Instance, String> pinNames,
 			ArrayList<String> inputNames, ArrayList<String> outputNames) {
 		analyzer.getModel().setVariables(inputNames, outputNames);
 		

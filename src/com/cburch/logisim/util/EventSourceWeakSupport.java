@@ -6,11 +6,11 @@ package com.cburch.logisim.util;
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class EventSourceWeakSupport<L> implements Iterable<L> {
-	private LinkedList<WeakReference<L>> listeners
-		= new LinkedList<WeakReference<L>>();
+	private ConcurrentLinkedQueue<WeakReference<L>> listeners
+		= new ConcurrentLinkedQueue<WeakReference<L>>();
 
 	public EventSourceWeakSupport() { }
 	
@@ -25,12 +25,16 @@ public class EventSourceWeakSupport<L> implements Iterable<L> {
 		}
 	}
 	
-	public int size() {
+	public boolean isEmpty() {
 		for (Iterator<WeakReference<L>> it = listeners.iterator(); it.hasNext(); ) {
 			L l = it.next().get();
-			if (l == null) it.remove();
+			if (l == null) {
+				it.remove();
+			} else {
+				return false;
+			}
 		}
-		return listeners.size();
+		return true;
 	}
 	
 	public Iterator<L> iterator() {

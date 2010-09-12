@@ -15,8 +15,8 @@ import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeDefaultProvider;
 import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.gui.main.AttributeTable;
-import com.cburch.logisim.gui.main.AttributeTableListener;
+import com.cburch.logisim.gui.generic.AttributeTable;
+import com.cburch.logisim.gui.generic.AttributeTableListener;
 import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.proj.Project;
 

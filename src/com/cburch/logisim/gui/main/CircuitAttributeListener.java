@@ -9,6 +9,8 @@ import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitMutation;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
+import com.cburch.logisim.gui.generic.AttributeTable;
+import com.cburch.logisim.gui.generic.AttributeTableListener;
 import com.cburch.logisim.proj.Project;
 
 public class CircuitAttributeListener implements AttributeTableListener {

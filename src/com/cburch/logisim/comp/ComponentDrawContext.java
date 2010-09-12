@@ -27,6 +27,8 @@ public class ComponentDrawContext {
 	private CircuitState circuitState;
 	private Graphics base;
 	private Graphics g;
+	private boolean showState;
+	private boolean showColor;
 	private boolean printView;
 	private WireSet highlightedWires;
 	private InstancePainter instancePainter;
@@ -39,6 +41,8 @@ public class ComponentDrawContext {
 		this.circuitState = circuitState;
 		this.base = base;
 		this.g = g;
+		this.showState = true;
+		this.showColor = true;
 		this.printView = printView;
 		this.highlightedWires = WireSet.EMPTY;
 		this.instancePainter = new InstancePainter(this, null);
@@ -48,6 +52,14 @@ public class ComponentDrawContext {
 			Circuit circuit, CircuitState circuitState,
 			Graphics base, Graphics g) {
 		this(dest, circuit, circuitState, base, g, false);
+	}
+	
+	public void setShowState(boolean value) {
+		showState = value;
+	}
+	
+	public void setShowColor(boolean value) {
+		showColor = value;
 	}
 	
 	public InstancePainter getInstancePainter() {
@@ -63,7 +75,7 @@ public class ComponentDrawContext {
 	}
 
 	public boolean getShowState() {
-		return !printView;
+		return !printView && showState;
 	}
 
 	public boolean isPrintView() {
@@ -71,7 +83,7 @@ public class ComponentDrawContext {
 	}
 
 	public boolean shouldDrawColor() {
-		return !printView;
+		return !printView && showColor;
 	}
 
 	public java.awt.Component getDestination() {

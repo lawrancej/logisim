@@ -7,7 +7,7 @@ import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitEvent;
 import com.cburch.logisim.circuit.CircuitListener;
 import com.cburch.logisim.circuit.CircuitState;
-import com.cburch.logisim.circuit.Subcircuit;
+import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
@@ -15,14 +15,14 @@ import com.cburch.logisim.data.Value;
 
 class SelectionItem implements AttributeListener, CircuitListener {
 	private Model model;
-	private Subcircuit[] path;
+	private Component[] path;
 	private Component comp;
 	private Object option;
 	private int radix = 2;
 	private String shortDescriptor;
 	private String longDescriptor;
 	
-	public SelectionItem(Model model, Subcircuit[] path, Component comp, Object option) {
+	public SelectionItem(Model model, Component[] path, Component comp, Object option) {
 		this.model = model;
 		this.path = path;
 		this.comp = comp;
@@ -33,7 +33,8 @@ class SelectionItem implements AttributeListener, CircuitListener {
 			model.getCircuitState().getCircuit().addCircuitListener(this);
 			for (int i = 0; i < path.length; i++) {
 				path[i].getAttributeSet().addAttributeListener(this);
-				path[i].getSubcircuit().addCircuitListener(this);
+				SubcircuitFactory circFact = (SubcircuitFactory) path[i].getFactory();
+				circFact.getSubcircuit().addCircuitListener(this);
 			}
 		}
 		comp.getAttributeSet().addAttributeListener(this);
@@ -106,7 +107,8 @@ class SelectionItem implements AttributeListener, CircuitListener {
 	public Value fetchValue(CircuitState root) {
 		CircuitState cur = root;
 		for (int i = 0; i < path.length; i++) {
-			cur = path[i].getSubstate(cur);
+			SubcircuitFactory circFact = (SubcircuitFactory) path[i].getFactory();
+			cur = circFact.getSubstate(cur, path[i]);
 		}
 		Loggable log = (Loggable) comp.getFeature(Loggable.class);
 		return log == null ? Value.NIL : log.getLogValue(cur, option);
@@ -130,7 +132,8 @@ class SelectionItem implements AttributeListener, CircuitListener {
 				circComp = path != null && path.length > 0 ? path[0] : comp;
 			} else if (path != null) {
 				for (int i = 0; i < path.length; i++) {
-					if (circ == path[i].getSubcircuit()) {
+					SubcircuitFactory circFact = (SubcircuitFactory) path[i].getFactory();
+					if (circ == circFact.getSubcircuit()) {
 						circComp = i + 1 < path.length ? path[i + 1] : comp;
 					}
 				}

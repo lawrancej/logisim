@@ -27,7 +27,7 @@ import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
-import com.cburch.logisim.gui.main.AttributeTableListener;
+import com.cburch.logisim.gui.generic.AttributeTableListener;
 import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.gui.main.SelectionActions;

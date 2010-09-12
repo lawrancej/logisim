@@ -56,6 +56,26 @@ public class Location implements Comparable<Location> {
 		if (dir == Direction.NORTH) return Location.create(x + right, y - dist);
 		return Location.create(x + dist, y + right);
 	}
+	
+	// rotates this around (xc,yc) assuming that this is facing in the
+	// from direction and the returned bounds should face in the to direction.
+	public Location rotate(Direction from, Direction to, int xc, int yc) {
+		int degrees = to.toDegrees() - from.toDegrees();
+		while (degrees >= 360) degrees -= 360;
+		while (degrees < 0) degrees += 360;
+		
+		int dx = x - xc;
+		int dy = y - yc;
+		if (degrees == 90) {
+			return create(xc + dy, yc - dx);
+		} else if (degrees == 180) {
+			return create(xc - dx, yc - dy);
+		} else if (degrees == 270) {
+			return create(xc - dy, yc + dx);
+		} else {
+			return this;
+		}
+	}
 
 	@Override
 	public boolean equals(Object other_obj) {

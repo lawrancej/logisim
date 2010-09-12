@@ -5,8 +5,10 @@ package com.cburch.logisim.file;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -16,18 +18,36 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
+import com.cburch.draw.model.DrawingMember;
 import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.Main;
 import com.cburch.logisim.circuit.Circuit;
+import com.cburch.logisim.circuit.appear.AppearanceSvgReader;
+import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeDefaultProvider;
 import com.cburch.logisim.data.AttributeSet;
+import com.cburch.logisim.data.Location;
+import com.cburch.logisim.instance.Instance;
+import com.cburch.logisim.std.base.Pin;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.InputEventUtil;
 import com.cburch.logisim.util.StringUtil;
 
 class XmlReader {
+	static class CircuitData {
+		Element circuitElement;
+		Circuit circuit;
+		Map<Element, Component> knownComponents;
+		List<DrawingMember> appearance;
+		
+		public CircuitData(Element circuitElement, Circuit circuit) {
+			this.circuitElement = circuitElement;
+			this.circuit = circuit;
+		}
+	}
+	
 	class ReadContext {
 		LogisimFile file;
 		LogisimVersion sourceVersion;
@@ -53,15 +73,19 @@ class XmlReader {
 			}
 			
 			// second, create the circuits - empty for now
-			HashMap<Element,Circuit> circuits = new HashMap<Element,Circuit>();
+			List<CircuitData> circuitsData = new ArrayList<CircuitData>();
 			for (Element circElt : XmlIterator.forChildElements(elt, "circuit")) {
 				String name = circElt.getAttribute("name");
 				if (name == null || name.equals("")) {
 					showError(Strings.get("circNameMissingError"));
 				}
-				Circuit circ = new Circuit(name);
-				file.addCircuit(circ);
-				circuits.put(circElt, circ);
+				CircuitData circData = new CircuitData(circElt, new Circuit(name));
+				file.addCircuit(circData.circuit);
+				circData.knownComponents = loadKnownComponents(circElt);
+				for (Element appearElt : XmlIterator.forChildElements(circElt, "appear")) {
+					loadAppearance(appearElt, circData);
+				}
+				circuitsData.add(circData);
 			}
 
 			// third, process the other child elements
@@ -87,7 +111,8 @@ class XmlReader {
 			}
 			
 			// fourth, execute a transaction that initializes all the circuits
-			XmlCircuitReader builder = new XmlCircuitReader(this, circuits);
+			XmlCircuitReader builder;
+			builder = new XmlCircuitReader(this, circuitsData);
 			builder.execute();
 		}
 
@@ -117,6 +142,48 @@ class XmlReader {
 				}
 			}
 			return ret;
+		}
+		
+		private Map<Element, Component> loadKnownComponents(Element elt) {
+			Map<Element, Component> known = new HashMap<Element, Component>();
+			for (Element sub : XmlIterator.forChildElements(elt, "comp")) {
+				try {
+					Component comp = XmlCircuitReader.getComponent(sub, this);
+					known.put(sub, comp);
+				} catch (RuntimeException e) { }
+			}
+			return known;
+		}
+		
+		private void loadAppearance(Element appearElt, CircuitData circData) {
+			Map<Location, Instance> pins = new HashMap<Location, Instance>();
+			for (Component comp : circData.knownComponents.values()) {
+				if (comp.getFactory() == Pin.FACTORY) {
+					Instance instance = Instance.getInstanceFor(comp);
+					pins.put(comp.getLocation(), instance);
+				}
+			}
+			
+			List<DrawingMember> shapes = new ArrayList<DrawingMember>();
+			for (Element sub : XmlIterator.forChildElements(appearElt)) {
+				try {
+					DrawingMember m = AppearanceSvgReader.createShape(sub, pins);
+					if (m == null) {
+						showError(Strings.get("fileAppearanceNotFound", sub.getTagName()));
+					} else {
+						shapes.add(m);
+					}
+				} catch (RuntimeException e) {
+					showError(Strings.get("fileAppearanceError", sub.getTagName()));
+				}
+			}
+			if (!shapes.isEmpty()) {
+				if (circData.appearance == null) {
+					circData.appearance = shapes;
+				} else {
+					circData.appearance.addAll(shapes);
+				}
+			}
 		}
 
 		private void initMouseMappings(Element elt) {

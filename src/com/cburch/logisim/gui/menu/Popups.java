@@ -16,6 +16,7 @@ import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.file.LoadedLibrary;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.file.LogisimFile;
+import com.cburch.logisim.gui.main.Frame;
 import com.cburch.logisim.gui.main.StatisticsDialog;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.AddTool;
@@ -92,11 +93,12 @@ public class Popups {
 		Project proj;
 		Tool tool;
 		Circuit circuit;
-		JMenuItem view = new JMenuItem(Strings.get("projectViewCircuitItem"));
 		JMenuItem analyze = new JMenuItem(Strings.get("projectAnalyzeCircuitItem"));
 		JMenuItem stats = new JMenuItem(Strings.get("projectGetCircuitStatisticsItem"));
 		JMenuItem main = new JMenuItem(Strings.get("projectSetAsMainItem"));
 		JMenuItem remove = new JMenuItem(Strings.get("projectRemoveCircuitItem"));
+		JMenuItem editLayout = new JMenuItem(Strings.get("projectEditCircuitLayoutItem"));
+		JMenuItem editAppearance = new JMenuItem(Strings.get("projectEditCircuitAppearanceItem"));
 
 		CircuitPopup(Project proj, Tool tool, Circuit circuit) {
 			super(Strings.get("circuitMenu"));
@@ -104,7 +106,8 @@ public class Popups {
 			this.tool = tool;
 			this.circuit = circuit;
 
-			add(view); view.addActionListener(this);
+			add(editLayout); editLayout.addActionListener(this);
+			add(editAppearance); editAppearance.addActionListener(this);
 			add(analyze); analyze.addActionListener(this);
 			add(stats); stats.addActionListener(this);
 			addSeparator();
@@ -113,7 +116,13 @@ public class Popups {
 			
 			boolean canChange = proj.getLogisimFile().contains(circuit);
 			LogisimFile file = proj.getLogisimFile();
-			view.setEnabled(proj.getCurrentCircuit() != circuit);
+			if (circuit == proj.getCurrentCircuit()) {
+				if (proj.getFrame().getView().equals(Frame.APPEARANCE)) {
+					editAppearance.setEnabled(false);
+				} else {
+					editLayout.setEnabled(false);
+				}
+			}
 			main.setEnabled(canChange && file.getMainCircuit() != circuit);
 			remove.setEnabled(canChange && file.getCircuitCount() > 1
 					&& proj.getDependencies().canRemove(circuit));
@@ -121,8 +130,12 @@ public class Popups {
 
 		public void actionPerformed(ActionEvent e) {
 			Object source = e.getSource();
-			if (source == view) {
+			if (source == editLayout) {
 				proj.setCurrentCircuit(circuit);
+				proj.getFrame().setView(Frame.LAYOUT);
+			} else if (source == editAppearance) {
+				proj.setCurrentCircuit(circuit);
+				proj.getFrame().setView(Frame.APPEARANCE);
 			} else if (source == analyze) {
 				ProjectCircuitActions.doAnalyze(proj, circuit);
 			} else if (source == stats) {

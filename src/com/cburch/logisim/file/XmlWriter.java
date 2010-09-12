@@ -23,6 +23,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.cburch.draw.model.DrawingMember;
 import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.Main;
 import com.cburch.logisim.circuit.Circuit;
@@ -32,7 +33,6 @@ import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeDefaultProvider;
 import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.InputEventUtil;
@@ -100,8 +100,7 @@ class XmlWriter {
 		ret.appendChild(fromMouseMappings());
 		ret.appendChild(fromToolbarData());
 
-		for (AddTool tool : file.getTools()) {
-			Circuit circ = (Circuit) tool.getFactory();
+		for (Circuit circ : file.getCircuits()) {
 			ret.appendChild(fromCircuit(circ));
 		}
 		return ret;
@@ -195,6 +194,16 @@ class XmlWriter {
 		Element ret = doc.createElement("circuit");
 		ret.setAttribute("name", circuit.getName());
 		addAttributeSetContent(ret, circuit.getStaticAttributes(), null);
+		if (!circuit.getAppearance().isDefaultAppearance()) {
+			Element appear = doc.createElement("appear");
+			for (Object o : circuit.getAppearance().getObjects()) {
+				if (o instanceof DrawingMember) {
+					Element elt = ((DrawingMember) o).toSvgElement(doc);
+					appear.appendChild(elt);
+				}
+			}
+			ret.appendChild(appear);
+		}
 		for (Wire w : circuit.getWires()) {
 			ret.appendChild(fromWire(w));
 		}

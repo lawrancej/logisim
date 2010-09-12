@@ -22,6 +22,10 @@ public class Instance {
 		}
 	}
 	
+	public static Component getComponentFor(Instance instance) {
+		return instance.comp;
+	}
+	
 	private InstanceComponent comp;
 	
 	Instance(InstanceComponent comp) {

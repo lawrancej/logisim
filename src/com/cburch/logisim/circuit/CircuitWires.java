@@ -200,10 +200,11 @@ class CircuitWires {
 	}
 
 	Bounds getWireBounds() {
-		if (bounds == Bounds.EMPTY_BOUNDS) {
-			recomputeBounds();
+		Bounds bds = bounds;
+		if (bds == Bounds.EMPTY_BOUNDS) {
+			bds = recomputeBounds();
 		}
-		return bounds;
+		return bds;
 	}
 	
 	WireBundle getWireBundle(Location query) {
@@ -750,11 +751,11 @@ class CircuitWires {
 		}
 	}
 
-	private void recomputeBounds() {
+	private Bounds recomputeBounds() {
 		Iterator<Wire> it = wires.iterator();
 		if (!it.hasNext()) {
 			bounds = Bounds.EMPTY_BOUNDS;
-			return;
+			return Bounds.EMPTY_BOUNDS;
 		}
 
 		Wire w = it.next();
@@ -769,7 +770,9 @@ class CircuitWires {
 			int y0 = w.e0.getY(); if (y0 < ymin) ymin = y0;
 			int y1 = w.e1.getY(); if (y1 > ymax) ymax = y1;
 		}
-		bounds = Bounds.create(xmin, ymin,
+		Bounds bds = Bounds.create(xmin, ymin,
 			xmax - xmin + 1, ymax - ymin + 1);
+		bounds = bds;
+		return bds;
 	}
 }

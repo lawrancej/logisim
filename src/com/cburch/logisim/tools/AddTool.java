@@ -16,6 +16,7 @@ import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitException;
 import com.cburch.logisim.circuit.CircuitMutation;
+import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.comp.ComponentDrawContext;
@@ -38,6 +39,8 @@ import com.cburch.logisim.tools.key.KeyConfigurationResult;
 import com.cburch.logisim.util.StringUtil;
 
 public class AddTool extends Tool {
+	private static int INVALID_COORD = Integer.MIN_VALUE;
+	
 	private static int SHOW_NONE    = 0;
 	private static int SHOW_GHOST   = 1;
 	private static int SHOW_ADD     = 2;
@@ -62,8 +65,8 @@ public class AddTool extends Tool {
 	private AttributeSet attrs;
 	private Bounds bounds;
 	private boolean shouldSnap;
-	private int lastX = Integer.MIN_VALUE;
-	private int lastY = Integer.MIN_VALUE;
+	private int lastX = INVALID_COORD;
+	private int lastY = INVALID_COORD;
 	private int state = SHOW_GHOST;
 	private Action lastAddition;
 	private boolean keyHandlerTried;
@@ -211,13 +214,15 @@ public class AddTool extends Tool {
 	public void draw(Canvas canvas, ComponentDrawContext context) {
 		// next "if" suggested roughly by Kevin Walsh of Cornell to take care of
 		// repaint problems on OpenJDK under Ubuntu
-		if (lastX == Integer.MIN_VALUE || lastY == Integer.MIN_VALUE) return;
+		int x = lastX;
+		int y = lastY;
+		if (x == INVALID_COORD || y == INVALID_COORD) return;
 		ComponentFactory source = getFactory();
 		if (source == null) return;
 		if (state == SHOW_GHOST) {
-			source.drawGhost(context, Color.GRAY, lastX, lastY, getBaseAttributes());
+			source.drawGhost(context, Color.GRAY, x, y, getBaseAttributes());
 		} else if (state == SHOW_ADD) {
-			source.drawGhost(context, Color.BLACK, lastX, lastY, getBaseAttributes());
+			source.drawGhost(context, Color.BLACK, x, y, getBaseAttributes());
 		}
 	}
 	
@@ -240,8 +245,7 @@ public class AddTool extends Tool {
 	@Override
 	public void deselect(Canvas canvas) {
 		setState(canvas, SHOW_GHOST);
-		moveTo(canvas, canvas.getGraphics(),
-			Integer.MAX_VALUE, Integer.MAX_VALUE);
+		moveTo(canvas, canvas.getGraphics(), INVALID_COORD, INVALID_COORD);
 		bounds = null;
 		lastAddition = null;
 	}
@@ -270,12 +274,10 @@ public class AddTool extends Tool {
 	public void mouseExited(Canvas canvas, Graphics g,
 			MouseEvent e) {
 		if (state == SHOW_GHOST) {
-			moveTo(canvas, canvas.getGraphics(),
-				Integer.MAX_VALUE, Integer.MAX_VALUE);
+			moveTo(canvas, canvas.getGraphics(), INVALID_COORD, INVALID_COORD);
 			setState(canvas, SHOW_NONE);
 		} else if (state == SHOW_ADD) {
-			moveTo(canvas, canvas.getGraphics(),
-				Integer.MAX_VALUE, Integer.MAX_VALUE);
+			moveTo(canvas, canvas.getGraphics(), INVALID_COORD, INVALID_COORD);
 			setState(canvas, SHOW_ADD_NO);
 		}
 	}
@@ -296,9 +298,10 @@ public class AddTool extends Tool {
 			canvas.setErrorMessage(Strings.getter("cannotModifyError"));
 			return;
 		}
-		if (factory instanceof Circuit) {
+		if (factory instanceof SubcircuitFactory) {
+			SubcircuitFactory circFact = (SubcircuitFactory) factory;
 			Dependencies depends = canvas.getProject().getDependencies();
-			if (!depends.canAdd(circ, (Circuit) factory)) {
+			if (!depends.canAdd(circ, circFact.getSubcircuit())) {
 				canvas.setErrorMessage(Strings.getter("circularError"));
 				return;
 			}
@@ -350,9 +353,6 @@ public class AddTool extends Tool {
 				Action action = mutation.toAction(Strings.getter("addComponentAction", factory.getDisplayGetter()));
 				canvas.getProject().doAction(action);
 				lastAddition = action;
-				/*XN:
-				lastAddition = CircuitActions.addComponent(circ, c, false);
-				canvas.getProject().doAction(lastAddition); */
 				added = c;
 			} catch (CircuitException ex) {
 				JOptionPane.showMessageDialog(canvas.getProject().getFrame(),

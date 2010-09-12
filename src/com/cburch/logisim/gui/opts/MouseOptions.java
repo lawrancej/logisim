@@ -30,7 +30,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 import com.cburch.logisim.file.MouseMappings;
-import com.cburch.logisim.gui.main.AttributeTable;
+import com.cburch.logisim.gui.generic.AttributeTable;
 import com.cburch.logisim.gui.main.Explorer;
 import com.cburch.logisim.gui.main.Explorer.Event;
 import com.cburch.logisim.tools.AddTool;

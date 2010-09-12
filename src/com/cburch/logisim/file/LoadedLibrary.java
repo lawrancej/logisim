@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitMutation;
+import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.data.Attribute;
@@ -115,7 +116,7 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
 	}
 	
 	private void resolveChanges(Library old) {
-		if (listeners.size() == 0) return;
+		if (listeners.isEmpty()) return;
 		
 		if (!base.getDisplayName().equals(old.getDisplayName())) {
 			fireLibraryEvent(LibraryEvent.SET_NAME, base.getDisplayName());
@@ -174,8 +175,11 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
 			if (toolMap.containsKey(oldTool)) {
 				proj.setTool(toolMap.get(oldTool));
 			}
-			if (compMap.containsKey(oldCircuit)) {
-				proj.setCurrentCircuit((Circuit) compMap.get(oldCircuit));
+			SubcircuitFactory oldFactory = oldCircuit.getSubcircuitFactory();
+			if (compMap.containsKey(oldFactory)) {
+				SubcircuitFactory newFactory;
+				newFactory = (SubcircuitFactory) compMap.get(oldFactory);
+				proj.setCurrentCircuit(newFactory.getSubcircuit());
 			}
 			replaceAll(proj.getLogisimFile(), compMap, toolMap);
 		}
@@ -189,11 +193,8 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
 			Map<Tool,Tool> toolMap) {
 		file.getOptions().getToolbarData().replaceAll(toolMap);
 		file.getOptions().getMouseMappings().replaceAll(toolMap);
-		for (AddTool tool : file.getTools()) {
-			Object circuit = tool.getFactory();
-			if (circuit instanceof Circuit) {
-				replaceAll((Circuit) circuit, compMap);
-			}
+		for (Circuit circuit : file.getCircuits()) {
+			replaceAll(circuit, compMap);
 		}
 	}
 

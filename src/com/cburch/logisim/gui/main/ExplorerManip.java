@@ -6,6 +6,7 @@ package com.cburch.logisim.gui.main;
 import javax.swing.JPopupMenu;
 
 import com.cburch.logisim.circuit.Circuit;
+import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
@@ -133,9 +134,10 @@ class ExplorerManip implements Explorer.Listener {
 		if (clicked instanceof AddTool) {
 			AddTool tool = (AddTool) clicked;
 			ComponentFactory source = tool.getFactory();
-			if (source instanceof Circuit) {
-				Circuit circ = (Circuit) source;
-				proj.setCurrentCircuit(circ);
+			if (source instanceof SubcircuitFactory) {
+				SubcircuitFactory circFact = (SubcircuitFactory) source;
+				proj.setCurrentCircuit(circFact.getSubcircuit());
+				proj.getFrame().setView(Frame.LAYOUT);
 				if (lastSelected != null) proj.setTool(lastSelected);
 			}
 		}
@@ -155,8 +157,9 @@ class ExplorerManip implements Explorer.Listener {
 			ProjectLibraryActions.doUnloadLibrary(proj, (Library) request);
 		} else if (request instanceof AddTool) {
 			ComponentFactory factory = ((AddTool) request).getFactory();
-			if (factory instanceof Circuit) {
-				ProjectCircuitActions.doRemoveCircuit(proj, (Circuit) factory);
+			if (factory instanceof SubcircuitFactory) {
+				SubcircuitFactory circFact = (SubcircuitFactory) factory;
+				ProjectCircuitActions.doRemoveCircuit(proj, circFact.getSubcircuit());
 			}
 		}
 	}
@@ -166,8 +169,8 @@ class ExplorerManip implements Explorer.Listener {
 		if (clicked instanceof AddTool) {
 			AddTool tool = (AddTool) clicked;
 			ComponentFactory source = tool.getFactory();
-			if (source instanceof Circuit) {
-				Circuit circ = (Circuit) source;
+			if (source instanceof SubcircuitFactory) {
+				Circuit circ = ((SubcircuitFactory) source).getSubcircuit();
 				return Popups.forCircuit(proj, tool, circ);
 			} else {
 				return null;

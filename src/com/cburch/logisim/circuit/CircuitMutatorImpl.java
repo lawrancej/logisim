@@ -127,6 +127,10 @@ class CircuitMutatorImpl implements CircuitMutator {
 		return replacements.get(circuit);
 	}
 	
+	void markModified(Circuit circuit) {
+		modified.add(circuit);
+	}
+	
 	Collection<Circuit> getModifiedCircuits() {
 		return Collections.unmodifiableSet(modified);
 	}

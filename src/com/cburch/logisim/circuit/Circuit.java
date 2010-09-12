@@ -3,7 +3,6 @@
 
 package com.cburch.logisim.circuit;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,8 +15,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 
+import com.cburch.logisim.circuit.appear.CircuitAppearance;
 import com.cburch.logisim.comp.Component;
-import com.cburch.logisim.comp.AbstractComponentFactory;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.comp.ComponentEvent;
 import com.cburch.logisim.comp.ComponentFactory;
@@ -26,18 +25,12 @@ import com.cburch.logisim.comp.EndData;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.std.base.Clock;
-import com.cburch.logisim.std.base.Pin;
 import com.cburch.logisim.util.CollectionUtil;
 import com.cburch.logisim.util.EventSourceWeakSupport;
-import com.cburch.logisim.util.GraphicsUtil;
-import com.cburch.logisim.util.StringGetter;
-import com.cburch.logisim.util.StringUtil;
 
-public class Circuit extends AbstractComponentFactory {
+public class Circuit {
 	private class EndChangedTransaction extends CircuitTransaction {
 		private Component comp;
 		private Map<Location,EndData> toRemove;
@@ -68,7 +61,8 @@ public class Circuit extends AbstractComponentFactory {
 			}
 			for (EndData end : toAdd.values()) {
 				wires.add(comp, end);
-			}   
+			}
+			((CircuitMutatorImpl) mutator).markModified(Circuit.this);
 		}
 	}
 
@@ -108,28 +102,31 @@ public class Circuit extends AbstractComponentFactory {
 	}
 
 	private MyComponentListener myComponentListener = new MyComponentListener();
+	private CircuitAppearance appearance;
 	private AttributeSet staticAttrs;
+	private SubcircuitFactory subcircuitFactory;
 	private EventSourceWeakSupport<CircuitListener> listeners
 		= new EventSourceWeakSupport<CircuitListener>();
 	private HashSet<Component> comps = new HashSet<Component>(); // doesn't include wires
-	CircuitPins pins = new CircuitPins();
 	CircuitWires wires = new CircuitWires();
 		// wires is package-protected for CircuitState and Analyze only.
 	private ArrayList<Component> clocks = new ArrayList<Component>();
 	private CircuitLocker locker;
-	private WeakHashMap<Subcircuit,Circuit> circuitsUsingThis;
+	private WeakHashMap<Component, Circuit> circuitsUsingThis;
 
 	public Circuit(String name) {
+		appearance = new CircuitAppearance(this);
 		staticAttrs = CircuitAttributes.createBaseAttrs(this, name);
+		subcircuitFactory = new SubcircuitFactory(this);
 		locker = new CircuitLocker();
-		circuitsUsingThis = new WeakHashMap<Subcircuit,Circuit>();
+		circuitsUsingThis = new WeakHashMap<Component, Circuit>();
 	}
 	
 	CircuitLocker getLocker() {
 		return locker;
 	}
 	
-	Collection<Circuit> getCircuitsUsingThis() {
+	public Collection<Circuit> getCircuitsUsingThis() {
 		return circuitsUsingThis.values();
 	}
 	
@@ -138,14 +135,12 @@ public class Circuit extends AbstractComponentFactory {
 
 		Set<Component> oldComps = comps;
 		comps = new HashSet<Component>();
-		pins = new CircuitPins();
 		wires = new CircuitWires();
 		clocks.clear();
 		for (Component comp : oldComps) {
-			if (comp instanceof Subcircuit) {
-				Subcircuit sub = (Subcircuit) comp;
-				Circuit subcirc = (Circuit) sub.getFactory();
-				subcirc.circuitsUsingThis.remove(sub);
+			if (comp.getFactory() instanceof SubcircuitFactory) {
+				SubcircuitFactory sub = (SubcircuitFactory) comp.getFactory();
+				sub.getSubcircuit().circuitsUsingThis.remove(comp);
 			}
 		}
 		fireEvent(CircuitEvent.ACTION_CLEAR, oldComps);
@@ -181,13 +176,21 @@ public class Circuit extends AbstractComponentFactory {
 		}
 	}
 
-	void addPinListener(CircuitPinListener l) { pins.addPinListener(l); }
-	void removePinListener(CircuitPinListener l) { pins.removePinListener(l); }
-
 	//
 	// access methods
 	//
-	// getName given in ComponentFactory methods
+	public String getName() {
+		return staticAttrs.getValue(CircuitAttributes.NAME_ATTR);
+	}
+
+	public CircuitAppearance getAppearance() {
+		return appearance;
+	}
+	
+	public SubcircuitFactory getSubcircuitFactory() {
+		return subcircuitFactory;
+	}
+	
 	public Set<WidthIncompatibilityData> getWidthIncompatibilityData() {
 		return wires.getWidthIncompatibilityData();
 	}
@@ -288,8 +291,9 @@ public class Circuit extends AbstractComponentFactory {
 	}
 
 	public Bounds getBounds() {
+		Bounds wireBounds = wires.getWireBounds();
 		Iterator<Component> it = comps.iterator();
-		if (!it.hasNext()) return wires.getWireBounds();
+		if (!it.hasNext()) return wireBounds;
 		Component first = it.next();
 		Bounds firstBounds = first.getBounds();
 		int xMin = firstBounds.getX();
@@ -306,8 +310,12 @@ public class Circuit extends AbstractComponentFactory {
 			if (y0 < yMin) yMin = y0;
 			if (y1 > yMax) yMax = y1;
 		}
-		return Bounds.create(xMin, yMin, xMax - xMin, yMax - yMin)
-			.add(wires.getWireBounds());
+		Bounds compBounds = Bounds.create(xMin, yMin, xMax - xMin, yMax - yMin);
+		if (wireBounds.getWidth() == 0 || wireBounds.getHeight() == 0) {
+			return compBounds;
+		} else {
+			return compBounds.add(wireBounds);
+		}
 	}
 
 	public Bounds getBounds(Graphics g) {
@@ -316,15 +324,24 @@ public class Circuit extends AbstractComponentFactory {
 		int yMin = ret.getY();
 		int xMax = xMin + ret.getWidth();
 		int yMax = yMin + ret.getHeight();
+		if (ret == Bounds.EMPTY_BOUNDS) {
+			xMin = Integer.MAX_VALUE;
+			yMin = Integer.MAX_VALUE;
+			xMax = Integer.MIN_VALUE;
+			yMax = Integer.MIN_VALUE;
+		}
 		for (Component c : comps) {
 			Bounds bds = c.getBounds(g);
-			int x0 = bds.getX(); int x1 = x0 + bds.getWidth();
-			int y0 = bds.getY(); int y1 = y0 + bds.getHeight();
-			if (x0 < xMin) xMin = x0;
-			if (x1 > xMax) xMax = x1;
-			if (y0 < yMin) yMin = y0;
-			if (y1 > yMax) yMax = y1;
+			if (bds != null && bds != Bounds.EMPTY_BOUNDS) {
+				int x0 = bds.getX(); int x1 = x0 + bds.getWidth();
+				int y0 = bds.getY(); int y1 = y0 + bds.getHeight();
+				if (x0 < xMin) xMin = x0;
+				if (x1 > xMax) xMax = x1;
+				if (y0 < yMin) yMin = y0;
+				if (y1 > yMax) yMax = y1;
+			}
 		}
+		if (xMin > xMax || yMin > yMax) return Bounds.EMPTY_BOUNDS;
 		return Bounds.create(xMin, yMin, xMax - xMin, yMax - yMin);
 	}
 
@@ -354,13 +371,11 @@ public class Circuit extends AbstractComponentFactory {
 
 			wires.add(c);
 			ComponentFactory factory = c.getFactory();
-			if (factory instanceof Pin) {
-				pins.addPin(c);
-			} else if (factory instanceof Clock) {
+			if (factory instanceof Clock) {
 				clocks.add(c);
-			} else if (factory instanceof Circuit) {
-				Circuit subcirc = (Circuit) factory;
-				subcirc.circuitsUsingThis.put((Subcircuit) c, this);
+			} else if (factory instanceof SubcircuitFactory) {
+				SubcircuitFactory subcirc = (SubcircuitFactory) factory;
+				subcirc.getSubcircuit().circuitsUsingThis.put(c, this);
 			}
 			c.addComponentListener(myComponentListener);
 		}
@@ -376,13 +391,11 @@ public class Circuit extends AbstractComponentFactory {
 			wires.remove(c);
 			comps.remove(c);
 			ComponentFactory factory = c.getFactory();
-			if (factory instanceof Pin) {
-				pins.removePin(c);
-			} else if (factory instanceof Clock) {
+			if (factory instanceof Clock) {
 				clocks.remove(c);
-			} else if (factory instanceof Circuit) {
-				Circuit subcirc = (Circuit) factory;
-				subcirc.circuitsUsingThis.remove(c);
+			} else if (factory instanceof SubcircuitFactory) {
+				SubcircuitFactory subcirc = (SubcircuitFactory) factory;
+				subcirc.getSubcircuit().circuitsUsingThis.remove(c);
 			}
 			c.removeComponentListener(myComponentListener);
 		}
@@ -415,7 +428,12 @@ public class Circuit extends AbstractComponentFactory {
 					g_copy.dispose();
 					g_copy = g_new;
 
-					c.draw(context);
+					try {
+						c.draw(context);
+					} catch (RuntimeException e) {
+						// this is a JAR developer error - display it and move on
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -424,81 +442,8 @@ public class Circuit extends AbstractComponentFactory {
 	}
 
 	//
-	// ComponentFactory methods
-	//
-	@Override
-	public String getName() {
-		return staticAttrs.getValue(CircuitAttributes.NAME_ATTR);
-	}
-
-	@Override
-	public StringGetter getDisplayGetter() {
-		String name = staticAttrs.getValue(CircuitAttributes.NAME_ATTR);
-		return StringUtil.constantGetter(name);
-	}
-
-	@Override
-	public Component createComponent(Location loc, AttributeSet attrs) {
-		return new Subcircuit(loc, this, attrs);
-	}
-
-	@Override
-	public Bounds getOffsetBounds(AttributeSet attrs) {
-		return pins.getOffsetBounds(attrs);
-	}
-
-	@Override
-	public AttributeSet createAttributeSet() {
-		return new CircuitAttributes(this);
-	}
-	
-	@Override
-	public Object getFeature(Object key, AttributeSet attrs) {
-		if (key == FACING_ATTRIBUTE_KEY) return StdAttr.FACING;
-		return super.getFeature(key, attrs);
-	}
-	
-	@Override
-	public void drawGhost(ComponentDrawContext context, Color color, int x,
-			int y, AttributeSet attrs) {
-		super.drawGhost(context, color, x, y, attrs);
-		
-		Graphics g = context.getGraphics();
-		Bounds bds = getOffsetBounds(attrs).translate(x, y);
-		GraphicsUtil.switchToWidth(g, 2);
-		Direction facing = attrs.getValue(StdAttr.FACING);
-		int ax;
-		int ay;
-		int an;
-		if (facing == Direction.SOUTH) {
-			ax = bds.getX() + bds.getWidth() - 1;
-			ay = bds.getY() + bds.getHeight() / 2;
-			an = 90;
-		} else if (facing == Direction.NORTH) {
-			ax = bds.getX() + 1;
-			ay = bds.getY() + bds.getHeight() / 2;
-			an = -90;
-		} else if (facing == Direction.WEST) {
-			ax = bds.getX() + bds.getWidth() / 2;
-			ay = bds.getY() + bds.getHeight() - 1;
-			an = 0;
-		} else {
-			ax = bds.getX() + bds.getWidth() / 2;
-			ay = bds.getY() + 1;
-			an = 180;
-		}
-		g.drawArc(ax - 4, ay - 4, 8, 8, an, 180);
-		g.setColor(Color.BLACK);
-	}
-
-	//
 	// helper methods for other classes in package
 	//
-	void configureComponent(Subcircuit comp) {
-		// for Subcircuit to get the pins on the subcircuit configured
-		pins.configureComponent(comp);
-	}
-
 	public static boolean isInput(Component comp) {
 		return comp.getEnd(0).getType() != EndData.INPUT_ONLY;
 	}

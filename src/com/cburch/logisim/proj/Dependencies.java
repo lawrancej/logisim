@@ -6,7 +6,7 @@ package com.cburch.logisim.proj;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitEvent;
 import com.cburch.logisim.circuit.CircuitListener;
-import com.cburch.logisim.circuit.Subcircuit;
+import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.file.LibraryEvent;
@@ -23,14 +23,18 @@ public class Dependencies {
 			case LibraryEvent.ADD_TOOL:
 				if (e.getData() instanceof AddTool) {
 					ComponentFactory factory = ((AddTool) e.getData()).getFactory();
-					if (factory instanceof Circuit) processCircuit((Circuit) factory);
+					if (factory instanceof SubcircuitFactory) {
+						SubcircuitFactory circFact = (SubcircuitFactory) factory;
+						processCircuit(circFact.getSubcircuit());
+					}
 				}
 				break;
 			case LibraryEvent.REMOVE_TOOL:
 				if (e.getData() instanceof AddTool) {
 					ComponentFactory factory = ((AddTool) e.getData()).getFactory();
-					if (factory instanceof Circuit) {
-						Circuit circ = (Circuit) factory;
+					if (factory instanceof SubcircuitFactory) {
+						SubcircuitFactory circFact = (SubcircuitFactory) factory;
+						Circuit circ = circFact.getSubcircuit();
 						depends.removeNode(circ);
 						circ.removeCircuitListener(this);
 					}
@@ -44,23 +48,23 @@ public class Dependencies {
 			switch (e.getAction()) {
 			case CircuitEvent.ACTION_ADD:
 				comp = (Component) e.getData();
-				if (comp instanceof Subcircuit) {
-					depends.addEdge(e.getCircuit(),
-						comp.getFactory());
+				if (comp.getFactory() instanceof SubcircuitFactory) {
+					SubcircuitFactory factory = (SubcircuitFactory) comp.getFactory();
+					depends.addEdge(e.getCircuit(), factory.getSubcircuit());
 				}
 				break;
 			case CircuitEvent.ACTION_REMOVE:
 				comp = (Component) e.getData();
-				if (comp instanceof Subcircuit) {
-					Circuit sub = (Circuit) comp.getFactory();
+				if (comp.getFactory() instanceof SubcircuitFactory) {
+					SubcircuitFactory factory = (SubcircuitFactory) comp.getFactory();
 					boolean found = false;
 					for (Component o : e.getCircuit().getNonWires()) { 
-						if (o instanceof Subcircuit && o.getFactory() == sub) {
+						if (o.getFactory() == factory) {
 						    found = true;
 						    break;
 						}
 					}
-					if (!found) depends.removeEdge(e.getCircuit(), sub);
+					if (!found) depends.removeEdge(e.getCircuit(), factory.getSubcircuit());
 				}
 				break;
 			case CircuitEvent.ACTION_CLEAR:
@@ -87,20 +91,17 @@ public class Dependencies {
 
 	private void addDependencies(LogisimFile file) {
 		file.addLibraryListener(myListener);
-		for (AddTool tool : file.getTools()) {
-			ComponentFactory src = tool.getFactory();
-			if (src instanceof Circuit) {
-				processCircuit((Circuit) src);
-			}
+		for (Circuit circuit : file.getCircuits()) {
+			processCircuit(circuit);
 		}
 	}
 
 	private void processCircuit(Circuit circ) {
 		circ.addCircuitListener(myListener);
 		for (Component comp : circ.getNonWires()) {
-			if (comp instanceof Subcircuit) {
-				ComponentFactory sub = comp.getFactory();
-				depends.addEdge(circ, sub);
+			if (comp.getFactory() instanceof SubcircuitFactory) {
+				SubcircuitFactory factory = (SubcircuitFactory) comp.getFactory();
+				depends.addEdge(circ, factory.getSubcircuit());
 			}
 		}
 	}

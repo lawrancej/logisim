@@ -6,6 +6,8 @@ package com.cburch.logisim.circuit;
 import java.util.Arrays;
 import java.util.List;
 
+import com.cburch.logisim.circuit.appear.CircuitAppearanceEvent;
+import com.cburch.logisim.circuit.appear.CircuitAppearanceListener;
 import com.cburch.logisim.data.AbstractAttributeSet;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
@@ -14,6 +16,7 @@ import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.AttributeSets;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.Direction;
+import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.StdAttr;
 
 class CircuitAttributes extends AbstractAttributeSet {
@@ -49,13 +52,25 @@ class CircuitAttributes extends AbstractAttributeSet {
 		}
 	}
 	
-	private class StaticListener implements AttributeListener {
+	private class MyListener implements AttributeListener, CircuitAppearanceListener {
 		public void attributeListChanged(AttributeEvent e) { }
 
 		public void attributeValueChanged(AttributeEvent e) {
 			@SuppressWarnings("unchecked")
 			Attribute<Object> a = (Attribute<Object>) e.getAttribute();
 			fireAttributeValueChanged(a, e.getValue());
+		}
+		
+		public void circuitAppearanceChanged(CircuitAppearanceEvent e) {
+			SubcircuitFactory factory;
+			factory = (SubcircuitFactory) subcircInstance.getFactory();
+			if (e.isConcerning(CircuitAppearanceEvent.PORTS)) {
+				factory.computePorts(subcircInstance);
+			}
+			if (e.isConcerning(CircuitAppearanceEvent.BOUNDS)) {
+				subcircInstance.recomputeBounds();
+			}
+			subcircInstance.fireInvalidated();
 		}
 	}
 	
@@ -67,20 +82,33 @@ class CircuitAttributes extends AbstractAttributeSet {
 	}
 
 	private Circuit source;
-	private Subcircuit comp;
-	private Direction facing = Direction.EAST;
-	private StaticListener listener;
+	private Instance subcircInstance;
+	private Direction facing;
+	private MyListener listener;
+	private Instance[] pinInstances;
 	
 	public CircuitAttributes(Circuit source) {
 		this.source = source;
+		subcircInstance = null;
+		facing = source.getAppearance().getFacing();
+		pinInstances = new Instance[0];
 	}
 	
-	void setSubcircuit(Subcircuit value) {
-		comp = value;
-		if (comp != null && listener == null) {
-			listener = new StaticListener();
+	void setSubcircuit(Instance value) {
+		subcircInstance = value;
+		if (subcircInstance != null && listener == null) {
+			listener = new MyListener();
 			source.getStaticAttributes().addAttributeListener(listener);
+			source.getAppearance().addCircuitAppearanceListener(listener);
 		}
+	}
+	
+	Instance[] getPinInstances() {
+		return pinInstances;
+	}
+	
+	void setPinInstances(Instance[] value) {
+		pinInstances = value;
 	}
 	
 	public Direction getFacing() {
@@ -90,16 +118,7 @@ class CircuitAttributes extends AbstractAttributeSet {
 	@Override
 	protected void copyInto(AbstractAttributeSet dest) {
 		CircuitAttributes other = (CircuitAttributes) dest;
-		other.comp = null;
-	}
-	
-	@Override
-	public boolean isReadOnly(Attribute<?> attr) {
-		if (attr == StdAttr.FACING) {
-			return comp != null;
-		} else {
-			return source.getStaticAttributes().isReadOnly(attr);
-		}
+		other.subcircInstance = null;
 	}
 	
 	@Override
@@ -129,7 +148,7 @@ class CircuitAttributes extends AbstractAttributeSet {
 			Direction dir = (Direction) value;
 			facing = dir;
 			fireAttributeValueChanged(StdAttr.FACING, dir);
-			if (comp != null) comp.recomputeBounds();
+			if (subcircInstance != null) subcircInstance.recomputeBounds();
 		} else {
 			source.getStaticAttributes().setValue(attr, value);
 			if (attr == NAME_ATTR) {

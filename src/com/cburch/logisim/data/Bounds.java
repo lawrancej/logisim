@@ -219,7 +219,7 @@ public class Bounds {
 		} else if (degrees == 180) {
 			return create(xc - dx - wid, yc - dy - ht, wid, ht);
 		} else if (degrees == 270) {
-			return create(xc + dy, yc + dx, ht, wid);
+			return create(xc - dy - ht, yc + dx, ht, wid);
 		} else {
 			return this;
 		}

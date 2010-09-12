@@ -30,7 +30,7 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 	public static void show(JFrame parent, LogisimFile file, Circuit circuit) {
 		FileStatistics stats = FileStatistics.compute(file, circuit);
 		StatisticsDialog dlog = new StatisticsDialog(parent,
-				circuit.getDisplayName(), new StatisticsTableModel(stats));
+				circuit.getName(), new StatisticsTableModel(stats));
 		dlog.setVisible(true);
 	}
 	

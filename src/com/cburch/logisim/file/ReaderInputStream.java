@@ -70,6 +70,7 @@ public class ReaderInputStream extends InputStream {
      *
      * @exception IOException if the original <code>Reader</code> fails to be read
      */
+    @Override
     public synchronized int read() throws IOException {
         if (in == null) {
             throw new IOException("Stream Closed");
@@ -106,6 +107,7 @@ public class ReaderInputStream extends InputStream {
      *         the end of the stream
      * @exception IOException if an error occurs
      */
+    @Override
     public synchronized int read(byte[] b, int off, int len)
         throws IOException {
         if (in == null) {
@@ -143,6 +145,7 @@ public class ReaderInputStream extends InputStream {
      * @param limit the maximum limit of bytes that can be read before the
      *              mark position becomes invalid
      */
+    @Override
     public synchronized void mark(final int limit) {
         try {
             in.mark(limit);
@@ -156,6 +159,7 @@ public class ReaderInputStream extends InputStream {
      * @return   the current number of bytes ready for reading
      * @exception IOException if an error occurs
      */
+    @Override
     public synchronized int available() throws IOException {
         if (in == null) {
             throw new IOException("Stream Closed");
@@ -173,6 +177,7 @@ public class ReaderInputStream extends InputStream {
     /**
      * @return false - mark is not supported
      */
+    @Override
     public boolean markSupported () {
         return false;   // would be imprecise
     }
@@ -182,6 +187,7 @@ public class ReaderInputStream extends InputStream {
      *
      * @exception IOException if the StringReader fails to be reset
      */
+    @Override
     public synchronized void reset() throws IOException {
         if (in == null) {
             throw new IOException("Stream Closed");
@@ -195,6 +201,7 @@ public class ReaderInputStream extends InputStream {
      *
      * @exception IOException if the original StringReader fails to be closed
      */
+    @Override
     public synchronized void close() throws IOException {
         if (in != null) {
             in.close();

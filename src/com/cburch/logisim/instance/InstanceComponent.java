@@ -28,6 +28,7 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.tools.TextEditable;
 import com.cburch.logisim.tools.ToolTipMaker;
 import com.cburch.logisim.util.EventSourceWeakSupport;
+import com.cburch.logisim.util.StringGetter;
 import com.cburch.logisim.util.UnmodifiableList;
 
 class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
@@ -128,14 +129,20 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
 	// listening methods
 	//
 	public void addComponentListener(ComponentListener l) {
-		if (listeners == null) listeners = new EventSourceWeakSupport<ComponentListener>();
-		listeners.add(l);
+		EventSourceWeakSupport<ComponentListener> ls = listeners;
+		if (ls == null) {
+			ls = new EventSourceWeakSupport<ComponentListener>();
+			ls.add(l);
+			listeners = ls;
+		} else {
+			ls.add(l);
+		}
 	}
 
 	public void removeComponentListener(ComponentListener l) {
 		if (listeners != null) {
 			listeners.remove(l);
-			if (listeners.size() == 0) listeners = null;
+			if (listeners.isEmpty()) listeners = null;
 		}
 	}
 	
@@ -178,7 +185,8 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
 		if (ret != null) {
 			return ret;
 		} else if (key == ToolTipMaker.class) {
-			if (hasToolTips) return this;
+			Object defaultTip = factory.getDefaultToolTip();
+			if (hasToolTips || defaultTip != null) return this;
 		} else if (key == TextEditable.class) {
 			InstanceTextField field = textField;
 			if (field != null) return field;
@@ -264,7 +272,8 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
 				return p.getToolTip();
 			}
 		}
-		return null;
+		StringGetter defaultTip = factory.getDefaultToolTip();
+		return defaultTip == null ? null : defaultTip.get();
 	}
 
 	//

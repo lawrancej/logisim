@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -18,8 +19,10 @@ import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.Expressions;
 import com.cburch.logisim.analyze.model.TruthTable;
 import com.cburch.logisim.comp.Component;
+import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
+import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.proj.Project;
@@ -37,9 +40,9 @@ public class Analyze {
 	 * listed in canonical order (top-down order, with ties
 	 * broken left-right).
 	 */
-	public static SortedMap<Component,String> getPinLabels(Circuit circuit) {
-		Comparator<Component> locOrder = new Comparator<Component>() {
-			public int compare(Component ac, Component bc) {
+	public static SortedMap<Instance, String> getPinLabels(Circuit circuit) {
+		Comparator<Instance> locOrder = new Comparator<Instance>() {
+			public int compare(Instance ac, Instance bc) {
 				Location a = ac.getLocation();
 				Location b = bc.getLocation();
 				if (a.getY() < b.getY()) return -1;
@@ -49,17 +52,17 @@ public class Analyze {
 				return a.hashCode() - b.hashCode();
 			}
 		};
-		SortedMap<Component,String> ret = new TreeMap<Component,String>(locOrder);
+		SortedMap<Instance, String> ret = new TreeMap<Instance, String>(locOrder);
 
 		// Put the pins into the TreeMap, with null labels
-		for (Component pin : circuit.pins.getPins()) {
+		for (Instance pin : circuit.getAppearance().getPortOffsets(Direction.EAST).values()) {
 			ret.put(pin, null);
 		}
 		
 		// Process first the pins that the user has given labels.
-		ArrayList<Component> pinList = new ArrayList<Component>(ret.keySet());
+		ArrayList<Instance> pinList = new ArrayList<Instance>(ret.keySet());
 		HashSet<String> labelsTaken = new HashSet<String>();
-		for (Component pin : pinList) {
+		for (Instance pin : pinList) {
 			String label = pin.getAttributeSet().getValue(StdAttr.LABEL);
 			label = toValidLabel(label);
 			if (label != null) {
@@ -74,11 +77,11 @@ public class Analyze {
 		}
 		
 		// Now process the unlabeled pins.
-		for (Component pin : pinList) {
+		for (Instance pin : pinList) {
 			if (ret.get(pin) != null) continue;
 			
 			String defaultList;
-			if (Circuit.isInput(pin)) {
+			if (Pin.FACTORY.isInputPin(pin)) {
 				defaultList = Strings.get("defaultInputLabels");
 				if (defaultList.indexOf(",") < 0) {
 					defaultList = "a,b,c,d,e,f,g,h";
@@ -158,16 +161,17 @@ public class Analyze {
 	 * arise.
 	 */
 	public static void computeExpression(AnalyzerModel model, Circuit circuit,
-			Map<Component,String> pinNames) throws AnalyzeException {
+			Map<Instance, String> pinNames) throws AnalyzeException {
 		ExpressionMap expressionMap = new ExpressionMap(circuit);
 		
 		ArrayList<String> inputNames = new ArrayList<String>();
 		ArrayList<String> outputNames = new ArrayList<String>();
-		ArrayList<Component> outputPins = new ArrayList<Component>();
-		for (Component pin : pinNames.keySet()) {
-			String label = pinNames.get(pin);
-			if (Circuit.isInput(pin)) {
-				expressionMap.currentCause = pin;
+		ArrayList<Instance> outputPins = new ArrayList<Instance>();
+		for (Map.Entry<Instance, String> entry : pinNames.entrySet()) {
+			Instance pin = entry.getKey();
+			String label = entry.getValue();
+			if (Pin.FACTORY.isInputPin(pin)) {
+				expressionMap.currentCause = Instance.getComponentFor(pin);
 				Expression e = Expressions.variable(label);
 				expressionMap.put(pin.getLocation(), e);
 				inputNames.add(label);
@@ -196,7 +200,7 @@ public class Analyze {
 		
 		model.setVariables(inputNames, outputNames);
 		for (int i = 0; i < outputPins.size(); i++) {
-			Component pin = outputPins.get(i);
+			Instance pin = outputPins.get(i);
 			model.getOutputExpressions().setExpression(outputNames.get(i),
 					expressionMap.get(pin.getLocation()));
 		}
@@ -204,8 +208,8 @@ public class Analyze {
 
 	private static class ExpressionMap extends HashMap<Location,Expression> {
 		private Circuit circuit;
-		private HashSet<Location> dirtyPoints = new HashSet<Location>();
-		private HashMap<Location,Component> causes = new HashMap<Location,Component>();
+		private Set<Location> dirtyPoints = new HashSet<Location>();
+		private Map<Location, Component> causes = new HashMap<Location, Component>();
 		private Component currentCause = null;
 		
 		ExpressionMap(Circuit circuit) {
@@ -250,7 +254,7 @@ public class Analyze {
 		
 	// computes outputs of affected components
 	private static HashSet<Component> getDirtyComponents(Circuit circuit,
-			HashSet<Location> pointsToProcess) throws AnalyzeException {
+			Set<Location> pointsToProcess) throws AnalyzeException {
 		HashSet<Component> dirtyComponents = new HashSet<Component>();
 		for (Location point : pointsToProcess) {
 			for (Component comp : circuit.getNonWires(point)) {
@@ -297,18 +301,19 @@ public class Analyze {
 	//
 	/** Returns a truth table corresponding to the circuit. */
 	public static void computeTable(AnalyzerModel model, Project proj,
-			Circuit circuit, Map<Component,String> pinLabels) {
-		ArrayList<Component> inputPins = new ArrayList<Component>();
+			Circuit circuit, Map<Instance, String> pinLabels) {
+		ArrayList<Instance> inputPins = new ArrayList<Instance>();
 		ArrayList<String> inputNames = new ArrayList<String>();
-		ArrayList<Component> outputPins = new ArrayList<Component>();
+		ArrayList<Instance> outputPins = new ArrayList<Instance>();
 		ArrayList<String> outputNames = new ArrayList<String>();
-		for (Component pin : pinLabels.keySet()) {
-			if (Circuit.isInput(pin)) {
+		for (Map.Entry<Instance, String> entry : pinLabels.entrySet()) {
+			Instance pin = entry.getKey();
+			if (Pin.FACTORY.isInputPin(pin)) {
 				inputPins.add(pin);
-				inputNames.add(pinLabels.get(pin));
+				inputNames.add(entry.getValue());
 			} else {
 				outputPins.add(pin);
-				outputNames.add(pinLabels.get(pin));
+				outputNames.add(entry.getValue());
 			}
 		}
 		
@@ -319,7 +324,7 @@ public class Analyze {
 		for (int i = 0; i < rowCount; i++) {
 			CircuitState circuitState = new CircuitState(proj, circuit);
 			for (int j = 0; j < inputCount; j++) {
-				Component pin = inputPins.get(j);
+				Instance pin = inputPins.get(j);
 				InstanceState pinState = circuitState.getInstanceState(pin);
 				boolean value = TruthTable.isInputSet(i, j, inputCount);
 				Pin.FACTORY.setValue(pinState, value ? Value.TRUE : Value.FALSE);
@@ -339,7 +344,7 @@ public class Analyze {
 				}
 			} else {
 				for (int j = 0; j < columns.length; j++) {
-					Component pin = outputPins.get(j);
+					Instance pin = outputPins.get(j);
 					InstanceState pinState = circuitState.getInstanceState(pin);
 					Entry out;
 					Value outValue = Pin.FACTORY.getValue(pinState).get(0);
