@@ -19,7 +19,7 @@ import com.cburch.logisim.util.GraphicsUtil;
 
 public class Plexers extends Library {
 	public static final Attribute<BitWidth> ATTR_SELECT
-		= Attributes.forBitWidth("select", Strings.getter("plexerSelectBitsAttr"), 1, 4);
+		= Attributes.forBitWidth("select", Strings.getter("plexerSelectBitsAttr"), 1, 5);
 	public static final Object DEFAULT_SELECT = BitWidth.create(1);
 
 	public static final Attribute<Boolean> ATTR_TRISTATE

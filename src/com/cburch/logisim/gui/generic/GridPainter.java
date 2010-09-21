@@ -11,10 +11,13 @@ import java.awt.Rectangle;
 import java.awt.image.MemoryImageSource;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Arrays;
 
-
 public class GridPainter {
+	public static final String ZOOM_PROPERTY = "zoom";
+	public static final String SHOW_GRID_PROPERTY = "showgrid";
+	
 	private static final int GRID_DOT_COLOR = 0xFF777777;
 	private static final int GRID_DOT_ZOOMED_COLOR = 0xFFCCCCCC;
 
@@ -35,6 +38,7 @@ public class GridPainter {
 	}
 
 	private Component destination;
+	private PropertyChangeSupport support;
 	private Listener listener;
 	private ZoomModel zoomModel;
 	private boolean showGrid;
@@ -45,27 +49,49 @@ public class GridPainter {
 	
 	public GridPainter(Component destination) {
 		this.destination = destination;
+		support = new PropertyChangeSupport(this);
 		showGrid = true;
 		gridSize = 10;
 		zoomFactor = 1.0;
 		updateGridImage(gridSize, zoomFactor);
 	}
 	
+	public void addPropertyChangeListener(String prop,
+			PropertyChangeListener listener) {
+		support.addPropertyChangeListener(prop, listener);
+	}
+	
+	public void removePropertyChangeListener(String prop,
+			PropertyChangeListener listener) {
+		support.removePropertyChangeListener(prop, listener);
+	}
+	
 	public boolean getShowGrid() {
 		return showGrid;
+	}
+	
+	public void setShowGrid(boolean value) {
+		if (showGrid != value) {
+			showGrid = value;
+			support.firePropertyChange(SHOW_GRID_PROPERTY, !value, value);
+		}
 	}
 	
 	public double getZoomFactor() {
 		return zoomFactor;
 	}
 	
-	public void setShowGrid(boolean value) {
-		showGrid = value;
+	public void setZoomFactor(double value) {
+		double oldValue = zoomFactor;
+		if (oldValue != value) {
+			zoomFactor = value;
+			updateGridImage(gridSize, value);
+			support.firePropertyChange(ZOOM_PROPERTY, oldValue, value);
+		}
 	}
 	
-	public void setZoomFactor(double value) {
-		zoomFactor = value;
-		updateGridImage(gridSize, value);
+	public ZoomModel getZoomModel() {
+		return zoomModel;
 	}
 	
 	public void setZoomModel(ZoomModel model) {

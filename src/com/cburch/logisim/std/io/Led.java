@@ -25,11 +25,13 @@ public class Led extends InstanceFactory {
 	public Led() {
 		super("LED", Strings.getter("ledComponent"));
 		setAttributes(new Attribute[] {
-				StdAttr.FACING, Io.ATTR_COLOR, Io.ATTR_ACTIVE,
+				StdAttr.FACING, Io.ATTR_ON_COLOR, Io.ATTR_OFF_COLOR,
+				Io.ATTR_ACTIVE,
 				StdAttr.LABEL, Io.ATTR_LABEL_LOC,
 				StdAttr.LABEL_FONT, Io.ATTR_LABEL_COLOR
 			}, new Object[] {
-				Direction.WEST, new Color(240, 0, 0), Boolean.TRUE,
+				Direction.WEST, new Color(240, 0, 0), Color.DARK_GRAY,
+				Boolean.TRUE,
 				"", Io.LABEL_CENTER,
 				StdAttr.DEFAULT_LABEL_FONT, Color.BLACK
 			});
@@ -121,14 +123,15 @@ public class Led extends InstanceFactory {
 	public void paintInstance(InstancePainter painter) {
 		InstanceDataSingleton data = (InstanceDataSingleton) painter.getData();
 		Value val = data == null ? Value.FALSE : (Value) data.getValue();
-		Color color = painter.getAttributeValue(Io.ATTR_COLOR);
 		Bounds bds = painter.getBounds().expand(-1);
 
 		Graphics g = painter.getGraphics();
 		if (painter.getShowState()) {
+			Color onColor = painter.getAttributeValue(Io.ATTR_ON_COLOR);
+			Color offColor = painter.getAttributeValue(Io.ATTR_OFF_COLOR);
 			Boolean activ = painter.getAttributeValue(Io.ATTR_ACTIVE);
 			Object desired = activ.booleanValue() ? Value.TRUE : Value.FALSE;
-			g.setColor(val == desired ? color : Color.DARK_GRAY);
+			g.setColor(val == desired ? onColor : offColor);
 			g.fillOval(bds.getX(), bds.getY(), bds.getWidth(), bds.getHeight());
 		}
 		g.setColor(Color.BLACK);

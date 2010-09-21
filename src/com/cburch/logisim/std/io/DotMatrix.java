@@ -46,10 +46,6 @@ public class DotMatrix extends InstanceFactory {
 	static final Attribute<Integer> ATTR_MATRIX_ROWS
 		= Attributes.forIntegerRange("matrixrows",
 				Strings.getter("ioMatrixRows"), 1, Value.MAX_WIDTH);
-	static final Attribute<Color> ATTR_ON_COLOR
-		= Attributes.forColor("color", Strings.getter("ioOnColor"));
-	static final Attribute<Color> ATTR_OFF_COLOR
-		= Attributes.forColor("offcolor", Strings.getter("ioOffColor"));
 	static final Attribute<AttributeOption> ATTR_DOT_SHAPE
 		= Attributes.forOption("dotshape", Strings.getter("ioMatrixShape"),
 			new AttributeOption[] { SHAPE_CIRCLE, SHAPE_SQUARE });
@@ -60,7 +56,8 @@ public class DotMatrix extends InstanceFactory {
 		super("DotMatrix", Strings.getter("dotMatrixComponent"));
 		setAttributes(new Attribute<?>[] {
 				ATTR_INPUT_TYPE, ATTR_MATRIX_COLS, ATTR_MATRIX_ROWS,
-				ATTR_ON_COLOR, ATTR_OFF_COLOR, ATTR_PERSIST, ATTR_DOT_SHAPE
+				Io.ATTR_ON_COLOR, Io.ATTR_OFF_COLOR,
+				ATTR_PERSIST, ATTR_DOT_SHAPE
 			}, new Object[] {
 				INPUT_COLUMN, Integer.valueOf(5), Integer.valueOf(7),
 				Color.GREEN, Color.DARK_GRAY, Integer.valueOf(0), SHAPE_SQUARE
@@ -172,8 +169,8 @@ public class DotMatrix extends InstanceFactory {
 
 	@Override
 	public void paintInstance(InstancePainter painter) {
-		Color onColor = painter.getAttributeValue(ATTR_ON_COLOR);
-		Color offColor = painter.getAttributeValue(ATTR_OFF_COLOR);
+		Color onColor = painter.getAttributeValue(Io.ATTR_ON_COLOR);
+		Color offColor = painter.getAttributeValue(Io.ATTR_OFF_COLOR);
 		boolean drawSquare = painter.getAttributeValue(ATTR_DOT_SHAPE) == SHAPE_SQUARE;
 
 		State data = getState(painter);

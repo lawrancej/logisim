@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.cburch.draw.actions.ModelAction;
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.undo.Action;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitMutator;

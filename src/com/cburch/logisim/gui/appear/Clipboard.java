@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.util.PropertyChangeWeakSupport;
 import com.cburch.logisim.util.UnmodifiableList;
 

@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -37,6 +39,7 @@ import com.cburch.logisim.gui.generic.CardPanel;
 import com.cburch.logisim.gui.generic.ZoomControl;
 import com.cburch.logisim.gui.generic.ZoomModel;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
+import com.cburch.logisim.proj.LogisimPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.proj.ProjectEvent;
@@ -55,7 +58,7 @@ public class Frame extends JFrame implements LocaleListener {
 	
 	class MyProjectListener
 			implements ProjectListener, LibraryListener, CircuitListener,
-				AttributeListener {
+				AttributeListener, PropertyChangeListener {
 		public void projectChanged(ProjectEvent event) {
 			int action = event.getAction();
 
@@ -108,6 +111,14 @@ public class Frame extends JFrame implements LocaleListener {
 		public void attributeValueChanged(AttributeEvent e) {
 			if (e.getAttribute() == Options.ATTR_TOOLBAR_LOC) {
 				placeToolbar(e.getValue());
+			}
+		}
+
+		public void propertyChange(PropertyChangeEvent evt) {
+			String prop = evt.getPropertyName();
+			if (prop.equals(LogisimPreferences.SHOW_PROJECT_TOOLBAR)) {
+				boolean val = ((Boolean) evt.getNewValue()).booleanValue();
+				projectToolbar.setVisible(val);
 			}
 		}
 	}
@@ -257,11 +268,13 @@ public class Frame extends JFrame implements LocaleListener {
 		if (proj.getTool() == null) {
 			proj.setTool(proj.getOptions().getToolbarData().getFirstTool());
 		}
+		LogisimPreferences.addPropertyChangeListener(
+				LogisimPreferences.SHOW_PROJECT_TOOLBAR, myProjectListener);
+
 		LocaleManager.addLocaleListener(this);
 	}
 	
 	private void placeToolbar(Object loc) {
-		
 		Container contents = getContentPane();
 		contents.remove(toolbar);
 		mainPanelSuper.remove(toolbar);

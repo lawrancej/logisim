@@ -3,6 +3,8 @@
 
 package com.cburch.logisim.data;
 
+import java.awt.Rectangle;
+
 import com.cburch.logisim.util.Cache;
 
 /**
@@ -85,8 +87,8 @@ public class Bounds {
 		return ht;
 	}
 
-	public java.awt.Rectangle toRectangle() {
-		return new java.awt.Rectangle(x, y, wid, ht);
+	public Rectangle toRectangle() {
+		return new Rectangle(x, y, wid, ht);
 	}
 
 
@@ -222,6 +224,26 @@ public class Bounds {
 			return create(xc - dy - ht, yc + dx, ht, wid);
 		} else {
 			return this;
+		}
+	}
+	
+	public Bounds intersect(Bounds other) {
+		int x0 = this.x;
+		int y0 = this.y;
+		int x1 = x0 + this.wid;
+		int y1 = y0 + this.ht;
+		int x2 = other.x;
+		int y2 = other.y;
+		int x3 = x2 + other.wid;
+		int y3 = y2 + other.ht;
+		if (x2 > x0) x0 = x2;
+		if (y2 > y0) y0 = y2;
+		if (x3 < x1) x1 = x3;
+		if (y3 < y1) y1 = y3;
+		if (x1 < x0 || y1 < y0) {
+			return EMPTY_BOUNDS;
+		} else {
+			return create(x0, y0, x1 - x0, y1 - y0);
 		}
 	}
 }

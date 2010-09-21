@@ -8,6 +8,8 @@ import java.awt.Graphics;
 
 import javax.swing.JComponent;
 
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.undo.Action;
 
 
@@ -65,7 +67,7 @@ public class Canvas extends JComponent {
 			if(value != null) value.addCanvasModelListener(listener);
 			selection.clearSelected();
 			repaint();
-			firePropertyChange(TOOL_PROPERTY, oldValue, value);
+			firePropertyChange(MODEL_PROPERTY, oldValue, value);
 		}
 	}
 	

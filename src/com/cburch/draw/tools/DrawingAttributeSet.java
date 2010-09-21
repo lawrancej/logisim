@@ -1,21 +1,41 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.draw.model;
+package com.cburch.draw.tools;
 
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.AbstractCanvasObject;
+import com.cburch.draw.shapes.DrawAttr;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.util.EventSourceWeakSupport;
+import com.cburch.logisim.util.UnmodifiableList;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
 public class DrawingAttributeSet implements AttributeSet, Cloneable {
+	static final List<Attribute<?>> ATTRS_ALL
+		= UnmodifiableList.create(new Attribute<?>[] {
+				DrawAttr.FONT, DrawAttr.ALIGNMENT,
+				DrawAttr.PAINT_TYPE,
+				DrawAttr.STROKE_WIDTH, DrawAttr.STROKE_COLOR,
+				DrawAttr.FILL_COLOR, DrawAttr.TEXT_DEFAULT_FILL,
+				DrawAttr.CORNER_RADIUS });
+	static final List<Object> DEFAULTS_ALL
+		= Arrays.asList(new Object[] {
+				DrawAttr.DEFAULT_FONT, DrawAttr.ALIGN_CENTER,
+				DrawAttr.PAINT_STROKE,
+				Integer.valueOf(1), Color.BLACK,
+				Color.WHITE, Color.BLACK, Integer.valueOf(10) });
+
 	private EventSourceWeakSupport<AttributeListener> listeners;
 	private List<Attribute<?>> attrs;
 	private List<Object> values;
@@ -24,8 +44,8 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 	
 	public DrawingAttributeSet() {
 		listeners = new EventSourceWeakSupport<AttributeListener>();
-		attrs = DrawAttr.ATTRS_ALL;
-		values = DrawAttr.DEFAULTS_ALL;
+		attrs = ATTRS_ALL;
+		values = DEFAULTS_ALL;
 		selectedAttrs = new ArrayList<Attribute<?>>();
 		selectedAttrs.addAll(attrs);
 		selectedView = Collections.unmodifiableList(selectedAttrs);
@@ -128,5 +148,24 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 			}
 		}
 		throw new IllegalArgumentException(attr.toString());
+	}
+	
+	
+	public <E extends CanvasObject> E applyTo(E drawable) {
+		AbstractCanvasObject d = (AbstractCanvasObject) drawable;
+		// use a for(i...) loop since the attribute list may change as we go on
+		for (int i = 0; i < d.getAttributes().size(); i++) {
+			Attribute<?> attr = d.getAttributes().get(i);
+			@SuppressWarnings("unchecked")
+			Attribute<Object> a = (Attribute<Object>) attr;
+			if (this.containsAttribute(a)) {
+				Object value = this.getValue(a);
+				d.setValue(a, value);
+			} else if (attr == DrawAttr.FILL_COLOR
+					&& this.containsAttribute(DrawAttr.TEXT_DEFAULT_FILL)) {
+				d.setValue(a, this.getValue(DrawAttr.TEXT_DEFAULT_FILL));
+			}
+		}
+		return drawable;
 	}
 }

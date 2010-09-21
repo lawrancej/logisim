@@ -19,6 +19,10 @@ public class Io extends Library {
 
 	static final Attribute<Color> ATTR_COLOR = Attributes.forColor("color",
 			Strings.getter("ioColorAttr"));
+	static final Attribute<Color> ATTR_ON_COLOR
+		= Attributes.forColor("color", Strings.getter("ioOnColor"));
+	static final Attribute<Color> ATTR_OFF_COLOR
+		= Attributes.forColor("offcolor", Strings.getter("ioOffColor"));
 	static final Attribute<Object> ATTR_LABEL_LOC = Attributes.forOption("labelloc",
 			Strings.getter("ioLabelLocAttr"),
 			new Object[] { LABEL_CENTER, Direction.NORTH, Direction.SOUTH,

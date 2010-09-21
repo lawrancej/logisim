@@ -7,9 +7,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 
-import com.cburch.draw.canvas.AttributeMapKey;
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.AttributeMapKey;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Attribute;
 
 public class ModelChangeAttributeAction extends ModelAction {

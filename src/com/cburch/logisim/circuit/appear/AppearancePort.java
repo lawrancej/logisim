@@ -10,6 +10,9 @@ import java.util.List;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.Handle;
+import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.Instance;
@@ -27,6 +30,21 @@ public class AppearancePort extends AppearanceElement {
 	public AppearancePort(Location location, Instance pin) {
 		super(location);
 		this.pin = pin;
+	}
+	
+	@Override
+	public boolean matches(CanvasObject other) {
+		if (other instanceof AppearancePort) {
+			AppearancePort that = (AppearancePort) other;
+			return this.matches(that) && this.pin == that.pin;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public int matchesHashCode() {
+		return super.matchesHashCode() + pin.hashCode();
 	}
 
 	@Override
@@ -61,12 +79,14 @@ public class AppearancePort extends AppearanceElement {
 		return p == null || Pin.FACTORY.isInputPin(p);
 	}
 	
+	@Override
 	public Bounds getBounds() {
 		int r = isInput() ? INPUT_RADIUS : OUTPUT_RADIUS;
 		return super.getBounds(r);
 	}
 	
-	public boolean contains(Location loc) {
+	@Override
+	public boolean contains(Location loc, boolean assumeFilled) {
 		if (isInput()) {
 			return getBounds().contains(loc);
 		} else {
@@ -74,18 +94,20 @@ public class AppearancePort extends AppearanceElement {
 		}
 	}
 
-	public List<Location> getHandles(Location handle, int dx, int dy) {
+	@Override
+	public List<Handle> getHandles(HandleGesture gesture) {
 		Location loc = getLocation();
 		
 		int r = isInput() ? INPUT_RADIUS : OUTPUT_RADIUS;
-		return UnmodifiableList.create(new Location[] {
-				loc.translate(-r, -r), loc.translate(r, -r),
-				loc.translate(r, r), loc.translate(-r, r),
-		});
+		return UnmodifiableList.create(new Handle[] {
+				new Handle(this, loc.translate(-r, -r)),
+				new Handle(this, loc.translate(r, -r)),
+				new Handle(this, loc.translate(r, r)),
+				new Handle(this, loc.translate(-r, r)) });
 	}
 
 	@Override
-	public void paint(Graphics g, Location handle, int handleDx, int handleDy) {
+	public void paint(Graphics g, HandleGesture gesture) {
 		Location location = getLocation();
 		int x = location.getX();
 		int y = location.getY();

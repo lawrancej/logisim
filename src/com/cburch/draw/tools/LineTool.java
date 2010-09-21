@@ -15,11 +15,11 @@ import javax.swing.Icon;
 
 import com.cburch.draw.actions.ModelAddAction;
 import com.cburch.draw.canvas.Canvas;
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
-import com.cburch.draw.model.Drawables;
-import com.cburch.draw.model.DrawAttr;
-import com.cburch.draw.model.DrawingAttributeSet;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.shapes.DrawAttr;
+import com.cburch.draw.shapes.LineUtil;
+import com.cburch.draw.shapes.Poly;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.Icons;
@@ -92,9 +92,10 @@ public class LineTool extends AbstractTool {
 			if(!start.equals(end)) {
 				active = false;
 				CanvasModel model = canvas.getModel();
-				List<Location> locs = UnmodifiableList.create(new Location[] {
-						start, end });
-				add = Drawables.createPolyline(locs, attrs);
+				Location[] ends = { start, end };
+				List<Location> locs = UnmodifiableList.create(ends);
+				add = attrs.applyTo(new Poly(false, locs));
+				add.setValue(DrawAttr.PAINT_TYPE, DrawAttr.PAINT_STROKE);
 				canvas.doAction(new ModelAddAction(model, add));
 				repaintArea(canvas);
 			}
@@ -120,7 +121,7 @@ public class LineTool extends AbstractTool {
 			boolean shift = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0;
 			Location newEnd;
 			if (shift) {
-				newEnd = snapTo8Cardinals(mouseStart, mx, my);
+				newEnd = LineUtil.snapTo8Cardinals(mouseStart, mx, my);
 			} else {
 				newEnd = Location.create(mx, my);
 			}
@@ -154,33 +155,6 @@ public class LineTool extends AbstractTool {
 			g.setColor(Color.GRAY);
 			g.drawLine(start.getX(), start.getY(), end.getX(), end.getY());
 		}
-	}
-
-	static Location snapTo8Cardinals(Location from, int mx, int my) {
-		int px = from.getX();
-		int py = from.getY();
-		if(mx != px && my != py) {
-			double ang = Math.atan2(my - py, mx - px);
-			int d45 = (Math.abs(mx - px) + Math.abs(my - py)) / 2;
-			int d = (int) (4 * ang / Math.PI + 4.5);
-			switch(d) {
-			case 0: case 8: // going west
-			case 4: // going east
-				return Location.create(mx, py);
-			case 2: // going north
-			case 6: // going south
-				return Location.create(px, my);
-			case 1: // going northwest
-				return Location.create(px - d45, py - d45);
-			case 3: // going northeast
-				return Location.create(px + d45, py - d45);
-			case 5: // going southeast
-				return Location.create(px + d45, py + d45);
-			case 7: // going southwest
-				return Location.create(px - d45, py + d45);
-			}
-		}
-		return Location.create(mx, my); // should never happen
 	}
 	
 	static Location snapTo4Cardinals(Location from, int mx, int my) {

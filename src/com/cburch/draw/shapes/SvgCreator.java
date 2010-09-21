@@ -1,13 +1,16 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.draw.model;
+package com.cburch.draw.shapes;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.cburch.draw.model.AbstractCanvasObject;
+import com.cburch.draw.model.Handle;
 import com.cburch.logisim.data.Location;
 
 class SvgCreator {
@@ -62,32 +65,74 @@ class SvgCreator {
 		return elt;
 	}
 	
-	public static Element createPolygon(Document doc, Polygon poly) {
-		Element elt = doc.createElement("polygon");
-		populatePoly(elt, poly);
+	public static Element createCurve(Document doc, Curve curve) {
+		Element elt = doc.createElement("path");
+		Location e0 = curve.getEnd0();
+		Location e1 = curve.getEnd1();
+		Location ct = curve.getControl();
+		elt.setAttribute("d", "M" + e0.getX() + "," + e0.getY()
+				+ " Q" + ct.getX() + "," + ct.getY()
+				+ " " + e1.getX() + "," + e1.getY());
+		populateFill(elt, curve);
+		return elt;
+	}
+	
+	public static Element createPoly(Document doc, Poly poly) {
+		Element elt;
+		if (poly.isClosed()) {
+			elt = doc.createElement("polygon");
+		} else {
+			elt = doc.createElement("polyline");
+		}
+
+		StringBuilder points = new StringBuilder();
+		boolean first = true;
+		for (Handle h : poly.getHandles(null)) {
+			if (!first) points.append(" ");
+			points.append(h.getX() + "," + h.getY());
+			first = false;
+		}
+		elt.setAttribute("points", points.toString());
+
 		populateFill(elt, poly);
 		return elt;
 	}
 	
-	public static Element createPolyline(Document doc, Polyline poly) {
-		Element elt = doc.createElement("polyline");
-		populatePoly(elt, poly);
-		populateStroke(elt, poly);
+	public static Element createText(Document doc, Text text) {
+		Element elt = doc.createElement("text");
+		Location loc = text.getLocation();
+		Font font = text.getValue(DrawAttr.FONT);
+		Color fill = text.getValue(DrawAttr.FILL_COLOR);
+		Object halign = text.getValue(DrawAttr.ALIGNMENT);
+		elt.setAttribute("x", "" + loc.getX());
+		elt.setAttribute("y", "" + loc.getY());
+		if (!colorMatches(fill, Color.BLACK)) {
+			elt.setAttribute("fill", getColorString(fill));
+		}
+		if (showOpacity(fill)) {
+			elt.setAttribute("fill-opacity", getOpacityString(fill));
+		}
+		elt.setAttribute("font-family", font.getFamily());
+		elt.setAttribute("font-size", "" + font.getSize());
+		int style = font.getStyle();
+		if ((style & Font.ITALIC) != 0) {
+			elt.setAttribute("font-style", "italic");
+		}
+		if ((style & Font.BOLD) != 0) {
+			elt.setAttribute("font-weight", "bold");
+		}
+		if (halign == DrawAttr.ALIGN_LEFT) {
+			elt.setAttribute("text-anchor", "start");
+		} else if (halign == DrawAttr.ALIGN_RIGHT) {
+			elt.setAttribute("text-anchor", "end");
+		} else {
+			elt.setAttribute("text-anchor", "middle");
+		}
+		elt.appendChild(doc.createTextNode(text.getText()));
 		return elt;
 	}
 	
-	private static void populatePoly(Element elt, Poly poly) {
-		StringBuilder points = new StringBuilder();
-		boolean first = true;
-		for (Location v : poly.getVertices()) {
-			if (!first) points.append(" ");
-			points.append(v.getX() + "," + v.getY());
-			first = false;
-		}
-		elt.setAttribute("points", points.toString());
-	}
-	
-	private static void populateFill(Element elt, DrawingMember shape) {
+	private static void populateFill(Element elt, AbstractCanvasObject shape) {
 		Object type = shape.getValue(DrawAttr.PAINT_TYPE);
 		if (type == DrawAttr.PAINT_FILL) {
 			elt.setAttribute("stroke", "none");
@@ -98,25 +143,40 @@ class SvgCreator {
 			elt.setAttribute("fill", "none");
 		} else {
 			Color fill = shape.getValue(DrawAttr.FILL_COLOR);
-			elt.setAttribute("fill", getColorString(fill));
-			elt.setAttribute("fill-opacity", getOpacityString(fill));
+			if (!colorMatches(fill, Color.BLACK)) {
+				elt.setAttribute("fill", getColorString(fill));
+			}
+			if (showOpacity(fill)) {
+				elt.setAttribute("fill-opacity", getOpacityString(fill));
+			}
 		}
 	}
 	
-	private static void populateStroke(Element elt, DrawingMember shape) {
+	private static void populateStroke(Element elt, AbstractCanvasObject shape) {
 		Integer width = shape.getValue(DrawAttr.STROKE_WIDTH);
 		if (width != null && width.intValue() != 1) {
 			elt.setAttribute("stroke-width", width.toString());
 		}
 		Color stroke = shape.getValue(DrawAttr.STROKE_COLOR);
 		elt.setAttribute("stroke", getColorString(stroke));
-		elt.setAttribute("stroke-opacity", getOpacityString(stroke));
+		if (showOpacity(stroke)) {
+			elt.setAttribute("stroke-opacity", getOpacityString(stroke));
+		}
 		elt.setAttribute("fill", "none");
+	}
+	
+	private static boolean colorMatches(Color a, Color b) {
+		return a.getRed() == b.getRed() && a.getGreen() == b.getGreen()
+			&& a.getBlue() == b.getBlue();
 	}
 	
 	private static String getColorString(Color color) {
 		return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(),
 				color.getBlue());
+	}
+	
+	private static boolean showOpacity(Color color) {
+		return color.getAlpha() != 255;
 	}
 	
 	private static String getOpacityString(Color color) {

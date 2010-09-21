@@ -12,10 +12,10 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import com.cburch.draw.canvas.CanvasModelEvent;
-import com.cburch.draw.canvas.CanvasModelListener;
-import com.cburch.draw.canvas.CanvasObject;
 import com.cburch.draw.canvas.Selection;
+import com.cburch.draw.model.CanvasModelEvent;
+import com.cburch.draw.model.CanvasModelListener;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Drawing;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.data.Bounds;
@@ -90,14 +90,7 @@ public class CircuitAppearance extends Drawing {
 		if (isDefault) {
 			Collection<CanvasObject> shapes;
 			shapes = DefaultAppearance.build(circuitPins.getPins());
-			try {
-				suppressRecompute = true;
-				super.removeObjects(new ArrayList<CanvasObject>(getObjects()));
-				super.addObjects(shapes);
-			} finally {
-				suppressRecompute = false;
-			}
-			fireCircuitAppearanceChanged(CircuitAppearanceEvent.ALL_TYPES);
+			setObjectsForce(shapes);
 		}
 	}
 	
@@ -121,7 +114,7 @@ public class CircuitAppearance extends Drawing {
 	public void setObjectsForce(Collection<? extends CanvasObject> shapes) {
 		try {
 			suppressRecompute = true;
-			super.removeObjects(new ArrayList<CanvasObject>(getObjects()));
+			super.removeObjects(new ArrayList<CanvasObject>(getObjectsFromBottom()));
 			super.addObjects(shapes);
 			isDefault = false;
 		} finally {
@@ -139,10 +132,10 @@ public class CircuitAppearance extends Drawing {
 		}
 		Location offset = findOriginLocation();
 		g.translate(-offset.getX(), -offset.getY());
-		for (CanvasObject shape : getObjects()) {
+		for (CanvasObject shape : getObjectsFromBottom()) {
 			if (!(shape instanceof AppearanceElement)) {
 				Graphics dup = g.create();
-				shape.paint(dup, null, 0, 0);
+				shape.paint(dup, null);
 				dup.dispose();
 			}
 		}
@@ -162,7 +155,7 @@ public class CircuitAppearance extends Drawing {
 	}
 	
 	private AppearanceOrigin findOrigin() {
-		for (CanvasObject shape : getObjects()) {
+		for (CanvasObject shape : getObjectsFromBottom()) {
 			if (shape instanceof AppearanceOrigin) {
 				return (AppearanceOrigin) shape;
 			}
@@ -175,7 +168,7 @@ public class CircuitAppearance extends Drawing {
 		Set<CanvasObject> suppressed = selection.getDrawsSuppressed();
 		List<CanvasObject> ports = new ArrayList<CanvasObject>();
 		CanvasObject origin = null;
-		for (CanvasObject shape : getObjects()) {
+		for (CanvasObject shape : getObjectsFromBottom()) {
 			if (shape instanceof AppearanceElement) {
 				if (shape instanceof AppearancePort) {
 					ports.add(shape);
@@ -200,7 +193,7 @@ public class CircuitAppearance extends Drawing {
 		if (suppressed.contains(shape)) {
 			selection.drawSuppressed(dup, shape);
 		} else {
-			shape.paint(dup, null, 0, 0);
+			shape.paint(dup, null);
 		}
 		dup.dispose();
 	}
@@ -216,7 +209,7 @@ public class CircuitAppearance extends Drawing {
 	private Bounds getBounds(boolean relativeToOrigin) {
 		Bounds ret = null;
 		Location offset = null;
-		for (CanvasObject o : getObjects()) {
+		for (CanvasObject o : getObjectsFromBottom()) {
 			if (o instanceof AppearanceElement) {
 				Location loc = ((AppearanceElement) o).getLocation();
 				if (o instanceof AppearanceOrigin) {
@@ -248,7 +241,7 @@ public class CircuitAppearance extends Drawing {
 		Location origin = null;
 		Direction defaultFacing = Direction.EAST;
 		List<AppearancePort> ports = new ArrayList<AppearancePort>();
-		for (CanvasObject shape : getObjects()) {
+		for (CanvasObject shape : getObjectsFromBottom()) {
 			if (shape instanceof AppearancePort) {
 				ports.add((AppearancePort) shape);
 			} else if (shape instanceof AppearanceOrigin) {

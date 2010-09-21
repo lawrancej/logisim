@@ -8,14 +8,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import com.cburch.draw.canvas.ActionDispatcher;
 import com.cburch.draw.canvas.Canvas;
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasModelEvent;
-import com.cburch.draw.canvas.CanvasModelListener;
-import com.cburch.draw.canvas.CanvasObject;
 import com.cburch.draw.canvas.CanvasTool;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasModelEvent;
+import com.cburch.draw.model.CanvasModelListener;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.undo.Action;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitState;
@@ -32,9 +34,20 @@ public class AppearanceCanvas extends Canvas
 	private static final int THRESH_SIZE_UPDATE = 10;
 		// don't bother to update the size if it hasn't changed more than this
 	
-	private class Listener implements CanvasModelListener {
+	private class Listener
+			implements CanvasModelListener, PropertyChangeListener {
 		public void modelChanged(CanvasModelEvent event) {
 			computeSize(false);
+		}
+
+		public void propertyChange(PropertyChangeEvent evt) {
+			String prop = evt.getPropertyName();
+			if (prop.equals(GridPainter.ZOOM_PROPERTY)) {
+				CanvasTool t = getTool();
+				if (t != null) {
+					t.zoomFactorChanged(AppearanceCanvas.this);
+				}
+			}
 		}
 	}
 
@@ -57,6 +70,7 @@ public class AppearanceCanvas extends Canvas
 
 		CanvasModel model = super.getModel();
 		if (model != null) model.addCanvasModelListener(listener);
+		grid.addPropertyChangeListener(GridPainter.ZOOM_PROPERTY, listener);
 	}
 	
 	@Override
@@ -114,7 +128,9 @@ public class AppearanceCanvas extends Canvas
 	@Override
 	public void doAction(Action canvasAction) {
 		Circuit circuit = circuitState.getCircuit();
-		proj.doAction(new CanvasActionAdapter(circuit, canvasAction));
+		if (proj.getLogisimFile().contains(circuit)) {
+			proj.doAction(new CanvasActionAdapter(circuit, canvasAction));
+		}
 	}
 	
 	@Override

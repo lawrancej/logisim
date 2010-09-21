@@ -30,4 +30,8 @@ public abstract class EditHandler {
 	public abstract void delete();
 	public abstract void duplicate();
 	public abstract void selectAll();
+	public abstract void raise();
+	public abstract void lower();
+	public abstract void addControlPoint();
+	public abstract void removeControlPoint();
 }

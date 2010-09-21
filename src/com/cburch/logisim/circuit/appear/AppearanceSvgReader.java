@@ -7,18 +7,18 @@ import java.util.Map;
 
 import org.w3c.dom.Element;
 
-import com.cburch.draw.model.DrawingMember;
-import com.cburch.draw.model.SvgReader;
+import com.cburch.draw.model.AbstractCanvasObject;
+import com.cburch.draw.shapes.SvgReader;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.Instance;
 
 public class AppearanceSvgReader {
-	public static DrawingMember createShape(Element elt, Map<Location, Instance> pins) {
+	public static AbstractCanvasObject createShape(Element elt, Map<Location, Instance> pins) {
 		String name = elt.getTagName();
 		if (name.equals("circ-origin")) {
 			Location loc = getLocation(elt);
-			DrawingMember ret = new AppearanceOrigin(loc);
+			AbstractCanvasObject ret = new AppearanceOrigin(loc);
 			if (elt.hasAttribute("facing")) {
 				Direction facing = Direction.parse(elt.getAttribute("facing"));
 				ret.setValue(AppearanceOrigin.FACING, facing);

@@ -6,25 +6,21 @@ package com.cburch.draw.actions;
 import java.util.Collection;
 import java.util.Collections;
 
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
-import com.cburch.logisim.data.Location;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.Handle;
 
 public class ModelInsertHandleAction extends ModelAction {
-	private CanvasObject handleObject;
-	private Location handle;
-	private Location newHandle;
+	private Handle desired;
 	
-	public ModelInsertHandleAction(CanvasModel model, CanvasObject shape,
-			Location handle) {
+	public ModelInsertHandleAction(CanvasModel model, Handle desired) {
 		super(model);
-		this.handleObject = shape;
-		this.handle = handle;
+		this.desired = desired;
 	}
 
 	@Override
 	public Collection<CanvasObject> getObjects() {
-		return Collections.singleton(handleObject);
+		return Collections.singleton(desired.getObject());
 	}
 
 	@Override
@@ -34,13 +30,11 @@ public class ModelInsertHandleAction extends ModelAction {
 	
 	@Override
 	void doSub(CanvasModel model) {
-		newHandle = model.insertHandle(handleObject, handle, null);
+		model.insertHandle(desired, null);
 	}
 	
 	@Override
 	void undoSub(CanvasModel model) {
-		if(handleObject.canDeleteHandle(newHandle)) {
-			model.deleteHandle(handleObject, newHandle);
-		}
+		model.deleteHandle(desired);
 	}
 }

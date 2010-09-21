@@ -25,4 +25,6 @@ public abstract class CanvasTool {
 	public void keyPressed(Canvas canvas, KeyEvent e) { }
 	public void keyReleased(Canvas canvas, KeyEvent e) { }
 	public void keyTyped(Canvas canvas, KeyEvent e) { }
+	
+	public void zoomFactorChanged(Canvas canvas) { }
 }

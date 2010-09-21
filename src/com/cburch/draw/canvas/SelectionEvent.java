@@ -6,9 +6,12 @@ package com.cburch.draw.canvas;
 import java.util.Collection;
 import java.util.EventObject;
 
+import com.cburch.draw.model.CanvasObject;
+
 public class SelectionEvent extends EventObject {
 	public static final int ACTION_ADDED = 0;
 	public static final int ACTION_REMOVED = 1;
+	public static final int ACTION_HANDLE = 2;
 	
 	private int action;
 	private Collection<CanvasObject> affected;

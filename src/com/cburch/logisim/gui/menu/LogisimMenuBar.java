@@ -26,6 +26,10 @@ public class LogisimMenuBar extends JMenuBar {
 	public static final LogisimMenuItem DELETE = new LogisimMenuItem("Delete");
 	public static final LogisimMenuItem DUPLICATE = new LogisimMenuItem("Duplicate");
 	public static final LogisimMenuItem SELECT_ALL = new LogisimMenuItem("SelectAll");
+	public static final LogisimMenuItem RAISE = new LogisimMenuItem("Raise");
+	public static final LogisimMenuItem LOWER = new LogisimMenuItem("Lower");
+	public static final LogisimMenuItem ADD_CONTROL = new LogisimMenuItem("AddControl");
+	public static final LogisimMenuItem REMOVE_CONTROL = new LogisimMenuItem("RemoveControl");
 	public static final LogisimMenuItem ADD_CIRCUIT = new LogisimMenuItem("AddCircuit");
 	public static final LogisimMenuItem MOVE_CIRCUIT_UP = new LogisimMenuItem("MoveCircuitUp");
 	public static final LogisimMenuItem MOVE_CIRCUIT_DOWN = new LogisimMenuItem("MoveCircuitDown");

@@ -9,10 +9,10 @@ import java.util.Collections;
 import javax.swing.JFrame;
 
 import com.cburch.draw.canvas.Canvas;
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Drawing;
-import com.cburch.draw.model.Drawables;
-import com.cburch.draw.model.DrawingAttributeSet;
+import com.cburch.draw.shapes.Rectangle;
+import com.cburch.draw.tools.DrawingAttributeSet;
 import com.cburch.draw.undo.UndoLog;
 import com.cburch.draw.undo.UndoLogDispatcher;
 import com.cburch.logisim.gui.generic.AttributeTable;
@@ -23,7 +23,7 @@ public class Main {
 	public static void main(String[] args) {
 		DrawingAttributeSet attrs = new DrawingAttributeSet();
 		Drawing model = new Drawing();
-		CanvasObject rect = Drawables.createRectangle(25, 25, 50, 50, attrs);
+		CanvasObject rect = attrs.applyTo(new Rectangle(25, 25, 50, 50));
 		model.addObjects(Collections.singleton(rect));
 
 		showFrame(model, "Drawing 1");

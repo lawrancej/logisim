@@ -3,11 +3,12 @@
 
 package com.cburch.draw.model;
 
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.shapes.DrawAttr;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
+import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.EventSourceWeakSupport;
 import com.cburch.logisim.util.GraphicsUtil;
@@ -15,15 +16,19 @@ import com.cburch.logisim.util.GraphicsUtil;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
+import java.util.Random;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public abstract class DrawingMember
+public abstract class AbstractCanvasObject
 		implements AttributeSet, CanvasObject, Cloneable {
+	private static final int OVERLAP_TRIES = 50;
+	private static final int GENERATE_RANDOM_TRIES = 20;
+	
 	private EventSourceWeakSupport<AttributeListener> listeners;
 	
-	public DrawingMember() {
+	public AbstractCanvasObject() {
 		listeners = new EventSourceWeakSupport<AttributeListener>();
 	}
 	
@@ -31,33 +36,85 @@ public abstract class DrawingMember
 		return this;
 	}
 	
+	public abstract String getDisplayName();
 	public abstract Element toSvgElement(Document doc);
-	protected abstract void updateValue(Attribute<?> attr, Object value);
+	public abstract boolean matches(CanvasObject other);
+	public abstract int matchesHashCode();
+
+	public abstract Bounds getBounds();
+	public abstract boolean contains(Location loc, boolean assumeFilled);
 	public abstract void translate(int dx, int dy);
-	public abstract void moveHandle(Location handle, int dx, int dy);
+	public abstract List<Handle> getHandles(HandleGesture gesture);
+	protected abstract void updateValue(Attribute<?> attr, Object value);
+
+	public abstract void paint(Graphics g, HandleGesture gesture);
 	
 	public boolean canRemove() {
 		return true;
 	}
 	
-	public boolean canMoveHandle(Location handle) {
-		return true;
-	}
-	
-	public boolean canInsertHandle(Location handle) {
+	public boolean canMoveHandle(Handle handle) {
 		return false;
 	}
 	
-	public boolean canDeleteHandle(Location handle) {
-		return false;
+	public Handle canInsertHandle(Location desired) {
+		return null;
 	}
 	
-	public Location insertHandle(Location handle, Location desiredLocation) {
+	public Handle canDeleteHandle(Location loc) {
+		return null;
+	}
+	
+	public Handle moveHandle(HandleGesture gesture) {
+		throw new UnsupportedOperationException("moveHandle");
+	}
+	
+	public void insertHandle(Handle desired, Handle previous) {
 		throw new UnsupportedOperationException("insertHandle");
 	}
 	
-	public Location deleteHandle(Location handle) {
+	public Handle deleteHandle(Handle handle) {
 		throw new UnsupportedOperationException("deleteHandle");
+	}
+	
+	public boolean overlaps(CanvasObject other) {
+		Bounds a = this.getBounds();
+		Bounds b = other.getBounds();
+		Bounds c = a.intersect(b);
+		Random rand = new Random();
+		if (c.getWidth() == 0 || c.getHeight() == 0) {
+			return false;
+		} else if (other instanceof AbstractCanvasObject) {
+			AbstractCanvasObject that = (AbstractCanvasObject) other;
+			for (int i = 0; i < OVERLAP_TRIES; i++) {
+				if (i % 2 == 0) {
+					Location loc = this.getRandomPoint(c, rand);
+					if (loc != null && that.contains(loc, false)) return true;
+				} else {
+					Location loc = that.getRandomPoint(c, rand);
+					if (loc != null && this.contains(loc, false)) return true;
+				}
+			}
+			return false;
+		} else {
+			for (int i = 0; i < OVERLAP_TRIES; i++) {
+				Location loc = this.getRandomPoint(c, rand);
+				if (loc != null && other.contains(loc, false)) return true;
+			}
+			return false;
+		}
+	}
+
+	protected Location getRandomPoint(Bounds bds, Random rand) {
+		int x = bds.getX();
+		int y = bds.getY();
+		int w = bds.getWidth();
+		int h = bds.getHeight();
+		for (int i = 0; i < GENERATE_RANDOM_TRIES; i++) {
+			Location loc = Location.create(x + rand.nextInt(w), y + rand.nextInt(h));
+			if (contains(loc, false)) return loc;
+		}
+		return null;
 	}
 
 	// methods required by AttributeSet interface
@@ -75,7 +132,7 @@ public abstract class DrawingMember
 	@Override
 	public CanvasObject clone() {
 		try {
-			DrawingMember ret = (DrawingMember) super.clone();
+			AbstractCanvasObject ret = (AbstractCanvasObject) super.clone();
 			ret.listeners = new EventSourceWeakSupport<AttributeListener>();
 			return ret;
 		} catch (CloneNotSupportedException e) {

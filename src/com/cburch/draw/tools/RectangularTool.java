@@ -11,8 +11,8 @@ import java.awt.event.MouseEvent;
 
 import com.cburch.draw.actions.ModelAddAction;
 import com.cburch.draw.canvas.Canvas;
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 

@@ -6,29 +6,27 @@ package com.cburch.draw.actions;
 import java.util.Collection;
 import java.util.Collections;
 
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
-import com.cburch.draw.undo.Action;
-import com.cburch.logisim.data.Location;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.Handle;
+import com.cburch.draw.model.HandleGesture;
 
 public class ModelMoveHandleAction extends ModelAction {
-	private CanvasObject handleObject;
-	private Location handle;
-	private int dx;
-	private int dy;
+	private HandleGesture gesture;
+	private Handle newHandle;
 	
-	public ModelMoveHandleAction(CanvasModel model, CanvasObject shape,
-			Location handle, int dx, int dy) {
+	public ModelMoveHandleAction(CanvasModel model, HandleGesture gesture) {
 		super(model);
-		this.handleObject = shape;
-		this.handle = handle;
-		this.dx = dx;
-		this.dy = dy;
+		this.gesture = gesture;
+	}
+	
+	public Handle getNewHandle() {
+		return newHandle;
 	}
 
 	@Override
 	public Collection<CanvasObject> getObjects() {
-		return Collections.singleton(handleObject);
+		return Collections.singleton(gesture.getHandle().getObject());
 	}
 
 	@Override
@@ -38,33 +36,15 @@ public class ModelMoveHandleAction extends ModelAction {
 	
 	@Override
 	void doSub(CanvasModel model) {
-		model.moveHandle(handleObject, handle, dx, dy);
+		newHandle = model.moveHandle(gesture);
 	}
 	
 	@Override
 	void undoSub(CanvasModel model) {
-		model.moveHandle(handleObject, handle.translate(dx, dy), -dx, -dy);
-	}
-	
-	@Override
-	public boolean shouldAppendTo(Action other) {
-		if(other instanceof ModelMoveHandleAction) {
-			ModelMoveHandleAction o = (ModelMoveHandleAction) other;
-			return this.handleObject == o.handleObject && this.handle.equals(o.handle);
-		} else {
-			return false;
-		}
-	}
-	
-	@Override
-	public Action append(Action other) {
-		if(other instanceof ModelMoveHandleAction) {
-			ModelMoveHandleAction o = (ModelMoveHandleAction) other;
-			if(this.handleObject == o.handleObject && this.handle.equals(o.handle)) {
-				return new ModelMoveHandleAction(getModel(), this.handleObject,
-						this.handle, this.dx + o.dx, this.dy + o.dy);
-			}
-		}
-		return super.append(other);
+		Handle oldHandle = gesture.getHandle();
+		int dx = oldHandle.getX() - newHandle.getX();
+		int dy = oldHandle.getY() - newHandle.getY();
+		HandleGesture reverse = new HandleGesture(newHandle, dx, dy, 0);
+		model.moveHandle(reverse);
 	}
 }

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
 
 public class ModelRemoveAction extends ModelAction {
 	private ArrayList<CanvasObject> removed;

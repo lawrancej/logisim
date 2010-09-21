@@ -1,34 +1,45 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.draw.model;
+package com.cburch.draw.shapes;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.w3c.dom.Element;
 
+import com.cburch.draw.model.AbstractCanvasObject;
 import com.cburch.logisim.data.Attribute;
+import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.UnmodifiableList;
 
 public class SvgReader {
 	private SvgReader() { }
 	
-	public static DrawingMember createShape(Element elt) {
+	private static final Pattern PATH_REGEX = Pattern.compile("[a-zA-Z]|[-0-9.]+");
+	
+	public static AbstractCanvasObject createShape(Element elt) {
 		String name = elt.getTagName();
-		DrawingMember ret;
-		if (name.equals("rect")) {
-			ret = createRectangle(elt);
-		} else if (name.equals("ellipse")) {
+		AbstractCanvasObject ret;
+		if (name.equals("ellipse")) {
 			ret = createOval(elt);
 		} else if (name.equals("line")) {
 			ret = createLine(elt);
+		} else if (name.equals("path")) {
+			ret = createPath(elt);
 		} else if (name.equals("polyline")) {
 			ret = createPolyline(elt);
 		} else if (name.equals("polygon")) {
 			ret = createPolygon(elt);
+		} else if (name.equals("rect")) {
+			ret = createRectangle(elt);
+		} else if (name.equals("text")) {
+			ret = createText(elt);
 		} else {
 			return null;
 		}
@@ -66,13 +77,13 @@ public class SvgReader {
 		return ret;
 	}
 	
-	private static DrawingMember createRectangle(Element elt) {
+	private static AbstractCanvasObject createRectangle(Element elt) {
 		int x = Integer.parseInt(elt.getAttribute("x"));
 		int y = Integer.parseInt(elt.getAttribute("y"));
 		int w = Integer.parseInt(elt.getAttribute("width"));
 		int h = Integer.parseInt(elt.getAttribute("height"));
 		if (elt.hasAttribute("rx")) {
-			DrawingMember ret = new RoundRectangle(x, y, w, h);
+			AbstractCanvasObject ret = new RoundRectangle(x, y, w, h);
 			int rx = Integer.parseInt(elt.getAttribute("rx"));
 			ret.setValue(DrawAttr.CORNER_RADIUS, Integer.valueOf(rx));
 			return ret;
@@ -81,7 +92,7 @@ public class SvgReader {
 		}
 	}
 
-	private static DrawingMember createOval(Element elt) {
+	private static AbstractCanvasObject createOval(Element elt) {
 		double cx = Double.parseDouble(elt.getAttribute("cx"));
 		double cy = Double.parseDouble(elt.getAttribute("cy"));
 		double rx = Double.parseDouble(elt.getAttribute("rx"));
@@ -93,7 +104,7 @@ public class SvgReader {
 		return new Oval(x, y, w, h);
 	}
 	
-	private static DrawingMember createLine(Element elt) {
+	private static AbstractCanvasObject createLine(Element elt) {
 		int x0 = Integer.parseInt(elt.getAttribute("x1"));
 		int y0 = Integer.parseInt(elt.getAttribute("y1"));
 		int x1 = Integer.parseInt(elt.getAttribute("x2"));
@@ -101,12 +112,43 @@ public class SvgReader {
 		return new Line(x0, y0, x1, y1);
 	}
 	
-	private static DrawingMember createPolygon(Element elt) {
-		return new Polygon(parsePoints(elt.getAttribute("points")));
+	private static AbstractCanvasObject createPolygon(Element elt) {
+		return new Poly(true, parsePoints(elt.getAttribute("points")));
 	}
 	
-	private static DrawingMember createPolyline(Element elt) {
-		return new Polyline(parsePoints(elt.getAttribute("points")));
+	private static AbstractCanvasObject createPolyline(Element elt) {
+		return new Poly(false, parsePoints(elt.getAttribute("points")));
+	}
+	
+	private static AbstractCanvasObject createText(Element elt) {
+		int x = Integer.parseInt(elt.getAttribute("x"));
+		int y = Integer.parseInt(elt.getAttribute("y"));
+		String text = elt.getTextContent();
+		Text ret = new Text(x, y, text);
+		
+		String fontFamily = elt.getAttribute("font-family");
+		String fontStyle = elt.getAttribute("font-style");
+		String fontWeight = elt.getAttribute("font-weight");
+		String fontSize = elt.getAttribute("font-size");
+		int styleFlags = 0;
+		if (fontStyle.equals("italic")) styleFlags |= Font.ITALIC;
+		if (fontWeight.equals("bold")) styleFlags |= Font.BOLD;
+		int size = Integer.parseInt(fontSize);
+		ret.setValue(DrawAttr.FONT, new Font(fontFamily, styleFlags, size));
+		
+		String alignStr = elt.getAttribute("text-anchor");
+		AttributeOption halign;
+		if (alignStr.equals("start")) {
+			halign = DrawAttr.ALIGN_LEFT;
+		} else if (alignStr.equals("end")) {
+			halign = DrawAttr.ALIGN_RIGHT;
+		} else {
+			halign = DrawAttr.ALIGN_CENTER;
+		}
+		ret.setValue(DrawAttr.ALIGNMENT, halign);
+		
+		// fill color is handled after we return
+		return ret;
 	}
 	
 	private static List<Location> parsePoints(String points) {
@@ -119,6 +161,67 @@ public class SvgReader {
 			ret[i] = Location.create(x, y);
 		}
 		return UnmodifiableList.create(ret);
+	}
+	
+	private static AbstractCanvasObject createPath(Element elt) {
+		Matcher patt = PATH_REGEX.matcher(elt.getAttribute("d"));
+		List<String> tokens = new ArrayList<String>();
+		int type = -1; // -1 error, 0 start, 1 curve, 2 polyline
+		while (patt.find()) {
+			String token = patt.group();
+			tokens.add(token);
+			if (Character.isLetter(token.charAt(0))) {
+				switch (token.charAt(0)) {
+				case 'M':
+					if (type == -1) type = 0;
+					else type = -1;
+					break;
+				case 'Q': case 'q':
+					if (type == 0) type = 1;
+					else type = -1;
+					break;
+				/* not supported
+				case 'L': case 'l':
+				case 'H': case 'h':
+				case 'V': case 'v':
+					if (type == 0 || type == 2) type = 2;
+					else type = -1;
+					break;
+				*/
+				default:
+					type = -1;
+				}
+				if (type == -1) {
+					throw new NumberFormatException("Unrecognized path command '" + token.charAt(0) + "'");
+				}
+			}
+		}
+	
+		if (type == 1) {
+			if (tokens.size() == 8 && tokens.get(0).equals("M")
+					&& tokens.get(3).toUpperCase().equals("Q")) {
+				int x0 = Integer.parseInt(tokens.get(1));
+				int y0 = Integer.parseInt(tokens.get(2));
+				int x1 = Integer.parseInt(tokens.get(4));
+				int y1 = Integer.parseInt(tokens.get(5));
+				int x2 = Integer.parseInt(tokens.get(6));
+				int y2 = Integer.parseInt(tokens.get(7));
+				if (tokens.get(3).equals("q")) {
+					x1 += x0;
+					y1 += y0;
+					x2 += x0;
+					y2 += y0;
+				}
+				Location e0 = Location.create(x0, y0);
+				Location e1 = Location.create(x2, y2);
+				Location ct = Location.create(x1, y1);
+				return new Curve(e0, e1, ct);
+			} else {
+				throw new NumberFormatException("Unexpected format for curve");
+			}
+		} else {
+			throw new NumberFormatException("Unrecognized path");
+		}
 	}
 	
 	private static Color getColor(String hue, String opacity) {

@@ -10,6 +10,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import com.cburch.draw.model.CanvasModelEvent;
+import com.cburch.draw.model.CanvasModelListener;
+
 class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
 		CanvasModelListener {
 	private Canvas canvas;

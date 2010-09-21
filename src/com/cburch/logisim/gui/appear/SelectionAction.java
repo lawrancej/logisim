@@ -6,9 +6,9 @@ package com.cburch.logisim.gui.appear;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
 import com.cburch.draw.canvas.Selection;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.StringGetter;

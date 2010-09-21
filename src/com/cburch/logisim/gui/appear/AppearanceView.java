@@ -5,8 +5,8 @@ package com.cburch.logisim.gui.appear;
 
 import com.cburch.draw.canvas.Canvas;
 import com.cburch.draw.gui.AttributeManager;
-import com.cburch.draw.model.DrawingAttributeSet;
 import com.cburch.draw.toolbar.ToolbarModel;
+import com.cburch.draw.tools.DrawingAttributeSet;
 import com.cburch.draw.tools.SelectTool;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.data.AttributeSet;

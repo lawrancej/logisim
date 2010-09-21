@@ -3,16 +3,17 @@
 
 package com.cburch.logisim.circuit.appear;
 
-import java.awt.Graphics;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
-import com.cburch.draw.model.DrawingMember;
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.AbstractCanvasObject;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 
-public abstract class AppearanceElement extends DrawingMember {
+public abstract class AppearanceElement extends AbstractCanvasObject {
 	private Location location;
 	
 	public AppearanceElement(Location location) {
@@ -21,6 +22,21 @@ public abstract class AppearanceElement extends DrawingMember {
 	
 	public Location getLocation() {
 		return location;
+	}
+	
+	@Override
+	public boolean matches(CanvasObject other) {
+		if (other instanceof AppearanceElement) {
+			AppearanceElement that = (AppearanceElement) other;
+			return this.location.equals(that.location);
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public int matchesHashCode() {
+		return location.hashCode();
 	}
 
 	@Override
@@ -36,16 +52,6 @@ public abstract class AppearanceElement extends DrawingMember {
 	@Override
 	public boolean canRemove() {
 		return false;
-	}
-	
-	@Override
-	public boolean canMoveHandle(Location handle) {
-		return false;
-	}
-
-	@Override
-	public void moveHandle(Location handle, int dx, int dy) {
-		// nothing to do
 	}
 
 	@Override
@@ -63,13 +69,14 @@ public abstract class AppearanceElement extends DrawingMember {
 		int dy = loc.getY() - location.getY();
 		return dx * dx + dy * dy < radius * radius;
 	}
+	
+	@Override
+	public Location getRandomPoint(Bounds bds, Random rand) {
+		return null; // this is only used to determine what lies on top of what - but the elements will always be on top anyway
+	}
 
 	protected Bounds getBounds(int radius) {
 		return Bounds.create(location.getX() - radius, location.getY() - radius,
 				2 * radius, 2 * radius);
 	}
-
-	public abstract void paint(Graphics g, Location handle, int handleDx, int handleDy);
-
-	public abstract String getDisplayName();
 }

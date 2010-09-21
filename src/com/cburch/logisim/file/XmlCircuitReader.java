@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.w3c.dom.Element;
 
-import com.cburch.draw.model.DrawingMember;
+import com.cburch.draw.model.AbstractCanvasObject;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitMutator;
 import com.cburch.logisim.circuit.CircuitTransaction;
@@ -73,7 +73,7 @@ public class XmlCircuitReader extends CircuitTransaction {
 			}
 		}
 		
-		List<DrawingMember> appearance = circData.appearance;
+		List<AbstractCanvasObject> appearance = circData.appearance;
 		if (appearance != null && !appearance.isEmpty()) {
 			dest.getAppearance().setObjectsForce(appearance);
 		}

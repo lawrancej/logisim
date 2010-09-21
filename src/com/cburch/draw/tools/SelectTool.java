@@ -17,15 +17,15 @@ import java.util.Set;
 
 import javax.swing.Icon;
 
-import com.cburch.draw.actions.ModelDeleteHandleAction;
-import com.cburch.draw.actions.ModelInsertHandleAction;
 import com.cburch.draw.actions.ModelMoveHandleAction;
 import com.cburch.draw.actions.ModelRemoveAction;
 import com.cburch.draw.actions.ModelTranslateAction;
 import com.cburch.draw.canvas.Canvas;
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
 import com.cburch.draw.canvas.Selection;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.Handle;
+import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
@@ -42,12 +42,15 @@ public class SelectTool extends AbstractTool {
 	private static final int DRAG_TOLERANCE = 2;
 	private static final int HANDLE_SIZE = 8;
 	
+	private static final Color RECT_SELECT_BACKGROUND = new Color(0, 0, 0, 32);
+	
 	private int curAction;
 	private Location dragStart;
 	private Location dragEnd;
 	private boolean dragEffective;
 	private int lastMouseX;
 	private int lastMouseY;
+	private HandleGesture curGesture;
 	
 	public SelectTool() {
 		curAction = IDLE;
@@ -99,21 +102,22 @@ public class SelectTool extends AbstractTool {
 		lastMouseX = mx;
 		lastMouseY = my;
 		Selection selection = canvas.getSelection();
-		selection.setHandleSelected(null, null);
+		selection.setHandleSelected(null);
 		
 		// see whether user is pressing within an existing handle
 		int halfSize = getHandleSize(canvas) / 2;
 		CanvasObject clicked = null;
 		for (CanvasObject shape : selection.getSelected()) {
-			List<Location> handles = shape.getHandles(null, 0, 0);
-			for (Location loc : handles) {
-				int dx = loc.getX() - mx;
-				int dy = loc.getY() - my;
+			List<Handle> handles = shape.getHandles(null);
+			for (Handle han : handles) {
+				int dx = han.getX() - mx;
+				int dy = han.getY() - my;
 				if (dx >= -halfSize && dx <= halfSize
 						&& dy >= -halfSize && dy <= halfSize) {
-					if (shape.canMoveHandle(loc)) {
+					if (shape.canMoveHandle(han)) {
 						curAction = MOVE_HANDLE;
-						selection.setHandleSelected(shape, loc);
+						curGesture = new HandleGesture(han, 0, 0,
+								e.getModifiersEx());
 						repaintArea(canvas);
 						return;
 					} else if (clicked == null) {
@@ -125,7 +129,7 @@ public class SelectTool extends AbstractTool {
 
 		// see whether the user is clicking within a shape
 		if (clicked == null) {
-			clicked = canvas.getModel().getObjectAt(e.getX(), e.getY());
+			clicked = getObjectAt(canvas.getModel(), e.getX(), e.getY(), false);
 		}
 		if (clicked != null) {
 			if (shift && selection.isSelected(clicked)) {
@@ -143,6 +147,19 @@ public class SelectTool extends AbstractTool {
 			return;
 		}
 		
+		clicked = getObjectAt(canvas.getModel(), e.getX(), e.getY(), true);
+		if (clicked != null && selection.isSelected(clicked)) {
+			if (shift) {
+				selection.setSelected(clicked, false);
+				curAction = IDLE;
+			} else {
+				selection.setMovingShapes(selection.getSelected(), 0, 0);
+				curAction = MOVE_ALL;
+			}
+			repaintArea(canvas);
+			return;
+		}
+
 		if (shift) {
 			curAction = RECT_TOGGLE;
 		} else {
@@ -167,36 +184,69 @@ public class SelectTool extends AbstractTool {
 		int action = curAction;
 		curAction = IDLE;
 		
+		if (!dragEffective) {
+			Location loc = dragEnd;
+			CanvasObject o = getObjectAt(model, loc.getX(), loc.getY(), false);
+			if (o != null) {
+				Handle han = o.canDeleteHandle(loc);
+				if (han != null) {
+					selection.setHandleSelected(han);
+				} else {
+					han = o.canInsertHandle(loc);
+					if (han != null) {
+						selection.setHandleSelected(han);
+					}
+				}
+			}
+		}
+		
 		Location start = dragStart;
 		int x1 = e.getX();
 		int y1 = e.getY();
 		switch(action) {
 		case MOVE_ALL:
-			Location delta = selection.getMovingDelta();
-			int dx = delta.getX();
-			int dy = delta.getY();
-			if (dragEffective) {
-				canvas.doAction(new ModelTranslateAction(model, selected, dx, dy));
+			Location moveDelta = selection.getMovingDelta();
+			if (dragEffective && !moveDelta.equals(Location.create(0, 0))) {
+				canvas.doAction(new ModelTranslateAction(model, selected,
+						moveDelta.getX(), moveDelta.getY()));
 			}
 			break;
 		case MOVE_HANDLE:
-			delta = selection.getHandleDelta();
-			dx = delta.getX();
-			dy = delta.getY();
-			CanvasObject hanShape = selection.getHandleShape();
-			Location handle = selection.getHandleLocation();
-			if (dragEffective && hanShape != null) {
-				canvas.doAction(new ModelMoveHandleAction(model, hanShape,
-						handle, dx, dy));
+			HandleGesture gesture = curGesture;
+			curGesture = null;
+			if (dragEffective && gesture != null) {
+				ModelMoveHandleAction act;
+				act = new ModelMoveHandleAction(model, gesture);
+				canvas.doAction(act);
+				Handle result = act.getNewHandle();
+				if (result != null) {
+					Handle h = result.getObject().canDeleteHandle(result.getLocation());
+					selection.setHandleSelected(h);
+				}
 			}
 			break;
 		case RECT_SELECT:
-			Bounds bds = Bounds.create(start).add(x1, y1);
-			selection.setSelected(canvas.getModel().getObjectsIn(bds), true);
+			if (dragEffective) {
+				Bounds bds = Bounds.create(start).add(x1, y1);
+				selection.setSelected(canvas.getModel().getObjectsIn(bds), true);
+			} else {
+				CanvasObject clicked;
+				clicked = getObjectAt(model, start.getX(), start.getY(), true);
+				if (clicked != null) {
+					selection.clearSelected();
+					selection.setSelected(clicked, true);
+				}
+			}
 			break;
 		case RECT_TOGGLE:
-			bds = Bounds.create(start).add(x1, y1);
-			selection.toggleSelected(canvas.getModel().getObjectsIn(bds));
+			if (dragEffective) {
+				Bounds bds = Bounds.create(start).add(x1, y1);
+				selection.toggleSelected(canvas.getModel().getObjectsIn(bds));
+			} else {
+				CanvasObject clicked;
+				clicked = getObjectAt(model, start.getX(), start.getY(), true);
+				selection.setSelected(clicked, !selected.contains(clicked));
+			}
 			break;
 		}
 		selection.clearDrawsSuppressed();
@@ -210,28 +260,6 @@ public class SelectTool extends AbstractTool {
 		case KeyEvent.VK_CONTROL:
 			if (curAction != IDLE) {
 				setMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
-			}
-			break;
-		case KeyEvent.VK_INSERT:
-			Selection selection = canvas.getSelection();
-			CanvasObject shape = selection.getHandleShape();
-			Location handle = selection.getHandleLocation();
-			if (shape != null && shape.canInsertHandle(handle)) {
-				CanvasModel model = canvas.getModel();
-				canvas.doAction(new ModelInsertHandleAction(model, shape, handle));
-				repaintArea(canvas);
-				e.consume();
-			}
-			break;
-		case KeyEvent.VK_DELETE:
-			selection = canvas.getSelection();
-			shape = selection.getHandleShape();
-			handle = selection.getHandleLocation();
-			if (shape != null && shape.canDeleteHandle(handle)) {
-				CanvasModel model = canvas.getModel();
-				canvas.doAction(new ModelDeleteHandleAction(model, shape, handle));
-				repaintArea(canvas);
-				e.consume();
 			}
 			break;
 		}
@@ -284,29 +312,36 @@ public class SelectTool extends AbstractTool {
 		Location start = dragStart;
 		int dx = newEnd.getX() - start.getX();
 		int dy = newEnd.getY() - start.getY();
-		if (Math.abs(dx) + Math.abs(dy) > DRAG_TOLERANCE) {
-			dragEffective = true;
+		if (!dragEffective) {
+			if (Math.abs(dx) + Math.abs(dy) > DRAG_TOLERANCE) {
+				dragEffective = true;
+			} else {
+				return;
+			}
 		}
 
 		switch(curAction) {
 		case MOVE_HANDLE:
+			HandleGesture gesture = curGesture;
 			if (ctrl) {
-				Location handle = canvas.getSelection().getHandleLocation();
-				dx = canvas.snapX(handle.getX() + dx) - handle.getX();
-				dy = canvas.snapY(handle.getY() + dy) - handle.getY();
+				Handle h = gesture.getHandle(); 
+				dx = canvas.snapX(h.getX() + dx) - h.getX();
+				dy = canvas.snapY(h.getY() + dy) - h.getY();
 			}
-			canvas.getSelection().setHandleDelta(dx, dy);
+			curGesture = new HandleGesture(gesture.getHandle(), dx, dy, mods);
+			canvas.getSelection().setHandleGesture(curGesture);
 			break;
 		case MOVE_ALL:
 			if (ctrl) {
 				int minX = Integer.MAX_VALUE;
 				int minY = Integer.MAX_VALUE;
 				for (CanvasObject o : canvas.getSelection().getSelected()) {
-					Bounds b = o.getBounds();
-					int x = b.getX();
-					int y = b.getY();
-					if (x < minX) minX = x;
-					if (y < minY) minY = y;
+					for (Handle handle : o.getHandles(null)) {
+						int x = handle.getX();
+						int y = handle.getY();
+						if (x < minX) minX = x;
+						if (y < minY) minY = y;
+					}
 				}
 				dx = canvas.snapX(minX + dx) - minX;
 				dy = canvas.snapY(minY + dy) - minY;
@@ -328,31 +363,22 @@ public class SelectTool extends AbstractTool {
 
 		Location start = dragStart;
 		Location end = dragEnd;
-		int dx;
-		int dy;
+		HandleGesture gesture = null;
 		boolean drawHandles;
 		switch (action) {
 		case MOVE_ALL:
 			drawHandles = false;
-			Location delta = selection.getMovingDelta();
-			dx = delta.getX();
-			dy = delta.getY();
 			break;
 		case MOVE_HANDLE:
 			drawHandles = false;
-			delta = selection.getHandleDelta();
-			dx = delta.getX();
-			dy = delta.getY();
+			if (dragEffective) gesture = curGesture;
 			break;
 		default:
 			drawHandles = true;
-			dx = end.getX() - start.getX();
-			dy = end.getY() - start.getY();
 		}
-		if (!dragEffective) { dx = 0; dy = 0; }
 
-		CanvasObject hanShape = selection.getHandleShape();
-		Location handle = selection.getHandleLocation();
+		CanvasObject moveHandleObj = null;
+		if (gesture != null) moveHandleObj = gesture.getHandle().getObject();
 		if (drawHandles) {
 			// unscale the coordinate system so that the stroke width isn't scaled
 			double zoom = 1.0;
@@ -367,41 +393,82 @@ public class SelectTool extends AbstractTool {
 
 			int size = (int) Math.ceil(HANDLE_SIZE * Math.sqrt(zoom));
 			int offs = size / 2;
-			for (CanvasObject d : selection.getSelected()) {
-				List<Location> handles;
-				if (action == MOVE_HANDLE && d == hanShape) {
-					handles = d.getHandles(handle, dx, dy);
+			for (CanvasObject obj : selection.getSelected()) {
+				List<Handle> handles;
+				if (action == MOVE_HANDLE && obj == moveHandleObj) {
+					handles = obj.getHandles(gesture);
 				} else {
-					handles = d.getHandles(null, 0, 0);
+					handles = obj.getHandles(null);
 				}
-				for (Location loc : handles) {
-					int x = loc.getX();
-					int y = loc.getY();
-					if (action == MOVE_ALL) { x += dx; y += dy; }
-					x = (int) (zoom * loc.getX());
-					y = (int) (zoom * loc.getY());
-					if (d == hanShape && loc.equals(handle)) {
-						gCopy.fillRect(x - offs, y - offs, size + 1, size + 1);
-					} else {
-						gCopy.clearRect(x - offs, y - offs, size, size);
-						gCopy.drawRect(x - offs, y - offs, size, size);
+				for (Handle han : handles) {
+					int x = han.getX();
+					int y = han.getY();
+					if (action == MOVE_ALL && dragEffective) {
+						Location delta = selection.getMovingDelta();
+						x += delta.getX();
+						y += delta.getY();
 					}
+					x = (int) Math.round(zoom * x);
+					y = (int) Math.round(zoom * y);
+					gCopy.clearRect(x - offs, y - offs, size, size);
+					gCopy.drawRect(x - offs, y - offs, size, size);
 				}
+			}
+			Handle selHandle = selection.getSelectedHandle();
+			if (selHandle != null) {
+				int x = selHandle.getX();
+				int y = selHandle.getY();
+				if (action == MOVE_ALL && dragEffective) {
+					Location delta = selection.getMovingDelta();
+					x += delta.getX();
+					y += delta.getY();
+				}
+				x = (int) Math.round(zoom * x);
+				y = (int) Math.round(zoom * y);
+				int[] xs = { x - offs, x, x + offs, x };
+				int[] ys = { y, y - offs, y, y + offs };
+				gCopy.setColor(Color.WHITE);
+				gCopy.fillPolygon(xs, ys, 4);
+				gCopy.setColor(Color.BLACK);
+				gCopy.drawPolygon(xs, ys, 4);
 			}
 		}
 		
 		switch(action) {
 		case RECT_SELECT:
 		case RECT_TOGGLE:
-			int x0 = start.getX();
-			int y0 = start.getY();
-			int x1 = end.getX();
-			int y1 = end.getY();
-			g.setColor(Color.gray);
-			if (x1 < x0) { int t = x0; x0 = x1; x1 = t; }
-			if (y1 < y0) { int t = y0; y0 = y1; y1 = t; }
-			g.drawRect(x0, y0, x1 - x0, y1 - y0);
+			if (dragEffective) {
+				// find rectangle currently to show
+				int x0 = start.getX();
+				int y0 = start.getY();
+				int x1 = end.getX();
+				int y1 = end.getY();
+				if (x1 < x0) { int t = x0; x0 = x1; x1 = t; }
+				if (y1 < y0) { int t = y0; y0 = y1; y1 = t; }
+
+				// make the region that's not being selected darker
+				int w = canvas.getWidth();
+				int h = canvas.getHeight();
+				g.setColor(RECT_SELECT_BACKGROUND);
+				g.fillRect(0, 0, w, y0);
+				g.fillRect(0, y0, x0, y1 - y0);
+				g.fillRect(x1, y0, w - x1, y1 - y0);
+				g.fillRect(0, y1, w, h - y1);
+
+				// now draw the rectangle
+				g.setColor(Color.GRAY);
+				g.drawRect(x0, y0, x1 - x0, y1 - y0);
+			}
 			break;
 		}
+	}
+
+	private static CanvasObject getObjectAt(CanvasModel model, int x, int y,
+			boolean assumeFilled) {
+		Location loc = Location.create(x, y);
+		for (CanvasObject o : model.getObjectsFromTop()) {
+			if (o.contains(loc, assumeFilled)) return o;
+		}
+		return null;
 	}
 }

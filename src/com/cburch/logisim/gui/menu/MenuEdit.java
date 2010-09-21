@@ -48,6 +48,10 @@ class MenuEdit extends Menu {
 	private MenuItem delete = new MenuItem(this, LogisimMenuBar.DELETE);
 	private MenuItem dup    = new MenuItem(this, LogisimMenuBar.DUPLICATE);
 	private MenuItem selall = new MenuItem(this, LogisimMenuBar.SELECT_ALL);
+	private MenuItem raise = new MenuItem(this, LogisimMenuBar.RAISE);
+	private MenuItem lower = new MenuItem(this, LogisimMenuBar.LOWER);
+	private MenuItem addCtrl = new MenuItem(this, LogisimMenuBar.ADD_CONTROL);
+	private MenuItem remCtrl = new MenuItem(this, LogisimMenuBar.REMOVE_CONTROL);
 	private MyListener myListener = new MyListener();
 
 	public MenuEdit(LogisimMenuBar menubar) {
@@ -67,16 +71,27 @@ class MenuEdit extends Menu {
 		dup.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_D, menuMask));
 		selall.setAccelerator(KeyStroke.getKeyStroke(
-			KeyEvent.VK_A, menuMask));
+				KeyEvent.VK_A, menuMask));
+		raise.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_UP, menuMask));
+		lower.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_DOWN, menuMask));
 
 		add(undo);
 		addSeparator();
 		add(cut);
 		add(copy);
 		add(paste);
+		addSeparator();
 		add(delete);
 		add(dup);
 		add(selall);
+		addSeparator();
+		add(raise);
+		add(lower);
+		addSeparator();
+		add(addCtrl);
+		add(remCtrl);
 		
 		Project proj = menubar.getProject();
 		if (proj != null) {
@@ -91,6 +106,10 @@ class MenuEdit extends Menu {
 		menubar.registerItem(LogisimMenuBar.DELETE, delete);
 		menubar.registerItem(LogisimMenuBar.DUPLICATE, dup);
 		menubar.registerItem(LogisimMenuBar.SELECT_ALL, selall);
+		menubar.registerItem(LogisimMenuBar.RAISE, raise);
+		menubar.registerItem(LogisimMenuBar.LOWER, lower);
+		menubar.registerItem(LogisimMenuBar.ADD_CONTROL, addCtrl);
+		menubar.registerItem(LogisimMenuBar.REMOVE_CONTROL, remCtrl);
 		computeEnabled();
 	}
 
@@ -103,6 +122,10 @@ class MenuEdit extends Menu {
 		delete.setText(Strings.get("editClearItem"));
 		dup.setText(Strings.get("editDuplicateItem"));
 		selall.setText(Strings.get("editSelectAllItem"));
+		raise.setText(Strings.get("editRaiseItem"));
+		lower.setText(Strings.get("editLowerItem"));
+		addCtrl.setText(Strings.get("editAddControlItem"));
+		remCtrl.setText(Strings.get("editRemoveControlItem"));
 	}
 	
 	@Override
@@ -113,7 +136,11 @@ class MenuEdit extends Menu {
 				|| paste.hasListeners()
 				|| delete.hasListeners()
 				|| dup.hasListeners()
-				|| selall.hasListeners());
+				|| selall.hasListeners()
+				|| raise.hasListeners()
+				|| lower.hasListeners()
+				|| addCtrl.hasListeners()
+				|| remCtrl.hasListeners());
 	}
 }
 

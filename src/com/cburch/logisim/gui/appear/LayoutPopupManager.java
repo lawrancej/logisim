@@ -17,9 +17,9 @@ import javax.swing.JViewport;
 import javax.swing.Popup;
 import javax.swing.PopupFactory;
 
-import com.cburch.draw.canvas.CanvasObject;
 import com.cburch.draw.canvas.SelectionEvent;
 import com.cburch.draw.canvas.SelectionListener;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.appear.AppearancePort;
 import com.cburch.logisim.data.Location;
@@ -95,7 +95,7 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
 	
 	// returns true if the canvas contains any port not in the given set
 	private boolean isPortUnselected(Set<AppearancePort> selected) {
-		for (CanvasObject o : canvas.getModel().getObjects()) {
+		for (CanvasObject o : canvas.getModel().getObjectsFromBottom()) {
 			if (o instanceof AppearancePort) {
 				if (!selected.contains(o)) {
 					return true;

@@ -16,14 +16,21 @@ import javax.swing.Icon;
 
 import com.cburch.draw.actions.ModelAddAction;
 import com.cburch.draw.canvas.Canvas;
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.shapes.DrawAttr;
+import com.cburch.draw.shapes.LineUtil;
+import com.cburch.draw.shapes.Poly;
+import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Location;
+import com.cburch.logisim.util.Icons;
 
-abstract class PolyTool extends AbstractTool {
+public class PolyTool extends AbstractTool {
 	// how close we need to be to the start point to count as "closing the loop"
 	private static final int CLOSE_TOLERANCE = 2;
 	
+	private boolean closed; // whether we are drawing polygons or polylines
+	private DrawingAttributeSet attrs;
 	private boolean active;
 	private ArrayList<Location> locations;
 	private int[] xs;
@@ -32,7 +39,9 @@ abstract class PolyTool extends AbstractTool {
 	private int lastMouseX;
 	private int lastMouseY;
 	
-	public PolyTool() {
+	public PolyTool(boolean closed, DrawingAttributeSet attrs) {
+		this.closed = closed;
+		this.attrs = attrs;
 		active = false;
 		locations = new ArrayList<Location>();
 		xs = new int[2];
@@ -40,9 +49,18 @@ abstract class PolyTool extends AbstractTool {
 	}
 	
 	@Override
-	public abstract Icon getIcon();
-
-	protected abstract CanvasObject createShape(List<Location> locations);
+	public Icon getIcon() {
+		if (closed) {
+			return Icons.getIcon("drawpoly.gif");
+		} else {
+			return Icons.getIcon("drawplin.gif");
+		}
+	}
+	
+	@Override
+	public List<Attribute<?>> getAttributes() {
+		return DrawAttr.getFillAttributes(attrs.getValue(DrawAttr.PAINT_TYPE));
+	}
 
 	@Override
 	public Cursor getCursor(Canvas canvas) {
@@ -157,7 +175,7 @@ abstract class PolyTool extends AbstractTool {
 		}
 		if (locs.size() > 1) {
 			CanvasModel model = canvas.getModel();
-			add = createShape(locs);
+			add = new Poly(closed, locs);
 			canvas.doAction(new ModelAddAction(model, add));
 			repaintArea(canvas);
 		}
@@ -174,7 +192,7 @@ abstract class PolyTool extends AbstractTool {
 			Location newLast;
 			if ((mods & MouseEvent.SHIFT_DOWN_MASK) != 0 && index > 0) {
 				Location nextLast = locations.get(index - 1);
-				newLast = LineTool.snapTo8Cardinals(nextLast, mx, my);
+				newLast = LineUtil.snapTo8Cardinals(nextLast, mx, my);
 			} else {
 				newLast = Location.create(mx, my);
 			}

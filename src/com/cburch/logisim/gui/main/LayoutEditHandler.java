@@ -49,6 +49,10 @@ public class LayoutEditHandler extends EditHandler
 		setEnabled(LogisimMenuBar.DELETE, !selEmpty && selectAvailable && canChange);
 		setEnabled(LogisimMenuBar.DUPLICATE, !selEmpty && selectAvailable && canChange);
 		setEnabled(LogisimMenuBar.SELECT_ALL, selectAvailable);
+		setEnabled(LogisimMenuBar.RAISE, false);
+		setEnabled(LogisimMenuBar.LOWER, false);
+		setEnabled(LogisimMenuBar.ADD_CONTROL, false);
+		setEnabled(LogisimMenuBar.REMOVE_CONTROL, false);
 	}
 	
 	@Override
@@ -96,6 +100,26 @@ public class LayoutEditHandler extends EditHandler
 		sel.addAll(circ.getWires());
 		sel.addAll(circ.getNonWires());
 		proj.repaintCanvas();
+	}
+	
+	@Override
+	public void raise() {
+		; // not yet supported in layout mode
+	}
+	
+	@Override
+	public void lower() {
+		; // not yet supported in layout mode
+	}
+
+	@Override
+	public void addControlPoint() {
+		; // not yet supported in layout mode
+	}
+	
+	@Override
+	public void removeControlPoint() {
+		; // not yet supported in layout mode
 	}
 	
 	private void selectSelectTool(Project proj) {

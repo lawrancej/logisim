@@ -10,6 +10,9 @@ import java.util.List;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.Handle;
+import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.Bounds;
@@ -32,6 +35,21 @@ class AppearanceOrigin extends AppearanceElement {
 	public AppearanceOrigin(Location location) {
 		super(location);
 		facing = Direction.EAST;
+	}
+	
+	@Override
+	public boolean matches(CanvasObject other) {
+		if (other instanceof AppearanceOrigin) {
+			AppearanceOrigin that = (AppearanceOrigin) other;
+			return super.matches(that) && this.facing.equals(that.facing);
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public int matchesHashCode() {
+		return super.matchesHashCode() * 31 + facing.hashCode();
 	}
 
 	@Override
@@ -80,7 +98,7 @@ class AppearanceOrigin extends AppearanceElement {
 	}
 
 	@Override
-	public void paint(Graphics g, Location handle, int handleDx, int handleDy) {
+	public void paint(Graphics g, HandleGesture gesture) {
 		Location location = getLocation();
 		int x = location.getX();
 		int y = location.getY();
@@ -91,6 +109,7 @@ class AppearanceOrigin extends AppearanceElement {
 		g.drawLine(e0.getX(), e0.getY(), e1.getX(), e1.getY());
 	}
 	
+	@Override
 	public Bounds getBounds() {
 		Bounds bds = super.getBounds(RADIUS);
 		Location center = getLocation();
@@ -98,7 +117,8 @@ class AppearanceOrigin extends AppearanceElement {
 		return bds.add(end);
 	}
 
-	public boolean contains(Location loc) {
+	@Override
+	public boolean contains(Location loc, boolean assumeFilled) {
 		if (super.isInCircle(loc, RADIUS)) {
 			return true;
 		} else {
@@ -114,9 +134,11 @@ class AppearanceOrigin extends AppearanceElement {
 		}
 	}
 	
-	public List<Location> getHandles(Location handle, int dx, int dy) {
-		Location center = getLocation();
-		return UnmodifiableList.create(new Location[] {
-				center, center.translate(facing, RADIUS + INDICATOR_LENGTH) });
+	@Override
+	public List<Handle> getHandles(HandleGesture gesture) {
+		Location c = getLocation();
+		Location end = c.translate(facing, RADIUS + INDICATOR_LENGTH);
+		return UnmodifiableList.create(new Handle[] { new Handle(this, c),
+				new Handle(this, end) });
 	}
 }

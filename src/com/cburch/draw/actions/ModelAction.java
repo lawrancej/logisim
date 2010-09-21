@@ -6,8 +6,8 @@ package com.cburch.draw.actions;
 import java.util.Collection;
 import java.util.Collections;
 
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.undo.Action;
 
 public abstract class ModelAction extends Action {

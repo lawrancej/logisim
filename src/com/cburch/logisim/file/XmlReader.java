@@ -18,7 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import com.cburch.draw.model.DrawingMember;
+import com.cburch.draw.model.AbstractCanvasObject;
 import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.Main;
 import com.cburch.logisim.circuit.Circuit;
@@ -40,7 +40,7 @@ class XmlReader {
 		Element circuitElement;
 		Circuit circuit;
 		Map<Element, Component> knownComponents;
-		List<DrawingMember> appearance;
+		List<AbstractCanvasObject> appearance;
 		
 		public CircuitData(Element circuitElement, Circuit circuit) {
 			this.circuitElement = circuitElement;
@@ -164,10 +164,10 @@ class XmlReader {
 				}
 			}
 			
-			List<DrawingMember> shapes = new ArrayList<DrawingMember>();
+			List<AbstractCanvasObject> shapes = new ArrayList<AbstractCanvasObject>();
 			for (Element sub : XmlIterator.forChildElements(appearElt)) {
 				try {
-					DrawingMember m = AppearanceSvgReader.createShape(sub, pins);
+					AbstractCanvasObject m = AppearanceSvgReader.createShape(sub, pins);
 					if (m == null) {
 						showError(Strings.get("fileAppearanceNotFound", sub.getTagName()));
 					} else {

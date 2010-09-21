@@ -7,8 +7,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.undo.Action;
 
 public class ModelTranslateAction extends ModelAction {

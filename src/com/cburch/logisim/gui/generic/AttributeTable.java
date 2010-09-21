@@ -4,7 +4,6 @@
 package com.cburch.logisim.gui.generic;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Window;
 import java.awt.Dialog;

@@ -13,7 +13,6 @@ import javax.swing.Icon;
 
 import com.cburch.draw.canvas.Canvas;
 import com.cburch.draw.canvas.CanvasTool;
-import com.cburch.draw.model.DrawingAttributeSet;
 import com.cburch.logisim.data.Attribute;
 
 public abstract class AbstractTool extends CanvasTool {
@@ -21,11 +20,12 @@ public abstract class AbstractTool extends CanvasTool {
 		return new AbstractTool[] {
 			new SelectTool(),
 			new LineTool(attrs),
-			new PolylineTool(attrs),
+			new CurveTool(attrs),
+			new PolyTool(false, attrs),
 			new RectangleTool(attrs),
 			new RoundRectangleTool(attrs),
 			new OvalTool(attrs),
-			new PolygonTool(attrs),
+			new PolyTool(true, attrs),
 		};
 	}
 	

@@ -7,30 +7,37 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.cburch.draw.model.CanvasModelEvent;
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.Handle;
+import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Location;
 
 public class Selection {
+	private static final String MOVING_HANDLE = "movingHandle";
+	private static final String TRANSLATING = "translating";
+	private static final String HIDDEN = "hidden";
+	
 	private ArrayList<SelectionListener> listeners;
 	private HashSet<CanvasObject> selected;
 	private Set<CanvasObject> selectedView;
-	private HashSet<CanvasObject> suppressed;
+	private HashMap<CanvasObject, String> suppressed;
 	private Set<CanvasObject> suppressedView;
-	private CanvasObject handleShape;
-	private Location handleLocation;
-	private int handleDx;
-	private int handleDy;
+	private Handle selectedHandle;
+	private HandleGesture curHandleGesture;
 	private int moveDx;
 	private int moveDy;
 	
 	protected Selection() {
 		listeners = new ArrayList<SelectionListener>();
 		selected = new HashSet<CanvasObject>();
-		suppressed = new HashSet<CanvasObject>();
+		suppressed = new HashMap<CanvasObject, String>();
 		selectedView = Collections.unmodifiableSet(selected);
-		suppressedView = Collections.unmodifiableSet(suppressed);
+		suppressedView = Collections.unmodifiableSet(suppressed.keySet());
 	}
 	
 	public void addSelectionListener(SelectionListener l) {
@@ -66,8 +73,8 @@ public class Selection {
 			ArrayList<CanvasObject> oldSelected;
 			oldSelected = new ArrayList<CanvasObject>(selected);
 			selected.clear();
-			handleShape = null;
 			suppressed.clear();
+			setHandleSelected(null);
 			fireChanged(SelectionEvent.ACTION_REMOVED, oldSelected);
 		}
 	}
@@ -94,7 +101,8 @@ public class Selection {
 			for (CanvasObject shape : shapes) {
 				if(selected.remove(shape)) {
 					suppressed.remove(shape);
-					if(handleShape == shape) handleShape = null;
+					Handle h = selectedHandle;
+					if(h != null && h.getObject() == shape) setHandleSelected(null);
 					removed.add(shape);
 				}
 			}
@@ -113,7 +121,8 @@ public class Selection {
 			if (selected.contains(shape)) {
 				selected.remove(shape);
 				suppressed.remove(shape);
-				if(handleShape == shape) handleShape = null;
+				Handle h = selectedHandle;
+				if(h != null && h.getObject() == shape) setHandleSelected(null);
 				removed.add(shape);
 			} else {
 				selected.add(shape);
@@ -134,39 +143,54 @@ public class Selection {
 	
 	public void clearDrawsSuppressed() {
 		suppressed.clear();
-		handleDx = 0;
-		handleDy = 0;
+		curHandleGesture = null;
 	}
 	
-	public CanvasObject getHandleShape() {
-		return handleShape;
+	public Handle getSelectedHandle() {
+		return selectedHandle;
 	}
 	
-	public Location getHandleLocation() {
-		return handleLocation;
-	}
-	
-	public void setHandleSelected(CanvasObject shape, Location handle) {
-		handleShape = shape;
-		handleLocation = handle;
-		handleDx = 0;
-		handleDy = 0;
-	}
-	
-	public Location getHandleDelta() {
-		return Location.create(handleDx, handleDy);
+	public void setHandleSelected(Handle handle) {
+		Handle cur = selectedHandle;
+		boolean same = cur == null ? handle == null : cur.equals(handle);
+		if (!same) {
+			selectedHandle = handle;
+			curHandleGesture = null;
+			Collection<CanvasObject> objs;
+			if (handle == null) {
+				objs = Collections.emptySet();
+			} else {
+				objs = Collections.singleton(handle.getObject());
+			}
+			fireChanged(SelectionEvent.ACTION_HANDLE, objs);
+		}
 	}
 
-	public void setHandleDelta(int dx, int dy) {
-		suppressed.add(handleShape);
-		handleDx = dx;
-		handleDy = dy;
+	public void setHandleGesture(HandleGesture gesture) {
+		HandleGesture g = curHandleGesture;
+		if (g != null) suppressed.remove(g.getHandle().getObject());
+		
+		Handle h = gesture.getHandle();
+		suppressed.put(h.getObject(), MOVING_HANDLE);
+		curHandleGesture = gesture;
 	}
 	
-	public void setMovingShapes(Collection<CanvasObject> shapes, int dx, int dy) {
-		suppressed.addAll(shapes);
+	public void setMovingShapes(Collection<? extends CanvasObject> shapes, int dx, int dy) {
+		for (CanvasObject o : shapes) {
+			suppressed.put(o, TRANSLATING);
+		}
 		moveDx = dx;
 		moveDy = dy;
+	}
+	
+	public void setHidden(Collection<? extends CanvasObject> shapes, boolean value) {
+		if (value) {
+			for (CanvasObject o : shapes) {
+				suppressed.put(o, HIDDEN);
+			}
+		} else {
+			suppressed.keySet().removeAll(shapes);
+		}
 	}
 	
 	public Location getMovingDelta() {
@@ -179,11 +203,12 @@ public class Selection {
 	}
 	
 	public void drawSuppressed(Graphics g, CanvasObject shape) {
-		if(shape == handleShape) {
-			shape.paint(g, handleLocation, handleDx, handleDy);
-		} else {
+		String state = suppressed.get(shape);
+		if (state == MOVING_HANDLE) {
+			shape.paint(g, curHandleGesture);
+		} else if (state == TRANSLATING) {
 			g.translate(moveDx, moveDy);
-			shape.paint(g, null, 0, 0);
+			shape.paint(g, null);
 		}
 	}
 
@@ -194,17 +219,23 @@ public class Selection {
 			Collection<? extends CanvasObject> affected = event.getAffected();
 			if (affected != null) {
 				selected.removeAll(affected);
-				suppressed.removeAll(affected);
-				if(affected.contains(handleShape)) handleShape = null;
+				suppressed.keySet().removeAll(affected);
+				Handle h = selectedHandle;
+				if (h != null && affected.contains(h.getObject())) {
+					setHandleSelected(null);
+				}
 			}
 			break;
 		case CanvasModelEvent.ACTION_HANDLE_DELETED:
-		case CanvasModelEvent.ACTION_HANDLE_INSERTED:
-			CanvasObject hanShape = handleShape;
-			if(hanShape != null && event.getAffected().contains(hanShape)) {
-				handleShape = null;
+			if (event.getHandle().equals(selectedHandle)) {
+				setHandleSelected(null);
 			}
 			break;
+		case CanvasModelEvent.ACTION_HANDLE_MOVED:
+			HandleGesture gesture = event.getHandleGesture();
+			if (gesture.getHandle().equals(selectedHandle)) {
+				setHandleSelected(gesture.getResultingHandle());
+			}
 		}
 	}
 }

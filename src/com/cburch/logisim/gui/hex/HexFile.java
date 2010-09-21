@@ -44,13 +44,23 @@ public class HexFile {
 		}
 		
 		private String nextToken() throws IOException {
-			if (curLine != null && curLine.hasMoreTokens()) return curLine.nextToken();
-			curLine = findNonemptyLine();
-			return curLine == null ? null : curLine.nextToken();
+			if (curLine != null && curLine.hasMoreTokens()) {
+				return curLine.nextToken();
+			} else {
+				curLine = findNonemptyLine();
+				return curLine == null ? null : curLine.nextToken();
+			}
 		}
 		
-		public boolean hasNext() {
-			return leftCount > 0 || curLine != null && curLine.hasMoreTokens();
+		public boolean hasNext() throws IOException {
+			if (leftCount > 0) {
+				return true;
+			} else if (curLine != null && curLine.hasMoreTokens()) {
+				return true;
+			} else {
+				curLine = findNonemptyLine();
+				return curLine != null;
+			}
 		}
 		
 		public int[] next() throws IOException {

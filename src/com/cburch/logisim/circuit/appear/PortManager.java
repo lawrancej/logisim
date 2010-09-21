@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
@@ -54,7 +54,7 @@ class PortManager {
 		Map<Instance, AppearancePort> oldObjects;
 		oldObjects = new HashMap<Instance, AppearancePort>();
 		AppearanceOrigin origin = null;
-		for (CanvasObject o : appearance.getObjects()) {
+		for (CanvasObject o : appearance.getObjectsFromBottom()) {
 			if (o instanceof AppearancePort) {
 				AppearancePort port = (AppearancePort) o;
 				oldObjects.put(port.getPin(), port);

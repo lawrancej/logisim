@@ -5,7 +5,7 @@ package com.cburch.logisim.gui.appear;
 
 import java.util.ArrayList;
 
-import com.cburch.draw.canvas.CanvasObject;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
@@ -25,7 +25,7 @@ public class RevertAppearanceAction extends Action {
 
 	@Override
 	public void doIt(Project proj) {
-		old = new ArrayList<CanvasObject>(circuit.getAppearance().getObjects());
+		old = new ArrayList<CanvasObject>(circuit.getAppearance().getObjectsFromBottom());
 		circuit.getAppearance().setDefaultAppearance(true);
 	}
 

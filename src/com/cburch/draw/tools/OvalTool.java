@@ -8,10 +8,9 @@ import java.util.List;
 
 import javax.swing.Icon;
 
-import com.cburch.draw.canvas.CanvasObject;
-import com.cburch.draw.model.DrawAttr;
-import com.cburch.draw.model.Drawables;
-import com.cburch.draw.model.DrawingAttributeSet;
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.shapes.DrawAttr;
+import com.cburch.draw.shapes.Oval;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.util.Icons;
 
@@ -34,7 +33,7 @@ public class OvalTool extends RectangularTool {
 
 	@Override
 	public CanvasObject createShape(int x, int y, int w, int h) {
-		return Drawables.createOval(x, y, w, h, attrs);
+		return attrs.applyTo(new Oval(x, y, w, h));
 	}
 
 	@Override

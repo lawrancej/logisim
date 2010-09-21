@@ -25,6 +25,8 @@ public class Arithmetic extends Library {
 				"comparator.gif", "Comparator"),
 		new FactoryDescription("Shifter", Strings.getter("shifterComponent"),
 				"shifter.gif", "Shifter"),
+		new FactoryDescription("BitAdder", Strings.getter("bitAdderComponent"),
+				"bitadder.gif", "BitAdder"),
 	};
 	
 	private List<Tool> tools = null;

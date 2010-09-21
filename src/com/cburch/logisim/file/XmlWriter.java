@@ -23,7 +23,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.cburch.draw.model.DrawingMember;
+import com.cburch.draw.model.AbstractCanvasObject;
 import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.Main;
 import com.cburch.logisim.circuit.Circuit;
@@ -196,10 +196,12 @@ class XmlWriter {
 		addAttributeSetContent(ret, circuit.getStaticAttributes(), null);
 		if (!circuit.getAppearance().isDefaultAppearance()) {
 			Element appear = doc.createElement("appear");
-			for (Object o : circuit.getAppearance().getObjects()) {
-				if (o instanceof DrawingMember) {
-					Element elt = ((DrawingMember) o).toSvgElement(doc);
-					appear.appendChild(elt);
+			for (Object o : circuit.getAppearance().getObjectsFromBottom()) {
+				if (o instanceof AbstractCanvasObject) {
+					Element elt = ((AbstractCanvasObject) o).toSvgElement(doc);
+					if (elt != null) {
+						appear.appendChild(elt);
+					}
 				}
 			}
 			ret.appendChild(appear);

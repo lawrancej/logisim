@@ -10,8 +10,8 @@ import java.util.List;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.cburch.draw.canvas.CanvasModelEvent;
-import com.cburch.draw.canvas.CanvasModelListener;
+import com.cburch.draw.model.CanvasModelEvent;
+import com.cburch.draw.model.CanvasModelListener;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.Simulator;
@@ -51,6 +51,7 @@ class MenuListener {
 		
 		private void setHandler(EditHandler value) {
 			handler = value;
+			value.setListener(this);
 			handler.computeEnabled();
 		}
 		
@@ -61,6 +62,10 @@ class MenuListener {
 			menubar.addActionListener(LogisimMenuBar.DELETE, this);
 			menubar.addActionListener(LogisimMenuBar.DUPLICATE, this);
 			menubar.addActionListener(LogisimMenuBar.SELECT_ALL, this);
+			menubar.addActionListener(LogisimMenuBar.RAISE, this);
+			menubar.addActionListener(LogisimMenuBar.LOWER, this);
+			menubar.addActionListener(LogisimMenuBar.ADD_CONTROL, this);
+			menubar.addActionListener(LogisimMenuBar.REMOVE_CONTROL, this);
 			if (handler != null) handler.computeEnabled();
 		}
 		
@@ -79,6 +84,14 @@ class MenuListener {
 				if (h != null) h.duplicate();
 			} else if (src == LogisimMenuBar.SELECT_ALL) {
 				if (h != null) h.selectAll();
+			} else if (src == LogisimMenuBar.RAISE) {
+				if (h != null) h.raise();
+			} else if (src == LogisimMenuBar.LOWER) {
+				if (h != null) h.lower();
+			} else if (src == LogisimMenuBar.ADD_CONTROL) {
+				if (h != null) h.addControlPoint();
+			} else if (src == LogisimMenuBar.REMOVE_CONTROL) {
+				if (h != null) h.removeControlPoint();
 			}
 		}
 

@@ -1,0 +1,247 @@
+/* Copyright (c) 2010, Carl Burch. License information is located in the
+ * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
+
+package com.cburch.draw.util;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+
+import javax.swing.JTextField;
+
+import com.cburch.logisim.data.Bounds;
+
+public class EditableLabel implements Cloneable {
+	public static final int LEFT = JTextField.LEFT;
+	public static final int RIGHT = JTextField.RIGHT;
+	public static final int CENTER = JTextField.CENTER;
+	
+	public static final int TOP = 8;
+	public static final int MIDDLE = 9;
+	public static final int BASELINE = 10;
+	public static final int BOTTOM = 11;
+	
+	private int x;
+	private int y;
+	private String text;
+	private Font font;
+	private Color color;
+	private int horzAlign;
+	private int vertAlign;
+	private boolean dimsKnown;
+	private int width;
+	private int ascent;
+	private int descent;
+	
+	public EditableLabel(int x, int y, String text, Font font) {
+		this.x = x;
+		this.y = y;
+		this.text = text;
+		this.font = font;
+		this.color = Color.BLACK;
+		this.horzAlign = LEFT;
+		this.vertAlign = BASELINE;
+		this.dimsKnown = false;
+	}
+	
+	@Override
+	public EditableLabel clone() {
+		try {
+			return (EditableLabel) super.clone();
+		} catch (CloneNotSupportedException e) {
+			return new EditableLabel(x, y, text, font);
+		}
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof EditableLabel) {
+			EditableLabel that = (EditableLabel) other;
+			return this.x == that.x && this.y == that.y
+				&& this.text.equals(that.text) && this.font.equals(that.font)
+				&& this.color.equals(that.color)
+				&& this.horzAlign == that.horzAlign
+				&& this.vertAlign == that.vertAlign;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
+	public int hashCode() {
+		int ret = x * 31 + y;
+		ret = ret * 31 + text.hashCode();
+		ret = ret * 31 + font.hashCode();
+		ret = ret * 31 + color.hashCode();
+		ret = ret * 31 + horzAlign;
+		ret = ret * 31 + vertAlign;
+		return ret;
+	}
+
+	//
+	// accessor methods
+	//
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+
+	public void setLocation(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public String getText() {
+		return text;
+	}
+	
+	public void setText(String value) {
+		dimsKnown = false;
+		text = value;
+	}
+
+	public Font getFont() {
+		return font;
+	}
+	
+	public void setFont(Font value) {
+		font = value;
+		dimsKnown = false;
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+	
+	public void setColor(Color value) {
+		color = value;
+	}
+	
+	public int getHorizontalAlignment() {
+		return horzAlign;
+	}
+
+	public void setHorizontalAlignment(int value) {
+		if (value != LEFT && value != CENTER && value != RIGHT) {
+			throw new IllegalArgumentException("argument must be LEFT, CENTER, or RIGHT");
+		}
+		horzAlign = value;
+		dimsKnown = false;
+	}
+	
+	public int getVerticalAlignment() {
+		return vertAlign;
+	}
+	
+	public void setVerticalAlignment(int value) {
+		if (value != TOP && value != MIDDLE && value != BASELINE && value != BOTTOM) {
+			throw new IllegalArgumentException("argument must be TOP, MIDDLE, BASELINE, or BOTTOM");
+		}
+		vertAlign = value;
+		dimsKnown = false;
+	}
+	
+	//
+	// more complex methods
+	//
+	public Bounds getBounds() {
+		int x0 = getLeftX();
+		int y0 = getBaseY() - ascent;
+		int w = width;
+		int h = ascent + descent;
+		return Bounds.create(x0, y0, w, h);
+	}
+	
+	public boolean contains(int qx, int qy) {
+		int x0 = getLeftX();
+		int y0 = getBaseY();
+		return qx >= x0 && qx < x0 + width
+			&& qy >= y0 - ascent && qy < y0 + descent; 
+	}
+	
+	private int getLeftX() {
+		switch (horzAlign) {
+		case LEFT:   return x;
+		case CENTER: return x - width / 2;
+		case RIGHT:  return x - width;
+		default:     return x;
+		}
+	}
+	
+	private int getBaseY() {
+		switch (vertAlign) {
+		case TOP:      return y + ascent;
+		case MIDDLE:   return y + (ascent - descent) / 2;
+		case BASELINE: return y;
+		case BOTTOM:   return y - descent;
+		default:       return y;
+		}
+	}
+	
+	public void configureTextField(EditableLabelField field) {
+		configureTextField(field, 1.0);
+	}
+	
+	public void configureTextField(EditableLabelField field, double zoom) {
+		Font f = font;
+		if (zoom != 1.0) {
+			f = f.deriveFont(AffineTransform.getScaleInstance(zoom, zoom));
+		}
+		field.setFont(f);
+		
+		Dimension dim = field.getPreferredSize();
+		int w;
+		int border = EditableLabelField.FIELD_BORDER;
+		if (dimsKnown) {
+			w = width + 1 + 2 * border;
+		} else {
+			FontMetrics fm = field.getFontMetrics(font);
+			ascent = fm.getAscent();
+			descent = fm.getDescent();
+			w = 0;
+		}
+		
+		int x0 = x;
+		int y0 = getBaseY() - ascent;
+		if (zoom != 1.0) {
+			x0 = (int) Math.round(x0 * zoom);
+			y0 = (int) Math.round(y0 * zoom);
+			w = (int) Math.round(w * zoom);
+		}
+		
+		w = Math.max(w, dim.width);
+		int h = dim.height;
+		switch (horzAlign) {
+		case LEFT:   x0 = x0 - border; break;
+		case CENTER: x0 = x0 - (w / 2) + 1; break;
+		case RIGHT:  x0 = x0 - w + border + 1; break;
+		default:     x0 = x0 - border;
+		}
+		y0 = y0 - border;
+		
+		field.setHorizontalAlignment(horzAlign);
+		field.setForeground(color);
+		field.setBounds(x0, y0, w, h);
+	}
+	
+	public void paint(Graphics g) {
+		g.setFont(font);
+		if (!dimsKnown) {
+			FontMetrics fm = g.getFontMetrics();
+			width = fm.stringWidth(text);
+			ascent = fm.getAscent();
+			descent = fm.getDescent();
+			dimsKnown = true;
+		}
+		int x0 = getLeftX();
+		int y0 = getBaseY();
+		g.setColor(color);
+		g.drawString(text, x0, y0);
+	}
+}

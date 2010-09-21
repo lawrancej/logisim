@@ -13,14 +13,14 @@ import java.util.Map;
 import java.util.Set;
 
 import com.cburch.draw.actions.ModelChangeAttributeAction;
-import com.cburch.draw.canvas.AttributeMapKey;
 import com.cburch.draw.canvas.Canvas;
-import com.cburch.draw.canvas.CanvasModel;
-import com.cburch.draw.canvas.CanvasObject;
 import com.cburch.draw.canvas.SelectionEvent;
 import com.cburch.draw.canvas.SelectionListener;
-import com.cburch.draw.model.DrawingAttributeSet;
+import com.cburch.draw.model.AttributeMapKey;
+import com.cburch.draw.model.CanvasModel;
+import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.tools.AbstractTool;
+import com.cburch.draw.tools.DrawingAttributeSet;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;

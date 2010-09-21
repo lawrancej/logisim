@@ -1,23 +1,27 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.draw.model;
+package com.cburch.draw.shapes;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.geom.Line2D;
 import java.util.List;
+import java.util.Random;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.AbstractCanvasObject;
+import com.cburch.draw.model.Handle;
+import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.UnmodifiableList;
 
-class Line extends DrawingMember {
-	static final int ON_LINE_THRESH = 4;
+public class Line extends AbstractCanvasObject {
+	static final int ON_LINE_THRESH = 2;
 	
 	private int x0;
 	private int y0;
@@ -38,7 +42,7 @@ class Line extends DrawingMember {
 	}
 	
 	@Override
-	public boolean equals(Object other) {
+	public boolean matches(CanvasObject other) {
 		if (other instanceof Line) {
 			Line that = (Line) other;
 			return this.x0 == that.x0
@@ -53,16 +57,14 @@ class Line extends DrawingMember {
 	}
 	
 	@Override
-	public int hashCode() {
+	public int matchesHashCode() {
 		int ret = x0 * 31 + y0;
-		ret = ret * 31 + x1;
-		ret = ret * 31 + y1;
+		ret = ret * 31 * 31 + x1 * 31 + y1;
 		ret = ret * 31 + strokeWidth;
 		ret = ret * 31 + strokeColor.hashCode();
 		return ret;
 	}
-
-	
+		
 	@Override
 	public Element toSvgElement(Document doc) {
 		return SvgCreator.createLine(doc, this);
@@ -76,6 +78,7 @@ class Line extends DrawingMember {
 		return Location.create(x1, y1);
 	}
 	
+	@Override
 	public String getDisplayName() {
 		return Strings.get("shapeLine");
 	}
@@ -106,55 +109,32 @@ class Line extends DrawingMember {
 		}
 	}
 	
+	@Override
 	public Bounds getBounds() {
 		return bounds;
 	}
 	
-	public boolean contains(Location loc) {
-		int x = loc.getX();
-		int y = loc.getY();
-		double d = Line2D.ptLineDistSq(x0, y0, x1, y1, x, y);
+	@Override
+	public Location getRandomPoint(Bounds bds, Random rand) {
+		double u = rand.nextDouble();
+		int x = (int) Math.round(x0 + u * (x1 - x0));
+		int y = (int) Math.round(y0 + u * (y1 - y0));
+		int w = strokeWidth;
+		if (w > 1) {
+			x += (rand.nextInt(w) - w / 2);
+			y += (rand.nextInt(w) - w / 2);
+		}
+		return Location.create(x, y);
+	}
+
+	@Override
+	public boolean contains(Location loc, boolean assumeFilled) {
+		int xq = loc.getX();
+		int yq = loc.getY();
+		double d = LineUtil.ptDistSqSegment(x0, y0, x1, y1, xq, yq);
 		int thresh = Math.max(ON_LINE_THRESH, strokeWidth / 2);
-		if (d < thresh * thresh) {
-			if (x0 < x1) {
-				if (x < x0 || x > x1) return false;
-			} else {
-				if (x < x1 || x > x0) return false;
-			}
-			if (y0 < y1) {
-				if (y < y0 || y > y1) return false;
-			} else {
-				if (y < y1 || y > y0) return false;
-			}
-			return true;
-		} else {
-			return false;
-		}
+		return d < thresh * thresh;
 	}
-	
-	/*
-	private double distanceSquared(int xq, int yq) {
-		int x0 = this.x0;
-		int y0 = this.y0;
-		int x1 = this.x1;
-		int y1 = this.y1;
-		int dx = x1 - x0;
-		int dy = y1 - y0;
-		int dxq0 = xq - x0;
-		int dyq0 = yq - y0;
-		int rNum = dxq0 * dx + dyq0 * dy;
-		int rDen = dx * dx + dy * dy;
-		
-		if (rNum >= 0 && rNum <= rDen) {
-			int sNum = (y0 - yq) * dx - (x0 - xq) * dy;
-			return (double) (sNum * sNum) / rDen;
-		} else {
-			double d0 = dxq0 * dxq0 + dyq0 * dyq0;
-			double d1 = (xq-x1)*(xq-x1) + (yq-y1)*(yq-y1);
-			return Math.min(d0, d1);
-		}
-	}
-	*/
 	
 	@Override
 	public void translate(int dx, int dy) {
@@ -164,48 +144,68 @@ class Line extends DrawingMember {
 		y1 += dy;
 	}
 	
-	public List<Location> getHandles() {
-		return UnmodifiableList.create(new Location[] {
-				Location.create(x0, y0), Location.create(x1, y1) });
-	}
-	
-	public List<Location> getHandles(Location handle, int dx, int dy) {
-		Location[] ret = { Location.create(x0, y0), Location.create(x1, y1) };
-		if (ret[0].equals(handle)) ret[0] = ret[0].translate(dx, dy);
-		if (ret[1].equals(handle)) ret[1] = ret[1].translate(dx, dy);
-		return UnmodifiableList.create(ret);
+	public List<Handle> getHandles() {
+		return getHandles(null);
 	}
 	
 	@Override
-	public void moveHandle(Location handle, int dx, int dy) {
-		int hx = handle.getX();
-		int hy = handle.getY();
-		if (x0 == hx && y0 == hy) {
-			x0 += dx;
-			y0 += dy;
+	public List<Handle> getHandles(HandleGesture gesture) {
+		if (gesture == null) {
+			return UnmodifiableList.create(new Handle[] {
+					new Handle(this, x0, y0), new Handle(this, x1, y1) });
+		} else {
+			Handle h = gesture.getHandle();
+			int dx = gesture.getDeltaX();
+			int dy = gesture.getDeltaY();
+			Handle[] ret = new Handle[2];
+			ret[0] = new Handle(this, h.isAt(x0, y0)
+					? Location.create(x0 + dx, y0 + dy) : Location.create(x0, y0));
+			ret[1] = new Handle(this, h.isAt(x1, y1)
+					? Location.create(x1 + dx, y1 + dy) : Location.create(x1, y1));
+			return UnmodifiableList.create(ret);
 		}
-		if (x1 == hx && y1 == hy) {
-			x1 += dx;
-			y1 += dy;
-		}
-		bounds = Bounds.create(x0, y0, 0, 0).add(x1, y1);
 	}
 	
-	public void paint(Graphics g, Location handle, int dx, int dy) {
+	@Override
+	public boolean canMoveHandle(Handle handle) {
+		return true;
+	}
+	
+	@Override
+	public Handle moveHandle(HandleGesture gesture) {
+		Handle h = gesture.getHandle();
+		int dx = gesture.getDeltaX();
+		int dy = gesture.getDeltaY();
+		Handle ret = null;
+		if (h.isAt(x0, y0)) {
+			x0 += dx;
+			y0 += dy;
+			ret = new Handle(this, x0, y0);
+		}
+		if (h.isAt(x1, y1)) {
+			x1 += dx;
+			y1 += dy;
+			ret = new Handle(this, x1, y1);
+		}
+		bounds = Bounds.create(x0, y0, 0, 0).add(x1, y1);
+		return ret;
+	}
+	
+	@Override
+	public void paint(Graphics g, HandleGesture gesture) {
 		if (setForStroke(g)) {
 			int x0 = this.x0;
 			int y0 = this.y0;
 			int x1 = this.x1;
 			int y1 = this.y1;
-			int hx = handle == null ? Integer.MIN_VALUE : handle.getX();
-			int hy = handle == null ? Integer.MIN_VALUE : handle.getY();
-			if (x0 == hx && y0 == hy) {
-				x0 += dx;
-				y0 += dy;
+			Handle h = gesture.getHandle();
+			if (h.isAt(x0, y0)) {
+				x0 += gesture.getDeltaX();
+				y0 += gesture.getDeltaY();
 			}
-			if (x1 == hx && y1 == hy) {
-				x1 += dx;
-				y1 += dy;
+			if (h.isAt(x1, y1)) {
+				x1 += gesture.getDeltaX();
+				y1 += gesture.getDeltaY();
 			}
 			g.drawLine(x0, y0, x1, y1);
 		}

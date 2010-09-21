@@ -15,8 +15,8 @@ import javax.swing.JComponent;
 
 import com.cburch.draw.canvas.Canvas;
 import com.cburch.draw.canvas.CanvasTool;
-import com.cburch.draw.model.DrawingAttributeSet;
 import com.cburch.draw.tools.AbstractTool;
+import com.cburch.draw.tools.DrawingAttributeSet;
 import com.cburch.logisim.util.GraphicsUtil;
 
 class Toolbar extends JComponent {
