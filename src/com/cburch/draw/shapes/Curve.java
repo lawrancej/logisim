@@ -157,6 +157,11 @@ public class Curve extends FillableCanvasObject {
 	}
 	
 	@Override
+	public boolean canMoveHandle(Handle handle) {
+		return true;
+	}
+	
+	@Override
 	public Handle moveHandle(HandleGesture gesture) {
 		Handle h = gesture.getHandle();
 		int dx = gesture.getDeltaX();

@@ -18,6 +18,7 @@ import com.cburch.logisim.proj.Project;
 public class CanvasActionAdapter extends com.cburch.logisim.proj.Action {
 	private Circuit circuit;
 	private Action canvasAction;
+	private boolean wasDefault;
 	
 	public CanvasActionAdapter(Circuit circuit, Action action) {
 		this.circuit = circuit;
@@ -31,6 +32,7 @@ public class CanvasActionAdapter extends com.cburch.logisim.proj.Action {
 
 	@Override
 	public void doIt(Project proj) {
+		wasDefault = circuit.getAppearance().isDefaultAppearance();
 		if (affectsPorts()) {
 			ActionTransaction xn = new ActionTransaction(true);
 			xn.execute();
@@ -47,6 +49,7 @@ public class CanvasActionAdapter extends com.cburch.logisim.proj.Action {
 		} else {
 			canvasAction.undo();
 		}
+		circuit.getAppearance().setDefaultAppearance(wasDefault);
 	}
 	
 	private boolean affectsPorts() {

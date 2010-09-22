@@ -114,8 +114,7 @@ class PortManager {
 		}
 
 		// Now update the appearance
-		appearance.removeObjects(portRemoves);
-		appearance.addObjects(portAdds);
+		appearance.replaceAutomatically(portRemoves, portAdds);
 	}
 	
 	private static Location computeDefaultLocation(CircuitAppearance appear,

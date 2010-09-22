@@ -73,6 +73,20 @@ public class CircuitAppearance extends Drawing {
 		}
 	}
 	
+	void replaceAutomatically(List<? extends CanvasObject> removes,
+			List<? extends CanvasObject> adds) {
+		boolean oldSuppress = suppressRecompute;
+		try {
+			suppressRecompute = true;
+			removeObjects(removes);
+			addObjects(adds);
+			recomputeDefaultAppearance();
+		} finally {
+			suppressRecompute = oldSuppress;
+		}
+		fireCircuitAppearanceChanged(CircuitAppearanceEvent.ALL_TYPES);
+	}
+	
 	public boolean isDefaultAppearance() {
 		return isDefault;
 	}
@@ -86,19 +100,19 @@ public class CircuitAppearance extends Drawing {
 		}
 	}
 	
-	void recomputeDefaultAppearance() {
-		if (isDefault) {
-			Collection<CanvasObject> shapes;
-			shapes = DefaultAppearance.build(circuitPins.getPins());
-			setObjectsForce(shapes);
-		}
-	}
-	
 	void recomputePorts() {
 		if (isDefault) {
 			recomputeDefaultAppearance();
 		} else {
 			fireCircuitAppearanceChanged(CircuitAppearanceEvent.ALL_TYPES);
+		}
+	}
+	
+	private void recomputeDefaultAppearance() {
+		if (isDefault) {
+			Collection<CanvasObject> shapes;
+			shapes = DefaultAppearance.build(circuitPins.getPins());
+			setObjectsForce(shapes);
 		}
 	}
 	
@@ -116,7 +130,6 @@ public class CircuitAppearance extends Drawing {
 			suppressRecompute = true;
 			super.removeObjects(new ArrayList<CanvasObject>(getObjectsFromBottom()));
 			super.addObjects(shapes);
-			isDefault = false;
 		} finally {
 			suppressRecompute = false;
 		}
