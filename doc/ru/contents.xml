@@ -23,6 +23,7 @@
 		<tocitem target="subcirc" text="Подсхемы">
 			<tocitem target="subcirc_creating" text="Создание схем" />
 			<tocitem target="subcirc_using" text="Использование подсхем" />
+			<tocitem target="subcirc_appear" text="Изменение внешности подсхемы" />
 			<tocitem target="subcirc_debug" text="Отладка подсхем" />
 			<tocitem target="subcirc_library" text="Библиотеки Logisim" />
 		</tocitem>
@@ -129,6 +130,7 @@
 		<tocitem target="arith_negator" text="Отрицатель" />
 		<tocitem target="arith_comparator" text="Компаратор" />
 		<tocitem target="arith_shifter" text="Сдвигатель" />
+		<tocitem target="arith_bitadder" text="Сумматор битов" />
 	  </tocitem>
 	  <tocitem target="mem" text="Библиотека Память">
 		<tocitem target="mem_flipflops" text="D/T/J-K/S-R триггеры" />

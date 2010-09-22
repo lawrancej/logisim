@@ -23,6 +23,7 @@
 	<mapID target="subcirc" url="guide/subcirc/index.html" />
 	<mapID target="subcirc_creating" url="guide/subcirc/creating.html" />
 	<mapID target="subcirc_using" url="guide/subcirc/using.html" />
+	<mapID target="subcirc_appear" url="guide/subcirc/appear.html" />
 	<mapID target="subcirc_debug" url="guide/subcirc/debug.html" />
 	<mapID target="subcirc_library" url="guide/subcirc/library.html" />
 	<mapID target="bundles" url="guide/bundles/index.html" />
@@ -113,6 +114,7 @@
 	<mapID target="arith_negator" url="libs/arith/negator.html" />
 	<mapID target="arith_comparator" url="libs/arith/comparator.html" />
 	<mapID target="arith_shifter" url="libs/arith/shifter.html" />
+	<mapID target="arith_bitadder" url="libs/arith/bitadder.html" />
 	<mapID target="mem" url="libs/mem/index.html" />
 	<mapID target="mem_flipflops" url="libs/mem/flipflops.html" />
 	<mapID target="mem_register" url="libs/mem/register.html" />
