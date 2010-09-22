@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project source="2.6.0" version="1.0">
+This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
+<lib desc="#Base" name="0">
+<tool name="Text Tool">
+<a name="text" val=""/>
+<a name="font" val="SansSerif plain 12"/>
+<a name="halign" val="center"/>
+<a name="valign" val="base"/>
+</tool>
+</lib>
+<lib desc="#Gates" name="1"/>
+<lib desc="#Plexers" name="2"/>
+<lib desc="#Arithmetic" name="3"/>
+<lib desc="#Memory" name="4">
+<tool name="ROM">
+<a name="contents">addr/data: 8 8
+0
+</a>
+</tool>
+</lib>
+<lib desc="#I/O" name="5"/>
+<main name="main"/>
+<options>
+<a name="showgrid" val="false"/>
+<a name="preview" val="false"/>
+<a name="showhalo" val="true"/>
+<a name="showhalo" val="true"/>
+<a name="moveconnect" val="true"/>
+<a name="zoom" val="1.0"/>
+<a name="gateUndefined" val="ignore"/>
+<a name="simlimit" val="1000"/>
+<a name="simrand" val="0"/>
+<a name="radix" val="2"/>
+<a name="radix2" val="10signed"/>
+<a name="toolbarloc" val="north"/>
+</options>
+<mappings>
+<tool lib="0" map="Ctrl Button1" name="Menu Tool"/>
+<tool lib="0" map="Button3" name="Menu Tool"/>
+<tool lib="0" map="Button2" name="Menu Tool"/>
+</mappings>
+<toolbar>
+<tool lib="0" name="Poke Tool"/>
+<tool lib="0" name="Edit Tool"/>
+<tool lib="0" name="Text Tool">
+<a name="text" val=""/>
+<a name="font" val="SansSerif plain 12"/>
+<a name="halign" val="center"/>
+<a name="valign" val="base"/>
+</tool>
+<sep/>
+<tool lib="0" name="Pin">
+<a name="tristate" val="false"/>
+</tool>
+<tool lib="0" name="Pin">
+<a name="facing" val="west"/>
+<a name="output" val="true"/>
+<a name="labelloc" val="east"/>
+</tool>
+<tool lib="1" name="NOT Gate">
+<a name="size" val="20"/>
+</tool>
+<tool lib="1" name="AND Gate">
+<a name="size" val="30"/>
+<a name="inputs" val="3"/>
+</tool>
+<tool lib="1" name="OR Gate">
+<a name="size" val="30"/>
+<a name="inputs" val="3"/>
+</tool>
+</toolbar>
+<circuit name="main">
+<a name="circuit" val="main"/>
+<a name="label" val=""/>
+<a name="labelup" val="east"/>
+<a name="labelfont" val="SansSerif plain 12"/>
+<appear>
+<path d="M61,51 Q65,61 69,51" fill="none" stroke="#808080" stroke-width="2"/>
+<rect fill="none" height="30" stroke="#000000" stroke-width="2" width="30" x="50" y="50"/>
+<circ-origin facing="east" height="6" width="6" x="47" y="47"/>
+</appear>
+</circuit>
+<circuit name="2:1 MUX">
+<a name="circuit" val="2:1 MUX"/>
+<a name="label" val=""/>
+<a name="labelup" val="east"/>
+<a name="labelfont" val="SansSerif plain 12"/>
+<appear>
+<circ-origin facing="east" height="6" width="6" x="77" y="57"/>
+<circ-port height="8" pin="30,20" width="8" x="46" y="46"/>
+<circ-port height="10" pin="150,50" width="10" x="75" y="55"/>
+<circ-port height="8" pin="30,60" width="8" x="46" y="66"/>
+<circ-port height="8" pin="40,110" width="8" x="56" y="76"/>
+<polygon fill="none" points="50,80 50,40 80,50 80,70" stroke="#000000" stroke-width="2"/>
+<polyline fill="none" points="60,80 60,78" stroke="#000000" stroke-width="3"/>
+<text font-family="SansSerif" font-size="10" text-anchor="start" x="53" y="54">0</text>
+<text font-family="SansSerif" font-size="10" text-anchor="start" x="53" y="74">1</text>
+</appear>
+<wire from="(110,40)" to="(120,40)"/>
+<wire from="(100,70)" to="(110,70)"/>
+<wire from="(40,40)" to="(50,40)"/>
+<wire from="(30,20)" to="(70,20)"/>
+<wire from="(100,30)" to="(110,30)"/>
+<wire from="(110,60)" to="(110,70)"/>
+<wire from="(110,60)" to="(120,60)"/>
+<wire from="(110,30)" to="(110,40)"/>
+<wire from="(40,80)" to="(70,80)"/>
+<wire from="(30,60)" to="(70,60)"/>
+<wire from="(40,40)" to="(40,80)"/>
+<wire from="(40,80)" to="(40,110)"/>
+<comp lib="1" loc="(150,50)" name="OR Gate">
+<a name="size" val="30"/>
+<a name="inputs" val="3"/>
+</comp>
+<comp lib="0" loc="(40,110)" name="Pin">
+<a name="facing" val="north"/>
+<a name="tristate" val="false"/>
+</comp>
+<comp lib="1" loc="(100,70)" name="AND Gate">
+<a name="size" val="30"/>
+<a name="inputs" val="3"/>
+</comp>
+<comp lib="1" loc="(100,30)" name="AND Gate">
+<a name="size" val="30"/>
+<a name="inputs" val="3"/>
+</comp>
+<comp lib="0" loc="(30,20)" name="Pin">
+<a name="tristate" val="false"/>
+</comp>
+<comp lib="1" loc="(70,40)" name="NOT Gate">
+<a name="size" val="20"/>
+</comp>
+<comp lib="0" loc="(30,60)" name="Pin">
+<a name="tristate" val="false"/>
+</comp>
+<comp lib="0" loc="(150,50)" name="Pin">
+<a name="facing" val="west"/>
+<a name="output" val="true"/>
+<a name="labelloc" val="east"/>
+</comp>
+</circuit>
+<circuit name="4:1 MUX">
+<a name="circuit" val="4:1 MUX"/>
+<a name="label" val=""/>
+<a name="labelup" val="east"/>
+<a name="labelfont" val="SansSerif plain 12"/>
+<appear>
+<path d="M61,51 Q65,61 69,51" fill="none" stroke="#808080" stroke-width="2"/>
+<rect fill="none" height="30" stroke="#000000" stroke-width="2" width="30" x="50" y="50"/>
+<circ-origin facing="east" height="6" width="6" x="47" y="47"/>
+<circ-port height="8" pin="60,30" width="8" x="46" y="56"/>
+<circ-port height="10" pin="180,70" width="10" x="75" y="55"/>
+<circ-port height="8" pin="60,50" width="8" x="46" y="66"/>
+<circ-port height="8" pin="60,90" width="8" x="46" y="76"/>
+<circ-port height="8" pin="60,110" width="8" x="46" y="86"/>
+<circ-port height="8" pin="50,150" width="8" x="56" y="76"/>
+<circ-port height="8" pin="80,150" width="8" x="66" y="76"/>
+</appear>
+<wire from="(150,90)" to="(150,130)"/>
+<wire from="(60,30)" to="(90,30)"/>
+<wire from="(130,80)" to="(140,80)"/>
+<wire from="(130,40)" to="(130,60)"/>
+<wire from="(60,50)" to="(90,50)"/>
+<wire from="(80,70)" to="(100,70)"/>
+<wire from="(120,40)" to="(130,40)"/>
+<wire from="(60,90)" to="(90,90)"/>
+<wire from="(80,70)" to="(80,140)"/>
+<wire from="(80,140)" to="(80,150)"/>
+<wire from="(100,60)" to="(100,70)"/>
+<wire from="(50,130)" to="(50,150)"/>
+<wire from="(60,110)" to="(90,110)"/>
+<wire from="(100,120)" to="(100,140)"/>
+<wire from="(80,140)" to="(100,140)"/>
+<wire from="(130,80)" to="(130,100)"/>
+<wire from="(130,60)" to="(140,60)"/>
+<wire from="(120,100)" to="(130,100)"/>
+<wire from="(50,130)" to="(150,130)"/>
+<wire from="(170,70)" to="(180,70)"/>
+<comp lib="0" loc="(80,150)" name="Pin">
+<a name="facing" val="north"/>
+<a name="tristate" val="false"/>
+<a name="label" val="sel 1"/>
+<a name="labelloc" val="east"/>
+</comp>
+<comp loc="(120,40)" name="2:1 MUX"/>
+<comp lib="0" loc="(60,30)" name="Pin">
+<a name="tristate" val="false"/>
+<a name="label" val="in 00"/>
+</comp>
+<comp lib="0" loc="(60,50)" name="Pin">
+<a name="tristate" val="false"/>
+<a name="label" val="in 01"/>
+</comp>
+<comp lib="0" loc="(180,70)" name="Pin">
+<a name="facing" val="west"/>
+<a name="output" val="true"/>
+<a name="label" val="out"/>
+<a name="labelloc" val="east"/>
+</comp>
+<comp loc="(120,100)" name="2:1 MUX"/>
+<comp lib="0" loc="(60,90)" name="Pin">
+<a name="tristate" val="false"/>
+<a name="label" val="in 10"/>
+</comp>
+<comp lib="0" loc="(60,110)" name="Pin">
+<a name="tristate" val="false"/>
+<a name="label" val="in 11"/>
+</comp>
+<comp lib="0" loc="(50,150)" name="Pin">
+<a name="facing" val="north"/>
+<a name="tristate" val="false"/>
+<a name="label" val="sel 0"/>
+</comp>
+<comp loc="(170,70)" name="2:1 MUX"/>
+</circuit>
+</project>
