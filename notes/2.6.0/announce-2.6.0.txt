@@ -1,0 +1,45 @@
+Feature: You can customize how a subcircuit component will be drawn, in place of the default rectangle-with-notch appearance earlier.
+
+Feature: Multiplexers, demultiplexers, decoders, and priority encoders all support 5 "Select Bits."
+
+Feature: The Arithmetic library now includes a "Bit Adder" which computes the number of 1 bits in its input(s).
+
+Feature: The I/O library's LED has an "Off Color" attribute.
+
+Bug fix: After removing a circuit from the project, an Undo would place the removed circuit at the end of the project's list rather than back in its previous location.
+
+Bug fix: When loading more than 4,096 memory entries into RAM or ROM, if the 4,096th entry (or a multiple of 4096 entries) was at the end of a line in the text file, all subsequent entries were ignored.
+
+Bug fix: When the circuit is scaled using the zoom controls, tool tips would show up in the wrong location.
+
+Bug fix: A "ConcurrentModificationException" was observed from the EventSourceWeakSupport class. It was changed to guarantee that it does not occur there.
+
+Bug fix: Sometimes a diagonal line would appear across the layout when you selected a different component to be added.
+
+Interface change: The menu shortcut for moving up in the state hierarchy is now MenuKey+Shift+Up, since MenuKey+Up is used for raising the selection.
+
+Interface change: When the grid is being shown and the zoom factor is 200% or more, each grid dot is actually a square of several pixels.
+
+Interface change: The project toolbar is drawn slightly differently, with a darker "add" icon, and of course the added elements for selecting to edit the layout or the appearance. Behind the scenes, the icons are drawn differently - this will likely be most apparent under MacOS X, where it was fairly ugly before.
+
+Interface change: Subcircuits are drawn (by default) with a slightly different notch to adapt to the quadratic Bezier curve supported by the customized appearance module.
+
+Architectural change: Subcircuits are implemented using the newer logisim.instance API rather than the deprecated logisim.comp API.
+
+
+TODO:
+
+alt when creating curve creates curve going through the control point
+refine point containment in text
+respect shift/alt when moving handle - depends on shape
+cut/copy sometimes does not work immediately after selecting view
+don't create Appearance view until it is actually needed
+ensure that ports and origin are always at top of appearance
+When a component is selected, sometimes an attempt to change to an attribute in the attribute table changes the attribute, but the table is not updated to reflect it.
+save appearance zoom/show grid as part of file
+check: start but don't finish editing attribute, then change attribute list
+
+Deferred:
+
+refine when the Raise/Lower menu option is enabled
+probe tool - adds display of probe value inside circuit layout

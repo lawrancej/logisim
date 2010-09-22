@@ -23,6 +23,7 @@
 		<tocitem target="subcirc" text="Subcircuits">
 			<tocitem target="subcirc_creating" text="Creating circuits" />
 			<tocitem target="subcirc_using" text="Using subcircuits" />
+			<tocitem target="subcirc_appear" text="Editing subcircuit appearance" />
 			<tocitem target="subcirc_debug" text="Debugging subcircuits" />
 			<tocitem target="subcirc_library" text="Logisim libraries" />
 		</tocitem>
@@ -129,6 +130,7 @@
 		<tocitem target="arith_negator" text="Negator" />
 		<tocitem target="arith_comparator" text="Comparator" />
 		<tocitem target="arith_shifter" text="Shifter" />
+		<tocitem target="arith_bitadder" text="Bit Adder" />
 	  </tocitem>
 	  <tocitem target="mem" text="Memory library">
 		<tocitem target="mem_flipflops" text="D/T/J-K/S-R Flip-Flop" />

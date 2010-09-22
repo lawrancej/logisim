@@ -60,6 +60,41 @@ the clipboard.</p></dd>
 <dt><strong>Select All</strong></dt>
 <dd><p>Selects all components in the current circuit.</p></dd>
 
+<dt><strong>Raise Selection</strong></dt>
+<dd><p>Available only when editing how a circuit's appearance, this menu item
+raises the currently selected object(s) to be drawn
+on top of an object that currently overlaps the selection. If the selected
+object is overlapped by several objects, it is raised only to be above the lowest
+one; select the menu item repeatedly until it is in the order it
+should be.</p>
+
+<p>(Determining whether two arbitrary objects overlap is difficult. Logisim uses
+an algorithm of selecting several random points in each of the two objects
+and seeing if any point is also in the other object. Sometimes it will fail to
+detect an overlap if the overlap is small &mdash; say, less than 5% of
+either of the objects.)</p></dd>
+
+<dt><strong>Lower Selection</strong></dt>
+<dd><p>Available only when editing a circuit's appearance, this menu item
+lowers the currently selected object(s) to be drawn below an object that the
+object currently overlaps. If it overlaps several objects, it is lowered only
+to be below the highest one; select the menu item repeatedly until it is in the
+order it should be.</p></dd>
+
+<dt><strong>Add Vertex</strong></dt>
+<dd><p>Available only when editing a circuit's appearance and a point has been
+selected on a line, polyline, or polygon, this menu item inserts a new vertex
+onto the shape. Previous to insertion, the selected point is drawn as a
+diamond.</p></dd>
+
+<dt><strong>Remove Vertex</strong></dt>
+<dd><p>Available only when editing a circuit's appearance and an existing
+vertex has been selected on a polyline or polygon, this menu item removes
+the selected vertex. Previous to deletion, the selected vertex is drawn as a
+diamond within the square representing the vertex. Logisim will not permit
+removing a vertex on a polygon with only three vertices or on a polyline with
+only two vertices.</p></dd>
+
 </dl>
 
 <p><strong>Next:</strong> <a href="project.html">The Project menu</a>.</p>

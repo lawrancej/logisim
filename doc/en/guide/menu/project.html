@@ -36,10 +36,28 @@ circuits within the project, as displayed in the explorer pane.</p></dd></dd>
 
 <dt><strong>Set As Main Circuit</strong></dt>
 <dd><p>Sets the currently displayed circuit to be the project's
-``main circuit.'' (This menu item will be grayed out if the
+<q>main circuit.</q> (This menu item will be grayed out if the
 current circuit is already the project's main circuit.)
 The only significance of the main circuit is that it is the
 circuit that first appears when a project file is opened.</p></dd>
+
+<dt><strong>Edit Circuit Layout</strong></dt>
+<dd><p>Switches to allow you to edit how the layout of components that
+determines how the circuit works. This is what the program does when it starts,
+and you will edit circuit layouts most often using Logisim, so this menu item
+is normally disabled.</p></dd>
+
+<dt><strong>Edit Circuit Appearance</strong></dt>
+<dd><p>Switches to allow you to edit how the circuit will be represented
+when it is used as a subcircuit within another circuit. By default, the circuit
+is represented as a rectangle with a gray <q>notch</q> on its north end, but
+this menu option allows you to draw a different appearance for the
+subcircuit.</p></dd>
+
+<dt><strong>Revert To Default Appearance</strong></dt>
+<dd><p>If you've edited the circuit's appearance, this menu item reverts
+the appearance back to the default rectangle-with-notch appearance.
+The menu item is enabled only when editing the circuit's appearance.</p></dd>
 
 <dt><strong>Remove Circuit</strong></dt>
 <dd><p>Removes the currently displayed circuit from the project. 
@@ -85,7 +103,8 @@ not included in the unique and recursive counts.</p></dd>
 <dd><p>When checked, this menu item indicates that a small toolbar
 should be displayed above the explorer pane, allowing the user
 easy access to adding, renaming, reordering, and removing circuits
-from a project.</p></dd>
+from a project. The toolbar also supports switching between editing a circuit's
+layout and its appearance.</p></dd>
 
 <dt><strong>Options...</strong></dt>
 <dd><p>Opens the <a href="../opts/index.html">Project Options
