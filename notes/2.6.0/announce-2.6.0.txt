@@ -1,5 +1,7 @@
 Feature: You can customize how a subcircuit component will be drawn, in place of the default rectangle-with-notch appearance earlier.
 
+Feature: When the poke tool is selected, clicking a subcircuit will lead a magnifying glass to appear over the subcircuit, and double-clicking in the magnifying glass will enter the subcircuit's state.
+
 Feature: Multiplexers, demultiplexers, decoders, and priority encoders all support 5 "Select Bits."
 
 Feature: The Arithmetic library now includes a "Bit Adder" which computes the number of 1 bits in its input(s).
@@ -24,12 +26,15 @@ Interface change: The project toolbar is drawn slightly differently, with a dark
 
 Interface change: Subcircuits are drawn (by default) with a slightly different notch to adapt to the quadratic Bezier curve supported by the customized appearance module.
 
+Interface change: The explorer pane's magnifying glass is drawn with a hint of blue in its center.
+
 Architectural change: Subcircuits are implemented using the newer logisim.instance API rather than the deprecated logisim.comp API.
 
 
 TODO:
 
 Raise To Top/Lower To Bottom
+popup menu for selection in the appearance
 cut/copy sometimes does not work immediately after selecting view
 don't create Appearance view until it is actually needed
 ensure that ports and origin are always at top of appearance

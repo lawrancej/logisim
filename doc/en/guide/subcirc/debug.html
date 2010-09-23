@@ -9,26 +9,30 @@
 
 <p>As you test larger circuits, you will likely find bugs. To nail down
 what's going wrong, exploring what's going on in the subcircuits while
-running the overall circuit can help. From viewing the overall circuit,
-you can do this by bringing up the subcircuit's popup menu
-(right-click or control-click its box). Then choose the View option.</p>
+running the overall circuit can help. You can view the state of the subcircuit
+in two ways: First, you can bring up the subcircuit's popup menu by
+right-clicking or control-clicking it, choosing the View option.</p>
 <center><img width="381" height="254" src="4-delve.png"></center>
-<p>After choosing this, the view will switch to the subcircuit.</p>
+<p>Or if you have the Poke tool selected, you can click the circuit,
+and a magnifying glass will appear over its center;
+double-clicking where the magnifying glass appears will also enter
+the subcircuit's state.</p>
 <center><img width="381" height="254" src="2-delve.png"></center>
 <p>Notice that the pins' values in the subcircuit match the values
 being sent to them in its containing circuit.</p>
 
-<p>While in the subcircuit, you can change it however you want;
-any changes to pins' values will be propagated within the
-containing circuit. (If you attempt to toggle a pin
-using the Poke Tool, Logisim will pop up a dialog box
-asking whether you want to create a new state; responding Yes will
-divorce the state viewed with the subcircuit from the outer
-circuit's state, while responding No will cancel the toggle
-request.)</p>
+<p>While in the subcircuit, you are allowed to alter the circuit. If the
+changes affect any of the subcircuit's outputs, they are propagated into the
+containing circuit. One exception: The subcircuit inputs are determined based on
+the values coming into the circuit from the supercircuit, so it doesn't make
+sense to toggle those values. If you attempt to poke a subcircuit's input,
+a dialog will pop up asking, <q>The pin is tied to the supercircuit state.
+Create a new circuit state?</q> Clicking No will cancel the toggle request,
+while clicking Yes will create a copy of the viewed state,
+divorced from the outer circuit, with the input pin toggled.</p>
 
 <p>Once you have completed viewing and/or editing, you can return to the parent circuit
-either by double-clicking it in the explorer pane, or via the Go Out
+either by double-clicking the parent circuit in the explorer pane, or via the Go Out
 To State submenu of the Simulate menu.</p>
 
 <p><strong>Next:</strong> <a href="library.html">Logisim libraries</a>.</p>
