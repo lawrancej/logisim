@@ -76,7 +76,8 @@ class ProjectZoomModel implements ZoomModel, ProjectListener, AttributeListener 
 			zoomFactor = value;
 			AttributeSet attrs = proj.getOptions().getAttributeSet();
 			attrs.setValue(Options.zoom_attr, Double.valueOf(value));
-			support.firePropertyChange(ZoomModel.ZOOM, oldValue, value);
+			support.firePropertyChange(ZoomModel.ZOOM, Double.valueOf(oldValue),
+					Double.valueOf(value));
 		}
 	}
 

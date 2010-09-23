@@ -48,7 +48,7 @@ public class DrawAttr {
 	public static final Attribute<Color> TEXT_DEFAULT_FILL
 		= Attributes.forColor("fill", Strings.getter("attrFill"));
 	public static final Attribute<Integer> CORNER_RADIUS
-		= Attributes.forIntegerRange("rx", Strings.getter("attrRx"), 1, 10);
+		= Attributes.forIntegerRange("rx", Strings.getter("attrRx"), 1, 1000);
 
 	public static final List<Attribute<?>> ATTRS_TEXT // for text
 		= createAttributes(new Attribute[] { FONT, ALIGNMENT, FILL_COLOR });

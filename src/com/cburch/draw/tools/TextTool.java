@@ -105,7 +105,7 @@ public class TextTool extends AbstractTool {
 	
 	@Override
 	public void toolDeselected(Canvas canvas) {
-		cancelText(canvas);
+		commitText(canvas);
 	}
 	
 	@Override

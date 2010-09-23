@@ -255,23 +255,16 @@ public class SelectTool extends AbstractTool {
 	
 	@Override
 	public void keyPressed(Canvas canvas, KeyEvent e) {
-		switch(e.getKeyCode()) {
-		case KeyEvent.VK_SHIFT:
-		case KeyEvent.VK_CONTROL:
-			if (curAction != IDLE) {
-				setMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
-			}
-			break;
+		int code = e.getKeyCode();
+		if ((code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_CONTROL
+				|| code == KeyEvent.VK_ALT) && curAction != IDLE) {
+			setMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
 		}
 	}
 	
 	@Override
 	public void keyReleased(Canvas canvas, KeyEvent e) {
-		int code = e.getKeyCode();
-		if ((code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_CONTROL)
-				&& curAction != IDLE) {
-			setMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
-		}
+		keyPressed(canvas, e);
 	}
 	
 	@Override
@@ -302,11 +295,9 @@ public class SelectTool extends AbstractTool {
 	private void setMouse(Canvas canvas, int mx, int my, int mods) {
 		lastMouseX = mx;
 		lastMouseY = my;
-		boolean shift = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0
-			&& curAction == MOVE_ALL;
+		boolean shift = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0;
 		boolean ctrl = (mods & InputEvent.CTRL_DOWN_MASK) != 0;
-		Location newEnd = shift ? LineTool.snapTo4Cardinals(dragStart, mx, my)
-				: Location.create(mx, my);
+		Location newEnd = Location.create(mx, my);
 		dragEnd = newEnd;
 
 		Location start = dragStart;
@@ -345,6 +336,13 @@ public class SelectTool extends AbstractTool {
 				}
 				dx = canvas.snapX(minX + dx) - minX;
 				dy = canvas.snapY(minY + dy) - minY;
+			}
+			if (shift) {
+				if (Math.abs(dx) > Math.abs(dy)) {
+					dy = 0;
+				} else {
+					dx = 0;
+				}
 			}
 			canvas.getSelection().setMovingDelta(dx, dy);
 			break;

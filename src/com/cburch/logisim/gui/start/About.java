@@ -39,6 +39,7 @@ public class About {
 			this.panel = panel;
 		}
 		
+		@Override
 		public void run() {
 			while (running) {
 				panel.upper = (count == 2 || count == 3) ? Value.TRUE : Value.FALSE;
@@ -81,6 +82,7 @@ public class About {
 			}
 		}
 
+		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			

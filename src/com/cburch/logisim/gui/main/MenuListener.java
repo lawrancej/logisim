@@ -64,6 +64,8 @@ class MenuListener {
 			menubar.addActionListener(LogisimMenuBar.SELECT_ALL, this);
 			menubar.addActionListener(LogisimMenuBar.RAISE, this);
 			menubar.addActionListener(LogisimMenuBar.LOWER, this);
+			menubar.addActionListener(LogisimMenuBar.RAISE_TOP, this);
+			menubar.addActionListener(LogisimMenuBar.LOWER_BOTTOM, this);
 			menubar.addActionListener(LogisimMenuBar.ADD_CONTROL, this);
 			menubar.addActionListener(LogisimMenuBar.REMOVE_CONTROL, this);
 			if (handler != null) handler.computeEnabled();
@@ -88,6 +90,10 @@ class MenuListener {
 				if (h != null) h.raise();
 			} else if (src == LogisimMenuBar.LOWER) {
 				if (h != null) h.lower();
+			} else if (src == LogisimMenuBar.RAISE_TOP) {
+				if (h != null) h.raiseTop();
+			} else if (src == LogisimMenuBar.LOWER_BOTTOM) {
+				if (h != null) h.lowerBottom();
 			} else if (src == LogisimMenuBar.ADD_CONTROL) {
 				if (h != null) h.addControlPoint();
 			} else if (src == LogisimMenuBar.REMOVE_CONTROL) {

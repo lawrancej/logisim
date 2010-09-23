@@ -74,18 +74,19 @@ public class ZOrder {
 	
 	// returns first object above query in the z-order that overlaps query
 	public static CanvasObject getObjectAbove(CanvasObject query,
-			CanvasModel model) {
-		return getPrevious(query, model.getObjectsFromTop(), model);
+			CanvasModel model, Collection<? extends CanvasObject> ignore) {
+		return getPrevious(query, model.getObjectsFromTop(), model, ignore);
 	}
 	
 	// returns first object below query in the z-order that overlaps query
 	public static CanvasObject getObjectBelow(CanvasObject query,
-			CanvasModel model) {
-		return getPrevious(query, model.getObjectsFromBottom(), model);
+			CanvasModel model, Collection<? extends CanvasObject> ignore) {
+		return getPrevious(query, model.getObjectsFromBottom(), model, ignore);
 	}
 	
 	private static CanvasObject getPrevious(CanvasObject query,
-			List<CanvasObject> objs, CanvasModel model) {
+			List<CanvasObject> objs, CanvasModel model,
+			Collection<? extends CanvasObject> ignore) {
 		int index = getIndex(query, objs);
 		if (index <= 0) {
 			return null;
@@ -94,7 +95,7 @@ public class ZOrder {
 			ListIterator<CanvasObject> it = objs.listIterator(index);
 			while (it.hasPrevious()) {
 				CanvasObject o = it.previous();
-				if (set.contains(o)) return o;
+				if (set.contains(o) && !ignore.contains(o)) return o;
 			}
 			return null;
 		}

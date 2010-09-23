@@ -18,6 +18,7 @@ import com.cburch.draw.actions.ModelAddAction;
 import com.cburch.draw.canvas.Canvas;
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.shapes.Curve;
+import com.cburch.draw.shapes.CurveUtil;
 import com.cburch.draw.shapes.DrawAttr;
 import com.cburch.draw.shapes.LineUtil;
 import com.cburch.logisim.data.Attribute;
@@ -113,8 +114,8 @@ public class CurveTool extends AbstractTool {
 	@Override
 	public void keyPressed(Canvas canvas, KeyEvent e) {
 		int code = e.getKeyCode();
-		if (mouseDown
-				&& (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_CONTROL)) {
+		if (mouseDown && (code == KeyEvent.VK_SHIFT
+				|| code == KeyEvent.VK_CONTROL || code == KeyEvent.VK_ALT)) {
 			updateMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
 			repaintArea(canvas);
 		}
@@ -139,18 +140,19 @@ public class CurveTool extends AbstractTool {
 		lastMouseX = mx;
 		lastMouseY = my;
 		
-		boolean shift = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0;
-		boolean ctrl = (mods & MouseEvent.CTRL_DOWN_MASK) != 0;
+		boolean shiftDown = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0;
+		boolean ctrlDown = (mods & MouseEvent.CTRL_DOWN_MASK) != 0;
+		boolean altDown = (mods & MouseEvent.ALT_DOWN_MASK) != 0;
 		Curve ret = null;
 		switch (state) {
 		case ENDPOINT_DRAG:
 			if (mouseDown) {
-				if (shift) {
+				if (shiftDown) {
 					Location p = LineUtil.snapTo8Cardinals(end0, mx, my);
 					mx = p.getX();
 					my = p.getY();
 				}
-				if (ctrl) {
+				if (ctrlDown) {
 					mx = canvas.snapX(mx);
 					my = canvas.snapY(my);
 				}
@@ -159,11 +161,13 @@ public class CurveTool extends AbstractTool {
 			break;
 		case CONTROL_DRAG:
 			if (mouseDown) {
-				if (ctrl) {
-					mx = canvas.snapX(mx);
-					my = canvas.snapY(my);
+				int cx = mx;
+				int cy = my;
+				if (ctrlDown) {
+					cx = canvas.snapX(cx);
+					cy = canvas.snapY(cy);
 				}
-				if (shift) {
+				if (shiftDown) {
 					double x0 = end0.getX();
 					double y0 = end0.getY();
 					double x1 = end1.getX();
@@ -172,12 +176,20 @@ public class CurveTool extends AbstractTool {
 					double midy = (y0 + y1) / 2;
 					double dx = x1 - x0;
 					double dy = y1 - y0;
-					double[] p = LineUtil.nearestPointInfinite(mx, my,
+					double[] p = LineUtil.nearestPointInfinite(cx, cy,
 							midx, midy, midx - dy, midy + dx);
-					mx = (int) Math.round(p[0]);
-					my = (int) Math.round(p[1]);
+					cx = (int) Math.round(p[0]);
+					cy = (int) Math.round(p[1]);
 				}
-				ret = new Curve(end0, end1, Location.create(mx, my));
+				if (altDown) {
+					double[] e0 = { end0.getX(), end0.getY() };
+					double[] e1 = { end1.getX(), end1.getY() };
+					double[] mid = { cx, cy };
+					double[] ct = CurveUtil.interpolate(e0, e1, mid);
+					cx = (int) Math.round(ct[0]);
+					cy = (int) Math.round(ct[1]);
+				}
+				ret = new Curve(end0, end1, Location.create(cx, cy));
 				curCurve = ret;
 			}
 			break;

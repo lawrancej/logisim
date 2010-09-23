@@ -1,21 +1,18 @@
 ﻿/* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-/**
-* Bezier class for collision detection
-* @author Olivier Besson (http://www.gludion.com)
-* @version 0.1
-* 
-* Translated from the ActionScript into Java by Carl Burch
-* Original code retrieved from:
-*    http://blog.gludion.com/2009/08/distance-to-quadratic-bezier-curve.html
-*/
 package com.cburch.draw.shapes;
 
 import com.cburch.logisim.data.Bounds;
 
 public class CurveUtil {
 	private CurveUtil() { }
+	
+	/**
+	 * getBounds and findNearestPoint are based translated from the ActionScript
+	 * of Olivier Besson's Bezier class for collision detection. Code from:
+	 *   http://blog.gludion.com/2009/08/distance-to-quadratic-bezier-curve.html
+	 */
 	
 	// a value we consider "small enough" to equal it to zero:
 	// (this is used for double solutions in 2nd or 3d degree equation)
@@ -194,5 +191,41 @@ public class CurveUtil {
 			// a, b, and c are all 0 - this is a constant equation
 			return null;
 		}
+	}
+
+	// Translated from ActionScript written by Jim Armstrong, at
+	// www.algorithmist.net. ActionScript is (c) 2006-2007, Jim Armstrong.
+	// All rights reserved.
+	//
+	// This software program is supplied 'as is' without any warranty, express,
+	// implied, or otherwise, including without limitation all warranties of
+	// merchantability or fitness for a particular purpose.  Jim Armstrong shall
+	// not be liable for any special incidental, or consequential damages,
+	// including, without limitation, lost revenues, lost profits, or loss of
+	// prospective economic advantage, resulting from the use or misuse of this
+	// software program.
+	public static double[] interpolate(double[] end0, double[] end1, double[] mid) {
+		double dx = mid[0] - end0[0];
+		double dy = mid[1] - end0[1];
+		double d0 = Math.sqrt(dx * dx + dy * dy);
+		
+		dx = mid[0] - end1[0];
+		dy = mid[1] - end1[1];
+		double d1 = Math.sqrt(dx * dx + dy * dy);
+		
+		if (d0 < zeroMax || d1 < zeroMax) {
+			return new double[] { (end0[0] + end1[0]) / 2,
+					(end0[1] + end1[1]) / 2 };
+		}
+		
+		double t = d0 / (d0 + d1);
+		double u = 1.0 - t;
+		double t2 = t * t;
+		double u2 = u * u;
+		double den = 2 * t * u;
+		
+		double xNum = mid[0] - u2 * end0[0] - t2 * end1[0];
+		double yNum = mid[1] - u2 * end0[1] - t2 * end1[1];
+		return new double[] { xNum / den, yNum / den };
 	}
 }

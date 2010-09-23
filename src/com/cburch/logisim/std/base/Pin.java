@@ -6,6 +6,7 @@ package com.cburch.logisim.std.base;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import javax.swing.Icon;
@@ -35,6 +36,8 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
+import com.cburch.logisim.tools.key.DirectionConfigurator;
+import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
 
@@ -66,7 +69,9 @@ public class Pin extends InstanceFactory {
 	public Pin() {
 		super("Pin", Strings.getter("pinComponent"));
 		setFacingAttribute(StdAttr.FACING);
-		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
+		setKeyConfigurator(JoinedConfigurator.create(
+			new BitWidthConfigurator(StdAttr.WIDTH),
+			new DirectionConfigurator(ATTR_LABEL_LOC, KeyEvent.ALT_DOWN_MASK)));
 		setInstanceLogger(PinLogger.class);
 		setInstancePoker(PinPoker.class);
 	}

@@ -400,9 +400,9 @@ public class SelectTool extends Tool {
 	}
 	
 	private void processKeyEvent(Canvas canvas, KeyEvent e, int type) {
-		HashMap<Component,KeyConfigurator> handlers = keyHandlers;
+		HashMap<Component, KeyConfigurator> handlers = keyHandlers;
 		if (handlers == null) {
-			handlers = new HashMap<Component,KeyConfigurator>();
+			handlers = new HashMap<Component, KeyConfigurator>();
 			Selection sel = canvas.getSelection();
 			for (Component comp : sel.getComponents()) {
 				ComponentFactory factory = comp.getFactory();
@@ -420,7 +420,7 @@ public class SelectTool extends Tool {
 			boolean consume = false;
 			ArrayList<KeyConfigurationResult> results;
 			results = new ArrayList<KeyConfigurationResult>();
-			for (Map.Entry<Component,KeyConfigurator> entry : handlers.entrySet()) {
+			for (Map.Entry<Component, KeyConfigurator> entry : handlers.entrySet()) {
 				Component comp = entry.getKey();
 				KeyConfigurator handler = entry.getValue();
 				KeyConfigurationEvent event = new KeyConfigurationEvent(type,

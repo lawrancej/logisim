@@ -32,6 +32,8 @@ public abstract class EditHandler {
 	public abstract void selectAll();
 	public abstract void raise();
 	public abstract void lower();
+	public abstract void raiseTop();
+	public abstract void lowerBottom();
 	public abstract void addControlPoint();
 	public abstract void removeControlPoint();
 }

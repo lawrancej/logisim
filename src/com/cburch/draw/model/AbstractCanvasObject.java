@@ -195,7 +195,7 @@ public abstract class AbstractCanvasObject
 			if (color != null && color.getAlpha() == 0) {
 				return false;
 			} else {
-				GraphicsUtil.switchToWidth(g, width);
+				GraphicsUtil.switchToWidth(g, width.intValue());
 				if (color != null) g.setColor(color);
 				return true;
 			}

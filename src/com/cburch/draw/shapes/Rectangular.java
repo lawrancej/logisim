@@ -70,33 +70,79 @@ abstract class Rectangular extends FillableCanvasObject {
 	
 	@Override
 	public List<Handle> getHandles(HandleGesture gesture) {
+		return UnmodifiableList.create(getHandleArray(gesture));
+	}
+		
+	private Handle[] getHandleArray(HandleGesture gesture) {
 		Bounds bds = bounds;
-		int rx = bds.getX();
-		int ry = bds.getY();
-		int rw = bds.getWidth();
-		int rh = bds.getHeight();
-		Handle[] ret = new Handle[4];
-		Handle h = gesture == null ? null : gesture.getHandle();
-		int hx = h == null ? Integer.MIN_VALUE : h.getX();
-		int hy = h == null ? Integer.MIN_VALUE : h.getY();
-		for (int i = 0; i < ret.length; i++) {
-			int x;
-			int y;
-			switch (i) {
-			case 0:  x = rx;      y = ry; break;
-			case 1:  x = rx + rw; y = ry; break;
-			case 2:  x = rx + rw; y = ry + rh; break;
-			default: x = rx;      y = ry + rh;
+		int x0 = bds.getX();
+		int y0 = bds.getY();
+		int x1 = x0 + bds.getWidth();
+		int y1 = y0 + bds.getHeight();
+		if (gesture == null) {
+			return new Handle[] { new Handle(this, x0, y0),
+					new Handle(this, x1, y0), new Handle(this, x1, y1),
+					new Handle(this, x0, y1) };
+		} else {
+			int hx = gesture.getHandle().getX();
+			int hy = gesture.getHandle().getY();
+			int dx = gesture.getDeltaX();
+			int dy = gesture.getDeltaY();
+			int newX0 = x0 == hx ? x0 + dx : x0;
+			int newY0 = y0 == hy ? y0 + dy : y0;
+			int newX1 = x1 == hx ? x1 + dx : x1;
+			int newY1 = y1 == hy ? y1 + dy : y1;
+			if (gesture.isShiftDown()) {
+				if (gesture.isAltDown()) {
+					if (x0 == hx) newX1 -= dx;
+					if (x1 == hx) newX0 -= dx;
+					if (y0 == hy) newY1 -= dy;
+					if (y1 == hy) newY0 -= dy;
+
+					int w = Math.abs(newX1 - newX0);
+					int h = Math.abs(newY1 - newY0);
+					if (w > h) { // reduce width to h
+						int dw = (w - h) / 2;
+						newX0 -= (newX0 > newX1 ? 1 : -1) * dw;
+						newX1 -= (newX1 > newX0 ? 1 : -1) * dw;
+					} else {
+						int dh = (h - w) / 2;
+						newY0 -= (newY0 > newY1 ? 1 : -1) * dh;
+						newY1 -= (newY1 > newY0 ? 1 : -1) * dh;
+					}
+				} else {
+					int w = Math.abs(newX1 - newX0);
+					int h = Math.abs(newY1 - newY0);
+					if (w > h) { // reduce width to h
+						if (x0 == hx) {
+							newX0 = newX1 + (newX0 > newX1 ? 1 : -1) * h;
+						}
+						if (x1 == hx) {
+							newX1 = newX0 + (newX1 > newX0 ? 1 : -1) * h;
+						}
+					} else { // reduce height to w
+						if (y0 == hy) {
+							newY0 = newY1 + (newY0 > newY1 ? 1 : -1) * w;
+						}
+						if (y1 == hy) {
+							newY1 = newY0 + (newY1 > newY0 ? 1 : -1) * w;
+						}
+					}
+				}
+			} else {
+				if (gesture.isAltDown()) {
+					if (x0 == hx) newX1 -= dx;
+					if (x1 == hx) newX0 -= dx;
+					if (y0 == hy) newY1 -= dy;
+					if (y1 == hy) newY0 -= dy;
+				} else {
+					; // already handled
+				}
 			}
-			if (x == hx) {
-				x += gesture.getDeltaX();
-			}
-			if (y == hy) {
-				y += gesture.getDeltaY();
-			}
-			ret[i] = new Handle(this, x, y);
+			return new Handle[] { new Handle(this, newX0, newY0),
+				new Handle(this, newX1, newY0), new Handle(this, newX1, newY1),
+				new Handle(this, newX0, newY1) };
 		}
-		return UnmodifiableList.create(ret);
 	}
 	
 	@Override
@@ -106,28 +152,29 @@ abstract class Rectangular extends FillableCanvasObject {
 
 	@Override
 	public Handle moveHandle(HandleGesture gesture) {
-		Bounds bds = bounds;
-		int x0 = bds.getX();
-		int y0 = bds.getY();
-		int x1 = x0 + bds.getWidth();
-		int y1 = y0 + bds.getHeight();
-		Handle h = gesture.getHandle();
-		int xh = h.getX();
-		int yh = h.getY();
-		int dx = gesture.getDeltaX();
-		int dy = gesture.getDeltaY();
-		if (x0 == xh) x0 += dx;
-		if (x1 == xh) x1 += dx;
-		if (y0 == yh) y0 += dy;
-		if (y1 == yh) y1 += dy;
-		if (x1 < x0) {
-			int t = x0; x0 = x1; x1 = t;
-		}
-		if (y1 < y0) {
-			int t = y0; y0 = y1; y1 = t;
+		Handle[] oldHandles = getHandleArray(null);
+		Handle[] newHandles = getHandleArray(gesture);
+		Handle moved = gesture == null ? null : gesture.getHandle();
+		Handle result = null;
+		int x0 = Integer.MAX_VALUE;
+		int x1 = Integer.MIN_VALUE;
+		int y0 = Integer.MAX_VALUE;
+		int y1 = Integer.MIN_VALUE;
+		int i = -1;
+		for (Handle h : newHandles) {
+			i++;
+			if (oldHandles[i].equals(moved)) {
+				result = h;
+			}
+			int hx = h.getX();
+			int hy = h.getY();
+			if (hx < x0) x0 = hx;
+			if (hx > x1) x1 = hx;
+			if (hy < y0) y0 = hy;
+			if (hy > y1) y1 = hy;
 		}
 		bounds = Bounds.create(x0, y0, x1 - x0, y1 - y0);
-		return new Handle(this, xh + dx, yh + dy);
+		return result;
 	}
 	
 	@Override
@@ -136,9 +183,9 @@ abstract class Rectangular extends FillableCanvasObject {
 			Bounds bds = bounds;
 			draw(g, bds.getX(), bds.getY(), bds.getWidth(), bds.getHeight());
 		} else {
-			List<Handle> handles = getHandles(gesture);
-			Handle p0 = handles.get(0);
-			Handle p1 = handles.get(2);
+			Handle[] handles = getHandleArray(gesture);
+			Handle p0 = handles[0];
+			Handle p1 = handles[2];
 			int x0 = p0.getX();
 			int y0 = p0.getY();
 			int x1 = p1.getX();

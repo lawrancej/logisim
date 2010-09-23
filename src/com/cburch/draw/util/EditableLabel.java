@@ -8,7 +8,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 
 import javax.swing.JTextField;
 
@@ -35,6 +40,8 @@ public class EditableLabel implements Cloneable {
 	private int width;
 	private int ascent;
 	private int descent;
+	private int[] charX;
+	private int[] charY;
 	
 	public EditableLabel(int x, int y, String text, Font font) {
 		this.x = x;
@@ -161,8 +168,27 @@ public class EditableLabel implements Cloneable {
 	public boolean contains(int qx, int qy) {
 		int x0 = getLeftX();
 		int y0 = getBaseY();
-		return qx >= x0 && qx < x0 + width
-			&& qy >= y0 - ascent && qy < y0 + descent; 
+		if (qx >= x0 && qx < x0 + width
+				&& qy >= y0 - ascent && qy < y0 + descent) {
+			int[] xs = charX;
+			int[] ys = charY;
+			if (xs == null || ys == null) {
+				return true;
+			} else {
+				int i = Arrays.binarySearch(xs, qx - x0);
+				if (i < 0) i = -(i + 1);
+				if (i >= xs.length) {
+					return false;
+				} else {
+					int asc = (ys[i] >> 16) & 0xFFFF;
+					int desc = ys[i] & 0xFFFF;
+					int dy = y0 - qy;
+					return dy >= -desc && dy <= asc;
+				}
+			}
+		} else {
+			return false;
+		}
 	}
 	
 	private int getLeftX() {
@@ -233,15 +259,36 @@ public class EditableLabel implements Cloneable {
 	public void paint(Graphics g) {
 		g.setFont(font);
 		if (!dimsKnown) {
-			FontMetrics fm = g.getFontMetrics();
-			width = fm.stringWidth(text);
-			ascent = fm.getAscent();
-			descent = fm.getDescent();
-			dimsKnown = true;
+			computeDimensions(g, font, g.getFontMetrics());
 		}
 		int x0 = getLeftX();
 		int y0 = getBaseY();
 		g.setColor(color);
 		g.drawString(text, x0, y0);
+	}
+	
+	private void computeDimensions(Graphics g, Font font, FontMetrics fm) {
+		String s = text;
+		FontRenderContext frc = ((Graphics2D) g).getFontRenderContext();
+		width = fm.stringWidth(s);
+		ascent = fm.getAscent();
+		descent = fm.getDescent();
+		int[] xs = new int[s.length()];
+		int[] ys = new int[s.length()];
+		for (int i = 0; i < xs.length; i++) {
+			xs[i] = fm.stringWidth(s.substring(0, i + 1));
+			TextLayout lay = new TextLayout(s.substring(i, i + 1), font, frc);
+			Rectangle2D rect = lay.getBounds();
+			int asc = (int) Math.ceil(-rect.getMinY());
+			int desc = (int) Math.ceil(rect.getMaxY());
+			if (asc < 0) asc = 0;
+			if (asc > 0xFFFF) asc = 0xFFFF;
+			if (desc < 0) desc = 0;
+			if (desc > 0xFFFF) desc = 0xFFFF;
+			ys[i] = (asc << 16) | desc;
+		}
+		charX = xs;
+		charY = ys;
+		dimsKnown = true;
 	}
 }

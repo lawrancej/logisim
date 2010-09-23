@@ -53,7 +53,8 @@ class AppearanceZoomModel implements ZoomModel {
 		double oldValue = zoomFactor;
 		if (value != oldValue) {
 			zoomFactor = value;
-			support.firePropertyChange(ZoomModel.ZOOM, oldValue, value);
+			support.firePropertyChange(ZoomModel.ZOOM, Double.valueOf(oldValue),
+					Double.valueOf(value));
 		}
 	}
 

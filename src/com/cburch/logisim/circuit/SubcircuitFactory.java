@@ -74,6 +74,7 @@ public class SubcircuitFactory extends InstanceFactory {
 		this.source = source;
 		setFacingAttribute(StdAttr.FACING);
 		setDefaultToolTip(new CircuitFeature(null));
+		setInstancePoker(SubcircuitPoker.class);
 	}
 
 	public Circuit getSubcircuit() {

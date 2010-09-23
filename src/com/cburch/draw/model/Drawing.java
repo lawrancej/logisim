@@ -128,10 +128,6 @@ public class Drawing implements CanvasModel {
 	public void reorderObjects(List<ReorderRequest> requests) {
 		boolean hasEffect = false;
 		for (ReorderRequest r : requests) {
-			if (canvasObjects.get(r.getFromIndex()) != r.getObject()) {
-				throw new IllegalArgumentException("object not present"
-						+ " at indicated index: " + r.getFromIndex());
-			}
 			if (r.getFromIndex() != r.getToIndex()) {
 				hasEffect = true;
 			}
@@ -139,6 +135,10 @@ public class Drawing implements CanvasModel {
 		CanvasModelEvent e = CanvasModelEvent.forReorder(this, requests);
 		if (hasEffect && isChangeAllowed(e)) {
 			for (ReorderRequest r : requests) {
+				if (canvasObjects.get(r.getFromIndex()) != r.getObject()) {
+					throw new IllegalArgumentException("object not present"
+							+ " at indicated index: " + r.getFromIndex());
+				}
 				canvasObjects.remove(r.getFromIndex());
 				canvasObjects.add(r.getToIndex(), r.getObject());
 			}

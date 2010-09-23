@@ -393,7 +393,7 @@ public class AddTool extends Tool {
 	public void keyPressed(Canvas canvas, KeyEvent event) {
 		processKeyEvent(canvas, event, KeyConfigurationEvent.KEY_PRESSED);
 
-		if (!event.isConsumed()) {
+		if (!event.isConsumed() && event.getModifiersEx() == 0) {
 			switch (event.getKeyCode()) {
 			case KeyEvent.VK_UP:    setFacing(canvas, Direction.NORTH); break;
 			case KeyEvent.VK_DOWN:  setFacing(canvas, Direction.SOUTH); break;

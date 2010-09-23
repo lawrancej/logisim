@@ -51,6 +51,8 @@ public class LayoutEditHandler extends EditHandler
 		setEnabled(LogisimMenuBar.SELECT_ALL, selectAvailable);
 		setEnabled(LogisimMenuBar.RAISE, false);
 		setEnabled(LogisimMenuBar.LOWER, false);
+		setEnabled(LogisimMenuBar.RAISE_TOP, false);
+		setEnabled(LogisimMenuBar.LOWER_BOTTOM, false);
 		setEnabled(LogisimMenuBar.ADD_CONTROL, false);
 		setEnabled(LogisimMenuBar.REMOVE_CONTROL, false);
 	}
@@ -109,6 +111,16 @@ public class LayoutEditHandler extends EditHandler
 	
 	@Override
 	public void lower() {
+		; // not yet supported in layout mode
+	}
+	
+	@Override
+	public void raiseTop() {
+		; // not yet supported in layout mode
+	}
+	
+	@Override
+	public void lowerBottom() {
 		; // not yet supported in layout mode
 	}
 

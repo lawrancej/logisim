@@ -366,10 +366,22 @@ public class EditTool extends Tool {
 			canvas.getProject().doAction(act);
 			e.consume();
 			break;
-		case KeyEvent.VK_UP:    attemptReface(canvas, Direction.NORTH, e); break;
-		case KeyEvent.VK_DOWN:  attemptReface(canvas, Direction.SOUTH, e); break;
-		case KeyEvent.VK_LEFT:  attemptReface(canvas, Direction.WEST, e); break;
-		case KeyEvent.VK_RIGHT: attemptReface(canvas, Direction.EAST, e); break;
+		case KeyEvent.VK_UP:
+			if (e.getModifiersEx() == 0) attemptReface(canvas, Direction.NORTH, e);
+			else                         select.keyPressed(canvas, e);
+			break;
+		case KeyEvent.VK_DOWN:
+			if (e.getModifiersEx() == 0) attemptReface(canvas, Direction.SOUTH, e);
+			else                         select.keyPressed(canvas, e);
+			break;
+		case KeyEvent.VK_LEFT:
+			if (e.getModifiersEx() == 0) attemptReface(canvas, Direction.WEST, e);
+			else                         select.keyPressed(canvas, e);
+			break;
+		case KeyEvent.VK_RIGHT:
+			if (e.getModifiersEx() == 0) attemptReface(canvas, Direction.EAST, e);
+			else                         select.keyPressed(canvas, e);
+			break;
 		case KeyEvent.VK_ALT:   updateLocation(canvas, e); e.consume(); break;
 		default:
 			select.keyPressed(canvas, e);
@@ -386,21 +398,23 @@ public class EditTool extends Tool {
 	}
 	
 	private void attemptReface(Canvas canvas, final Direction facing, KeyEvent e) {
-		final Circuit circuit = canvas.getCircuit();
-		final Selection sel = canvas.getSelection();
-		SetAttributeAction act = new SetAttributeAction(circuit,
-				Strings.getter("selectionRefaceAction"));
-		for (Component comp : sel.getComponents()) {
-			if (!(comp instanceof Wire)) {
-				Attribute<Direction> attr = getFacingAttribute(comp);
-				if (attr != null) {
-					act.set(comp, attr, facing);
+		if (e.getModifiersEx() == 0) {
+			final Circuit circuit = canvas.getCircuit();
+			final Selection sel = canvas.getSelection();
+			SetAttributeAction act = new SetAttributeAction(circuit,
+					Strings.getter("selectionRefaceAction"));
+			for (Component comp : sel.getComponents()) {
+				if (!(comp instanceof Wire)) {
+					Attribute<Direction> attr = getFacingAttribute(comp);
+					if (attr != null) {
+						act.set(comp, attr, facing);
+					}
 				}
 			}
-		}
-		if (!act.isEmpty()) {
-			canvas.getProject().doAction(act);
-			e.consume();
+			if (!act.isEmpty()) {
+				canvas.getProject().doAction(act);
+				e.consume();
+			}
 		}
 	}
 	

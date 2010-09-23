@@ -73,6 +73,8 @@ public class AppearanceEditHandler extends EditHandler
 		setEnabled(LogisimMenuBar.SELECT_ALL, true);
 		setEnabled(LogisimMenuBar.RAISE, canRaise);
 		setEnabled(LogisimMenuBar.LOWER, canLower);
+		setEnabled(LogisimMenuBar.RAISE_TOP, canRaise);
+		setEnabled(LogisimMenuBar.LOWER_BOTTOM, canLower);
 		setEnabled(LogisimMenuBar.ADD_CONTROL, canAddCtrl);
 		setEnabled(LogisimMenuBar.REMOVE_CONTROL, canRemCtrl);
 	}
@@ -187,6 +189,24 @@ public class AppearanceEditHandler extends EditHandler
 	@Override
 	public void lower() {
 		ModelReorderAction act = ModelReorderAction.createLower(canvas.getModel(),
+				canvas.getSelection().getSelected());
+		if (act != null) {
+			canvas.doAction(act);
+		}
+	}
+	
+	@Override
+	public void raiseTop() {
+		ModelReorderAction act = ModelReorderAction.createRaiseTop(canvas.getModel(),
+				canvas.getSelection().getSelected());
+		if (act != null) {
+			canvas.doAction(act);
+		}
+	}
+	
+	@Override
+	public void lowerBottom() {
+		ModelReorderAction act = ModelReorderAction.createLowerBottom(canvas.getModel(),
 				canvas.getSelection().getSelected());
 		if (act != null) {
 			canvas.doAction(act);

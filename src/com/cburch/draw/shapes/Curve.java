@@ -146,12 +146,49 @@ public class Curve extends FillableCanvasObject {
 					new Handle(this, p2) };
 		} else {
 			Handle g = gesture.getHandle();
-			int dx = gesture.getDeltaX();
-			int dy = gesture.getDeltaY();
-			Handle[] ret = new Handle[3];
-			ret[0] = new Handle(this, g.isAt(p0) ? p0.translate(dx, dy) : p0);
-			ret[1] = new Handle(this, g.isAt(p1) ? p1.translate(dx, dy) : p1);
-			ret[2] = new Handle(this, g.isAt(p2) ? p2.translate(dx, dy) : p2);
+			int gx = g.getX() + gesture.getDeltaX();
+			int gy = g.getY() + gesture.getDeltaY();
+			Handle[] ret = { new Handle(this, p0), new Handle(this, p1),
+					new Handle(this, p2) };
+			if (g.isAt(p0)) {
+				if (gesture.isShiftDown()) {
+					Location p = LineUtil.snapTo8Cardinals(p2, gx, gy);
+					ret[0] = new Handle(this, p);
+				} else {
+					ret[0] = new Handle(this, gx, gy);
+				}
+			} else if (g.isAt(p2)) {
+				if (gesture.isShiftDown()) {
+					Location p = LineUtil.snapTo8Cardinals(p0, gx, gy);
+					ret[2] = new Handle(this, p);
+				} else {
+					ret[2] = new Handle(this, gx, gy);
+				}
+			} else if (g.isAt(p1)) {
+				if (gesture.isShiftDown()) {
+					double x0 = p0.getX();
+					double y0 = p0.getY();
+					double x1 = p2.getX();
+					double y1 = p2.getY();
+					double midx = (x0 + x1) / 2;
+					double midy = (y0 + y1) / 2;
+					double dx = x1 - x0;
+					double dy = y1 - y0;
+					double[] p = LineUtil.nearestPointInfinite(gx, gy,
+							midx, midy, midx - dy, midy + dx);
+					gx = (int) Math.round(p[0]);
+					gy = (int) Math.round(p[1]);
+				}
+				if (gesture.isAltDown()) {
+					double[] e0 = { p0.getX(), p0.getY() };
+					double[] e1 = { p2.getX(), p2.getY() };
+					double[] mid = { gx, gy };
+					double[] ct = CurveUtil.interpolate(e0, e1, mid);
+					gx = (int) Math.round(ct[0]);
+					gy = (int) Math.round(ct[1]);
+				}
+				ret[1] = new Handle(this, gx, gy);
+			}
 			return ret;
 		}
 	}
@@ -163,21 +200,19 @@ public class Curve extends FillableCanvasObject {
 	
 	@Override
 	public Handle moveHandle(HandleGesture gesture) {
-		Handle h = gesture.getHandle();
-		int dx = gesture.getDeltaX();
-		int dy = gesture.getDeltaY();
+		Handle[] hs = getHandleArray(gesture);
 		Handle ret = null;
-		if (h.isAt(p0)) {
-			p0 = p0.translate(dx, dy);
-			ret = new Handle(this, p0);
+		if (!hs[0].equals(p0)) {
+			p0 = hs[0].getLocation();
+			ret = hs[0];
 		}
-		if (h.isAt(p1)) {
-			p1 = p1.translate(dx, dy);
-			ret = new Handle(this, p1);
+		if (!hs[1].equals(p1)) {
+			p1 = hs[1].getLocation();
+			ret = hs[1];
 		}
-		if (h.isAt(p2)) {
-			p2 = p2.translate(dx, dy);
-			ret = new Handle(this, p2);
+		if (!hs[2].equals(p2)) {
+			p2 = hs[2].getLocation();
+			ret = hs[2];
 		}
 		bounds = CurveUtil.getBounds(toArray(p0), toArray(p1), toArray(p2));
 		return ret;

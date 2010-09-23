@@ -171,8 +171,9 @@ class SvgCreator {
 	}
 	
 	private static String getColorString(Color color) {
-		return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(),
-				color.getBlue());
+		return String.format("#%02x%02x%02x",
+			Integer.valueOf(color.getRed()), Integer.valueOf(color.getGreen()),
+			Integer.valueOf(color.getBlue()));
 	}
 	
 	private static boolean showOpacity(Color color) {
@@ -180,6 +181,6 @@ class SvgCreator {
 	}
 	
 	private static String getOpacityString(Color color) {
-		return String.format("%5.3f", color.getAlpha() / 255.0);
+		return String.format("%5.3f", Double.valueOf(color.getAlpha() / 255.0));
 	}
 }

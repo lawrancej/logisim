@@ -42,7 +42,7 @@ public class BitAdder extends InstanceFactory {
 	
 	@Override
 	public Bounds getOffsetBounds(AttributeSet attrs) {
-		int inputs = attrs.getValue(NUM_INPUTS);
+		int inputs = attrs.getValue(NUM_INPUTS).intValue();
 		int h = Math.max(40, 10 * inputs);
 		int y = inputs < 4 ? 20 : (((inputs - 1) / 2) * 10 + 5);
 		return Bounds.create(-40, -y, 40, h);
