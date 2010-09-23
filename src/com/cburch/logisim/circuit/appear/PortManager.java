@@ -73,7 +73,8 @@ class PortManager {
 			if (origin == null) {
 				origin = new AppearanceOrigin(Location.create(100, 100));
 			}
-			appearance.addObjects(Collections.singleton(origin));
+			int dest = appearance.getObjectsFromBottom().size();
+			appearance.addObjects(dest, Collections.singleton(origin));
 		}
 
 		// Compute how the ports should change

@@ -24,7 +24,7 @@ public class Main {
 		DrawingAttributeSet attrs = new DrawingAttributeSet();
 		Drawing model = new Drawing();
 		CanvasObject rect = attrs.applyTo(new Rectangle(25, 25, 50, 50));
-		model.addObjects(Collections.singleton(rect));
+		model.addObjects(0, Collections.singleton(rect));
 
 		showFrame(model, "Drawing 1");
 		showFrame(model, "Drawing 2");

@@ -12,14 +12,27 @@ import com.cburch.draw.model.CanvasObject;
 
 public class ModelAddAction extends ModelAction {
 	private ArrayList<CanvasObject> added;
+	private int addIndex;
 	
 	public ModelAddAction(CanvasModel model, CanvasObject added) {
 		this(model, Collections.singleton(added));
 	}
-		
+
 	public ModelAddAction(CanvasModel model, Collection<CanvasObject> added) {
 		super(model);
 		this.added = new ArrayList<CanvasObject>(added);
+		this.addIndex = model.getObjectsFromBottom().size();
+	}
+
+	public ModelAddAction(CanvasModel model, Collection<CanvasObject> added,
+			int index) {
+		super(model);
+		this.added = new ArrayList<CanvasObject>(added);
+		this.addIndex = index; 
+	}
+	
+	public int getDestinationIndex() {
+		return addIndex;
 	}
 	
 	@Override
@@ -34,7 +47,7 @@ public class ModelAddAction extends ModelAction {
 	
 	@Override
 	void doSub(CanvasModel model) {
-		model.addObjects(added);
+		model.addObjects(addIndex, added);
 	}
 	
 	@Override

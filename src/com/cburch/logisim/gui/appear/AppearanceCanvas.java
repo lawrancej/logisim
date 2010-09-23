@@ -10,7 +10,11 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.cburch.draw.actions.ModelAddAction;
+import com.cburch.draw.actions.ModelReorderAction;
 import com.cburch.draw.canvas.ActionDispatcher;
 import com.cburch.draw.canvas.Canvas;
 import com.cburch.draw.canvas.CanvasTool;
@@ -18,9 +22,11 @@ import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasModelEvent;
 import com.cburch.draw.model.CanvasModelListener;
 import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.model.ReorderRequest;
 import com.cburch.draw.undo.Action;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitState;
+import com.cburch.logisim.circuit.appear.AppearanceElement;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.gui.generic.CanvasPane;
 import com.cburch.logisim.gui.generic.CanvasPaneContents;
@@ -128,9 +134,56 @@ public class AppearanceCanvas extends Canvas
 	@Override
 	public void doAction(Action canvasAction) {
 		Circuit circuit = circuitState.getCircuit();
-		if (proj.getLogisimFile().contains(circuit)) {
-			proj.doAction(new CanvasActionAdapter(circuit, canvasAction));
+		if (!proj.getLogisimFile().contains(circuit)) {
+			return;
 		}
+		
+		if (canvasAction instanceof ModelReorderAction) {
+			int max = getMaxIndex(getModel());
+			ModelReorderAction reorder = (ModelReorderAction) canvasAction;
+			List<ReorderRequest> rs = reorder.getReorderRequests();
+			List<ReorderRequest> mod = new ArrayList<ReorderRequest>(rs.size());
+			boolean changed = false;
+			boolean movedToMax = false;
+			for (ReorderRequest r : rs) {
+				CanvasObject o = r.getObject();
+				if (o instanceof AppearanceElement) {
+					changed = true;
+				} else {
+					if (r.getToIndex() > max) {
+						int from = r.getFromIndex();
+						changed = true;
+						movedToMax = true;
+						if (from == max && !movedToMax) {
+							; // this change is ineffective - don't add it
+						} else {
+							mod.add(new ReorderRequest(o, from, max));
+						}
+					} else {
+						if (r.getToIndex() == max) movedToMax = true;
+						mod.add(r);
+					}
+				}
+			}
+			if (changed) {
+				if (mod.isEmpty()) {
+					return;
+				}
+				canvasAction = new ModelReorderAction(getModel(), mod);
+			}
+		}
+		
+		if (canvasAction instanceof ModelAddAction) {
+			ModelAddAction addAction = (ModelAddAction) canvasAction;
+			int cur = addAction.getDestinationIndex();
+			int max = getMaxIndex(getModel());
+			if (cur > max) {
+				canvasAction = new ModelAddAction(getModel(),
+						addAction.getObjects(), max);
+			}
+		}
+			
+		proj.doAction(new CanvasActionAdapter(circuit, canvasAction));
 	}
 	
 	@Override
@@ -279,5 +332,14 @@ public class AppearanceCanvas extends Canvas
 			int orientation, int direction) {
 		return canvasPane.supportScrollableUnitIncrement(visibleRect, orientation, direction);
 	}
-
+	
+	static int getMaxIndex(CanvasModel model) {
+		List<CanvasObject> objects = model.getObjectsFromBottom();
+		for (int i = objects.size() - 1; i >= 0; i--) {
+			if (!(objects.get(i) instanceof AppearanceElement)) {
+				return i;
+			}
+		}
+		return 0;
+	}
 }

@@ -3,15 +3,16 @@
 
 package com.cburch.draw.actions;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.util.ZOrder;
 
 public class ModelRemoveAction extends ModelAction {
-	private ArrayList<CanvasObject> removed;
+	private Map<CanvasObject, Integer> removed;
 
 	public ModelRemoveAction(CanvasModel model, CanvasObject removed) {
 		this(model, Collections.singleton(removed));
@@ -19,22 +20,22 @@ public class ModelRemoveAction extends ModelAction {
 	
 	public ModelRemoveAction(CanvasModel model, Collection<CanvasObject> removed) {
 		super(model);
-		this.removed = new ArrayList<CanvasObject>(removed);
+		this.removed = ZOrder.getZIndex(removed, model);
 	}
 	
 	@Override
 	public Collection<CanvasObject> getObjects() {
-		return Collections.unmodifiableList(removed);
+		return Collections.unmodifiableSet(removed.keySet());
 	}
 
 	@Override
 	public String getName() {
-		return Strings.get("actionRemove", getShapesName(removed));
+		return Strings.get("actionRemove", getShapesName(removed.keySet()));
 	}
 	
 	@Override
 	void doSub(CanvasModel model) {
-		model.removeObjects(removed);
+		model.removeObjects(removed.keySet());
 	}
 	
 	@Override

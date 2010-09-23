@@ -8,11 +8,10 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import com.cburch.draw.canvas.Selection;
 import com.cburch.draw.model.CanvasModelEvent;
 import com.cburch.draw.model.CanvasModelListener;
 import com.cburch.draw.model.CanvasObject;
@@ -73,13 +72,14 @@ public class CircuitAppearance extends Drawing {
 		}
 	}
 	
-	void replaceAutomatically(List<? extends CanvasObject> removes,
-			List<? extends CanvasObject> adds) {
+	void replaceAutomatically(List<AppearancePort> removes,
+			List<AppearancePort> adds) {
+		// this should be called only when substituting ports via PortManager
 		boolean oldSuppress = suppressRecompute;
 		try {
 			suppressRecompute = true;
 			removeObjects(removes);
-			addObjects(adds);
+			addObjects(getObjectsFromBottom().size() - 1, adds);
 			recomputeDefaultAppearance();
 		} finally {
 			suppressRecompute = oldSuppress;
@@ -110,7 +110,7 @@ public class CircuitAppearance extends Drawing {
 	
 	private void recomputeDefaultAppearance() {
 		if (isDefault) {
-			Collection<CanvasObject> shapes;
+			List<CanvasObject> shapes;
 			shapes = DefaultAppearance.build(circuitPins.getPins());
 			setObjectsForce(shapes);
 		}
@@ -125,11 +125,36 @@ public class CircuitAppearance extends Drawing {
 		}
 	}
 	
-	public void setObjectsForce(Collection<? extends CanvasObject> shapes) {
+	public void setObjectsForce(List<? extends CanvasObject> shapesBase) {
+		// This shouldn't ever be an issue, but just to make doubly sure, we'll
+		// check that the origin and all ports are in their proper places.
+		List<CanvasObject> shapes = new ArrayList<CanvasObject>(shapesBase);
+		int n = shapes.size();
+		int ports = 0;
+		for (int i = n - 1; i >= 0; i--) { // count ports, move origin to end
+			CanvasObject o = shapes.get(i);
+			if (o instanceof AppearanceOrigin) {
+				if (i != n - 1) {
+					shapes.remove(i);
+					shapes.add(o);
+				}
+			} else if (o instanceof AppearancePort) {
+				ports++;
+			}
+		}
+		for (int i = (n - ports - 1) - 1; i >= 0; i--) { // move ports to top
+			CanvasObject o = shapes.get(i);
+			if (o instanceof AppearancePort) {
+				shapes.remove(i);
+				shapes.add(n - ports - 1, o);
+				i--;
+			}
+		}
+		
 		try {
 			suppressRecompute = true;
 			super.removeObjects(new ArrayList<CanvasObject>(getObjectsFromBottom()));
-			super.addObjects(shapes);
+			super.addObjects(0, shapes);
 		} finally {
 			suppressRecompute = false;
 		}
@@ -174,41 +199,6 @@ public class CircuitAppearance extends Drawing {
 			}
 		}
 		return null;
-	}
-
-	@Override
-	public void paint(Graphics g, Selection selection) {
-		Set<CanvasObject> suppressed = selection.getDrawsSuppressed();
-		List<CanvasObject> ports = new ArrayList<CanvasObject>();
-		CanvasObject origin = null;
-		for (CanvasObject shape : getObjectsFromBottom()) {
-			if (shape instanceof AppearanceElement) {
-				if (shape instanceof AppearancePort) {
-					ports.add(shape);
-				} else if (origin == null) {
-					origin = shape;
-				}
-			} else {
-				drawShape(g, shape, selection, suppressed);
-			}
-		}
-		for (CanvasObject shape : ports) {
-			drawShape(g, shape, selection, suppressed);
-		}
-		if (origin != null) {
-			drawShape(g, origin, selection, suppressed);
-		}
-	}
-	
-	private void drawShape(Graphics g, CanvasObject shape, Selection selection,
-			Set<CanvasObject> suppressed) {
-		Graphics dup = g.create();
-		if (suppressed.contains(shape)) {
-			selection.drawSuppressed(dup, shape);
-		} else {
-			shape.paint(dup, null);
-		}
-		dup.dispose();
 	}
 	
 	public Bounds getOffsetBounds() {
@@ -279,9 +269,16 @@ public class CircuitAppearance extends Drawing {
 	}
 	
 	@Override
-	public void addObjects(Collection<? extends CanvasObject> shapes) {
-		super.addObjects(shapes);
+	public void addObjects(int index, Collection<? extends CanvasObject> shapes) {
+		
+		super.addObjects(index, shapes);
 		checkToFirePortsChanged(shapes);
+	}
+	
+	@Override
+	public void addObjects(Map<? extends CanvasObject, Integer> shapes) {
+		super.addObjects(shapes);
+		checkToFirePortsChanged(shapes.keySet());
 	}
 	
 	@Override

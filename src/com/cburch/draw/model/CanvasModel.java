@@ -25,7 +25,8 @@ public interface CanvasModel {
 	public Collection<CanvasObject> getObjectsOverlapping(CanvasObject shape);
 
 	// methods that alter the model
-	public void addObjects(Collection<? extends CanvasObject> shapes);
+	public void addObjects(int index, Collection<? extends CanvasObject> shapes);
+	public void addObjects(Map<? extends CanvasObject, Integer> shapes);
 	public void removeObjects(Collection<? extends CanvasObject> shapes);
 	public void translateObjects(Collection<? extends CanvasObject> shapes, int dx, int dy);
 	public void reorderObjects(List<ReorderRequest> requests);

@@ -77,7 +77,9 @@ public class Frame extends JFrame implements LocaleListener {
 				placeToolbar(attrs.getValue(Options.ATTR_TOOLBAR_LOC));
 			} else if (action == ProjectEvent.ACTION_SET_CURRENT) {
 				setView(LAYOUT);
-				appearance.setCircuit(proj, proj.getCircuitState());
+				if (appearance != null) {
+					appearance.setCircuit(proj, proj.getCircuitState());
+				}
 				viewAttributes(proj.getTool());
 				computeTitle();
 			} else if (action == ProjectEvent.ACTION_SET_TOOL) {
@@ -210,10 +212,6 @@ public class Frame extends JFrame implements LocaleListener {
 		layoutZoomModel = new ProjectZoomModel(proj);
 		layoutCanvas.getGridPainter().setZoomModel(layoutZoomModel);
 		layoutEditHandler = new LayoutEditHandler(this);
-		
-		// set up elements for the Appearance view
-		appearance = new AppearanceView();
-		appearance.setCircuit(proj, proj.getCircuitState());
 
 		// set up menu bar and toolbar
 		menubar = new LogisimMenuBar(this, proj);
@@ -234,7 +232,6 @@ public class Frame extends JFrame implements LocaleListener {
 		canvasPane.setZoomModel(layoutZoomModel);
 		mainPanel = new CardPanel();
 		mainPanel.addView(LAYOUT, canvasPane);
-		mainPanel.addView(APPEARANCE, appearance.getCanvasPane());
 		mainPanel.setView(LAYOUT);
 		mainPanelSuper.add(mainPanel, BorderLayout.CENTER);
 
@@ -330,20 +327,28 @@ public class Frame extends JFrame implements LocaleListener {
 		String curView = mainPanel.getView();
 		if (curView.equals(view)) return;
 		
-		mainPanel.setView(view);
 		if (view.equals(APPEARANCE)) { // appearance view
-			toolbar.setToolbarModel(appearance.getToolbarModel());
-			attrTable.setAttributeSet(appearance.getAttributeSet(),
-					appearance.getAttributeManager(attrTable));
-			zoom.setZoomModel(appearance.getZoomModel());
-			menuListener.setEditHandler(appearance.getEditHandler());
-			appearance.getCanvas().requestFocus();
+			AppearanceView app = appearance;
+			if (app == null) {
+				app = new AppearanceView();
+				app.setCircuit(proj, proj.getCircuitState());
+				mainPanel.addView(APPEARANCE, app.getCanvasPane());
+				appearance = app;
+			}
+			toolbar.setToolbarModel(app.getToolbarModel());
+			attrTable.setAttributeSet(app.getAttributeSet(),
+					app.getAttributeManager(attrTable));
+			zoom.setZoomModel(app.getZoomModel());
+			menuListener.setEditHandler(app.getEditHandler());
+			mainPanel.setView(view);
+			app.getCanvas().requestFocus();
 		} else { // layout view
 			toolbar.setToolbarModel(layoutToolbarModel);
 			zoom.setZoomModel(layoutZoomModel);
 			menuListener.setEditHandler(layoutEditHandler);
-			layoutCanvas.requestFocus();
 			viewAttributes(proj.getTool(), true);
+			mainPanel.setView(view);
+			layoutCanvas.requestFocus();
 		}
 	}
 

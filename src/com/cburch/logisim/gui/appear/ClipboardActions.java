@@ -5,9 +5,11 @@ package com.cburch.logisim.gui.appear;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
+import com.cburch.draw.util.ZOrder;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 
@@ -22,13 +24,15 @@ public class ClipboardActions extends Action {
 	}
 	
 	private boolean remove;
+	private AppearanceCanvas canvas;
 	private CanvasModel canvasModel;
 	private List<CanvasObject> oldClipboard;
-	private List<CanvasObject> affected;
+	private Map<CanvasObject, Integer> affected;
 	private List<CanvasObject> newClipboard;
 
 	private ClipboardActions(boolean remove, AppearanceCanvas canvas) {
 		this.remove = remove;
+		this.canvas = canvas;
 		this.canvasModel = canvas.getModel();
 		
 		ArrayList<CanvasObject> newClip = new ArrayList<CanvasObject>();
@@ -40,7 +44,7 @@ public class ClipboardActions extends Action {
 			}
 		}
 		newClip.trimToSize();
-		affected = aff;
+		affected = ZOrder.getZIndex(aff, canvasModel);
 		newClipboard = newClip;
 	}
 	
@@ -55,10 +59,10 @@ public class ClipboardActions extends Action {
 	
 	@Override
 	public void doIt(Project proj) {
-		oldClipboard = Clipboard.get().getObjects();
+		oldClipboard = new ArrayList<CanvasObject>(Clipboard.get().getObjects());
 		Clipboard.set(newClipboard);
 		if (remove) {
-			canvasModel.removeObjects(affected);
+			canvasModel.removeObjects(affected.keySet());
 		}
 	}
 	
@@ -66,6 +70,8 @@ public class ClipboardActions extends Action {
 	public void undo(Project proj) {
 		if (remove) {
 			canvasModel.addObjects(affected);
+			canvas.getSelection().clearSelected();
+			canvas.getSelection().setSelected(affected.keySet(), true);
 		}
 		Clipboard.set(oldClipboard);
 	}

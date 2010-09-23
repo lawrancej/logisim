@@ -168,6 +168,10 @@ public class ModelReorderAction extends ModelAction {
 		this.type = type;
 	}
 	
+	public List<ReorderRequest> getReorderRequests() {
+		return Collections.unmodifiableList(requests);
+	}
+	
 	@Override
 	public Collection<CanvasObject> getObjects() {
 		return objects;

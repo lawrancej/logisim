@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -89,11 +90,31 @@ public class Drawing implements CanvasModel {
 		return overlaps.getObjectsOverlapping(shape);
 	}
 
-	public void addObjects(Collection<? extends CanvasObject> shapes) {
-		CanvasModelEvent e = CanvasModelEvent.forAdd(this, shapes);
+	public void addObjects(int index, Collection<? extends CanvasObject> shapes) {
+		LinkedHashMap<CanvasObject, Integer> indexes;
+		indexes = new LinkedHashMap<CanvasObject, Integer>();
+		int i = index;
+		for (CanvasObject shape : shapes) {
+			indexes.put(shape, Integer.valueOf(i));
+			i++;
+		}
+		addObjectsHelp(indexes);
+	}
+
+	public void addObjects(Map<? extends CanvasObject, Integer> shapes) {
+		addObjectsHelp(shapes);
+	}
+	
+	private void addObjectsHelp(Map<? extends CanvasObject, Integer> shapes) {
+		// this is separate method so that subclass can call super.add to either
+		// of the add methods, and it won't get redirected into the subclass
+		// in calling the other add method
+		CanvasModelEvent e = CanvasModelEvent.forAdd(this, shapes.keySet());
 		if (!shapes.isEmpty() && isChangeAllowed(e)) {
-			for(CanvasObject shape : shapes) {
-				canvasObjects.add(shape);
+			for (Map.Entry<? extends CanvasObject, Integer> entry : shapes.entrySet()) {
+				CanvasObject shape = entry.getKey();
+				int index = entry.getValue().intValue();
+				canvasObjects.add(index, shape);
 				overlaps.addShape(shape);
 			}
 			fireChanged(e);

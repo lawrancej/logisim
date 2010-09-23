@@ -5,6 +5,7 @@ package com.cburch.draw.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,6 +28,8 @@ public class ZOrder {
 			Collection<? extends CanvasObject> query, CanvasModel model) {
 		// returns 0 for bottommost element, large number for topmost, ordered
 		// from the bottom up.
+		if (query == null) return Collections.emptyMap();
+		
 		Set<? extends CanvasObject> querySet = toSet(query);
 		Map<CanvasObject, Integer> ret;
 		ret = new LinkedHashMap<CanvasObject, Integer>(query.size());
