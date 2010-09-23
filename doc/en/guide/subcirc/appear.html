@@ -86,7 +86,10 @@ all ports are selected.</p></li>
 
 </ul>
 
-<p>The toolbar contains tools for adding additional shapes.</p>
+<p>The toolbar contains tools for adding additional shapes, as listed below
+with descriptions of how the shift and alt key modifies the tool behavior. In
+addition, clicking or dragging the mouse with the control key pressed regularly
+snaps the mouse position to the nearest grid point.</p>
 
 <table><tbody>
 <tr><td valign="top"><img src="../../icons/select.gif" width="16" height="16"></td>
@@ -94,18 +97,19 @@ all ports are selected.</p></li>
 <tr><td valign="top"><img src="../../icons/text.gif" width="16" height="16"></td>
   <td>Add or edit text.</td></tr>
 <tr><td valign="top"><img src="../../icons/drawline.gif" width="16" height="16"></td>
-  <td>Create a line segment. Shift-drag keeps the line at 45&deg; angles.</td></tr>
+  <td>Create a line segment. Shift-drag keeps the line's angle at a multiple of 45&deg;.</td></tr>
 <tr><td valign="top"><img src="../../icons/drawcurv.gif" width="16" height="16"></td>
   <td>Create a quadratic Bezier curve.
   For the first drag, where you specify the curve's endpoints,
-  shift-drag keeps the endpoints at a 45&deg; angle from each other.
+  shift-drag keeps the endpoints at an angle that is a multiple of 45&deg;.
   Then you click to indicate the control point's location;
   shift-click ensures the curve is symmetric,
   while alt-click draws the curve through the control point.</td></tr>
 <tr><td valign="top"><img src="../../icons/drawplin.gif" width="16" height="16"></td>
   <td>Create a sequence of connected lines, whose vertices are indicated by
-  a succession of clicks. Shift-clicking ensures that the vertex is at a 45&deg;
-  angle from the previous one. Double-click or press the Enter key to complete the
+  a succession of clicks. Shift-clicking ensures that the angle between the
+  previous vertex and the current one is a multiple of 45&deg;.
+  Double-click or press the Enter key to complete the
   shape.</td></tr>
 <tr><td valign="top"><img src="../../icons/drawrect.gif" width="16" height="16"></td>
   <td>Create a rectangle through dragging from one corner to the opposite corner.
@@ -125,6 +129,7 @@ all ports are selected.</p></li>
   angle from the previous one. Double-click, press the Enter key, or click the
   starting vertex to complete the shape.</td></tr>
 </tbody></table>
+
 
 <p><strong>Next:</strong> <a href="debug.html">Debugging subcircuits</a>.</p>
 

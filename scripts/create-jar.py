@@ -223,6 +223,7 @@ if include_source:
 if include_documentation:
 	print('copying documentation')
 	copytree(doc_dir, build_path(temp_dir, 'doc'))
+	shutil.rmtree(build_path(temp_dir, 'doc/circs'))
 	
 	jhindexer = build_path(data_dir, 'javahelp/bin/jhindexer.jar', cygwin=False)
 	for locale in os.listdir(doc_dir):

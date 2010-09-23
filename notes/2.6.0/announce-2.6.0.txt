@@ -29,9 +29,7 @@ Architectural change: Subcircuits are implemented using the newer logisim.instan
 
 TODO:
 
-alt when creating curve creates curve going through the control point
-refine point containment in text
-respect shift/alt when moving handle - depends on shape
+Raise To Top/Lower To Bottom
 cut/copy sometimes does not work immediately after selecting view
 don't create Appearance view until it is actually needed
 ensure that ports and origin are always at top of appearance
