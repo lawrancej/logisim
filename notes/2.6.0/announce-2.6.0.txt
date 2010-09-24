@@ -8,6 +8,8 @@ Feature: The Arithmetic library now includes a "Bit Adder" which computes the nu
 
 Feature: The I/O library's LED has an "Off Color" attribute.
 
+Feature: The facing of a subcircuit can be changed after it is placed into a circuit. 
+
 Bug fix: After removing a circuit from the project, an Undo would place the removed circuit at the end of the project's list rather than back in its previous location.
 
 Bug fix: When loading more than 4,096 memory entries into RAM or ROM, if the 4,096th entry (or a multiple of 4096 entries) was at the end of a line in the text file, all subsequent entries were ignored.
@@ -33,14 +35,9 @@ Architectural change: Subcircuits are implemented using the newer logisim.instan
 
 TODO:
 
-Raise To Top/Lower To Bottom
-popup menu for selection in the appearance
-cut/copy sometimes does not work immediately after selecting view
-don't create Appearance view until it is actually needed
-ensure that ports and origin are always at top of appearance
-When a component is selected, sometimes an attempt to change to an attribute in the attribute table changes the attribute, but the table is not updated to reflect it.
+(not a problem?) cut/copy sometimes does not work immediately after selecting view
+(not a problem?) When a component is selected, sometimes an attempt to change to an attribute in the attribute table changes the attribute, but the table is not updated to reflect it.
 save appearance zoom/show grid as part of file
-check: start but don't finish editing attribute, then change attribute list
 
 Deferred:
 
