@@ -60,8 +60,8 @@ public class Dependencies {
 					boolean found = false;
 					for (Component o : e.getCircuit().getNonWires()) { 
 						if (o.getFactory() == factory) {
-						    found = true;
-						    break;
+							found = true;
+							break;
 						}
 					}
 					if (!found) depends.removeEdge(e.getCircuit(), factory.getSubcircuit());

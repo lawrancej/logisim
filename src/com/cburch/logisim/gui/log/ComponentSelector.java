@@ -97,14 +97,14 @@ class ComponentSelector extends JTree {
 					for (int i = children.size() - 1; i >= 0; i--) {
 						Object o2 = children.get(i);
 						if (o2 instanceof ComponentNode) {
-						    ComponentNode n = (ComponentNode) o2;
-						    if (n.comp == o) {
-						        int[] changed = { i };
-						        children.remove(i);
-						        model.nodesWereRemoved(this, changed, new Object[] { n });
-						        children.add(i, new ComponentNode(this, n.comp));
-						        model.nodesWereInserted(this, changed);
-						    }
+							ComponentNode n = (ComponentNode) o2;
+							if (n.comp == o) {
+								int[] changed = { i };
+								children.remove(i);
+								model.nodesWereRemoved(this, changed, new Object[] { n });
+								children.add(i, new ComponentNode(this, n.comp));
+								model.nodesWereInserted(this, changed);
+							}
 						}
 					}
 				}
@@ -123,10 +123,10 @@ class ComponentSelector extends JTree {
 					if (o != null) {
 						ComponentNode toAdd = null;
 						for (TreeNode o2 : children) {
-						    if (o2 instanceof ComponentNode) {
-						        ComponentNode n = (ComponentNode) o2;
-						        if (n.comp == comp) { toAdd = n; break; }
-						    }
+							if (o2 instanceof ComponentNode) {
+								ComponentNode n = (ComponentNode) o2;
+								if (n.comp == comp) { toAdd = n; break; }
+							}
 						}
 						if (toAdd == null) toAdd = new ComponentNode(this, comp);
 						newChildren.add(toAdd);
@@ -289,7 +289,7 @@ class ComponentSelector extends JTree {
 				ComponentIcon icon = new ComponentIcon(node.comp);
 				if (node.getChildCount() > 0) {
 					icon.setTriangleState(expanded
-						    ? ComponentIcon.TRIANGLE_OPEN : ComponentIcon.TRIANGLE_CLOSED);
+							? ComponentIcon.TRIANGLE_OPEN : ComponentIcon.TRIANGLE_CLOSED);
 				}
 				((JLabel) ret).setIcon(icon);
 			}

@@ -207,13 +207,13 @@ public class Version1Support {
 				}
 				if (usesSubcircuits) {
 					out.println(" <message value=\""
-						    + Strings.get("version1SubcircuitMessage")
-						    + "\" />");
+							+ Strings.get("version1SubcircuitMessage")
+							+ "\" />");
 				}
 				if (usesRam) {
 					out.println(" <message value=\""
-						    + Strings.get("version1RamMessage")
-						    + "\" />");
+							+ Strings.get("version1RamMessage")
+							+ "\" />");
 				}
 				out.println("</project>");
 			} else {

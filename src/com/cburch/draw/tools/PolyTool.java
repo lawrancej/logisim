@@ -33,8 +33,6 @@ public class PolyTool extends AbstractTool {
 	private DrawingAttributeSet attrs;
 	private boolean active;
 	private ArrayList<Location> locations;
-	private int[] xs;
-	private int[] ys;
 	private boolean mouseDown;
 	private int lastMouseX;
 	private int lastMouseY;
@@ -44,8 +42,6 @@ public class PolyTool extends AbstractTool {
 		this.attrs = attrs;
 		active = false;
 		locations = new ArrayList<Location>();
-		xs = new int[2];
-		ys = new int[2];
 	}
 	
 	@Override
@@ -97,16 +93,6 @@ public class PolyTool extends AbstractTool {
 		if (!active) { locs.clear(); locs.add(loc); }
 		locs.add(loc);
 
-		int size = locs.size();
-		int[] x = new int[size];
-		int[] y = new int[size];
-		for(int i = 0; i < size; i++) {
-			loc = locations.get(i);
-			x[i] = loc.getX();
-			y[i] = loc.getY();
-		}
-		xs = x;
-		ys = y;
 		mouseDown = true;
 		active = canvas.getModel() != null;
 		repaintArea(canvas);
@@ -206,8 +192,6 @@ public class PolyTool extends AbstractTool {
 			
 			if (!newLast.equals(last)) {
 				locations.set(index, newLast);
-				xs[index] = newLast.getX();
-				ys[index] = newLast.getY();
 				repaintArea(canvas);
 			}
 		}
@@ -221,7 +205,15 @@ public class PolyTool extends AbstractTool {
 	public void draw(Canvas canvas, Graphics g) {
 		if (active) {
 			g.setColor(Color.GRAY);
-			g.drawPolyline(xs, ys, xs.length);
+			int size = locations.size();
+			int[] xs = new int[size];
+			int[] ys = new int[size];
+			for(int i = 0; i < size; i++) {
+				Location loc = locations.get(i);
+				xs[i] = loc.getX();
+				ys[i] = loc.getY();
+			}
+			g.drawPolyline(xs, ys, size);
 			int lastX = xs[xs.length - 1];
 			int lastY = ys[ys.length - 1];
 			g.fillOval(lastX - 2, lastY - 2, 4, 4);

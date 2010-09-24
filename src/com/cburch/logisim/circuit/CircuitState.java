@@ -75,7 +75,7 @@ public class CircuitState implements InstanceData {
 					markComponentsDirty(comps);
 					if (base != null) {
 						for (Component comp : comps) {
-						    base.checkComponentEnds(CircuitState.this, comp);
+							base.checkComponentEnds(CircuitState.this, comp);
 						}
 					}
 				} else {
@@ -93,20 +93,20 @@ public class CircuitState implements InstanceData {
 					for (Component comp : map.getReplacedComponents()) {
 						Object compState = componentData.remove(comp);
 						if (compState != null) {
-						    Class<?> compFactory = comp.getFactory().getClass();
-						    boolean found = false;
-						    for (Component repl : map.get(comp)) {
-						        if (repl.getFactory().getClass() == compFactory) {
-						            found = true;
-						            setData(repl, compState);
-						            break;
-						        }
-						    }
-						    if (!found && compState instanceof CircuitState) {
-						        CircuitState sub = (CircuitState) compState;
-						        sub.parentState = null;
-						        substates.remove(sub);
-						    }
+							Class<?> compFactory = comp.getFactory().getClass();
+							boolean found = false;
+							for (Component repl : map.get(comp)) {
+								if (repl.getFactory().getClass() == compFactory) {
+									found = true;
+									setData(repl, compState);
+									break;
+								}
+							}
+							if (!found && compState instanceof CircuitState) {
+								CircuitState sub = (CircuitState) compState;
+								sub.parentState = null;
+								substates.remove(sub);
+							}
 						}
 					}
 				}

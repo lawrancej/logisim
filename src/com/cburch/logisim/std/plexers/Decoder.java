@@ -41,14 +41,11 @@ public class Decoder extends InstanceFactory {
 		BitWidth select = attrs.getValue(Plexers.ATTR_SELECT);
 		int outputs = 1 << select.getWidth();
 		Bounds bds;
+		boolean reversed = facing == Direction.WEST || facing == Direction.NORTH;
 		if (outputs == 2) {
-			boolean reversed = facing == Direction.WEST || facing == Direction.NORTH
-				|| facing == Direction.SOUTH;
 			int y = reversed ? 0 : -40;
 			bds = Bounds.create(-20, y, 30, 40);
 		} else {
-			boolean reversed = facing == Direction.NORTH
-				|| facing == Direction.SOUTH || facing == Direction.WEST;
 			int x = -20;
 			int y = reversed ? -10 : -(outputs * 10 + 10);
 			bds = Bounds.create(x, y, 40, outputs * 10 + 20);

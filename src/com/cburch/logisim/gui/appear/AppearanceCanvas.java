@@ -13,6 +13,8 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JPopupMenu;
+
 import com.cburch.draw.actions.ModelAddAction;
 import com.cburch.draw.actions.ModelReorderAction;
 import com.cburch.draw.canvas.ActionDispatcher;
@@ -179,7 +181,7 @@ public class AppearanceCanvas extends Canvas
 			int max = getMaxIndex(getModel());
 			if (cur > max) {
 				canvasAction = new ModelAddAction(getModel(),
-						addAction.getObjects(), max);
+						addAction.getObjects(), max + 1);
 			}
 		}
 			
@@ -242,6 +244,19 @@ public class AppearanceCanvas extends Canvas
 	protected void processMouseEvent(MouseEvent e) {
 		repairEvent(e, grid.getZoomFactor());
 		super.processMouseEvent(e);
+	}
+
+	@Override
+	public JPopupMenu showPopupMenu(MouseEvent e, CanvasObject clicked) {
+		double zoom = grid.getZoomFactor();
+		int x = (int) Math.round(e.getX() * zoom);
+		int y = (int) Math.round(e.getY() * zoom);
+		if (clicked != null && getSelection().isSelected(clicked)) {
+			AppearanceEditPopup popup = new AppearanceEditPopup(this);
+			popup.show(this, x, y);
+			return popup;
+		}
+		return null;
 	}
 
 	@Override
@@ -340,6 +355,6 @@ public class AppearanceCanvas extends Canvas
 				return i;
 			}
 		}
-		return 0;
+		return -1;
 	}
 }

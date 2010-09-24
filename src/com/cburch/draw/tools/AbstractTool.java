@@ -33,20 +33,6 @@ public abstract class AbstractTool extends CanvasTool {
 	public abstract List<Attribute<?>> getAttributes();
 	public String getDescription() { return null; }
 	
-	/*TODO delete if still unneeded: other Tool methods used in Logisim 2.0
-public abstract String getName();
-public abstract String getDisplayName();
-
-public Tool cloneTool() { return this; }
-public boolean sharesSource(Tool other) { return this == other; }
-public void setAttributeSet(AttributeSet attrs) { }
-public void paintIcon(ComponentDrawContext c, int x, int y) { }
-public String toString() { return getName(); }
-*/
-
-
-
-	
 	//
 	// CanvasTool methods
 	//
@@ -70,6 +56,10 @@ public String toString() { return getName(); }
 	public void mouseEntered(Canvas canvas, MouseEvent e) { }
 	@Override
 	public void mouseExited(Canvas canvas, MouseEvent e) { }
+
+	/** This is because a popup menu may result from the subsequent mouse release */ 
+	@Override
+	public void cancelMousePress(Canvas canvas) { }
 
 	@Override
 	public void keyPressed(Canvas canvas, KeyEvent e) { }

@@ -55,15 +55,15 @@ class TemplateOptions extends OptionsPanel {
 					} catch (LoaderException ex) {
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(getPreferencesFrame(),
-						        StringUtil.format(Strings.get("templateErrorMessage"), ex.toString()),
-						        Strings.get("templateErrorTitle"),
-						        JOptionPane.ERROR_MESSAGE);
+								StringUtil.format(Strings.get("templateErrorMessage"), ex.toString()),
+								Strings.get("templateErrorTitle"),
+								JOptionPane.ERROR_MESSAGE);
 					} finally {
 						try {
-						    if (reader != null) reader.close();
+							if (reader != null) reader.close();
 						} catch (IOException ex) { }
 						try {
-						    if (reader != null) reader2.close();
+							if (reader != null) reader2.close();
 						} catch (IOException ex) { }
 					}
 				}

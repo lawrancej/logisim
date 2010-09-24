@@ -233,7 +233,7 @@ class SelectionBase {
 						Location endLoc = endData.getLocation().translate(dx, dy);
 						Component conflict = circuit.getExclusive(endLoc);
 						if (conflict != null) {
-						    if (selfConflicts || !components.contains(conflict)) return true;
+							if (selfConflicts || !components.contains(conflict)) return true;
 						}
 					}
 				}

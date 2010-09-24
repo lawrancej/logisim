@@ -206,7 +206,7 @@ public class SplitterFactory extends AbstractComponentFactory {
 			KeyConfigurator altConfig = ParallelConfigurator.create(
 					new BitWidthConfigurator(SplitterAttributes.ATTR_WIDTH),
 					new IntegerConfigurator(SplitterAttributes.ATTR_FANOUT,
-						    1, 32, InputEvent.ALT_DOWN_MASK));
+							1, 32, InputEvent.ALT_DOWN_MASK));
 			return JoinedConfigurator.create(
 				new IntegerConfigurator(SplitterAttributes.ATTR_FANOUT, 1, 32, 0),
 				altConfig);

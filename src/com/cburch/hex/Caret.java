@@ -82,7 +82,7 @@ public class Caret {
 				if (digit >= 0) {
 					HexModel model = hex.getModel();
 					if (model != null && cursor >= model.getFirstOffset()
-						    && cursor <= model.getLastOffset()) {
+							&& cursor <= model.getLastOffset()) {
 						int curValue = model.get(cursor);
 						int newValue = 16 * curValue + digit;
 						model.set(cursor, newValue);

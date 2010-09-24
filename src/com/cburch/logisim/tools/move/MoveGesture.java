@@ -143,7 +143,7 @@ public class MoveGesture {
 					wirePath = new ArrayList<Wire>();
 					Location cur = loc;
 					for (Wire w = lastOnPath; w != null;
-						    w = findWire(circuit, cur, selected, w)) {
+							w = findWire(circuit, cur, selected, w)) {
 						wirePath.add(w);
 						cur = w.getOtherEnd(cur);
 					}

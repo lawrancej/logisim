@@ -193,11 +193,11 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 					provisional = false;
 					g.setColor(Color.GREEN);
 					g.drawString(label, x + (cellWidth - width) / 2,
-						    y + bodyMetric.getAscent());
+							y + bodyMetric.getAscent());
 					g.setColor(Color.BLACK);
 				} else {
 					g.drawString(label, x + (cellWidth - width) / 2,
-						    y + bodyMetric.getAscent());
+							y + bodyMetric.getAscent());
 				}
 				x += cellWidth + COLUMN_SEP;
 			}
@@ -275,7 +275,7 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 					return curY > 0 ? cellHeight : cellHeight + HEADER_SEP;
 				} else {
 					return curY > cellHeight + HEADER_SEP ? cellHeight
-						    : cellHeight + HEADER_SEP;
+							: cellHeight + HEADER_SEP;
 				}
 			}
 		

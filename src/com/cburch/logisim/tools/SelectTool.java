@@ -163,7 +163,7 @@ public class SelectTool extends Tool {
 						Location loc0 = w.getEnd0();
 						Location loc1 = w.getEnd1();
 						g.drawLine(loc0.getX(), loc0.getY(),
-						        loc1.getX(), loc1.getY());
+								loc1.getX(), loc1.getY());
 					}
 					GraphicsUtil.switchToWidth(g, 1);
 					g.setColor(COLOR_UNMATCHED);
@@ -342,8 +342,8 @@ public class SelectTool extends Tool {
 					if (connect) {
 						MoveGesture gesture = moveGesture;
 						if (gesture == null) {
-						    gesture = new MoveGesture(new MoveRequestHandler(canvas),
-						            canvas.getCircuit(), canvas.getSelection().getAnchoredComponents());
+							gesture = new MoveGesture(new MoveRequestHandler(canvas),
+									canvas.getCircuit(), canvas.getSelection().getAnchoredComponents());
 						}
 						canvas.setErrorMessage(new ComputingMessage(dx, dy), COLOR_COMPUTING);
 						MoveResult result = gesture.forceRequest(dx, dy);

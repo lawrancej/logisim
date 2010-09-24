@@ -111,30 +111,30 @@ abstract class Mem extends InstanceFactory {
 			if (this instanceof Rom) {
 				if (addrBits >= 30) {
 					label = StringUtil.format(Strings.get("romGigabyteLabel"), ""
-						    + (bytes >>> 30));
+							+ (bytes >>> 30));
 				} else if (addrBits >= 20) {
 					label = StringUtil.format(Strings.get("romMegabyteLabel"), ""
-						    + (bytes >> 20));
+							+ (bytes >> 20));
 				} else if (addrBits >= 10) {
 					label = StringUtil.format(Strings.get("romKilobyteLabel"), ""
-						    + (bytes >> 10));
+							+ (bytes >> 10));
 				} else {
 					label = StringUtil.format(Strings.get("romByteLabel"), ""
-						    + bytes);
+							+ bytes);
 				}
 			} else {
 				if (addrBits >= 30) {
 					label = StringUtil.format(Strings.get("ramGigabyteLabel"), ""
-						    + (bytes >>> 30));
+							+ (bytes >>> 30));
 				} else if (addrBits >= 20) {
 					label = StringUtil.format(Strings.get("ramMegabyteLabel"), ""
-						    + (bytes >> 20));
+							+ (bytes >> 20));
 				} else if (addrBits >= 10) {
 					label = StringUtil.format(Strings.get("ramKilobyteLabel"), ""
-						    + (bytes >> 10));
+							+ (bytes >> 10));
 				} else {
 					label = StringUtil.format(Strings.get("ramByteLabel"), ""
-						    + bytes);
+							+ bytes);
 				}
 			}
 			GraphicsUtil.drawCenteredText(g, label, bds.getX() + bds.getWidth()

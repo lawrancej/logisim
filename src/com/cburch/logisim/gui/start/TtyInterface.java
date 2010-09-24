@@ -341,7 +341,7 @@ public class TtyInterface {
 						char[] add = new char[nbytes];
 						System.arraycopy(buffer, 0, add, 0, nbytes);
 						synchronized (queue) {
-						    queue.addLast(add);
+							queue.addLast(add);
 						}
 					}
 				} catch (IOException e) { }

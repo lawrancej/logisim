@@ -131,10 +131,10 @@ public class JTreeUtil {
 			} else {
 				if (action == DnDConstants.ACTION_MOVE) {
 					dsde.getDragSourceContext().setCursor(
-						    DragSource.DefaultMoveDrop);
+							DragSource.DefaultMoveDrop);
 				} else {
 					dsde.getDragSourceContext().setCursor(
-						    DragSource.DefaultMoveNoDrop);
+							DragSource.DefaultMoveNoDrop);
 				}
 			}
 		}
@@ -147,10 +147,10 @@ public class JTreeUtil {
 			} else {
 				if (action == DnDConstants.ACTION_MOVE) {
 					dsde.getDragSourceContext().setCursor(
-						    DragSource.DefaultMoveDrop);
+							DragSource.DefaultMoveDrop);
 				} else {
 					dsde.getDragSourceContext().setCursor(
-						    DragSource.DefaultMoveNoDrop);
+							DragSource.DefaultMoveNoDrop);
 				}
 			}
 		}
@@ -163,10 +163,10 @@ public class JTreeUtil {
 			} else {
 				if (action == DnDConstants.ACTION_MOVE) {
 					dsde.getDragSourceContext().setCursor(
-						    DragSource.DefaultMoveDrop);
+							DragSource.DefaultMoveDrop);
 				} else {
 					dsde.getDragSourceContext().setCursor(
-						    DragSource.DefaultMoveNoDrop);
+							DragSource.DefaultMoveNoDrop);
 				}
 			}
 		}
@@ -182,40 +182,40 @@ public class JTreeUtil {
 				draggedNode = path.getLastPathComponent();
 				if (drawImage) {
 					Rectangle pathBounds = tree.getPathBounds(path); // getpathbounds
-						                                                // of
-						                                                // selectionpath
+																		// of
+																		// selectionpath
 					JComponent lbl = (JComponent) tree
-						    .getCellRenderer()
-						    .getTreeCellRendererComponent(
-						            tree,
-						            draggedNode,
-						            false,
-						            tree.isExpanded(path),
-						            tree.getModel() .isLeaf(path.getLastPathComponent()),
-						            0, false);// returning the label
+							.getCellRenderer()
+							.getTreeCellRendererComponent(
+									tree,
+									draggedNode,
+									false,
+									tree.isExpanded(path),
+									tree.getModel() .isLeaf(path.getLastPathComponent()),
+									0, false);// returning the label
 					lbl.setBounds(pathBounds);// setting bounds to lbl
 					image = new BufferedImage(lbl.getWidth(), lbl.getHeight(),
-						    java.awt.image.BufferedImage.TYPE_INT_ARGB_PRE);// buffered
-						                                                    // image
-						                                                    // reference
-						                                                    // passing
-						                                                    // the
-						                                                    // label's
-						                                                    // ht
-						                                                    // and
-						                                                    // width
+							java.awt.image.BufferedImage.TYPE_INT_ARGB_PRE);// buffered
+																			// image
+																			// reference
+																			// passing
+																			// the
+																			// label's
+																			// ht
+																			// and
+																			// width
 					Graphics2D graphics = image.createGraphics();// creating
-						                                            // the
-						                                            // graphics
-						                                            // for
-						                                            // buffered
-						                                            // image
+																	// the
+																	// graphics
+																	// for
+																	// buffered
+																	// image
 					graphics.setComposite(AlphaComposite.getInstance(
-						    AlphaComposite.SRC_OVER, 0.5f)); // Sets the
-						                                        // Composite for
-						                                        // the
-						                                        // Graphics2D
-						                                        // context
+							AlphaComposite.SRC_OVER, 0.5f)); // Sets the
+																// Composite for
+																// the
+																// Graphics2D
+																// context
 					lbl.setOpaque(false);
 					lbl.paint(graphics); // painting the graphics to label
 					graphics.dispose();

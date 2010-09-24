@@ -4,6 +4,7 @@
 package com.cburch.logisim.gui.main;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Composite;
 import java.awt.Dimension;
@@ -42,11 +43,19 @@ class ProjectToolbarModel extends AbstractToolbarModel {
 		}
 		
 		public void paintIcon(Component destination, Graphics g) {
-			if (icon != null) {
-				if (!isSelectable() && g instanceof Graphics2D) {
-					Composite c = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
-					((Graphics2D) g).setComposite(c);
-				}
+			if (!isSelectable() && g instanceof Graphics2D) {
+				Composite c = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
+				((Graphics2D) g).setComposite(c);
+			}
+
+			if (icon == null) {
+				g.setColor(new Color(255, 128, 128));
+				g.fillRect(4, 4, 8, 8);
+				g.setColor(Color.BLACK);
+				g.drawLine(4, 4, 12, 12);
+				g.drawLine(4, 12, 12, 4);
+				g.drawRect(4, 4, 8, 8);
+			} else {
 				icon.paintIcon(destination, g, 0, 1);
 			}
 		}
@@ -61,7 +70,7 @@ class ProjectToolbarModel extends AbstractToolbarModel {
 		
 		public Dimension getDimension(Object orientation) {
 			if (icon == null) {
-				return new Dimension(0, 0);
+				return new Dimension(16, 16);
 			} else {
 				int w = icon.getIconWidth();
 				int h = icon.getIconHeight();

@@ -255,11 +255,11 @@ public class Canvas extends JPanel
 				
 				if (proj.getTool() == event.getData()) {
 					Tool next = findTool(proj.getLogisimFile().getOptions()
-						                .getToolbarData().getContents());
+										.getToolbarData().getContents());
 					if (next == null) {
 						for (Library lib : proj.getLogisimFile().getLibraries()) {
-						    next = findTool(lib.getTools());
-						    if (next != null) break;
+							next = findTool(lib.getTools());
+							if (next != null) break;
 						}
 					}
 					proj.setTool(next);
@@ -447,21 +447,21 @@ public class Canvas extends JPanel
 
 			GraphicsUtil.switchToWidth(g, 3);
 			if (isNorth)        GraphicsUtil.drawArrow(g, sz.width / 2, 20,
-						        sz.width / 2, 2, 10, 30);
+								sz.width / 2, 2, 10, 30);
 			if (isSouth)        GraphicsUtil.drawArrow(g, sz.width / 2, sz.height - 20,
-						        sz.width / 2, sz.height -  2, 10, 30);
+								sz.width / 2, sz.height -  2, 10, 30);
 			if (isEast)     GraphicsUtil.drawArrow(g, sz.width - 20, sz.height / 2,
-						        sz.width -  2, sz.height / 2, 10, 30);
+								sz.width -  2, sz.height / 2, 10, 30);
 			if (isWest)     GraphicsUtil.drawArrow(g, 20, sz.height / 2,
-						         2, sz.height / 2, 10, 30);
+								 2, sz.height / 2, 10, 30);
 			if (isNortheast) GraphicsUtil.drawArrow(g, sz.width - 14, 14,
-						        sz.width -  2, 2, 10, 30);
+								sz.width -  2, 2, 10, 30);
 			if (isNorthwest) GraphicsUtil.drawArrow(g, 14, 14,
-						        2,  2, 10, 30);
+								2,  2, 10, 30);
 			if (isSoutheast)    GraphicsUtil.drawArrow(g, sz.width - 14, sz.height - 14,
-						        sz.width -  2, sz.height -  2, 10, 30);
+								sz.width -  2, sz.height -  2, 10, 30);
 			if (isSouthwest)    GraphicsUtil.drawArrow(g, 14, sz.height - 14,
-						        2, sz.height -  2, 10, 30);
+								2, sz.height -  2, 10, 30);
 
 			GraphicsUtil.switchToWidth(g, 1);
 			g.setColor(Color.BLACK);

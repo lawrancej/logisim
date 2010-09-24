@@ -125,9 +125,9 @@ class ExportImage {
 				boolean created = dest.mkdir();
 				if (!created) {
 					JOptionPane.showMessageDialog(proj.getFrame(),
-						    Strings.get("exportNewDirectoryErrorMessage"),
-						    Strings.get("exportNewDirectoryErrorTitle"),
-						    JOptionPane.YES_NO_OPTION);
+							Strings.get("exportNewDirectoryErrorMessage"),
+							Strings.get("exportNewDirectoryErrorTitle"),
+							JOptionPane.YES_NO_OPTION);
 					return;
 				}
 			}

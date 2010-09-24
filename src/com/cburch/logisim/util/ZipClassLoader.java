@@ -168,10 +168,10 @@ public class ZipClassLoader extends ClassLoader {
 						byte[] result = new byte[(int) zipEntry.getSize()];
 						bis = new BufferedInputStream(zipFile.getInputStream(zipEntry));
 						try {
-						    bis.read(result, 0, result.length);
-						    ret = result;
+							bis.read(result, 0, result.length);
+							ret = result;
 						} catch (IOException e) {
-						    if (DEBUG >= 3) System.err.println("  error loading file"); //OK
+							if (DEBUG >= 3) System.err.println("  error loading file"); //OK
 						}
 					}
 				}

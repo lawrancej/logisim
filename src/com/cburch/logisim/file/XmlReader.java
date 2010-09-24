@@ -273,7 +273,7 @@ class XmlReader {
 					if (setDefaults) {
 						Object val = defaults.getDefaultAttributeValue(attr, ver);
 						if (val != null) {
-						    attrs.setValue(attr, val);
+							attrs.setValue(attr, val);
 						}
 					}
 				} else {
@@ -282,8 +282,8 @@ class XmlReader {
 						attrs.setValue(attr, val);
 					} catch (NumberFormatException e) {
 						loader.showError(StringUtil.format(
-						    Strings.get("attrValueInvalidError"),
-						    attrVal, attrName));
+							Strings.get("attrValueInvalidError"),
+							attrVal, attrName));
 						continue;
 					}
 				}

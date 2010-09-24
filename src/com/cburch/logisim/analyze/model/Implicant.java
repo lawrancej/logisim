@@ -173,17 +173,17 @@ public class Implicant implements Comparable<Implicant> {
 						Implicant opp = new Implicant(imp.unknowns, imp.values ^ j);
 						Entry oppEntry = current.get(opp);
 						if (oppEntry != null) {
-						    toRemove.add(imp);
-						    toRemove.add(opp);
-						    Implicant i = new Implicant(opp.unknowns | j,
-						            opp.values);
-						    Entry e;
-						    if (oppEntry == Entry.DONT_CARE && detEntry == Entry.DONT_CARE) {
-						        e = Entry.DONT_CARE;
-						    } else {
-						        e = Entry.ONE;
-						    }
-						    next.put(i, e);
+							toRemove.add(imp);
+							toRemove.add(opp);
+							Implicant i = new Implicant(opp.unknowns | j,
+									opp.values);
+							Entry e;
+							if (oppEntry == Entry.DONT_CARE && detEntry == Entry.DONT_CARE) {
+								e = Entry.DONT_CARE;
+							} else {
+								e = Entry.ONE;
+							}
+							next.put(i, e);
 						}
 					}
 				}

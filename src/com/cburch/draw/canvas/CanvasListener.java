@@ -9,9 +9,12 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.List;
 
 import com.cburch.draw.model.CanvasModelEvent;
 import com.cburch.draw.model.CanvasModelListener;
+import com.cburch.draw.model.CanvasObject;
+import com.cburch.logisim.data.Location;
 
 class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
 		CanvasModelListener {
@@ -47,7 +50,11 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
 
 	public void mousePressed(MouseEvent e) {
 		canvas.requestFocus();
-		if(tool != null) tool.mousePressed(canvas, e);
+		if (e.isPopupTrigger()) {
+			handlePopupTrigger(e);
+		} else {
+			if(tool != null) tool.mousePressed(canvas, e);
+		}
 	}
 
 	public void mouseDragged(MouseEvent e) {
@@ -55,7 +62,12 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		if(tool != null) tool.mouseReleased(canvas, e);
+		if (e.isPopupTrigger()) {
+			if (tool != null) tool.cancelMousePress(canvas);
+			handlePopupTrigger(e);
+		} else {
+			if(tool != null) tool.mouseReleased(canvas, e);
+		}
 	}
 
 	public void mouseClicked(MouseEvent e) { }
@@ -83,5 +95,26 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
 	public void modelChanged(CanvasModelEvent event) {
 		canvas.getSelection().modelChanged(event);
 		canvas.repaint();
+	}
+	
+	private void handlePopupTrigger(MouseEvent e) {
+		Location loc = Location.create(e.getX(), e.getY());
+		List<CanvasObject> objects = canvas.getModel().getObjectsFromTop();
+		CanvasObject clicked = null;
+		for (CanvasObject o : objects) {
+			if (o.contains(loc, false)) {
+				clicked = o;
+				break;
+			}
+		}
+		if (clicked == null) {
+			for (CanvasObject o : objects) {
+				if (o.contains(loc, true)) {
+					clicked = o;
+					break;
+				}
+			}
+		}
+		canvas.showPopupMenu(e, clicked);
 	}
 }

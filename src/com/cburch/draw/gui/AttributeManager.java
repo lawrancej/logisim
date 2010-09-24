@@ -21,6 +21,7 @@ import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.tools.AbstractTool;
 import com.cburch.draw.tools.DrawingAttributeSet;
+import com.cburch.draw.tools.SelectTool;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
@@ -48,6 +49,10 @@ public class AttributeManager
 		
 		canvas.getSelection().addSelectionListener(this);
 		canvas.addPropertyChangeListener(Canvas.TOOL_PROPERTY, this);
+		updateToolAttributes();
+	}
+	
+	public void attributesSelected() {
 		updateToolAttributes();
 	}
 
@@ -168,7 +173,9 @@ public class AttributeManager
 	
 	private void updateToolAttributes() {
 		Object tool = canvas.getTool();
-		if (tool instanceof AbstractTool) {
+		if (tool instanceof SelectTool) {
+			computeAttributeList(selected.keySet());
+		} else if (tool instanceof AbstractTool) {
 			generalAttrs.setAttributes(((AbstractTool) tool).getAttributes());
 			table.setAttributeSet(generalAttrs, this);
 		} else {

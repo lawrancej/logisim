@@ -218,7 +218,7 @@ class TableTabClip implements ClipboardOwner {
 			for (int c = 0; c < entries[0].length; c++) {
 				if (c0 + c >= inputs) {
 					model.setOutputEntry(r0 + r, c0 + c - inputs,
-						    entries[r][c]);
+							entries[r][c]);
 				}
 			}
 		}

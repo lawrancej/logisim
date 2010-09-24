@@ -59,7 +59,7 @@ public class Parser {
 						; // don't repeat shorter whitespace
 					} else {
 						ret.replace(ret.length() - lastWhite.text.length(),
-						        ret.length(), token.text);
+								ret.length(), token.text);
 						lastWhite = token;
 					}
 				} else {
@@ -155,11 +155,11 @@ public class Parser {
 				case '+': tokens.add(new Token(TOKEN_OR, start, "+")); break;
 				case '!': tokens.add(new Token(TOKEN_NOT, start, "!")); break;
 				case '&':   if (in.charAt(pos) == '&') pos++;
-						    tokens.add(new Token(TOKEN_AND, start, in.substring(start, pos)));
-						    break;
+							tokens.add(new Token(TOKEN_AND, start, in.substring(start, pos)));
+							break;
 				case '|':   if (in.charAt(pos) == '|') pos++;
-						    tokens.add(new Token(TOKEN_OR, start, in.substring(start, pos)));
-						    break;
+							tokens.add(new Token(TOKEN_OR, start, in.substring(start, pos)));
+							break;
 				default:
 					while (!okCharacter(in.charAt(pos))) pos++;
 					String errorText = in.substring(start, pos);
@@ -219,7 +219,7 @@ public class Parser {
 			} else if (t.type == TOKEN_LPAREN) {
 				if (current != null) {
 					push(stack, current, Expression.AND_LEVEL,
-						    new Token(TOKEN_AND, t.offset, 0, Strings.get("implicitAndOperator")));
+							new Token(TOKEN_AND, t.offset, 0, Strings.get("implicitAndOperator")));
 				}
 				push(stack, null, -2, t);
 				current = null;

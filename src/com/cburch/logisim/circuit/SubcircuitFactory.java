@@ -260,7 +260,7 @@ public class SubcircuitFactory extends InstanceFactory {
 					if (c == 'n') {
 						String line = label.substring(0, back);
 						GraphicsUtil.drawText(g, line, x, y,
-						        GraphicsUtil.H_CENTER, GraphicsUtil.V_BASELINE);
+								GraphicsUtil.H_CENTER, GraphicsUtil.V_BASELINE);
 						y += height;
 						label = label.substring(back + 2);
 						back = label.indexOf('\\');

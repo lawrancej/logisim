@@ -345,7 +345,7 @@ class CircuitWires {
 						circState.setValueByWire(p, Value.NIL);
 					} else {
 						for (Location loc2 : pbPoints) {
-						    circState.setValueByWire(loc2, Value.NIL);
+							circState.setValueByWire(loc2, Value.NIL);
 						}
 					}
 				} else {
@@ -431,17 +431,17 @@ class CircuitWires {
 					WireBundle wb = bmap.getBundleAt(loc);
 					if (wb != null) {
 						if (!wb.isValid()) {
-						    g.setColor(Value.WIDTH_ERROR_COLOR);
+							g.setColor(Value.WIDTH_ERROR_COLOR);
 						} else if (showState) {
-						    if (!isValid) g.setColor(Value.NIL_COLOR);
-						    else         g.setColor(state.getValue(loc).getColor());
+							if (!isValid) g.setColor(Value.NIL_COLOR);
+							else         g.setColor(state.getValue(loc).getColor());
 						} else {
-						    g.setColor(Color.BLACK);
+							g.setColor(Color.BLACK);
 						}
 						if (highlighted.containsLocation(loc)) {
-						    g.fillOval(loc.getX() - 5, loc.getY() - 5, 10, 10);
+							g.fillOval(loc.getX() - 5, loc.getY() - 5, 10, 10);
 						} else {
-						    g.fillOval(loc.getX() - 4, loc.getY() - 4, 8, 8);
+							g.fillOval(loc.getX() - 4, loc.getY() - 4, 8, 8);
 						}
 					}
 				}
@@ -482,19 +482,19 @@ class CircuitWires {
 					if (icount > 2) {
 						WireBundle wb = bmap.getBundleAt(loc);
 						if (wb != null) {
-						    if (!wb.isValid()) {
-						        g.setColor(Value.WIDTH_ERROR_COLOR);
-						    } else if (showState) {
-						        if (!isValid) g.setColor(Value.NIL_COLOR);
-						        else         g.setColor(state.getValue(loc).getColor());
-						    } else {
-						        g.setColor(Color.BLACK);
-						    }
-						    if (highlighted.containsLocation(loc)) {
-						        g.fillOval(loc.getX() - 5, loc.getY() - 5, 10, 10);
-						    } else {
-						        g.fillOval(loc.getX() - 4, loc.getY() - 4, 8, 8);
-						    }
+							if (!wb.isValid()) {
+								g.setColor(Value.WIDTH_ERROR_COLOR);
+							} else if (showState) {
+								if (!isValid) g.setColor(Value.NIL_COLOR);
+								else         g.setColor(state.getValue(loc).getColor());
+							} else {
+								g.setColor(Color.BLACK);
+							}
+							if (highlighted.containsLocation(loc)) {
+								g.fillOval(loc.getX() - 5, loc.getY() - 5, 10, 10);
+							} else {
+								g.fillOval(loc.getX() - 4, loc.getY() - 4, 8, 8);
+							}
 						}
 					}
 				}
@@ -602,13 +602,13 @@ class CircuitWires {
 						int thr = spl.bit_thread[i];
 						WireBundle to_bundle = spl_data.end_bundle[j];
 						if (to_bundle.isValid()) {
-						    if (i >= from_bundle.threads.length) {
-						        throw new ArrayIndexOutOfBoundsException("from " + i + " of " + from_bundle.threads.length);
-						    }
-						    if (thr >= to_bundle.threads.length) {
-						        throw new ArrayIndexOutOfBoundsException("to " + thr + " of " + to_bundle.threads.length);
-						    }
-						    from_bundle.threads[i].unite(to_bundle.threads[thr]);
+							if (i >= from_bundle.threads.length) {
+								throw new ArrayIndexOutOfBoundsException("from " + i + " of " + from_bundle.threads.length);
+							}
+							if (thr >= to_bundle.threads.length) {
+								throw new ArrayIndexOutOfBoundsException("to " + thr + " of " + to_bundle.threads.length);
+							}
+							from_bundle.threads[i].unite(to_bundle.threads[thr]);
 						}
 					}
 				}

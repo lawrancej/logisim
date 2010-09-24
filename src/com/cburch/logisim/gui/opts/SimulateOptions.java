@@ -28,7 +28,7 @@ class SimulateOptions extends OptionsPanel {
 				if (opt != null) {
 					AttributeSet attrs = getOptions().getAttributeSet();
 					getProject().doAction(OptionsActions.setAttribute(attrs,
-						    Options.sim_limit_attr, opt));
+							Options.sim_limit_attr, opt));
 				}
 			} else if (source == simRandomness) {
 				AttributeSet attrs = getOptions().getAttributeSet();
@@ -41,7 +41,7 @@ class SimulateOptions extends OptionsPanel {
 				if (opt != null) {
 					AttributeSet attrs = getOptions().getAttributeSet();
 					getProject().doAction(OptionsActions.setAttribute(attrs,
-						    Options.ATTR_GATE_UNDEFINED, opt.getValue()));
+							Options.ATTR_GATE_UNDEFINED, opt.getValue()));
 				}
 			}
 		}

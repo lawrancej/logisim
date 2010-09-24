@@ -22,6 +22,10 @@ public abstract class CanvasTool {
 	public void mouseEntered(Canvas canvas, MouseEvent e) { }
 	public void mouseExited(Canvas canvas, MouseEvent e) { }
 
+	/** This is because a popup menu may result from the subsequent mouse release */ 
+	public void cancelMousePress(Canvas canvas) { }
+
+
 	public void keyPressed(Canvas canvas, KeyEvent e) { }
 	public void keyReleased(Canvas canvas, KeyEvent e) { }
 	public void keyTyped(Canvas canvas, KeyEvent e) { }

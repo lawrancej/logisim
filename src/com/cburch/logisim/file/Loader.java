@@ -203,7 +203,7 @@ public class Loader implements LibraryLoader {
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(parent,
 						StringUtil.format(Strings.get("fileSaveCloseError"),
-						    e.toString()),
+							e.toString()),
 						Strings.get("fileSaveErrorTitle"),
 						JOptionPane.ERROR_MESSAGE);
 					return false;

@@ -264,17 +264,17 @@ public class Startup {
 					for (int j = 0; j < fmts.length; j++) {
 						String fmt = fmts[j].trim();
 						if (fmt.equals("table")) {
-						    ret.ttyFormat |= TtyInterface.FORMAT_TABLE;
+							ret.ttyFormat |= TtyInterface.FORMAT_TABLE;
 						} else if (fmt.equals("speed")) {
-						    ret.ttyFormat |= TtyInterface.FORMAT_SPEED;
+							ret.ttyFormat |= TtyInterface.FORMAT_SPEED;
 						} else if (fmt.equals("tty")) {
-						    ret.ttyFormat |= TtyInterface.FORMAT_TTY;
+							ret.ttyFormat |= TtyInterface.FORMAT_TTY;
 						} else if (fmt.equals("halt")) {
-						    ret.ttyFormat |= TtyInterface.FORMAT_HALT;
+							ret.ttyFormat |= TtyInterface.FORMAT_HALT;
 						} else if (fmt.equals("stats")) {
 							ret.ttyFormat |= TtyInterface.FORMAT_STATISTICS;
 						} else {
-						    System.err.println(Strings.get("ttyFormatError")); //OK
+							System.err.println(Strings.get("ttyFormatError")); //OK
 						}
 					}
 				} else {
@@ -361,10 +361,10 @@ public class Startup {
 				ret.templFile = new File(args[i]);
 				if (!ret.templFile.exists()) {
 					System.err.println(StringUtil.format( //OK
-						    Strings.get("templateMissingError"), args[i]));
+							Strings.get("templateMissingError"), args[i]));
 				} else if (!ret.templFile.canRead()) {
 					System.err.println(StringUtil.format( //OK
-						    Strings.get("templateCannotReadError"), args[i]));
+							Strings.get("templateCannotReadError"), args[i]));
 				}
 			} else if (arg.equals("-nosplash")) {
 				ret.showSplash = false;

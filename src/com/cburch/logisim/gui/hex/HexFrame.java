@@ -65,7 +65,7 @@ public class HexFrame extends JFrame {
 						lastFile = f;
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
-						        Strings.get("hexOpenErrorTitle"), JOptionPane.ERROR_MESSAGE);
+								Strings.get("hexOpenErrorTitle"), JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			} else if (src == save) {
@@ -79,7 +79,7 @@ public class HexFrame extends JFrame {
 						lastFile = f;
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
-						    Strings.get("hexSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
+							Strings.get("hexSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			} else if (src == close) {

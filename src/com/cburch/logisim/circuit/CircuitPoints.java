@@ -202,8 +202,8 @@ class CircuitPoints {
 						width = endWidth;
 					} else if (width != endWidth && endWidth != BitWidth.UNKNOWN) {
 						if (error == null) {
-						    error = new WidthIncompatibilityData();
-						    error.add(loc, width);
+							error = new WidthIncompatibilityData();
+							error.add(loc, width);
 						}
 						error.add(loc, endWidth);
 					}

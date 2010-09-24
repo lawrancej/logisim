@@ -63,9 +63,9 @@ class CanvasPaintThread extends Thread {
 				while (alive && !(repaintRequested && wait <= 0)) {
 					try {
 						if (wait > 0) {
-						    lock.wait(wait);
+							lock.wait(wait);
 						} else {
-						    lock.wait();
+							lock.wait();
 						}
 					} catch (InterruptedException e) { }
 					now = System.currentTimeMillis();

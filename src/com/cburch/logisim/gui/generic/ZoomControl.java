@@ -80,6 +80,7 @@ public class ZoomControl extends JPanel {
 			addMouseListener(this);
 			setPreferredSize(new Dimension(15, 15));
 			setToolTipText("");
+			setFocusable(true);
 		}
 		
 		@Override

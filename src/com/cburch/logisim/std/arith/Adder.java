@@ -124,8 +124,8 @@ public class Adder extends InstanceFactory {
 						carry = Value.UNKNOWN;
 					} else {
 						int sum = (ab == Value.TRUE ? 1 : 0)
-						    + (bb == Value.TRUE ? 1 : 0)
-						    + (carry == Value.TRUE ? 1 : 0);
+							+ (bb == Value.TRUE ? 1 : 0)
+							+ (carry == Value.TRUE ? 1 : 0);
 						bits[i] = (sum & 1) == 1 ? Value.TRUE : Value.FALSE;
 						carry = (sum >= 2) ? Value.TRUE : Value.FALSE;
 					}

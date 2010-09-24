@@ -213,9 +213,9 @@ public class GifEncoder {
 					bitFile.WriteBits(prefix, numbits);
 					if (strings.AddCharString(prefix, c) > limit) {
 						if (++numbits > 12) {
-						    bitFile.WriteBits(clearcode, numbits - 1);
-						    strings.ClearTable(codesize);
-						    numbits = codesize + 1;
+							bitFile.WriteBits(clearcode, numbits - 1);
+							strings.ClearTable(codesize);
+							numbits = codesize + 1;
 						}
 						limit = (1 << numbits) - 1;
 					}
@@ -458,7 +458,7 @@ public class GifEncoder {
 		BitUtils.WriteString(output, "GIF87a");
 		
 		ScreenDescriptor sd = new ScreenDescriptor(width_, height_,
-						       numColors_);
+							   numColors_);
 		sd.Write(output);
 
 		output.write(colors_, 0, colors_.length);

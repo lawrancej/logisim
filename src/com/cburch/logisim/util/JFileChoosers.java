@@ -32,7 +32,7 @@ public class JFileChoosers {
 					if (dirname != null) {
 						File dir = new File(dirname);
 						if (dir.canRead()) {
-						    return new JFileChooser(dir);
+							return new JFileChooser(dir);
 						}
 					}
 				}

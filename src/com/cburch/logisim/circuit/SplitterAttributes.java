@@ -117,7 +117,7 @@ class SplitterAttributes extends AbstractAttributeSet {
 	Direction facing = Direction.EAST;
 	byte fanout = 2;                 // number of ends this splits into
 	byte[] bit_end = new byte[2];    // how each bit maps to an end (0 if nowhere);
-						             //   other values will be between 1 and fanout
+									 //   other values will be between 1 and fanout
 	BitOutOption[] options = null;
 
 	SplitterAttributes() {

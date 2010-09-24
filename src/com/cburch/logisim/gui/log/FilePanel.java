@@ -68,9 +68,9 @@ class FilePanel extends LogPanel {
 				}
 				if (file.exists() && file.length() > 0) {
 					String[] options = {
-						    Strings.get("fileOverwriteOption"),
-						    Strings.get("fileAppendOption"),
-						    Strings.get("fileCancelOption"),
+							Strings.get("fileOverwriteOption"),
+							Strings.get("fileAppendOption"),
+							Strings.get("fileCancelOption"),
 					};
 					int option = JOptionPane.showOptionDialog(getLogFrame(),
 						StringUtil.format(Strings.get("fileExistsMessage"), file.getName()),
@@ -79,8 +79,8 @@ class FilePanel extends LogPanel {
 						options, options[0]);
 					if (option == 0) {
 						try {
-						    FileWriter delete = new FileWriter(file);
-						    delete.close();
+							FileWriter delete = new FileWriter(file);
+							delete.close();
 						} catch (IOException e) { }
 					} else if (option == 1) {
 						// do nothing

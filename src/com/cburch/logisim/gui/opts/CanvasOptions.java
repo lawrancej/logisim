@@ -58,21 +58,21 @@ class CanvasOptions extends OptionsPanel {
 				if (opt != null) {
 					AttributeSet attrs = getOptions().getAttributeSet();
 					getProject().doAction(OptionsActions.setAttribute(attrs,
-						    Options.zoom_attr, opt.ratio));
+							Options.zoom_attr, opt.ratio));
 				}
 			} else if (source == radix1) {
 				RadixOpt opt = (RadixOpt) radix1.getSelectedItem();
 				if (opt != null) {
 					AttributeSet attrs = getOptions().getAttributeSet();
 					getProject().doAction(OptionsActions.setAttribute(attrs,
-						    Options.ATTR_RADIX_1, opt.value));
+							Options.ATTR_RADIX_1, opt.value));
 				}
 			} else if (source == radix2) {
 				RadixOpt opt = (RadixOpt) radix2.getSelectedItem();
 				if (opt != null) {
 					AttributeSet attrs = getOptions().getAttributeSet();
 					getProject().doAction(OptionsActions.setAttribute(attrs,
-						    Options.ATTR_RADIX_2, opt.value));
+							Options.ATTR_RADIX_2, opt.value));
 				}
 			}
 		}

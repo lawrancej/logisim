@@ -128,11 +128,11 @@ class BuildCircuitButton extends JButton {
 						dlog, Strings.get("buildDialogTitle"), JOptionPane.OK_CANCEL_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 				if (action != JOptionPane.OK_OPTION) return;
-						        
+								
 				ProjectItem projectItem = (ProjectItem) dlog.project.getSelectedItem();
 				if (projectItem == null) {
 					JOptionPane.showMessageDialog(parent, Strings.get("buildNeedProjectError"),
-						    Strings.get("buildDialogErrorTitle"), JOptionPane.ERROR_MESSAGE);
+							Strings.get("buildDialogErrorTitle"), JOptionPane.ERROR_MESSAGE);
 					continue;
 				}
 				dest = projectItem.project;
@@ -140,14 +140,14 @@ class BuildCircuitButton extends JButton {
 				name = dlog.name.getText().trim();
 				if (name.equals("")) {
 					JOptionPane.showMessageDialog(parent, Strings.get("buildNeedCircuitError"),
-						    Strings.get("buildDialogErrorTitle"), JOptionPane.ERROR_MESSAGE);
+							Strings.get("buildDialogErrorTitle"), JOptionPane.ERROR_MESSAGE);
 					continue;
 				}
 				
 				if (dest.getLogisimFile().getCircuit(name) != null) {
 					int choice = JOptionPane.showConfirmDialog(parent,
-						    StringUtil.format(Strings.get("buildConfirmReplaceMessage"), name),
-						    Strings.get("buildConfirmReplaceTitle"), JOptionPane.YES_NO_OPTION);
+							StringUtil.format(Strings.get("buildConfirmReplaceMessage"), name),
+							Strings.get("buildConfirmReplaceTitle"), JOptionPane.YES_NO_OPTION);
 					if (choice != JOptionPane.YES_OPTION) {
 						continue;
 					}

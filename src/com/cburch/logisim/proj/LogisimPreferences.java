@@ -131,11 +131,11 @@ public class LogisimPreferences {
 					accentsReplace = new PrefMonitorBoolean(ACCENTS_REPLACE, false);
 					stretchWires = new PrefMonitorBoolean(STRETCH_WIRES, false);
 					gateShape = new PrefMonitorStringOpts(GATE_SHAPE,
-						    new String[] { SHAPE_SHAPED, SHAPE_RECTANGULAR, SHAPE_DIN40700 });
+							new String[] { SHAPE_SHAPED, SHAPE_RECTANGULAR, SHAPE_DIN40700 });
 					graphicsAccel = new PrefMonitorStringOpts(GRAPHICS_ACCELERATION,
-						    new String[] { ACCEL_DEFAULT, ACCEL_NONE, ACCEL_OPENGL, ACCEL_D3D });
+							new String[] { ACCEL_DEFAULT, ACCEL_NONE, ACCEL_OPENGL, ACCEL_D3D });
 					afterAdd = new PrefMonitorStringOpts(AFTER_ADD,
-						    new String[] { AFTER_ADD_EDIT, AFTER_ADD_UNCHANGED });
+							new String[] { AFTER_ADD_EDIT, AFTER_ADD_UNCHANGED });
 					showGhosts = new PrefMonitorBoolean(SHOW_GHOSTS, true);
 					showProjectToolbar = new PrefMonitorBoolean(SHOW_PROJECT_TOOLBAR, false);
 					

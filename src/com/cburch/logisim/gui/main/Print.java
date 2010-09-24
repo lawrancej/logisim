@@ -174,15 +174,15 @@ public class Print {
 				g2.translate(format.getImageableX(), format.getImageableY());
 				if (rotateToFit && scale < 1.0 / 1.1) {
 					double scale2 = Math.min(imHeight / bds.getWidth(),
-						    (imWidth - headHeight) / bds.getHeight());
+							(imWidth - headHeight) / bds.getHeight());
 					if (scale2 >= scale * 1.1) { // will rotate
 						scale = scale2;
 						if (imHeight > imWidth) { // portrait -> landscape
-						    g2.translate(0, imHeight);
-						    g2.rotate(-Math.PI / 2);
+							g2.translate(0, imHeight);
+							g2.rotate(-Math.PI / 2);
 						} else { // landscape -> portrait
-						    g2.translate(imWidth, 0);
-						    g2.rotate(Math.PI / 2);
+							g2.translate(imWidth, 0);
+							g2.rotate(Math.PI / 2);
 						}
 						double t = imHeight;
 						imHeight = imWidth;

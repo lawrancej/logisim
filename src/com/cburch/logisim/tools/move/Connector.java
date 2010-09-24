@@ -181,15 +181,15 @@ class Connector {
 					if (added) {
 						Direction dir = null;
 						if (w.endsAt(loc)) {
-						    if (w.isVertical()) {
-						        int y0 = loc.getY();
-						        int y1 = w.getOtherEnd(loc).getY();
-						        dir = y0 < y1 ? Direction.NORTH : Direction.SOUTH;
-						    } else {
-						        int x0 = loc.getX();
-						        int x1 = w.getOtherEnd(loc).getX();
-						        dir = x0 < x1 ? Direction.WEST : Direction.EAST;
-						    }
+							if (w.isVertical()) {
+								int y0 = loc.getY();
+								int y1 = w.getOtherEnd(loc).getY();
+								dir = y0 < y1 ? Direction.NORTH : Direction.SOUTH;
+							} else {
+								int x0 = loc.getX();
+								int x1 = w.getOtherEnd(loc).getX();
+								dir = x0 < x1 ? Direction.WEST : Direction.EAST;
+							}
 						}
 						connNodes.add(new SearchNode(conn, loc, dir, dest));
 					}

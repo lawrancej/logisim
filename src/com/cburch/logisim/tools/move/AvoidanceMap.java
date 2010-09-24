@@ -69,9 +69,9 @@ class AvoidanceMap {
 					Location baseLoc = translated ? loc.translate(-dx, -dy) : loc;
 					if (!comp.contains(baseLoc)) {
 						if (prev == null) {
-						    avoid.remove(loc);
+							avoid.remove(loc);
 						} else {
-						    avoid.put(loc, prev);
+							avoid.put(loc, prev);
 						}
 					}
 				}

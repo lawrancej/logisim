@@ -5,8 +5,10 @@ package com.cburch.draw.canvas;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JComponent;
+import javax.swing.JPopupMenu;
 
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
@@ -43,6 +45,10 @@ public class Canvas extends JComponent {
 	
 	public void toolGestureComplete(CanvasTool tool, CanvasObject created) {
 		; // nothing to do - subclass may override
+	}
+	
+	protected JPopupMenu showPopupMenu(MouseEvent e, CanvasObject clicked) {
+		return null; // subclass will override if it supports popup menus
 	}
 	
 	public Selection getSelection() {

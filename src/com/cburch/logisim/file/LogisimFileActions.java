@@ -293,8 +293,8 @@ public class LogisimFileActions {
 						Object srcValue = srcAttrs.getValue(attr);
 						Object dstValue = dstAttrs.getValue(attr);
 						if (!dstValue.equals(srcValue)) {
-						    dstAttrs.setValue(attr, srcValue);
-						    attrValues.add(new RevertAttributeValue(dstAttrs, attr, dstValue));
+							dstAttrs.setValue(attr, srcValue);
+							attrValues.add(new RevertAttributeValue(dstAttrs, attr, dstValue));
 						}
 					}
 				}

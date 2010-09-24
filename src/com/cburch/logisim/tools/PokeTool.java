@@ -76,7 +76,7 @@ public class PokeTool extends Tool {
 			Circuit circ = pokedCircuit;
 			if (event.getCircuit() == circ && circ != null
 					&& (event.getAction() == CircuitEvent.ACTION_REMOVE
-						    || event.getAction() == CircuitEvent.ACTION_CLEAR)
+							|| event.getAction() == CircuitEvent.ACTION_CLEAR)
 					&& !circ.contains(pokedComponent)) {
 				removeCaret(false);
 			}
@@ -182,8 +182,8 @@ public class PokeTool extends Tool {
 						setPokedComponent(circ, c, caret);
 						AttributeSet attrs = c.getAttributeSet();
 						if (attrs != null && attrs.getAttributes().size() > 0) {
-						    Project proj = canvas.getProject();
-						    proj.getFrame().viewComponentAttributes(circ, c);
+							Project proj = canvas.getProject();
+							proj.getFrame().viewComponentAttributes(circ, c);
 						}
 					}
 				}

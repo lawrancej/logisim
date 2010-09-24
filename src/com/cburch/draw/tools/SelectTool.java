@@ -45,6 +45,8 @@ public class SelectTool extends AbstractTool {
 	private static final Color RECT_SELECT_BACKGROUND = new Color(0, 0, 0, 32);
 	
 	private int curAction;
+	private List<CanvasObject> beforePressSelection;
+	private Handle beforePressHandle;
 	private Location dragStart;
 	private Location dragEnd;
 	private boolean dragEffective;
@@ -76,12 +78,14 @@ public class SelectTool extends AbstractTool {
 	
 	@Override
 	public void toolSelected(Canvas canvas) {
+		curAction = IDLE;
 		canvas.getSelection().clearSelected();
 		repaintArea(canvas);
 	}
 	
 	@Override
 	public void toolDeselected(Canvas canvas) {
+		curAction = IDLE;
 		canvas.getSelection().clearSelected();
 		repaintArea(canvas);
 	}
@@ -93,6 +97,8 @@ public class SelectTool extends AbstractTool {
 	
 	@Override
 	public void mousePressed(Canvas canvas, MouseEvent e) {
+		beforePressSelection = new ArrayList<CanvasObject>(canvas.getSelection().getSelected());
+		beforePressHandle = canvas.getSelection().getSelectedHandle();
 		int mx = e.getX();
 		int my = e.getY();
 		boolean shift = (e.getModifiersEx() & MouseEvent.SHIFT_DOWN_MASK) != 0;
@@ -170,12 +176,32 @@ public class SelectTool extends AbstractTool {
 	}
 	
 	@Override
+	public void cancelMousePress(Canvas canvas) {
+		List<CanvasObject> before = beforePressSelection;
+		Handle handle = beforePressHandle;
+		beforePressSelection = null;
+		beforePressHandle = null;
+		if (before != null) {
+			curAction = IDLE;
+			Selection sel = canvas.getSelection();
+			sel.clearDrawsSuppressed();
+			sel.setMovingShapes(Collections.<CanvasObject>emptySet(), 0, 0);
+			sel.clearSelected();
+			sel.setSelected(before, true);
+			sel.setHandleSelected(handle);
+			repaintArea(canvas);
+		}
+	}
+	
+	@Override
 	public void mouseDragged(Canvas canvas, MouseEvent e) {
 		setMouse(canvas, e.getX(), e.getY(), e.getModifiersEx());
 	}
 	
 	@Override
 	public void mouseReleased(Canvas canvas, MouseEvent e) {
+		beforePressSelection = null;
+		beforePressHandle = null;
 		setMouse(canvas, e.getX(), e.getY(), e.getModifiersEx());
 		
 		CanvasModel model = canvas.getModel();
@@ -365,10 +391,10 @@ public class SelectTool extends AbstractTool {
 		boolean drawHandles;
 		switch (action) {
 		case MOVE_ALL:
-			drawHandles = false;
+			drawHandles = !dragEffective;
 			break;
 		case MOVE_HANDLE:
-			drawHandles = false;
+			drawHandles = !dragEffective;
 			if (dragEffective) gesture = curGesture;
 			break;
 		default:

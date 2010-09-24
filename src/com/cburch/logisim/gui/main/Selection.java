@@ -70,13 +70,13 @@ public class Selection extends SelectionBase {
 						else cs = save.getAnchoredComponents();
 
 						if (cs != null) {
-						    for (Component c : cs) {
-						        if (circ.contains(c)) {
-						            selected.add(c);
-						        } else {
-						            lifted.add(c);
-						        }
-						    }
+							for (Component c : cs) {
+								if (circ.contains(c)) {
+									selected.add(c);
+								} else {
+									lifted.add(c);
+								}
+							}
 						}
 					}
 					fireSelectionChanged();
@@ -99,11 +99,11 @@ public class Selection extends SelectionBase {
 						selected.remove(comp);
 						lifted.remove(comp);
 						for (Component add : replacedBy) {
-						    if (circuit.contains(add)) {
-						        selected.add(add);
-						    } else {
-						        lifted.add(add);
-						    }
+							if (circuit.contains(add)) {
+								selected.add(add);
+							} else {
+								lifted.add(add);
+							}
 						}
 					}
 				}

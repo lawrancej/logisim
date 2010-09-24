@@ -186,7 +186,7 @@ class SelectionAttributes extends AbstractAttributeSet
 					if (next.containsAttribute(attr)) {
 						Object v = attrMap.get(attr);
 						if (v != null && !v.equals(next.getValue(attr))) {
-						    attrMap.put(attr, null);
+							attrMap.put(attr, null);
 						}
 					} else {
 						ait.remove();

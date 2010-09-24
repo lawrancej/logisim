@@ -85,10 +85,10 @@ public class Simulator {
 			while (!complete) {
 				synchronized(this) {
 					while (!complete && !propagateRequested
-						    && !resetRequested && ticksRequested == 0
-						    && stepsRequested == 0) {
+							&& !resetRequested && ticksRequested == 0
+							&& stepsRequested == 0) {
 						try {
-						    wait();
+							wait();
 						} catch (InterruptedException e) { }
 					}
 				}
@@ -106,40 +106,40 @@ public class Simulator {
 						stepPoints.clear();
 						stepsRequested = 0;
 						if (propagator == null) {
-						    ticksRequested = 0;
+							ticksRequested = 0;
 						} else {
-						    ticked = ticksRequested > 0;
-						    if (ticked) doTick();
-						    do {
-						        propagateRequested = false;
-						        try {
-						            exceptionEncountered = false;
-						            propagator.propagate();
-						        } catch (Throwable thr) {
-						            thr.printStackTrace();
-						            exceptionEncountered = true;
-						            setIsRunning(false);
-						        }
-						    } while (propagateRequested);
-						    if (isOscillating()) {
-						        setIsRunning(false);
-						        ticksRequested = 0;
-						        propagateRequested = false;
-						    }
+							ticked = ticksRequested > 0;
+							if (ticked) doTick();
+							do {
+								propagateRequested = false;
+								try {
+									exceptionEncountered = false;
+									propagator.propagate();
+								} catch (Throwable thr) {
+									thr.printStackTrace();
+									exceptionEncountered = true;
+									setIsRunning(false);
+								}
+							} while (propagateRequested);
+							if (isOscillating()) {
+								setIsRunning(false);
+								ticksRequested = 0;
+								propagateRequested = false;
+							}
 						}
 					} else {
 						if (stepsRequested > 0) {
-						    synchronized(this) {
-						        stepsRequested--;
-						    }
-						    exceptionEncountered = false;
-						    try {
-						        stepPoints.clear();
-						        propagator.step(stepPoints);
-						    } catch (Throwable thr) {
-						        thr.printStackTrace();
-						        exceptionEncountered = true;
-						    }
+							synchronized(this) {
+								stepsRequested--;
+							}
+							exceptionEncountered = false;
+							try {
+								stepPoints.clear();
+								propagator.step(stepPoints);
+							} catch (Throwable thr) {
+								thr.printStackTrace();
+								exceptionEncountered = true;
+							}
 						}
 					}
 					if (ticked) fireTickCompleted();
@@ -200,11 +200,11 @@ public class Simulator {
 						millis = millisPerTickPhase;
 						ticks = ticksPerTickPhase;
 						while (!curShouldTick && ticksPending == 0
-						        && !complete) {
-						    wait();
-						    curShouldTick = shouldTick;
-						    millis = millisPerTickPhase;
-						    ticks = ticksPerTickPhase;
+								&& !complete) {
+							wait();
+							curShouldTick = shouldTick;
+							millis = millisPerTickPhase;
+							ticks = ticksPerTickPhase;
 						}
 					}
 				} catch (InterruptedException e) { }

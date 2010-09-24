@@ -216,13 +216,13 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
 					g.fillRect(x, y, entryWidth, ENTRY_HEIGHT);
 					g.setColor(Color.WHITE);
 					GraphicsUtil.drawText(g, StringUtil.toHexString(dataBits, val),
-						    x + entryWidth / 2, y + yoffs,
-						    GraphicsUtil.H_CENTER, GraphicsUtil.V_BASELINE);
+							x + entryWidth / 2, y + yoffs,
+							GraphicsUtil.H_CENTER, GraphicsUtil.V_BASELINE);
 					g.setColor(Color.BLACK);
 				} else {
 					GraphicsUtil.drawText(g, StringUtil.toHexString(dataBits, val),
-						    x + entryWidth / 2, y + yoffs,
-						    GraphicsUtil.H_CENTER, GraphicsUtil.V_BASELINE);
+							x + entryWidth / 2, y + yoffs,
+							GraphicsUtil.H_CENTER, GraphicsUtil.V_BASELINE);
 				}
 				addr++;
 				x += entryWidth;

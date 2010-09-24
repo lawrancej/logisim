@@ -166,7 +166,7 @@ public class MouseMappings {
 					} else {
 						Tool clone = newTool.cloneTool();
 						LoadedLibrary.copyAttributes(clone.getAttributeSet(),
-						        tool.getAttributeSet());
+								tool.getAttributeSet());
 						map.put(key, clone);
 					}
 				}
@@ -179,7 +179,7 @@ public class MouseMappings {
 					} else {
 						Tool clone = newTool.cloneTool();
 						LoadedLibrary.copyAttributes(clone.getAttributeSet(),
-						        tool.getAttributeSet());
+								tool.getAttributeSet());
 						map.put(key, clone);
 					}
 				}

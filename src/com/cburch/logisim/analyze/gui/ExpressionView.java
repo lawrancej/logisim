@@ -179,7 +179,7 @@ class ExpressionView extends JPanel {
 				while (curNot != null && curNot.stopIndex <= i) {
 					++curNotIndex;
 					curNot = (curNotIndex >= nots.size() ? null
-						    : (NotData) nots.get(curNotIndex));
+							: (NotData) nots.get(curNotIndex));
 				}
 				
 				if (curNot != null && badness[i] < BADNESS_IDENT_BREAK) {

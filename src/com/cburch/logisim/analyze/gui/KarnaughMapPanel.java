@@ -287,15 +287,15 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
 					String text = provisionalValue.getDescription();
 					g.setColor(Color.GREEN);
 					g.drawString(text,
-						    x + j * cellWidth + (cellWidth - fm.stringWidth(text)) / 2,
-						    y + i * cellHeight + dy);
+							x + j * cellWidth + (cellWidth - fm.stringWidth(text)) / 2,
+							y + i * cellHeight + dy);
 					g.setColor(Color.BLACK);
 				} else {
 					Entry entry = table.getOutputEntry(row, outputColumn);
 					String text = entry.getDescription();
 					g.drawString(text,
-						    x + j * cellWidth + (cellWidth - fm.stringWidth(text)) / 2,
-						    y + i * cellHeight + dy);
+							x + j * cellWidth + (cellWidth - fm.stringWidth(text)) / 2,
+							y + i * cellHeight + dy);
 				}
 			}
 		}

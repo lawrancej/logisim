@@ -56,7 +56,7 @@ public class TextTool extends Tool {
 					CircuitMutation xn = new CircuitMutation(caretCircuit);
 					xn.add(caretComponent);
 					a = xn.toAction(Strings.getter("addComponentAction",
-						    Text.FACTORY.getDisplayGetter()));
+							Text.FACTORY.getDisplayGetter()));
 				} else {
 					a = null; // don't add the blank text field
 				}
@@ -65,7 +65,7 @@ public class TextTool extends Tool {
 					CircuitMutation xn = new CircuitMutation(caretCircuit);
 					xn.add(caretComponent);
 					a = xn.toAction(Strings.getter("removeComponentAction",
-						    Text.FACTORY.getDisplayGetter()));
+							Text.FACTORY.getDisplayGetter()));
 				} else {
 					Object obj = caretComponent.getFeature(TextEditable.class);
 					if (obj == null) { // should never happen

@@ -8,6 +8,7 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import com.cburch.draw.actions.ModelDeleteHandleAction;
 import com.cburch.draw.actions.ModelInsertHandleAction;
@@ -22,7 +23,9 @@ import com.cburch.draw.model.CanvasModelListener;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
 import com.cburch.draw.util.MatchingSet;
+import com.cburch.draw.util.ZOrder;
 import com.cburch.logisim.circuit.Circuit;
+import com.cburch.logisim.circuit.appear.AppearanceElement;
 import com.cburch.logisim.gui.main.EditHandler;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.proj.Project;
@@ -47,11 +50,36 @@ public class AppearanceEditHandler extends EditHandler
 		boolean selEmpty = sel.isEmpty();
 		boolean canChange = proj.getLogisimFile().contains(circ);
 		boolean clipExists = !Clipboard.isEmpty();
+		boolean selHasRemovable = false;
+		for (CanvasObject o : sel.getSelected()) {
+			if (!(o instanceof AppearanceElement)) {
+				selHasRemovable = true;
+			}
+		}
 		boolean canRaise;
 		boolean canLower;
 		if (!selEmpty && canChange) {
-			canRaise = true;
-			canLower = true;
+			Map<CanvasObject, Integer> zs = ZOrder.getZIndex(sel.getSelected(),
+					canvas.getModel());
+			int zmin = Integer.MAX_VALUE;
+			int zmax = Integer.MIN_VALUE;
+			int count = 0; 
+			for (Map.Entry<CanvasObject, Integer> entry : zs.entrySet()) {
+				if (!(entry.getKey() instanceof AppearanceElement)) {
+					count++;
+					int z = entry.getValue().intValue();
+					if (z < zmin) zmin = z;
+					if (z > zmax) zmax = z;
+				}
+			}
+			int maxPoss = AppearanceCanvas.getMaxIndex(canvas.getModel());
+			if (count > 0 && count <= maxPoss) {
+				canRaise = zmin <= maxPoss - count;
+				canLower = zmax >= count;
+			} else {
+				canRaise = false;
+				canLower = false;
+			}
 		} else {
 			canRaise = false;
 			canLower = false;
@@ -65,10 +93,10 @@ public class AppearanceEditHandler extends EditHandler
 			canRemCtrl = o.canDeleteHandle(handle.getLocation()) != null;
 		}
 		
-		setEnabled(LogisimMenuBar.CUT, !selEmpty && canChange);
+		setEnabled(LogisimMenuBar.CUT, selHasRemovable && canChange);
 		setEnabled(LogisimMenuBar.COPY, !selEmpty);
 		setEnabled(LogisimMenuBar.PASTE, canChange && clipExists);
-		setEnabled(LogisimMenuBar.DELETE, !selEmpty && canChange);
+		setEnabled(LogisimMenuBar.DELETE, selHasRemovable && canChange);
 		setEnabled(LogisimMenuBar.DUPLICATE, !selEmpty && canChange);
 		setEnabled(LogisimMenuBar.SELECT_ALL, true);
 		setEnabled(LogisimMenuBar.RAISE, canRaise);

@@ -122,7 +122,7 @@ public class ToolbarData {
 				if (toolCopy != null) {
 					Tool dstTool = toolCopy.cloneTool();
 					AttributeSets.copy(srcTool.getAttributeSet(),
-						    dstTool.getAttributeSet());
+							dstTool.getAttributeSet());
 					this.addTool(dstTool);
 					addAttributeListeners(toolCopy);
 				}
@@ -191,7 +191,7 @@ public class ToolbarData {
 					Tool addedTool = newTool.cloneTool();
 					addAttributeListeners(addedTool);
 					LoadedLibrary.copyAttributes(addedTool.getAttributeSet(),
-						    ((Tool) old).getAttributeSet());
+							((Tool) old).getAttributeSet());
 					it.set(addedTool);
 				}
 			}

@@ -6,13 +6,13 @@ package com.cburch.logisim.gui.main;
 import com.cburch.logisim.gui.menu.LogisimMenuItem;
 
 public abstract class EditHandler {
-	static interface Listener {
+	public static interface Listener {
 		void enableChanged(EditHandler handler, LogisimMenuItem action, boolean value);
 	}
 	
 	private Listener listener;
 	
-	void setListener(Listener listener) {
+	public void setListener(Listener listener) {
 		this.listener = listener;
 	}
 	

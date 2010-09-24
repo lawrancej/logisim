@@ -190,9 +190,9 @@ public class GridPainter {
 					for (int j = 0; j < s; j++) {
 						g.setColor(i == i0 && j == j0 ? Color.gray : GRID_ZOOMED_OUT_COLOR);
 						for (int y = y0+j*10; y < y1; y += s*10) {
-						    int sx = (int) Math.round(f * x);
-						    int sy = (int) Math.round(f * y);
-						    g.fillRect(sx, sy, 1, 1);
+							int sx = (int) Math.round(f * x);
+							int sy = (int) Math.round(f * y);
+							g.fillRect(sx, sy, 1, 1);
 						}
 					}
 				}

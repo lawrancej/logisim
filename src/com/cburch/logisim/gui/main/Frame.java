@@ -338,6 +338,7 @@ public class Frame extends JFrame implements LocaleListener {
 			toolbar.setToolbarModel(app.getToolbarModel());
 			attrTable.setAttributeSet(app.getAttributeSet(),
 					app.getAttributeManager(attrTable));
+			app.getAttributeManager(attrTable).attributesSelected();
 			zoom.setZoomModel(app.getZoomModel());
 			menuListener.setEditHandler(app.getEditHandler());
 			mainPanel.setView(view);

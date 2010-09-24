@@ -181,7 +181,7 @@ abstract class AbstractGate extends InstanceFactory {
 					Location in = getInputOffset(attrs, i);
 					Location cen = in.translate(facing, 5);
 					painter.drawDongle(loc.getX() + cen.getX(),
-						    loc.getY() + cen.getY());
+							loc.getY() + cen.getY());
 				}
 			}
 		}
@@ -388,7 +388,7 @@ abstract class AbstractGate extends InstanceFactory {
 		int negated = attrs.negated;
 		AttributeSet opts = state.getProject().getOptions().getAttributeSet();
 		boolean errorIfUndefined = opts.getValue(Options.ATTR_GATE_UNDEFINED)
-						            .equals(Options.GATE_UNDEFINED_ERROR);
+									.equals(Options.GATE_UNDEFINED_ERROR);
 
 		Value[] inputs = new Value[inputCount];
 		int numInputs = 0;
@@ -438,12 +438,12 @@ abstract class AbstractGate extends InstanceFactory {
 					for (int i = 1; i <= inputCount; i++) {
 						Expression e = expressionMap.get(instance.getPortLocation(i));
 						if (e != null) {
-						    int negatedBit = (negated >> (i - 1)) & 1;
-						    if (negatedBit == 1) {
-						        e = Expressions.not(e);
-						    }
-						    inputs[numInputs] = e;
-						    ++numInputs;
+							int negatedBit = (negated >> (i - 1)) & 1;
+							if (negatedBit == 1) {
+								e = Expressions.not(e);
+							}
+							inputs[numInputs] = e;
+							++numInputs;
 						}
 					}
 					if (numInputs > 0) {

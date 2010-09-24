@@ -275,7 +275,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
 			for (Component comp : circuit.getNonWires()) {
 				if (factories.contains(comp.getFactory())) {
 					return StringUtil.format(Strings.get("unloadUsedError"),
-						    circuit.getName());
+							circuit.getName());
 				}
 			}
 		}

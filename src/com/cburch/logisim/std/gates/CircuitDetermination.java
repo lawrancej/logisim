@@ -221,8 +221,8 @@ abstract class CircuitDetermination {
 					if (bret instanceof Gate) {
 						Gate b = (Gate) bret;
 						if (b.factory == factory) {
-						    a.inputs.addAll(b.inputs);
-						    return a;
+							a.inputs.addAll(b.inputs);
+							return a;
 						}
 					}
 					a.inputs.add(bret);

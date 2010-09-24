@@ -46,7 +46,7 @@ class SelectionAction extends Action {
 		Selection sel = canvas.getSelection();
 		sel.clearSelected();
 		if (toRemove != null) canvasModel.removeObjects(toRemove.keySet());
-		int dest = AppearanceCanvas.getMaxIndex(canvasModel);
+		int dest = AppearanceCanvas.getMaxIndex(canvasModel) + 1;
 		if (toAdd != null) canvasModel.addObjects(dest, toAdd);
 		sel.setSelected(newSelection, true);
 		canvas.repaint();

@@ -132,7 +132,7 @@ public class OutputExpressions {
 					if (exprChanged) {
 						exprString = null;
 						if (!initializing) {
-						    fireModelChanged(OutputExpressionsEvent.OUTPUT_EXPRESSION, output);
+							fireModelChanged(OutputExpressionsEvent.OUTPUT_EXPRESSION, output);
 						}
 					}
 				}
@@ -314,7 +314,7 @@ public class OutputExpressions {
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
 					assn.put(table.getInputHeader(j),
-						    TruthTable.isInputSet(i, j, cols));
+							TruthTable.isInputSet(i, j, cols));
 				}
 				values[i] = expr.evaluate(assn) ? Entry.ONE : Entry.ZERO;
 			}
@@ -327,7 +327,7 @@ public class OutputExpressions {
 		for (int i = 0; i < a.length; i++) {
 			if (a[i] != b[i]) {
 				boolean bothDefined = (a[i] == Entry.ZERO || a[i] == Entry.ONE)
-						            && (b[i] == Entry.ZERO || b[i] == Entry.ONE);
+									&& (b[i] == Entry.ZERO || b[i] == Entry.ONE);
 				if (bothDefined) return false;
 			}
 		}

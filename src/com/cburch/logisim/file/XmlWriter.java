@@ -53,17 +53,17 @@ class XmlWriter {
 		try {
 			tfFactory.setAttribute("indent-number", Integer.valueOf(2));
 		} catch (IllegalArgumentException e) { }
-        Transformer tf = tfFactory.newTransformer();
-        tf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-        tf.setOutputProperty(OutputKeys.INDENT, "yes");
-        try {
-        	tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", 
-        			"2");
-        } catch (IllegalArgumentException e) { }
+		Transformer tf = tfFactory.newTransformer();
+		tf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		tf.setOutputProperty(OutputKeys.INDENT, "yes");
+		try {
+			tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", 
+					"2");
+		} catch (IllegalArgumentException e) { }
 
-        Source src = new DOMSource(doc);
-        Result dest = new StreamResult(out);
-        tf.transform(src, dest);
+		Source src = new DOMSource(doc);
+		Result dest = new StreamResult(out);
+		tf.transform(src, dest);
 	}
 
 	private LogisimFile file;
@@ -264,9 +264,9 @@ class XmlWriter {
 					a.setAttribute("name", attr.getName());
 					String value = attr.toStandardString(val);
 					if (value.indexOf("\n") >= 0) {
-					    a.appendChild(doc.createTextNode(value));
+						a.appendChild(doc.createTextNode(value));
 					} else {
-					    a.setAttribute("val", attr.toStandardString(val));
+						a.setAttribute("val", attr.toStandardString(val));
 					}
 					elt.appendChild(a);
 				}

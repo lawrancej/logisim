@@ -135,7 +135,7 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 					int index = ((Integer) event.getData()).intValue();
 					if (index >= data.size()) {
 						if (data.isEmpty()) {
-						    list.setSelectedValue(null, false);
+							list.setSelectedValue(null, false);
 						}
 						index = data.size() - 1;
 					}

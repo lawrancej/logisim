@@ -145,7 +145,7 @@ class WireRepair extends CircuitTransaction {
 					for (int j = i + 1; j < n; j++) {
 						Wire w1 = locWires.get(j);
 						if (w0.overlaps(w1, false)) {
-						    mergeSets.merge(w0, w1);
+							mergeSets.merge(w0, w1);
 						}
 					}
 				}

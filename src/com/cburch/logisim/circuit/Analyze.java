@@ -243,7 +243,7 @@ public class Analyze {
 						Component eCause = expressionMap.currentCause;
 						Component oldCause = expressionMap.causes.get(p2);
 						if (eCause != oldCause && !old.equals(e)) {
-						    throw new AnalyzeException.Conflict();
+							throw new AnalyzeException.Conflict();
 						}
 					}
 					expressionMap.put(p2, e);

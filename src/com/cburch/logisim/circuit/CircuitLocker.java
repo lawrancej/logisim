@@ -82,7 +82,7 @@ class CircuitLocker {
 						circuitLocks.put(circ, lock);
 						locker.mutatingThread = Thread.currentThread();
 						if (mutator == null) {
-						    mutator = new CircuitMutatorImpl();
+							mutator = new CircuitMutatorImpl();
 						}
 						locker.mutatingMutator = mutator;
 					}

@@ -294,18 +294,18 @@ public class DotMatrix extends InstanceFactory {
 					for (int j = colVals.length - 1; j >= 0; j--, gridloc++) {
 						Value val = colVals[colVals.length - 1 - j];
 						if (grid[gridloc] == Value.TRUE) {
-						    persistTo[gridloc] = persist - 1;
+							persistTo[gridloc] = persist - 1;
 						}
 						grid[gridloc] = val;
 						if (val == Value.TRUE) {
-						    persistTo[gridloc] = persist;
+							persistTo[gridloc] = persist;
 						}
 					}
 				} else {
 					if (wholeRow != Value.FALSE) wholeRow = Value.ERROR;
 					for (int j = colVals.length - 1; j >= 0; j--, gridloc++) {
 						if (grid[gridloc] == Value.TRUE) {
-						    persistTo[gridloc] = persist - 1;
+							persistTo[gridloc] = persist - 1;
 						}
 						grid[gridloc] = wholeRow;
 					}

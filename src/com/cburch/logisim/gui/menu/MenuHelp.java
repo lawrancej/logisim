@@ -79,7 +79,7 @@ class MenuHelp extends JMenu implements ActionListener {
 				if (hsURL == null) {
 					disableHelp();
 					JOptionPane.showMessageDialog(menubar.getParentWindow(),
-						    Strings.get("helpNotFoundError"));
+							Strings.get("helpNotFoundError"));
 					return;
 				}
 				helpSetUrl = helpUrl;
