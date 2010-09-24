@@ -117,23 +117,23 @@ public class CircuitAppearance extends Drawing {
 	}
 	
 	public Direction getFacing() {
-		AppearanceOrigin origin = findOrigin();
-		if (origin == null) {
+		AppearanceAnchor anchor = findAnchor();
+		if (anchor == null) {
 			return Direction.EAST;
 		} else {
-			return origin.getFacing();
+			return anchor.getFacing();
 		}
 	}
 	
 	public void setObjectsForce(List<? extends CanvasObject> shapesBase) {
 		// This shouldn't ever be an issue, but just to make doubly sure, we'll
-		// check that the origin and all ports are in their proper places.
+		// check that the anchor and all ports are in their proper places.
 		List<CanvasObject> shapes = new ArrayList<CanvasObject>(shapesBase);
 		int n = shapes.size();
 		int ports = 0;
-		for (int i = n - 1; i >= 0; i--) { // count ports, move origin to end
+		for (int i = n - 1; i >= 0; i--) { // count ports, move anchor to end
 			CanvasObject o = shapes.get(i);
-			if (o instanceof AppearanceOrigin) {
+			if (o instanceof AppearanceAnchor) {
 				if (i != n - 1) {
 					shapes.remove(i);
 					shapes.add(o);
@@ -168,7 +168,7 @@ public class CircuitAppearance extends Drawing {
 			rotate = defaultFacing.toRadians() - facing.toRadians();
 			((Graphics2D) g).rotate(rotate);
 		}
-		Location offset = findOriginLocation();
+		Location offset = findAnchorLocation();
 		g.translate(-offset.getX(), -offset.getY());
 		for (CanvasObject shape : getObjectsFromBottom()) {
 			if (!(shape instanceof AppearanceElement)) {
@@ -183,19 +183,19 @@ public class CircuitAppearance extends Drawing {
 		}
 	}
 	
-	private Location findOriginLocation() {
-		AppearanceOrigin origin = findOrigin();
-		if (origin == null) {
+	private Location findAnchorLocation() {
+		AppearanceAnchor anchor = findAnchor();
+		if (anchor == null) {
 			return Location.create(100, 100);
 		} else {
-			return origin.getLocation();
+			return anchor.getLocation();
 		}
 	}
 	
-	private AppearanceOrigin findOrigin() {
+	private AppearanceAnchor findAnchor() {
 		for (CanvasObject shape : getObjectsFromBottom()) {
-			if (shape instanceof AppearanceOrigin) {
-				return (AppearanceOrigin) shape;
+			if (shape instanceof AppearanceAnchor) {
+				return (AppearanceAnchor) shape;
 			}
 		}
 		return null;
@@ -209,13 +209,13 @@ public class CircuitAppearance extends Drawing {
 		return getBounds(false); 
 	}
 	
-	private Bounds getBounds(boolean relativeToOrigin) {
+	private Bounds getBounds(boolean relativeToAnchor) {
 		Bounds ret = null;
 		Location offset = null;
 		for (CanvasObject o : getObjectsFromBottom()) {
 			if (o instanceof AppearanceElement) {
 				Location loc = ((AppearanceElement) o).getLocation();
-				if (o instanceof AppearanceOrigin) {
+				if (o instanceof AppearanceAnchor) {
 					offset = loc;
 				}
 				if (ret == null) {
@@ -233,7 +233,7 @@ public class CircuitAppearance extends Drawing {
 		}
 		if (ret == null) {
 			return Bounds.EMPTY_BOUNDS; 
-		} else if (relativeToOrigin && offset != null) {
+		} else if (relativeToAnchor && offset != null) {
 			return ret.translate(-offset.getX(), -offset.getY());
 		} else {
 			return ret;
@@ -241,15 +241,15 @@ public class CircuitAppearance extends Drawing {
 	}
 	
 	public SortedMap<Location, Instance> getPortOffsets(Direction facing) {
-		Location origin = null;
+		Location anchor = null;
 		Direction defaultFacing = Direction.EAST;
 		List<AppearancePort> ports = new ArrayList<AppearancePort>();
 		for (CanvasObject shape : getObjectsFromBottom()) {
 			if (shape instanceof AppearancePort) {
 				ports.add((AppearancePort) shape);
-			} else if (shape instanceof AppearanceOrigin) {
-				AppearanceOrigin o = (AppearanceOrigin) shape;
-				origin = o.getLocation();
+			} else if (shape instanceof AppearanceAnchor) {
+				AppearanceAnchor o = (AppearanceAnchor) shape;
+				anchor = o.getLocation();
 				defaultFacing = o.getFacing();
 			}
 		}
@@ -257,8 +257,8 @@ public class CircuitAppearance extends Drawing {
 		SortedMap<Location, Instance> ret = new TreeMap<Location, Instance>();
 		for (AppearancePort port : ports) {
 			Location loc = port.getLocation();
-			if (origin != null) {
-				loc = loc.translate(-origin.getX(), -origin.getY());
+			if (anchor != null) {
+				loc = loc.translate(-anchor.getX(), -anchor.getY());
 			}
 			if (facing != defaultFacing) {
 				loc = loc.rotate(defaultFacing, facing, 0, 0);
@@ -270,7 +270,6 @@ public class CircuitAppearance extends Drawing {
 	
 	@Override
 	public void addObjects(int index, Collection<? extends CanvasObject> shapes) {
-		
 		super.addObjects(index, shapes);
 		checkToFirePortsChanged(shapes);
 	}

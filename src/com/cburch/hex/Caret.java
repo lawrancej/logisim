@@ -66,7 +66,7 @@ public class Caret {
 
 			char c = e.getKeyChar();
 			int cols = hex.getMeasures().getColumnCount();
-			switch(c) {
+			switch (c) {
 			case ' ':
 				if (cursor >= 0) setDot(cursor + 1, (mask & InputEvent.SHIFT_MASK) != 0);
 				break;
@@ -95,7 +95,7 @@ public class Caret {
 			int cols = hex.getMeasures().getColumnCount();
 			int rows;
 			boolean shift = (e.getModifiers() & InputEvent.SHIFT_MASK) != 0;
-			switch(e.getKeyCode()) {
+			switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:    if (cursor >= cols) setDot(cursor - cols, shift); break;
 			case KeyEvent.VK_LEFT:  if (cursor >= 1) setDot(cursor - 1, shift); break;
 			case KeyEvent.VK_DOWN:
@@ -136,7 +136,7 @@ public class Caret {
 						setDot(cursor + rows * cols, shift);
 					} else {
 						long n = cursor;
-						while(n + cols < max) n += cols;
+						while (n + cols < max) n += cols;
 						setDot(n, shift);
 					}
 				}

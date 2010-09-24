@@ -20,7 +20,7 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.UnmodifiableList;
 
-class AppearanceOrigin extends AppearanceElement {
+class AppearanceAnchor extends AppearanceElement {
 	static final Attribute<Direction> FACING
 		= Attributes.forDirection("facing", Strings.getter("appearanceFacingAttr"));
 	static final List<Attribute<?>> ATTRIBUTES
@@ -32,15 +32,15 @@ class AppearanceOrigin extends AppearanceElement {
 	
 	private Direction facing;
 	
-	public AppearanceOrigin(Location location) {
+	public AppearanceAnchor(Location location) {
 		super(location);
 		facing = Direction.EAST;
 	}
 	
 	@Override
 	public boolean matches(CanvasObject other) {
-		if (other instanceof AppearanceOrigin) {
-			AppearanceOrigin that = (AppearanceOrigin) other;
+		if (other instanceof AppearanceAnchor) {
+			AppearanceAnchor that = (AppearanceAnchor) other;
 			return super.matches(that) && this.facing.equals(that.facing);
 		} else {
 			return false;
@@ -54,13 +54,13 @@ class AppearanceOrigin extends AppearanceElement {
 
 	@Override
 	public String getDisplayName() {
-		return Strings.get("circuitOrigin");
+		return Strings.get("circuitAnchor");
 	}
 	
 	@Override
 	public Element toSvgElement(Document doc) {
 		Location loc = getLocation();
-		Element ret = doc.createElement("circ-origin");
+		Element ret = doc.createElement("circ-anchor");
 		ret.setAttribute("x", "" + (loc.getX() - RADIUS));
 		ret.setAttribute("y", "" + (loc.getY() - RADIUS));
 		ret.setAttribute("width", "" + 2 * RADIUS);

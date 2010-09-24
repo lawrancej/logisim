@@ -166,7 +166,7 @@ public abstract class AbstractCanvasObject
 	public final <V> void setValue(Attribute<V> attr, V value) {
 		Object old = getValue(attr);
 		boolean same = old == null ? value == null : old.equals(value);
-		if(!same) {
+		if (!same) {
 			updateValue(attr, value);
 			AttributeEvent e = new AttributeEvent(this, attr, value);
 			for (AttributeListener listener : listeners) {

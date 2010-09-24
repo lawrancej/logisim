@@ -84,12 +84,12 @@ public class LineTool extends AbstractTool {
 	
 	@Override
 	public void mouseReleased(Canvas canvas, MouseEvent e) {
-		if(active) {
+		if (active) {
 			updateMouse(canvas, e.getX(), e.getY(), e.getModifiersEx());
 			Location start = mouseStart;
 			Location end = mouseEnd;
 			CanvasObject add = null;
-			if(!start.equals(end)) {
+			if (!start.equals(end)) {
 				active = false;
 				CanvasModel model = canvas.getModel();
 				Location[] ends = { start, end };
@@ -106,7 +106,7 @@ public class LineTool extends AbstractTool {
 	@Override
 	public void keyPressed(Canvas canvas, KeyEvent e) {
 		int code = e.getKeyCode();
-		if(active && (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_CONTROL)) {
+		if (active && (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_CONTROL)) {
 			updateMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
 		}
 	}
@@ -117,7 +117,7 @@ public class LineTool extends AbstractTool {
 	}
 	
 	private void updateMouse(Canvas canvas, int mx, int my, int mods) {
-		if(active) {
+		if (active) {
 			boolean shift = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0;
 			Location newEnd;
 			if (shift) {
@@ -134,7 +134,7 @@ public class LineTool extends AbstractTool {
 				newEnd = Location.create(x, y);
 			}
 			
-			if(!newEnd.equals(mouseEnd)) {
+			if (!newEnd.equals(mouseEnd)) {
 				mouseEnd = newEnd;
 				repaintArea(canvas);
 			}
@@ -149,7 +149,7 @@ public class LineTool extends AbstractTool {
 	
 	@Override
 	public void draw(Canvas canvas, Graphics g) {
-		if(active) {
+		if (active) {
 			Location start = mouseStart;
 			Location end = mouseEnd;
 			g.setColor(Color.GRAY);
@@ -160,8 +160,8 @@ public class LineTool extends AbstractTool {
 	static Location snapTo4Cardinals(Location from, int mx, int my) {
 		int px = from.getX();
 		int py = from.getY();
-		if(mx != px && my != py) {
-			if(Math.abs(my - py) < Math.abs(mx - px)) {
+		if (mx != px && my != py) {
+			if (Math.abs(my - py) < Math.abs(mx - px)) {
 				return Location.create(mx, py);
 			} else {
 				return Location.create(px, my);

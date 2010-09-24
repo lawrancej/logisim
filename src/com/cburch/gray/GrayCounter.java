@@ -47,7 +47,7 @@ class GrayCounter extends InstanceFactory {
 		// customized icon representing the component type. This should be a
 		// 16x16 image.
 		URL url = getClass().getClassLoader().getResource("com/cburch/gray/counter.gif");
-		if(url != null) setIcon(new ImageIcon(url));
+		if (url != null) setIcon(new ImageIcon(url));
 	}
 	
 	/** The configureNewInstance method is invoked every time a new instance
@@ -71,7 +71,7 @@ class GrayCounter extends InstanceFactory {
 		BitWidth width = state.getAttributeValue(StdAttr.WIDTH);
 		CounterData cur = CounterData.get(state, width);
 		boolean trigger = cur.updateClock(state.getPort(0));
-		if(trigger) cur.setValue(GrayIncrementer.nextGray(cur.getValue()));
+		if (trigger) cur.setValue(GrayIncrementer.nextGray(cur.getValue()));
 		state.setPort(1, cur.getValue(), 9);
 	}
 
@@ -84,7 +84,7 @@ class GrayCounter extends InstanceFactory {
 		painter.drawPort(1);
 		painter.drawLabel();
 		
-		if(painter.getShowState()) {
+		if (painter.getShowState()) {
 			BitWidth width = painter.getAttributeValue(StdAttr.WIDTH);
 			CounterData state = CounterData.get(painter, width);
 			Bounds bds = painter.getBounds();

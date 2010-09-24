@@ -51,7 +51,7 @@ public class Selection {
 	private void fireChanged(int action, Collection<CanvasObject> affected) {
 		SelectionEvent e = null;
 		for (SelectionListener listener : listeners) {
-			if(e == null) e = new SelectionEvent(this, action, affected);
+			if (e == null) e = new SelectionEvent(this, action, affected);
 			listener.selectionChanged(e);
 		}
 	}
@@ -69,7 +69,7 @@ public class Selection {
 	}
 	
 	public void clearSelected() {
-		if(!selected.isEmpty()) {
+		if (!selected.isEmpty()) {
 			ArrayList<CanvasObject> oldSelected;
 			oldSelected = new ArrayList<CanvasObject>(selected);
 			selected.clear();
@@ -84,11 +84,11 @@ public class Selection {
 	}
 	
 	public void setSelected(Collection<CanvasObject> shapes, boolean value) {
-		if(value) {
+		if (value) {
 			ArrayList<CanvasObject> added;
 			added = new ArrayList<CanvasObject>(shapes.size());
 			for (CanvasObject shape : shapes) {
-				if(selected.add(shape)) {
+				if (selected.add(shape)) {
 					added.add(shape);
 				}
 			}
@@ -99,10 +99,10 @@ public class Selection {
 			ArrayList<CanvasObject> removed;
 			removed = new ArrayList<CanvasObject>(shapes.size());
 			for (CanvasObject shape : shapes) {
-				if(selected.remove(shape)) {
+				if (selected.remove(shape)) {
 					suppressed.remove(shape);
 					Handle h = selectedHandle;
-					if(h != null && h.getObject() == shape) setHandleSelected(null);
+					if (h != null && h.getObject() == shape) setHandleSelected(null);
 					removed.add(shape);
 				}
 			}
@@ -122,7 +122,7 @@ public class Selection {
 				selected.remove(shape);
 				suppressed.remove(shape);
 				Handle h = selectedHandle;
-				if(h != null && h.getObject() == shape) setHandleSelected(null);
+				if (h != null && h.getObject() == shape) setHandleSelected(null);
 				removed.add(shape);
 			} else {
 				selected.add(shape);
@@ -214,7 +214,7 @@ public class Selection {
 
 	void modelChanged(CanvasModelEvent event) {
 		int action = event.getAction();
-		switch(action) {
+		switch (action) {
 		case CanvasModelEvent.ACTION_REMOVED:
 			Collection<? extends CanvasObject> affected = event.getAffected();
 			if (affected != null) {

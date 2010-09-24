@@ -181,7 +181,7 @@ public class Startup {
 				}
 				if (first) {
 					first = false;
-					if(showSplash) monitor.close();
+					if (showSplash) monitor.close();
 					monitor = null;
 				}
 			}

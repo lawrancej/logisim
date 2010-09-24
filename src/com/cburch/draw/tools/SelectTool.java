@@ -229,7 +229,7 @@ public class SelectTool extends AbstractTool {
 		Location start = dragStart;
 		int x1 = e.getX();
 		int y1 = e.getY();
-		switch(action) {
+		switch (action) {
 		case MOVE_ALL:
 			Location moveDelta = selection.getMovingDelta();
 			if (dragEffective && !moveDelta.equals(Location.create(0, 0))) {
@@ -337,7 +337,7 @@ public class SelectTool extends AbstractTool {
 			}
 		}
 
-		switch(curAction) {
+		switch (curAction) {
 		case MOVE_HANDLE:
 			HandleGesture gesture = curGesture;
 			if (ctrl) {
@@ -458,7 +458,7 @@ public class SelectTool extends AbstractTool {
 			}
 		}
 		
-		switch(action) {
+		switch (action) {
 		case RECT_SELECT:
 		case RECT_TOGGLE:
 			if (dragEffective) {

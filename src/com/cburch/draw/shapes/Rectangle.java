@@ -91,7 +91,7 @@ public class Rectangle extends Rectangular {
 	
 	@Override
 	public void draw(Graphics g, int x, int y, int w, int h) {
-		if(setForFill(g)) g.fillRect(x, y, w, h);
-		if(setForStroke(g)) g.drawRect(x, y, w, h);
+		if (setForFill(g)) g.fillRect(x, y, w, h);
+		if (setForStroke(g)) g.drawRect(x, y, w, h);
 	}
 }

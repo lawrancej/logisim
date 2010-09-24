@@ -172,9 +172,9 @@ public class CanvasModelEvent extends EventObject {
 	
 	public Collection<? extends CanvasObject> getAffected() {
 		Collection<? extends CanvasObject> ret = affected;
-		if(ret == null) {
+		if (ret == null) {
 			Map<AttributeMapKey, Object> newVals = newValues;
-			if(newVals != null) {
+			if (newVals != null) {
 				HashSet<CanvasObject> keys = new HashSet<CanvasObject>();
 				for (AttributeMapKey key : newVals.keySet()) {
 					keys.add(key.getObject());

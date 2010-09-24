@@ -66,11 +66,11 @@ public class Canvas extends JComponent {
 	
 	public void setModel(CanvasModel value, ActionDispatcher dispatcher) {
 		CanvasModel oldValue = model;
-		if(oldValue != value) {
-			if(oldValue != null) oldValue.removeCanvasModelListener(listener);
+		if (oldValue != value) {
+			if (oldValue != null) oldValue.removeCanvasModelListener(listener);
 			model = value;
 			this.dispatcher = dispatcher;
-			if(value != null) value.addCanvasModelListener(listener);
+			if (value != null) value.addCanvasModelListener(listener);
 			selection.clearSelected();
 			repaint();
 			firePropertyChange(MODEL_PROPERTY, oldValue, value);
@@ -79,7 +79,7 @@ public class Canvas extends JComponent {
 	
 	public void setTool(CanvasTool value) {
 		CanvasTool oldValue = listener.getTool();
-		if(value != oldValue) {
+		if (value != oldValue) {
 			listener.setTool(value);
 			firePropertyChange(TOOL_PROPERTY, oldValue, value);
 		}
@@ -114,12 +114,12 @@ public class Canvas extends JComponent {
 	protected void paintForeground(Graphics g) {
 		CanvasModel model = this.model;
 		CanvasTool tool = listener.getTool();
-		if(model != null) {
+		if (model != null) {
 			Graphics dup = g.create();
 			model.paint(g, selection);
 			dup.dispose();
 		}
-		if(tool != null) {
+		if (tool != null) {
 			Graphics dup = g.create();
 			tool.draw(this, dup);
 			dup.dispose();

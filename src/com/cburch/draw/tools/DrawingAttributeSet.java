@@ -94,7 +94,7 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 	
 	public Attribute<?> getAttribute(String name) {
 		for (Attribute<?> attr : selectedAttrs) {
-			if(attr.getName().equals(name)) return attr;
+			if (attr.getName().equals(name)) return attr;
 		}
 		return null;
 	}
@@ -114,10 +114,10 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 	public <V> V getValue(Attribute<V> attr) {
 		Iterator<Attribute<?>> ait = attrs.iterator();
 		Iterator<Object> vit = values.iterator();
-		while(ait.hasNext()) {
+		while (ait.hasNext()) {
 			Object a = ait.next();
 			Object v = vit.next();
-			if(a.equals(attr)) {
+			if (a.equals(attr)) {
 				@SuppressWarnings("unchecked")
 				V ret = (V) v;
 				return ret;
@@ -129,10 +129,10 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 	public <V> void setValue(Attribute<V> attr, V value) {
 		Iterator<Attribute<?>> ait = attrs.iterator();
 		ListIterator<Object> vit = values.listIterator();
-		while(ait.hasNext()) {
+		while (ait.hasNext()) {
 			Object a = ait.next();
 			vit.next();
-			if(a.equals(attr)) {
+			if (a.equals(attr)) {
 				vit.set(value);
 				AttributeEvent e = new AttributeEvent(this, attr, value);
 				for (AttributeListener listener : listeners) {

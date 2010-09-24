@@ -72,11 +72,11 @@ public class LineUtil {
 	public static Location snapTo8Cardinals(Location from, int mx, int my) {
 		int px = from.getX();
 		int py = from.getY();
-		if(mx != px && my != py) {
+		if (mx != px && my != py) {
 			double ang = Math.atan2(my - py, mx - px);
 			int d45 = (Math.abs(mx - px) + Math.abs(my - py)) / 2;
 			int d = (int) (4 * ang / Math.PI + 4.5);
-			switch(d) {
+			switch (d) {
 			case 0: case 8: // going west
 			case 4: // going east
 				return Location.create(mx, py);

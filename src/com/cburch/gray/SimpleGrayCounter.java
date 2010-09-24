@@ -42,7 +42,7 @@ class SimpleGrayCounter extends InstanceFactory {
 		CounterData cur = CounterData.get(state, BIT_WIDTH);
 
 		boolean trigger = cur.updateClock(state.getPort(0));
-		if(trigger) cur.setValue(GrayIncrementer.nextGray(cur.getValue()));
+		if (trigger) cur.setValue(GrayIncrementer.nextGray(cur.getValue()));
 		state.setPort(1, cur.getValue(), 9);
 		
 		// (You might be tempted to determine the counter's current value
@@ -61,7 +61,7 @@ class SimpleGrayCounter extends InstanceFactory {
 		// Display the current counter value centered within the rectangle.
 		// However, if the context says not to show state (as when generating
 		// printer output), then skip this.
-		if(painter.getShowState()) {
+		if (painter.getShowState()) {
 			CounterData state = CounterData.get(painter, BIT_WIDTH);
 			Bounds bds = painter.getBounds();
 			GraphicsUtil.drawCenteredText(painter.getGraphics(),

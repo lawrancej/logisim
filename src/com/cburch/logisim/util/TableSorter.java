@@ -104,7 +104,7 @@ public class TableSorter extends AbstractTableModel {
 			// cast it to an Integer and then extract the int from the Integer.
 			// But first, make sure it can be done.
 			Integer i = new Integer(0);
-			if(!i.getClass().isInstance(retVal)) {
+			if (!i.getClass().isInstance(retVal)) {
 				throw new ClassCastException();
 			}
 

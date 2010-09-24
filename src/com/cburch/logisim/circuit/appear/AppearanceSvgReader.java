@@ -16,12 +16,12 @@ import com.cburch.logisim.instance.Instance;
 public class AppearanceSvgReader {
 	public static AbstractCanvasObject createShape(Element elt, Map<Location, Instance> pins) {
 		String name = elt.getTagName();
-		if (name.equals("circ-origin")) {
+		if (name.equals("circ-anchor") || name.equals("circ-origin")) {
 			Location loc = getLocation(elt);
-			AbstractCanvasObject ret = new AppearanceOrigin(loc);
+			AbstractCanvasObject ret = new AppearanceAnchor(loc);
 			if (elt.hasAttribute("facing")) {
 				Direction facing = Direction.parse(elt.getAttribute("facing"));
-				ret.setValue(AppearanceOrigin.FACING, facing);
+				ret.setValue(AppearanceAnchor.FACING, facing);
 			}
 			return ret;
 		} else if (name.equals("circ-port")) {

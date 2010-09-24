@@ -44,7 +44,7 @@ class Toolbar extends JComponent {
 			int x0 = ICON_SEP + col * (ICON_SEP + ICON_WIDTH);
 			int y0 = ICON_SEP + row * (ICON_SEP + ICON_HEIGHT);
 
-			if(mx >= x0 && mx < x0 + ICON_WIDTH
+			if (mx >= x0 && mx < x0 + ICON_WIDTH
 					&& my >= y0 && my < y0 + ICON_HEIGHT
 					&& col >= 0 && col < tools.length
 					&& row >= 0 && row < tools[col].length) {
@@ -61,7 +61,7 @@ class Toolbar extends JComponent {
 
 		public void mouseReleased(MouseEvent e) {
 			mouseDragged(e);
-			if(inTool) {
+			if (inTool) {
 				canvas.setTool(toolPressed);
 				repaint();
 			}
@@ -79,7 +79,7 @@ class Toolbar extends JComponent {
 			boolean now = toolPressed != null
 				&& mx >= x0 && mx < x0 + ICON_WIDTH
 				&& my >= y0 && my < y0 + ICON_HEIGHT;
-			if(was != now) {
+			if (was != now) {
 				inTool = now;
 				repaint();
 			}
@@ -127,13 +127,13 @@ class Toolbar extends JComponent {
 			int y = ICON_SEP;
 			for(int j = 0; j < column.length; j++) {
 				AbstractTool tool = column[j];
-				if(tool == listener.toolPressed && listener.inTool) {
+				if (tool == listener.toolPressed && listener.inTool) {
 					g.setColor(Color.darkGray);
 					g.fillRect(x, y, ICON_WIDTH, ICON_HEIGHT);
 				}
 				Icon icon = tool.getIcon();
-				if(icon != null) icon.paintIcon(this, g, x, y);
-				if(tool == current) {
+				if (icon != null) icon.paintIcon(this, g, x, y);
+				if (tool == current) {
 					GraphicsUtil.switchToWidth(g, 2);
 					g.setColor(Color.black);
 					g.drawRect(x - 1, y - 1, ICON_WIDTH + 2, ICON_HEIGHT + 2);

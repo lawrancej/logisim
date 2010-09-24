@@ -68,7 +68,7 @@ class ControlledBuffer extends InstanceFactory {
 	@Override
 	public Bounds getOffsetBounds(AttributeSet attrs) {
 		int w = 20;
-		if(isInverter &&
+		if (isInverter &&
 				!NotGate.SIZE_NARROW.equals(attrs.getValue(NotGate.ATTR_SIZE))) {
 			w = 30;
 		}

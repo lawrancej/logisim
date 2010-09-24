@@ -97,29 +97,29 @@ class DefaultAppearance {
 		int width = computeDimension(maxVert, maxHorz);
 		int height = computeDimension(maxHorz, maxVert);
 
-		// compute position of origin relative to top left corner of box
-		int ox;
-		int oy;
+		// compute position of anchor relative to top left corner of box
+		int ax;
+		int ay;
 		if (numEast > 0) { // anchor is on east side
-			ox = width;
-			oy = offsEast;
+			ax = width;
+			ay = offsEast;
 		} else if (numNorth > 0) { // anchor is on north side
-			ox = offsNorth;
-			oy = 0;
+			ax = offsNorth;
+			ay = 0;
 		} else if (numWest > 0) { // anchor is on west side
-			ox = 0;
-			oy = offsWest;
+			ax = 0;
+			ay = offsWest;
 		} else if (numSouth > 0) { // anchor is on south side
-			ox = offsSouth;
-			oy = height;
+			ax = offsSouth;
+			ay = height;
 		} else { // anchor is top left corner
-			ox = 0;
-			oy = 0;
+			ax = 0;
+			ay = 0;
 		}
 		
-		// place rectangle so origin is on the grid
-		int rx = OFFS + (9 - (ox + 9) % 10);
-		int ry = OFFS + (9 - (oy + 9) % 10);
+		// place rectangle so anchor is on the grid
+		int rx = OFFS + (9 - (ax + 9) % 10);
+		int ry = OFFS + (9 - (ay + 9) % 10);
 		
 		Location e0 = Location.create(rx + (width - 8) / 2, ry + 1);
 		Location e1 = Location.create(rx + (width + 8) / 2, ry + 1);
@@ -141,7 +141,7 @@ class DefaultAppearance {
 				rx + offsNorth, ry,            10,  0);
 		placePins(ret, edge.get(Direction.SOUTH),
 				rx + offsSouth, ry + height,   10,  0);
-		ret.add(new AppearanceOrigin(Location.create(rx + ox, ry + oy)));
+		ret.add(new AppearanceAnchor(Location.create(rx + ax, ry + ay)));
 		return ret;
 	}
 	

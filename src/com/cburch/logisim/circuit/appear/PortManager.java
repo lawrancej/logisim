@@ -53,28 +53,28 @@ class PortManager {
 		// Find the current objects corresponding to pins
 		Map<Instance, AppearancePort> oldObjects;
 		oldObjects = new HashMap<Instance, AppearancePort>();
-		AppearanceOrigin origin = null;
+		AppearanceAnchor anchor = null;
 		for (CanvasObject o : appearance.getObjectsFromBottom()) {
 			if (o instanceof AppearancePort) {
 				AppearancePort port = (AppearancePort) o;
 				oldObjects.put(port.getPin(), port);
-			} else if (o instanceof AppearanceOrigin) {
-				origin = (AppearanceOrigin) o; 
+			} else if (o instanceof AppearanceAnchor) {
+				anchor = (AppearanceAnchor) o; 
 			}
 		}
 		
-		// ensure we have the origin in the circuit
-		if (origin == null) {
+		// ensure we have the anchor in the circuit
+		if (anchor == null) {
 			for (CanvasObject o : DefaultAppearance.build(allPins)) {
-				if (o instanceof AppearanceOrigin) {
-					origin = (AppearanceOrigin) o;
+				if (o instanceof AppearanceAnchor) {
+					anchor = (AppearanceAnchor) o;
 				}
 			}
-			if (origin == null) {
-				origin = new AppearanceOrigin(Location.create(100, 100));
+			if (anchor == null) {
+				anchor = new AppearanceAnchor(Location.create(100, 100));
 			}
 			int dest = appearance.getObjectsFromBottom().size();
-			appearance.addObjects(dest, Collections.singleton(origin));
+			appearance.addObjects(dest, Collections.singleton(anchor));
 		}
 
 		// Compute how the ports should change

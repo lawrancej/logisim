@@ -47,7 +47,7 @@ class CounterData implements InstanceData, Cloneable {
 		// and the copied refer to the same Value objects. If we had mutable instance
 		// variables, then of course we would need to clone them.
 		try { return super.clone(); }
-		catch(CloneNotSupportedException e) { return null; }
+		catch (CloneNotSupportedException e) { return null; }
 	}
 	
 	/** Updates the last clock observed, returning true if triggered. */

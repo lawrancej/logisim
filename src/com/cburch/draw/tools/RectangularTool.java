@@ -62,13 +62,13 @@ abstract class RectangularTool extends AbstractTool {
 	
 	@Override
 	public void mouseReleased(Canvas canvas, MouseEvent e) {
-		if(active) {
+		if (active) {
 			Bounds oldBounds = currentBounds;
 			Bounds bds = computeBounds(canvas, e.getX(), e.getY(), e.getModifiersEx());
 			currentBounds = Bounds.EMPTY_BOUNDS;
 			active = false;
 			CanvasObject add = null;
-			if(bds.getWidth() != 0 && bds.getHeight() != 0) {
+			if (bds.getWidth() != 0 && bds.getHeight() != 0) {
 				CanvasModel model = canvas.getModel();
 				add = createShape(bds.getX(), bds.getY(),
 						bds.getWidth(), bds.getHeight());
@@ -82,7 +82,7 @@ abstract class RectangularTool extends AbstractTool {
 	@Override
 	public void keyPressed(Canvas canvas, KeyEvent e) {
 		int code = e.getKeyCode();
-		if(active && (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ALT
+		if (active && (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ALT
 				|| code == KeyEvent.VK_CONTROL)) {
 			updateMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
 		}
@@ -105,7 +105,7 @@ abstract class RectangularTool extends AbstractTool {
 	private Bounds computeBounds(Canvas canvas, int mx, int my, int mods) {
 		lastMouseX = mx;
 		lastMouseY = my;
-		if(!active) {
+		if (!active) {
 			return Bounds.EMPTY_BOUNDS;
 		} else {
 			Location start = dragStart;
@@ -139,7 +139,7 @@ abstract class RectangularTool extends AbstractTool {
 					y0 = y0 - (y1 - y0);
 				}
 			} else {
-				if(shiftDown) {
+				if (shiftDown) {
 					int r = Math.min(Math.abs(x0 - x1), Math.abs(y0 - y1));
 					y1 = y1 < y0 ? y0 - r : y0 + r;
 					x1 = x1 < x0 ? x0 - r : x0 + r;
@@ -170,7 +170,7 @@ abstract class RectangularTool extends AbstractTool {
 	@Override
 	public void draw(Canvas canvas, Graphics g) {
 		Bounds bds = currentBounds;
-		if(active && bds != null && bds != Bounds.EMPTY_BOUNDS) {
+		if (active && bds != null && bds != Bounds.EMPTY_BOUNDS) {
 			g.setColor(Color.GRAY);
 			drawShape(g, bds.getX(), bds.getY(), bds.getWidth(), bds.getHeight());
 		}

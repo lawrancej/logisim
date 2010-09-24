@@ -137,7 +137,7 @@ public class Drawing implements CanvasModel {
 			int dx, int dy) {
 		List<CanvasObject> found = restrict(shapes);
 		CanvasModelEvent e = CanvasModelEvent.forTranslate(this, found, dx, dy);
-		if(!found.isEmpty() && (dx != 0 || dy != 0) && isChangeAllowed(e)) {
+		if (!found.isEmpty() && (dx != 0 || dy != 0) && isChangeAllowed(e)) {
 			for (CanvasObject shape : shapes) {
 				shape.translate(dx, dy);
 				overlaps.invalidateShape(shape);

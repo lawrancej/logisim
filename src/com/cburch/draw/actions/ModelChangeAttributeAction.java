@@ -37,12 +37,12 @@ public class ModelChangeAttributeAction extends ModelAction {
 	@Override
 	public String getName() {
 		Attribute<?> a = attr;
-		if(a == null) {
+		if (a == null) {
 			boolean found = false;
 			for (AttributeMapKey key : newValues.keySet()) {
 				Attribute<?> at = key.getAttribute();
-				if(found) {
-					if(a == null ? at != null : !a.equals(at)) { a = null; break; }
+				if (found) {
+					if (a == null ? at != null : !a.equals(at)) { a = null; break; }
 				} else {
 					found = true;
 					a = at;

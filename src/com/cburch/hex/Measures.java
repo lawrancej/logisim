@@ -126,7 +126,7 @@ class Measures {
 		} else {
 			int logSize = 0;
 			long addrEnd = model.getLastOffset();
-			while(addrEnd > (1L << logSize)) {
+			while (addrEnd > (1L << logSize)) {
 				logSize++;
 			}
 			headerChars = (logSize + 3) / 4;

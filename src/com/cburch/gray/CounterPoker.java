@@ -56,7 +56,7 @@ public class CounterPoker extends InstancePoker {
 		// convert it to a hex digit; if it isn't a hex digit, abort.
 		int val = Character.digit(e.getKeyChar(), 16);
 		BitWidth width = state.getAttributeValue(StdAttr.WIDTH);
-		if(val < 0 || (val & width.getMask()) != val) return;
+		if (val < 0 || (val & width.getMask()) != val) return;
 
 		// compute the next value
 		CounterData cur = CounterData.get(state, width);
