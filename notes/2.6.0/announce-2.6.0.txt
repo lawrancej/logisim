@@ -1,6 +1,19 @@
+LOGISIM 2.6.0 PERMITS SUBCIRCUIT CUSTOMIZATION
+
+Logisim, a graphical design and simulation tool for logic circuits, is now at version 2.6.0. The headline feature of this new version is the ability to customize how subcircuits are drawn when nested within another circuit. In previous versions, subcircuits would always be drawn as a rectangle with a gray notch at its north end. Users can continue to use this convenient default behavior, but they can alternatively select "Edit Circuit Appearance" and use a drawing interface so that the circuit is drawn in a different way. For example, an arithmetic logic unit (ALU) could be customized so that it appears in its customary V shape.
+
+While customizing subcircuits is by far the biggest feature in this new version, there are some other minor enhancements. Clicking a subcircuit using the poke tool will show a magnifying glass, which you can double-click to enter the state of that subcircuit. And subcircuits can now be rotated after they are placed into a circuit. The Arithmetic library includes a new "Bit Adder" component which computes the number of 1 bits in its inputs, and the Plexers components can have 5 select bits, allowing for example a 32:1 multiplexer.
+
+Educational institutions around the world use Logisim as an aid to teaching about digital logic and computer architecture. As a Java application, Logisim can run on most major operating systems. Read more about Logisim at http://www.cburch.com/logisim/, and download it from SourceForge.net at http://sourceforge.net/projects/circuit/.
+
+
+CHANGE LOG
+
 Feature: You can customize how a subcircuit component will be drawn, in place of the default rectangle-with-notch appearance earlier.
 
 Feature: When the poke tool is selected, clicking a subcircuit will lead a magnifying glass to appear over the subcircuit, and double-clicking in the magnifying glass will enter the subcircuit's state.
+
+Feature: For input and output pins, pressing Alt with a direction key changes the pin's Label Location attribute.
 
 Feature: Multiplexers, demultiplexers, decoders, and priority encoders all support 5 "Select Bits."
 
@@ -20,7 +33,7 @@ Bug fix: A "ConcurrentModificationException" was observed from the EventSourceWe
 
 Bug fix: Sometimes a diagonal line would appear across the layout when you selected a different component to be added.
 
-Interface change: The menu shortcut for moving up in the state hierarchy is now MenuKey+Shift+Up, since MenuKey+Up is used for raising the selection.
+Interface change: The menu shortcut for moving up in the state hierarchy is now MenuKey+Left, since MenuKey+Up is used for raising the selection (and MenuKey+Shift+Up for raising the selection to the top). Similarly, moving down the hierarchy is MenuKey+Right.
 
 Interface change: When the grid is being shown and the zoom factor is 200% or more, each grid dot is actually a square of several pixels.
 
@@ -31,15 +44,3 @@ Interface change: Subcircuits are drawn (by default) with a slightly different n
 Interface change: The explorer pane's magnifying glass is drawn with a hint of blue in its center.
 
 Architectural change: Subcircuits are implemented using the newer logisim.instance API rather than the deprecated logisim.comp API.
-
-
-TODO:
-
-(not a problem?) cut/copy sometimes does not work immediately after selecting view
-(not a problem?) When a component is selected, sometimes an attempt to change to an attribute in the attribute table changes the attribute, but the table is not updated to reflect it.
-save appearance zoom/show grid as part of file
-
-Deferred:
-
-refine when the Raise/Lower menu option is enabled
-probe tool - adds display of probe value inside circuit layout

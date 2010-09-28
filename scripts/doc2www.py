@@ -14,10 +14,13 @@ if len(sys.argv) > 1:
 
 # see if we're on Carl Burch's platform, and if so reconfigure defaults
 if '\\home\\burch\\' in get_svn_dir():
-	lang = 'ru'
+	lang = 'en'
 	svn_dir = get_svn_dir()
 	home = svn_dir[:svn_dir.find('\\home\\burch\\') + 11]
-	os.chdir(build_path(home, 'logisim/Scripts/www/docs/2.5.0', lang))
+	lang_path = build_path(home, 'logisim/Scripts/www/docs/2.6.0', lang)
+	if not os.path.exists(lang_path):
+		os.mkdir(lang_path)
+	os.chdir(lang_path)
 
 head_end = r'''
 <link rel="shortcut icon" href="{rel}/../../../logisim.ico" />
