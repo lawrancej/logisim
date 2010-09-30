@@ -115,6 +115,7 @@
 	<mapID target="arith_comparator" url="libs/arith/comparator.html" />
 	<mapID target="arith_shifter" url="libs/arith/shifter.html" />
 	<mapID target="arith_bitadder" url="libs/arith/bitadder.html" />
+	<mapID target="arith_bitfinder" url="libs/arith/bitfinder.html" />
 	<mapID target="mem" url="libs/mem/index.html" />
 	<mapID target="mem_flipflops" url="libs/mem/flipflops.html" />
 	<mapID target="mem_register" url="libs/mem/register.html" />

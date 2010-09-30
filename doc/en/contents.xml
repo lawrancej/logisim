@@ -131,6 +131,7 @@
 		<tocitem target="arith_comparator" text="Comparator" />
 		<tocitem target="arith_shifter" text="Shifter" />
 		<tocitem target="arith_bitadder" text="Bit Adder" />
+		<tocitem target="arith_bitfinder" text="Bit Finder" />
 	  </tocitem>
 	  <tocitem target="mem" text="Memory library">
 		<tocitem target="mem_flipflops" text="D/T/J-K/S-R Flip-Flop" />

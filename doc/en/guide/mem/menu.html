@@ -40,8 +40,8 @@ ff
 <p>The first line identifies the file format used (currently, there is only
 one file format recognized). Subsequent values list the values in
 hexadecimal, starting from address 0; you can place several such
-values on the same line. Logisim will assume that any
-values unlisted in the file are zero.</p>
+values on the same line. If there are more memory locations that are identified
+in the file, Logisim will load 0 into the other memory locations.</p>
 
 <p>The image file can use run-length encoding; for example, rather than
 list the value <tt>00</tt> sixteen times in a row, the file can include
@@ -49,6 +49,9 @@ list the value <tt>00</tt> sixteen times in a row, the file can include
 than the number of repetitions is written in base 10.
 Files produced by Logisim will use run-length encoding for runs of
 at least four values.</p>
+
+<p>You can place comments into the file by using the '#' symbol: All characters
+in the line starting from the '#' symbol will be ignored by Logisim.</p>
 
 <p><strong>Next:</strong> <a href="hex.html">Hex editor</a>.</p>
 
