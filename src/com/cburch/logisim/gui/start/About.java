@@ -140,12 +140,12 @@ public class About {
 			lines.add(new CreditsLine(1, "Ilia Lilov"));
 			lines.add(new CreditsLine(2, "Moscow Univ. of Printing Arts"));
 			lines.add(new CreditsLine(0, Strings.get("creditsRoleGerman")));
-			lines.add(new CreditsLine(1, "Uwe Zimmerman"));
+			lines.add(new CreditsLine(1, "Uwe Zimmermann"));
 			lines.add(new CreditsLine(2, "Uppsala University"));
 			lines.add(new CreditsLine(0, Strings.get("creditsRoleTesting")));
 			lines.add(new CreditsLine(1, "Ilia Lilov"));
 			lines.add(new CreditsLine(2, "Moscow Univ. of Printing Arts"));
-			lines.add(new CreditsLine(1, "Uwe Zimmerman"));
+			lines.add(new CreditsLine(1, "Uwe Zimmermann"));
 			lines.add(new CreditsLine(2, "Uppsala University"));
 			
 			/* If you fork Logisim, feel free to change the above lines, but
