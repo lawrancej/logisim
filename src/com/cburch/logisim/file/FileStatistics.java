@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.cburch.logisim.circuit.Circuit;
+import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.tools.AddTool;
@@ -80,8 +81,9 @@ public class FileStatistics {
 			count.recursiveCount = count.simpleCount;
 		}
 		for (Circuit sub : include) {
-			if (counts.containsKey(sub)) {
-				int multiplier = counts.get(sub).simpleCount;
+			SubcircuitFactory subFactory = sub.getSubcircuitFactory();
+			if (counts.containsKey(subFactory)) {
+				int multiplier = counts.get(subFactory).simpleCount;
 				Map<ComponentFactory,Count> subCount;
 				subCount = doRecursiveCount(sub, include, countMap);
 				for (Count subcount : subCount.values()) {

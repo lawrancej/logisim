@@ -41,6 +41,11 @@ public class Subtractor extends InstanceFactory {
 		ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
 		ps[B_IN]  = new Port(-20, -20, Port.INPUT,  1);
 		ps[B_OUT] = new Port(-20,  20, Port.OUTPUT, 1);
+		ps[IN0].setToolTip(Strings.getter("subtractorMinuendTip"));
+		ps[IN1].setToolTip(Strings.getter("subtractorSubtrahendTip"));
+		ps[OUT].setToolTip(Strings.getter("subtractorOutputTip"));
+		ps[B_IN].setToolTip(Strings.getter("subtractorBorrowInTip"));
+		ps[B_OUT].setToolTip(Strings.getter("subtractorBorrowOutTip"));
 		setPorts(ps);
 	}
 

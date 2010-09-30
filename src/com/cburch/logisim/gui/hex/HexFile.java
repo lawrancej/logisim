@@ -19,6 +19,7 @@ public class HexFile {
 	private HexFile() { }
 	
 	private static final String RAW_IMAGE_HEADER = "v2.0 raw";
+	private static final String COMMENT_MARKER = "#";
 	
 	private static class HexReader {
 		private BufferedReader in;
@@ -36,6 +37,11 @@ public class HexFile {
 		private StringTokenizer findNonemptyLine() throws IOException {
 			String line = in.readLine();
 			while (line != null) {
+				int index = line.indexOf(COMMENT_MARKER);
+				if (index >= 0) {
+					line = line.substring(0, index);
+				}
+
 				StringTokenizer ret = new StringTokenizer(line);
 				if (ret.hasMoreTokens()) return ret;
 				line = this.in.readLine();

@@ -18,8 +18,10 @@ import com.cburch.logisim.instance.Port;
 public class HexDigit extends InstanceFactory {
 	public HexDigit() {
 		super("Hex Digit Display", Strings.getter("hexDigitComponent"));
-		setAttributes(new Attribute[] { Io.ATTR_COLOR },
-				new Object[] { new Color(240, 0, 0) });
+		setAttributes(new Attribute[] { Io.ATTR_ON_COLOR, Io.ATTR_OFF_COLOR,
+					Io.ATTR_BACKGROUND },
+				new Object[] { new Color(240, 0, 0), SevenSegment.DEFAULT_OFF,
+					Io.DEFAULT_BACKGROUND });
 		setPorts(new Port[] {
 				new Port( 0, 0, Port.INPUT, 4),
 				new Port(10, 0, Port.INPUT, 1)

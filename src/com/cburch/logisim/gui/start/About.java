@@ -9,12 +9,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Paint;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -32,7 +36,6 @@ public class About {
 	
 	private static class PanelThread extends Thread {
 		private MyPanel panel;
-		private int count = 1;
 		private boolean running = true;
 		
 		PanelThread(MyPanel panel) {
@@ -41,45 +44,225 @@ public class About {
 		
 		@Override
 		public void run() {
+			long start = System.currentTimeMillis();
 			while (running) {
+				long elapse = System.currentTimeMillis() - start;
+				int count = (int) (elapse / 500) % 4;
 				panel.upper = (count == 2 || count == 3) ? Value.TRUE : Value.FALSE;
 				panel.lower = (count == 1 || count == 2) ? Value.TRUE : Value.FALSE;
-				count = (count + 1) % 4;
+				panel.credits.scroll = (int) elapse;
+				panel.credits.repaint();
 				panel.repaint();
 				try {
-					Thread.sleep(500);
+					Thread.sleep(20);
 				} catch (InterruptedException ex) { }
+			}
+		}
+	}
+	
+	private static class CreditsLine {
+		private int y;
+		private int type;
+		private String text;
+		private Image img;
+		private int imgWidth;
+		
+		public CreditsLine(int type, String text) {
+			this(type, text, null, 0);
+		}
+		
+		public CreditsLine(int type, String text, Image img, int imgWidth) {
+			this.y = 0;
+			this.type = type;
+			this.text = text;
+			this.img = img;
+			this.imgWidth = imgWidth;
+		}
+	}
+	
+	private static class CreditsPanel extends JComponent {
+		private final String HENDRIX_PATH = "resources/logisim/hendrix.png";
+
+		private int MILLIS_FREEZE = 2000;
+		private int MILLIS_PER_PIXEL = 20;
+		
+		private final Color[] colorBase;
+		private final Paint[] paintSteady;
+		private final Font[] font;
+		
+		private int scroll;
+		private float fadeStop;
+		
+		private ArrayList<CreditsLine> lines;
+		private int linesHeight;
+		
+		public CreditsPanel() {
+			scroll = 0;
+			setOpaque(false);
+			
+			int prefWidth = IMAGE_WIDTH + 2 * IMAGE_BORDER;
+			int prefHeight = IMAGE_HEIGHT / 2 + IMAGE_BORDER;
+			setPreferredSize(new Dimension(prefWidth, prefHeight));
+		
+			fadeStop = (float) (IMAGE_HEIGHT / 4.0);
+
+			colorBase = new Color[] {
+					new Color(143, 0, 0),
+					new Color(48, 0, 96),
+					new Color(48, 0, 96),
+			};
+			font = new Font[] {
+					new Font("Sans Serif", Font.ITALIC, 20),
+					new Font("Sans Serif", Font.BOLD, 24),
+					new Font("Sans Serif", Font.BOLD, 18),
+			};
+			paintSteady = new Paint[colorBase.length];
+			for (int i = 0; i < colorBase.length; i++) {
+				Color hue = colorBase[i];
+				paintSteady[i] = new GradientPaint(0.0f, 0.0f, derive(hue, 0),
+						0.0f, fadeStop, hue);
+			}
+			
+			URL url = About.class.getClassLoader().getResource(HENDRIX_PATH);
+			Image hendrixLogo = null;
+			if (url != null) {
+				hendrixLogo = getToolkit().createImage(url);
+			}
+			
+			lines = new ArrayList<CreditsLine>();
+			linesHeight = 0; // computed in paintComponent
+			lines.add(new CreditsLine(1, "www.cburch.com/logisim/"));
+			lines.add(new CreditsLine(0, Strings.get("creditsRoleLead"),
+					hendrixLogo, 50));
+			lines.add(new CreditsLine(1, "Carl Burch"));
+			lines.add(new CreditsLine(2, "Hendrix College"));
+			lines.add(new CreditsLine(0, Strings.get("creditsRoleRussian")));
+			lines.add(new CreditsLine(1, "Ilia Lilov"));
+			lines.add(new CreditsLine(2, "Moscow Univ. of Printing Arts"));
+			lines.add(new CreditsLine(0, Strings.get("creditsRoleGerman")));
+			lines.add(new CreditsLine(1, "Uwe Zimmerman"));
+			lines.add(new CreditsLine(2, "Uppsala University"));
+			lines.add(new CreditsLine(0, Strings.get("creditsRoleTesting")));
+			lines.add(new CreditsLine(1, "Ilia Lilov"));
+			lines.add(new CreditsLine(2, "Moscow Univ. of Printing Arts"));
+			lines.add(new CreditsLine(1, "Uwe Zimmerman"));
+			lines.add(new CreditsLine(2, "Uppsala University"));
+			
+			/* If you fork Logisim, feel free to change the above lines, but
+			 * please do not change these last four lines! */
+			lines.add(new CreditsLine(0, Strings.get("creditsRoleOriginal"),
+					hendrixLogo, 50));
+			lines.add(new CreditsLine(1, "Carl Burch"));
+			lines.add(new CreditsLine(2, "Hendrix College"));
+			lines.add(new CreditsLine(1, "www.cburch.com/logisim/"));
+		}
+		
+		private Color derive(Color base, int alpha) {
+			return new Color(base.getRed(), base.getGreen(), base.getBlue(), alpha);
+		}
+		
+		@Override
+		protected void paintComponent(Graphics g) {
+			FontMetrics[] fms = new FontMetrics[font.length];
+			for (int i = 0; i < fms.length; i++) {
+				fms[i] = g.getFontMetrics(font[i]);
+			}
+			if (linesHeight == 0) {
+				int y = 0;
+				for (CreditsLine line : lines) {
+					if (line.type == 0) y += 10;
+					FontMetrics fm = fms[line.type];
+					line.y = y + fm.getAscent();
+					y += fm.getHeight();
+				}
+				linesHeight = y;
+			}
+			
+			Paint[] paint = paintSteady;
+			int yPos = 0;
+			int height = getHeight();
+			int maxY = linesHeight - height;
+			int totalMillis = 2 * MILLIS_FREEZE + (linesHeight + height) * MILLIS_PER_PIXEL;
+			int offs = scroll % totalMillis;
+			if (offs >= 0 && offs < MILLIS_FREEZE) {
+				int a = 255 * (MILLIS_FREEZE - offs) / MILLIS_FREEZE;
+				if (a > 245) {
+					paint = null;
+				} else if (a < 15) {
+					paint = paintSteady;
+				} else {
+					paint = new Paint[colorBase.length];
+					for (int i = 0; i < paint.length; i++) {
+						Color hue = colorBase[i];
+						paint[i] = new GradientPaint(0.0f, 0.0f, derive(hue, a),
+							0.0f, fadeStop, hue);
+					}
+				}
+				yPos = 0;
+			} else if (offs < MILLIS_FREEZE + maxY * MILLIS_PER_PIXEL) {
+				yPos = (offs - MILLIS_FREEZE) / MILLIS_PER_PIXEL;
+			} else if (offs < 2 * MILLIS_FREEZE + maxY * MILLIS_PER_PIXEL) {
+				yPos = maxY;
+			} else if (offs < 2 * MILLIS_FREEZE + linesHeight * MILLIS_PER_PIXEL) {
+				yPos = (offs - 2 * MILLIS_FREEZE) / MILLIS_PER_PIXEL;
+			} else {
+				int millis = offs - 2 * MILLIS_FREEZE - linesHeight * MILLIS_PER_PIXEL;
+				paint = null;
+				yPos = -height + millis / MILLIS_PER_PIXEL;
+			}
+			
+			int width = getWidth();
+			int centerX = width / 2; 
+			maxY = getHeight();
+			for (CreditsLine line : lines) {
+				int y = line.y - yPos;
+				if (y < -100 || y > maxY + 50) continue;
+				
+				int type = line.type;
+				if (paint == null) {
+					g.setColor(colorBase[type]);
+				} else {
+					((Graphics2D) g).setPaint(paint[type]);
+				}
+				g.setFont(font[type]);
+				int textWidth = fms[type].stringWidth(line.text);
+				g.drawString(line.text, centerX - textWidth / 2, line.y - yPos);
+				
+				Image img = line.img;
+				if (img != null) {
+					int x = width - line.imgWidth - IMAGE_BORDER;
+					int top = y - fms[type].getAscent();
+					g.drawImage(img, x, top, this);
+				}
 			}
 		}
 	}
 
 	private static class MyPanel extends JPanel implements AncestorListener {
-		private final String LOGO_LOC = "resources/logisim/hendrix.png";
 		private final Color fadeColor = new Color(255, 255, 255, 128);
 		private final Color headerColor = new Color(143, 0, 0);
-		private final Color authorColor = new Color(0, 0, 176);
 		private final Color gateColor = Color.DARK_GRAY;
 		private final Font headerFont = new Font("Monospaced", Font.BOLD, 72);
 		private final Font versionFont = new Font("Serif", Font.PLAIN | Font.ITALIC, 32);
 		private final Font copyrightFont = new Font("Serif", Font.ITALIC, 18);
-		private final Font authorFont = new Font("Serif", Font.PLAIN, 24);
-		private final Font urlFont = new Font("Serif", Font.ITALIC, 24);
 		
-		private Image logo = null;
 		private Value upper = Value.FALSE;
 		private Value lower = Value.TRUE;
+		private CreditsPanel credits;
 		private PanelThread thread = null;
 
 		public MyPanel() {
-			setPreferredSize(new Dimension(IMAGE_WIDTH + 2 * IMAGE_BORDER,
-					IMAGE_HEIGHT + 2 * IMAGE_BORDER));
+			setLayout(null);
+			
+			int prefWidth = IMAGE_WIDTH + 2 * IMAGE_BORDER;
+			int prefHeight = IMAGE_HEIGHT + 2 * IMAGE_BORDER;
+			setPreferredSize(new Dimension(prefWidth, prefHeight));
 			setBackground(Color.WHITE);
 			addAncestorListener(this);
 			
-			URL url = About.class.getClassLoader().getResource(LOGO_LOC);
-			if (url != null) {
-				logo = getToolkit().createImage(url);
-			}
+			credits = new CreditsPanel();
+			credits.setBounds(0, prefHeight / 2, prefWidth, prefHeight / 2);
+			add(credits);
 		}
 
 		@Override
@@ -93,7 +276,6 @@ public class About {
 				g.setColor(fadeColor);
 				g.fillRect(x, y, IMAGE_WIDTH, IMAGE_HEIGHT);
 				drawText(g, x, y);
-				if (logo != null) g.drawImage(logo, x + 330, y + 185, this);
 			} catch (Throwable t) { }
 		}
 		
@@ -220,16 +402,6 @@ public class About {
 			g.setFont(versionFont); fm = g.getFontMetrics();
 			str = "Version " + Main.VERSION_NAME;
 			g.drawString(str, x + IMAGE_WIDTH - fm.stringWidth(str), y + 75);
-			
-			g.setColor(authorColor);
-			g.setFont(authorFont); fm = g.getFontMetrics();
-			str = "Carl Burch";
-			g.drawString(str, x + (IMAGE_WIDTH - fm.stringWidth(str)) / 2, y + 224);
-			str = "Hendrix College";
-			g.drawString(str, x + (IMAGE_WIDTH - fm.stringWidth(str)) / 2, y + 251);
-			g.setFont(urlFont); fm = g.getFontMetrics();
-			str = "www.cburch.com/logisim/";
-			g.drawString(str, x + (IMAGE_WIDTH - fm.stringWidth(str)) / 2, y + 277);
 		}
 
 		public void ancestorAdded(AncestorEvent arg0) {

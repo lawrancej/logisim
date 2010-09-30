@@ -16,13 +16,15 @@ import com.cburch.logisim.tools.Tool;
 
 public class Io extends Library {
 	static final AttributeOption LABEL_CENTER = new AttributeOption("center", "center", Strings.getter("ioLabelCenter"));
-
+	
 	static final Attribute<Color> ATTR_COLOR = Attributes.forColor("color",
 			Strings.getter("ioColorAttr"));
 	static final Attribute<Color> ATTR_ON_COLOR
 		= Attributes.forColor("color", Strings.getter("ioOnColor"));
 	static final Attribute<Color> ATTR_OFF_COLOR
 		= Attributes.forColor("offcolor", Strings.getter("ioOffColor"));
+	static final Attribute<Color> ATTR_BACKGROUND
+		= Attributes.forColor("bg", Strings.getter("ioBackgroundColor"));
 	static final Attribute<Object> ATTR_LABEL_LOC = Attributes.forOption("labelloc",
 			Strings.getter("ioLabelLocAttr"),
 			new Object[] { LABEL_CENTER, Direction.NORTH, Direction.SOUTH,
@@ -31,6 +33,8 @@ public class Io extends Library {
 			Strings.getter("ioLabelColorAttr"));
 	static final Attribute<Boolean> ATTR_ACTIVE = Attributes.forBoolean("active",
 			Strings.getter("ioActiveAttr"));
+
+	static final Color DEFAULT_BACKGROUND = new Color(255, 255, 255, 0);
 	
 	private static FactoryDescription[] DESCRIPTIONS = {
 		new FactoryDescription("Button", Strings.getter("buttonComponent"),

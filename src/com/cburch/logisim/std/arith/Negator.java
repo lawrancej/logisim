@@ -30,6 +30,8 @@ public class Negator extends InstanceFactory {
 		Port[] ps = new Port[2];
 		ps[IN]  = new Port(-40,  0, Port.INPUT,  StdAttr.WIDTH);
 		ps[OUT] = new Port(  0,  0, Port.OUTPUT, StdAttr.WIDTH);
+		ps[IN].setToolTip(Strings.getter("negatorInputTip"));
+		ps[OUT].setToolTip(Strings.getter("negatorOutputTip"));
 		setPorts(ps);
 	}
 

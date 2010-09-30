@@ -43,6 +43,11 @@ public class Divider extends InstanceFactory {
 		ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
 		ps[UPPER] = new Port(-20, -20, Port.INPUT,  StdAttr.WIDTH);
 		ps[REM]   = new Port(-20,  20, Port.OUTPUT, StdAttr.WIDTH);
+		ps[IN0].setToolTip(Strings.getter("dividerDividendLowerTip"));
+		ps[IN1].setToolTip(Strings.getter("dividerDivisorTip"));
+		ps[OUT].setToolTip(Strings.getter("dividerOutputTip"));
+		ps[UPPER].setToolTip(Strings.getter("dividerDividendUpperTip"));
+		ps[REM].setToolTip(Strings.getter("dividerRemainderTip"));
 		setPorts(ps);
 	}
 

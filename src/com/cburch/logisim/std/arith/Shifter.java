@@ -77,6 +77,9 @@ public class Shifter extends InstanceFactory {
 		ps[IN0]   = new Port(-40, -10, Port.INPUT,  data);
 		ps[IN1]   = new Port(-40,  10, Port.INPUT,  shift);
 		ps[OUT]   = new Port(  0,   0, Port.OUTPUT, data);
+		ps[IN0].setToolTip(Strings.getter("shifterInputTip"));
+		ps[IN1].setToolTip(Strings.getter("shifterDistanceTip"));
+		ps[OUT].setToolTip(Strings.getter("shifterOutputTip"));
 		instance.setPorts(ps);
 	}
 

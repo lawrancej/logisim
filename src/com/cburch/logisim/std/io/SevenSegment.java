@@ -17,12 +17,14 @@ import com.cburch.logisim.instance.Port;
 
 public class SevenSegment extends InstanceFactory {
 	static Bounds[] SEGMENTS = null;
-	static Color OFF_COLOR = null;
+	static Color DEFAULT_OFF = new Color(220, 220, 220);
 	
 	public SevenSegment() {
 		super("7-Segment Display", Strings.getter("sevenSegmentComponent"));
-		setAttributes(new Attribute[] { Io.ATTR_COLOR, Io.ATTR_ACTIVE },
-				new Object[] { new Color(240, 0, 0), Boolean.TRUE });
+		setAttributes(new Attribute[] { Io.ATTR_ON_COLOR, Io.ATTR_OFF_COLOR,
+					Io.ATTR_BACKGROUND, Io.ATTR_ACTIVE },
+				new Object[] { new Color(240, 0, 0), DEFAULT_OFF,
+					Io.DEFAULT_BACKGROUND, Boolean.TRUE });
 		setOffsetBounds(Bounds.create(-5, 0, 40, 60));
 		setIconName("7seg.gif");
 		setPorts(new Port[] {
@@ -70,12 +72,19 @@ public class SevenSegment extends InstanceFactory {
 		int y = bds.getY();
 
 		Graphics g = painter.getGraphics();
-		Color color = painter.getAttributeValue(Io.ATTR_COLOR);
+		Color onColor = painter.getAttributeValue(Io.ATTR_ON_COLOR);
+		Color offColor = painter.getAttributeValue(Io.ATTR_OFF_COLOR);
+		Color bgColor = painter.getAttributeValue(Io.ATTR_BACKGROUND);
+		if (painter.shouldDrawColor() && bgColor.getAlpha() != 0) {
+			g.setColor(bgColor);
+			g.fillRect(bds.getX(), bds.getY(), bds.getWidth(), bds.getHeight());
+			g.setColor(Color.BLACK);
+		}
 		painter.drawBounds();
 		g.setColor(Color.DARK_GRAY);
 		for (int i = 0; i <= 7; i++) {
 			if (painter.getShowState()) {
-				g.setColor(((summ >> i) & 1) == desired ? color : OFF_COLOR);
+				g.setColor(((summ >> i) & 1) == desired ? onColor : offColor);
 			}
 			if (i < 7) {
 				Bounds seg = SEGMENTS[i];
@@ -89,7 +98,6 @@ public class SevenSegment extends InstanceFactory {
 	
 	static void ensureSegments() {
 		if (SEGMENTS == null) {
-			OFF_COLOR = new Color(220, 220, 220);
 			SEGMENTS = new Bounds[] {
 					Bounds.create( 3,  8, 19,  4),
 					Bounds.create(23, 10,  4, 19),

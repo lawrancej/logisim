@@ -27,6 +27,8 @@ public class Arithmetic extends Library {
 				"shifter.gif", "Shifter"),
 		new FactoryDescription("BitAdder", Strings.getter("bitAdderComponent"),
 				"bitadder.gif", "BitAdder"),
+		new FactoryDescription("BitFinder", Strings.getter("bitFinderComponent"),
+				"bitfindr.gif", "BitFinder"),
 	};
 	
 	private List<Tool> tools = null;

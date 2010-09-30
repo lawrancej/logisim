@@ -31,7 +31,7 @@ public class Tty extends InstanceFactory {
 	private static final int BORDER = 5;
 	private static final int ROW_HEIGHT = 15;
 	private static final int COL_WIDTH = 7; 
-	private static final Color BG_COLOR = new Color(0, 0, 0, 64);
+	private static final Color DEFAULT_BACKGROUND = new Color(0, 0, 0, 64);
 	
 	private static final Font DEFAULT_FONT = new Font("monospaced", Font.PLAIN, 12);
 
@@ -45,9 +45,11 @@ public class Tty extends InstanceFactory {
 	public Tty() {
 		super("TTY", Strings.getter("ttyComponent"));
 		setAttributes(new Attribute[] {
-				ATTR_ROWS, ATTR_COLUMNS, StdAttr.EDGE_TRIGGER
+				ATTR_ROWS, ATTR_COLUMNS, StdAttr.EDGE_TRIGGER,
+				Io.ATTR_COLOR, Io.ATTR_BACKGROUND
 			}, new Object[] {
-				Integer.valueOf(8), Integer.valueOf(32), StdAttr.TRIG_RISING
+				Integer.valueOf(8), Integer.valueOf(32), StdAttr.TRIG_RISING,
+				Color.BLACK, DEFAULT_BACKGROUND
 			});
 		setIconName("tty.gif");
 		
@@ -127,7 +129,7 @@ public class Tty extends InstanceFactory {
 		Bounds bds = painter.getBounds();
 		painter.drawClock(CK, Direction.EAST);
 		if (painter.shouldDrawColor()) {
-			g.setColor(BG_COLOR);
+			g.setColor(painter.getAttributeValue(Io.ATTR_BACKGROUND));
 			g.fillRoundRect(bds.getX(), bds.getY(), bds.getWidth(), bds.getHeight(),
 					10, 10);
 		}
@@ -157,6 +159,7 @@ public class Tty extends InstanceFactory {
 			}
 
 			g.setFont(DEFAULT_FONT);
+			g.setColor(painter.getAttributeValue(Io.ATTR_COLOR));
 			FontMetrics fm = g.getFontMetrics();
 			int x = bds.getX() + BORDER;
 			int y = bds.getY() + BORDER + (ROW_HEIGHT + fm.getAscent()) / 2;

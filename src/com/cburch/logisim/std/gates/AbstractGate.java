@@ -14,6 +14,7 @@ import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.Expressions;
 import com.cburch.logisim.circuit.ExpressionComputer;
+import com.cburch.logisim.comp.TextField;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Bounds;
@@ -60,6 +61,7 @@ abstract class AbstractGate extends InstanceFactory {
 			new BitWidthConfigurator(StdAttr.WIDTH)));
 	}
 	
+
 	@Override
 	public AttributeSet createAttributeSet() {
 		return new GateAttributes(isXor);
@@ -214,6 +216,8 @@ abstract class AbstractGate extends InstanceFactory {
 			((Graphics2D) g).rotate(-rotate);
 		}
 		g.translate(-loc.getX(), -loc.getY());
+		
+		painter.drawLabel();
 	}
 
 	protected void setIconNames(String all) {
@@ -355,17 +359,52 @@ abstract class AbstractGate extends InstanceFactory {
 	protected void configureNewInstance(Instance instance) {
 		instance.addAttributeListener();
 		computePorts(instance);
+		computeLabel(instance);
 	}
 	
 	@Override
 	protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
-		if (attr == GateAttributes.ATTR_SIZE || attr == GateAttributes.ATTR_INPUTS
-				|| attr == StdAttr.FACING || attr instanceof NegateAttribute) {
+		if (attr == GateAttributes.ATTR_SIZE || attr == StdAttr.FACING) {
+			instance.recomputeBounds();
+			computePorts(instance);
+			computeLabel(instance);
+		} else if (attr == GateAttributes.ATTR_INPUTS
+				|| attr instanceof NegateAttribute) {
 			instance.recomputeBounds();
 			computePorts(instance);
 		} else if (attr == GateAttributes.ATTR_XOR) {
 			instance.fireInvalidated();
 		}
+	}
+	
+	private void computeLabel(Instance instance) {
+		GateAttributes attrs = (GateAttributes) instance.getAttributeSet();
+		Direction facing = attrs.facing;
+		int baseWidth = ((Integer) attrs.size.getValue()).intValue();
+		
+		int axis = baseWidth / 2 + (negateOutput ? 10 : 0);
+		int perp = 0;
+		if (LogisimPreferences.getGateShape() == LogisimPreferences.SHAPE_RECTANGULAR) {
+			perp += 6;
+		}
+		Location loc = instance.getLocation();
+		int cx;
+		int cy;
+		if (facing == Direction.NORTH) {
+			cx = loc.getX() + perp;
+			cy = loc.getY() + axis;
+		} else if (facing == Direction.SOUTH) {
+			cx = loc.getX() - perp;
+			cy = loc.getY() - axis;
+		} else if (facing == Direction.WEST) {
+			cx = loc.getX() + axis;
+			cy = loc.getY() - perp;
+		} else {
+			cx = loc.getX() - axis;
+			cy = loc.getY() + perp;
+		}
+		instance.setTextField(StdAttr.LABEL, StdAttr.LABEL_FONT, cx, cy,
+				TextField.H_CENTER, TextField.V_CENTER);
 	}
 
 	void computePorts(Instance instance) {

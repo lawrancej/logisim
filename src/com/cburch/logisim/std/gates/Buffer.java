@@ -33,8 +33,10 @@ class Buffer extends InstanceFactory {
 
 	private Buffer() {
 		super("Buffer", Strings.getter("bufferComponent"));
-		setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH },
-				new Object[] { Direction.EAST, BitWidth.ONE });
+		setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH,
+					StdAttr.LABEL, StdAttr.LABEL_FONT },
+				new Object[] { Direction.EAST, BitWidth.ONE,
+					"", StdAttr.DEFAULT_LABEL_FONT });
 		setIcon(Icons.getIcon("bufferGate.gif"));
 		setFacingAttribute(StdAttr.FACING);
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
@@ -67,6 +69,7 @@ class Buffer extends InstanceFactory {
 	protected void configureNewInstance(Instance instance) {
 		configurePorts(instance);
 		instance.addAttributeListener();
+		NotGate.configureLabel(instance, false, null);
 	}
 	
 	@Override
@@ -74,6 +77,7 @@ class Buffer extends InstanceFactory {
 		if (attr == StdAttr.FACING) {
 			instance.recomputeBounds();
 			configurePorts(instance);
+			NotGate.configureLabel(instance, false, null);
 		}
 	}
 	
@@ -116,6 +120,7 @@ class Buffer extends InstanceFactory {
 		g.setColor(Color.BLACK);
 		paintBase(painter);
 		painter.drawPorts();
+		painter.drawLabel();
 	}
 
 	private void paintBase(InstancePainter painter) {

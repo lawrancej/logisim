@@ -30,7 +30,7 @@ public class Decoder extends InstanceFactory {
 			}, new Object[] {
 				Direction.EAST, Plexers.DEFAULT_SELECT, Plexers.DEFAULT_TRISTATE
 			});
-		setKeyConfigurator(new BitWidthConfigurator(Plexers.ATTR_SELECT, 1, 4, 0));
+		setKeyConfigurator(new BitWidthConfigurator(Plexers.ATTR_SELECT, 1, 5, 0));
 		setIconName("decoder.gif");
 		setFacingAttribute(StdAttr.FACING);
 	}

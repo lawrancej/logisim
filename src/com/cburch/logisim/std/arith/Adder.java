@@ -46,6 +46,11 @@ public class Adder extends InstanceFactory {
 		ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
 		ps[C_IN]  = new Port(-20, -20, Port.INPUT,  1);
 		ps[C_OUT] = new Port(-20,  20, Port.INPUT,  1);
+		ps[IN0].setToolTip(Strings.getter("adderInputTip"));
+		ps[IN1].setToolTip(Strings.getter("adderInputTip"));
+		ps[OUT].setToolTip(Strings.getter("adderOutputTip"));
+		ps[C_IN].setToolTip(Strings.getter("adderCarryInTip"));
+		ps[C_OUT].setToolTip(Strings.getter("adderCarryOutTip"));
 		setPorts(ps);
 	}
 

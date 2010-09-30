@@ -3,6 +3,7 @@
 
 package com.cburch.logisim.std.gates;
 
+import java.awt.Font;
 import java.util.List;
 
 import com.cburch.logisim.data.AbstractAttributeSet;
@@ -49,6 +50,8 @@ class GateAttributes extends AbstractAttributeSet {
 	int inputs = 5;
 	int negated = 0;
 	AttributeOption xorBehave;
+	String label = "";
+	Font labelFont = StdAttr.DEFAULT_LABEL_FONT;
 	
 	GateAttributes(boolean isXor) {
 		xorBehave = isXor ? XOR_ONE : null;
@@ -69,6 +72,8 @@ class GateAttributes extends AbstractAttributeSet {
 	public <V> V getValue(Attribute<V> attr) {
 		if (attr == StdAttr.FACING) return (V) facing;
 		if (attr == StdAttr.WIDTH) return (V) width;
+		if (attr == StdAttr.LABEL) return (V) label;
+		if (attr == StdAttr.LABEL_FONT) return (V) labelFont;
 		if (attr == ATTR_SIZE) return (V) size;
 		if (attr == ATTR_INPUTS) return (V) Integer.valueOf(inputs);
 		if (attr == ATTR_XOR) return (V) xorBehave;
@@ -89,6 +94,10 @@ class GateAttributes extends AbstractAttributeSet {
 			negated &= mask;
 		} else if (attr == StdAttr.FACING) {
 			facing = (Direction) value;
+		} else if (attr == StdAttr.LABEL) {
+			label = (String) value;
+		} else if (attr == StdAttr.LABEL_FONT) {
+			labelFont = (Font) value;
 		} else if (attr == ATTR_SIZE) {
 			size = (AttributeOption) value;
 		} else if (attr == ATTR_INPUTS) {

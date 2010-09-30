@@ -43,6 +43,11 @@ public class Multiplier extends InstanceFactory {
 		ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
 		ps[C_IN]  = new Port(-20, -20, Port.INPUT,  StdAttr.WIDTH);
 		ps[C_OUT] = new Port(-20,  20, Port.OUTPUT, StdAttr.WIDTH);
+		ps[IN0].setToolTip(Strings.getter("multiplierInputTip"));
+		ps[IN1].setToolTip(Strings.getter("multiplierInputTip"));
+		ps[OUT].setToolTip(Strings.getter("multiplierOutputTip"));
+		ps[C_IN].setToolTip(Strings.getter("multiplierCarryInTip"));
+		ps[C_OUT].setToolTip(Strings.getter("multiplierCarryOutTip"));
 		setPorts(ps);
 	}
 

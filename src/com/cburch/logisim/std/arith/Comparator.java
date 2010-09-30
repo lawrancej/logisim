@@ -46,6 +46,11 @@ public class Comparator extends InstanceFactory {
 		ps[GT]  = new Port(  0, -10, Port.OUTPUT, 1);
 		ps[EQ]  = new Port(  0,   0, Port.OUTPUT, 1);
 		ps[LT]  = new Port(  0,  10, Port.OUTPUT, 1);
+		ps[IN0].setToolTip(Strings.getter("comparatorInputATip"));
+		ps[IN1].setToolTip(Strings.getter("comparatorInputBTip"));
+		ps[GT].setToolTip(Strings.getter("comparatorGreaterTip"));
+		ps[EQ].setToolTip(Strings.getter("comparatorEqualTip"));
+		ps[LT].setToolTip(Strings.getter("comparatorLessTip"));
 		setPorts(ps);
 	}
 
