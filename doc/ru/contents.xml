@@ -131,6 +131,7 @@
 		<tocitem target="arith_comparator" text="Компаратор" />
 		<tocitem target="arith_shifter" text="Сдвигатель" />
 		<tocitem target="arith_bitadder" text="Сумматор битов" />
+		<tocitem target="arith_bitfinder" text="Искатель битов" />
 	  </tocitem>
 	  <tocitem target="mem" text="Библиотека Память">
 		<tocitem target="mem_flipflops" text="D/T/J-K/S-R триггеры" />
