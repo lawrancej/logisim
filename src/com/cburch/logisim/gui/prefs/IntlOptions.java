@@ -3,17 +3,18 @@
 
 package com.cburch.logisim.gui.prefs;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Locale;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -21,30 +22,12 @@ import com.cburch.logisim.proj.LogisimPreferences;
 import com.cburch.logisim.util.LocaleManager;
 
 class IntlOptions extends OptionsPanel {
-	private static class LocaleOption {
-		private Locale locale;
-		
-		LocaleOption(Locale locale) {
-			this.locale = locale;
-		}
-		
-		@Override
-		public String toString() {
-			return locale.getDisplayName();
-		}
-	}
-	
 	private class MyListener implements ActionListener, PropertyChangeListener {
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			if (src == gateShape) {
 				ComboOption x = (ComboOption) gateShape.getSelectedItem();
 				LogisimPreferences.setGateShape((String) x.getValue());
-			} else if (src == locale) {
-				LocaleOption opt = (LocaleOption) locale.getSelectedItem();
-				if (opt != null) {
-					LogisimPreferences.setLocale(opt.locale.getLanguage());
-				}
 			} else if (src == replaceAccents) {
 				LogisimPreferences.setAccentsReplace(replaceAccents.isSelected());
 			}
@@ -56,16 +39,21 @@ class IntlOptions extends OptionsPanel {
 				replaceAccents.setSelected(LogisimPreferences.getAccentsReplace());
 			} else if (prop.equals(LogisimPreferences.GATE_SHAPE)) {
 				ComboOption.setSelected(gateShape, LogisimPreferences.getGateShape());
-			} else if (prop.equals(LogisimPreferences.LOCALE_OPTION)) {
-				updateSelectedLocale();
 			}
+		}
+	}
+	
+	private static class RestrictedLabel extends JLabel {
+		@Override
+		public Dimension getMaximumSize() {
+			return getPreferredSize();
 		}
 	}
 	
 	private MyListener myListener = new MyListener();
 
-	private JLabel localeLabel = new JLabel();
-	private JComboBox locale = new JComboBox();
+	private JLabel localeLabel = new RestrictedLabel();
+	private JComponent locale;
 	private JCheckBox replaceAccents = new JCheckBox();
 	private JLabel gateShapeLabel = new JLabel();
 	private JComboBox gateShape = new JComboBox();
@@ -73,9 +61,16 @@ class IntlOptions extends OptionsPanel {
 	public IntlOptions(PreferencesFrame window) {
 		super(window);
 		
-		JPanel localePanel = new JPanel();
+		locale = Strings.createLocaleSelector();
+		
+		Box localePanel = new Box(BoxLayout.X_AXIS);
+		localePanel.add(Box.createGlue());
 		localePanel.add(localeLabel);
+		localeLabel.setMaximumSize(localeLabel.getPreferredSize());
+		localeLabel.setAlignmentY(Component.TOP_ALIGNMENT);
 		localePanel.add(locale);
+		locale.setAlignmentY(Component.TOP_ALIGNMENT);
+		localePanel.add(Box.createGlue());
 		
 		JPanel shapePanel = new JPanel();
 		shapePanel.add(gateShapeLabel);
@@ -87,14 +82,6 @@ class IntlOptions extends OptionsPanel {
 		add(localePanel);
 		add(replaceAccents);
 		add(Box.createGlue());
-		
-		Locale[] opts = Strings.getLocaleOptions();
-		for (int i = 0; i < opts.length; i++) {
-			LocaleOption opt = new LocaleOption(opts[i]);
-			locale.addItem(opt);
-		}
-		updateSelectedLocale();
-		locale.addActionListener(myListener);
 		
 		replaceAccents.addActionListener(myListener);
 		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.ACCENTS_REPLACE,
@@ -110,20 +97,6 @@ class IntlOptions extends OptionsPanel {
 		ComboOption.setSelected(gateShape, LogisimPreferences.getGateShape());
 	}
 	
-	private void updateSelectedLocale() {
-		String sel = LogisimPreferences.getLocale();
-		int n = locale.getItemCount();
-		for (int i = 0; i < n; i++) {
-			Object item = locale.getItemAt(i);
-			if (item instanceof LocaleOption) {
-				LocaleOption opt = (LocaleOption) item;
-				if (opt.locale.getLanguage().equals(sel)) {
-					locale.setSelectedIndex(i);
-				}
-			}
-		}
-	}
-
 	@Override
 	public String getTitle() {
 		return Strings.get("intlTitle");
@@ -136,18 +109,9 @@ class IntlOptions extends OptionsPanel {
 	
 	@Override
 	public void localeChanged() {
-		localeLabel.setText(Strings.get("intlLocale"));
+		localeLabel.setText(Strings.get("intlLocale") + " ");
 		replaceAccents.setText(Strings.get("intlReplaceAccents"));
 		replaceAccents.setEnabled(LocaleManager.canReplaceAccents());
 		gateShapeLabel.setText(Strings.get("intlGateShape"));
-		
-		Locale selectedLocale = LocaleManager.getLocale();
-		ComboBoxModel model = locale.getModel();
-		for (int n = model.getSize() - 1; n >= 0; n--) {
-			LocaleOption opt = (LocaleOption) model.getElementAt(n);
-			if (opt.locale == selectedLocale) {
-				locale.setSelectedItem(opt);
-			}
-		}
 	}
 }

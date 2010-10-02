@@ -3,9 +3,6 @@
 
 package com.cburch.logisim.gui.main;
 
-import java.util.Locale;
-import javax.swing.JMenuItem;
-
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.StringGetter;
 import com.cburch.logisim.util.StringUtil;
@@ -22,11 +19,5 @@ class Strings {
 	}
 	public static StringGetter getter(String key) {
 		return source.getter(key);
-	}
-	public static Locale[] getLocaleOptions() {
-		return source.getLocaleOptions();
-	}
-	public static JMenuItem createLocaleMenuItem() {
-		return source.createLocaleMenuItem();
 	}
 }

@@ -196,12 +196,6 @@ class SelectionBase {
 		for (Map.Entry<Component,Component> entry : liftedAfter.entrySet()) {
 			xn.add(entry.getValue());
 		}
-		
-		selected.clear();
-		lifted.clear();
-		selected.addAll(selectedAfter.values());
-		selected.addAll(liftedAfter.values());
-		fireSelectionChanged();
 	}
 
 	//

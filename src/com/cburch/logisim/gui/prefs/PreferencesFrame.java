@@ -87,9 +87,11 @@ public class PreferencesFrame extends JFrame {
 				new ExperimentalOptions(this),
 		};
 		tabbedPane = new JTabbedPane();
+		int intlIndex = -1;
 		for (int index = 0; index < panels.length; index++) {
 			OptionsPanel panel = panels[index];
 			tabbedPane.addTab(panel.getTitle(), null, panel, panel.getToolTipText());
+			if (panel instanceof IntlOptions) intlIndex = index;
 		}
 
 		JPanel buttonPanel = new JPanel();
@@ -100,6 +102,8 @@ public class PreferencesFrame extends JFrame {
 		tabbedPane.setPreferredSize(new Dimension(450, 300));
 		contents.add(tabbedPane, BorderLayout.CENTER);
 		contents.add(buttonPanel, BorderLayout.SOUTH);
+		
+		if (intlIndex >= 0) tabbedPane.setSelectedIndex(intlIndex);
 
 		LocaleManager.addLocaleListener(myListener);
 		myListener.localeChanged();

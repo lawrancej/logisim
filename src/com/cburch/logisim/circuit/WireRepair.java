@@ -81,6 +81,21 @@ class WireRepair extends CircuitTransaction {
 		doSplits(mutator);
 	}
 	
+	/* for debugging:
+	private void printWires(String prefix, PrintStream out) {
+		boolean first = true;
+		for (Wire w : circuit.getWires()) {
+			if (first) {
+				out.println(prefix + ": " + w);
+				first = false;
+			} else {
+				out.println("      " + w);
+			}
+		}
+		out.println(prefix + ": none");
+	}
+	*/
+	
 	private void doMerges(CircuitMutator mutator) {
 		MergeSets sets = new MergeSets();
 		for (Location loc : circuit.wires.points.getSplitLocations()) {

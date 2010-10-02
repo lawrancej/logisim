@@ -161,7 +161,11 @@ public class FileStatistics {
 		Count ret = new Count(null);
 		for (Count count : counts) {
 			ComponentFactory factory = count.getFactory();
-			if (exclude == null || !exclude.contains(factory)) {
+			Circuit factoryCirc = null;
+			if (factory instanceof SubcircuitFactory) {
+				factoryCirc = ((SubcircuitFactory) factory).getSubcircuit();
+			}
+			if (exclude == null || !exclude.contains(factoryCirc)) {
 				ret.simpleCount += count.simpleCount;
 				ret.uniqueCount += count.uniqueCount;
 				ret.recursiveCount += count.recursiveCount;
