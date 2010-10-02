@@ -1,7 +1,5 @@
-TRANSLATOR: On all HTML files, please save them with the UTF-8 encoding.
+ÜBERSETZER: Bitte alle HMTL-Dateien in der UTF-8-Kodierung speichern.
 
-TRANSLATOR: If you can't conveniently translate the SVG file, you can just
-translate the following text, and I'll be happy to deal with pasting it into
-the SVG file.
+ÜBERSETZER: Wenn Du die SVG-Datei nicht bearbeiten kannst, dann übersetze bitte den folgenden Text, den der Autor dann selbst in die SVG-Datei einfügen kann..
 
-a graphical tool for designing and simulating logic circuits
+ein grafisches Werkzeug zur Entwicklung und Simulation digitaler Schaltungen
