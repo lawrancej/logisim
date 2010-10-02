@@ -193,8 +193,10 @@ class SelectionBase {
 		}
 		
 		Map<Component,Component> liftedAfter = copyComponents(lifted, dx, dy);
+		lifted.clear();
 		for (Map.Entry<Component,Component> entry : liftedAfter.entrySet()) {
 			xn.add(entry.getValue());
+			selected.add(entry.getValue());
 		}
 	}
 
