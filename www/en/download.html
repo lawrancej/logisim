@@ -11,9 +11,14 @@
 	<div class="header">
 	<a href="index.html"><img width="227" height="137" border="0"
 	src="header.svg"
-	alt="Logisim: ein grafisches Werkzeug zur Entwicklung und Simulation digitaler Schaltungen" /></a>
+	alt="Logisim: a graphical tool for designing and simulating logic circuits" /></a>
 	<div class="links">
-	<a href="download.html">Download</a><br /> <a href="docs.html">Dokumentation</a><br /> <a href="../history.html">Produktentwicklung</a><br /> <a href="../qanda.html">Fragen &amp; Antworten</a><br /> <a href="comments.html">Kommentare</a><br /> <a href="../links.html">Links</a><br />
+	<a href="download.html">Download</a><br />
+	<a href="docs.html">Documentation</a><br />
+	<a href="../history.html">Release History</a><br />
+	<a href="../qanda.html">Q &amp; A</a><br />
+	<a href="comments.html">Comments</a><br />
+	<a href="../links.html">Links</a><br />
 	<a href="http://sourceforge.net"><img
 		src="http://sourceforge.net/sflogo.php?group_id=143273&type=2"
 		width="125" height="37" border="0" alt="SourceForge.net Logo"
@@ -24,49 +29,72 @@
 	</div></div>
 &nbsp;</td><td>
 
-<h2>Der Weg zu Logisim</h2>
+<h2>Getting Logisim</h2>
 
-<p>Logisim ist eine kostenlose Software, die unter den Bedingungen der <a href="../gpl.html">GNU General Public License, Version 2</a> herausgegeben wird. Es sollte auf jeder Plattform mit Java-Unterstützung, Version 5 oder höher, laufen.</p>
+<p>Logisim is free software, released under the terms of the
+<a href="../gpl.html">GNU General Public License, version 2</a>.
+It should run on any platform supporting Java,
+version 5 or later.</p>
 
 <ol>
 
-<li>Logisim benötigt Java 5 oder höher. Wenn Sie noch kein Java auf Ihrem Rechner haben, so können Sie dieses unter <tt><a
-href="http://java.sun.com">java.sun.com</a></tt> bekommen.</p></li>
+<li>Logisim requires Java 5 or later. If you do not already
+have it on your computer, Java is available from <tt><a
+href="http://java.sun.com">java.sun.com</a></tt>.</p></li>
 
-<li><p>Laden Sie Logisim von <a
-href="http://sourceforge.net/projects/circuit/">Logisims Seite auf SourceForge.net</a> herunter. Sie finden dort drei Versionen zum Herunterladen.</p>
+<li><p>Download Logisim from <a
+href="http://sourceforge.net/projects/circuit/">Logisim's SourceForge.net
+page</a>. You will three choices of which release to download.</p>
 <ul>
-<li>Eine <tt>.jar</tt>-Datei - diese sollte auf jedem Rechner lauffähig sein, ist aber vielleicht nicht unbedingt bequem.</li><li>Eine <tt>.tar.gz</tt>-Datei für MacOS X</li><li>Eine <tt>.exe</tt>-Datei für Windows</li></ul>
-<p>Wenn Sie MacOS X oder Windows benutzen, dann stellt die für Ihre Plattform vorgesehene Version die beste Wahl dar.</p></li>
+<li>A <tt>.jar</tt> file - this should run on any platform, though
+not necessarily conveniently.
+<li>A <tt>.tar.gz</tt> file for MacOS X
+<li>A <tt>.exe</tt> file for Windows
+</ul>
+<p>If you use MacOS X or Windows, the
+release specific to your platform will work best.</p></li>
 
-<li><p>Um das Programm zu starten:</p>
+<li><p>To execute the program:</p>
 <ul>
 
-<li><p><em>Mit der  <tt>.jar</tt>-Datei:</em> Auf vielen Plattformen läßt sich die JAR-Datei durch einen Doppelklick starten. Sollte das nicht funktionieren, dann starten Sie das Programm von einer Kommandozeile aus mittels:</p>
+<li><p><em>With the generic <tt>.jar</tt> file:</em>
+On many platforms, you can start the JAR file by double-clicking
+its icon. If that doesn't work, find your platform's command line and enter:</p>
 
 <blockquote><tt>java&nbsp;-jar&nbsp;logisim-generic-<em>XX</em>.jar</tt></blockquote></li>
 
-<li><p><em>Mit der MacOS X-Version:</em> Zunächst entpacken Sie das heruntergeladene  <tt>.tar.gz</tt>-Archiv: Dies kann eventuell schon automatisch geschehen, ansonsten müssen Sie auf die Datei doppelklicken. Danach starten Sie Logisim durch einen Doppelklick auf das Programmsymbol. Wenn Sie möchten, so können Sie das Programmsymbol in den Programme-Ordner verschieben.</p></li>
+<li><p><em>With the MacOS X version:</em> First uncompressed the downloaded
+<tt>.tar.gz</tt> file: This might happen
+automatically, or you might have to double-click it.
+Then just double-click the Logisim icon to start.  You may
+want to move the icon into the Applications folder.</p></li>
 
-<li><p><em>Mit der Windows-Version:</em> Logisim benötigt keine Installation. Die Datei, die Sie heruntergeladen haben, ist die Programmdatei die Sie benutzen werden. Doppelklicken Sie einfach das Logisim-Symbol. Für einen einfacheren Zugriff werden Sie vermutlich eine Verknüpfung auf dem Desktop oder im Startmenü.</p></li>
+<li><p><em>With the Windows version:</em> Logisim does not have an install process;
+the executable file is truly the file that you want to execute.
+Just double-click the Logisim icon.  You may want to create a shortcut on the
+desktop and/or in the Start menu to make starting Logisim easier.</p></li>
 
 </ul></li>
 
-<li><p>Die Standardausgabe von Logisim enthält eine deutsche Übersetzung (von Uwe Zimmermann, Universität Uppsala). Um die englische Übersetzung zu benutzen:</p>
+<li><p>The standard release of Logisim includes an English translation
+(written by TRANSLATOR NAME of TRANSLATOR INSTITUTION).
+To use the English translation:</p>
 
 <ol>
 
-<li>Nach dem Start von Logisim gehen Sie ins Dateimenü und wählen den Punkt Internationalisierung... (Auf einem Macintosh finden Sie diesen Punkt im Logisim-Menü.)</li>
+<li>After starting Logisim, go to the File menu and select Preferences...
+(On a Macintosh, this will be in the Logisim menu.)</li>
 
-<li>Von den Karteireitern wählen Sie den Abschnitt zur Internationalisierung.</li>
+<li>At the top of the Preferences window, select the International tab.</li>
 
-<li>Aus dem Aufklappmenü Sprache wählen Sie dann die deutsche Sprache.</li>
+<li>From the dropdown menu labeled Language, select Russian language.</li>
 
 </ol></li>
 
 </ol>
 
-<p><a href="comments.html">Senden Sie mir einen Kommentar,</a> wenn Ihnen Logisim gefällt!</p>
+<p>If you find Logisim useful, please <a href="comments.html">send me a
+comment</a>!</p>
 
 </td></tr></table>
 </body></html>
