@@ -88,6 +88,7 @@ public class BitFinder extends InstanceFactory {
 			ps[0].setToolTip(Strings.getter("bitFinderPresentTip", "1"));
 			ps[1].setToolTip(Strings.getter("bitFinderIndexLowTip", "1"));
 		}
+		ps[2].setToolTip(Strings.getter("bitFinderInputTip"));
 		instance.setPorts(ps);
 	}
 	

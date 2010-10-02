@@ -22,6 +22,10 @@ Feature: Added Off Color and Background attributes for the I/O library's Seven-S
 
 Feature: Added Color and Background attributes for the I/O library's TTY component.
 
+Feature: If you have never previously executed Logisim, it should default to the platform language if a supported translation is available.
+
+Feature: The Preferences dialog now defaults to the International tab, the languages appear in a list rather than a drop-down box, and each language is described by both its own language and the currently selected language.
+
 Feature: Enhanced the splash screen and "About" dialog to give credit to other team members.
  
 Bug fix: Circuit statistics were not computed recursively as intended (it was done correctly in 2.5.1).
@@ -29,5 +33,7 @@ Bug fix: Circuit statistics were not computed recursively as intended (it was do
 Bug fix: The Bit Adder's output bit width was one bit too small when the maximum possible count was a power of 2.
  
 Bug fix: With a multiplexer/demultiplexer/decoder selected, pressing 1 through 4 alters the number of select bits, but 5 does not work properly.
+
+Bug fix: Even after selecting a wire, starting a drag from one of its endpoints will lengthen or shorten the wire. (Previously the wire would be moved in this situation.)
  
 Bug fix: If you select a wire and drag one endpoint in the same direction the wire is facing, then it shows just a fragment of the resulting longer wire being selected. 
