@@ -224,7 +224,13 @@ if include_documentation:
 	print('copying documentation')
 	copytree(doc_dir, build_path(temp_dir, 'doc'))
 	shutil.rmtree(build_path(temp_dir, 'doc/circs'))
-	
+
+	for locale in os.listdir(doc_dir):
+		locale_dir = build_path(temp_dir, 'doc', locale)
+		if os.path.isdir(locale_dir) and locale != 'en':
+			src_map = build_path(temp_dir, 'doc/en/map.jhm')
+			shutil.copy(src_map, locale_dir)
+
 	jhindexer = build_path(data_dir, 'javahelp/bin/jhindexer.jar', cygwin=False)
 	for locale in os.listdir(doc_dir):
 		locale_dir = build_path(temp_dir, 'doc', locale)
