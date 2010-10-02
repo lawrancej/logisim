@@ -1,0 +1,158 @@
+Getting Started with Translating Logisim - Ilia Lilov
+
+STEP 1: GETTING THE ENGLISH TRANSLATION
+
+First, you have to get English template for translation (the
+"source" in other words). The best way is to use trunk of Logisim's
+SVN: https://circuit.svn.sourceforge.net/svnroot/circuit/trunk/src/resources
+If you use Windows, you might try installing and learning the program from
+http://tortoisesvn.tigris.org/. If you use GNU/Linux, you want to make sure
+the 'svn' command is installed.
+
+If you're not familiar with SVN, you will probably want to read up on it a bit.
+But basically, you have to know just two commands (for a GNU/Linux installation):
+
+* To get the most recent version:
+
+    svn co https://circuit.svn.sourceforge.net/svnroot/circuit/trunk/src/resources resources
+
+* To upload the files you've produced to the SVN repository:
+
+    svn ci resources -m "Description of changes"
+
+* To see your changes before you start uploading (not essential, but a good idea):
+
+    svn status resources
+
+(Alternatively, you could avoid SVN entirely. You'd unpack the latest generic
+version (a JAR file - which is essentially a ZIP archive) and get templates from
+its resources directory. This approach is inferior to SVN because (a) you'll be
+working from outdated files and (b) it's a lot more convenient to transfer your
+finished work into Subversion's file system.)
+
+As a Java program, Logisim stores translatable strings in Java's
+.properties file format ( http://en.wikipedia.org/wiki/.properties ).
+However, you don't have to edit those files manually. Note: this
+file format uses Unicode escape characters for non-ASCII characters,
+e.g. "ελληνικά" will look like
+"\u03b5\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac". You don't necessarily need
+to worry about this if you use OmegaT, though; it handles the format well.
+
+
+STEP 2: GETTING STARTED WITH OMEGAT 
+
+I strongly recommend using the OmegaT program (http://omegat.org/) for
+the translation process. I know a version called OmegaT+ exists; it has a more
+attractive interface, but it is missing some features we need. After
+installing it (OmegaT, not OmegaT+), you'll want to read about it. It includes
+very good documentation. I will not post here HOW to use it (read the
+documentation), but I will post WHAT exactly you have to do within it.
+
+Anyway, if you have any problems with it, I will help you as much as I can.
+With this file there is screenshot (01-getting-started.png) illustrating the
+panel placement that I find most useful for my work.
+
+To get started with OmegaT:
+
+2.1 Create new project (it is actually just a directory) with
+following parameters: Source files language: EN; Target file language:
+DE; Translated files directory: "path_to_your_SVN_folder/resources/";
+leave other fields with their default values.
+
+2.2 Copy the following to "path_to_your_OmegaT_project/source" saving
+  all the paths:
+
+    path_to_your_SVN_folder/resources/logisim/en/*
+    path_to_your_SVN_folder/resources/bric/ColorPicker.properties
+    path_to_your_SVN_folder/resources/connectina/FontChooserDialog.properties
+    path_to_your_SVN_folder/resources/connectina/JFontChooser.properties
+   
+2.3 Delete the _en suffix from each file, so "analyze_en.properties" becomes
+  just "analyze.properties".
+  
+  On GNU/Linux, the following command might be useful for this:
+  
+     for file in *_en.properties; do mv ${file} ${file/_en/}; done 
+   
+2.4 Set up two-directional dictionary (EN <-> DE), it will be very
+  handy. You have to download it separately.
+
+2.5 Set up spell checking. It is very important! It will help you to
+  avoid many mistakes. Don't trust yourself! :)
+
+2.6 Set up Machine Translation to Google Translate. It will be
+  incredibly handy! But don't trust it completely; it's work for human,
+  machine is just a helper.
+
+Important: OmegaT considers segments with equal English
+strings as the same segment. For example, assume you typed translation
+for "North" once; when you will find the same word once again and will
+try to edit it to different translation, OmegaT will change previous
+translation too. There is no way to change this behavior yet (in this
+version). Sometimes the same English word or phrase can be translated
+different (since English barely has any endings). If you get such
+situation, you have to make a trick: edit .properties file manually,
+change English version slightly and reload the project (F5). For
+example, I changed "North" in Vertical alignment section of
+std.properties to "North-" (as well as three other directions).
+
+STEP 3: DO THE TRANSLATION!
+
+Here are some guidelines I think are useful for doing the translation.
+
+* I suggest making a glossary (not in the program, just in your mind)
+  and stick to it all the time. It's very, very important. Otherwise,
+  users will be confused. If you will decide to translate documentation
+  later, you will have to follow the same glossary there too. I have
+  made a list "what have to be in a glossary":
+
+	input, output, circuit, subcircuit, supercircuit,
+	component, pin, splitter, combined end and split ends (for a splitter),
+	attribute, facing, data bits, rising edge, falling edge, select bits,
+	seed (for Random), stage (for Shift Register),
+	circuit's layout, appearance, port,
+	project, library, main circuit,
+	gate, shaped (gates), rectangular (gates),
+	poke, poking, mouse mapping,
+	wire, wire bundle, width,
+	simulate, simulation, oscillation, tick, state (of simulation),
+	log, logging, 
+	canvas, tutorial, template, option and parameter (for command line)
+
+  Of course, any word, which can be found two and more times with the
+  same sense have to be translated equally. But the list above attracts
+  your attention to words and phrases that have many different
+  meanings (sometimes everyday), but within Logisim they are exact
+  terms, and you have to decide which word/phrase in your language fits
+  better.
+
+* Give particular attention to names of components and their
+  attributes of built-in library! Almost all of them have exact
+  corresponding term in your language; you should to find them if you
+  don't know them. One of the possible ways to find write translations:
+  open http://en.wikipedia.org , find English article about a component,
+  then switch to version of that page in your language (if it exists).
+  Remember: "Splitter" isn't a standard term; it is invented by Carl
+  (so, it is in the glossary list).
+
+* Carl left us a freedom to translate words (and even letters) inside
+  some components on the canvas (like RAM or Bit Extender). But my
+  decision was to left them untranslated following the simple policy:
+  "everything what can get to foreigner (names of circuits or those
+  words inside components on canvas on screen shots) has to be in
+  English". For example, you translated "D" letter within D flip-flop as
+  Δ; someone will share screenshot and no one except Greek can determine
+  what kind of flip-flop there. Of course, you can disagree this policy.
+
+* When everything will be done, read and check all the phrases: any of your
+  mistake will be visible by hundreds - probably thousands - of people!
+
+STEP 4: PRODUCING RESULTING FILES
+
+Generate translation (press Ctrl+D within OmegaT) and commit it to
+SVN. If you don't use SVN, just archive it in a ZIP or TGZ file and send it
+to Carl or to me.
+
+If you will decide to translate documentation too, the process is a bit more
+complex, and you'd want to read the much longer guide. Feel free to ask me
+anything about translation!
