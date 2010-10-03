@@ -8,7 +8,7 @@ def _get_png_dimension(png_path):
     with open(png_path, 'rb') as png_file:
         header = png_file.read(64)
     for i in range(2):
-        start = 32 + i * 4
+        start = 16 + i * 4
         dim = 0
         for j in range(4):
             dim = 256 * dim + (header[start + j] & 0xFF)
@@ -41,6 +41,53 @@ def _find_image_paths(locale_src, en_src):
                     image_paths[(base_rel, file)] = (img_xx, width, height)
     return image_paths
 
+def handle_img_tag(image_paths_xx, image_paths_en, cwd, xx_src, en_src):
+    img_attr_re = re.compile('\s([a-zA-Z0-9-]+)="?([^"> \r\n\t]+)"?')
+    def handle_tag(match):
+        values = {}
+        pieces = ['<img']
+        for attr_match in img_attr_re.finditer(match.group()):
+            attr = attr_match.group(1)
+            values[attr] = attr_match.group(2)
+            if attr not in ['src', 'width', 'height']:
+                pieces.append(attr_match.group())
+        if 'src' in values:
+            src_val = values['src']
+            src_path = os.path.normpath(build_path(cwd, src_val))
+            width = None
+            height = None
+            if 'xor-circ' in src_val:
+                print('src: ' + src_path)
+                print('en: ' + en_src)
+                print('xx: ' + xx_src)
+            if src_path.startswith(en_src):
+                src_rel = os.path.relpath(src_path, en_src)
+                src_base, src_file = os.path.split(src_rel)
+                src_key = (src_base, src_file)
+                if src_key in image_paths_en:
+                    _dummy_, width, height = image_paths_en[src_key]
+            elif src_path.startswith(xx_src):
+                src_rel = os.path.relpath(src_path, xx_src)
+                src_base, src_file = os.path.split(src_rel)
+                src_key = (src_base, src_file)
+                if src_key in image_paths_xx:
+                    _dummy_, width, height = image_paths_xx[src_key]
+                elif src_key in image_paths_en:
+                    _dummy_, width, height = image_paths_en[src_key]
+                    base_rel = os.path.relpath(xx_src, cwd)
+                    src_val = base_rel + '/../en/' + src_base + '/' + src_file
+            pieces.append('src="' + src_val.replace('\\', '/') + '"')
+            if (src_val.endswith('.gif') and 'width' in values
+                    and 'height' in values and values['width'] == '32'
+                    and values['height'] == '32'):
+                width, height = 32, 32 
+            if width is not None:
+                pieces.append('width="' + str(width) + '"')
+            if height is not None:
+                pieces.append('height="' + str(height) + '"')
+        return ' '.join(pieces) + '>'
+    return handle_tag
+
 def do_copy(src_dir, dst_dir):
     if not os.path.exists(dst_dir):
         os.mkdir(dst_dir)
@@ -60,42 +107,6 @@ def do_copy(src_dir, dst_dir):
 
     image_paths_en = image_paths['en']
     img_re = re.compile(r'<img[^>]*>')
-    img_attr_re = re.compile('\s([a-zA-Z0-9-]+)="?([^"> \r\n\t]+)"?')
-    def handle_img_tag(image_paths_xx, cwd, base):
-        def handle_tag(match):
-            values = {}
-            pieces = ['<img']
-            for attr_match in img_attr_re.findall(match.group()):
-                attr = attr_match.group(1)
-                values[attr] = attr_match.group(2)
-                if attr not in ['src', 'width', 'height']:
-                    pieces.append(attr_match.group())
-            if 'src' in values:
-                src_val = values['src']
-                src_path = build_path(cwd, src_val)
-                width = None
-                height = None
-                if src_path.startswith(base):
-                    src_rel = os.path.relpath(src_path, base)
-                    src_base, src_file = os.path.split(src_rel)
-                    src_key = (src_base, src_file)
-                    if src_key in image_paths_xx:
-                        _dummy_, width, height = image_paths_xx[src_key]
-                    elif src_key in image_paths_en:
-                        _dummy_, width, height = image_paths_en[src_key]
-                        base_rel = os.path.relpath(base, cwd)
-                        src_val = base_rel + '/../en/' + src_base + '/' + src_file
-                pieces.append('src="' + src_val + '"')
-                if (src.endswith('.gif') and 'width' in values
-                        and 'height' in values and values['width'] == '32'
-                        and values['height'] == '32'):
-                    width, height = 32, 32 
-                if width is not None:
-                    pieces.append('width="' + str(width) + '"')
-                if height is not None:
-                    pieces.append('height="' + str(height) + '"')
-            return ' '.join(pieces) + '>'
-        return handle_tag
         
     for locale, locale_src, locale_dst in doc_locales:
         os.mkdir(locale_dst)
@@ -107,7 +118,8 @@ def do_copy(src_dir, dst_dir):
 
             base_rel = os.path.relpath(base_src, locale_src)
             base_dst = build_path(locale_dst, base_rel)
-            img_handler = handle_img_tag(image_paths_xx, base_src)
+            img_handler = handle_img_tag(image_paths_xx, image_paths_en,
+                                         base_src, locale_src, en_src)
             for dir in dirs:
                 os.mkdir(build_path(base_dst, dir))
             for file in files:
