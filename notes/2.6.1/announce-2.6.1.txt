@@ -8,7 +8,7 @@ Educational institutions around the world use Logisim as an aid to teaching abou
 
 CHANGE LOG
 
-Feature: A German translation of the GUI elements is now included.
+Feature: A German translation of the GUI strings is now included. (In this version, documentation is not translated.)
 
 Feature: Added a Label and Label Font attribute for all components in the Gates library except Constant.
 
@@ -27,13 +27,15 @@ Feature: If you have never previously executed Logisim, it should default to the
 Feature: The Preferences dialog now defaults to the International tab, the languages appear in a list rather than a drop-down box, and each language is described by both its own language and the currently selected language.
 
 Feature: Enhanced the splash screen and "About" dialog to give credit to other team members.
+
+Interface change: Even after selecting a wire, starting a drag from one of its endpoints will lengthen or shorten the wire. (Previously the wire would be moved in this situation.)
  
 Bug fix: Circuit statistics were not computed recursively as intended (it was done correctly in 2.5.1).
+
+Bug fix: When the simulation frequency is more than 1KHz, choosing "Tick Once" after a series of several ticks would lead to multiple ticks occurring. 
 
 Bug fix: The Bit Adder's output bit width was one bit too small when the maximum possible count was a power of 2.
  
 Bug fix: With a multiplexer/demultiplexer/decoder selected, pressing 1 through 4 alters the number of select bits, but 5 does not work properly.
-
-Bug fix: Even after selecting a wire, starting a drag from one of its endpoints will lengthen or shorten the wire. (Previously the wire would be moved in this situation.)
  
 Bug fix: If you select a wire and drag one endpoint in the same direction the wire is facing, then it shows just a fragment of the resulting longer wire being selected. 

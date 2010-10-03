@@ -56,10 +56,6 @@ def handle_img_tag(image_paths_xx, image_paths_en, cwd, xx_src, en_src):
             src_path = os.path.normpath(build_path(cwd, src_val))
             width = None
             height = None
-            if 'xor-circ' in src_val:
-                print('src: ' + src_path)
-                print('en: ' + en_src)
-                print('xx: ' + xx_src)
             if src_path.startswith(en_src):
                 src_rel = os.path.relpath(src_path, en_src)
                 src_base, src_file = os.path.split(src_rel)
