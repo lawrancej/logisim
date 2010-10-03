@@ -33,7 +33,7 @@ public class Simulator {
 	}
 	//end DEBUGGING*/
 	
-	private class PropagationManager extends Thread {
+	class PropagationManager extends Thread {
 		private Propagator propagator = null;
 		private PropagationPoints stepPoints = new PropagationPoints();
 		private volatile int ticksRequested = 0;
@@ -176,85 +176,20 @@ public class Simulator {
 			}
 		}
 	}
-	
-	private class Ticker extends Thread {
-		private boolean shouldTick = false;
-		private int ticksPending = 0;
-		private boolean complete = false;
-		
-		public synchronized void shutDown() {
-			complete = true;
-			notifyAll();
-		}
-
-		@Override
-		public void run() {
-			long lastTick = System.currentTimeMillis();
-			while (true) {
-				boolean curShouldTick = shouldTick;
-				int millis = millisPerTickPhase;
-				int ticks = ticksPerTickPhase;
-				try {
-					synchronized(this) {
-						curShouldTick = shouldTick;
-						millis = millisPerTickPhase;
-						ticks = ticksPerTickPhase;
-						while (!curShouldTick && ticksPending == 0
-								&& !complete) {
-							wait();
-							curShouldTick = shouldTick;
-							millis = millisPerTickPhase;
-							ticks = ticksPerTickPhase;
-						}
-					}
-				} catch (InterruptedException e) { }
-				
-				if (complete) break;
-
-				long now = System.currentTimeMillis();
-				if (ticksPending > 0 || (curShouldTick
-						&& now >= lastTick + millis)) {
-					lastTick = now;
-					for (int i = 0; i < ticks; i++) {
-						manager.requestTick();
-					}
-					synchronized(this) {
-						if (ticksPending > 0) ticksPending--;
-					}
-					// we fire tickCompleted in this thread so that other
-					// objects (in particular the repaint process) can slow
-					// the thread down.
-				}
-
-				try {
-					long nextTick = lastTick + millis;
-					int wait = (int) (nextTick - System.currentTimeMillis());
-					if (wait < 1) wait = 1;
-					if (wait > 100) wait = 100;
-					Thread.sleep(wait);
-				} catch (InterruptedException e) { }
-			}
-		}
-
-		synchronized void awake() {
-			shouldTick = isRunning && isTicking && tickFrequency > 0;
-			if (shouldTick) notifyAll();
-		}
-	}
 
 	private boolean isRunning = true;
 	private boolean isTicking = false;
 	private boolean exceptionEncountered = false;
 	private double tickFrequency = 1.0;
-	private int millisPerTickPhase = 1000;
-	private int ticksPerTickPhase = 1;
 
-	private PropagationManager manager = new PropagationManager();
-	private Ticker ticker = new Ticker();
+	private PropagationManager manager;
+	private SimulatorTicker ticker;
 	private ArrayList<SimulatorListener> listeners
 		= new ArrayList<SimulatorListener>();
 
 	public Simulator() {
+		manager = new PropagationManager();
+		ticker = new SimulatorTicker(manager);
 		try {
 			manager.setPriority(manager.getPriority() - 1);
 			ticker.setPriority(ticker.getPriority() - 1);
@@ -271,7 +206,7 @@ public class Simulator {
 
 	public void setCircuitState(CircuitState state) {
 		manager.setPropagator(state.getPropagator());
-		ticker.awake();
+		renewTickerAwake();
 	}
 	
 	public CircuitState getCircuitState() {
@@ -284,10 +219,7 @@ public class Simulator {
 	}
 	
 	public void tick() {
-		synchronized(ticker) {
-			ticker.ticksPending++;
-			ticker.notifyAll();
-		}
+		ticker.tickOnce();
 	}
 	
 	public void step() {
@@ -312,7 +244,7 @@ public class Simulator {
 	public void setIsRunning(boolean value) {
 		if (isRunning != value) {
 			isRunning = value;
-			ticker.awake();
+			renewTickerAwake();
 			/*DEBUGGING - comment out: 
 			if (!value) flushLog(); //*/
 			fireSimulatorStateChanged();
@@ -326,9 +258,13 @@ public class Simulator {
 	public void setIsTicking(boolean value) {
 		if (isTicking != value) {
 			isTicking = value;
-			ticker.awake();
+			renewTickerAwake();
 			fireSimulatorStateChanged();
 		}
+	}
+	
+	private void renewTickerAwake() {
+		ticker.setAwake(isRunning && isTicking && tickFrequency > 0);
 	}
 
 	public double getTickFrequency() {
@@ -347,10 +283,8 @@ public class Simulator {
 			}
 			
 			tickFrequency = freq;
-			millisPerTickPhase = millis;
-			ticksPerTickPhase = ticks;
-			
-			ticker.awake();
+			ticker.setTickFrequency(millis, ticks);
+			renewTickerAwake();
 			fireSimulatorStateChanged();
 		}
 	}
