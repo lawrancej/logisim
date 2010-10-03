@@ -1,0 +1,6992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tmx SYSTEM "tmx11.dtd">
+<tmx version="1.1">
+  <header
+    creationtool="OmegaT"
+    creationtoolversion="2.1.9"
+    segtype="sentence"
+    o-tmf="OmegaT TMX"
+    adminlang="EN-US"
+    srclang="EN"
+    datatype="plaintext"
+  >
+  </header>
+  <body>
+    <tu>
+      <tuv lang="EN">
+        <seg>Confirm Overwrite</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Подтвердите перезапись</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Carry In: an amount to be added into the output</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190819Z" changeid="lilovip">
+        <seg>Вход переноса: величина, прибавляемая к выходному значению</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100814T211207Z" changeid="lilovip">
+        <seg>Инструмент Выбор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>keyboard (buffer cap.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>клавиатура (буфер </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Fill Color</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Цвет заливки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Analysis cannot handle more than %s inputs.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Анализ не может манипулировать более чем %s входами.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show Grid</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Показывать сетку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Low Level</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Низкий уровень</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Wrap around</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Закольцовывать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>File Message</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сообщение файла</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Wide</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Широкий</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit tools associated with mouse buttons.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Редактировать привязки инструментов к кнопкам мыши.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Reorder</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224451Z" changeid="lilovip">
+        <seg>Перестроить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Gates</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Элементы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Set Main Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сделать главной схемой</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Configure file output.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Настройка выходного файла.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear Contents</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистить содержимое</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Toolbar</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Панель инструментов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rename</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Переименовать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>1</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>0</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T012316Z" changeid="lilovip">
+        <seg>0</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Preset: When 1, pin state to 1 asynchronously</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Установка: когда 1, состояние асинхронно фиксируется на 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bit Adder</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224653Z" changeid="lilovip">
+        <seg>Сумматор битов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Sign</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T012312Z" changeid="lilovip">
+        <seg>Знак</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load: if 1, load memory to output</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Чтение: если 1, память считывается на выход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>User canceled load.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Пользователь отменил загрузку.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Untitled</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Без имени</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(%sb)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(%sb)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-plain            use standard Logisim template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-plain            использовать стандартный шаблон Logisim</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>D</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>D</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>A: the number preceding the comparison operation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191700Z" changeid="lilovip">
+        <seg>A: первое число для операции сравнения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Outputs</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выходы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>E</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>E</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Print Preview</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Предпросмотр печати</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Dot Shape</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Форма точки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Library includes items currently mapped to the mouse.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Библиотека включает в себя элементы, в настоящее время привязанные к мыши.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>A</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>A</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock: values may update on trigger</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тактовый вход: значения могут обновиться при срабатывании</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Grabber returned false:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Граббер возвратил ложь:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Built-in Library...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Встроенная библиотека...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unload Libraries...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выгрузить библиотеки...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Do you want to overwrite it?</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140342Z" changeid="lilovip">
+        <seg>Хотите перезаписать его?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%s)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%s)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>TTY (%s rows, %s cols)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Терминал (%s строк, %s столбцов)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;&lt; Remove</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;&lt; Удалить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Computing connections...</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100811T134042Z" changeid="lilovip">
+        <seg>Расчёт соединений...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move viewed circuit down list</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Переместить рассматриваемую схему вниз по списку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Tick Frequency</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тактовая частота</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Copy Selection</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Копировать выделение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Border &amp; Fill</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T172032Z" changeid="lilovip">
+        <seg>Граница и заливка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit ROM Contents</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Редактировать содержимое ПЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Quit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>halted due to detected oscillation</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>остановлено из-за обнаруженного возбуждения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit options affecting behavior of drawing area.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Редактировать параметры, влияющие на поведение области рисования.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Polygon</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Многоугольник</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Locale given is not supported.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Заданный язык не поддерживается.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Включить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select All</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбрать все</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Simulation halted by internal error</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Моделирование остановлено из-за внутренней ошибки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Toggle whether grid is shown</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Переключить отображение сетки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>reg</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>reg</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>rem</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>rem</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%s is not an input variable.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%s не является входной переменной.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Remove Mouse Mapping</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить привязку мыши</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Iterations Until Oscillation</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Итераций до возбуждения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>x</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>x</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bit Selector</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Селектор битов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No non-empty circuits are available for printing.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нет непустых схем, доступных для печати.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pin</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Контакт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Simulation Limit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Предел моделирования</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cut</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вырезать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Multiplexer</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Мультиплексор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Inputs</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Входы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>B: the number following the comparison operation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191715Z" changeid="lilovip">
+        <seg>B: второе число для операции сравнения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>High Level</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Высокий уровень</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Raise Selection</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224534Z" changeid="lilovip">
+        <seg>Поднять выделение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data: ASCII value of buffer's front character</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Данные: ASCII значение первого символа буфера</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>North</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Север</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The image could not be created.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Изображение не может быть создано.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Could not open file: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно открыть файл: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Export Image</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Экспорт изображения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: is content of last stage</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход: содержимое последней ступени</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Options...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Параметры...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Confirm Clear</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Подтверждение очистки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable: steps to next in sequence on clock trigger</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Включение: переходить к следующему в последовательности при срабатывании тактового входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Carry In: if 1, an additional 1 is added to output</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190217Z" changeid="lilovip">
+        <seg>Вход переноса: если 1, то дополнительная 1 добавляется к выходному значению</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Write enable: 0 disables clock</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Разрешение записи: 0 отключает тактовый вход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error During Open</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка во время открытия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(Implicit AND)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(Неявное И)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Combined end of splitter</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Объединённый конец разветвителя</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>sign</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T012316Z" changeid="lilovip">
+        <seg>sign</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Save RAM Image</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сохранение образа ОЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Wiring Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100814T211221Z" changeid="lilovip">
+        <seg>Инструмент Проводка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>attribute value (%s) is not valid for %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>значение атрибута (%s) не подходит для %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move Up</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сдвинуть вверх</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input: one of the numbers to multiply</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190631Z" changeid="lilovip">
+        <seg>Вход: одно из чисел для умножения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input Circuit Name</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ввод названия схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Print Parameters</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Параметры печати</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Three-state?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Три состояния?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error Loading Template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка при загрузке шаблона</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Image Format:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Формат изображения:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-help             display this summary and exit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-help             отобразить эту сводку и выйти</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Low Duration</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Продолжительность нуля</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%sKB ROM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%sКБ ПЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circuit used in other circuits cannot be removed.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Схема, используемая в других схемах, не может быть удалена.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Incompatible widths</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Несовместимые разрядности</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The file already exists.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл уже существует.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add an input pin</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить входной контакт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The directory could not be created.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Каталог не может быть создан.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Subtrahend: the number to subtract from the minuend</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190410Z" changeid="lilovip">
+        <seg>Вычитаемое: число, которое отнимается от уменьшаемого</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot Create Directory</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно создать каталог</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot Analyze</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно анализировать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Location:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100810T211653Z" changeid="lilovip">
+        <seg>Расположение:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Simulate</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Моделировать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Medium</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T192458Z" changeid="lilovip">
+        <seg>Средний</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Attribute unchanged because request is invalid</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Атрибут не изменён, так как запрос неверен</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear: when 1, resets to 0 asynchronously</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистка: когда 1, асинхронно сбрасывает в 0</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Шаблон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circular reference detected; computing truth table instead.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Обнаружена циклическая ссылка; составляется таблица истинности.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Operator %s missing left operand.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Для оператора %s отсутствует левый операнд.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Locate `%s'</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Показать `%s'</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Control Line Location</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T192615Z" changeid="lilovip">
+        <seg>Расположение управляющего входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable: When 0, clock triggers are ineffective</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Включение: когда 0, срабатывание тактового входа не даёт эффекта</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>New</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Новый</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: the result of dividing the dividend by the divisor</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191207Z" changeid="lilovip">
+        <seg>Выход: результат деления делимого на делитель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Save As...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сохранить как...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>main</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>main</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The pin is tied to the supercircuit's state.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100829T123810Z" changeid="lilovip">
+        <seg>Значение на контакте привязано к состоянию надсхемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Appearance Facing</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T171633Z" changeid="lilovip">
+        <seg>Направление внешнего вида</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit viewed circuit's layout</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100912T043134Z" changeid="lilovip">
+        <seg>Редактировать чертёж просматриваемой схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: the two's-complement negation of the input</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191429Z" changeid="lilovip">
+        <seg>Выход: инвертированное входное значение в дополнительном коде</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Configure behavior of tools</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Настроить поведение инструментов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>tool name missing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>отсутствует название инструмента</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>`%s' is not a valid library name.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>`%s' не является допустимым именем библиотеки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add an output pin</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить выходной контакт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable Input: 0 disables the component</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Разрешающий вход: 0 отключает компонент</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pull Down</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Понижать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Odd Parity</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нечётность</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>halted due to halt pin</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>остановлено в соответствии с остановочным контактом</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>ctr</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>ctr</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cancel Open</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Отменить открытие</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Zoom</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Масштабировать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>XML formatting error: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>ошибка форматирования XML: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Register</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Регистр</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The clipboard contents cannot be pasted into the editor.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Содержимое буфера обмена не может быть вставлено в редактор.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Off Color</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Цвет выключенных</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error for undefined inputs</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка для неопределённых входов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Color</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Цвет</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-template file    use file as template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-template файл    использовать файл в качестве шаблона</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Controlled Inverter</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Управляемый инвертор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pull Up</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Повышать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Plain</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Простой</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bit Width In</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T011617Z" changeid="lilovip">
+        <seg>Разрядность входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Confirm Close</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Подтверждение закрытия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%sKB RAM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%sКБ ОЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock: value may update on trigger</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тактовый вход: значение может обновиться при срабатывании</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Drop Component</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100829T123705Z" changeid="lilovip">
+        <seg>Сбросить компонент</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock: value updates on trigger</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тактовый вход: значение обновляется при срабатывании</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Second Radix When Wire Poked</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100814T210831Z" changeid="lilovip">
+        <seg>Второе основание при нажатии на провод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Background</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T200650Z" changeid="lilovip">
+        <seg>Фон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bit Width Out</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T011624Z" changeid="lilovip">
+        <seg>Разрядность выхода</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Keep Connections When Moving</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100809T104012Z" changeid="lilovip">
+        <seg>Сохранять соединения при перемещении</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select the current template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбрать текущий шаблон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Could Not Build Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно построить схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>OK</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>OK</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Font</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Шрифт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Tick Once</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Один такт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Undo %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Отменить %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>None</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нет</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add &gt;&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить &gt;&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unrecognized characters: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Символы не распознаны: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View and edit the set of input variables.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Просмотреть и редактировать набор входных переменных.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нет</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Go Out To State</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Состояние уровнем выше</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Label Facing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Направление метки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Alignment</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выравнивание</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Loading file...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузка файла...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Mouse</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Мышь</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View and manipulate outputs' expressions.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Просмотреть и изменять выражения для выходов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Value must be %s or less.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140800Z" changeid="lilovip">
+        <seg>Значение должно быть %s или меньше.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Wires</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить провода</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load Logisim File</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузить файл Logisim</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Maximize</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Максимизировать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Save...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сохранить...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Address: location accessed in memory</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Адресу: место в памяти, к которому производится доступ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Numeric Type</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Формат числа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Delete Selection</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить выделение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim: %s of %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: %s из %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select: identifies which output receives input</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбирающий вход: определяет, на какой выход посылается значение со входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(empty)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(пусто)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Raise</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224434Z" changeid="lilovip">
+        <seg>Поднять</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select: identifies which output is 1</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбирающий вход: определяет, на каком выходе 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>LED Matrix</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Светодиодная матрица</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add wires to circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T082419Z" changeid="lilovip">
+        <seg>Добавлять провода в схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>component `%s' not found</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>компонент `%s' не найден</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bit %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Бит %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Set %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Установить %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Italic</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Курсив</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Columns</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Столбцы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Type</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T200459Z" changeid="lilovip">
+        <seg>Тип</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Maximum Value</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Максимальное значение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Component cannot have negative coordinates.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Компонент не может иметь отрицательные координаты.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>File Already Exists</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл уже существует</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The clipboard goes beyond the end of the table.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Буфер выходит за пределы таблицы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Plain Template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Обычный шаблон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Help</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Справка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Value is not a valid integer</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Значение не является допустимым целым</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%sGB ROM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%sГБ ПЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Close Window</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Закрыть окно</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-nosplash         hides splash screen at startup</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-nosplash         скрывает заставку при запуске</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The clipboard goes beyond the end of the file.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Буфер выходит за пределы файла.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>First Radix When Wire Poked</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100814T210844Z" changeid="lilovip">
+        <seg>Первое основание при нажатии на провод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Analyze Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Анализировать схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Replace Extension</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140306Z" changeid="lilovip">
+        <seg>Сменить расширение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bit %s from combined end</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Бит %s с объединённого конца</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>T Flip-Flop</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>T триггер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change Radix</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Изменить основание</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Circuit...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить схему...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Carry: is 1 when value reaches maximum (minimum if decrementing)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Перенос: 1, когда значение достигает максимума (минимума при уменьшении)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Meta</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Meta</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Decoder</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Декодер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%s KHz</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%s кГц</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Divider</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Делитель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Java Archive (*.jar)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Архив Java (*.jar)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable features that haven't yet been thoroughly tested</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Включить возможности, которые еще не были тщательно протестированы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logical Left</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Логический левый</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No permission to read template file %s.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нет прав на чтение файла шаблона %s.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Replace &quot;%s&quot;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140052Z" changeid="lilovip">
+        <seg>Заменить &quot;%s&quot;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Dividend Lower: the lower half of the number to divide</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191107Z" changeid="lilovip">
+        <seg>Низ делимого: младшая половина числа для деления</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Replace Accented Characters</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Заменять специфичные символы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Separate load and store ports</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Раздельные порты чтения и записи</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>German Translation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T183810Z" changeid="lilovip">
+        <seg>Немецкий перевод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change Selection Attribute</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Изменить атрибут выделения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Logisim library has an unrecognized type %s (%s)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Библиотека Logisim имеет неизвестный тип %s (%s)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Library</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Библиотека</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Index: index of input's highest-order %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T200548Z" changeid="lilovip">
+        <seg>Номер: номер старшего бита %s во входном значении</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>One synchronous load/store port</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Один синхронный порт чтения/записи</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Window</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Окно</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>clr</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>clr</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Negate %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T014722Z" changeid="lilovip">
+        <seg>Инвертировать %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Empty Template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Пустой шаблон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>RAM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>ОЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Minimized</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101003T154756Z" changeid="lilovip">
+        <seg>Минимизация</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bold Italic</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Полужирный курсив</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: the products of the inputs, plus the carry in</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190743Z" changeid="lilovip">
+        <seg>Выход: произведение входов плюс вход переноса</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Poke Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100814T211154Z" changeid="lilovip">
+        <seg>Инструмент Нажатие</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Action On Overflow</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Действие при переполнении</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>User's Guide</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Руководство пользователя</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Port</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100912T042827Z" changeid="lilovip">
+        <seg>Порт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Curve</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224349Z" changeid="lilovip">
+        <seg>Кривая</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Remove viewed circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить рассматриваемую схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear: when 1, resets all to 0 asynchronously</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистка: когда 1, асинхронно сбрасывает все в 0</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>low</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101002T154344Z" changeid="lilovip">
+        <seg>low</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Reset Simulation</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сбросить моделирование</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Matrix Columns</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Столбцы матрицы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Base</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Базовые</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Print...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Печать...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>DIN 40700</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>DIN 40700</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Even Parity</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Чётность</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Could not load help data.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно загрузит данные справки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The file &quot;%s&quot; already exists.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл &quot;%s&quot; уже существует.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Right-Handed</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T193134Z" changeid="lilovip">
+        <seg>По правую руку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Direction</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Направление</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input: the bits to be searched</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101002T142915Z" changeid="lilovip">
+        <seg>Вход: биты для поиска</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Are you sure you want to replace the circuit %s?</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100914T232614Z" changeid="lilovip">
+        <seg>Вы уверены, что хотите заменить схему %s?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Language:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Язык:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No TTY or Keyboard component was found.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140503Z" changeid="lilovip">
+        <seg>Не найдено компонентов Терминал или Клавиатура.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The %s library could not be instantiated.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно создать экземпляр библиотеки %s.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>International</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Международные</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Right</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Справа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Could not open file.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Не удалось открыть файл.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move Handle</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Переместить указатель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: the difference of the minuend and the subtrahend</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190434Z" changeid="lilovip">
+        <seg>Выход: разность между уменьшаемым и вычитаемым</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Facing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Направление</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Seed</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Семя</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Рассмотреть %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View and edit the set of output variables.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Просмотреть и редактировать набор выходных переменных.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Oval</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Овал</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select Export Directory</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбор каталога для экспорта</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logical Right</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Логический правый</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Creating file...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Создание файла...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Multiple-Input Behavior</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Многовходовое поведение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim 1.0 8-Bit Register</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T062820Z" changeid="lilovip">
+        <seg>Logisim 1.0 8-битный регистр</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit Circuit Appearance</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T171726Z" changeid="lilovip">
+        <seg>Редактировать внешний вид схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Canvas</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Холст</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pull Behavior</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Обращение с плавающими</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Revert All To Template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вернуть все к шаблону</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>File Already Open</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл уже открыт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data Bits</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Биты данных</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No bits from combined end</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нет бит с объединённого конца</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Could not save file: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно сохранить файл: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>To Map %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>чтобы привязать %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim 1.0 file includes unsupported RAM component.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл Logisim 1.0 содержит неподдерживаемый компонент ОЗУ.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move viewed circuit up list</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Переместить рассматриваемую схему вверх по списку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>You do not have permission to write to &quot;%s.&quot;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>У вас нет разрешения на запись в &quot;%s.&quot;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>wire start misformatted</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>начало провода имеет неверный формат</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%s Hz (%s ticks in %s milliseconds)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T010819Z" changeid="lilovip">
+        <seg>%s Гц (%s тактов за %s миллисекунд)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim 1.0 D Flip-Flop</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim 1.0 D триггер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Remainder: the remainder (dividend - output * divisor)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191244Z" changeid="lilovip">
+        <seg>Остаток: остаток (делимое - частное*делитель)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%s Hz</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%s Гц</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move Down</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сдвинуть вниз</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Value</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Значение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input: the bits to be counted</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T192014Z" changeid="lilovip">
+        <seg>Вход: биты для подсчета</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: value of selected group of bits from data</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход: значение выбранной из данных группы бит</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input Format</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Формат входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Overwrite</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Перезаписать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Destination Project:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Целевой проект:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock: trigger adds character on input</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T164242Z" changeid="lilovip">
+        <seg>Тактовый вход: срабатывание добавляет символ на вход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Library Reference</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Справка по библиотеке</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Tools</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Инструменты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбрать...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Class Name:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Имя класса:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Greater: 1 if A is greator than B</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191812Z" changeid="lilovip">
+        <seg>Больше: 1, если A больше, чем B</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>One asynchronous load/store port</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Один асинхронный порт чтения/записи</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Current flip-flop state</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Текущее состояние триггера</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>usage: java %s [options] [filenames]</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>использование: java %s [параметры] [имена_файлов]</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-tty format       run without graphical interface</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-tty формат       запустить без графического интерфейса</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Buffer Length</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Длина буфера</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>options:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>параметры:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Computing Image...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вычисление изображения...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Carry Out: 1 if the sum overflows the available bits</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190246Z" changeid="lilovip">
+        <seg>Выход переноса: 1, если сумма переполняет доступные биты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Number of Stages</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Количество ступеней</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Library includes items currently in the toolbar.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Библиотека включает в себя элементы, находящиеся сейчас на панели инструментов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Index: index of input's lowest-order %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T200603Z" changeid="lilovip">
+        <seg>Номер: номер младшего бита %s во входном значении</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>High Duration</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Продолжительность единицы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change values within circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T082327Z" changeid="lilovip">
+        <seg>Изменять значения в схеме</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data Interface</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Интерфейс данных</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim: Hex Editor</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: шестнадцатеричный редактор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Label Font</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Шрифт метки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>PNG Files (*.png)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файлы PNG (*.png)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Hex Editor</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Шестнадцатеричный редактор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Mouse Mapping</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить привязку мыши</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Lose Changes</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Потерять изменения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Confirm Quit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Подтвердить выход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error encountered opening %s: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Произошла ошибка открытия %s: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load: when 1, loads from data input (if Count = 0) or decrements</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузка: когда 1, загружает с входа данных (если Счёт = 0) или уменьшает</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Opening template...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Открытие шаблона...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bold</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Полужирный</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot Remove Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно удалить цепь</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit Text</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224508Z" changeid="lilovip">
+        <seg>Редактировать текст</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>high</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101002T154339Z" changeid="lilovip">
+        <seg>high</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Click Using Combination</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100809T153131Z" changeid="lilovip">
+        <seg>Щёлкните здесь используя комбинацию,</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Discard</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Не сохранять</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>???</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>???</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Save</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сохранить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Append &quot;%s&quot;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140239Z" changeid="lilovip">
+        <seg>Добавить &quot;%s&quot;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The required library file `%s' is missing.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Необходимый файл библиотеки `%s' отсутствует.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Name duplicates existing variable.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Имя дублирует существующую переменную.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Analysis cannot handle multibit inputs.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Анализ не может манипулировать многобитными входами.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%sGB RAM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%sГБ ОЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change Label</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140704Z" changeid="lilovip">
+        <seg>Изменить метку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Label Color</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Цвет метки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Are you sure you wish to zero out the memory?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вы уверены, что хотите обнулить память?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Extension Type</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T012037Z" changeid="lilovip">
+        <seg>Тип расширения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>TTY</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Терминал</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Use Defaults</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Использовать умолчания</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Tutorial</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100814T215743Z" changeid="lilovip">
+        <seg>Пособие начинающего</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Go In To State</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Состояние уровнем ниже</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Hidden</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Скрыта</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot substitute the same file multiple times.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно заменить тот же файл несколько раз.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shift: shift is disabled when 0</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сдвиг: сдвиг выключен, если 0</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load: when 1 (with shift = 0), all stages load from inputs</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузка: когда 1 (при Сдвиг = 0), все ступени загружаются со входов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move Circuit Up</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Переместить схему вверх</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bottom</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Снизу</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear: 1 clears screen</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистка: 1 очищает экран</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Revert To Default Appearance</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T171737Z" changeid="lilovip">
+        <seg>Вернуть внешний вид по умолчанию</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enter</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ввести</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Demultiplexer</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Демультиплексор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Testing</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T183813Z" changeid="lilovip">
+        <seg>Тестирование</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The file could not be created.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл не может быть создан.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(Reached maximum size of %s.)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(Достигнут максимальный размер %s.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Can't Undo</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно отменить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Close</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Закрыть</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select: identifies which input becomes output</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбирающий вход: определяет, какой вход становится выходом</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data: value to load into counter</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Данные: значение для загрузки в счётчик</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>NOT Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Элемент НЕ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The %s class was not found in the JAR file.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Класс % не был найден в JAR файле.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>library name missing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>отсутствует имя библиотеки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Separator</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить разделитель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circuit oscillates.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Схема возбуждается.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The file %s, already open, has unsaved changes.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Уже открытый файл %s имеет несохранённые изменения.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Could not load template: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно загрузить шаблон: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Active On High?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Активен при единице?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Length</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Длина</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Corner Radius</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Радиус угла</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unload Library</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выгрузить библиотеку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Vertical Alignment</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вертикальное выравнивание</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Supported locales:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Поддерживаемые языки:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circuit Name</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Название схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Reload Library</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Перезагрузить библиотеку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Paste region must be same size as clipboard.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Область вставки должна быть того же размера, что буфер обмена.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Alt</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Alt</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>New Window</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Новое окно</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Zero</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T012258Z" changeid="lilovip">
+        <seg>Ноль</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%sB RAM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%sБ ОЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pull Direction</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T013209Z" changeid="lilovip">
+        <seg>Направление согласования</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Lowest-order %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T192153Z" changeid="lilovip">
+        <seg>Младший %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock: memory value updates on rise from 0 to 1</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тактовый вход: значение в памяти обновляется при изменении с 0 на 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear: 1 pins contents to 0 asynchronously</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистка: 1 асинхронно фиксирует всё содержимое на 0</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show Ghosts While Adding</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Показывать призраки во время добавления</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data: value loaded or stored at address</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Данные: значение, считываемое или записываемое по адресу</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>NAND Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Элемент И-НЕ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Creating window...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Создание окна...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>File Not Available</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл не доступен</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-empty            use empty template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-empty            использовать пустой шаблон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Append</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Дополнить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: address of highest-indexed 1 input</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход: адрес старшего по номеру входа, на котором 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>shift reg</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>shift reg</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Toolbar Location</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Расположение панели инструментов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No output selected.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход не выбран.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View log of recent values.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100806T191143Z" changeid="lilovip">
+        <seg>Просмотреть журнал последних значений.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot Remove Library</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно удалить библиотеку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Image file has some invalid contents.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл образа имеет неверное содержимое.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Roll Left</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Циклический левый</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>OR Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Элемент ИЛИ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>2's Complement</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191529Z" changeid="lilovip">
+        <seg>Дополнительный код</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select Value</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбор значения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140032Z" changeid="lilovip">
+        <seg>Изменить схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bottom-</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T064903Z" changeid="lilovip">
+        <seg>По низу</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load Image...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузить образ...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Minimize</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Минимизировать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Scale Factor:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Масштабный коэффициент:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Disable</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выключить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Fan Out</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Веерный выход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circuits cannot have identical names.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Схемы не могут иметь одинаковые имена.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%sx%s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%sx%s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Buffer</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Буфер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Lower Selection</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224527Z" changeid="lilovip">
+        <seg>Опустить выделение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data: value loaded from address</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Данные: значение, считываемое по адресу</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Copy</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Копировать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Paste</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вставить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>upper</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>upper</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Creating template...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Создание шаблона...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logging...</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100806T193757Z" changeid="lilovip">
+        <seg>Запись в журнал...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Preferences</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Настройки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Center-</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T064912Z" changeid="lilovip">
+        <seg>По центру</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Template file %s does not exist.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл шаблона %s не существует.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim: Preferences</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: настройки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Printer View:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вид для печати:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error duplicating file: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка дублирования файла: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Read enable: 0 disables clock</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Разрешение записи: 0 отключает тактовый вход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Available: 1 when buffer contains characters</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Наличие: 1, когда буфер содержит символы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot Print</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно напечатать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Multiplier</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Множитель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock: trigger consumes the buffer's front character</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тактовый вход: срабатывание считывает первый символ буфера</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Combinational Analysis</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Комбинационный анализ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>When one input is on</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Когда на одном входе 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Operator %s missing right operand.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Для оператора %s отсутствует правый операнд.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select Bits</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбирающие биты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit circuit components</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Редактировать компоненты схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pen Color</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T212808Z" changeid="lilovip">
+        <seg>Цвет линии</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Vertex</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224550Z" changeid="lilovip">
+        <seg>Добавить вершину</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shaped</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100902T161218Z" changeid="lilovip">
+        <seg>Фигурные</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>location of component `%s' is invalid (%s)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>расположение компонента `%s' не верно (%s)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rising Edge</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Передний фронт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-version          display version number and exit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-version          отобразить номер версии и выйти</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pen Width</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T212804Z" changeid="lilovip">
+        <seg>Толщина линии</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>After Adding Component:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>После добавления компонента:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: result of shifting the input</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T192000Z" changeid="lilovip">
+        <seg>Выход: результат сдвига входного значения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>ROM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>ПЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>About...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>О программе...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>West</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Запад</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-load file        load image file into RAM (works with -tty only)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T010424Z" changeid="lilovip">
+        <seg>-load файл        загрузить файл образа в ОЗУ (работает только с -tty)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Header:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Заголовок:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>You must select a destination project.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вы должны выбрать целевой проект.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unrecognized library descriptor %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Неизвестный дескриптор библиотеки %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Duplicate Selection</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Дублировать выделение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rectangular</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Прямоугольные</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shorten Wire</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Укоротить провод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input: the number to be negated</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191322Z" changeid="lilovip">
+        <seg>Вход: число для инвертирования</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Leave Unchanged</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140300Z" changeid="lilovip">
+        <seg>Не менять</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output Bits</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выходные биты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Tick</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>такт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear: When 1, pin state to 0 asynchronously</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистка: когда 1, состояние асинхронно фиксируется на 0</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Direct 3D</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Direct 3D</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Legacy</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Устаревшие</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Creating project...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Создание проекта...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Left-Handed</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T193130Z" changeid="lilovip">
+        <seg>По левую руку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim: %s Statistics</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T123248Z" changeid="lilovip">
+        <seg>Logisim: статистика %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Value must be at least %s.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140746Z" changeid="lilovip">
+        <seg>Значение должно быть как минимум %s.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change Tool Attribute</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Изменить атрибут инструмента</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Could not display help data.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно отобразить данные справки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-tty requires at least one of the following: halt, speed, stats, table, tty</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T204757Z" changeid="lilovip">
+        <seg>-tty требует по крайней мере один из следующих аргументов: halt, speed, stats, table, tty</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Joystick</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Джойстик</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-locale str       use locale given in str</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-locale str       использовать язык, указанный в str</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Expression</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выражение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Negator</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Отрицатель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>wire end misformatted</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>конец провода имеет неверный формат</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Menu Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Инструмент Меню</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Text Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Инструмент Текст</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>mouse mapping modifier missing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>отсутствует модификатор привязки мыши</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Build Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Построить схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load Libraries</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузить библиотеки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Conflicting outputs detected; computing truth table instead.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Обнаружены конфликтующие выходы; составляется таблица истинности.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>All built-in libraries are already loaded.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Все встроенные библиотеки уже загружены.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Set As Main Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сделать главной схемой</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Horizontal Alignment</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Горизонтальное выравнивание</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Duplicate</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Дублировать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Divisor: the number by which to divide</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191146Z" changeid="lilovip">
+        <seg>Делитель: число, на которое делить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>x,y,z,u,v,w,s,t</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>x,y,z,u,v,w,s,t</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>en</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>en</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rectangle</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Прямоугольник</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input: bits to be shifted</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191932Z" changeid="lilovip">
+        <seg>Вход: биты для сдвига</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Polyline</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ломаная</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Line</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Линия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim Library...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Библиотека Logisim...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No matching opening parenthesis.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нет соответствующей открывающей скобки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>library `%s' not found</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>библиотека `%s' не найдена</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Conflicting component already there.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Здесь уже конфликтующий компонент.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Tunnel</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T013300Z" changeid="lilovip">
+        <seg>Тоннель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Horizontal</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Горизонтальный</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100814T211216Z" changeid="lilovip">
+        <seg>Инструмент Правка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Gate Shape:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Форма элементов:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot create circular reference.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно создать циклическую ссылку.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Noise To Component Delays</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить шум к задержкам компонентов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Binary</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Двоичное</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load Built-in Library</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100730T131502Z" changeid="lilovip">
+        <seg>Загрузить библиотеку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change Component Attributes</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T013337Z" changeid="lilovip">
+        <seg>Изменить атрибуты компонента</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pull Resistor</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T012752Z" changeid="lilovip">
+        <seg>Согласующий резистор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>ct</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>ct</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>NOR Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Элемент ИЛИ-НЕ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circuit '%s' uses components from the library.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Схема '%s' использует компоненты из библиотеки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Paint Type</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100912T042843Z" changeid="lilovip">
+        <seg>Тип отрисовки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Gate Size</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Размер элемента</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Arithmetic Right</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Арифметический правый</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bit Extender</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T011524Z" changeid="lilovip">
+        <seg>Расширитель битов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Controlled Buffer</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Управляемый буфер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-sub file1 file2  load file replacing library file1 with file2</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-sub файл1 файл2  загрузить файл, заменив библиотеку файл1 на файл2</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Less: 1 if A is less than B</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191736Z" changeid="lilovip">
+        <seg>Меньше: 1, если A меньше, чем B</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Ticks Enabled</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Такты включены</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Keep At Component Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Остаться на Инструменте Компонент</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>wire start not defined</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>начало провода не определено</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select Export File</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбор файла для экспорта</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Include Header Line</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить строку заголовка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear: When 1, pin value to 0 asynchronously</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистка: когда 1, значение асинхронно фиксируется на 0</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Analysis cannot handle multibit outputs.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Анализ не может манипулировать многобитными выходами.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Help data not found.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Данные справки не найдены.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Please select the file from the following dialog.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Пожалуйста, выберите файл из следующего диалога.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select Rows/Columns</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбор Строки/Столбцы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Radix</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Основание</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>OpenGL</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>OpenGL</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No non-empty circuits are available for export.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нет непустых схем, доступных для экспорта.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Signed Decimal</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Знаковое десятичное</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Switch To Edit Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100814T211148Z" changeid="lilovip">
+        <seg>Переключиться на Инструмент Правка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Experimental</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Экспериментальные</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>[1]</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>[1]</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Continue counting</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Продолжать счёт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>sel</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>sel</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Highest-order %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T192147Z" changeid="lilovip">
+        <seg>Старший %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Name cannot contain '%s'.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Имя не может содержать '%s'.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No RAM was found for the &quot;-load&quot; option.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T010639Z" changeid="lilovip">
+        <seg>Не было найдено ОЗУ для паремтра &quot;-load&quot;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rows</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Строки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error loading circuit file: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка при загрузке файла схемы: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Objects</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Объекты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>TOTAL (without project's subcircuits)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100902T143628Z" changeid="lilovip">
+        <seg>ВСЕГО (без подсхем проекта)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тактовый генератор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &quot;-sub&quot; option must be followed by two parameters.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T204709Z" changeid="lilovip">
+        <seg>Параметр &quot;-sub&quot; должен сопровождаться двумя аргументами.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Preferences...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Настройки...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Center</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Центр</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim: %s Options</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: параметры %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Save Image...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сохранить образ...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No matching closing parenthesis.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нет соответствующей закрывающей скобки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select Template</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбрать шаблон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%sB ROM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%sБ ПЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unsigned Decimal</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Беззнаковое десятичное</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Remove Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select Libraries To Unload</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100730T131356Z" changeid="lilovip">
+        <seg>Выгрузить библиотеки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Every circuit requires a name.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Каждая схема требует имя.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>library descriptor missing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>отсутствует дескриптор библиотеки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot Save File</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно сохранить файл</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Hexadecimal</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Шестнадцатеричное</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>XNOR Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Элемент Исключающее ИЛИ-НЕ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Could not close file: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно закрыть файл: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Set As Expression</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Установить как выражение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Table</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Таблица</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Ignore undefined inputs</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100809T154335Z" changeid="lilovip">
+        <seg>Игнорировать неопределённые входы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rotate To Fit:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Повернуть для подгонки:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Matrix Rows</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Строки матрицы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Library must contain at least one circuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Библиотека должна содержать хотя бы одну схему.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>File:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show Attributes</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Показать атрибуты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%sMB RAM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%sМБ ОЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Open Error</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка при открытии</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>JAR Library...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Библиотека JAR...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Insert Separator</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вставить разделитель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This circuit cannot be modified.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Эта схема не может быть изменена.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Save Error</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка сохранения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load Library</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузить библиотеку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error while reading image file</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T010649Z" changeid="lilovip">
+        <seg>Ошибка при чтении файла образа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Label Location</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Направление метки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Use NAND Gates Only</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Использовать только элементы И-НЕ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Get Circuit Statistics</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T124553Z" changeid="lilovip">
+        <seg>Получить статистику схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Button3</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Кнопка3</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Button2</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Кнопка2</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Handle</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить указатель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Internal error while creating XML</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T123228Z" changeid="lilovip">
+        <seg>Внутренняя ошибка при создании XML</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>On Color</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Цвет включенных</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Subtractor</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вычитатель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load next value</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузить следующее значение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data: value stored on clock trigger</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Данные: значение, загружаемое при срабатывании тактового входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Stay at value</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Оставаться на значении</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error reading file.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка при чтении файла.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Minuend: the number from which to subtract</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190313Z" changeid="lilovip">
+        <seg>Уменьшаемое: число, из которого вычитать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>component name missing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>отсутствует имя компонента</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Delete</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Subcircuits will have shifted during conversion from Logisim 1.0.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Подсхемы будут смещены во время преобразования из Logisim 1.0.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Lower</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224421Z" changeid="lilovip">
+        <seg>Опустить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Square</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Квадратная</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error during printing: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка при печати: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>You must specify a circuit name.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вы должны указать название схемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Top-</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T064847Z" changeid="lilovip">
+        <seg>По верху</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View component menus</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T082501Z" changeid="lilovip">
+        <seg>Просматривать меню компонента</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Adder</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сумматор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Toolbar Button</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить кнопку панели инструментов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The built-in library %s is not available in this version.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Встроенная библиотека %s не доступна в этой версии.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data Bit Width</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Разрядность данных</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot Load Built-In Library</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно загрузить встроенную библиотеку</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Replace Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Заменить схему</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбрать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>ld</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>ld</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Anchor</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100924T154503Z" changeid="lilovip">
+        <seg>Якорь</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Configure the engine for simulating circuit behavior.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Настроить поведение движка для моделирования схемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Light Persistence</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100819T054033Z" changeid="lilovip">
+        <seg>Продолжительность свечения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Button1</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Кнопка1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Revert Appearance</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100912T043212Z" changeid="lilovip">
+        <seg>Вернуть вшнешность</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Lower To Bottom</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100923T195852Z" changeid="lilovip">
+        <seg>Опустить вниз</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move Selection</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Двигать выделение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Random Generator</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Генератор случайных чисел</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Yes</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Да</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select which component values are logged.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100806T191132Z" changeid="lilovip">
+        <seg>Выберите, значения каких компонентов записывать в журнал.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Selection is empty.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбор пуст.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Present: 1 if input contains a %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T200642Z" changeid="lilovip">
+        <seg>Присутствие: 1, если входное значение содержит %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim: Log %s of %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100806T190906Z" changeid="lilovip">
+        <seg>Logisim: журнал %s из %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Base-</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T064900Z" changeid="lilovip">
+        <seg>По базовой</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Remove</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: register's current value</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход: текущее значение регистра</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Keyboard</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Клавиатура</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Restart Logisim for changes to take effect.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Перезагрузите Logisim, чтобы изменения вступили в силу.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Схема</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>extend</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T012315Z" changeid="lilovip">
+        <seg>extend</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Revert</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вернуть</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Using &quot;-load&quot; requires a filename provided on command line.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T010548Z" changeid="lilovip">
+        <seg>Использование &quot;-load&quot; требует имя файла, переданное через командную строку.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>LED</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Светодиод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: current number in sequence</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход: текущее число в последовательности</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Octal</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Восьмеричное</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Изменить %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>When an odd number are on</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Когда на нечётном количестве 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Step Simulation</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Шаг моделирования</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error During Print</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка при печати</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>J-K Flip-Flop</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>J-K триггер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Fill Only</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T172023Z" changeid="lilovip">
+        <seg>Только заливка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Image file has invalid format header.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл образа имеет неверный формат заголовка.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable Output: 1 if enabled and no inputs are 1</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Разрешающий выход: 1, если включен и ни на одном входе нет 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Selection</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit selection and add wires</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T082357Z" changeid="lilovip">
+        <seg>Редактировать выделение и добавлять провода</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Delete Handle</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить указатель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &quot;-load&quot; option works only in conjunction with &quot;-tty&quot;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T010605Z" changeid="lilovip">
+        <seg>&quot;-load&quot; работает только в сочетании с &quot;-tty&quot;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Using &quot;-tty&quot; requires a filename provided on command line.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Использование &quot;-tty&quot; требует имя файла в командной строке.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>East</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Восток</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Paste Clipboard</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вставить буфер обмена</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Paste Error</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка вставки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shift Type</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тип сдвига</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>wire end not defined</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>конец провода не определён</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>component `%s' missing from library `%s'</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>компонент `%s' отсутствует в библиотеке `%s'</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Wire</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Провод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Project</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Проект</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>attribute name missing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>отсутствует название атрибута</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>GIF Files (*.gif)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файлы GIF (*.gif)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Group Select: 1 if enabled and any input is 1</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбор группы: 1, если включен и хотя бы на одном входе 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Wire</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить провод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Descriptor not known for %s.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Дескриптор не известен для %s.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Reorder Circuits</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Упорядочить схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Image file has too much information.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл образа содержит слишком много информации.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Not at start of group</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Не в начале группы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circuit Name:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Название схемы:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Down Middle</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Посередине вниз</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select: identifies which group from data is selected</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбирающий вход: определяет, какая группа из данных выбрана</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bit Width</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Разрядность</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Roll Right</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Циклический правый</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change Selection Facing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Изменить направление выделения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enter JAR Class</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ввод JAR класса</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Conflicting output values in circuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Конфликтующие выходные значения в схеме.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Initializing interface...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Инициализация интерфейса...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Confirm Replace</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Подтвердить замену</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Splitter</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Разветвитель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Count: when 1, counter increments (or decrements if Load = 1)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Счёт: когда 1, счётчик увеличивается (или уменьшается, если Загрузка = 1)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input: value to be stored at address</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T183903Z" changeid="lilovip">
+        <seg>Вход: значение, которое будет храниться по адресу</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Loading template...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузка шаблона...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Arithmetic</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Арифметика</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>File Error</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка файла</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавить инструмент</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit Circuit Layout</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100912T043227Z" changeid="lilovip">
+        <seg>Редактировать чертёж схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The file %s contains within it a reference to itself.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл %s содержит ссылку на себя.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit Contents...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Редактировать содержимое...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show Component Tips</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Показывать подсказки для компонентов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Not at end of group</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Не в конце группы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Dividend Upper: the upper half of the number to divide</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191124Z" changeid="lilovip">
+        <seg>Верх делимого: старшая половина числа для деления</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Narrow</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Узкий</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>location of component `%s' is unspecified</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>расположение компонента `%s' не задано</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View minimized expressions corresponding to truth table.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Просмотреть минимизированные выражения, соответствующие таблице истинности.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Address Bit Width</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Разрядность адреса</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim 1.0 J-K Flip-Flop</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim 1.0 J-K триггер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Appearance element %s not found</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T171708Z" changeid="lilovip">
+        <seg>Элемент внешнего вида %s не найден</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Label</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Метка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>JPEG Files (*.jpeg, *.jpg)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файлы JPEG (*.jpeg, *.jpg)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Computing truth table instead of expression due to %s.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вычисляется таблица истинности для %s вместо выражения.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Remove Vertex</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100921T224558Z" changeid="lilovip">
+        <seg>Удалить вершину</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit localization preferences</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Редактировать настройки локализации</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Too many colors.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Слишком много цветов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unique</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T204455Z" changeid="lilovip">
+        <seg>Уникальных</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Oscillation apparent</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Обнаружено возбуждение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error writing file.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка записи в файл.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change Attribute</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Изменить атрибут</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вход %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit viewed circuit's subcircuit appearance</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T171717Z" changeid="lilovip">
+        <seg>Редактировать внешний вид просматриваемой схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Button</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Кнопка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Memory</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Память</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data: ASCII value of next character to write</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Данные: ASCII значение следующего символа для записи</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(none)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(нет)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Parallel Load</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Параллельная загрузка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>D Flip-Flop</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>D триггер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%s Ticks</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%s тактов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%s: Options</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%s: параметры</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Hex Digit Display</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Шестнадцатеричный дисплей</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>All open libraries are in use.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Все открытые библиотеки используются.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot modify circuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно изменить схему.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Name must begin with a letter.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Имя должно начинаться с буквы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Counter</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T081723Z" changeid="lilovip">
+        <seg>Счётчик</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Distance: how far to shift the input</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191914Z" changeid="lilovip">
+        <seg>Дистанция: на сколько сдвигать входное значение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No file known corresponding to %s.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Не известен файл, соответствующий %s.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Would you like to replace &quot;%s&quot; with Logisim's preferred &quot;.circ&quot; extension?</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100824T140320Z" changeid="lilovip">
+        <seg>Хотите сменить &quot;%s&quot; на предпочитаемое для Logisim расширение &quot;.circ&quot;?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>input</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T012316Z" changeid="lilovip">
+        <seg>input</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cannot Export</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно экспортировать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>str</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>str</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Zoom Factor</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Коэффициент масштабирования</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move Toolbar Button</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Переместить кнопку панели инструментов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Переместить %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unsigned</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Беззнаковое</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input: one of the numbers to add</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T183951Z" changeid="lilovip">
+        <seg>Вход: одно из чисел для сложения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Probe</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Датчик</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Argument for -accents option must be &quot;yes&quot; or &quot;no&quot;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T204833Z" changeid="lilovip">
+        <seg>Аргумент для параметра -accents должен быть &quot;yes&quot; или &quot;no&quot;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%s subcircuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Подсхема %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-accents yes|no   use accented characters or ASCII equivalents</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-accents yes|no   использовать специфичные символы или ASCII эквиваленты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Trigger</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Срабатывание</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cancel</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Отмена</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%s: Log</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100806T190915Z" changeid="lilovip">
+        <seg>%s: журнал</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Simulation Enabled</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Моделирование включено</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(click to edit)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(нажмите чтобы редактировать)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Falling Edge</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Задний фронт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>7-Segment Display</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>7-сегментный дисплей</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load JAR File</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузить JAR файл</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unchanged</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Не менять</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Complement of current flip-flop state</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Дополнение текущего состояния триггера</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Graphics Acceleration:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ускорение графики:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Remove Toolbar Button</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить кнопку панели инструментов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load Error</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ошибка загрузки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pin Attached To Supercircuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100829T123734Z" changeid="lilovip">
+        <seg>Контакт подключен к надсхеме.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Chip select: 0 disables component</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выбор кристалла: 0 выключает компонент</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Export Image...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Экспортировать изображение...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear: When 1, resets to initial seed asynchronously</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистка: когда 1, асинхронно сбрасывает на начальное семя</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Borrow Out: 1 if the difference yields a negative value</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190613Z" changeid="lilovip">
+        <seg>Выход займа: 1, если разность даёт отрицательное значение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show Project Toolbar</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Показать панель инструментов проекта</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>%sMB ROM</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>%sМБ ПЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input/Output</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ввод/вывод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Input: value to be shifted into first stage</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вход: значение для сдвига в первую ступень</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Data</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Данные</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Open...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Открыть...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show Attribute Halo</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Показывать ореол</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Top</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сверху</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Analysis cannot handle more than %s outputs.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Анализ не может манипулировать более чем %s выходами.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Priority Encoder</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100823T142404Z" changeid="lilovip">
+        <seg>Шифратор приоритетов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>What should happen to your unsaved changes to %s?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Что должно произойти с вашими несохранёнными изменениями в %s?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>a,b,c,d,e,f,g,h</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>a,b,c,d,e,f,g,h</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>No Tool Selected</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Инструмент не выбран</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear: 1 empties buffer</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Очистка: 1 очищает буфер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Move Circuit Down</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Переместить схему вниз</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Closing template...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Закрытие шаблона...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Left</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Слева</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Error while loading appearance element %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100922T171657Z" changeid="lilovip">
+        <seg>Ошибка при загрузке элемента внешнего вида %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Change Attributes</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100912T043027Z" changeid="lilovip">
+        <seg>Изменить атрибуты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Simulation Randomness</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Случайность моделирования</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unload Libraries</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выгрузить библиотеки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Plexers</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Плексоры</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Equal: 1 if A is equal to B</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T191749Z" changeid="lilovip">
+        <seg>Равно: 1, если A равно B</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit tools appearing in toolbar.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Редактировать инструменты панели инструментов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>doc/en/doc.hs</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100815T191350Z" changeid="lilovip">
+        <seg>doc/ru/doc.hs</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Comparator</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Компаратор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>TOTAL (with subcircuits)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100902T143640Z" changeid="lilovip">
+        <seg>ВСЕГО (с подсхемами)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Use Two-Input Gates Only</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Использовать только двухвходовые элементы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shifter</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сдвигатель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock: state updates on trigger</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тактовый вход: состояние обновляется при срабатывании</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Raise To Top</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100923T195847Z" changeid="lilovip">
+        <seg>Поднять наверх</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View and manipulate the truth table.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Просмотреть и изменять таблицу истинности.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>AND Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Элемент И</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>One</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T012252Z" changeid="lilovip">
+        <seg>Единица</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shift</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Shift</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Simulation</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Моделирование</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: current value of counter</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100816T081730Z" changeid="lilovip">
+        <seg>Выход: текущее значение счётчика</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Remove Separator</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить разделитель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(The file is used by the %s library.)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(Файл используется библиотекой %s.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>circuit name is missing</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>отсутствует название схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Value Invalid</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Значение неверно</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Only one template allowed.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Допускается только один шаблон.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Custom Template:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Специальный шаблон:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Create a new circuit state?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Создать новое состояние схемы?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Built-In</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Встроенный</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Could not open template: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Невозможно открыть шаблон: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Exit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Printer View</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вид для печати</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Border Only</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100912T042947Z" changeid="lilovip">
+        <seg>Только граница</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>XOR Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Элемент Исключающее ИЛИ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Cut Selection</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вырезать выделение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Remove %s</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Удалить %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Constant</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Константа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Gate Output When Undefined</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выход элемента при неопределённости</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Russian Translation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T183808Z" changeid="lilovip">
+        <seg>Русский перевод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: the number of 1 bits in the input</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T192102Z" changeid="lilovip">
+        <seg>Выход: количество битов 1 на входе</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Component</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T124225Z" changeid="lilovip">
+        <seg>Компонент</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Carry Out: the upper bits of the product</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190835Z" changeid="lilovip">
+        <seg>Выход переноса: старшие биты произведения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Too many inputs for table.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Слишком много входов для таблицы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Recursive</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T124213Z" changeid="lilovip">
+        <seg>Рекурсивно</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>mouse mapping modifier `%s' invalid</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>модификатор привязки мыши `%s' неверен</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Ctrl</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ctrl</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rounded Rectangle</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Скруглённый прямоугольник</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Export</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Экспорт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &quot;-load&quot; option can be specified only once.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100818T010624Z" changeid="lilovip">
+        <seg>Параметр &quot;-load&quot; может быть указан только один раз.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Store: if 1, store input to memory</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Запись: если 1, значение со входа записывается в память</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Simple</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100902T152542Z" changeid="lilovip">
+        <seg>Непосредственно</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Vertical</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вертикальный</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shift Register</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сдвиговый регистр</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: the sum of the inputs (plus carry in)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T184108Z" changeid="lilovip">
+        <seg>Выход: сумма значений на входах (плюс значение переноса)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>S-R Flip-Flop</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>S-R триггер</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Contents</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Содержимое</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The JAR file could not be opened.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>JAR файл не может быть открыт.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim Project (*.circ)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Проект Logisim (*.circ)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Drop Components</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100829T123714Z" changeid="lilovip">
+        <seg>Сбросить компоненты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Number Of Inputs</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Количество входов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Original Version</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T183834Z" changeid="lilovip">
+        <seg>Оригинальная версия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Borrow In: if 1, 1 is deducted from the output</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T190541Z" changeid="lilovip">
+        <seg>Вход займа: если 1, то 1 вычитается из выходного значения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>South</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Юг</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Lead Developer</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T183805Z" changeid="lilovip">
+        <seg>Ведущий разработчик</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>File output disabled.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вывод в файл отключен.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circuits:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Схемы:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit text in circuit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Редактировать текст в схеме</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Load RAM Image</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузка образа ОЗУ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>File output enabled.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вывод в файл включен.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>find</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T192111Z" changeid="lilovip">
+        <seg>find</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Expression Not Determined</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выражение не определено</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Edit</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Правка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Loading components...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузка компонентов...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Revert To Defaults</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вернуть по умолчанию</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>File</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bits %s from combined end</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Биты %s с объединённого конца</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Argument for -gates option must be &quot;shaped&quot; or &quot;rectangular&quot;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100901T204829Z" changeid="lilovip">
+        <seg>Аргумент для параметра -gates должен быть &quot;shaped&quot; или &quot;rectangular&quot;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Text</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Текст</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: the number of 1 bits in the inputs</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T192042Z" changeid="lilovip">
+        <seg>Выход: количество битов 1 на входах</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(empty table)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(пустая таблица)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-gates shaped|rectangular   use specified gate style</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>-gates shaped|rectangular   использовать указанный стиль элементов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Circular</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Круглая</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bit Finder</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100930T192110Z" changeid="lilovip">
+        <seg>Искатель битов</seg>
+      </tuv>
+    </tu>
+  </body>
+</tmx>

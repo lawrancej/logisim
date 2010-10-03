@@ -1,0 +1,2872 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tmx SYSTEM "tmx11.dtd">
+<tmx version="1.1">
+  <header
+    creationtool="OmegaT"
+    creationtoolversion="2.1.9"
+    segtype="sentence"
+    o-tmf="OmegaT TMX"
+    adminlang="EN-US"
+    srclang="EN-US"
+    datatype="plaintext"
+  >
+  </header>
+  <body>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Is that OK?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Это не проблема?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Emporia State U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Emporia State U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Bug reports, feature requests, and questions (in English please!) are welcome at &lt;a0&gt;Logisim's page at SourceForge.net&lt;/a0&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Отчеты об ошибках, пожелания и вопросы (на английском языке, пожалуйста!) приветствуются на &lt;a0&gt;странице Logisim на SourceForge.net&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Inst of Chemical Technology, Prague</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Inst of Chemical Technology, Prague</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Canisius C</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Canisius C</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>[es]</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>[es]</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Universidad Pontificia Bolivariana, Medellin</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Universidad Pontificia Bolivariana, Medellin</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U Akron</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U Akron</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;LogicWorks&lt;/a0&gt; is a Windows-specific commercial product also, but it seems more likely to receive continuing support.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;LogicWorks&lt;/a0&gt; - это тоже специфичный для Windows коммерческий продукт, но кажется, получает постоянную поддержку.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>France</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Франция</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>View and add comments</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Просмотр и добавление комментариев</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>The JAR library described in the &lt;e0&gt;Logisim User's Guide&lt;/e0&gt; for version 2.3.0 and later.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>JAR библиотека, описанная в &lt;e0&gt;руководстве пользователя Logisim&lt;/e0&gt; для версии 2.3.0 и выше.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Thank you!</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Спасибо!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Harvey Mudd Coll</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Harvey Mudd Coll</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>What are your plans for future revisions?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Каковы ваши планы на будущие изменения?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>VA</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Виргиния</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Comments are welcome.&lt;/a0&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Комментарии приветствуются.&lt;/a0&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>DePauw U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>DePauw U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Lugano</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Lugano</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;EasySim&lt;/a0&gt;, commercial Windows</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;EasySim&lt;/a0&gt;, коммерческий для Windows</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>This is a highly difficult feature to include in general due to the fact that Logisim's wires are always axis-aligned.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Это очень трудная для добавления возможность в основном из-за того, что провода Logisim всегда выровнены по направляющим.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>It has some utility if you're spending one or two weeks introducing students to the subject.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Он довольно удобен, если вы тратите одну или две недели на введение студентов в тему.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>UT</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Юта</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Rennes</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Rennes</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>You might as well cut out the middleman and just donate the money directly to a real charity.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вы можете убрать посредника и просто отдать деньги непосредственно на настоящую благотворительность.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a6&gt;Can I place a copy of the JAR file on a Web page for my students to download?&lt;/a6&gt; &lt;br7&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a6&gt;Могу ли я разместить копию JAR файла на веб-странице для загрузки моими студентами?&lt;/a6&gt; &lt;br7&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Here's a list of links, and you can judge for yourself.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вот список ссылок, и вы можете судить сами.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;e0&gt;With the MacOS X version:&lt;/e0&gt; Once the downloaded &lt;t1&gt;.tar.gz&lt;/t1&gt; version is uncompressed (this will likely happen automatically), just double-click the Logisim icon to start.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;e0&gt;Для MacOS X версии:&lt;/e0&gt; когда загруженный файл &lt;t1&gt;.tar.gz&lt;/t1&gt; распакован (это наверняка произойдёт автоматически), просто дважды щёлкните на значке Logisim, чтобы запустить его.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>But if it's a major textbook, I encourage you to contact me to discuss how Logisim can be altered to complement the textbook better.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Но если это основной учебник, то я призываю вас связаться со мной, чтобы обсудить, как может быть изменён Logisim, чтобы лучше дополнять учебник.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Of course; that usage would fall within the GPL.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Конечно, всё в порядке; такое использование будет подпадать под GPL.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If you find Logisim useful, please let me know!</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если вы находите Logisim полезным, пожалуйста, дайте мне знать!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Pacific Union Coll</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Pacific Union Coll</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim: Future plans</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: планы на будущее</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Canada</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Канада</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;e0&gt;Especially&lt;/e0&gt; do this if you use Logisim in a class you teach!&lt;/e1&gt; E-mail me at the address given below.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;e0&gt;Тем более&lt;/e0&gt; сделайте это, если вы используете Logisim в курсе, который вы преподаёте!&lt;/e1&gt; Напишите мне по адресу электронной почты, указанному ниже.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Technical U — Sofia, Plovdiv branch</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Technical U — Sofia, Plovdiv branch</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Texas A&amp;M U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Texas A&amp;M U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>TX</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Техас</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;KLogic&lt;/a0&gt;, open source Linux</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;KLogic&lt;/a0&gt;, с открытым исходным кодом, для Linux</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Victoria U of Wellington</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Victoria U of Wellington</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>I Pedro Luis Villa</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>I Pedro Luis Villa</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>As of Beta 17, it is included in the distributed JAR file (as its &lt;c1&gt;src&lt;/c1&gt; subdirectory).</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Начиная с Beta 17, он входит в распространяемый JAR файл (в его подкаталоге &lt;c1&gt;src&lt;/c1&gt;).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Iceland</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Исландия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;e1&gt;18 Jul 2007&lt;/e1&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;e1&gt;18 июля 2007&lt;/e1&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Can I get a copy of the source code?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Могу ли я получить копию исходного кода?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a4&gt;Can I get a copy of the source code?&lt;/a4&gt; &lt;br5&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a4&gt; Могу ли я получить копию исходного кода?&lt;/a4&gt; &lt;br5&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Sheffield</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Sheffield</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Grinnell C</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Grinnell C</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Iowa Logic Specification Language&lt;/a0&gt;, open source, uses custom language</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Iowa Logic Specification Language&lt;/a0&gt;, с открытым исходным кодом, использует собственный язык</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>GA</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Джорджия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim should run on any platform supporting Java, version 1.4 or later.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100827T120129Z" changeid="lilovip">
+        <seg>Logisim должен работать на любой платформе, поддерживающей Java версии 1.5 или выше.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Lebanon</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ливан</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Grenoble</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Grenoble</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Commercial graphical tools</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Коммерческие графические инструменты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Guía para ser un usuario de Logisim</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100827T120408Z" changeid="lilovip">
+        <seg>Guía para ser un usuario de Logisim</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>How do you pronounce Logisim?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Как вы произносите Logisim?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>My hope is that some day some other software developers out there will create something that in my view renders Logisim irrelevant.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Я надеюсь, что когда-нибудь где-то там разработчики другого программного обеспечения создадут что-то, что сделает Logisim бесполезным по моему мнению.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Comm C of Allegheny County, South</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Comm C of Allegheny County, South</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>[&lt;a0&gt;Instructions for downloading Logisim&lt;/a0&gt; (English)]</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>[&lt;a0&gt;Инструкции по загрузке Logisim&lt;/a0&gt;]</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If you have your own library of components that you think would be useful to others, I'll be happy to post a link here to a hosting Web site or to the library itself.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если у вас есть собственные библиотеки компонентов, которые могут быть полезны для других, я буду рад разместить здесь ссылку на содержащий её веб-сайт или на саму библиотеку.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>It requires tcl/tk to run; it can run on Windows if you have Cygwin installed.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Он требует tcl/tk для запуска; может работать на Windows, если у вас установлен Cygwin.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>To the extent that Logisim is sluggish, you may be inclined to blame it on the Java environment; but you'd be wrong.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>В том, что Logisim медленный, вы возможно обвините среду Java; но вы не правы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Putian U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Putian U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>For text labels, allow regions of text to be selected, and perhaps enhance the text editing facility in other ways.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Для текстовых меток возможно выделять участки текста, и может быть осуществлять некоторые другие способы редактирования текста.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Camosun C</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Camosun C</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Princeton U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Princeton U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Read history of previous releases</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>История предыдущих выпусков</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>The pop-up menu that appears for elements in the selection will include cut/copy/paste/delete menu items.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Всплывающее меню, которое отображается для элементов выделения будет включать в себя пункты меню вырезать/копировать/вставить/удалить.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim: Comments</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: комментарии</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Holy Cross Matriculation Higher Secondary School</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Holy Cross Matriculation Higher Secondary School</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>I've heard people pronounce it LOG-ism, and that's just wrong.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Я слышал, как люди произносят ЛОГ-изм, и это просто неправильно.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Cal Poly Pomona</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Cal Poly Pomona</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Antwerp</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Antwerp</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Circuit images can be exported as PNGs or JPGs (not just GIFs).</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Изображения схем можно экспортировать как PNG и JPG (не только GIF).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>LODJ-uh-sim.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>ЛОДЖ-и-сим.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;LOCAD&lt;/a0&gt;, commercial(?) Windows, in German</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;LOCAD&lt;/a0&gt;, коммерческий(?) для Windows, на немецком</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Middle East Technical U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Middle East Technical U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>WA</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вашингтон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>New York U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>New York U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Swarthmore C</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Swarthmore C</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>images/header.gif</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>images/header.gif</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>This is a complete rewrite, multiplying Logisim's size by a factor of &lt;s0&gt;five&lt;/s0&gt; over the previous 1.0x series.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Она полностью переписана, размер Logisim увеличился в &lt;s0&gt;пять&lt;/s0&gt; раз по сравнению с предыдущими 1.0x версиями.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Ok, first of all, this is a &lt;b0&gt;Q&lt;/e1&gt;&amp;A&lt;/b0&gt; page, and that's not a question or an answer.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Хорошо, во-первых, это страница &lt;b0&gt;вопросов&lt;/e1&gt; и ответов&lt;/b0&gt;, а это не вопрос и не ответ.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>I haven't noticed that this inefficiency causes speed problems, and so I've concentrated on adding features instead of worrying over what appears to be a non-problem.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Я не заметил, что неэффективность вызывает проблемы со скоростью, и поэтому я сосредоточился на добавлении возможностей, вместо переживаний о том, что не вызывает проблем.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>digital,logic,circuit,simulator,freeware,java</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>digital,logic,circuit,simulator,freeware,java</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Mount Holyoke C</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Mount Holyoke C</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>PUC Minas</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>PUC Minas</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>http://sourceforge.net/sflogo.php?group_id=143273&amp;type=2</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>http://sourceforge.net/sflogo.php?group_id=143273&amp;type=2</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U Massachusetts - Amherst</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U Massachusetts - Amherst</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>New Zealand</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Новая Зеландия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>A Russian translation (developed by Ilia Lilov) is included as part of the standard Logisim release.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100827T121700Z" changeid="lilovip">
+        <seg>Перевод на русский язык интерфейса программы и всей документации входит в состав стандартного выпуска Logisim (переводчик - Илья Лилов).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If you use MacOS or Windows, I would recommend using the release specific to your platform.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если вы используете Windows или MacOS, я бы рекомендовал использовать версию, специфичную для вашей платформы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Visit related links</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ссылки по теме</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Taiwan</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тайвань</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Can I pay you?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Могу я заплатить вам?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Free graphical tools</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Бесплатные графические инструменты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Please &lt;a1&gt;contact me&lt;/a1&gt; if you are interested in developing libraries.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Пожалуйста &lt;a1&gt;свяжитесь со мной&lt;/a1&gt; если вы заинтересованы в разработке библиотек.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Greece</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Греция</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Middle Tennessee State U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Middle Tennessee State U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>European University Cyprus</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>European University Cyprus</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>A set of Logisim circuits corresponding to a large number of 7400-series chips, produced by Technological Services Company.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Набор схем Logisim, соответствующих большому числу микросхем 7400 серии, произведённых компанией Technological Services Company.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>español</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>español</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim распространяется в надежде, что он будет полезным, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, даже без подразумеваемых гарантий КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If that doesn't work, or if you use Linux or Solaris, you can type ``&lt;t2&gt;java -jar logisim-&lt;e3&gt;XX&lt;/e3&gt;.jar&lt;/t2&gt;'' at the command line.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если это не работает, или если вы используете Linux или Solaris, то вы можете напечатать&quot;&lt;t2&gt;java -jar logisim-&lt;e3&gt;XX&lt;/e3&gt;.jar&lt;/t2&gt;&quot;В командной строке.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>King Fahd University of Petroleum and Minerals</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>King Fahd University of Petroleum and Minerals</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>After starting Logisim, select Preferences… from the File menu.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>После запуска Logisim, выберите пункт Preferences… из меню File.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>I don't expect this capacity to ever be in Logisim: It introduces too many interface complexities.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Я не думаю, что эта возможность будет когда-нибудь в Logisim: она вводит слишком много сложностей в интерфейс.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Cyprus</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Кипр</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>United States of America</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Соединенные Штаты Америки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a2&gt;What are your plans for future revisions?&lt;/a2&gt; &lt;br3&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a2&gt;Каковы ваши планы на будущие изменения?&lt;/a2&gt; &lt;br3&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>You can also contact Carl Burch, the primary developer, directly at &lt;t1&gt;cburch@cburch.com&lt;/t1&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вы также можете связаться с Карлом Берчем (Carl Burch), основным разработчиком, прямо через &lt;t1&gt;cburch@cburch.com&lt;/t1&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>One thing you'll notice is that &lt;e0&gt;I have almost no concrete plans for adding new components to Logisim's libraries.&lt;/e0&gt; I am hoping that collaborators will step forward to develop new components using the JAR library facility, which can then be built into future Logisim releases.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Одна вещь, которую вы заметите - это то, что &lt;e0&gt;у меня почти нет конкретных планов для добавления новых компонентов в библиотеки Logisim.&lt;/e0&gt; Я надеюсь, что соавторы пойдут дальше в разработке новых компонентов, пользуясь возможностью создания JAR библиотек, которые затем могут быть встроены в будущих версиях Logisim.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Please remember that you aren't paying for Logisim.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Пожалуйста, помните, что вы не платите за Logisim.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>The appearance here doesn't consitute a definite plan, but the following is the rough road map for future releases.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Появление возможности здесь не объявляет точный план; представленное ниже - примерный путеводитель для будущих выпусков.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>(I would admit that startup is a bit sluggish, though.)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(Правда, вынужден признать, что запуск немного медленный.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Comments</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Комментарии</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>AR</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Арканзас</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>The outdated JAR library described in the &lt;e0&gt;Logisim User's Guide&lt;/e0&gt; prior to version 2.3.0.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Устаревшая JAR библиотека, описанная в &lt;e0&gt;руководстве пользователя Logisim&lt;/e0&gt; до версии 2.3.0.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>User can add labels to registers, similar to how pins and clocks can have labels attached to them.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Пользователь может добавить метки регистрам, подобно тому, как контакты и генераторы тактовой частоты могут иметь привязанные к ним метки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Getting Logisim</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Получение Logisim</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Why is Logisim so darn slow?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Почему Logisim такой чертовски медленный?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim requires Java 1.4 or later.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100827T120132Z" changeid="lilovip">
+        <seg>Logisim требует Java 1.5 или более поздней версии.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>AZ</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Аризона</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>A Windows &lt;t0&gt;.exe&lt;/t0&gt; file</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл &lt;t0&gt;.exe&lt;/t0&gt; для Windows</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Schools using Logisim&lt;/a0&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Образовательные учреждения, использующие Logisim&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Waikato</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Waikato</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>To execute the program:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Чтобы запустить программу:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>I value all e-mails received about Logisim, as I want it to become as useful an educational tool as possible.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Я ценю все электронные письма, полученные о Logisim, поскольку я хочу, чтобы он стал настолько полезным образовательным инструментом, насколько это возможно.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Select the International tab in the Preferences window.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выберите вкладку International в окне Preferences.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>It does not seem to be under active development.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Он, похоже, не в стадии активной разработки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>An open-source graphical tool for designing and simulating logic circuits</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Графический инструмент с открытым исходным кодом проектирования и моделирования логических схем</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Zagreb Polytechnic</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Zagreb Polytechnic</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Croatia</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Хорватия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Sao Paulo</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Sao Paulo</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Planned features</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Планируемые возможности</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Sweden</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Швеция</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U Massachusetts - Lowell</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U Massachusetts - Lowell</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Serbia</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сербия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>DePaul U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>DePaul U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim release history</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>История выпусков Logisim</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Evergreen State U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Evergreen State U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Future plans</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Планы на будущее</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Logisim&lt;/a0&gt; is an open source Java tool.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Logisim&lt;/a0&gt; - Java инструмент с открытым исходным кодом.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Universidad Catolica Argentina — Rosario</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Universidad Catolica Argentina — Rosario</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Duisburg-Essen</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Duisburg-Essen</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Bug reports, feature requests, and questions are most welcome at &lt;a0&gt;Logisim's page at SourceForge.net&lt;/a0&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Отчеты об ошибках, пожелания и вопросы особенно приветствуются на &lt;a0&gt;странице Logisim на SourceForge.net&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Gray Counter example&lt;/a0&gt; (JAR)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Пример счётчика Грея&lt;/a0&gt; (JAR)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>TN</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Теннесси</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>CA</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Калифорния</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Features requested but not planned</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Запрошенные, но не планируемые возможности</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Universidade de Évora</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Universidade de Évora</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Universidad Nacional del Centro de la Provincia de Buenos Aires</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Universidad Nacional del Centro de la Provincia de Buenos Aires</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Oxford &amp; Cherwall Valley C</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Oxford &amp; Cherwall Valley C</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Oxford Brookes U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Oxford Brookes U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Koc University</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Koc University</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>China</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Китай</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>And thanks for the suggestion!</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>И спасибо за предложение!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;s0&gt;Update:&lt;/s0&gt; &lt;e1&gt;Logisim 2.3.5 is now available.&lt;/e1&gt; &lt;a2&gt;Changes from previous releases&lt;/a2&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100827T115240Z" changeid="lilovip">
+        <seg>&lt;s0&gt;Обновление:&lt;/s0&gt; &lt;e1&gt;Теперь доступен Logisim 2.5.0.&lt;/e1&gt; &lt;a2&gt;Изменения по сравнению с предыдущими версиями&lt;/a2&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Inasmuch as it is slow, it is because I lack the time or incentive to make it fast.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Он медленный потому, что мне не хватает ни времени, ни стимула сделать его быстрым.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Affirmative comments will help me get support to develop the program further, and helpful comments will point out what is most important for future versions.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Позитивные комментарии помогут мне получить поддержку для дальнейшей разработки программы, а полезные замечания будут указывать, что наиболее важно для будущих версий.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Iceland</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Iceland</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim is open-source software, and it runs under Windows, Linux, and Macintosh.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim - программное обеспечение с открытым исходным кодом и работает под управлением Windows, Linux и Macintosh.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Русский</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Русский</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>[&lt;a0&gt;Russian-language documentation&lt;/a0&gt;]</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>[&lt;a0&gt;Документация на русском языке&lt;/a0&gt;]</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Ecole Supérieure d'Informatique - Haute Ecole de Bruxelles</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ecole Supérieure d'Informatique - Haute Ecole de Bruxelles</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>SourceForge.net Logo</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Логотип SourceForge.net</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>English</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>English</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Is that OK?&lt;/a8&gt; &lt;br9&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Это не проблема?&lt;/a8&gt; &lt;br9&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Others:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Прочие:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Belgium</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Бельгия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of British Columbia</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of British Columbia</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>You will three choices of which release to download.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>У вас будет на выбор три версии для загрузки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Supélec</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Supélec</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>(Also, for those found through Web searches, I look for specific evidence that the software package is not an obscure competitor that happens to share Logisim's name.)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(Кроме того, для найденных через веб-поиск, я ищу конкретные доказательства того, что программный пакет не является просто одноимённым конкурентом Logisim.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If you find Logisim useful, please &lt;a0&gt;send me a comment&lt;/a0&gt;!</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если Вы находите Logisim полезным, пожалуйста &lt;a0&gt;пошлите мне комментарий&lt;/a0&gt;!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>images/shot-2.3.0.png</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>images/shot-2.3.0.png</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Peloponnese</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Peloponnese</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>CO</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Колорадо</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Mississippi Coll</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Mississippi Coll</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Mons</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Mons</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Thomas Jefferson HS of Sci and Tech</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Thomas Jefferson HS of Sci and Tech</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Portugal</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Португалия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>The following is the wish list; I hope that most of these will appear some time in Summer 2006.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ниже приводится список пожеланий; я надеюсь, что большинство из них появится как-нибудь летом 2006 года.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>(30 May 2010)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100827T115246Z" changeid="lilovip">
+        <seg>(XX августа 2010)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Digital Works 3.0&lt;/a0&gt; is a commercial Windows product; I have not tried it, but presumably it is more thorough than Digital Works 2.0, which was already good.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Digital Works 3.0&lt;/a0&gt; - коммерческий продукт для Windows; я его не пробовал, но предположительно он более проработанный, чем Digital Works 2.0, который уже было хорош.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Chile</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Чили</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim: Worldwide usage</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: использование по всему миру</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Northern Arizona U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Northern Arizona U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>[ru]</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>[ru]</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Questions &amp;amp; Answers</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вопросы и ответы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Digital Works 2.0&lt;/a0&gt; is Windows freeware.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Digital Works 2.0&lt;/a0&gt; - бесплатная программа для Windows.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Libraries</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Библиотеки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>MI</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Мичиган</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>American U of Beirut</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>American U of Beirut</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Customize appearances for Logisim-designed components (i.e., subcircuit components), instead of having them all appear as blank rectangles.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Настройка внешности разработанных в Logisim компонентов (например подсхем), вместо отображения их в виде пустых прямоугольников.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Add feature &lt;e0&gt;X&lt;/e0&gt; now!</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Добавьте возможность &lt;e0&gt;X&lt;/e0&gt; сейчас же!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>User can configure whether pins and constants are displayed in binary, hexadecimal, or decimal.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Пользователь может настроить, как отображаются контакты и константы: в двоичном, шестнадцатеричном или десятичном формате.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>University of Queensland</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>University of Queensland</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If you're using Logisim as a required portion of a class assignment, and your school isn't on the list, please &lt;a0&gt;send an e-mail&lt;/a0&gt;!</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если вы используете Logisim как необходимую часть заданий курса, а ваше учебное заведение не входит в список, пожалуйста &lt;a0&gt;сообщите об этом по электронной почте&lt;/a0&gt;!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Screen shot of Logisim 2.3.5, released May 30, 2010</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100827T115216Z" changeid="lilovip">
+        <seg>Снимок экрана Logisim 2.5.0, выпущенного XX августа 2010</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim является свободным программным обеспечением; вы можете его распространять и/или модифицировать в соответствии с условиями Универсальной общественной лицензией GNU, опубликованной Free Software Foundation; либо версии 2 Лицензии, либо (по вашему выбору) любой более поздней версии.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>MA</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Массачусетс</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Kalamazoo Coll</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Kalamazoo Coll</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim: Questions and answers</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: вопросы и ответы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;VeriWell&lt;/a0&gt;, open source, uses Verilog</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;VeriWell&lt;/a0&gt;, с открытым исходным кодом, использует Verilog</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>MN</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Миннесота</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Turkey</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Турция</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Schools using Logisim</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Учебные заведения, использующие Logisim</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>You may want to place the icon into the Applications folder.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вы можете поместить значок в папку &quot;Приложения&quot;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim is an educational tool for designing and simulating digital logic circuits.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim - это образовательный инструмент для разработки и моделирования цифровых логических схем.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Virginia Tech</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Virginia Tech</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>map/map.jpg</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>map/map.jpg</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>MS</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Миссисипи</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Copyright (c) 2005, Carl Burch.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Copyright (c) 2005, Carl Burch.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim is used by students at &lt;a0&gt;colleges and universities around the world&lt;/a0&gt; in many types of classes, ranging from a brief unit on logic in general-education computer science surveys, to computer organization courses, to full-semester courses on computer architecture.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim используется студентами &lt;a0&gt;колледжей и университетов по всему миру&lt;/a0&gt; во многих типах курсов, начиная от краткого курса по логике в обзорном изучении информатики в общеобразовательных учреждениях, кончая курсами по организации ЭВМ и полными курсами по архитектуре компьютеров.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Other alternatives I have investigated, but which don't yet seem have much to recommend them:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Другие варианты, которые я просмотрел, но которые пока еще не стоят, чтобы их рекомендовать:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Above, I have tried to list only those institutions where I feel there is firm information that Logisim has been assigned directly for use by students.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выше я постарался внести в список только те учреждения, для которых, на мой взгляд, существует достоверная информация, что Logisim был прямо назначен для использования учащимися.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a10&gt;Why is Logisim so darn slow?&lt;/a10&gt; &lt;br11&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a10&gt;Почему Logisim такой чертовски медленный?&lt;/a10&gt; &lt;br11&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>With the capacity to build larger circuits from smaller subcircuits, and to draw bundles of wires with a single mouse drag, Logisim can be used (and is used) to design and simulate entire CPUs for educational purposes.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>При возможности постройки больших схем из меньших подсхем и рисования пучков проводов одним перетаскиванием мыши, Logisim может быть использован (и используется) для проектирования и моделирования целых процессоров в образовательных целях.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>NJ</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нью-Джерси</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Previous versions</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Previous versions</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Joensuu</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Joensuu</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>To use the Russian translation:</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Для использования русского перевода:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Georgia Inst of Tech</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Georgia Inst of Tech</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;esim&lt;/a0&gt;, source available but license unclear, uses custom language</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;esim&lt;/a0&gt;, исходные коды доступны, но лицензия неясная, использует собственный язык</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>It doesn't simulate circuits as you build them, but its simulation capabilities are more extensive than Logisim's.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Он не моделирует схемы, пока вы проектируете их, но его возможности моделирования более обширны, чем в Logisim.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U Evansville</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U Evansville</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>NY</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нью-Йорк</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Universidad EAFIT- Medellin</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Universidad EAFIT- Medellin</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Utah</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Utah</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Colgate U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Colgate U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Abilene Christian U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Abilene Christian U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;7400 series Logisim library&lt;/a0&gt; (&lt;a1&gt;ZIP&lt;/a1&gt;, &lt;a2&gt;uncompressed&lt;/a2&gt;)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Библиотека Logisim для 7400 серии&lt;/a0&gt; (&lt;a1&gt;ZIP&lt;/a1&gt;, &lt;a2&gt;несжатая&lt;/a2&gt;)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Bethel Coll</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Bethel Coll</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Home page</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101003T183011Z" changeid="lilovip">
+        <seg>Главная страница</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>(This is of course redundant because the Wiring tool already does it; but somebody requested it, and it sounds easy enough to add.)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(Это, конечно, уже излишество, поскольку Инструмент Проводки уже делает это; но кто-то просил, и похоже это достаточно просто добавить.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Colombia</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Колумбия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>This is not for massaging my ego: The more broadly the program is used, the easier it is for me to get support from my college and from elsewhere to continue development of the program.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Это не для того, чтобы потешить моё эго: чем шире использование программы, тем легче будет мне получить поддержку в своём колледже и других местах для продолжения её разработки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Switzerland</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Швейцария</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;MultiMedia Logic&lt;/a0&gt; is open source Windows software; It doesn't seem to support hierarchical circuits or wire bundling, so it's quite limited as far as designing CPU-scale circuits, but it does provide a fun set of I/O components.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;MultiMedia Logic&lt;/a0&gt; - программа для Windows с открытым исходным кодом, но похоже не поддерживает иерархические схемы или составление пучков из проводов, так что она весьма ограничена, по крайней мере для разработки схем масштаба процессора, но она предоставляет интересный набор компонентов ввода/вывода.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>OH</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Огайо</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;HADES&lt;/a0&gt; is a Java-based tool, which is available at no cost but does not appear to be open-source.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;HADES&lt;/a0&gt; представляет собой Java-инструмент, который доступен бесплатно, но не собирается быть с открытым исходным кодом.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Related links</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Ссылки по теме</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Icarus Verilog&lt;/a0&gt;, the dominant open-source Verilog compiler</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Icarus Verilog&lt;/a0&gt; , лидирующий компилятор Verilog с открытым исходным кодом</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>I have not tried it, but it seems like a thorough system.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Я не пробовал его, но кажется, это законченная система.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Download Logisim from &lt;a0&gt;Logisim's SourceForge.net page&lt;/a0&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Скачать Logisim со &lt;a0&gt;страницы Logisim на SourceForge.net&lt;/a0&gt; .</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Draw wires in diagonal directions (not horizontal/vertical).</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Рисование проводов в диагональных направлениях (не по горизонтали/вертикали).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>First: Please let me know that you are using the program for your class.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Во-первых: пожалуйста, дайте мне знать, что вы используете программу для вашего курса.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>So I occasionally browse the &lt;q0&gt;competition&lt;/q0&gt; to see whether that day has come.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Так что я время от времени слежу за &lt;q0&gt;конкуренцией&lt;/q0&gt;, чтобы увидеть, не настал ли этот день.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Coll of St Benedict/St John's U, Minnesota</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Coll of St Benedict/St John's U, Minnesota</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;xLogicCircuits&lt;/a0&gt; is my favorite among the bare-bones Java applets.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;xLogicCircuits&lt;/a0&gt; - мой любимый среди Java апплетов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>A MacOS &lt;t0&gt;.tar.gz&lt;/t0&gt; file</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Файл &lt;t0&gt;.tar.gz&lt;/t0&gt; для MacOS</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>OR</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Орегон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Version 2.3.5 (30 May 2010)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Версия 2.3.5 (30 мая 2010)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Actually, even though I use a low-power computer with a rather slow processor, I haven't noticed problems with how fast Logisim runs.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вообще-то, даже если я использую маломощный компьютер с довольно медленным процессором, я не замечаю проблем с тем, как быстро работает Logisim.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Nordiska Tekniska Institutet</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Nordiska Tekniska Institutet</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;e0&gt;With the generic &lt;t1&gt;.jar&lt;/t1&gt; file:&lt;/e0&gt; On Windows and MacOS systems, you will likely be able to start Logisim by double-clicking the JAR file.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;e0&gt;Для общего &lt;t1&gt;.jar&lt;/t1&gt; файла:&lt;/e0&gt; На Windows и MacOS вы скорее всего сможете запустить Logisim двойным щелчком на JAR файле.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Argentina</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Аргентина</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Of course, I think it's the best choice.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Конечно, я считаю, что это лучший выбор.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Bulgaria</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Болгария</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>(Copyright 2005, released under the GPL).</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(Copyright 2005, выпущена под GPL).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Germany</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Германия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>PA</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Пенсильвания</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Czech Republic</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Чешская республика</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;How do you pronounce Logisim?&lt;/a0&gt; &lt;br1&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Как вы произносите Logisim?&lt;/a0&gt; &lt;br1&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Shawnee State U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Shawnee State U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If this doesn't work for you for some reason, then you can e-mail me; be sure to include a truly descriptive subject line so that your message doesn't get lost among all the junk mail.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если она не работает у вас по какой-то причине, то вы можете написать мне по электронной почте; не забудьте добавить правильное описание в поле Тема, чтобы ваше сообщение не затерялось в куче почты.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>My rates are reasonable...</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Мои расценки приемлемы...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Maybe.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Может быть.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Chile</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Chile</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>See the &lt;a0&gt;GNU General Public License&lt;/a0&gt; for more details.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>См. &lt;a0&gt;Универсальную общественную лицензию GNU&lt;/a0&gt; для более подробной информации.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Download software</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Загрузка программного обеспечения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>images/address.png</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>images/address.png</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>National Chi Nan U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>National Chi Nan U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Indian Inst of Tech, Dehli</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Indian Inst of Tech, Dehli</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>You might also find my more exhaustive &lt;a0&gt;outdated list&lt;/a0&gt; useful.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вы также можете найти полезным мой более исчерпывающий &lt;a0&gt;устаревший список (на английском)&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If you want to talk about substantial commissions for doing particular work associated with Logisim, though, feel free to contact me.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если же вы хотите поговорить о существенной комиссии за выполнение конкретной работы связанной с Logisim, не стесняйтесь связаться со мной.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Cornell U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Cornell U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>India</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Индия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>There are all sorts of places where the program does horribly efficient things, like repainting the whole circuit every time you move the mouse, or allocating memory in many more situations than necessary.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Есть все виды мест, где программа делает жутко неэффективные вещи, такие как перерисовка всей схемы при каждом движении мыши или выделения памяти во многих ситуациях, когда это не необходимо.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>National U of Singapore</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>National U of Singapore</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Cal State U - Chico</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Cal State U - Chico</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;JLS&lt;/a0&gt; is a Java-based tool that is available at no cost from the author but is not open-source or freeware.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;JLS&lt;/a0&gt; - это Java-инструмент, доступный без требования платы со стороны автора, но он не с открытым исходным кодом и не свободен.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>../socs/images/logo-sm.gif</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>../socs/images/logo-sm.gif</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;TkGate&lt;/a0&gt; is open source software.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;TkGate&lt;/a0&gt; - ПО с открытым исходным кодом.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>IA</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Айова</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>(On a Macintosh, select from the Logisim menu.)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>(На Macintosh выберите из меню Logisim.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a12&gt;Add feature &lt;e13&gt;X&lt;/e13&gt; now!&lt;/a12&gt; &lt;br14&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a12&gt;Добавьте возможность &lt;e13&gt;X&lt;/e13&gt; сейчас же!&lt;/a12&gt; &lt;br14&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Using the Russian translation</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Использование русского перевода</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>In the meantime, please reciprocate my generosity in releasing the program by politely wording suggestions for improvements.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>В то же время, пожалуйста, ответьте взаимностью в виде вежливо сформулированных предложений на мою щедрость выпускать программу.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>IL</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Иллинойс</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>It is a fairly complete package, but it is no longer under development.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Это довольно полный пакет, но он уже не разрабатывается.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Radford U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Radford U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>IN</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Индиана</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>I don't have any plans to add the feature into Logisim.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>У меня нет планов добавить эту возможность в Logisim.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Can I place a copy of the JAR file on a Web page for my students to download?</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Могу ли я разместить копию JAR файла на веб-странице для загрузки моими студентами?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;e1&gt;18 Jul 2007&lt;/e1&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;e1&gt;18 июля 2007&lt;/e1&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Rochester Inst Tech</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Rochester Inst Tech</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a15&gt;Can I pay you?&lt;/a15&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a15&gt;Могу я заплатить вам?&lt;/a15&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>It's probably the most legitimate no-cost competitor to Logisim: It's simulation facilities seem quite sound, though the interface strikes me as rather awkward.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Это, пожалуй, самый достойный конкурент Logisim с нулевой стоимостью: его средства моделирования весьма впечатляют, хотя интерфейс кажется мне довольно неудобным.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a8&gt;I'd like to include your software with a textbook I'm publishing.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a8&gt; Я хотел бы включить ваше программное обеспечение в учебник, который я издаю.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;e0&gt;With the Windows version:&lt;/e0&gt; Just double-click the Logisim icon.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;e0&gt;Для Windows версии:&lt;/e0&gt; Просто дважды щелкните на значке Logisim.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>With its simple toolbar interface and simulation of circuits as you build them, it is simple enough to facilitate learning the most basic concepts related to logic circuits.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Благодаря простому интерфейсу панели инструментов и моделированию схем по ходу их проектирования, Logisim достаточно прост, чтобы облегчить изучение основных понятий, связанных с логическими схемами.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>A separate page outlines &lt;a0&gt;future plans&lt;/a0&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Отдельная страница обрисовывает &lt;a0&gt;планы на будущее&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Brazil</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Бразилия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Moving components attached to wires ``stretches'' the wires to maintain existing connections.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Перемещение компонентов, присоединённых к проводам &quot;растягивает&quot; провода для поддержания существующих соединений.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Christopher Newport U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Christopher Newport U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Compatible with versions Logisim 2.0 Beta 20 and later.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Совместима с версиями Logisim 2.0 Beta 20 и выше.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>The more schools that contact me about using Logisim, the easier it will be for me to get support at my college to continue developing it.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Чем больше образовательных учреждений свяжутся со мной об использовании Logisim, тем легче будет мне получить поддержку в своём колледже для продолжения его разработки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U of Niš</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U of Niš</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>[en]</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>[en]</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Augustana U, Alberta</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Augustana U, Alberta</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>View documentation</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Просмотр документации</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>User comments</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Комментарии пользователей</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>This section contains libraries of components that can be imported into Logisim.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Этот раздел содержит библиотеки компонентов, которые могут быть импортированы в Logisim.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>I'd like to include your software with a textbook I'm publishing.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Я хотел бы включить ваше программное обеспечение в учебник, который я издаю.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>U California - Berkeley</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>U California - Berkeley</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Incrementer example&lt;/a0&gt; (JAR)</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Пример счётчика&lt;/a0&gt; (JAR)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;Digital Simulator&lt;/a0&gt;, closed source shareware, free for education</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;Digital Simulator&lt;/a0&gt;, условно бесплатная программа с закрытым исходным кодом; бесплатна для образовательных целей.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Curtin International College</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Curtin International College</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Denison U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Denison U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>The class name is &lt;t1&gt;com.cburch.incr.Components&lt;/t1&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Имя класса - &lt;t1&gt;com.cburch.incr.Components&lt;/t1&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If you do not already have it on your computer, Java is available from &lt;t0&gt;&lt;a1&gt;java.sun.com&lt;/a1&gt;&lt;/t0&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если у вас её ещё нет на компьютере, то Java доступна на &lt;t0&gt;&lt;a1&gt;java.sun.com&lt;/a1&gt;&lt;/t0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim: Release history</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: история выпусков</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Hendrix Coll</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Hendrix Coll</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Select Russian from the Language drop-down menu.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Выберите Russian из выпадающего меню Language.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Reed C</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Reed C</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Australia</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Австралия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>San Jose State U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>San Jose State U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>It includes some support for incorporating VHDL specifications.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Он включает некоторую поддержку для привлечения VHDL спецификаций.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>I suggest &lt;a0&gt;Catholic Relief Services&lt;/a0&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Я предлагаю &lt;a0&gt;Католическую службу помощи&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>But to answer your question: That would absolutely be OK per the terms of Logisim's license (the GNU public license).</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Но отвечая на ваш вопрос: это совершенно нормально в соответствии с лицензией Logisim (Универсальной общественной лицензией GNU).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>No: I already give my remaining salary - a substantial fraction of i - to charity as it is.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Нет: я и так отдаю своё жалование - существенную его часть - на благотворительность.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Version 2.0 is complete.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Версия 2.0 - завершённая.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Copyright and authorship</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Авторское право и авторство</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Uppsala U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Uppsala U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Questions and answers</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вопросы и ответы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Finland</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Финляндия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Knox Coll</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Knox Coll</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim: Download</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: загрузка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>The source code is available under the &lt;a0&gt;GNU Public License&lt;/a0&gt; for version 2.0, Beta 16, or later.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Исходный код доступен в соответствии с &lt;a0&gt;Универсальной общественной лицензией GNU&lt;/a0&gt; для версии 2.0, Beta 16 или более поздней версии.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Not included are courses that recommend Logisim without making explicit assignments nor those who offer a choice between Logisim and another piece of software.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Не включены курсы, которые рекомендуют Logisim, но не назначают явно, и те, которые предлагают выбор между Logisim и другим программным обеспечением.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>KS</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Канзас</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>United Kingdom</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Великобритания</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>You may want to create a shortcut on the desktop and/or in the Start menu to make starting Logisim easier.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Вы можете создать ярлык на рабочем столе и/или в меню &quot;Пуск&quot;, чтобы сделать запуск Logisim проще.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Text-based tools</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Текстовые инструменты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>A &lt;t0&gt;.jar&lt;/t0&gt; file - runs on any platform, though not necessarily conveniently.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;t0&gt;.jar&lt;/t0&gt; файл - работает на любой платформе, правда он не всегда удобен.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Colorado State U</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Colorado State U</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Singapore</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Сингапур</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Lewis &amp; Clark C</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Lewis &amp; Clark C</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>If you'd like to arrange to pay me substantial amounts of money, I'll be happy to entertain demands.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если вы хотите заплатить мне значительную сумму денег, я буду счастлив удовлетворить запросы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>The simulation and library functionality is quite extensive, but the interface is on the awkward side.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Моделирование и функциональность библиотек весьма обширны, но интерфейс - не сильная его сторона.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Saudia Arabia</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Саудовская Аравия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>User can ``stretch'' using the Select Tool by dragging its handle after it is selected.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Пользователь может &quot;растягивать&quot; провод с помощью Инструмента Редактирования, перетаскивая его конец после выделения.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Logisim: Links</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Logisim: ссылки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>&lt;a0&gt;LogicSim&lt;/a0&gt;, open source Java</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>&lt;a0&gt;LogicSim&lt;/a0&gt;, с открытым исходным кодом, для Java</seg>
+      </tuv>
+    </tu>
+  </body>
+</tmx>

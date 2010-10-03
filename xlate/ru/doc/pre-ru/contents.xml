@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE toc
+  PUBLIC 
+  "-//Sun Microsystems Inc.//DTD 
+   JavaHelp TOC Version 2.0//EN"
+  "http://java.sun.com/products/javahelp/toc_2_0.dtd">
+<toc version="2.0" categoryclosedimage="chapter" topicimage="topic">
+<tocitem image="toplevelfolder" text="Справка по Logisim" target="top">
+
+	<tocitem target="guide" text="Руководство &quot;Как стать пользователем Logisim&quot;">
+		<tocitem target="tutorial" text="Пособие начинающего">
+			<tocitem target="tutorial_orient" text="Шаг 0: Осваиваемся" />
+			<tocitem target="tutorial_gates" text="Шаг 1: Добавление логических элементов" />
+			<tocitem target="tutorial_wires" text="Шаг 2: Добавление проводов" />
+			<tocitem target="tutorial_text" text="Шаг 3: Добавление текста" />
+			<tocitem target="tutorial_test" text="Шаг 4: Проверка вашей схемы" />
+		</tocitem>
+		<tocitem target="attrlib" text="Библиотеки и атрибуты">
+			<tocitem target="attrlib_explore" text="Панель проводника" />
+			<tocitem target="attrlib_attr" text="Таблица атрибутов" />
+			<tocitem target="attrlib_tool" text="Атрибуты инструментов и компонентов" />
+		</tocitem>
+		<tocitem target="subcirc" text="Подсхемы">
+			<tocitem target="subcirc_creating" text="Создание схем" />
+			<tocitem target="subcirc_using" text="Использование подсхем" />
+			<tocitem target="subcirc_appear" text="Изменение внешнего вида подсхемы" />
+			<tocitem target="subcirc_debug" text="Отладка подсхем" />
+			<tocitem target="subcirc_library" text="Библиотеки Logisim" />
+		</tocitem>
+		<tocitem target="bundles" text="Пучки проводов">
+			<tocitem target="bundles_creating" text="Создание пучков" />
+			<tocitem target="bundles_splitting" text="Разветвители " />
+			<tocitem target="bundles_colors" text="Цвета проводов" />
+		</tocitem>
+		<tocitem target="analyze" text="Комбинационный анализ">
+			<tocitem target="analyze_open" text="Открытие окна Комбинационный анализ " />
+			<tocitem target="analyze_table" text="Редактирование таблицы истинности" />
+			<tocitem target="analyze_expr" text="Создание выражений" />
+			<tocitem target="analyze_gen" text="Создание схемы" />
+		</tocitem>
+		<tocitem target="menu" text="Справка по меню">
+			<tocitem target="menu_file" text="Меню Файл" />
+			<tocitem target="menu_edit" text="Меню Правка" />
+			<tocitem target="menu_project" text="Меню Проект" />
+			<tocitem target="menu_simulate" text="Меню Моделировать " />
+			<tocitem target="menu_winhelp" text="Меню Окно и Справка" />
+		</tocitem>
+		<tocitem target="mem_guide" text="Компоненты памяти">
+			<tocitem target="mem_poke" text="Нажатие на память" />
+			<tocitem target="mem_menu" text="Всплывающие меню и файлы" />
+			<tocitem target="mem_hex" text="Шестнадцатеричный редактор" />
+		</tocitem>
+		<tocitem target="log" text="Запись в журнал">
+			<tocitem target="log_selection" text="Вкладка Выбор" />
+			<tocitem target="log_table" text="Вкладка Таблица" />
+			<tocitem target="log_file" text="Вкладка Файл" />
+		</tocitem>
+		<tocitem target="verify" text="Проверка из командной строки">
+			<tocitem target="verify_sub" text="Подстановка библиотек" />
+			<tocitem target="verify_other" text="Другие параметры проверки" />
+			<tocitem target="verify_multi" text="Проверка нескольких файлов" />
+		</tocitem>
+		<tocitem target="prefs" text="Настройки приложения">
+			<tocitem target="prefs_template" text="Вкладка Шаблон" />
+			<tocitem target="prefs_tools" text="Вкладка Инструменты" />
+			<tocitem target="prefs_intl" text="Вкладка Интернациональные" />
+			<tocitem target="prefs_exp" text="Вкладка Экспериментальные" />
+			<tocitem target="prefs_cmdline" text="Командная строка" />
+		</tocitem>
+		<tocitem target="opts" text="Параметры проекта">
+			<tocitem target="opts_canvas" text="Вкладка Холст" />
+			<tocitem target="opts_simulate" text="Вкладка Моделирование" />
+			<tocitem target="opts_toolbar" text="Вкладка Панель инструментов" />
+			<tocitem target="opts_mouse" text="Вкладка Мышь" />
+		</tocitem>
+		<tocitem target="prop" text="Просчёт значений ">
+			<tocitem target="prop_delays" text="Задержки логических элементов" />
+			<tocitem target="prop_oscillate" text="Ошибки при возбуждении" />
+			<tocitem target="prop_shortcome" text="Недостатки" />
+		</tocitem>
+		<tocitem target="jar" text="Библиотеки JAR">
+			<tocitem target="jar_incr" text="Инкрементатор кода Грея" />
+			<tocitem target="jar_library" text="Класс Library" />
+			<tocitem target="jar_simpctr" text="Простой счётчик кода Грея" />
+			<tocitem target="jar_counter" text="Счётчик кода Грея" />
+			<tocitem target="jar_guide" text="Указания" />
+		</tocitem>
+		<tocitem target="about" text="О программе">
+			<tocitem target="about_gpl" text="Универсальная Общественная Лицензия GNU" />
+		</tocitem>
+	</tocitem>
+
+	<tocitem target="libs" text="Справка по библиотеке">
+	  <tocitem target="base" text="Библиотека Базовые">
+		<tocitem target="base_poke" text="Инструмент Нажатие" />
+		<tocitem target="base_edit" text="Инструмент Правка" />
+		<tocitem target="base_select" text="Инструмент Выбор" />
+		<tocitem target="base_wiring" text="Инструмент Проводка" />
+		<tocitem target="base_text" text="Инструмент Текст" />
+		<tocitem target="base_menu" text="Инструмент Меню" />
+		<tocitem target="base_splitter" text="Разветвитель" />
+		<tocitem target="base_pin" text="Контакт" />
+		<tocitem target="base_tunnel" text="Тоннель" />
+		<tocitem target="base_pull" text="Согласующий резистор" />
+		<tocitem target="base_probe" text="Датчик" />
+		<tocitem target="base_clock" text="Тактовый генератор" />
+		<tocitem target="base_extender" text="Расширитель битов" />
+		<tocitem target="base_label" text="Метка" />
+	  </tocitem>
+	  <tocitem target="gates" text="Библиотека Элементы">
+		<tocitem target="gates_constant" text="Постоянная" />
+		<tocitem target="gates_not" text="Элемент НЕ" />
+		<tocitem target="gates_buffer" text="Буфер" />
+		<tocitem target="gates_basic" text="Элементы И/ИЛИ/И-НЕ/ИЛИ-НЕ" />
+		<tocitem target="gates_xor" text="Элементы Исключающее ИЛИ/Исключающее ИЛИ-НЕ/Нечётность/Чётность" />
+		<tocitem target="gates_controlled" text="Управляемый буфер/инвертор" />
+	  </tocitem>
+	  <tocitem target="plexers" text="Библиотека Плексоры">
+		<tocitem target="plexers_mux" text="Мультиплексор" />
+		<tocitem target="plexers_demux" text="Демультиплексор" />
+		<tocitem target="plexers_decoder" text="Декодер" />
+		<tocitem target="plexers_priencod" text="Шифратор приоритетов" />
+		<tocitem target="plexers_selector" text="Селектор битов" />
+	  </tocitem>
+	  <tocitem target="arith" text="Библиотека Арифметика">
+		<tocitem target="arith_adder" text="Сумматор" />
+		<tocitem target="arith_subtractor" text="Вычитатель" />
+		<tocitem target="arith_multiplier" text="Множитель" />
+		<tocitem target="arith_divider" text="Делитель" />
+		<tocitem target="arith_negator" text="Отрицатель" />
+		<tocitem target="arith_comparator" text="Компаратор" />
+		<tocitem target="arith_shifter" text="Сдвигатель" />
+		<tocitem target="arith_bitadder" text="Сумматор битов" />
+		<tocitem target="arith_bitfinder" text="Искатель битов" />
+	  </tocitem>
+	  <tocitem target="mem" text="Библиотека Память">
+		<tocitem target="mem_flipflops" text="D/T/J-K/S-R триггеры" />
+		<tocitem target="mem_register" text="Регистр" />
+		<tocitem target="mem_counter" text="Счётчик" />
+		<tocitem target="mem_shiftreg" text="Сдвиговый регистр" />
+		<tocitem target="mem_random" text="Генератор случайных чисел" />
+		<tocitem target="mem_ram" text="ОЗУ" />
+		<tocitem target="mem_rom" text="ПЗУ" />
+	  </tocitem>
+	  <tocitem target="io" text="Библиотека Ввод/вывод">
+		<tocitem target="io_button" text="Кнопка" />
+		<tocitem target="io_joystick" text="Джойстик" />
+		<tocitem target="io_keyboard" text="Клавиатура" />
+		<tocitem target="io_led" text="Светодиод" />
+		<tocitem target="io_7seg" text="7-сегментный дисплей" />
+		<tocitem target="io_hexdig" text="Шестнадцатеричный дисплей" />
+		<tocitem target="io_dotmat" text="Светодиодная матрица" />
+		<tocitem target="io_tty" text="Терминал" />
+	  </tocitem>
+	  <tocitem target="legacy" text="Библиотека Устаревшие">
+		<tocitem target="legacy_flipflops" text="Logisim 1.0 D/J-K триггеры" />
+		<tocitem target="legacy_register" text="Logisim 1.0 8-битный регистр" />
+	  </tocitem>
+	</tocitem>
+</tocitem>
+</toc>
