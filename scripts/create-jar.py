@@ -2,10 +2,10 @@
 
 import os
 import platform
-import re
 import sys
 import shutil
 import time
+import copy_doc
 from logisim_script import *
 
 src_dir = get_svn_dir('src')
@@ -30,6 +30,7 @@ if '\\home\\burch\\' in get_svn_dir():
 	home = svn_dir[:svn_dir.find('\\home\\burch\\') + 11]
 	bin_dir = build_path(home, 'logisim/TrunkSource/bin')
 	dest_dir = build_path(home, 'logisim/Scripts')
+	keep_temp = True
 
 usage = '''usage: create-jar ARGS
 arguments:  -bin DIR     compiled files are already present in DIR
@@ -222,27 +223,26 @@ if include_source:
 	
 if include_documentation:
 	print('copying documentation')
-	copytree(doc_dir, build_path(temp_dir, 'doc'))
-	shutil.rmtree(build_path(temp_dir, 'doc/circs'))
-
-	for locale in os.listdir(doc_dir):
-		locale_dir = build_path(temp_dir, 'doc', locale)
-		if os.path.isdir(locale_dir) and locale != 'en':
-			src_map = build_path(temp_dir, 'doc/en/map.jhm')
-			shutil.copy(src_map, locale_dir)
-
+	doc_dst = build_path(temp_dir, 'doc')
+	copy_doc.do_copy(doc_dir, doc_dst)
+	
 	jhindexer = build_path(data_dir, 'javahelp/bin/jhindexer.jar', cygwin=False)
-	for locale in os.listdir(doc_dir):
-		locale_dir = build_path(temp_dir, 'doc', locale)
-		if os.path.isdir(locale_dir):
-			print('indexing documentation [' + locale + ']')
-			os.chdir(locale_dir)
+	for locale in os.listdir(doc_dst):
+		locale_dst = build_path(doc_dst, locale)
+		if os.path.isdir(locale_dst):
+			os.chdir(locale_dst)
 			cmd_args = [java_exec, '-jar', jhindexer]
 			if os.path.exists('jhindexer.cfg'):
 				cmd_args.extend(['-c', 'jhindexer.cfg'])
 			cmd_args.extend(['-locale', locale])
-			cmd_args.extend(['guide', 'libs'])
-			system(*cmd_args)
+			found = False
+			for sub in ['guide', 'libs']:
+				if os.path.exists(build_path(locale_dst, sub)):
+					cmd_args.append(sub)
+					found = True
+			if found:
+				print('indexing documentation [' + locale + ']')
+				system(*cmd_args)
 
 #
 # copy in the .class files that were compiled under MacOS

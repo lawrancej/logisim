@@ -67,20 +67,13 @@ leave other fields with their default values.
     path_to_your_SVN_folder/resources/connectina/FontChooserDialog.properties
     path_to_your_SVN_folder/resources/connectina/JFontChooser.properties
    
-2.3 Delete the _en suffix from each file, so "analyze_en.properties" becomes
-  just "analyze.properties".
-  
-  On GNU/Linux, the following command might be useful for this:
-  
-     for file in *_en.properties; do mv ${file} ${file/_en/}; done 
-   
-2.4 Set up two-directional dictionary (EN <-> DE), it will be very
+2.3 Set up two-directional dictionary (EN <-> DE), it will be very
   handy. You have to download it separately.
 
-2.5 Set up spell checking. It is very important! It will help you to
+2.4 Set up spell checking. It is very important! It will help you to
   avoid many mistakes. Don't trust yourself! :)
 
-2.6 Set up Machine Translation to Google Translate. It will be
+2.5 Set up Machine Translation to Google Translate. It will be
   incredibly handy! But don't trust it completely; it's work for human,
   machine is just a helper.
 

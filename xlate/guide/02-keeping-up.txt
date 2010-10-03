@@ -5,29 +5,21 @@ translated. Here is what you can do to update the translation.
 
    svn co https://circuit.svn.sourceforge.net/svnroot/circuit/trunk/src/resources resources
    
-2. Look which *_en.properties files are changed or new and copy them from
+2. Look which *.properties files are changed or new and copy them from
    your_SVN_dir/resources/logisim/en to your_OmegaT_project_dir/source/logisim/en
    (or you can copy all the *.properties files, it doesn't matter)
    
-3. In the your_OmegaT_project_dir/source/logisim/en directory: Rename all the
-   recent copied files from 'something_en.properties' to 'something.properties'
-   replacing old files of course.
-   
-   On GNU/Linux, the following command might be useful for this:
-  
-     for file in *_en.properties; do mv ${file} ${file/_en/}; done 
-   
-4. If you need, edit those .properties files manually to change identical string
+3. If you need, edit those .properties files manually to change identical string
    to unique (for example, adding a dash to 'North' as I explained in my "guide")
    
-5. Reload OmegaT project (F5). Don't worry about anything! OmegaT stores your
+4. Reload OmegaT project (F5). Don't worry about anything! OmegaT stores your
    translations for all the strings in the memory, even for strings which had
    gone from the source files. You will never lose your work using OmegaT.
    Finally, you may make a backup of the project dir if you're worrying.
    
-6. Translate new strings. (Press Ctrl+U to locate them.)
+5. Translate new strings. (Press Ctrl+U to locate them.)
 
-7. Generate result (target) files (Ctrl+D). They are already in your SVN_dir,
+6. Generate result (target) files (Ctrl+D). They are already in your SVN_dir,
    so now you may commit to SVN. However, you're advised to run 'svn status'
    first to ascertain what you'll change when you commit to SVN.
  
