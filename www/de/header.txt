@@ -2,4 +2,4 @@
 
 ÜBERSETZER: Wenn Du die SVG-Datei nicht bearbeiten kannst, dann übersetze bitte den folgenden Text, den der Autor dann selbst in die SVG-Datei einfügen kann..
 
-ein grafisches Werkzeug zur Entwicklung und Simulation digitaler Schaltungen
+ein grafisches Werkzeug zum Entwurf und zur Simulation digitaler Schaltungen
