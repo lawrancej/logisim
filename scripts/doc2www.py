@@ -14,7 +14,7 @@ if len(sys.argv) > 1:
 
 # see if we're on Carl Burch's platform, and if so reconfigure defaults
 if '\\home\\burch\\' in get_svn_dir():
-	lang = 'en'
+	lang = 'ru'
 	svn_dir = get_svn_dir()
 	home = svn_dir[:svn_dir.find('\\home\\burch\\') + 11]
 	lang_path = build_path(home, 'logisim/Scripts/www/docs/2.6.0', lang)
@@ -37,14 +37,16 @@ head_end = r'''
 // (from http://www.dynamicdrive.com/dynamicindex1/navigate1.htm)
 </script>
 '''.strip()
+
 body_start = r'''
 <div id="content">
 '''.strip()
+
 body_end = r'''
 </div>
 
 <div id="map">
-<a href="{rel}/../../../index{lang}.html"><img src="{rel}/../../../images/header{lang}.png"
+<a href="{rel}/../../../{lang}index.html"><img src="{rel}/../../../{lang}header.png"
     border="0" width="227" height="137"></a>
 <ul id="maptree" class="treeview">
 {map}
@@ -63,7 +65,7 @@ dst_dir = os.getcwd()
 src_dir = get_svn_dir('doc', lang)
 if not os.path.exists(src_dir):
 	sys.exit('source directory doc/{lang} not found, aborted'.format(lang=lang))
-if is_same_file(dst_dir, src_dir) or os.path.exists(os.path.join(dst_dir, 'map.jhm')):
+if is_same_file(dst_dir, src_dir) or os.path.exists(os.path.join(dst_dir, 'doc.hs')):
 	sys.exit('cannot place result into source directory')
 
 #
@@ -76,7 +78,11 @@ class MapNode():
 		self.target = target
 		self.url = url
 
-map_dom = xml.dom.minidom.parse(os.path.join(src_dir, 'map.jhm'))
+map_src = os.path.join(src_dir, 'map.jhm')
+if not os.path.exists(map_src):
+	map_src = os.path.join(os.path.dirname(src_dir), 'en')
+	map_src = os.path.join(map_src, 'map.jhm')
+map_dom = xml.dom.minidom.parse(map_src)
 for mapid in map_dom.getElementsByTagName('mapID'):
 	if not mapid.hasAttribute('target') or not mapid.hasAttribute('url'):
 		print('node is missing target or url attribute, ignored')
@@ -177,7 +183,7 @@ print('creating HTML files')
 if lang == 'en':
 	url_lang = ''
 else:
-	url_lang = '_' + lang
+	url_lang = lang + '/'
 def create_map(filename):
 	dst_filename = os.path.join(dst_dir, filename)
 	url = filename.replace('\\', '/')

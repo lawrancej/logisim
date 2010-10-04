@@ -15,7 +15,10 @@
    height="137"
    version="1.0"
    sodipodi:docname="header.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="C:\cygwin\home\burch\logisim\Trunk\www\es\header.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <metadata
      id="metadata2445">
     <rdf:RDF>
@@ -53,8 +56,8 @@
      inkscape:zoom="2.3964758"
      inkscape:cx="115.011"
      inkscape:cy="52.258432"
-     inkscape:window-x="39"
-     inkscape:window-y="-3"
+     inkscape:window-x="23"
+     inkscape:window-y="23"
      inkscape:current-layer="svg2440" />
   <g
      id="g3331">
@@ -170,7 +173,7 @@
   <flowRoot
      xml:space="preserve"
      id="flowRoot2455"
-     style="font-size:16px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:115%;writing-mode:lr;text-anchor:start;fill:#0000c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman Bold Italic"
+     style="font-size:16px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:114.99999762%;writing-mode:lr-tb;text-anchor:start;fill:#0000c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman Bold Italic"
      transform="translate(0,-3.7555147)"><flowRegion
        id="flowRegion2457"><rect
          id="rect2459"
@@ -178,6 +181,6 @@
          height="74.693016"
          x="14.604779"
          y="52.083641"
-         style="font-size:16px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:115%;writing-mode:lr;text-anchor:start;fill:#0000c8;fill-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman Bold Italic" /></flowRegion><flowPara
+         style="font-size:16px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:114.99999762%;writing-mode:lr-tb;text-anchor:start;fill:#0000c8;fill-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman Bold Italic" /></flowRegion><flowPara
        id="flowPara2461"
-       style="font-size:16px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:115%;writing-mode:lr;text-anchor:start;fill:#0000c8;fill-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman Bold Italic">a graphical tool for designing and simulating logic circuits</flowPara></flowRoot></svg>
+       style="font-size:16px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:114.99999762%;writing-mode:lr-tb;text-anchor:start;fill:#0000c8;fill-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman Bold Italic">una herramienta de diseño y simulación de circuitos lógicos</flowPara></flowRoot></svg>

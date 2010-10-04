@@ -1,0 +1,61 @@
+body {
+	background: white;
+}
+
+a {
+	text-decoration: none;
+	color: #A00000;
+}
+	
+body > table > tbody > tr > td {
+	vertical-align: top;
+}
+
+div.header {
+	position: relative;
+	padding-top: 100px;
+	padding-left: 14px;
+	width: 213px;
+}
+
+div.headerimg {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: -1
+}
+
+div.links {
+	padding-bottom: 1em;
+}
+
+div.links p {
+	margin: 0px;
+	padding: 0px;
+	margin-left: 1em;
+	text-indent: -1em;
+	font-size: 160%;
+	font-weight: bold;
+	line-height: 105%
+}
+
+div.links a {
+	text-decoration: none;
+	color: black
+}
+
+div.langmenu {
+	padding-bottom: 1em
+}
+
+div.langmenu th {
+	
+}
+
+div.langmenu td {
+	font-size:80%;
+}
+
+div.langmenu td a {
+	color: black;
+}

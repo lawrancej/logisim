@@ -8,7 +8,7 @@ Educational institutions around the world use Logisim as an aid to teaching abou
 
 CHANGE LOG
 
-Feature: A German translation of the GUI strings is now included. (In this version, documentation is not translated.)
+Feature: A German translation of the GUI strings is now included. (Translation of the documentation is not yet available.)
 
 Feature: Added a Label and Label Font attribute for all components in the Gates library except Constant.
 
@@ -22,14 +22,14 @@ Feature: Added Off Color and Background attributes for the I/O library's Seven-S
 
 Feature: Added Color and Background attributes for the I/O library's TTY component.
 
-Feature: If you have never previously executed Logisim, it should default to the platform language if a supported translation is available.
-
-Feature: The Preferences dialog now defaults to the International tab, the languages appear in a list rather than a drop-down box, and each language is described by both its own language and the currently selected language.
-
 Feature: Enhanced the splash screen and "About" dialog to give credit to other team members.
+
+Interface change: The Preferences dialog now defaults to the International tab, the languages appear in a list rather than a drop-down box, and each language is described by both its own language and the currently selected language.
 
 Interface change: Even after selecting a wire, starting a drag from one of its endpoints will lengthen or shorten the wire. (Previously the wire would be moved in this situation.)
  
+Bug fix: If you have never previously executed Logisim, it should default to the platform language if a supported translation is available.
+
 Bug fix: Circuit statistics were not computed recursively as intended (it was done correctly in 2.5.1).
 
 Bug fix: When the simulation frequency is more than 1KHz, choosing "Tick Once" after a series of several ticks would lead to multiple ticks occurring. 
