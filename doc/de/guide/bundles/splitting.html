@@ -1,65 +1,34 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<title>Splitters</title>
+	<title>Verteiler</title>
 </head>
 <body bgcolor="FFFFFF">
 
-<h1>Splitters</h1>
+<h1>Verteiler</h1>
 
-<p>When you work with multi-bit values, you will often want to route
-different bits in different directions.
-The Base library's splitter tool
-(<img width="16" height="16" src="../../icons/splitter.gif">)
-allows you to accomplish this.</p>
+<p>Wenn Sie mit Mehrbit-Werten arbeiten, werden Sie häufig den Wunsch haben, einzelne Bits in verschiedene Richtungen weiterzuleiten. Das Verteiler-Werkzeug (<img width="16" height="16" src="../../icons/splitter.gif">) aus der Basisbibliothek von Logisim steht Ihnen hierfür zur Verfügung.</p>
 
-<p>For example, suppose we want to build a circuit that computes the bitwise
-AND of the two nibbles of its eight-bit input (the upper four bits and
-the lower four bits). We will have an eight-bit value coming from the
-input pin, and we want to split that into two four-bit values. In the
-below circuit, we have used a splitter to accomplish this: The 8-bit input
-comes into the splitter (which resembles a bird's foot), which divides the
-8 bits into two 4-bit values, which are then fed into the AND gate and from
-there to the output.</p>
+<p>Wenn wir einmal annehmen, Sie möchten eine Schaltung aufbauen, die die bitweise AND-Verknüpfung der beiden Nibbles (die oberen vier Bit und die unteren vier Bit) eines acht-Bit Einganges berechnen soll. Wir haben es dann mit einem acht-Bit-Wert zu tun, der vom Eingangspin geliefert wird, und wir müssen diesen Wert in zwei vier-Bit-Werte aufspalten. In der folgenden Schaltung benutzen wir einen Verteiler, um dies zu erreichen: der acht-Bit-Wert wird an den Verteiler geleitet (der einer Vogelkralle ähnelt). Dieser teilt den acht-Bit-Wert in zwei vier-Bit-Werte auf, die dann an ein AND-Gatter weitergeleitet werden, um das Ergebnis zu berechnen.</p>
 <center><img width="351" height="386" src="splitter-circ.png"></center>
-<p>In this example, the splitter happens to actually split an
-incoming value into multiple outgoing values. But splitters can
-also combine multiple values into a single value. In fact,
-they are non-directional: They can send values one way at one time
-and another way later, and they can even do both at the same
-time, as in the below example where a value travels eastward through the two
-splitters, then is routed back westward through them again, and then back
-eastward where it finally reaches its output.</p>
+<p>In diesem Beispiel teilt der Verteiler einen ankommenden Wert in mehrere herausgehende Werte auf. Aber Verteiler können auch dazu verwendet werden, mehrere Werte zu einem Wert zusammenzufügen. In der Tat haben diese Verteiler keine feste Richtung: zu einem Zeitpunkt können Werte in der einen Richtung durchgeschickt werden, und zu einem anderen Zeitpunkt in der anderen. Werte können sogar in beiden Richtungen gleichzeitig transportiert werden, wie in dem nächsten Beispiel. Dort läuft der Wert zunächst in östlicher Richtung durch die zwei Verteiler, wird dann in die umgekehrte Richtung umgelenkt, läuft in westlicher Richtung zurück durch die Verteiler, bevor es noch einmal umgedreht wird, und nach einem weiteren Transport in östlicher Richtung durch die Verteiler den Ausgang erreicht.</p>
 <center><img width="133" height="63" src="splitter-2way.png"></center>
 
-<p>The key to understanding splitters is their attributes.
-In the following, the term <em>split end</em> refers to one of
-the multiple wires on one side, while the term <em>combined
-end</em> refers to the single wire on the other side.</p>
+<p>Der Schlüssel zum Verständnis von Verteilern liegt in deren Attributen. Im Folgenden bezeichnet ein <em>aufgespaltenes Ende</em> eine von mehreren Leitungenauf der einen Seite, während der Ausdruck <em>zusammengeführtes Ende</em> die einzelne Leitung der anderen Seite bezeichnet.</p>
 <ul>
 
-<li> The <strong>Facing</strong> attribute tells where the split ends
-should be relative to the combined end.</li>
+<li>Das Attribut <strong>Ausrichtung</strong> bezeichnet, wie die aufgespaltenen Enden im Verhältnis zum zusammengeführten Ende liegen.</li>
 
-<li> The <strong>Fan Out</strong> attribute specifies how many
-split ends there are.</li>
+<li>Das Attribut <strong>Ausfächerung</strong> gibt an, wieviele aufgespaltene Enden vorhanden sind.</li>
 
-<li> The <strong>Bit Width In</strong> attribute specifies the bit width of
-the combined end.</li>
+<li>Das Attribut  <strong>Bitbreite</strong> gibt die Bitbreite des zusammengeführten Endes an.</li>
 
-<li> The <strong>Bit <var>x</var></strong> attribute says which split
-end corresponds to bit <em>x</em> of the combined end. If multiple
-bits correspond to the same split end, then their relative ordering
-will be the same as in the combined end. Logisim splitters cannot
-have a bit from the combined end correspond to multiple split ends.</li>
+<li>Das Attribut <strong>Bit <var>x</var></strong> bezieht sich auf das Bit <em>x</em> des zusammengeführten Endes. Wenn mehrere Bits demselben aufgespaltenen Ende zugeordnet werden, dann entspricht deren relative Reihenfolge der Reihenfolge dieser Bits im zusammengeführten Ende. Verteiler in Logisim können kein Bit des zusammengeführten Endes auf mehrere aufgespaltene Enden gleichzeitig weiterleiten.</li>
 
 </ul>
-<p>Note that any change to the Fan Out or Bit Width In
-attributes will reset all Bit <var>x</var> attributes so that
-they will distribute the bits of the combined value as evenly
-as possible among the split ends.</p>
+<p>Beachten Sie, daß jede Änderung der Ausfächerung oder der Bitbreite alle Bit <var>x</var>-Attribute so zurücksetzen wird, daß diese Bits so gleichmäßig wie möglich auf die aufgespaltenen Enden verteilt werden.</p>
 
-<p><strong>Next:</strong> <a href="colors.html">Wire colors</a>.</p>
+<p><strong>Weiter:</strong> <a href="colors.html">Farben der Leitungen</a>.</p>
 
 </body>
 </html>
