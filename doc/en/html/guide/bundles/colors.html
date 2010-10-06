@@ -17,9 +17,12 @@ little circuit illustrates all of them at once.</p>
 occurs because the wire is not attached to any components' inputs
 and outputs. (All inputs and outputs have a defined bit width.)</p></li>
 
-<li><p><strong>Blue:</strong> The wire is for carrying a one-bit
-value, but the value it is carrying is not known. The input drawn is
-a three-state pin, so it can emit this floating value.</p>
+<li><p><strong>Blue:</strong> The wire carries a one-bit
+value, but nothing is driving a specific value onto the wire.
+We call this a <em>floating</em> bit; some people call it a
+<em>high-impedance</em> value.
+In this example, the component placing a value onto the wire is a three-state
+pin, so it can emit this floating value.</p>
 
 <li><p><strong>Dark green:</strong> The wire is carrying a one-bit 0
 value.</p></li>
