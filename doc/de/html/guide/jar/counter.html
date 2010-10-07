@@ -7,11 +7,7 @@
 
 <h1>Gray-Kode-Zähler</h1>
 
-<p>This orientation to the Logisim libraries concludes with a
-fairly sophisticated Gray code counter that allows the user to alter its
-current value using the Poke Tool and to place a label on the component using
-the Text Tool. It also customizes the icon that appears in the explorer,
-associated with the tool.</p>
+<p>Wir setzen diese Einführung in die Bibliotheken von Logisim jetzt mit einem recht anspruchsvollen Gray-Kode-Zähler fort. Bei diesem läßt sich der Wert mit dem Schaltwerkzeug ändern, und es läßt sich eine Beschriftung auf dem Bauelement anbringen. Das Beispiel zeigt auch, wie das Symbol für das Werkzeug im Übersichtsfenster bearbeitet werden kann.</p>
 
 <h2>GrayCounter</h2>
 
@@ -35,8 +31,8 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringUtil;
 
-/** Manufactures a counter that iterates over Gray codes. This demonstrates
- * several additional features beyond the SimpleGrayCounter class. */
+/** Erzeugt einen Zähler, der Gray-Kodes durchläuft. Hier werden
+ * mehrere weitere Funktionen gezeigt, die über die Klasse SimpleGrayCounter hinausgehen. */
 class GrayCounter extends InstanceFactory {
     public GrayCounter() {
         super("Gray Counter");
@@ -46,31 +42,31 @@ class GrayCounter extends InstanceFactory {
                 new Port(  0, 0, Port.OUTPUT, StdAttr.WIDTH),
         });
         
-        // We'll have width, label, and label font attributes. The latter two
-        // attributes allow us to associate a label with the component (though
-        // we'll also need configureNewInstance to configure the label's
-        // location).
+        // Der Zähler hat Attribute für Bitbreite, Beschriftung und Zeichensatz der Beschriftung. Die letzteren beiden
+        // Attribute erlauben es uns, dem Bauelement eine Beschriftung zu geben (auch wenn
+        // wir außerdem noch configureNewInstance benötigen, um die Position der Beschriftung
+        // anzugeben).
         setAttributes(
                 new Attribute[] { StdAttr.WIDTH, StdAttr.LABEL, StdAttr.LABEL_FONT },
                 new Object[] { BitWidth.create(4), "", StdAttr.DEFAULT_LABEL_FONT });
         
-        // The following method invocation sets things up so that the instance's
-        // state can be manipulated using the Poke Tool.
+        // Der folgende Methodenaufruf schafft die Voraussetzungen dafür, daß der Zustand
+        // der Instanz mit demSchaltwerkzeug gändert werden kann.
         setInstancePoker(CounterPoker.class);
         
-        // These next two lines set it up so that the explorer window shows a
-        // customized icon representing the component type. This should be a
-        // 16x16 image.
+        // Die zwei nächsten Zeilen sorgen dafür, daß
+        // das Bauelement mit einem individuellen Symbol dargestellt wird. Hierbei sollte es sich um ein 
+        // 16x16 Punkte großes Bild handeln.
         URL url = getClass().getClassLoader().getResource("com/cburch/gray/counter.gif");
         if(url != null) setIcon(new ImageIcon(url));
     }
     
-    /** The configureNewInstance method is invoked every time a new instance
-     * is created. In the superclass, the method doesn't do anything, since
-     * the new instance is pretty thoroughly configured already by default. But
-     * sometimes you need to do something particular to each instance, so you
-     * would override the method. In this case, we need to set up the location
-     * for its label. */
+    /** Die Methode configureNewInstance wird jedes Mal aufgerufen, wenn eine neue Instanz 
+     * erstellt wird. In der Überklasse macht diese Methode nichts, weil die neue
+     * Instanz schon per Voreinstellung gründlich konfiguriert wird. Aber
+     * manchmal müssen spezielle Operationen für jede Instanz durchgeführt werden, und
+     * dann würden Sie diese Methode überschreiben. In diesem Beispiel soll die Position der Beschriftung
+     * festgelegt werden. */
     protected void configureNewInstance(Instance instance) {
         Bounds bds = instance.getBounds();
         instance.setTextField(StdAttr.LABEL, StdAttr.LABEL_FONT,
@@ -79,8 +75,8 @@ class GrayCounter extends InstanceFactory {
     }
 
     public void propagate(InstanceState state) {
-        // This is the same as with SimpleGrayCounter, except that we use the
-        // StdAttr.WIDTH attribute to determine the bit width to work with.
+        // Dieser Abschnitt ist genauso wie beim SimpleGrayCounter, abgesehen davon, daß wir das 
+        // StdAttr.WIDTH Attribut benutzen, um die zu verwendende Bitbreite zu bestimmen.
         BitWidth width = state.getAttributeValue(StdAttr.WIDTH);
         CounterData cur = CounterData.get(state, width);
         boolean trigger = cur.updateClock(state.getPort(0));
@@ -89,8 +85,8 @@ class GrayCounter extends InstanceFactory {
     }
 
     public void paintInstance(InstancePainter painter) {
-        // This is essentially the same as with SimpleGrayCounter, except for
-        // the invocation of painter.drawLabel to make the label be drawn.
+        // Im Prinzip genauso, wie bei dem SimpleGrayCounter, abgesehen vom
+        // Aufruf von painter.drawLabel um die Beschriftung zu zeichnen.
         painter.drawBounds();
         painter.drawClock(0, Direction.EAST);
         painter.drawPort(1);
@@ -127,24 +123,24 @@ import com.cburch.logisim.instance.InstancePoker;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.StdAttr;
 
-/** When the user clicks a counter using the Poke Tool, a CounterPoker object
- * is created, and that object will handle all user events. Note that
- * CounterPoker is a class specific to GrayCounter, and that it must be a
- * subclass of InstancePoker in the com.cburch.logisim.instance package. */
+/** Wenn der Anwender den Zähler mit dem Schaltwerkzeug anklickt, wird ein CounterPoker-Objekt
+ * erzeugt, daß die Benutzerereignisse behandelt. Beachten Sie, daß
+ * CounterPoker eine spezifische Klasse von GrayCounter ist, und daß es eine
+ * Unterklasse von InstancePoker aus dem  com.cburch.logisim.instance-Paket sein muß. */
 public class CounterPoker extends InstancePoker {
     public CounterPoker() { }
 
-    /** Determines whether the location the mouse was pressed should result
-     * in initiating a poke. 
+    /** Legt fest, ob die Position des Mausklicks eine Bearbeitung 
+     * zur Folge haben soll. 
      */
     public boolean init(InstanceState state, MouseEvent e) {
         return state.getInstance().getBounds().contains(e.getX(), e.getY());
-            // Anywhere in the main rectangle initiates the poke. The user might
-            // have clicked within a label, but that will be outside the bounds.
+            // Ein Mausklick irgendwo im Hauptrechteck löst eine Bearbeitung aus. Der Anwender hat vielleicht auf die Beschriftung geklickt,
+            // dies läge aber außerhalb der Begrenzung.
     }
 
-    /** Draws an indicator that the caret is being selected. Here, we'll draw
-     * a red rectangle around the value. */
+    / ** Zeichnet einen Indikator dafür, daß der Eingabebereich ausgewählt wurde. Jetzt zeichnen wir
+     * ein rotes Rechteck um den Wert. */
     public void paint(InstancePainter painter) {
         Bounds bds = painter.getBounds();
         BitWidth width = painter.getAttributeValue(StdAttr.WIDTH);
@@ -159,31 +155,31 @@ public class CounterPoker extends InstancePoker {
         g.setColor(Color.BLACK);
     }
 
-    /** Processes a key by just adding it onto the end of the current value. */
+    /** Bearbeitet einen Tastendruck, indem es diesen einfach an das Ende des aktuellen Wertes stellt. */
     public void keyTyped(InstanceState state, KeyEvent e) {
-        // convert it to a hex digit; if it isn't a hex digit, abort.
+        // wandelt um in eine hexadezimale Ziffer, wenn es keine gültige Ziffer ist, wird abgebrochen.
         int val = Character.digit(e.getKeyChar(), 16);
         BitWidth width = state.getAttributeValue(StdAttr.WIDTH);
         if(val &lt; 0 || (val &amp; width.getMask()) != val) return;
 
-        // compute the next value
+        // berechne den nächsten Wert
         CounterData cur = CounterData.get(state, width);
         int newVal = (cur.getValue().toIntValue() * 16 + val) &amp; width.getMask();
         Value newValue = Value.createKnown(width, newVal);
         cur.setValue(newValue);
         state.fireInvalidated();
         
-        // You might be tempted to propagate the value immediately here, using
-        // state.setPort. However, the circuit may currently be propagating in
-        // another thread, and invoking setPort directly could interfere with
-        // that. Using fireInvalidated notifies the propagation thread to
-        // invoke propagate on the counter at its next opportunity.
+        // Sie könnten versucht sein, den Wert jetzt direkt über
+        // state.setPort auszugeben. Aber die Schaltung könnte gerade an einer Stelle beschäftigt sein
+        // und der direkte Zugriff auf setPort könnte hier
+        // störend eingreifen. Die Benutzung von fireInvalidated benachrichtigt die Aktualisierungsroutine
+        // den Wert des Zählers bei nächster Gelegenheit weiterzuleiten.
     }
 }
 </pre>
 
 
-<p><strong>Next:</strong> <a href="guide.html">Guidelines</a>.</p>
+<p><strong>Weiter:</strong> <a href="guide.html">Richtlinien</a>.</p>
 
 </body>
 </html>

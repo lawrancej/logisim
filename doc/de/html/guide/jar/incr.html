@@ -7,48 +7,29 @@
 
 <h1>Gray-Kode Inkrementierer</h1>
 
-<p>Each component included in a library is defined by creating a subclass of
-<code>InstanceFactory</code> found in the
-<code>com.cburch.logisim.instance</code> package. This subclass has all
-the code involved</p>
+<p>Jedes Bauelement in ein einer Bibliothek wird durch die Erstellung einer Unterklasse von <code>InstanceFactory</code> aus dem <code>com.cburch.logisim.instance</code> Paket definiert. Diese Unterklasse enthält den gesamten, benötigten Kode.</p>
 
-<p>(Here we're describing the API for the current version of Logisim.
-You may find some libraries developed for older versions of Logisim, in
-which components were developed by defining two classes, one extending
-<code>Component</code> and another extending <code>ComponentFactory</code>.
-Version 2.3.0 introduced the much simpler <code>InstanceFactory</code> API; the
-older technique is deprecated.)</p>
+<p>(An dieser Stelle beschreiben wir die API der aktuellen Version von Logisim. Es gibt Bibliotheken, die für frühere Versionen von Logisim entwickelt wurden, wo Bauelemente durch die Definition von zwei Klassen erstellt wurden: eine Erweiterung von <code>Component</code> und eine Erweiterung von <code>ComponentFactory</code>. Die Version 2.3.0 führte die sehr viel einfachere <code>InstanceFactory</code>-API ein, die andere Methode ist seitdem veraltet.)</p>
 
-<p>Three Logisim packages define most of the classes relevant to defining
-component libraries.</p>
+<p>Drei Pakete von Logisim definieren die meisten Klassen, die für die Erstellung von Bauelementbibliotheken benötigt werden.</p>
 <dl>
 
 <dt><code>com.cburch.logisim.instance</code></dt>
-<dd><p>Contains classes specifically related to defining components,
-including the <code>InstanceFactory</code>, <code>InstanceState</code>,
-<code>InstancePainter</code>, and <code>Instance</code> classes.</p></dd>
+<dd><p>Enthält Klassen, die speziellen Bezug zur Erstellung von Bauelementen haben, darunter die Klassen <code>InstanceFactory</code>, <code>InstanceState</code>, <code>InstancePainter</code> und <code>Instance</code>.</p></dd>
 
 <dt><code>com.cburch.logisim.data</code></dt>
-<dd><p>Contains classes related to data elements associated with components,
-such as the <code>Bounds</code> class for representing bounding rectangles
-or the <code>Value</code> class for representing values that can
-exist on a wire.</p></dd>
+<dd><p>Enthält Klassen zu Datenelementen, die mit den Bauelementen verknüpft sind, wie die Klasse <code>Bounds</code> für begrenzende Rechtecke oder die Klasse  <code>Value</code> für die Werte, die auf einer Leitung existieren können.</p></dd>
 
 <dt><code>com.cburch.logisim.tools</code></dt>
-<dd><p>Contains classes related to the library definition.</p></dd>
+<dd><p>Enthält Klassen zur Definition von Bibliotheken.</p></dd>
 
 </dl>
 
-<h2>About Gray codes</h2>
+<h2>Über Gray-Kodes</h2>
 
-<p>Before we go on, let me briefly describe the Gray code on which these
-examples are based. It's not really important to understanding how these
-examples work, so you can safely skip to the code below if you wish -
-particularly if you already know Gray codes.</p>
+<p>Bevor wir weitergehen, soll an dieser Stelle kurz auf die Gray-Kodes eingegangen werden, auf denen die Beispiele aufbauen. Es ist nicht unbedingt wichtig zu verstehen, wie diese Beispiele im Detail funktionieren. Daher können Sie auch den folgenden Kode überspringen - natürlich auch dann, wenn Sie sich bereits mit Gray-Kodes auskennen.</p>
 
-<p>Gray code is a technique (named after Frank Gray) for iterating through
-<var>n</var>-bit sequences with only one bit changed for each step. As an
-example, consider the 4-bit Gray code listed below.</p>
+<p>Der Gray-Kode (benannt nach Frank Gray) ist eine Methode eine Gruppe von <var>n</var>-Bits zu durchlaufen, wobei sich immer nur ein Bit pro Schritt ändert. Als Beispiel können Sie den folgenden 4-bit Gray-Kode betrachten.</p>
 
 <blockquote><table><tbody>
 <tr><td valign="top">000<u>0</u>
@@ -72,21 +53,13 @@ example, consider the 4-bit Gray code listed below.</p>
 <br><u>1</u>000
 </td></tr></tbody></table></blockquote>
 
-<p>Each value has the bit underlined that will change for the next value in
-the sequence. For example, after 0000 comes 0001, in which the final bit has
-been toggled, so the final bit is underlined.</p>
+<p>In jeder Zeile ist jeweils das Bit unterstrichen, das sich im nächsten Schritt ändern wird. Zum Beispiel folgt auf 0000 der Wert 0001, in dem das letzte Bit umgeschaltet wurde, daher ist das letzte Bit unterstrichen.</p>
 
-<p>Logisim's built-in components don't include anything working with Gray codes.
-But electronics designers find Gray codes useful sometimes. One
-particularly notable instance of Gray codes is along the axes in Karnaugh
-maps.</p>
+<p>Keines der eingebauten Bauelemente in Logisim arbeitet mit Gray-Kodes. Aber manchmal sind Gray-Kodes für Elektroniker von Bedeutung. Ein solches Beispiel findet sich längs der Achsen von Karnaughdiagrammen.</p>
 
 <h2>GrayIncrementer</h2>
 
-<p>This is a minimal example illustrating the essential elements
-to defining a component. This particular component is an incrementer,
-which takes an multibit input and produces the next Gray code following it
-in sequence.</p>
+<p>Dies ist ein minimales Beispiel zur Veranschaulichung der wesentlichen Bestandteile der Definition eines Bauelements. Dieses Bauelement ist ein Inkrementierer, das einen Wert von einem Mehrbit-Eingang nimmt und den nächsten Gray-Kode der Sequenz berechnet.</p>
 
 <pre>
 package com.cburch.gray;
@@ -101,42 +74,42 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 
-/** This component takes a multibit input and outputs the value that follows it
- * in Gray Code. For instance, given input 0100 the output is 1100. */
+/** Dieses Bauelement nimmt einen Mehrbit-Wert und berechnet den darauf folgenden Wert aus
+ * im Gray-Kode. Zum Beispiel folgt auf 0100 der Wert 1100. */
 class GrayIncrementer extends InstanceFactory {
-    /* Note that there are no instance variables. There is only one instance of
-     * this class created, which manages all instances of the component. Any
-     * information associated with individual instances should be handled
-     * through attributes. For GrayIncrementer, each instance has a "bit width"
-     * that it works with, and so we'll have an attribute. */
+    /* Beachten Sie, daß es keine Instanyvariablen gibt. Es wird nur eine Instanz dieser
+     * Klasse erzeugt, die alle Instanzen des Bauelements verwaltet. Alle
+     * Informationen die mit individuellen Instanzen zusammenhängen, sollten durch 
+     * Attribute behandelt werden. Für den GrayIncrementer besitzt jede Instanz eine Bitbreite
+     * mit der gearbeitet wird, daher gibt es ein entsprechendes Attribut. */
 
-    /** The constructor configures the factory. */
+    / ** Der Konstruktor konfiguriert die Fabrik. */
     GrayIncrementer() {
         super("Gray Code Incrementer");
         
-        /* This is how we can set up the attributes for GrayIncrementers. In
-         * this case, there is just one attribute - the width - whose default
-         * is 4. The StdAttr class defines several commonly occurring
-         * attributes, including one for "bit width." It's best to use those
-         * StdAttr attributes when appropriate: A user can then select several
-         * components (even from differing factories) with the same attribute
-         * and modify them all at once. */
+        /* Auf diese Weise können die Attribute des GrayIncrementers initialisiert werden. Hier
+         * haben wir nur ein Attribut - die Bitbreite - deren Vorgabe
+         * 4 ist. Die Klasse StdAttr definiert zahlreiche gebräuchliche 
+         * Attribute, einschließlcih der Bitbreite. wenn möglich
+         * empfiehlt es sich, die Attribute aus StdAttr zu verwenden: Ein Anwender kann dann mehrere
+         * Bauelemente (selbst aus verschiedenen Bibliotheken) mit gemeinsamen Attributen auswählen,
+         * und dann diese dann gleichzeitig verändern. */
         setAttributes(new Attribute[] { StdAttr.WIDTH },
                 new Object[] { BitWidth.create(4) });
         
-        /* The "offset bounds" is the location of the bounding rectangle
-         * relative to the mouse location. Here, we're choosing the component to
-         * be 30x30, and we're anchoring it relative to its primary output
-         * (as is typical for Logisim), which happens to be in the center of the
-         * east edge. Thus, the top left corner of the bounding box is 30 pixels
-         * west and 15 pixels north of the mouse location. */
+        /* Die "offset bounds" bezeichnen die Lage des umgrenzenden Rechtecks
+         * relativ zur Position der Maus. Hier wird unser Bauelement 
+         * 30x30 groß, und wir verankern es an dessen primären Ausgang
+         * (wie für Logisim typisch), der sich in der Mitte der
+         * östlichen Kante befindet. Daher befindet sich die obere linke Ecke des umgrenzenden Rechtecks 30 Punkte
+         * westlich und 15 Punkte nördlich der Mausposition. */
         setOffsetBounds(Bounds.create(-30, -15, 30, 30));
         
-        /* The ports are locations where wires can be connected to this
-         * component. Each port object says where to find the port relative to
-         * the component's anchor location, then whether the port is an
-         * input/output/both, and finally the expected bit width for the port.
-         * The bit width can be a constant (like 1) or an attribute (as here).
+        /* Die Ports sind die Positionen, an denen Leitungen an dem Bauteil
+         * angeschlossen werden können. Jedes Port-Objekt besagt, wo dieser Port relativ zum Ankerpunkt des
+         * Bauelements befindet, ob es sich um einen
+         * Eingang/Ausgang/Beides handelt, und schließlich die erwartete Bitbreite des Ports.
+         * Die Bitbreite kann eine Konstante (wie 1) oder ein Attribut (wie in diesem Beispiel) sein.
          */
         setPorts(new Port[] {
                 new Port(-30, 0, Port.INPUT, StdAttr.WIDTH),
@@ -144,42 +117,42 @@ class GrayIncrementer extends InstanceFactory {
             });
     }
 
-    /** Computes the current output for this component. This method is invoked
-     * any time any of the inputs change their values; it may also be invoked in
-     * other circumstances, even if there is no reason to expect it to change
-     * anything. */
+    /** Berechnet den aktuellen Ausgabewert des Bauelements. Diese Methode wird jedes Mal aufgerufen,
+     * wenn einer der Eingänge seinen Wert ändert. Sie kann auch unter anderen Umständen
+     * aufgerufen werden, auch wenn es keinen Grund gibt, eine Änderung zu
+     * erwarten. */
     public void propagate(InstanceState state) {
-        // First we retrieve the value being fed into the input. Note that in
-        // the setPorts invocation above, the component's input was included at
-        // index 0 in the parameter array, so we use 0 as the parameter below.
+        // Zunächst wird der Wert vom Eingang eingelesen. Beachten Sie, daß beim Aufruf
+        // von setPorts der Eingang am Index 0 des Parameterfeldes 
+        // definiert wurde, daher benutzen wir hier 0 als Parameter.
         Value in = state.getPort(0);
         
-        // Now compute the output. We've farmed this out to a helper method,
-        // since the same logic is needed for the library's other components.
+        // Jetzt wir der Ausgangswert berechnet. Dies wurde in eine Hilfsmethode ausgelagert,
+        // weil die anderen Bauelemente dieser Bibliothek dieselben Routinen benötigen.
         Value out = nextGray(in);
         
-        // Finally we propagate the output into the circuit. The first parameter
-        // is 1 because in our list of ports (configured by invocation of
-        // setPorts above) the output is at index 1. The second parameter is the
-        // value we want to send on that port. And the last parameter is its
-        // "delay" - the number of steps it will take for the output to update
-        // after its input.
+        // Schließlich wird dieser Wert an den Ausgang weitergegeben. Der erste Parameter
+        // ist 1, weil der Ausgang in unserer Liste der Ports am Index 1 definiert worden ist
+        // (siehe setPorts weiter oben). Der zweite Parameter ist hier der
+        // Wert, der an den Ausgang gesendet werden soll. Und der letzte Parameter ist die Verzögerung
+        //  - die Anzahl der Schritte, die bis zur Aktualisierung des Ausgangs vergehen sollen,
+        // nach der Änderung am Eingang.
         state.setPort(1, out, out.getWidth() + 1);
     }
 
-    /** Says how an individual instance should appear on the canvas. */
+    /** Bezeichnet, wie eine einzelne Instanz auf der Arbeitsfläche dargestellt wird. */
     public void paintInstance(InstancePainter painter) {
-        // As it happens, InstancePainter contains several convenience methods
-        // for drawing, and we'll use those here. Frequently, you'd want to
-        // retrieve its Graphics object (painter.getGraphics) so you can draw
-        // directly onto the canvas.
+        / /  InstancePainter enthält mehrere bequeme Methoden
+        // zum Zeichnen, die wir hier benutzen. Häufig würden Sie
+        // dessen Objekt Graphics (painter.getGraphics) aufrufen, so daß Sie direkt
+        // aus der Arbeitsfläche zeichnen können.
         painter.drawRectangle(painter.getBounds(), "G+1");
         painter.drawPorts();
     }
     
-    /** Computes the next gray value in the sequence after prev. This static
-     * method just does some bit twiddling; it doesn't have much to do with
-     * Logisim except that it manipulates Value and BitWidth objects. */
+    /** Berechnet den nächsten Gray-Wert nach prev aus der Folge. Diese statische
+     * Methode dreht nur einige Bits um, es hat nicht viel mit Logisim
+     * zu tun, abgesehen von der Manipulation der Objekte Value und BitWidth */
     static Value nextGray(Value prev) {
         BitWidth bits = prev.getBitWidth();
         if(!prev.isFullyDefined()) return Value.createError(bits);
@@ -191,8 +164,8 @@ class GrayIncrementer extends InstanceFactory {
         ct = (ct &gt;&gt; 1) ^ ct;
         if((ct &amp; 1) == 0) { // if parity is even, flip 1's bit
             x = x ^ 1;
-        } else { // else flip bit just above last 1
-            int y = x ^ (x &amp; (x - 1)); // first compute the last 1
+        } else { // ansonsten kippe das Bit gerade oberhalb der letzten 1
+            int y = x ^ (x &amp; (x - 1)); // berechne die letzte 1
             y = (y &lt;&lt; 1) &amp; bits.getMask();
             x = (y == 0 ? 0 : x ^ y);
         }
@@ -201,10 +174,9 @@ class GrayIncrementer extends InstanceFactory {
 }
 </pre>
 
-<p>This example by itself is not enough to create a working JAR file;
-you must also provide a Library class, as illustrated on the next page.</p>
+<p>Dieses Beispiel alleine ist nicht genug, um ein funktionierendes JAR-Archiv zu erstellen. Sie müssen darüberhinaus eine Bibliotheksklasse erstellen, wie auf der nächsten Seite näher erklärt wird.</p>
 
-<p><strong>Next:</strong> <a href="library.html">Library Class</a>.</p>
+<p><strong>Weiter:</strong> <a href="library.html">Bibliotheksklasse</a>.</p>
 
 </body>
 </html>
