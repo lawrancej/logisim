@@ -7,9 +7,8 @@ page. The most part of the guide is common for all three targets; however,
 block ===gui=== below means notes, which are unique for GUI translating,
 ===doc=== marks notes for documentation, and ===www=== marks notes for the web page.
 
+
 STEP 1: GETTING THE ENGLISH TRANSLATION
-
-
 
 1.1. First, you have to get English template for translation (the "source" in
 other words). The best way is to use trunk of Logisim's Subversion repository:
@@ -89,7 +88,6 @@ to worry about this if you use OmegaT, though; it handles the format well.
 =========
 
 
-
 STEP 2: GETTING STARTED WITH OMEGAT 
 
 2.1. I strongly recommend using the OmegaT program (http://omegat.org/) for
@@ -114,9 +112,12 @@ files names template" string is "${nameOnly}.${extension}".
 
 ===doc===
 Select "HTML and XHTML files" item and press "Edit...". Uncheck all the checkboxes:
-we needn't translate or change them (see item 2.9.2 of this guide to know why
+we needn't translate or change them (see item 2.9.1 of this guide to know why
 it's true for images' URLs).
 =========
+
+I strongly recommend to use monospace font (menu item Preferences->Font)!
+It helps to avoid missing or excess spaces, dots, and commas.
 
 2.3 Create a new project (it is actually just a directory). Name of the project
 (and of the directory) should be the next ("de" is an example):
@@ -150,10 +151,10 @@ The OmegaT project has to have the following parameters:
 ========= 
 
 ===doc===
- * Source files directory: "omegat-logisim-doc_de/doc/pre-de"; You have to
+ * Source files directory: "SVN-logisim/doc/en/html"; You have to
  create this dir previously. We can't use "SVN-logisim/doc/en/" directly,
  because we have to change something there before feed it to OmegaT.
- * Translated files directory: "SVN-logisim/doc/de/";
+ * Translated files directory: "SVN-logisim/doc/de/html";
 =========
 
 ===www===
@@ -215,27 +216,23 @@ file manually there, changing the English version slightly, and reload the
 project (F5). For example, I changed "Base" in Vertical alignment section of
 std.properties to "Base-" (as well as three other directions).
 
-2.9.
+
 ===doc===
-You have to create slightly changed copy of the English documentation in
-omegat-logisim-doc_de/doc/pre-de directory to get proper result using OmegaT.
-First of all, copy all the content from SVN-logisim/doc/en to
-omegat-logisim-doc_de/doc/pre-de. There are few changes you have to make:
-
-2.9.1. Translate the file omegat-logisim-doc_de/doc/pre-de/contents.xml.
-It contains the table of contents for JavaHelp Logisim module.
-You have to translate it manually, since OmegaT can't process common XML files.
-Translate only the values of "text" parameter from "tocitem" tags. Also, don't
-forget to change "encoding" parameter if it is necessary. (Please use UTF-8
-always!)
-You have to update this file every time Carl will change the documentation.
-When you will generate translation by OmegaT, it will just copy pre-translated
-contents.xml to your SVN folder.
-
-2.9.2. Images are a bit tricky. You will probably want to replace some of them
-and keep others unchanged from the English documentation. If you have no
-substantive changes to make, either do not touch the file or remove it - the
-script used for generating the JAR file used for distribution will identify such
+2.9.1. You will probably want to replace (translate) some of the images
+and keep others unchanged from the English documentation. All the images
+are placed in three directories:
+ SVN-logisim/doc/en/icons
+ SVN-logisim/doc/en/img-guide
+ SVN-logisim/doc/en/img-libs
+If you have no substantive changes to make, then SVN-logisim/doc/de directory
+shouldn't include any subdirectories except html/. If you have any images to
+replace English ines, create place them to the corresponding subdirectory of
+SVN-logisim/doc/de. It's most likely you will not want to replace images from
+img-guide/ and img-libs/ directories.
+Actually, you may keep unchanged images from English documentation in your
+SVN-logisim/doc/de directory. It will help to preview documentation using browser,
+but it will make SVN repository unclear a bit.
+The script used for generating the JAR file used for distribution will identify such
 missing or unchanged images, and it will quietly transform your HTML in the JAR
 file to link instead to the English image. This reduces the download size
 significantly.
@@ -246,14 +243,15 @@ again insert this into the HTML appearing in the JAR file. In fact, if you
 specify a width or height attribute for an img element, the script will simply
 not copy that into the distributed JAR file.
 
-2.9.3. Return back and translate images wich have to be translated. It's your
+2.9.2. Return back and translate images wich have to be translated. It's your
 decision which ones. If you decide to remake screen shots (so they show the
 translated GUI), then I have some suggestions. First, try to select a windowing
 theme that is plain (without gradients). Second, when you have a screenshot's
 PNG, open it using some graphic editor (for example, GIMP) and change image mode
-to "indexed 32 colors". Both suggestions help to reduce image size. Even if you
-translate many images, you will have completely removed doc/pre-de/icons folder
-and almost all the images from doc/pre-de/libs/images.
+to "indexed 32 colors". After doing this in GIMP, I generally go to the Colormap dialog
+(under Dockable dialogs), click the whitest square, and change it to
+'ffffff' so that it is pure white. Then I go to do the same thing to
+change the blackest square to '000000'. Both suggestions help to reduce image size.
 
 If you want to remake screenshots, you will surely want the circuits used to
 create the English screenshots. Those can be found in the directory doc/circs
@@ -330,40 +328,16 @@ guide briefly describes how to do that.
 
 5.2. If you do some tricks (item 2.8 of this guide describes them),
 then don't forget to repeat them for new sources (of course in your
-intermediate directory if tricks affect .properties files).
+intermediate directory).
 
-===doc===
-5.3. Translate new strings (if any) from SVN-logisim/doc/en/contents.xml
-and add them to omegat-logisim-doc_de/doc/pre-de/contents.xml
-
-5.4. Copy all the new *.html files from SVN-logisim/doc/en/ to
-omegat-logisim-doc_de/doc/pre-de/. Actually, it's OK to copy ALL the *.html files.
-If you're using GNU/Linux, then following bash script written by Carl could
-help you to copy them (don't forget to change "/home/lilovip/" to your home directory).
-
-########
-#! /bin/sh
-
-srcDir="/home/lilovip/SVN-logisim/doc/en"
-dstDir="/home/lilovip/omegat-logisim-doc_de/doc/pre-de"
-
-cd $srcDir
-find . -name "*.html" | xargs tar fc $dstDir/html_files.tar
-cd $dstDir
-tar fx html_files.tar
-rm html_files.tar
-########
-
-=========
-
-5.4. Reload OmegaT project (F5). Don't worry about losing anything! OmegaT
+5.3. Reload OmegaT project (F5). Don't worry about losing anything! OmegaT
 stores your translations for all the strings in the memory, even for strings
 which had gone from the source files. You will never lose your work using
 OmegaT. Finally, you may make a backup of the project dir if you're worrying.
 
-5.5. Translate new strings. (Press Ctrl+U to locate them.)
+5.4. Translate new strings. (Press Ctrl+U to locate them.)
 
-5.6. Generate result (target) files (Ctrl+D). They are already in your SVN-logisim dir,
+5.5. Generate result (target) files (Ctrl+D). They are already in your SVN-logisim dir,
 so now you may commit to SVN. However, you're advised to run 'svn status'
 first to ascertain what you'll change when you commit to SVN.
 
@@ -396,12 +370,6 @@ write simple bash script or use symlinks.
 To ensure you have right file structure in your trunk/xlate/ folder,
 look at the Russian one (I hope I'll keep it correct and clear):
 http://circuit.svn.sourceforge.net/viewvc/circuit/trunk/xlate/ru/doc/
-
-6.2.
-===doc===
-Also, you have to keep in SNV trunk/xlate the complete copy of
-omegat-logisim-doc_de/doc/pre-de/ dir for documentation.
-=========
 
 Feel free to ask any questions at Logisim's mailing list: logisim@googlegroups.com
 If you aren't in the group, contact Carl or me (lilovil@gmail.com)

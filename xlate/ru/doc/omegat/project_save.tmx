@@ -5761,6 +5761,14 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;s0&gt;Blue:&lt;/s0&gt; The wire carries a one-bit value, but nothing is driving a specific value onto the wire.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T143701Z" changeid="lilovip">
+        <seg>&lt;s0&gt;Синий:&lt;/s0&gt; Провод несёт однобитное значение, но ничто не передаёт определённое значение проводу.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;s0&gt;Blue:&lt;/s0&gt; The wire is for carrying a one-bit value, but the value it is carrying is not known.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T184544Z" changeid="lilovip">
@@ -7567,6 +7575,14 @@ void, and will automatically terminate your rights under this License.</seg>
         <seg>Application Preferences</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T135349Z" changeid="lilovip">
+        <seg>Настройки приложения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Application preferences</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142834Z" changeid="lilovip">
         <seg>Настройки приложения</seg>
       </tuv>
     </tu>
@@ -9755,6 +9771,14 @@ software--to make sure the software is free for all its users.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>DIN 40700:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144136Z" changeid="lilovip">
+        <seg>DIN 40700:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>DIN adopted the rectangular standard for digital components in 1976, but some engineers continue to use the older style; they appear to be increasingly rare.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100829T205635Z" changeid="lilovip">
@@ -10690,6 +10714,14 @@ these terms and conditions.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Even&lt;br0&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144346Z" changeid="lilovip">
+        <seg>Чётность</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Every Logisim project is actually a library of circuits.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T205601Z" changeid="lilovip">
@@ -11387,6 +11419,14 @@ make exceptions for this.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>GNU General Public License</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142941Z" changeid="lilovip">
+        <seg>Универсальная Общественная Лицензия GNU</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Gate Size</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -11463,6 +11503,14 @@ make exceptions for this.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100801T152217Z" changeid="lilovip">
         <seg>Создание схемы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>German</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144111Z" changeid="lilovip">
+        <seg>Немецкий</seg>
       </tuv>
     </tu>
     <tu>
@@ -11591,6 +11639,14 @@ make exceptions for this.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T212954Z" changeid="lilovip">
         <seg>Сигнал для группировки: 1, если компонент включен и хотя бы один нумерованный вход содержит 1; иначе на этом выходе 0.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Guide to Being a Logisim User</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142635Z" changeid="lilovip">
+        <seg>Руководство пользователя Logisim</seg>
       </tuv>
     </tu>
     <tu>
@@ -13739,6 +13795,14 @@ the limitation as if written in the body of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>In this example, the component placing a value onto the wire is a three-state pin, so it can emit this floating value.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144052Z" changeid="lilovip">
+        <seg>В этом примере компонент, передающий значение проводу - контакт с тремя состояниями, поэтому он выдаёт это плавающее значение.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>In this example, the splitter happens to actually split an incoming value into multiple outgoing values.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T215706Z" changeid="lilovip">
@@ -14187,6 +14251,14 @@ implemented by public license practices.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>JAR libraries</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142854Z" changeid="lilovip">
+        <seg>Библиотеки JAR</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>JDOM, from &lt;e0&gt;www.jdom.org&lt;/e0&gt;</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100801T142550Z" changeid="lilovip">
@@ -14334,6 +14406,14 @@ implemented by public license practices.</seg>
         <seg>Libraries and Attributes</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100803T223515Z" changeid="lilovip">
+        <seg>Библиотеки и атрибуты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Libraries and attributes</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142646Z" changeid="lilovip">
         <seg>Библиотеки и атрибуты</seg>
       </tuv>
     </tu>
@@ -14527,6 +14607,14 @@ implemented by public license practices.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Logisim 1.0 D/J-K триггеры</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim References</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142549Z" changeid="lilovip">
+        <seg>Ссылки Logisim</seg>
       </tuv>
     </tu>
     <tu>
@@ -15168,6 +15256,14 @@ impose that choice.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Поведение Инструмента Меню</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Menu reference</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142721Z" changeid="lilovip">
+        <seg>Справка по меню</seg>
       </tuv>
     </tu>
     <tu>
@@ -15852,6 +15948,14 @@ impose that choice.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Odd&lt;br0&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144319Z" changeid="lilovip">
+        <seg>Нечётность</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Of course, we would first create a new circuit, which we'll call &quot;4:1 MUX.&quot; To add 2-to-1 multiplexers into our circuit, we click the 2:1 MUX circuit &lt;e0&gt;once&lt;/e0&gt; in the explorer pane to select it as a tool, and then we can add copies of it, represented as boxes, by clicking within the canvas.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T231843Z" changeid="lilovip">
@@ -16450,6 +16554,14 @@ of promoting the sharing and reuse of software generally.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Parity</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144341Z" changeid="lilovip">
+        <seg> </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Paste</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T143209Z" changeid="lilovip">
@@ -16730,6 +16842,14 @@ of promoting the sharing and reuse of software generally.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Project options</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142848Z" changeid="lilovip">
+        <seg>Параметры проекта</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Provides the ability to sort the table in the &lt;q0&gt;Get Circuit Statistics&lt;/q0&gt; dialog through clicking column headers.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T173259Z" changeid="lilovip">
@@ -16910,6 +17030,14 @@ of promoting the sharing and reuse of software generally.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T074550Z" changeid="lilovip">
         <seg>Прямоугольные элементы:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rectangular:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144130Z" changeid="lilovip">
+        <seg>Прямоугольные:</seg>
       </tuv>
     </tu>
     <tu>
@@ -17473,6 +17601,14 @@ REPAIR OR CORRECTION.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T161055Z" changeid="lilovip">
         <seg>Фигурные элементы:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shaped:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144125Z" changeid="lilovip">
+        <seg>Фигурные:</seg>
       </tuv>
     </tu>
     <tu>
@@ -19929,6 +20065,14 @@ Program (independent of having been made by running the Program).</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100812T233337Z" changeid="lilovip">
         <seg>Столбцы идут слева направо в порядке, соответствующем порядку сверху вниз в схеме.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The command line</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142844Z" changeid="lilovip">
+        <seg>Командная строка</seg>
       </tuv>
     </tu>
     <tu>
@@ -23669,6 +23813,14 @@ anyone to deny you these rights or to ask you to surrender the rights.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Tool and component attributes</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142708Z" changeid="lilovip">
+        <seg>Атрибуты инструментов и компонентов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Tool attributes</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100803T225135Z" changeid="lilovip">
@@ -24121,6 +24273,14 @@ anyone to deny you these rights or to ask you to surrender the rights.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T010850Z" changeid="lilovip">
         <seg>Мы сохраняем нашу проверяющую схему в отдельный файл.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>We call this a &lt;e1&gt;floating&lt;/e1&gt; bit; some people call it a &lt;e2&gt;high-impedance&lt;/e2&gt; value.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T143915Z" changeid="lilovip">
+        <seg>Мы называем это &lt;e1&gt;плавающим&lt;/e1&gt; битом; некоторые называют это &lt;e2&gt;высокоимпедансным&lt;/e2&gt; состоянием.</seg>
       </tuv>
     </tu>
     <tu>
@@ -25283,6 +25443,14 @@ price.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Исключающее ИЛИ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>XOR/XNOR/Even/Odd Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T143104Z" changeid="lilovip">
+        <seg>Элементы Исключающее ИЛИ/Исключающее ИЛИ-НЕ/Нечётность/Чётность</seg>
       </tuv>
     </tu>
     <tu>
@@ -26509,6 +26677,14 @@ making modifications to it.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>dFlipFlop.gif</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>de</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144106Z" changeid="lilovip">
+        <seg>de</seg>
       </tuv>
     </tu>
     <tu>
