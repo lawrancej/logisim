@@ -136,4 +136,56 @@
 	<mapID target="legacy" url="html/libs/legacy/index.html" />
 	<mapID target="legacy_flipflops" url="html/libs/legacy/flipflops.html" />
 	<mapID target="legacy_register" url="html/libs/legacy/register.html" />
+
+	<mapID target="icon_poke" url="icons/poke.gif" />
+	<mapID target="icon_edit" url="icons/select.gif" />
+	<mapID target="icon_select" url="icons/select.gif" />
+	<mapID target="icon_wiring" url="icons/wiring.gif" />
+	<mapID target="icon_text" url="icons/text.gif" />
+	<mapID target="icon_menu" url="icons/menu.gif" />
+	<mapID target="icon_splitter" url="icons/splitter.gif" />
+	<mapID target="icon_pin" url="icons/pinInput.gif" />
+	<mapID target="icon_tunnel" url="icons/tunnel.gif" />
+	<mapID target="icon_pull" url="icons/pullshap.gif" />
+	<mapID target="icon_probe" url="icons/probe.gif" />
+	<mapID target="icon_clock" url="icons/clock.gif" />
+	<mapID target="icon_extender" url="icons/extender.gif" />
+	<mapID target="icon_label" url="icons/text.gif" />
+	<mapID target="icon_constant" url="icons/constant.gif" />
+	<mapID target="icon_not" url="icons/notGate.gif" />
+	<mapID target="icon_buffer" url="icons/bufferGate.gif" />
+	<mapID target="icon_basic" url="icons/andGate.gif" />
+	<mapID target="icon_xor" url="icons/xorGate.gif" />
+	<mapID target="icon_controlled" url="icons/controlledBuffer.gif" />
+	<mapID target="icon_mux" url="icons/multiplexer.gif" />
+	<mapID target="icon_demux" url="icons/demultiplexer.gif" />
+	<mapID target="icon_decoder" url="icons/decoder.gif" />
+	<mapID target="icon_priencod" url="icons/priencod.gif" />
+	<mapID target="icon_selector" url="icons/bitSelector.gif" />
+	<mapID target="icon_adder" url="icons/adder.gif" />
+	<mapID target="icon_subtractor" url="icons/subtractor.gif" />
+	<mapID target="icon_multiplier" url="icons/multiplier.gif" />
+	<mapID target="icon_divider" url="icons/divider.gif" />
+	<mapID target="icon_negator" url="icons/negator.gif" />
+	<mapID target="icon_comparator" url="icons/comparator.gif" />
+	<mapID target="icon_shifter" url="icons/shifter.gif" />
+	<mapID target="icon_bitadder" url="icons/bitadder.gif" />
+	<mapID target="icon_bitfinder" url="icons/bitfindr.gif" />
+	<mapID target="icon_flipflops" url="icons/dFlipFlop.gif" />
+	<mapID target="icon_register" url="icons/register.gif" />
+	<mapID target="icon_counter" url="icons/counter.gif" />
+	<mapID target="icon_shiftreg" url="icons/shiftreg.gif" />
+	<mapID target="icon_random" url="icons/random.gif" />
+	<mapID target="icon_ram" url="icons/ram.gif" />
+	<mapID target="icon_rom" url="icons/rom.gif" />
+	<mapID target="icon_button" url="icons/button.gif" />
+	<mapID target="icon_joystick" url="icons/joystick.gif" />
+	<mapID target="icon_keyboard" url="icons/keyboard.gif" />
+	<mapID target="icon_led" url="icons/led.gif" />
+	<mapID target="icon_7seg" url="icons/7seg.gif" />
+	<mapID target="icon_hexdig" url="icons/hexdig.gif" />
+	<mapID target="icon_dotmat" url="icons/dotmat.gif" />
+	<mapID target="icon_tty" url="icons/tty.gif" />
+	<mapID target="icon_legacy_ff" url="icons/dFlipFlop.gif" />
+	<mapID target="icon_legacy_reg" url="icons/register.gif" />
 </map>

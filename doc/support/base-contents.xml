@@ -92,69 +92,69 @@
 
 	<tocitem target="libs">
 	  <tocitem target="base">
-		<tocitem target="base_poke" />
-		<tocitem target="base_edit" />
-		<tocitem target="base_select" />
-		<tocitem target="base_wiring" />
-		<tocitem target="base_text" />
-		<tocitem target="base_menu" />
-		<tocitem target="base_splitter" />
-		<tocitem target="base_pin" />
-		<tocitem target="base_tunnel" />
-		<tocitem target="base_pull" />
-		<tocitem target="base_probe" />
-		<tocitem target="base_clock" />
-		<tocitem target="base_extender" />
-		<tocitem target="base_label" />
+		<tocitem target="base_poke" image="icon_poke" />
+		<tocitem target="base_edit" image="icon_edit" />
+		<tocitem target="base_select" image="icon_select" />
+		<tocitem target="base_wiring" image="icon_wiring" />
+		<tocitem target="base_text" image="icon_text" />
+		<tocitem target="base_menu" image="icon_menu" />
+		<tocitem target="base_splitter" image="icon_splitter" />
+		<tocitem target="base_pin" image="icon_pin" />
+		<tocitem target="base_tunnel" image="icon_tunnel" />
+		<tocitem target="base_pull" image="icon_pull" />
+		<tocitem target="base_probe" image="icon_probe" />
+		<tocitem target="base_clock" image="icon_clock" />
+		<tocitem target="base_extender" image="icon_extender" />
+		<tocitem target="base_label" image="icon_label" />
 	  </tocitem>
 	  <tocitem target="gates">
-		<tocitem target="gates_constant" />
-		<tocitem target="gates_not" />
-		<tocitem target="gates_buffer" />
-		<tocitem target="gates_basic" />
-		<tocitem target="gates_xor" />
-		<tocitem target="gates_controlled" />
+		<tocitem target="gates_constant" image="icon_constant" />
+		<tocitem target="gates_not" image="icon_not" />
+		<tocitem target="gates_buffer" image="icon_buffer" />
+		<tocitem target="gates_basic" image="icon_basic" />
+		<tocitem target="gates_xor" image="icon_xor" />
+		<tocitem target="gates_controlled" image="icon_controlled" />
 	  </tocitem>
 	  <tocitem target="plexers">
-		<tocitem target="plexers_mux" />
-		<tocitem target="plexers_demux" />
-		<tocitem target="plexers_decoder" />
-		<tocitem target="plexers_priencod" />
-		<tocitem target="plexers_selector" />
+		<tocitem target="plexers_mux" image="icon_mux" />
+		<tocitem target="plexers_demux" image="icon_demux" />
+		<tocitem target="plexers_decoder" image="icon_decoder" />
+		<tocitem target="plexers_priencod" image="icon_priencod" />
+		<tocitem target="plexers_selector" image="icon_selector" />
 	  </tocitem>
 	  <tocitem target="arith">
-		<tocitem target="arith_adder" />
-		<tocitem target="arith_subtractor" />
-		<tocitem target="arith_multiplier" />
-		<tocitem target="arith_divider" />
-		<tocitem target="arith_negator" />
-		<tocitem target="arith_comparator" />
-		<tocitem target="arith_shifter" />
-		<tocitem target="arith_bitadder" />
-		<tocitem target="arith_bitfinder" />
+		<tocitem target="arith_adder" image="icon_adder" />
+		<tocitem target="arith_subtractor" image="icon_subtractor" />
+		<tocitem target="arith_multiplier" image="icon_multiplier" />
+		<tocitem target="arith_divider" image="icon_divider" />
+		<tocitem target="arith_negator" image="icon_negator" />
+		<tocitem target="arith_comparator" image="icon_comparator" />
+		<tocitem target="arith_shifter" image="icon_shifter" />
+		<tocitem target="arith_bitadder" image="icon_bitadder" />
+		<tocitem target="arith_bitfinder" image="icon_bitfinder" />
 	  </tocitem>
 	  <tocitem target="mem">
-		<tocitem target="mem_flipflops" />
-		<tocitem target="mem_register" />
-		<tocitem target="mem_counter" />
-		<tocitem target="mem_shiftreg" />
-		<tocitem target="mem_random" />
-		<tocitem target="mem_ram" />
-		<tocitem target="mem_rom" />
+		<tocitem target="mem_flipflops" image="icon_flipflops" />
+		<tocitem target="mem_register" image="icon_register" />
+		<tocitem target="mem_counter" image="icon_counter" />
+		<tocitem target="mem_shiftreg" image="icon_shiftreg" />
+		<tocitem target="mem_random" image="icon_random" />
+		<tocitem target="mem_ram" image="icon_ram" />
+		<tocitem target="mem_rom" image="icon_rom" />
 	  </tocitem>
 	  <tocitem target="io">
-		<tocitem target="io_button" />
-		<tocitem target="io_joystick" />
-		<tocitem target="io_keyboard" />
-		<tocitem target="io_led" />
-		<tocitem target="io_7seg" />
-		<tocitem target="io_hexdig" />
-		<tocitem target="io_dotmat" />
-		<tocitem target="io_tty" />
+		<tocitem target="io_button" image="icon_button" />
+		<tocitem target="io_joystick" image="icon_joystick" />
+		<tocitem target="io_keyboard" image="icon_keyboard" />
+		<tocitem target="io_led" image="icon_led" />
+		<tocitem target="io_7seg" image="icon_7seg" />
+		<tocitem target="io_hexdig" image="icon_hexdig" />
+		<tocitem target="io_dotmat" image="icon_dotmat" />
+		<tocitem target="io_tty" image="icon_tty" />
 	  </tocitem>
 	  <tocitem target="legacy">
-		<tocitem target="legacy_flipflops" />
-		<tocitem target="legacy_register" />
+		<tocitem target="legacy_flipflops" image="icon_legacy_ff" />
+		<tocitem target="legacy_register" image="icon_legacy_reg" />
 	  </tocitem>
 	</tocitem>
 </tocitem>

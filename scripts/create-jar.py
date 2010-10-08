@@ -223,7 +223,7 @@ if include_source:
 if include_documentation:
 	print('copying documentation')
 	doc_dst = build_path(temp_dir, 'doc')
-	copy_doc.do_copy(doc_dir, doc_dst)
+	copy_doc.copy_files_all_locales(doc_dir, doc_dst)
 	copy_doc.build_contents(doc_dir, doc_dst)
 	copy_doc.build_map(doc_dir, doc_dst)
 	copy_doc.build_helpset(doc_dir, doc_dst)

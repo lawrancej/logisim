@@ -1,0 +1,30 @@
+div#content {
+	margin-left: 260px;
+}
+
+div#map {
+	position: absolute;
+	width: 235px;
+	top: 0px;
+}
+
+ul#maptree {
+	display: block;
+	margin-left: 15px;
+	margin-right; 10px;
+	padding: 0px;
+	position: absolute;
+	top: 100px;
+}
+
+ul#maptree .onpath {
+	color: black;
+}
+
+ul#maptree .offpath {
+	color: #aa7700;
+}
+
+ul#maptree a {
+	text-decoration: none;
+}
