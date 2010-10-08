@@ -224,19 +224,23 @@ if include_documentation:
 	print('copying documentation')
 	doc_dst = build_path(temp_dir, 'doc')
 	copy_doc.do_copy(doc_dir, doc_dst)
+	copy_doc.build_contents(doc_dir, doc_dst)
+	copy_doc.build_map(doc_dir, doc_dst)
+	copy_doc.build_helpset(doc_dir, doc_dst)
 	
 	jhindexer = build_path(data_dir, 'javahelp/bin/jhindexer.jar', cygwin=False)
+	os.chdir(doc_dst)
 	for locale in os.listdir(doc_dst):
 		locale_dst = build_path(doc_dst, locale)
 		if os.path.isdir(locale_dst):
-			os.chdir(locale_dst)
 			cmd_args = [java_exec, '-jar', jhindexer]
 			if os.path.exists('jhindexer.cfg'):
 				cmd_args.extend(['-c', 'jhindexer.cfg'])
+			cmd_args.extend(['-db', 'search_lookup_' + locale])
 			cmd_args.extend(['-locale', locale])
 			found = False
-			for sub in ['guide', 'libs']:
-				if os.path.exists(build_path(locale_dst, sub)):
+			for sub in [locale + '/html/guide', locale + '/html/libs']:
+				if os.path.exists(build_path(doc_dst, sub)):
 					cmd_args.append(sub)
 					found = True
 			if found:

@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE toc
+  PUBLIC 
+  "-//Sun Microsystems Inc.//DTD 
+   JavaHelp TOC Version 2.0//EN"
+  "http://java.sun.com/products/javahelp/toc_2_0.dtd">
+<toc version="2.0" categoryclosedimage="chapter" topicimage="topic">
+  <tocitem image="toplevelfolder" target="top">
+
+	<tocitem target="guide">
+		<tocitem target="tutorial">
+			<tocitem target="tutorial_orient" />
+			<tocitem target="tutorial_gates" />
+			<tocitem target="tutorial_wires" />
+			<tocitem target="tutorial_text" />
+			<tocitem target="tutorial_test" />
+		</tocitem>
+		<tocitem target="attrlib">
+			<tocitem target="attrlib_explore" />
+			<tocitem target="attrlib_attr" />
+			<tocitem target="attrlib_tool" />
+		</tocitem>
+		<tocitem target="subcirc">
+			<tocitem target="subcirc_creating" />
+			<tocitem target="subcirc_using" />
+			<tocitem target="subcirc_appear" />
+			<tocitem target="subcirc_debug" />
+			<tocitem target="subcirc_library" />
+		</tocitem>
+		<tocitem target="bundles">
+			<tocitem target="bundles_creating" />
+			<tocitem target="bundles_splitting" />
+			<tocitem target="bundles_colors" />
+		</tocitem>
+		<tocitem target="analyze">
+			<tocitem target="analyze_open" />
+			<tocitem target="analyze_table" />
+			<tocitem target="analyze_expr" />
+			<tocitem target="analyze_gen" />
+		</tocitem>
+		<tocitem target="menu">
+			<tocitem target="menu_file" />
+			<tocitem target="menu_edit" />
+			<tocitem target="menu_project" />
+			<tocitem target="menu_simulate" />
+			<tocitem target="menu_winhelp" />
+		</tocitem>
+		<tocitem target="mem_guide">
+			<tocitem target="mem_poke" />
+			<tocitem target="mem_menu" />
+			<tocitem target="mem_hex" />
+		</tocitem>
+		<tocitem target="log">
+			<tocitem target="log_selection" />
+			<tocitem target="log_table" />
+			<tocitem target="log_file" />
+		</tocitem>
+		<tocitem target="verify">
+			<tocitem target="verify_sub" />
+			<tocitem target="verify_other" />
+			<tocitem target="verify_multi" />
+		</tocitem>
+		<tocitem target="prefs">
+			<tocitem target="prefs_template" />
+			<tocitem target="prefs_tools" />
+			<tocitem target="prefs_intl" />
+			<tocitem target="prefs_exp" />
+			<tocitem target="prefs_cmdline" />
+		</tocitem>
+		<tocitem target="opts">
+			<tocitem target="opts_canvas" />
+			<tocitem target="opts_simulate" />
+			<tocitem target="opts_toolbar" />
+			<tocitem target="opts_mouse" />
+		</tocitem>
+		<tocitem target="prop">
+			<tocitem target="prop_delays" />
+			<tocitem target="prop_oscillate" />
+			<tocitem target="prop_shortcome" />
+		</tocitem>
+		<tocitem target="jar">
+			<tocitem target="jar_incr" />
+			<tocitem target="jar_library" />
+			<tocitem target="jar_simpctr" />
+			<tocitem target="jar_counter" />
+			<tocitem target="jar_guide" />
+		</tocitem>
+		<tocitem target="about">
+			<tocitem target="about_gpl" />
+		</tocitem>
+	</tocitem>
+
+	<tocitem target="libs">
+	  <tocitem target="base">
+		<tocitem target="base_poke" />
+		<tocitem target="base_edit" />
+		<tocitem target="base_select" />
+		<tocitem target="base_wiring" />
+		<tocitem target="base_text" />
+		<tocitem target="base_menu" />
+		<tocitem target="base_splitter" />
+		<tocitem target="base_pin" />
+		<tocitem target="base_tunnel" />
+		<tocitem target="base_pull" />
+		<tocitem target="base_probe" />
+		<tocitem target="base_clock" />
+		<tocitem target="base_extender" />
+		<tocitem target="base_label" />
+	  </tocitem>
+	  <tocitem target="gates">
+		<tocitem target="gates_constant" />
+		<tocitem target="gates_not" />
+		<tocitem target="gates_buffer" />
+		<tocitem target="gates_basic" />
+		<tocitem target="gates_xor" />
+		<tocitem target="gates_controlled" />
+	  </tocitem>
+	  <tocitem target="plexers">
+		<tocitem target="plexers_mux" />
+		<tocitem target="plexers_demux" />
+		<tocitem target="plexers_decoder" />
+		<tocitem target="plexers_priencod" />
+		<tocitem target="plexers_selector" />
+	  </tocitem>
+	  <tocitem target="arith">
+		<tocitem target="arith_adder" />
+		<tocitem target="arith_subtractor" />
+		<tocitem target="arith_multiplier" />
+		<tocitem target="arith_divider" />
+		<tocitem target="arith_negator" />
+		<tocitem target="arith_comparator" />
+		<tocitem target="arith_shifter" />
+		<tocitem target="arith_bitadder" />
+		<tocitem target="arith_bitfinder" />
+	  </tocitem>
+	  <tocitem target="mem">
+		<tocitem target="mem_flipflops" />
+		<tocitem target="mem_register" />
+		<tocitem target="mem_counter" />
+		<tocitem target="mem_shiftreg" />
+		<tocitem target="mem_random" />
+		<tocitem target="mem_ram" />
+		<tocitem target="mem_rom" />
+	  </tocitem>
+	  <tocitem target="io">
+		<tocitem target="io_button" />
+		<tocitem target="io_joystick" />
+		<tocitem target="io_keyboard" />
+		<tocitem target="io_led" />
+		<tocitem target="io_7seg" />
+		<tocitem target="io_hexdig" />
+		<tocitem target="io_dotmat" />
+		<tocitem target="io_tty" />
+	  </tocitem>
+	  <tocitem target="legacy">
+		<tocitem target="legacy_flipflops" />
+		<tocitem target="legacy_register" />
+	  </tocitem>
+	</tocitem>
+</tocitem>
+</toc>

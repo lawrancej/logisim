@@ -90,17 +90,21 @@ def _handle_tag(image_paths_xx, image_paths_en, cwd, xx_src, en_src):
         return ' '.join(pieces) + tag_end
     return handle_tag
 
-def do_copy(src_dir, dst_dir):
-    if not os.path.exists(dst_dir):
-        os.mkdir(dst_dir)
-        
-    en_src = build_path(src_dir, 'en')
+def _find_locales(src_dir, dst_dir):
     doc_locales = []
     for locale in os.listdir(src_dir):
         locale_src = build_path(src_dir, locale)
         locale_dst = build_path(dst_dir, locale)
         if len(locale) == 2 and os.path.isdir(locale_src):
             doc_locales.append((locale, locale_src, locale_dst))
+    return doc_locales
+
+def do_copy(src_dir, dst_dir):
+    if not os.path.exists(dst_dir):
+        os.mkdir(dst_dir)
+        
+    en_src = build_path(src_dir, 'en')
+    doc_locales = _find_locales(src_dir, dst_dir)
     
     # Identify image files - first see which image files are unique to language
     image_paths = {}        
@@ -139,11 +143,100 @@ def do_copy(src_dir, dst_dir):
                 else:
                     shutil.copy(file_src, file_dst)
 
+def build_contents(src_dir, dst_dir):
+    doc_locales = _find_locales(src_dir, dst_dir)
+    
+    xn_ids = {}
+    re_contents = re.compile('<a [^>]*id="([^"]*)">([^<]*)</a>')
     for locale, locale_src, locale_dst in doc_locales:
-        for file in ['map.jhm', 'images/toplevel.gif',
-                             'images/topic.gif', 'images/chapTopic.gif']:
-            file_dst = build_path(locale_dst, file)
-            if (locale != 'en' and not os.path.exists(file_dst)
-                    and os.path.exists(os.path.dirname(file_dst))):
-                file_src = build_path(en_src, file)
-                shutil.copy(file_src, file_dst)
+        contents_src = build_path(locale_src, 'html/contents.html')
+        if os.path.exists(contents_src):
+            with open(contents_src, encoding='utf-8') as contents_file:
+                contents_text = contents_file.read()
+            ids = {}
+            for contents_id in re_contents.finditer(contents_text):
+                id = contents_id.group(1)
+                text = contents_id.group(2)
+                text = text.replace('"', '&quot;')
+                ids[id] = text
+            xn_ids[locale] = ids
+            
+    base_path = build_path(src_dir, 'circs/base-contents.xml')
+    with open(base_path, encoding='utf-8') as base_file:
+        base_text = base_file.read();
+    
+    re_tocitem = re.compile('(<tocitem[^>]*target=")([^"]*)(")([^>]*>)')
+    for locale, locale_src, locale_dst in doc_locales:
+        contents_dst = build_path(locale_dst, 'contents.xml')
+        if not os.path.exists(contents_dst):
+            def tocitem_repl(match):
+                target_pre = match.group(1)
+                target = match.group(2)
+                target_post = match.group(3)
+                tocitem_end = match.group(4)
+                
+                if locale in xn_ids and target in xn_ids[locale]:
+                    text = ' text="' + xn_ids[locale][target] + '"'
+                elif target in xn_ids['en']:
+                    text = ' text="' + xn_ids['en'][target] + '"'
+                else:
+                    text = ''
+                
+                return target_pre + target + target_post + text + tocitem_end
+            
+            contents_text = re_tocitem.sub(tocitem_repl, base_text)
+            with open(contents_dst, 'w', encoding='utf-8') as contents_file:
+                contents_file.write(contents_text)
+
+def build_map(src_dir, dst_dir):
+    doc_locales = _find_locales(src_dir, dst_dir)
+    
+    xn_urls = {}
+    for locale, locale_src, locale_dst in doc_locales:
+        urls = {}
+        for path, dirs, files in os.walk(locale_src):
+            if '.svn' in dirs:
+                dirs.remove('.svn')
+            for file in files:
+                rel_path = os.path.relpath(build_path(path, file), locale_src)
+                urls[rel_path.replace('\\', '/')] = True
+        xn_urls[locale] = urls
+            
+    base_map = build_path(src_dir, 'circs/base-map.jhm')
+    with open(base_map, encoding='utf-8') as base_file:
+        base_text = base_file.read();
+    
+    re_mapid = re.compile('(<mapID[^>]*url=")([^"]*)("[^>]*>)')
+    for locale, locale_src, locale_dst in doc_locales:
+        map_dst = build_path(dst_dir, 'map_' + locale + '.jhm')
+        if not os.path.exists(map_dst):
+            def mapid_repl(match):
+                url_pre = match.group(1)
+                url = match.group(2)
+                url_post = match.group(3)
+                
+                if locale in xn_urls and url in xn_urls[locale]:
+                    url = locale + '/' + url
+                elif url in xn_urls['en']:
+                    url = 'en/' + url
+                
+                return url_pre + url + url_post
+            
+            map_text = re_mapid.sub(mapid_repl, base_text)
+            with open(map_dst, 'w', encoding='utf-8') as map_file:
+                map_file.write(map_text)
+
+def build_helpset(src_dir, dst_dir):
+    doc_locales = _find_locales(src_dir, dst_dir)
+            
+    base_helpset = build_path(src_dir, 'circs/base-doc.hs')
+    with open(base_helpset, encoding='utf-8') as base_file:
+        base_text = base_file.read();
+    
+    re_lang = re.compile('{lang}')
+    for locale, locale_src, locale_dst in doc_locales:
+        helpset_dst = build_path(dst_dir, 'doc_' + locale + '.hs')
+        if not os.path.exists(helpset_dst):
+            helpset_text = re_lang.sub(locale, base_text)
+            with open(helpset_dst, 'w', encoding='utf-8') as helpset_file:
+                helpset_file.write(helpset_text)

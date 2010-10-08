@@ -1,7 +1,7 @@
 
 CHANGE LOG
 
-Feature: If you go to the Preference window's Experimental tab and check "Show Tick Rate," Logisim will measure the actual speed that ticking occurs and display that in the canvas's upper right corner. For complex circuits, the circuit cannot be simulated at the selected tick rate, and so the measured tick rate can be much less.
+Feature: If you go to the Preference window's Experimental tab and check "Show Tick Rate," Logisim will measure the actual rate of ticks and display it in the canvas's upper right corner. For complex circuits, the circuit cannot be simulated at the faster rates listed in the Simulate menu, and so the measured tick rate can be much less than what the user has selected.
 
 Feature: A first version of the German documentation is included.
 
@@ -9,4 +9,4 @@ Bug fix: The tick rate would default to 1 KHz, although the initially checked ti
 
 Bug fix: In editing the appearance and creating a rectangle, oval, or rounded rectangle, there would sometimes be artifacts left behind as the mouse was dragged.
 
-Implementation change: The directory hierarchy of the documentation was changed to facilitate easier translation.
+Implementation change: The documentation's directory hierarchy was changed to facilitate easier translation.
