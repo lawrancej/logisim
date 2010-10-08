@@ -8,11 +8,6 @@ import java.util.ArrayList;
 import com.cburch.logisim.comp.ComponentDrawContext;
 
 public class Simulator {
-	/** If PRINT_TICK_RATE is true, then the number of ticks per second is
-	 * displayed once per TICK_RATE_QUANTUM ticks. */
-	private static final boolean PRINT_TICK_RATE = false;
-	private static final int TICK_RATE_QUANTUM = 512;
-
 	/*begin DEBUGGING
 	private static PrintWriter debug_log;
 	
@@ -153,27 +148,6 @@ public class Simulator {
 				ticksRequested--;
 			}
 			propagator.tick();
-			if (PRINT_TICK_RATE) {
-				tickRateTicks++;
-				if (tickRateTicks >= TICK_RATE_QUANTUM) {
-					long a = tickRateStart;
-					long b = System.currentTimeMillis();
-					double t = 1000 * TICK_RATE_QUANTUM / (b - a);
-					if (t >= 100.0) {
-						t += 0.5;
-						System.out.println((int) t + " Hz"); //OK
-					} else {
-						// This is so we display only three significant digits
-						double fact = 0.1;
-						while (t < 1 / fact) fact *= 10.0;
-						fact *= 100.0;
-						t = (int) (t * fact + 0.5) / fact;
-						System.out.println(t + " Hz"); //OK
-					}
-					tickRateTicks = 0;
-					tickRateStart = b;
-				}
-			}
 		}
 	}
 
@@ -197,6 +171,9 @@ public class Simulator {
 		} catch (IllegalArgumentException e) { }
 		manager.start();
 		ticker.start();
+		
+		tickFrequency = 0.0;
+		setTickFrequency(1.0);
 	}
 	
 	public void shutDown() {

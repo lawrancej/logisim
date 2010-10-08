@@ -30,6 +30,7 @@ public class LogisimPreferences {
 	public static final String TEMPLATE_FILE = "templateFile";
 	public static final String ACCENTS_REPLACE = "accentsReplace"; 
 	public static final String GATE_SHAPE = "gateShape";
+	public static final String SHOW_TICK_RATE = "showTickRate";
 	public static final String GRAPHICS_ACCELERATION = "graphicsAcceleration";
 	public static final String STRETCH_WIRES = "stretchWires";
 	public static final String AFTER_ADD = "afterAdd";
@@ -54,6 +55,7 @@ public class LogisimPreferences {
 	private static File templateFile = null;
 	private static PrefMonitorString locale;
 	private static PrefMonitorBoolean accentsReplace;
+	private static PrefMonitorBoolean showTickRate;
 	private static PrefMonitorStringOpts gateShape;
 	private static PrefMonitorBoolean stretchWires;
 	private static PrefMonitorStringOpts graphicsAccel;
@@ -136,6 +138,7 @@ public class LogisimPreferences {
 							new String[] { AFTER_ADD_EDIT, AFTER_ADD_UNCHANGED });
 					showGhosts = new PrefMonitorBoolean(SHOW_GHOSTS, true);
 					showProjectToolbar = new PrefMonitorBoolean(SHOW_PROJECT_TOOLBAR, false);
+					showTickRate = new PrefMonitorBoolean(SHOW_TICK_RATE, false);
 
 					String localeStr = locale.get();
 					if (localeStr != null && !localeStr.equals("")) {
@@ -326,6 +329,16 @@ public class LogisimPreferences {
 	public static void setShowGhosts(boolean value) {
 		getPrefs();
 		showGhosts.set(value);
+	}
+	
+	public static boolean getShowTickRate() {
+		getPrefs();
+		return showTickRate.get();
+	}
+	
+	public static void setShowTickRate(boolean value) {
+		getPrefs();
+		showTickRate.set(value);
 	}
 	
 	public static boolean getShowProjectToolbar() {

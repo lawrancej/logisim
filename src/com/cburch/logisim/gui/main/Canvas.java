@@ -21,6 +21,7 @@ import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitEvent;
 import com.cburch.logisim.circuit.CircuitListener;
 import com.cburch.logisim.circuit.CircuitState;
+import com.cburch.logisim.circuit.Propagator;
 import com.cburch.logisim.circuit.SimulatorEvent;
 import com.cburch.logisim.circuit.SimulatorListener;
 import com.cburch.logisim.circuit.SubcircuitFactory;
@@ -80,6 +81,9 @@ public class Canvas extends JPanel
 		| InputEvent.BUTTON2_DOWN_MASK | InputEvent.BUTTON3_DOWN_MASK;
 	private static final Color DEFAULT_ERROR_COLOR = new Color(192, 0, 0);
 
+	private static final Color TICK_RATE_COLOR = new Color(0, 0, 92, 92);
+	private static final Font TICK_RATE_FONT = new Font("serif", Font.BOLD, 12);
+	
 	private class MyListener
 			implements MouseInputListener, KeyListener, PopupMenuListener,
 				PropertyChangeListener {
@@ -197,7 +201,8 @@ public class Canvas extends JPanel
 
 		public void propertyChange(PropertyChangeEvent event) {
 			String prop = event.getPropertyName();
-			if (prop.equals(LogisimPreferences.GATE_SHAPE)) {
+			if (prop.equals(LogisimPreferences.GATE_SHAPE)
+					|| prop.equals(LogisimPreferences.SHOW_TICK_RATE)) {
 				paintThread.requestRepaint();
 			}
 		}
@@ -229,6 +234,16 @@ public class Canvas extends JPanel
 				Tool t = event.getTool();
 				if (t == null)  setCursor(Cursor.getDefaultCursor());
 				else            setCursor(t.getCursor());
+			} else if (act == ProjectEvent.ACTION_SET_STATE) {
+				CircuitState oldState = (CircuitState) event.getOldData();
+				CircuitState newState = (CircuitState) event.getData();
+				if (oldState != null && newState != null) {
+					Propagator oldProp = oldState.getPropagator();
+					Propagator newProp = newState.getPropagator();
+					if (oldProp != newProp) {
+						tickCounter.clear();
+					}
+				}
 			}
 
 			if (act != ProjectEvent.ACTION_SELECTION
@@ -463,8 +478,21 @@ public class Canvas extends JPanel
 			if (isSouthwest)    GraphicsUtil.drawArrow(g, 14, sz.height - 14,
 								2, sz.height -  2, 10, 30);
 
+			if (LogisimPreferences.getShowTickRate()) {
+				String hz = tickCounter.getTickRate();
+				if (hz != null && !hz.equals("")) {
+					g.setColor(TICK_RATE_COLOR);
+					g.setFont(TICK_RATE_FONT);
+					FontMetrics fm = g.getFontMetrics();
+					int x = getWidth() - fm.stringWidth(hz) - 5;
+					int y = fm.getAscent() + 5;
+					g.drawString(hz, x, y);
+				}
+			}
+
 			GraphicsUtil.switchToWidth(g, 1);
 			g.setColor(Color.BLACK);
+			
 		}
 		
 		private void paintString(Graphics g, String msg) {
@@ -487,6 +515,7 @@ public class Canvas extends JPanel
 	private MyListener myListener = new MyListener();
 	private MyViewport viewport = new MyViewport();
 	private MyProjectListener myProjectListener = new MyProjectListener();
+	private TickCounter tickCounter;
 
 	private CanvasPaintThread paintThread;
 	private CanvasPainter painter;
@@ -502,6 +531,7 @@ public class Canvas extends JPanel
 		this.paintThread = new CanvasPaintThread(this);
 		this.mappings = proj.getOptions().getMouseMappings();
 		this.canvasPane = null;
+		this.tickCounter = new TickCounter();
 
 		setBackground(Color.white);
 		addMouseListener(myListener);
@@ -511,12 +541,14 @@ public class Canvas extends JPanel
 		proj.addProjectListener(myProjectListener);
 		proj.addLibraryListener(myProjectListener);
 		proj.addCircuitListener(myProjectListener);
+		proj.getSimulator().addSimulatorListener(tickCounter);
 		proj.getSelection().addListener(myProjectListener);
 		LocaleManager.addLocaleListener(this);
 
 		AttributeSet options = proj.getOptions().getAttributeSet();
 		options.addAttributeListener(myProjectListener);
 		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.GATE_SHAPE, myListener);
+		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.SHOW_TICK_RATE, myListener);
 		loadOptions(options);
 		paintThread.start();
 	}

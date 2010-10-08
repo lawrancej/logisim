@@ -15,7 +15,7 @@ class SimulatorTicker extends Thread {
 	public SimulatorTicker(Simulator.PropagationManager manager) {
 		this.manager = manager;
 		ticksPerTickPhase = 1;
-		millisPerTickPhase = 1;
+		millisPerTickPhase = 1000;
 		shouldTick = false;
 		ticksPending = 0;
 		complete = false;
