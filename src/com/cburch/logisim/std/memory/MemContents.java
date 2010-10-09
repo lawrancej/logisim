@@ -119,10 +119,12 @@ class MemContents implements Cloneable, HexModel {
 	}
 
 	public void set(long start, int[] values) {
+		if (values.length == 0) return;
+		
 		int pageStart = (int) (start >>> PAGE_SIZE_BITS);
 		int startOffs = (int) (start & PAGE_MASK);
-		int pageEnd = (int) ((start + values.length) >>> PAGE_SIZE_BITS);
-		int endOffs = (int) ((start + values.length) & PAGE_MASK);
+		int pageEnd = (int) ((start + values.length - 1) >>> PAGE_SIZE_BITS);
+		int endOffs = (int) ((start + values.length - 1) & PAGE_MASK);
 
 		if (pageStart == pageEnd) {
 			ensurePage(pageStart);
@@ -134,9 +136,10 @@ class MemContents implements Cloneable, HexModel {
 				fireBytesChanged(start, values.length, oldValues);
 			}
 		} else {
+			int nextOffs;
 			if (startOffs == 0) {
 				pageStart--;
-				startOffs = PAGE_SIZE;
+				nextOffs = 0;
 			} else {
 				ensurePage(pageStart);
 				int[] vals = new int[PAGE_SIZE - startOffs];
@@ -148,15 +151,16 @@ class MemContents implements Cloneable, HexModel {
 					if (page.isClear()) pages[pageStart] = null;
 					fireBytesChanged(start, PAGE_SIZE - pageStart, oldValues);
 				}
+				nextOffs = vals.length;
 			}
 			int[] vals = new int[PAGE_SIZE];
-			int offs = PAGE_SIZE - startOffs;
+			int offs = nextOffs;
 			for (int i = pageStart + 1; i < pageEnd; i++, offs += PAGE_SIZE) {
 				MemContentsSub.ContentsInterface page = pages[i];
 				if (page == null) {
 					boolean allZeroes = true;
 					for (int j = 0; j < PAGE_SIZE; j++) {
-						if ((values[j] & mask) == 0) { allZeroes = false; break; }
+						if ((values[offs + j] & mask) != 0) { allZeroes = false; break; }
 					}
 					if (!allZeroes) {
 						page = MemContentsSub.createContents(PAGE_SIZE, width);
@@ -173,16 +177,16 @@ class MemContents implements Cloneable, HexModel {
 					}
 				}
 			}
-			if (endOffs > 0) {
+			if (endOffs >= 0) {
 				ensurePage(pageEnd);
-				vals = new int[endOffs];
-				System.arraycopy(values, offs, vals, 0, endOffs);
+				vals = new int[endOffs + 1];
+				System.arraycopy(values, offs, vals, 0, endOffs + 1);
 				MemContentsSub.ContentsInterface page = pages[pageEnd];
 				if (!page.matches(vals, startOffs, mask)) {
-					int[] oldValues = page.get(0, endOffs);
+					int[] oldValues = page.get(0, endOffs + 1);
 					page.load(0, vals, mask);
 					if (page.isClear()) pages[pageEnd] = null;
-					fireBytesChanged((long) pageEnd << PAGE_SIZE_BITS, endOffs, oldValues);
+					fireBytesChanged((long) pageEnd << PAGE_SIZE_BITS, endOffs + 1, oldValues);
 				}
 			}
 		}
@@ -193,8 +197,8 @@ class MemContents implements Cloneable, HexModel {
 		
 		int pageStart = (int) (start >>> PAGE_SIZE_BITS);
 		int startOffs = (int) (start & PAGE_MASK);
-		int pageEnd = (int) ((start + len) >>> PAGE_SIZE_BITS);
-		int endOffs = (int) ((start + len) & PAGE_MASK);
+		int pageEnd = (int) ((start + len - 1) >>> PAGE_SIZE_BITS);
+		int endOffs = (int) ((start + len - 1) & PAGE_MASK);
 		value &= mask;
 		
 		if (pageStart == pageEnd) {
@@ -211,7 +215,6 @@ class MemContents implements Cloneable, HexModel {
 		} else {
 			if (startOffs == 0) {
 				pageStart--;
-				startOffs = PAGE_SIZE;
 			} else {
 				if (value == 0 && pages[pageStart] == null) {
 					// nothing to do
@@ -238,26 +241,26 @@ class MemContents implements Cloneable, HexModel {
 				for (int i = pageStart + 1; i < pageEnd; i++) {
 					ensurePage(i);
 					MemContentsSub.ContentsInterface page = pages[i];
-					if (!page.matches(vals, startOffs, mask)) {
+					if (!page.matches(vals, 0, mask)) {
 						int[] oldValues = page.get(0, PAGE_SIZE);
 						page.load(0, vals, mask);
 						fireBytesChanged((long) i << PAGE_SIZE_BITS, PAGE_SIZE, oldValues);
 					}
 				}
 			}
-			if (endOffs > 0) {
+			if (endOffs >= 0) {
 				MemContentsSub.ContentsInterface page = pages[pageEnd];
 				if (value == 0 && page == null) {
 					// nothing to do
 				} else {
 					ensurePage(pageEnd);
-					int[] vals = new int[endOffs];
+					int[] vals = new int[endOffs + 1];
 					Arrays.fill(vals, value);
-					if (!page.matches(vals, startOffs, mask)) {
-						int[] oldValues = page.get(0, endOffs);
+					if (!page.matches(vals, 0, mask)) {
+						int[] oldValues = page.get(0, endOffs + 1);
 						page.load(0, vals, mask);
 						if (value == 0 && page.isClear()) pages[pageEnd] = null;
-						fireBytesChanged((long) pageEnd << PAGE_SIZE_BITS, endOffs, oldValues);
+						fireBytesChanged((long) pageEnd << PAGE_SIZE_BITS, endOffs + 1, oldValues);
 					}
 				}
 			}
