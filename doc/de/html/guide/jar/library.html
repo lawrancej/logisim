@@ -7,11 +7,7 @@
 
 <h1>Bibliotheksklasse</h1>
 
-<p>The access point for the JAR library is a class that extends the
-<code>Library</code> class. The library's main job is to list the tools that are
-available through the library; most often, the tools are all tools
-to add the various components defined - that is, instances of the
-<code>AddTool</code> class working with different component factories.</p>
+<p>Der Startpunkt einer JAR-Bibliothek ist eine Klasse, die die <code>Library</code>-Klasse erweitert. Die Hauptaufgabe ist es, die Werkzeuge aufzulisten, die durch die Bibliothek zur Verfügung gestellt werden. Meistens wird es sich um Werkzeuge handeln, die verschiedene Bauelemente zu einer Schaltung hinzufügen, d.h. Instanzen der  <code>AddTool</code>-Klasse, die mit verschiedenen Komponentenfabriken zusammenarbeiten.</p>
 
 <h2>Components</h2>
 
@@ -24,18 +20,18 @@ import java.util.List;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 
-/** The library of components that the user can access. */
+/** Die Bauteilebibliothek, die für den Anwender zugänglich ist. */
 public class Components extends Library {
-    /** The list of all tools contained in this library. Technically,
-     * libraries contain tools, which is a slightly more general concept
-     * than components; practically speaking, though, you'll most often want
-     * to create AddTools for new components that can be added into the circuit.
+    /** Die Liste aller Werkzeuge in der Bibliothek. Technisch
+     * enthalten Bibliotheken Werkzeuge, was ein etwas allgemeinerer Begriff als
+     * Bauelemente ist. In der Praxis werden Sie aber wohl am häufigsten
+     * AddTools zum Einfügen neuer Bauelemente in die Schaltung erstellen wollen.
      */
     private List&lt;AddTool&gt; tools;
     
-    /** Constructs an instance of this library. This constructor is how
-     * Logisim accesses first when it opens the JAR file: It looks for
-     * a no-arguments constructor method of the user-designated class.
+    /** Erstellt eine Instanz dieser Bibliothek. Über diesen Konstruktor 
+     * greift Logisim zuerst zu, wenn eine JAR-Datei geladen wird: Es sucht nach
+     * einer Konstruktormethode ohne Argumente für die vom Benutzer angegebene Klasse.
      */
     public Components() {
         tools = Arrays.asList(new AddTool[] {
@@ -45,19 +41,19 @@ public class Components extends Library {
         });
     }
     
-    /** Returns the name of the library that the user will see. */ 
+    /** Gibt den Namen der Bibliothek zurück, der dem Benutzer angezeigt wird. */ 
     public String getDisplayName() {
         return "Gray Tools";
     }
     
-    /** Returns a list of all the tools available in this library. */
+    /** Gibt eine Liste aller Werkzeuge der Bibliothek zurück. */
     public List&lt;AddTool&gt; getTools() {
         return tools;
     }
 }
 </pre>
 
-<p><strong>Next:</strong> <a href="simpctr.html">Simple Gray Code Counter</a>.</p>
+<p><strong>Weiter:</strong> <a href="simpctr.html">Einfacher Gray-Kode-Zähler</a>.</p>
 
 </body>
 </html>

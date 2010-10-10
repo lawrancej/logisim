@@ -10,94 +10,66 @@
 <em>Prioritätsenkoder</em></h1>
 
 <p><table>
-<tr><td><strong>Library:</strong></td>
-	<td><a href="index.html">Plexers</a></td></tr>
-<tr><td><strong>Introduced:</strong></td>
+<tr><td><strong>Bibliothek:</strong></td>
+	<td><a href="index.html">Auswahlschaltungen</a></td></tr>
+<tr><td><strong>Eingeführt:</strong></td>
 	<td>2.3.0</td></tr>
-<tr><td valign="top"><strong>Appearance:</strong></td>
+<tr><td valign="top"><strong>Aussehen:</strong></td>
 	<td valign="top"><img src="../../../img-libs/priencod.png"></td></tr>
 </table></p>
 
-<h2>Behavior</h2>
+<h2>Verhalten</h2>
 
-<p>The component has a number of inputs on its west edge, with the first
-labeled <q>0</q> and the other numbered from there. The component determines
-the indices of the inputs whose values are 1, and it emits the highest index.
-For example, if inputs 0, 2, 5, and 6 are all 1, then the priority encoder
-emits a value of 110. If no inputs are 1, or if the component is
-disabled, then the output of the priority encoder is floating.</p>
+<p>Das Bauelement hat eine Anzahl von Eingängen auf der westlichen Seite, der erste Eingang ist markiert mit <q> 0 </q> und die anderen sind fortlaufend nummeriert. Das Bauelement ermittelt alle Eingänge, die auf 1 gesetzt sind und gibt den höchsten auf diese Weise gefundenen Index weiter. Angenommen, die Eingänge 0, 2, 5 und 6 sind alle auf 1, dann gibt der Prioritätsenkoder den Wert 110 weiter. Wenn keiner der Eingänge auf 1 gesetzt ist, dann ist das Bauelement deaktiviert und der Ausgang des Prioritätsenkoders ist offen.</p>
 
-<p>The priority encoder is designed so that a number of encoders can be
-daisy-chained to accommodate additional inputs. In particular, the component
-includes an enable input and an enable output. Whenever the enable input is 0,
-the component is disabled, and the output will be all floating bits. The enable
-output is 1 whenever the component is enabled and none of the indexed inputs are
-1. Thus, you can take two priority encoders and connect the enable output
-of the first to the enable input of the second: If any of the indexed inputs
-to the first are 1, then the second will be disabled and so its output will be
-all floating. But if none of the first's indexed inputs are 1, then its output
-will be all-floating bits, and the second
-priority encoder will be enabled and it will identify the highest-priority
-input with a 1.</p>
+<p>Der Prioritätsenkoder ist so konstruiert, daß eine Reihe von Enkodern kaskadiert werden können, um weitere Eingänge zur Verfügung zu stellen. Insbesondere enthält das Bauelement einen Freigabeeingang und einen Freigabeausgang. Wenn der Freigabeeingang auf 0 gesetzt ist, ist das Bauelement deaktiviert und alle Ausgänge sind offen. Der Freigabeausgang ist 1, wenn das Bauelement aktiviert ist, aber keiner der Eingänge auf 1 gesetzt ist. Daher können Sie zwei Prioritätsenkoder nehmen, und den Freigabeausgang des ersten mit dem Freigabeeingang des zweiten verbinden: wenn irgendeiner der indizierten EIngänge des ersten Enkoders auf 1 gesetzt wird, dann wird der zweite Enkoder deaktiviert und dessen Ausgänge bleiben offen. Wenn aber keiner der indizierten Eingänge des ersten Enkoders auf 1 gesetzt ist, dann bleiben dessen Ausgänge offen, der zweite Enkoder wird freigeschaltet, und dieser identifiziert den Eingang höchster Priorität, der eine 1 aufweist.</p>
 
-<p>An additional output of the priority encoder is 1 whenever the priority
-encoder is enabled and finds a 1 on one of the indexed inputs. When
-chaining priority encoders together, this output can be used to identify
-which of the encoders was triggered.</p>
+<p>Ein weiterer Ausgang des Enkoders ist 1, wenn der Enkoder aktiviert ist, und wenn eine 1 an einem der indizierten Eingänge anliegt. Wenn mehrere Prioritätsenkoder verkettet werden, dann kann dieser Ausgang benutzt werden anzuzeigen, welcher der Enkoder getriggert wurde.</p>
 
-<h2>Pins (assuming component faces east)</h2>
+<h2>Pins (wenn das Bauelement nach Osten zeigt)</h2>
 
 <dl>
 
-<dt>West edge, variable number (inputs, bit width 1)</dt>
-<dd>Input values, indexed from 0 at the top/west end of the edge.</dd>
+<dt>Westseite, variable Anzahl (Eingänge, Bitbreite 1)</dt>
+<dd>Eingangswerte, indiziert mit 0 an der oberen, westlichen Ecke der Seite.</dd>
 
-<dt>East edge, upper pin (output, bit width matches Select Bits attribute)</dt>
-<dd>Output: the highest index among those inputs whose value is 1 - or all
-floating bits if no inputs are 1 or if the component is disabled via the
-Enable In input.</dd>
+<dt>Ostseite, oberer Pin (Ausgang, Bitbreite entspricht dem Attribut Auswahlleitungen)</dt>
+<dd>Ausgang: der höchste Index der Eingänge, die auf 1 gesetzt sind - oder offen, wenn kein Eingang auf 1 ist, oder wenn das Bauelement über den Freigabeeingang deaktivert wurde.</dd>
 
-<dt>East edge, lower pin (output, bit width 1)</dt>
-<dd>Group Signal: 1 if the component is enabled and at least one indexed input
-has a value of 1; otherwise this output is 0.</dd>
+<dt>Ostseite, unterer Pin (Ausgang, Bitbreite 1)</dt>
+<dd>Gruppenauswahl: 1 wenn das Bauelement aktiviert ist, und wenn mindestens einer der indizierten Eingänge auf 1 gesetzt ist, ansonsten 0</dd>
 
-<dt>South edge (input, bit width 1)</dt>
-<dd>Enable In: if 0, the component is disabled; otherwise the component is
-enabled.</dd>
+<dt>Südseite (Eingang, Bitbreite 1)</dt>
+<dd>Freigabeeingang: das Bauelement ist deaktiviert, wenn dieser Eingang auf 0 gesetzt ist, ansonsten ist das Bauelement aktiviert.</dd>
 
-<dt>North edge (output, bit width 1)</dt>
-<dd>Enable Out: 1 if this component is enabled and none of the indexed inputs
-are 1; otherwise the output is 0.</dd>
+<dt>Nordseite (Ausgang, Bitbreite 1)</dt>
+<dd>Freigabeausgang: 1 wenn dieses Bauelement aktiviert ist und keiner der indizierten Eingänge auf 1 gesetzt ist, anderenfalls ist dieser Ausgang 0.</dd>
 
 </dl>
 
-<h2>Attributes</h2>
+<h2>Attribute</h2>
 
-<p>When the component is selected or being added,
-the digits '1' through '4' alter its <q>Select Bits</q> attribute
-and the arrow keys alter its <q>Facing</q> attribute.</p>
+<p>Wenn das Bauelement ausgewählt ist oder gerade hinzugefügt wird, dann ändern die Ziffern 1 bis 4 das Attribut  <q>Auswahlleitungen,</q> und die Pfeiltasten ändern das Attribut <q>Ausrichtung.</q></p>
 
 <dl>
 
-<dt>Facing</dt>
-<dd>The direction of the component (its output relative to its input).</dt>
+<dt>Ausrichtung</dt>
+<dd>Die Richtung des Bauelements (Lage des Ausgangs im Vergleich zum Eingang).</dt>
 
-<dt>Select Bits</dt>
-<dd>The bit width of the component's primary output.
-The number of indexed inputs to the priority encoder will be
-2<sup><small><var>selectBits</var></small></sup>.</dt>
+<dt>Auswahlleitungen</dt>
+<dd>Die Bitbreite des primären Ausgangs Die Anzahl der indizierten Eingänge des Prioritätsenkoders ist 2<sup><small><var>Auswahlleitungen</var></small></sup>.</dt>
 
 </dl>
 
-<h2>Poke Tool Behavior</h2>
+<h2>Verhalten des Schaltwerkzeugs</h2>
 
-<p>None.</p>
+<p>Keines.</p>
 
-<h2>Text Tool Behavior</h2>
+<h2>Verhalten des Textwerkzeugs</h2>
 
-<p>None.</p>
+<p>Keines.</p>
 
-<p><a href="../index.html">Back to <em>Library Reference</em></a></p>
+<p><a href="../index.html">Zurück zur <em>Bibliotheksreferenz</em></a></p>
 
 </body>
 </html>

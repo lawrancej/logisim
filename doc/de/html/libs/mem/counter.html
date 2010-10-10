@@ -10,15 +10,15 @@
 <em>Zähler</em></h1>
 
 <p><table>
-<tr><td><strong>Library:</strong></td>
+<tr><td><strong>Bibliothek:</strong></td>
 	<td><a href="index.html">Memory</a></td></tr>
-<tr><td><strong>Introduced:</strong></td>
+<tr><td><strong>Eingeführt:</strong></td>
 	<td>2.3.0</td></tr>
-<tr><td valign="top"><strong>Appearance:</strong></td>
+<tr><td valign="top"><strong>Aussehen:</strong></td>
 	<td valign="top"><img src="../../../img-libs/counter.png"></td></tr>
 </table></p>
 
-<h2>Behavior</h2>
+<h2>Verhalten</h2>
 
 <p>The counter holds a single value, whose value is emitted on the output
 <var>Q</var>. Each time the clock input (diagrammed with a triangle on the
@@ -65,7 +65,7 @@ is 1, the value is pinned to 0, regardless of the clock input.</p>
 <dt>East edge, labeled <var>Q</var> (output, bit width matches Data Bits attribute)</dt>
 <dd>Outputs the value currently stored by the counter.</dd>
 
-<dt>East edge, lower pin (output, bit width 1)</dt>
+<dt>Ostseite, unterer Pin (Ausgang, Bitbreite 1)</dt>
 <dd>Carry: When <var>load</var> and <var>count</var> indicate to increment,
 this output is 1 whenever the counter is at its maximum. When <var>load</var>
 and <var>count</var> indicate to decrement, this output is 1 whenever the
@@ -102,7 +102,7 @@ value. As long as this is 1, the other inputs have no effect.</dd>
 </dl>
 
 
-<h2>Attributes</h2>
+<h2>Attribute</h2>
 
 <p>When the component is selected or being added,
 Alt-0 through Alt-9 alter its <q>Data Bits</q> attribute.</p>
@@ -144,17 +144,17 @@ update at the instant the clock falls from 1 to 0.</dd>
 
 </dl>
 
-<h2>Poke Tool Behavior</h2>
+<h2>Verhalten des Schaltwerkzeugs</h2>
 
 <p>Clicking the counter brings keyboard focus to the component
 (indicated by a red rectangle), and typing hexadecimal digits will
 change the value stored in the counter.</p>
 
-<h2>Text Tool Behavior</h2>
+<h2>Verhalten des Textwerkzeugs</h2>
 
 <p>Allows the label associated with the component to be edited.</p>
 
-<p><a href="../index.html">Back to <em>Library Reference</em></a></p>
+<p><a href="../index.html">Zurück zur <em>Bibliotheksreferenz</em></a></p>
 
 </body>
 </html>
