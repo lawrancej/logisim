@@ -7,42 +7,19 @@
 
 <h1>Ablaufverfolgung</h1>
 
-<p>In testing a large circuit, and for documenting a circuit's
-behavior, a log of past circuit behavior. This is the purpose for
-Logisim's logging module, which allows you to select components whose
-values should be logged; optionally, you can specify a file into which
-the log should be placed.</p>
+<p>Beim Testen einer größeren Schaltung und zur Dokumentation des Verhaltens einer Schaltung, gibt es die Möglichkeit, das Verhalten der Schaltung zu protokollieren. Dies geschieht durch das Log-Modul von Logisim, das es Ihnen erlaubt, die Bauelemente auszuwählen, deren Werte protokolliert werden sollen. Darüber hinaus können Sie auswählen, in welche Datei diese Daten geschrieben werden sollen.</p>
 
-<p><strong>Note:</strong> The logging module is in alpha phase; it may
-be buggy, and it is subject to significant changes in the future. While
-bug reports and suggestions are welcome for all of Logisim, they are
-particularly welcome concerning this relatively new feature. If you do
-not send comments, then it will likely not change.</p>
+<p><strong>Wichtig:</strong> Das Log-Modul befindet sich in einer Alpha-Testphase: es kann Fehler enthalten und wird sich vermutlich in zukünftigen Versionen erheblich verändern. Während Fehlerberichte und Vorschläge zu Logisim immer willkommen sind, so gilt dies insbesondere vür diese relativ neue Funktion. Wenn Sie keine Kommentare einschicken, wird sich vermutlich nicht viel ändern.</p>
 
-<p>You can enter the logging module via the Logging...
-option from the Simulate menu. It brings up a window with three tabs.
-<center><img src="../../../img-guide/log-selection.png"></center>
-We will discuss each of these tabs separately.
-<blockquote>
-	<a href="selection.html">The Selection tab</a>
-	<br><a href="table.html">The Table tab</a>
-	<br><a href="file.html">The File tab</a>
+<p>Sie erreichen das Log-Modul über den Punkt "Loggen..." aus dem Simulationsmenü. Dies wird ein Fenster mit drei Registerkarten öffnen.<center><img src="../../../img-guide/log-selection.png"></center>Hier werden wir diese Registerkarten im Einzelnen beschreiben.<blockquote>
+	<a href="selection.html"> Die Registerkarte "Auswahl" </a><br><a href="table.html"> Die Registerkarte "Tabelle" </a><br><a href="file.html"> Die Registerkarte "Datei" </a>
 </blockquote></p>
 
-<p>Each project has only one logging window; when you switch to viewing
-another circuit within the project, the logging window switches
-automatically to logging the other circuit instead. That is, it does
-this unless you are <a href="../subcirc/debug.html">moving up or down
-within the same simulation</a>, in which case the logging module does
-not change.</p>
+<p>Jedes Projekt besitzt nur ein einzelnes Log-Fenster. Wenn Sie zu einer anderen Schaltung desselben Projekts wechseln, wird auch das Log-Fenster automatisch zum Protokollieren der anderen Schaltung wechseln. Dies passiert jedoch nicht, wenn Sie <a href="../subcirc/debug.html">in derselben Simulation auf- oder absteigen</a>, dann wird sich das Log-Modul nicht verändern.</p>
 
-<p>Note that when the logging module switches to logging another
-simulation, it will cease any logging into a file. Should you switch
-back to the simulation again, it will remember the configuration for
-that simulation, but you will need to re-enable the file logging
-manually.</p>
+<p>Beachten Sie, daß das Loggen automatisch gestoppt wird, wenn das Log-Fenster zur Protokollierung einer anderen Simulation umschaltet. Wenn Sie danach zur vorigen Simulation zurückkommen, dann werden zwar die entsprechenden Werte für diese Simulation wieder hergestellt, aber Sie müssen die eigentliche Protokollierung manuell wieder starten..</p>
 
-<p><strong>Next:</strong> <a href="selection.html">The Selection tab</a>.</p>
+<p><strong> Weiter: </strong><a href="selection.html"> Die Registerkarte "Auswahl" </a> .</p>
 
 </body>
 </html>

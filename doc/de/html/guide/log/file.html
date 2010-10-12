@@ -7,46 +7,23 @@
 
 <h1>Die Registerkarte "Datei"</h1>
 
-<p>The File tab allows you to specify a file into which the log should
-be placed.</p>
+<p>Die Registerkarte "Datei" erlaubt es, die Datei anzugeben, die das Protokoll aufnehmen soll.</p>
 
 <center><img src="../../../img-guide/log-file.png"></center>
 
-<p>At the top is an indicator of whether file logging is in progress and
-a button for enabling or disabling it. (Note that you cannot enable it
-until a file is selected below.) The button allows you to pause and
-restart file entry. When you switch in the project window to viewing
-another simulation, the file logging is automatically halted; if you
-return to the original one and want logging to continue, you will need
-to re-enable the file logging manually using the button at top.</p>
+<p>Oben wird angezeigt, ob die Ablaufverfolgung aktiviert ist, und eine Schaltfläche um das Loggen zu aktivieren und zu deaktivieren. (Beachten Sie, daß vor der Aktivierung eine Datei ausgewählt sein muß.) Die Schaltfläche erlaubt es, das Loggen zeitweise anzuhalten und fortzusetzen. Wenn Sie im Projektfenster auf eine andere Simulation wechseln, wird das Loggen automatisch angehalten. Wenn Sie danach wieder zur ursprünglichen Simulation zurückschalten, dann müssen Sie das Loggen über diese Schaltfläche manuell wieder starten.</p>
 
-<p>In the middle is an indicator of what file is being logged to. To
-change it, use the Select... button. On selecting a file, file logging
-will automatically start. If you select a pre-existing file, Logisim
-will ask whether you want to overwrite the file or append the new
-entries onto the end.</p>
+<p>In der Mitte wird angezeigt, in welche Datei protokolliert wird. Um diese zu ändern, benutzen Sie die Schaltfläche "Auswählen...". Nach der Auswahl einer Datei startet das Loggen automatisch. Wenn die ausgewählte Datei bereits existiert, wird Logisim fragen, ob Sie die Datei überschreiben, oder das neue Protokoll am Ende der Datei anhängen möchten.</p>
 
-<p>At bottom you can control whether a header line should be placed into
-the file indicating which items are in the selection. If header lines
-are added, then a new header line will be placed into the file whenever
-the selection changes.</p>
+<p>Unten können Sie auswählen, ob eine Kopfzeile in die Datei geschrieben werden soll, die angibt, welche Elemente sich in der Auswahl befinden. Wenn Kopfzeilen abgespeichert werden, dann wird jeweils eine neue Kopfzeile geschrieben, wenn sich die Auswahl ändert.</p>
 
-<h2>File format</h2>
+<h2>Dateiformat</h2>
 
-<p>Entries are placed into the file in tab-delimited format
-corresponding closely to what appears under the Table tab. (One
-difference is that any header lines will give the full path to
-components lying in subcircuits.) The format is intentionally simple so
-that you can feed it into another program for processing, such as a
-Python/Perl script or a spreadsheet program.</p>
+<p>Einträge werden in einem durch Tabulatoren abgegrenzten Format geschrieben, das dem Inhalt der Registerkarte "Tabelle" ähnelt. (Ein Unterschied ist, daß eine Kopfzeile den vollständigen Pfad zu Bauelementen angeben würde, die sich in Teilschaltungen befinden.) Das Format ist absichtlich sehr einfach gehalten, damit Sie die Daten leicht in ein anderes Programm zur Auswertung übernehmen können, wie z.B. ein Python/Perl-Skript oder eine Tabellenkalkulation.</p>
 
-<p>So that a script can process the file at the same time as Logisim
-is running, Logisim will flush the new records onto the disk every
-500 ms. Note that Logisim may also intermittently close and later
-re-open the file during the simulation, particularly if several seconds
-have elapsed without any new records being added.</p>
+<p>Damit ein anderes Programm gleichzeitig auf die Daten zugreifen kann, während die Simulation in Logisim läuft, werden die Daten alle 500 ms weggeschrieben. Beachten Sie auch, daß Logisim die Datei zwischenzeitlich schließen und später wieder öffnen kann, insbesondere dann, wenn mehrere Sekunden vergehen, bevor neue Daten hinzugefügt werden.</p>
 
-<p><strong>Next:</strong> <em><a href="../index.html"><em>User's Guide</em></a></em>.</p>
+<p><strong>Weiter:</strong> <em><a href="../index.html"><em>Leitfaden für Benutzer von Logisim</em></a></em>.</p>
 
 </body>
 </html>
