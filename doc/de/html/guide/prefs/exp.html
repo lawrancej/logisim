@@ -14,18 +14,7 @@ inserted to garner user feedback.</p>
 
 <ul>
 
-<li><p><b>Show Tick Rate:</b> If checked, then when ticks are enabled, Logisim
-displays a measurement of the rate at which it has been able to complete ticks.
-The tick rate is measured by averaging over the previous 1,000 ticks.
-(Disabling ticks or changing the maximum tick rate will clear its history.)</p>
-
-<p>This actual tick rate may be much less than the selected tick rate, because
-Logisim cannot simulate larger circuits at a very fast rate. For example,
-Logisim's maximum speed for a
-reasonably large circuit might be 16 Hz; you can select a faster tick rate,
-but the actual speed will not exceed 16 Hz.</p></li>
-
-<li><b>Graphics Acceleration:</b> One Logisim user observed
+<li><b>Graphics acceleration:</b> One Logisim user observed
 that adding <tt>-Dsun.java2d.d3d=True</tt> to the command line seemed
 to improve Logisim's graphics performance by telling it to use hardware graphics
 acceleration. This drop-down box attempts to
