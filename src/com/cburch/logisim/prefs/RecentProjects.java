@@ -44,7 +44,7 @@ class RecentProjects implements PreferenceChangeListener {
 		recentTimes = new long[NUM_RECENT];
 		Arrays.fill(recentTimes, System.currentTimeMillis());
 		
-		Preferences prefs = LogisimPreferences.getPrefs();
+		Preferences prefs = AppPreferences.getPrefs();
 		prefs.addPreferenceChangeListener(this);
 		
 		for (int index = 0; index < NUM_RECENT; index++) {
@@ -136,7 +136,7 @@ class RecentProjects implements PreferenceChangeListener {
 				File newValue = recentFiles[index];
 				long newTime = recentTimes[index];
 				if (!isSame(oldValue, newValue) || oldTime != newTime) {
-					LogisimPreferences.firePropertyChange(LogisimPreferences.RECENT_PROJECTS,
+					AppPreferences.firePropertyChange(AppPreferences.RECENT_PROJECTS,
 							new FileTime(oldValue, oldTime),
 							new FileTime(newValue, newTime));
 				}
@@ -151,9 +151,9 @@ class RecentProjects implements PreferenceChangeListener {
 			recentFiles[index] = file;
 			recentTimes[index] = time;
 			try {
-				LogisimPreferences.getPrefs().put(BASE_PROPERTY + index,
+				AppPreferences.getPrefs().put(BASE_PROPERTY + index,
 						"" + time + ";" + file.getCanonicalPath());
-				LogisimPreferences.firePropertyChange(LogisimPreferences.RECENT_PROJECTS,
+				AppPreferences.firePropertyChange(AppPreferences.RECENT_PROJECTS,
 						new FileTime(oldFile, oldTime),
 						new FileTime(file, time));
 			} catch (IOException e) {

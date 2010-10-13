@@ -24,7 +24,7 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
 
@@ -69,7 +69,7 @@ public class PullResistor extends InstanceFactory {
 	@Override
 	public void paintIcon(InstancePainter painter) {
 		Icon icon;
-		if (painter.getGateShape() == LogisimPreferences.SHAPE_SHAPED) {
+		if (painter.getGateShape() == AppPreferences.SHAPE_SHAPED) {
 			icon = ICON_SHAPED;
 		} else {
 			icon = ICON_RECTANGULAR;
@@ -129,7 +129,7 @@ public class PullResistor extends InstanceFactory {
 		g.drawLine(0, -4, 0, 0);
 		g.setColor(baseColor);
 		GraphicsUtil.switchToWidth(g, 2);
-		if (painter.getGateShape() == LogisimPreferences.SHAPE_SHAPED) {
+		if (painter.getGateShape() == AppPreferences.SHAPE_SHAPED) {
 			int[] xp = {   0,  -5,   5,  -5,   5, -5,  0 };
 			int[] yp = { -25, -23, -19, -15, -11, -7, -5};
 			g.drawPolyline(xp, yp, xp.length);

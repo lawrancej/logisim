@@ -20,6 +20,7 @@ import com.cburch.logisim.file.LibraryListener;
 import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.file.LogisimFileActions;
 import com.cburch.logisim.file.Options;
+import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.LocaleListener;
@@ -27,7 +28,7 @@ import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.StringUtil;
 import com.cburch.logisim.util.WindowMenuItemManager;
 
-public class OptionsFrame extends JFrame {
+public class OptionsFrame extends LFrame {
 	private class WindowMenuManager extends WindowMenuItemManager
 			implements LocaleListener {
 		WindowMenuManager() {

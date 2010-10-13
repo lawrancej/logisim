@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.LocaleManager;
 
 class IntlOptions extends OptionsPanel {
@@ -32,15 +32,15 @@ class IntlOptions extends OptionsPanel {
 		super(window);
 		
 		locale = Strings.createLocaleSelector();
-		replAccents = new PrefBoolean(LogisimPreferences.ACCENTS_REPLACE,
+		replAccents = new PrefBoolean(AppPreferences.ACCENTS_REPLACE,
 				Strings.getter("intlReplaceAccents"));
-		gateShape = new PrefOptionList(LogisimPreferences.GATE_SHAPE,
+		gateShape = new PrefOptionList(AppPreferences.GATE_SHAPE,
 				Strings.getter("intlGateShape"), new PrefOption[] {
-					new PrefOption(LogisimPreferences.SHAPE_SHAPED,
+					new PrefOption(AppPreferences.SHAPE_SHAPED,
 							Strings.getter("shapeShaped")),
-					new PrefOption(LogisimPreferences.SHAPE_RECTANGULAR,
+					new PrefOption(AppPreferences.SHAPE_RECTANGULAR,
 							Strings.getter("shapeRectangular")),
-					new PrefOption(LogisimPreferences.SHAPE_DIN40700,
+					new PrefOption(AppPreferences.SHAPE_DIN40700,
 							Strings.getter("shapeDIN40700")) });
 		
 		Box localePanel = new Box(BoxLayout.X_AXIS);

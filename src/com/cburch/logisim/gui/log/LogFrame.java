@@ -21,6 +21,7 @@ import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.Simulator;
 import com.cburch.logisim.circuit.SimulatorEvent;
 import com.cburch.logisim.circuit.SimulatorListener;
+import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
@@ -30,7 +31,7 @@ import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.StringUtil;
 import com.cburch.logisim.util.WindowMenuItemManager;
 
-public class LogFrame extends JFrame {
+public class LogFrame extends LFrame {
 	// TODO should automatically repaint icons when component attr change
 	// TODO ? moving a component using Select tool removes it from selection
 	private class WindowMenuManager extends WindowMenuItemManager

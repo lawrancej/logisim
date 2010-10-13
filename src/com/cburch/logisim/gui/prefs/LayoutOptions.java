@@ -6,7 +6,7 @@ package com.cburch.logisim.gui.prefs;
 import javax.swing.JPanel;
 
 import com.cburch.logisim.circuit.RadixOption;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.TableLayout;
 
 class LayoutOptions extends OptionsPanel {
@@ -19,15 +19,15 @@ class LayoutOptions extends OptionsPanel {
 		super(window);
 		
 		checks = new PrefBoolean[] {
-				new PrefBoolean(LogisimPreferences.PRINTER_VIEW,
+				new PrefBoolean(AppPreferences.PRINTER_VIEW,
 						Strings.getter("layoutPrinterView")),
-				new PrefBoolean(LogisimPreferences.ATTRIBUTE_HALO,
+				new PrefBoolean(AppPreferences.ATTRIBUTE_HALO,
 						Strings.getter("layoutAttributeHalo")),
-				new PrefBoolean(LogisimPreferences.COMPONENT_TIPS,
+				new PrefBoolean(AppPreferences.COMPONENT_TIPS,
 						Strings.getter("layoutShowTips")),
-				new PrefBoolean(LogisimPreferences.MOVE_KEEP_CONNECT,
+				new PrefBoolean(AppPreferences.MOVE_KEEP_CONNECT,
 						Strings.getter("layoutMoveKeepConnect")),
-				new PrefBoolean(LogisimPreferences.ADD_SHOW_GHOSTS,
+				new PrefBoolean(AppPreferences.ADD_SHOW_GHOSTS,
 						Strings.getter("layoutAddShowGhosts")),
 			};
 
@@ -38,19 +38,19 @@ class LayoutOptions extends OptionsPanel {
 				items[j] = new PrefOption(opts[j].getSaveString(), opts[j].getDisplayGetter());
 			}
 			if (i == 0) {
-				radix1 = new PrefOptionList(LogisimPreferences.POKE_WIRE_RADIX1,
+				radix1 = new PrefOptionList(AppPreferences.POKE_WIRE_RADIX1,
 						Strings.getter("layoutRadix1"), items);
 			} else {
-				radix2 = new PrefOptionList(LogisimPreferences.POKE_WIRE_RADIX2,
+				radix2 = new PrefOptionList(AppPreferences.POKE_WIRE_RADIX2,
 						Strings.getter("layoutRadix2"), items);
 			}
 		}
-		afterAdd = new PrefOptionList(LogisimPreferences.ADD_AFTER,
+		afterAdd = new PrefOptionList(AppPreferences.ADD_AFTER,
 				Strings.getter("layoutAddAfter"),
 				new PrefOption[] {
-					new PrefOption(LogisimPreferences.ADD_AFTER_UNCHANGED,
+					new PrefOption(AppPreferences.ADD_AFTER_UNCHANGED,
 							Strings.getter("layoutAddAfterUnchanged")),
-					new PrefOption(LogisimPreferences.ADD_AFTER_EDIT,
+					new PrefOption(AppPreferences.ADD_AFTER_EDIT,
 							Strings.getter("layoutAddAfterEdit")) });
 		
 		JPanel panel = new JPanel(new TableLayout(2));

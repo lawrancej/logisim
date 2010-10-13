@@ -44,7 +44,7 @@ import com.cburch.logisim.file.Options;
 import com.cburch.logisim.gui.generic.CanvasPane;
 import com.cburch.logisim.gui.generic.CanvasPaneContents;
 import com.cburch.logisim.gui.generic.GridPainter;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
@@ -200,11 +200,11 @@ public class Canvas extends JPanel
 		public void popupMenuWillBecomeVisible(PopupMenuEvent e) {}
 
 		public void propertyChange(PropertyChangeEvent event) {
-			if (LogisimPreferences.GATE_SHAPE.isSource(event)
-					|| LogisimPreferences.SHOW_TICK_RATE.isSource(event)) {
+			if (AppPreferences.GATE_SHAPE.isSource(event)
+					|| AppPreferences.SHOW_TICK_RATE.isSource(event)) {
 				paintThread.requestRepaint();
-			} else if (LogisimPreferences.COMPONENT_TIPS.isSource(event)) {
-				boolean showTips = LogisimPreferences.COMPONENT_TIPS.getBoolean();
+			} else if (AppPreferences.COMPONENT_TIPS.isSource(event)) {
+				boolean showTips = AppPreferences.COMPONENT_TIPS.getBoolean();
 				setToolTipText(showTips ? "" : null);
 			}
 		}
@@ -476,7 +476,7 @@ public class Canvas extends JPanel
 			if (isSouthwest)    GraphicsUtil.drawArrow(g, 14, sz.height - 14,
 								2, sz.height -  2, 10, 30);
 
-			if (LogisimPreferences.SHOW_TICK_RATE.getBoolean()) {
+			if (AppPreferences.SHOW_TICK_RATE.getBoolean()) {
 				String hz = tickCounter.getTickRate();
 				if (hz != null && !hz.equals("")) {
 					g.setColor(TICK_RATE_COLOR);
@@ -544,9 +544,9 @@ public class Canvas extends JPanel
 
 		AttributeSet options = proj.getOptions().getAttributeSet();
 		options.addAttributeListener(myProjectListener);
-		LogisimPreferences.COMPONENT_TIPS.addPropertyChangeListener(myListener);
-		LogisimPreferences.GATE_SHAPE.addPropertyChangeListener(myListener);
-		LogisimPreferences.SHOW_TICK_RATE.addPropertyChangeListener(myListener);
+		AppPreferences.COMPONENT_TIPS.addPropertyChangeListener(myListener);
+		AppPreferences.GATE_SHAPE.addPropertyChangeListener(myListener);
+		AppPreferences.SHOW_TICK_RATE.addPropertyChangeListener(myListener);
 		loadOptions(options);
 		paintThread.start();
 	}
@@ -556,7 +556,7 @@ public class Canvas extends JPanel
 	}
 	
 	private void loadOptions(AttributeSet options) {
-		boolean showTips = LogisimPreferences.COMPONENT_TIPS.getBoolean();
+		boolean showTips = AppPreferences.COMPONENT_TIPS.getBoolean();
 		setToolTipText(showTips ? "" : null);
 
 		proj.getSimulator().removeSimulatorListener(myProjectListener);
@@ -802,7 +802,7 @@ public class Canvas extends JPanel
 	
 	@Override
 	public String getToolTipText(MouseEvent event) {
-		boolean showTips = LogisimPreferences.COMPONENT_TIPS.getBoolean();
+		boolean showTips = AppPreferences.COMPONENT_TIPS.getBoolean();
 		if (showTips) {
 			Canvas.snapToGrid(event);
 			Location loc = Location.create(event.getX(), event.getY());

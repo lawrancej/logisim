@@ -20,7 +20,7 @@ import com.cburch.logisim.gui.main.Print;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.gui.menu.WindowManagers;
 import com.cburch.logisim.gui.start.SplashScreen;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.util.LocaleManager;
@@ -212,12 +212,12 @@ public class Startup {
 			boolean templEmpty) {
 		if (showSplash) monitor.setProgress(SplashScreen.TEMPLATE_OPEN);
 		if (templFile != null) {
-			LogisimPreferences.setTemplateFile(templFile);
-			LogisimPreferences.setTemplateType(LogisimPreferences.TEMPLATE_CUSTOM);
+			AppPreferences.setTemplateFile(templFile);
+			AppPreferences.setTemplateType(AppPreferences.TEMPLATE_CUSTOM);
 		} else if (templEmpty) {
-			LogisimPreferences.setTemplateType(LogisimPreferences.TEMPLATE_EMPTY);
+			AppPreferences.setTemplateType(AppPreferences.TEMPLATE_EMPTY);
 		} else if (templPlain) {
-			LogisimPreferences.setTemplateType(LogisimPreferences.TEMPLATE_PLAIN);
+			AppPreferences.setTemplateType(AppPreferences.TEMPLATE_PLAIN);
 		}
 	}
 	
@@ -241,7 +241,7 @@ public class Startup {
 			LocaleManager.setReplaceAccents(false);
 	
 			// Initialize graphics acceleration if appropriate
-			LogisimPreferences.handleGraphicsAcceleration();
+			AppPreferences.handleGraphicsAcceleration();
 		}
 		
 		Startup ret = new Startup(isTty);
@@ -251,7 +251,7 @@ public class Startup {
 		}
 		
 		if (isClearPreferences) {
-			LogisimPreferences.clear();
+			AppPreferences.clear();
 		}
 
 		try {
@@ -335,9 +335,9 @@ public class Startup {
 				if (i >= args.length) printUsage();
 				String a = args[i];
 				if (a.equals("shaped")) {
-					LogisimPreferences.GATE_SHAPE.set(LogisimPreferences.SHAPE_SHAPED);
+					AppPreferences.GATE_SHAPE.set(AppPreferences.SHAPE_SHAPED);
 				} else if (a.equals("rectangular")) {
-					LogisimPreferences.GATE_SHAPE.set(LogisimPreferences.SHAPE_RECTANGULAR);
+					AppPreferences.GATE_SHAPE.set(AppPreferences.SHAPE_RECTANGULAR);
 				} else {
 					System.err.println(Strings.get("argGatesOptionError")); //OK
 					System.exit(-1);
@@ -351,9 +351,9 @@ public class Startup {
 				if (i >= args.length) printUsage();
 				String a = args[i];
 				if (a.equals("yes")) {
-					LogisimPreferences.ACCENTS_REPLACE.setBoolean(false);
+					AppPreferences.ACCENTS_REPLACE.setBoolean(false);
 				} else if (a.equals("no")) {
-					LogisimPreferences.ACCENTS_REPLACE.setBoolean(true);
+					AppPreferences.ACCENTS_REPLACE.setBoolean(true);
 				} else {
 					System.err.println(Strings.get("argAccentsOptionError")); //OK
 					System.exit(-1);
@@ -400,6 +400,7 @@ public class Startup {
 		System.err.println(); //OK
 		System.err.println(Strings.get("argOptionHeader")); //OK
 		System.err.println("   " + Strings.get("argAccentsOption")); //OK
+		System.err.println("   " + Strings.get("argClearPropsOption")); //OK
 		System.err.println("   " + Strings.get("argEmptyOption")); //OK
 		System.err.println("   " + Strings.get("argGatesOption")); //OK
 		System.err.println("   " + Strings.get("argHelpOption")); //OK

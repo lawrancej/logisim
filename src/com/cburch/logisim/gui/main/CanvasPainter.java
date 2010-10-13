@@ -25,7 +25,7 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.gui.generic.GridPainter;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.GraphicsUtil;
@@ -43,8 +43,8 @@ class CanvasPainter implements PropertyChangeListener {
 		this.canvas = canvas;
 		this.grid = new GridPainter(canvas);
 
-		LogisimPreferences.PRINTER_VIEW.addPropertyChangeListener(this);
-		LogisimPreferences.ATTRIBUTE_HALO.addPropertyChangeListener(this);
+		AppPreferences.PRINTER_VIEW.addPropertyChangeListener(this);
+		AppPreferences.ATTRIBUTE_HALO.addPropertyChangeListener(this);
 	}
 	
 	//
@@ -88,8 +88,8 @@ class CanvasPainter implements PropertyChangeListener {
 	}
 	
 	public void propertyChange(PropertyChangeEvent event) {
-		if (LogisimPreferences.PRINTER_VIEW.isSource(event)
-				|| LogisimPreferences.ATTRIBUTE_HALO.isSource(event)) {
+		if (AppPreferences.PRINTER_VIEW.isSource(event)
+				|| AppPreferences.ATTRIBUTE_HALO.isSource(event)) {
 			canvas.repaint();
 		}
 	}
@@ -143,7 +143,7 @@ class CanvasPainter implements PropertyChangeListener {
 		}
 
 		// draw halo around component whose attributes we are viewing
-		boolean showHalo = LogisimPreferences.ATTRIBUTE_HALO.getBoolean();
+		boolean showHalo = AppPreferences.ATTRIBUTE_HALO.getBoolean();
 		if (showHalo && haloedComponent != null && haloedCircuit == circ
 				&& !hidden.contains(haloedComponent)) {
 			GraphicsUtil.switchToWidth(g, 3);
@@ -162,7 +162,7 @@ class CanvasPainter implements PropertyChangeListener {
 
 		// draw circuit and selection
 		CircuitState circState = proj.getCircuitState();
-		boolean printerView = LogisimPreferences.PRINTER_VIEW.getBoolean();
+		boolean printerView = AppPreferences.PRINTER_VIEW.getBoolean();
 		ComponentDrawContext context = new ComponentDrawContext(canvas,
 				circ, circState, base, g, printerView);
 		context.setHighlightedWires(highlightedWires);

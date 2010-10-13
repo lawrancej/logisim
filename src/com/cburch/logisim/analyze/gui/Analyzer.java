@@ -22,11 +22,12 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.cburch.logisim.analyze.model.AnalyzerModel;
+import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 
-public class Analyzer extends JFrame {
+public class Analyzer extends LFrame {
 	// used by circuit analysis to select the relevant tab automatically.
 	public static final int INPUTS_TAB = 0;
 	public static final int OUTPUTS_TAB = 1;

@@ -6,7 +6,7 @@ package com.cburch.logisim.gui.prefs;
 import javax.swing.JPanel;
 
 import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.TableLayout;
 
 class WindowOptions extends OptionsPanel {
@@ -17,13 +17,13 @@ class WindowOptions extends OptionsPanel {
 		super(window);
 		
 		checks = new PrefBoolean[] {
-				new PrefBoolean(LogisimPreferences.SHOW_TICK_RATE,
+				new PrefBoolean(AppPreferences.SHOW_TICK_RATE,
 						Strings.getter("windowTickRate")),
-				new PrefBoolean(LogisimPreferences.SHOW_PROJECT_TOOLBAR,
+				new PrefBoolean(AppPreferences.SHOW_PROJECT_TOOLBAR,
 						Strings.getter("windowProjectToolbar")),
 			};
 
-		toolbarPlacement = new PrefOptionList(LogisimPreferences.TOOLBAR_PLACEMENT,
+		toolbarPlacement = new PrefOptionList(AppPreferences.TOOLBAR_PLACEMENT,
 				Strings.getter("windowToolbarLocation"),
 				new PrefOption[] {
 					new PrefOption(Direction.NORTH.toString(),
@@ -34,9 +34,9 @@ class WindowOptions extends OptionsPanel {
 							Direction.EAST.getDisplayGetter()),
 					new PrefOption(Direction.WEST.toString(),
 							Direction.WEST.getDisplayGetter()),
-					new PrefOption(LogisimPreferences.TOOLBAR_DOWN_MIDDLE,
+					new PrefOption(AppPreferences.TOOLBAR_DOWN_MIDDLE,
 							Strings.getter("windowToolbarDownMiddle")),
-					new PrefOption(LogisimPreferences.TOOLBAR_HIDDEN,
+					new PrefOption(AppPreferences.TOOLBAR_HIDDEN,
 							Strings.getter("windowToolbarHidden")) });
 		
 		JPanel panel = new JPanel(new TableLayout(2));

@@ -15,12 +15,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenuItemManager;
 
-public class PreferencesFrame extends JFrame {
+public class PreferencesFrame extends LFrame {
 	private static final WindowMenuManager windowMenuManager = new WindowMenuManager();
 	
 	private static class WindowMenuManager extends WindowMenuItemManager

@@ -26,7 +26,7 @@ import javax.swing.JTextField;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.file.LoaderException;
 import com.cburch.logisim.file.LogisimFile;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.prefs.Template;
 import com.cburch.logisim.util.JFileChoosers;
 import com.cburch.logisim.util.StringUtil;
@@ -50,8 +50,8 @@ class TemplateOptions extends OptionsPanel {
 						Template template = Template.create(reader);
 						reader2 = template.createStream();
 						LogisimFile.load(reader2, loader); // to see if OK
-						LogisimPreferences.setTemplateFile(file, template);
-						LogisimPreferences.setTemplateType(LogisimPreferences.TEMPLATE_CUSTOM);
+						AppPreferences.setTemplateFile(file, template);
+						AppPreferences.setTemplateType(AppPreferences.TEMPLATE_CUSTOM);
 					} catch (LoaderException ex) {
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(getPreferencesFrame(),
@@ -68,23 +68,23 @@ class TemplateOptions extends OptionsPanel {
 					}
 				}
 			} else {
-				int value = LogisimPreferences.TEMPLATE_UNKNOWN;
-				if (plain.isSelected()) value = LogisimPreferences.TEMPLATE_PLAIN;
-				else if (empty.isSelected()) value = LogisimPreferences.TEMPLATE_EMPTY;
-				else if (custom.isSelected()) value = LogisimPreferences.TEMPLATE_CUSTOM;
-				LogisimPreferences.setTemplateType(value);
+				int value = AppPreferences.TEMPLATE_UNKNOWN;
+				if (plain.isSelected()) value = AppPreferences.TEMPLATE_PLAIN;
+				else if (empty.isSelected()) value = AppPreferences.TEMPLATE_EMPTY;
+				else if (custom.isSelected()) value = AppPreferences.TEMPLATE_CUSTOM;
+				AppPreferences.setTemplateType(value);
 			}
 			computeEnabled();
 		}
 
 		public void propertyChange(PropertyChangeEvent event) {
 			String prop = event.getPropertyName();
-			if (prop.equals(LogisimPreferences.TEMPLATE_TYPE)) {
-				int value = LogisimPreferences.getTemplateType();
-				plain.setSelected(value == LogisimPreferences.TEMPLATE_PLAIN);
-				empty.setSelected(value == LogisimPreferences.TEMPLATE_EMPTY);
-				custom.setSelected(value == LogisimPreferences.TEMPLATE_CUSTOM);
-			} else if (prop.equals(LogisimPreferences.TEMPLATE_FILE)) {
+			if (prop.equals(AppPreferences.TEMPLATE_TYPE)) {
+				int value = AppPreferences.getTemplateType();
+				plain.setSelected(value == AppPreferences.TEMPLATE_PLAIN);
+				empty.setSelected(value == AppPreferences.TEMPLATE_EMPTY);
+				custom.setSelected(value == AppPreferences.TEMPLATE_CUSTOM);
+			} else if (prop.equals(AppPreferences.TEMPLATE_FILE)) {
 				setTemplateField((File) event.getNewValue());
 			}
 		}
@@ -149,14 +149,14 @@ class TemplateOptions extends OptionsPanel {
 		gbc.weightx = 1.0; gridbag.setConstraints(templateField, gbc); add(templateField);
 		gbc.weightx = 0.0; gridbag.setConstraints(templateButton, gbc); add(templateButton);
 		
-		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.TEMPLATE_TYPE, myListener);
-		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.TEMPLATE_FILE, myListener);
-		switch (LogisimPreferences.getTemplateType()) {
-		case LogisimPreferences.TEMPLATE_PLAIN: plain.setSelected(true); break;
-		case LogisimPreferences.TEMPLATE_EMPTY: empty.setSelected(true); break;
-		case LogisimPreferences.TEMPLATE_CUSTOM: custom.setSelected(true); break;
+		AppPreferences.addPropertyChangeListener(AppPreferences.TEMPLATE_TYPE, myListener);
+		AppPreferences.addPropertyChangeListener(AppPreferences.TEMPLATE_FILE, myListener);
+		switch (AppPreferences.getTemplateType()) {
+		case AppPreferences.TEMPLATE_PLAIN: plain.setSelected(true); break;
+		case AppPreferences.TEMPLATE_EMPTY: empty.setSelected(true); break;
+		case AppPreferences.TEMPLATE_CUSTOM: custom.setSelected(true); break;
 		}
-		myListener.setTemplateField(LogisimPreferences.getTemplateFile());
+		myListener.setTemplateField(AppPreferences.getTemplateFile());
 	}
 
 	@Override

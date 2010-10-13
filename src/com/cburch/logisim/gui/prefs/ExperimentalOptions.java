@@ -11,7 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 
 class ExperimentalOptions extends OptionsPanel {
 	private JLabel accelRestart = new JLabel();
@@ -20,12 +20,12 @@ class ExperimentalOptions extends OptionsPanel {
 	public ExperimentalOptions(PreferencesFrame window) {
 		super(window);
 		
-		accel = new PrefOptionList(LogisimPreferences.GRAPHICS_ACCELERATION,
+		accel = new PrefOptionList(AppPreferences.GRAPHICS_ACCELERATION,
 			Strings.getter("accelLabel"), new PrefOption[] {
-				new PrefOption(LogisimPreferences.ACCEL_DEFAULT, Strings.getter("accelDefault")),
-				new PrefOption(LogisimPreferences.ACCEL_NONE, Strings.getter("accelNone")),
-				new PrefOption(LogisimPreferences.ACCEL_OPENGL, Strings.getter("accelOpenGL")),
-				new PrefOption(LogisimPreferences.ACCEL_D3D, Strings.getter("accelD3D")),
+				new PrefOption(AppPreferences.ACCEL_DEFAULT, Strings.getter("accelDefault")),
+				new PrefOption(AppPreferences.ACCEL_NONE, Strings.getter("accelNone")),
+				new PrefOption(AppPreferences.ACCEL_OPENGL, Strings.getter("accelOpenGL")),
+				new PrefOption(AppPreferences.ACCEL_D3D, Strings.getter("accelD3D")),
 			});
 		
 		JPanel accelPanel = new JPanel(new BorderLayout());

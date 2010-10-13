@@ -22,11 +22,11 @@ abstract class AbstractPrefMonitor<E> implements PrefMonitor<E> {
 	}
 	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		LogisimPreferences.addPropertyChangeListener(name, listener);
+		AppPreferences.addPropertyChangeListener(name, listener);
 	}
 	
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
-		LogisimPreferences.removePropertyChangeListener(name, listener);
+		AppPreferences.removePropertyChangeListener(name, listener);
 	}
 
 	public boolean getBoolean() {

@@ -11,7 +11,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 
 class LocaleSelector extends JList
 			implements LocaleListener, ListSelectionListener {
@@ -41,7 +41,7 @@ class LocaleSelector extends JList
 		public void run() {
 			if (!LocaleManager.getLocale().equals(locale)) {
 				LocaleManager.setLocale(locale);
-				LogisimPreferences.LOCALE.set(locale.getLanguage());
+				AppPreferences.LOCALE.set(locale.getLanguage());
 			}
 		}
 	}

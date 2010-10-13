@@ -21,7 +21,7 @@ import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.gui.main.Frame;
 import com.cburch.logisim.gui.start.SplashScreen;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.JFileChoosers;
 import com.cburch.logisim.util.StringUtil;
@@ -57,7 +57,7 @@ public class ProjectActions {
 	public static Project doNew(SplashScreen monitor, boolean isStartupScreen) {
 		if (monitor != null) monitor.setProgress(SplashScreen.FILE_CREATE);
 		Loader loader = new Loader(monitor);
-		InputStream templReader = LogisimPreferences.getTemplate().createStream();
+		InputStream templReader = AppPreferences.getTemplate().createStream();
 		LogisimFile file = null;
 		try {
 			file = loader.openLogisimFile(templReader);
@@ -80,7 +80,7 @@ public class ProjectActions {
 	}
 	
 	private static LogisimFile createEmptyFile(Loader loader) {
-		InputStream templReader = LogisimPreferences.getEmptyTemplate().createStream();
+		InputStream templReader = AppPreferences.getEmptyTemplate().createStream();
 		LogisimFile file;
 		try {
 			file = loader.openLogisimFile(templReader);
@@ -105,7 +105,7 @@ public class ProjectActions {
 
 	public static LogisimFile createNewFile(Project baseProject) {
 		Loader loader = new Loader(baseProject == null ? null : baseProject.getFrame());
-		InputStream templReader = LogisimPreferences.getTemplate().createStream();
+		InputStream templReader = AppPreferences.getTemplate().createStream();
 		LogisimFile file;
 		try {
 			file = loader.openLogisimFile(templReader);
@@ -148,7 +148,7 @@ public class ProjectActions {
 		if (monitor != null) monitor.setProgress(SplashScreen.FILE_LOAD);
 		Loader loader = new Loader(monitor);
 		LogisimFile file = loader.openLogisimFile(source, substitutions);
-		LogisimPreferences.updateRecentFile(source);
+		AppPreferences.updateRecentFile(source);
 		
 		return completeProject(monitor, loader, file, false);
 	}
@@ -210,7 +210,7 @@ public class ProjectActions {
 
 		try {
 			LogisimFile lib = loader.openLogisimFile(f);
-			LogisimPreferences.updateRecentFile(f);
+			AppPreferences.updateRecentFile(f);
 			if (lib == null) return null;
 			if (proj == null) {
 				proj = new Project(lib);
@@ -302,7 +302,10 @@ public class ProjectActions {
 		Tool oldTool = proj.getTool();
 		proj.setTool(null);
 		boolean ret = loader.save(proj.getLogisimFile(), f);
-		if (ret) proj.setFileAsClean();
+		if (ret) {
+			AppPreferences.updateRecentFile(f);
+			proj.setFileAsClean();
+		}
 		proj.setTool(oldTool);
 		return ret;
 	}

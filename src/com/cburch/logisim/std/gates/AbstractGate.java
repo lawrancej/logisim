@@ -28,7 +28,7 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.tools.WireRepair;
 import com.cburch.logisim.tools.WireRepairData;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
@@ -149,7 +149,7 @@ abstract class AbstractGate extends InstanceFactory {
 	@Override
 	public void paintInstance(InstancePainter painter) {
 		paintBase(painter);
-		if (!painter.isPrintView() || painter.getGateShape() == LogisimPreferences.SHAPE_RECTANGULAR) {
+		if (!painter.isPrintView() || painter.getGateShape() == AppPreferences.SHAPE_RECTANGULAR) {
 			painter.drawPorts();
 		}
 	}
@@ -174,7 +174,7 @@ abstract class AbstractGate extends InstanceFactory {
 
 		Graphics g = painter.getGraphics();
 		Color baseColor = g.getColor();
-		if (shape == LogisimPreferences.SHAPE_SHAPED && paintInputLines) {
+		if (shape == AppPreferences.SHAPE_SHAPED && paintInputLines) {
 			PainterShaped.paintInputLines(painter, this);
 		} else if (negated != 0) {
 			for (int i = 0; i < inputs; i++) {
@@ -197,9 +197,9 @@ abstract class AbstractGate extends InstanceFactory {
 			g2.rotate(rotate);
 		}
 		
-		if (shape == LogisimPreferences.SHAPE_RECTANGULAR) {
+		if (shape == AppPreferences.SHAPE_RECTANGULAR) {
 			paintRectangular(painter, width, height);
-		} else if (shape == LogisimPreferences.SHAPE_DIN40700) {
+		} else if (shape == AppPreferences.SHAPE_DIN40700) {
 			paintDinShape(painter, width, height, inputs);
 		} else { // SHAPE_SHAPED
 			if (negateOutput) {
@@ -280,14 +280,14 @@ abstract class AbstractGate extends InstanceFactory {
 	public final void paintIcon(InstancePainter painter) {
 		Graphics g = painter.getGraphics();
 		g.setColor(Color.black);
-		if (painter.getGateShape() == LogisimPreferences.SHAPE_RECTANGULAR) {
+		if (painter.getGateShape() == AppPreferences.SHAPE_RECTANGULAR) {
 			Icon iconRect = getIconRectangular();
 			if (iconRect != null) {
 				iconRect.paintIcon(painter.getDestination(), g, 2, 2);
 			} else {
 				paintIconRectangular(painter);
 			}
-		} else if (painter.getGateShape() == LogisimPreferences.SHAPE_DIN40700) {
+		} else if (painter.getGateShape() == AppPreferences.SHAPE_DIN40700) {
 			Icon iconDin = getIconDin40700();
 			if (iconDin != null) {
 				iconDin.paintIcon(painter.getDestination(), g, 2, 2);
@@ -384,7 +384,7 @@ abstract class AbstractGate extends InstanceFactory {
 		
 		int axis = baseWidth / 2 + (negateOutput ? 10 : 0);
 		int perp = 0;
-		if (LogisimPreferences.GATE_SHAPE.get().equals(LogisimPreferences.SHAPE_RECTANGULAR)) {
+		if (AppPreferences.GATE_SHAPE.get().equals(AppPreferences.SHAPE_RECTANGULAR)) {
 			perp += 6;
 		}
 		Location loc = instance.getLocation();

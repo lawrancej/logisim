@@ -14,7 +14,7 @@ class PrefMonitorDouble extends AbstractPrefMonitor<Double> {
 		super(name);
 		this.dflt = dflt;
 		this.value = dflt;
-		Preferences prefs = LogisimPreferences.getPrefs();
+		Preferences prefs = AppPreferences.getPrefs();
 		set(Double.valueOf(prefs.getDouble(name, dflt)));
 		prefs.addPreferenceChangeListener(this);
 	}
@@ -26,7 +26,7 @@ class PrefMonitorDouble extends AbstractPrefMonitor<Double> {
 	public void set(Double newValue) {
 		double newVal = newValue.doubleValue();
 		if (value != newVal) {
-			LogisimPreferences.getPrefs().putDouble(getIdentifier(), newVal);
+			AppPreferences.getPrefs().putDouble(getIdentifier(), newVal);
 		}
 	}
 
@@ -39,7 +39,7 @@ class PrefMonitorDouble extends AbstractPrefMonitor<Double> {
 			double newValue = prefs.getDouble(name, dflt);
 			if (newValue != oldValue) {
 				value = newValue;
-				LogisimPreferences.firePropertyChange(name,
+				AppPreferences.firePropertyChange(name,
 						Double.valueOf(oldValue), Double.valueOf(newValue));
 			}
 		}

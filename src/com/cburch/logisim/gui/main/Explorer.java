@@ -47,7 +47,7 @@ import com.cburch.logisim.file.LibraryEventSource;
 import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.file.LibraryEvent;
 import com.cburch.logisim.file.LibraryListener;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
@@ -223,7 +223,7 @@ public class Explorer extends JTree implements LocaleListener {
 		public void paintIcon(java.awt.Component c, Graphics g,
 				int x, int y) {
 			// draw halo if appropriate
-			if (tool == haloedTool && LogisimPreferences.ATTRIBUTE_HALO.getBoolean()) {
+			if (tool == haloedTool && AppPreferences.ATTRIBUTE_HALO.getBoolean()) {
 				g.setColor(Canvas.HALO_COLOR);
 				g.fillRoundRect(x, y, 20, 20, 10, 10);
 				g.setColor(Color.BLACK);
@@ -526,7 +526,7 @@ public class Explorer extends JTree implements LocaleListener {
 		// PropertyChangeListener methods
 		//
 		public void propertyChange(PropertyChangeEvent event) {
-			if (LogisimPreferences.GATE_SHAPE.isSource(event)) {
+			if (AppPreferences.GATE_SHAPE.isSource(event)) {
 				repaint();
 			}
 		}
@@ -570,7 +570,7 @@ public class Explorer extends JTree implements LocaleListener {
 
 		proj.addProjectListener(myListener);
 		proj.addLibraryListener(myListener);
-		LogisimPreferences.GATE_SHAPE.addPropertyChangeListener(myListener);
+		AppPreferences.GATE_SHAPE.addPropertyChangeListener(myListener);
 		myListener.setFile(proj.getLogisimFile());
 		LocaleManager.addLocaleListener(this);
 	}

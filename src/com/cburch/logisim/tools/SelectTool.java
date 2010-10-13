@@ -28,7 +28,7 @@ import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.gui.main.SelectionActions;
 import com.cburch.logisim.gui.main.Selection.Event;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.key.KeyConfigurationEvent;
@@ -311,7 +311,7 @@ public class SelectTool extends Tool {
 
 	private boolean shouldConnect(Canvas canvas, int modsEx) {
 		boolean shiftReleased = (modsEx & MouseEvent.SHIFT_DOWN_MASK) == 0;
-		boolean dflt = LogisimPreferences.MOVE_KEEP_CONNECT.getBoolean();
+		boolean dflt = AppPreferences.MOVE_KEEP_CONNECT.getBoolean();
 		if (shiftReleased) {
 			return dflt;
 		} else {

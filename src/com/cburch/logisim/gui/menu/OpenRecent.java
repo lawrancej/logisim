@@ -16,7 +16,7 @@ import java.util.List;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 
@@ -46,7 +46,7 @@ class OpenRecent extends JMenu implements PropertyChangeListener {
 	OpenRecent(LogisimMenuBar menubar) {
 		this.menubar = menubar;
 		this.recentItems = new ArrayList<RecentItem>();
-		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.RECENT_PROJECTS, this);
+		AppPreferences.addPropertyChangeListener(AppPreferences.RECENT_PROJECTS, this);
 		renewItems();
 	}
 	
@@ -57,7 +57,7 @@ class OpenRecent extends JMenu implements PropertyChangeListener {
 		}
 		recentItems.clear();
 		
-		List<File> files = LogisimPreferences.getRecentFiles();
+		List<File> files = AppPreferences.getRecentFiles();
 		if (files.isEmpty()) {
 			recentItems.add(new RecentItem(null));
 		} else {
@@ -104,7 +104,7 @@ class OpenRecent extends JMenu implements PropertyChangeListener {
 	}
 
 	public void propertyChange(PropertyChangeEvent event) {
-		if (event.getPropertyName().equals(LogisimPreferences.RECENT_PROJECTS)) {
+		if (event.getPropertyName().equals(AppPreferences.RECENT_PROJECTS)) {
 			renewItems();
 		}
 	}

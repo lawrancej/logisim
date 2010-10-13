@@ -29,7 +29,7 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
@@ -98,8 +98,8 @@ class NotGate extends InstanceFactory {
 	protected void configureNewInstance(Instance instance) {
 		configurePorts(instance);
 		instance.addAttributeListener();
-		String gateShape = LogisimPreferences.GATE_SHAPE.get();
-		configureLabel(instance, gateShape.equals(LogisimPreferences.SHAPE_RECTANGULAR), null);
+		String gateShape = AppPreferences.GATE_SHAPE.get();
+		configureLabel(instance, gateShape.equals(AppPreferences.SHAPE_RECTANGULAR), null);
 	}
 	
 	@Override
@@ -107,8 +107,8 @@ class NotGate extends InstanceFactory {
 		if (attr == ATTR_SIZE || attr == StdAttr.FACING) {
 			instance.recomputeBounds();
 			configurePorts(instance);
-			String gateShape = LogisimPreferences.GATE_SHAPE.get();
-			configureLabel(instance, gateShape.equals(LogisimPreferences.SHAPE_RECTANGULAR), null);
+			String gateShape = AppPreferences.GATE_SHAPE.get();
+			configureLabel(instance, gateShape.equals(AppPreferences.SHAPE_RECTANGULAR), null);
 		}
 	}
 	
@@ -146,7 +146,7 @@ class NotGate extends InstanceFactory {
 	public void paintIcon(InstancePainter painter) {
 		Graphics g = painter.getGraphics();
 		g.setColor(Color.black);
-		if (painter.getGateShape() == LogisimPreferences.SHAPE_RECTANGULAR) {
+		if (painter.getGateShape() == AppPreferences.SHAPE_RECTANGULAR) {
 			if (toolIconRect != null) {
 				toolIconRect.paintIcon(painter.getDestination(), g, 2, 2);
 			} else {
@@ -154,7 +154,7 @@ class NotGate extends InstanceFactory {
 				GraphicsUtil.drawCenteredText(g, RECT_LABEL, 8, 8);
 				g.drawOval(16, 8, 4, 4);
 			}
-		} else if (painter.getGateShape() == LogisimPreferences.SHAPE_DIN40700) {
+		} else if (painter.getGateShape() == AppPreferences.SHAPE_DIN40700) {
 			if (toolIconDin != null) {
 				toolIconDin.paintIcon(painter.getDestination(), g, 2, 2);
 			} else {
@@ -205,9 +205,9 @@ class NotGate extends InstanceFactory {
 		}
 		
 		Object shape = painter.getGateShape();
-		if (shape == LogisimPreferences.SHAPE_RECTANGULAR) {
+		if (shape == AppPreferences.SHAPE_RECTANGULAR) {
 			paintRectangularBase(g, painter);
-		} else if (shape == LogisimPreferences.SHAPE_DIN40700) {
+		} else if (shape == AppPreferences.SHAPE_DIN40700) {
 			int width = painter.getAttributeValue(ATTR_SIZE) == SIZE_NARROW ? 20 : 30;
 			PainterDin.paintAnd(painter, width, 18, true);
 		} else {

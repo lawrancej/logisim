@@ -13,7 +13,7 @@ class PrefMonitorString extends AbstractPrefMonitor<String> {
 	PrefMonitorString(String name, String dflt) {
 		super(name);
 		this.dflt = dflt;
-		Preferences prefs = LogisimPreferences.getPrefs();
+		Preferences prefs = AppPreferences.getPrefs();
 		this.value = prefs.get(name, dflt);
 		prefs.addPreferenceChangeListener(this);
 	}
@@ -26,7 +26,7 @@ class PrefMonitorString extends AbstractPrefMonitor<String> {
 		String oldValue = value;
 		if (!isSame(oldValue, newValue)) {
 			value = newValue;
-			LogisimPreferences.getPrefs().put(getIdentifier(), newValue);
+			AppPreferences.getPrefs().put(getIdentifier(), newValue);
 		}
 	}
 
@@ -39,7 +39,7 @@ class PrefMonitorString extends AbstractPrefMonitor<String> {
 			String newValue = prefs.get(name, dflt);
 			if (!isSame(oldValue, newValue)) {
 				value = newValue;
-				LogisimPreferences.firePropertyChange(name, oldValue, newValue);
+				AppPreferences.firePropertyChange(name, oldValue, newValue);
 			}
 		}
 	}

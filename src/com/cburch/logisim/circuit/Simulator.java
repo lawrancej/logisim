@@ -6,7 +6,7 @@ package com.cburch.logisim.circuit;
 import java.util.ArrayList;
 
 import com.cburch.logisim.comp.ComponentDrawContext;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 
 public class Simulator {
 	/*begin DEBUGGING
@@ -174,7 +174,7 @@ public class Simulator {
 		ticker.start();
 		
 		tickFrequency = 0.0;
-		setTickFrequency(LogisimPreferences.TICK_FREQUENCY.get().doubleValue());
+		setTickFrequency(AppPreferences.TICK_FREQUENCY.get().doubleValue());
 	}
 	
 	public void shutDown() {

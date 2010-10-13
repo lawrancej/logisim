@@ -19,6 +19,7 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstancePoker;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
+import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 
 public class Joystick extends InstanceFactory {
@@ -29,6 +30,7 @@ public class Joystick extends InstanceFactory {
 		super("Joystick", Strings.getter("joystickComponent"));
 		setAttributes(new Attribute[] { ATTR_WIDTH, Io.ATTR_COLOR },
 				new Object[] { BitWidth.create(4), Color.RED });
+		setKeyConfigurator(new BitWidthConfigurator(ATTR_WIDTH, 2, 5));
 		setOffsetBounds(Bounds.create(-30, -10, 30, 30));
 		setIconName("joystick.gif");
 		setPorts(new Port[] {

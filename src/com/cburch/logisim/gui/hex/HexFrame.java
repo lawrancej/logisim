@@ -23,6 +23,7 @@ import javax.swing.event.ChangeListener;
 
 import com.cburch.hex.HexEditor;
 import com.cburch.hex.HexModel;
+import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.JFileChoosers;
@@ -30,7 +31,7 @@ import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenuItemManager;
 
-public class HexFrame extends JFrame {
+public class HexFrame extends LFrame {
 	private class WindowMenuManager extends WindowMenuItemManager
 			implements LocaleListener {
 		WindowMenuManager() {

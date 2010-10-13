@@ -29,7 +29,7 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.gui.main.SelectionActions;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Dependencies;
 import com.cburch.logisim.proj.Project;
@@ -376,8 +376,8 @@ public class AddTool extends Tool {
 	}
 	
 	private Tool determineNext(Project proj) {
-		String afterAdd = LogisimPreferences.ADD_AFTER.get();
-		if (afterAdd.equals(LogisimPreferences.ADD_AFTER_UNCHANGED)) {
+		String afterAdd = AppPreferences.ADD_AFTER.get();
+		if (afterAdd.equals(AppPreferences.ADD_AFTER_UNCHANGED)) {
 			return null;
 		} else { // switch to Edit Tool
 			Library base = proj.getLogisimFile().getLibrary("Base");
@@ -482,7 +482,7 @@ public class AddTool extends Tool {
 	private void setState(Canvas canvas, int value) {
 		if (value == SHOW_GHOST) {
 			if (canvas.getProject().getLogisimFile().contains(canvas.getCircuit())
-					&& LogisimPreferences.ADD_SHOW_GHOSTS.getBoolean()) {
+					&& AppPreferences.ADD_SHOW_GHOSTS.getBoolean()) {
 				state = SHOW_GHOST;
 			} else {
 				state = SHOW_NONE;

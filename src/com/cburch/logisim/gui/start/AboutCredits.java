@@ -116,6 +116,8 @@ class AboutCredits extends JComponent {
 		lines.add(new CreditsLine(0, Strings.get("creditsRoleTesting")));
 		lines.add(new CreditsLine(1, "Ilia Lilov"));
 		lines.add(new CreditsLine(2, "Moscow Univ. of Printing Arts"));
+		lines.add(new CreditsLine(1, "Max Rademacher"));
+		lines.add(new CreditsLine(2, "Rhode Island, USA"));
 		lines.add(new CreditsLine(1, "Uwe Zimmerman"));
 		lines.add(new CreditsLine(2, "Uppsala University"));
 		

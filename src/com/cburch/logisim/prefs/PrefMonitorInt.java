@@ -14,7 +14,7 @@ class PrefMonitorInt extends AbstractPrefMonitor<Integer> {
 		super(name);
 		this.dflt = dflt;
 		this.value = dflt;
-		Preferences prefs = LogisimPreferences.getPrefs();
+		Preferences prefs = AppPreferences.getPrefs();
 		set(Integer.valueOf(prefs.getInt(name, dflt)));
 		prefs.addPreferenceChangeListener(this);
 	}
@@ -26,7 +26,7 @@ class PrefMonitorInt extends AbstractPrefMonitor<Integer> {
 	public void set(Integer newValue) {
 		int newVal = newValue.intValue();
 		if (value != newVal) {
-			LogisimPreferences.getPrefs().putInt(getIdentifier(), newVal);
+			AppPreferences.getPrefs().putInt(getIdentifier(), newVal);
 		}
 	}
 
@@ -39,7 +39,7 @@ class PrefMonitorInt extends AbstractPrefMonitor<Integer> {
 			int newValue = prefs.getInt(name, dflt);
 			if (newValue != oldValue) {
 				value = newValue;
-				LogisimPreferences.firePropertyChange(name,
+				AppPreferences.firePropertyChange(name,
 						Integer.valueOf(oldValue), Integer.valueOf(newValue));
 			}
 		}

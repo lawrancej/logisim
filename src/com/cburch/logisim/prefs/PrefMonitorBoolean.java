@@ -14,7 +14,7 @@ class PrefMonitorBoolean extends AbstractPrefMonitor<Boolean> {
 		super(name);
 		this.dflt = dflt;
 		this.value = dflt;
-		Preferences prefs = LogisimPreferences.getPrefs();
+		Preferences prefs = AppPreferences.getPrefs();
 		set(Boolean.valueOf(prefs.getBoolean(name, dflt)));
 		prefs.addPreferenceChangeListener(this);
 	}
@@ -31,7 +31,7 @@ class PrefMonitorBoolean extends AbstractPrefMonitor<Boolean> {
 	public void set(Boolean newValue) {
 		boolean newVal = newValue.booleanValue();
 		if (value != newVal) {
-			LogisimPreferences.getPrefs().putBoolean(getIdentifier(), newVal);
+			AppPreferences.getPrefs().putBoolean(getIdentifier(), newVal);
 		}
 	}
 
@@ -44,7 +44,7 @@ class PrefMonitorBoolean extends AbstractPrefMonitor<Boolean> {
 			boolean newValue = prefs.getBoolean(name, dflt);
 			if (newValue != oldValue) {
 				value = newValue;
-				LogisimPreferences.firePropertyChange(name, oldValue, newValue);
+				AppPreferences.firePropertyChange(name, oldValue, newValue);
 			}
 		}
 	}

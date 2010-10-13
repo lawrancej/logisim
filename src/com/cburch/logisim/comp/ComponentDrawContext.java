@@ -15,7 +15,7 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.GraphicsUtil;
 
 public class ComponentDrawContext {
@@ -107,7 +107,7 @@ public class ComponentDrawContext {
 	}
 
 	public Object getGateShape() {
-		return LogisimPreferences.GATE_SHAPE.get();
+		return AppPreferences.GATE_SHAPE.get();
 	}
 
 	//

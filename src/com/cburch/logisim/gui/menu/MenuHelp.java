@@ -3,6 +3,7 @@
 
 package com.cburch.logisim.gui.menu;
 
+import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.start.About;
 import com.cburch.logisim.util.MacCompatibility;
 
@@ -11,8 +12,9 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.Locale;
 
-import javax.help.HelpBroker;
 import javax.help.HelpSet;
+import javax.help.JHelp;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -25,7 +27,8 @@ class MenuHelp extends JMenu implements ActionListener {
 	private JMenuItem about = new JMenuItem();
 	private HelpSet helpSet;
 	private String helpSetUrl;
-	private HelpBroker helpBroker;
+	private JHelp helpComponent;
+	private LFrame helpFrame;
 
 	public MenuHelp(LogisimMenuBar menubar) {
 		this.menubar = menubar;
@@ -46,12 +49,15 @@ class MenuHelp extends JMenu implements ActionListener {
 
 	public void localeChanged() {
 		this.setText(Strings.get("helpMenu"));
+		if (helpFrame != null) {
+			helpFrame.setTitle(Strings.get("helpWindowTitle"));
+		}
 		tutorial.setText(Strings.get("helpTutorialItem"));
 		guide.setText(Strings.get("helpGuideItem"));
 		library.setText(Strings.get("helpLibraryItem"));
 		about.setText(Strings.get("helpAboutItem"));
-		if (helpBroker != null) {
-			helpBroker.setLocale(Locale.getDefault());
+		if (helpFrame != null) {
+			helpFrame.setLocale(Locale.getDefault());
 			loadBroker();
 		}
 	}
@@ -72,7 +78,7 @@ class MenuHelp extends JMenu implements ActionListener {
 	private void loadBroker() {
 		String helpUrl = Strings.get("helpsetUrl");
 		if (helpUrl == null) helpUrl = "doc/en/doc.hs";
-		if (helpSet == null || helpBroker == null || !helpUrl.equals(helpSetUrl)) {
+		if (helpSet == null || helpFrame == null || !helpUrl.equals(helpSetUrl)) {
 			ClassLoader cl = MenuHelp.class.getClassLoader();
 			try {
 				URL hsURL = HelpSet.findHelpSet(cl, helpUrl);
@@ -84,10 +90,16 @@ class MenuHelp extends JMenu implements ActionListener {
 				}
 				helpSetUrl = helpUrl;
 				helpSet = new HelpSet(null, hsURL);
-				if (helpBroker == null) {
-					helpBroker = helpSet.createHelpBroker();
+				helpComponent = new JHelp(helpSet);
+				if (helpFrame == null) {
+					helpFrame = new LFrame();
+					helpFrame.setTitle(Strings.get("helpWindowTitle"));
+					helpFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+					helpFrame.getContentPane().add(helpComponent);
+					helpFrame.pack();
 				} else {
-					helpBroker.setHelpSet(helpSet);
+					helpFrame.getContentPane().removeAll();
+					helpFrame.getContentPane().add(helpComponent);
 				}
 			} catch (Exception e) {
 				disableHelp();
@@ -102,9 +114,9 @@ class MenuHelp extends JMenu implements ActionListener {
 	private void showHelp(String target) {
 		loadBroker();
 		try {
-			helpBroker.setCurrentID(target);
-			helpBroker.setViewDisplayed(true);
-			helpBroker.setDisplayed(true);
+			helpComponent.setCurrentID(target);
+			helpFrame.toFront();
+			helpFrame.setVisible(true);
 		} catch (Exception e) {
 			disableHelp();
 			e.printStackTrace();

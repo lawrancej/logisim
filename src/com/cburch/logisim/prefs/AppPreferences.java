@@ -25,13 +25,13 @@ import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.PropertyChangeWeakSupport;
 
-public class LogisimPreferences {
+public class AppPreferences {
 	// class variables for maintaining consistency between properties,
 	// internal variables, and other classes
 	private static Preferences prefs = null;
 	private static MyListener myListener = null;
 	private static PropertyChangeWeakSupport propertySupport
-		= new PropertyChangeWeakSupport(LogisimPreferences.class);
+		= new PropertyChangeWeakSupport(AppPreferences.class);
 
 	// Template preferences
 	public static final int TEMPLATE_UNKNOWN = -1;
@@ -206,7 +206,7 @@ public class LogisimPreferences {
 	
 	private static Preferences getPrefs(boolean shouldClear) {
 		if (prefs == null) {
-			synchronized(LogisimPreferences.class) {
+			synchronized(AppPreferences.class) {
 				if (prefs == null) {
 					Preferences p = Preferences.userNodeForPackage(Main.class);
 					if (shouldClear) {
