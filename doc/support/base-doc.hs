@@ -36,8 +36,7 @@
    <!-- presentation windows -->
 
    <!-- This window is the default one for the helpset. 
-     *  Its title bar says "Logisim Help". It
-     *  is a tri-paned window because displayviews, not
+     *  It is a tri-paned window because displayviews, not
      *  defined, defaults to true and because a toolbar is defined.
      *  The toolbar has a back arrow, a forward arrow, and
      *  a home button that has a user-defined image.
@@ -46,7 +45,6 @@
        <name>main window</name>
        <size width="900" height="700" /> 
        <location x="200" y="10" />
-       <title>Logisim Help</title>
        <toolbar>
            <helpaction>javax.help.BackAction</helpaction>
            <helpaction>javax.help.ForwardAction</helpaction>

@@ -6,17 +6,17 @@
 
 <h1>Command-line options</h1>
 
-<p>You can configure Logisim's application preferences via command
+<p>You can configure many of Logisim's application preferences via command
 line options.  This can be particularly useful in a laboratory of
 single-student computers where you want Logisim to start up the same
 for students every time, regardless of how previous students may have
 configured the program.</p>
 
-<p>The overall command-line syntax is as follows.
+<p>The overall command-line syntax is as follows.</p>
 <blockquote><pre>
 java -jar <em><b>jarFileName</b></em> <em>[options]</em> <em>[filenames]</em>
 </pre></blockquote>
-The optional additional files named on the command line will be
+<p>The optional additional files named on the command line will be
 opened as separate windows within Logisim.</p>
 
 <p>The following example starts Logisim in its basic configuration.
@@ -55,6 +55,9 @@ set are replaced with equivalents appropriate to the language;
 this would be useful for Java/OS combinations where such characters
 are not supported well.</p></dd>
 
+<dt><tt>-clearprops</tt></dt>
+<dd><p>Clear all application preferences at startup, so Logisim will act as
+if it were being executed on the host system for the first time.</p></dd>
 
 <dt><tt>-nosplash</tt></dt>
 <dd><p>Hides the initial Logisim splash screen.</p></dd>

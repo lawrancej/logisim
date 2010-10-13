@@ -7,7 +7,11 @@ Feature: Several configuration items were moved from the project-specific Option
 
 Feature: Several window attributes are automatically saved as preferences when the user exits (though they don't appear in the dialog) so they can be restored to their previous values on the next startup. This includes the tick rate, window size, zoom factor for both the layout editor and appearance editor, whether to show the grid in the layout editor and appearance editor grid, whether the window is maximized, and the portion of the window dedicated to the main canvas, the explorer pane, and the attribute table.
 
-Feature: Added Open Recent submenu to the File menu. 
+Feature: Added Open Recent submenu to the File menu.
+
+Feature: Added a "-clearprops" command-line option that clears all saved application preferences on startup.
+
+Feature: In the I/O library, the Joystick component's Bit Width attribute can be configured through pressing Alt-2 through Alt-5.  
 
 Feature: A first version of the German documentation is included.
 
@@ -18,5 +22,7 @@ Bug fix: The project toolbar would appear at startup regardless of whether its m
 Bug fix: In loading from a file into RAM or ROM, very long strings of non-zero values would see large portions treated as zero.
 
 Bug fix: In editing the appearance and creating a rectangle, oval, or rounded rectangle, there would sometimes be artifacts left behind as the mouse was dragged.
+
+Interface change: A customized application icon is configured to appear in each window's title bar, where the Java logo had previously appeared.
 
 Implementation change: The documentation's directory hierarchy was changed to facilitate easier translation.
