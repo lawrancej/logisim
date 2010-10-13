@@ -224,9 +224,12 @@ public class Startup {
 	public static Startup parseArgs(String[] args) {
 		// see whether we'll be using any graphics
 		boolean isTty = false;
+		boolean isClearPreferences = false;
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equals("-tty")) {
 				isTty = true;
+			} else if (args[i].equals("-clearprefs")) {
+				isClearPreferences = true;
 			}
 		}
 		
@@ -245,6 +248,10 @@ public class Startup {
 		startupTemp = ret;
 		if (!isTty) {
 			registerHandler();
+		}
+		
+		if (isClearPreferences) {
+			LogisimPreferences.clear();
 		}
 
 		try {
@@ -368,6 +375,8 @@ public class Startup {
 				}
 			} else if (arg.equals("-nosplash")) {
 				ret.showSplash = false;
+			} else if (arg.equals("-clearprefs")) {
+				// already handled above
 			} else if (arg.charAt(0) == '-') {
 				printUsage();
 				return null;

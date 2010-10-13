@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
+import java.util.prefs.BackingStoreException;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
@@ -194,11 +195,23 @@ public class LogisimPreferences {
 		return monitor;
 	}
 	
+	public static void clear() {
+		Preferences p = getPrefs(true);
+		try { p.clear(); } catch (BackingStoreException e) { }
+	}
+	
 	static Preferences getPrefs() {
+		return getPrefs(false);
+	}
+	
+	private static Preferences getPrefs(boolean shouldClear) {
 		if (prefs == null) {
 			synchronized(LogisimPreferences.class) {
 				if (prefs == null) {
 					Preferences p = Preferences.userNodeForPackage(Main.class);
+					if (shouldClear) {
+						try { p.clear(); } catch (BackingStoreException e) { }
+					}
 					myListener = new MyListener();
 					p.addPreferenceChangeListener(myListener);
 					prefs = p;
