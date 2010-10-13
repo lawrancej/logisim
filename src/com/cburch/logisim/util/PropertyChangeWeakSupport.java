@@ -7,7 +7,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class PropertyChangeWeakSupport {
 	private static final String ALL_PROPERTIES = "ALL PROPERTIES";
@@ -22,11 +22,11 @@ public class PropertyChangeWeakSupport {
 	}
 	
 	private Object source;
-	private LinkedList<ListenerData> listeners;
+	private ConcurrentLinkedQueue<ListenerData> listeners;
 
 	public PropertyChangeWeakSupport(Object source) {
 		this.source = source;
-		this.listeners = new LinkedList<ListenerData>();
+		this.listeners = new ConcurrentLinkedQueue<ListenerData>();
 	}
 	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {

@@ -31,6 +31,19 @@ public class Projects {
 
 	private static class MyListener extends WindowAdapter {
 		@Override
+		public void windowActivated(WindowEvent event) {
+			mostRecentFrame = (Frame) event.getSource();
+		}
+		
+		@Override
+		public void windowClosing(WindowEvent event) {
+			Frame frame = (Frame) event.getSource();
+			if ((frame.getExtendedState() & Frame.ICONIFIED) == 0) {
+				mostRecentFrame = frame;
+			}
+		}
+		
+		@Override
 		public void windowClosed(WindowEvent event) {
 			Frame frame = (Frame) event.getSource();
 			Project proj = frame.getProject();
@@ -59,8 +72,25 @@ public class Projects {
 	private static final PropertyChangeWeakSupport propertySupport
 		= new PropertyChangeWeakSupport(Projects.class);
 	private static ArrayList<Project> openProjects = new ArrayList<Project>();
+	private static Frame mostRecentFrame = null;
 
 	private Projects() { }
+	
+	public static Frame getTopFrame() {
+		Frame ret = mostRecentFrame;
+		if (ret == null) {
+			Frame backup = null;
+			for (Project proj : openProjects) {
+				Frame frame = proj.getFrame();
+				if (ret == null) ret = frame;
+				if (ret.isVisible() && (ret.getExtendedState() & Frame.ICONIFIED) != 0) {
+					backup = ret;
+				}
+			}
+			if (ret == null) ret = backup;
+		}
+		return ret;
+	}
 	
 	static void windowCreated(Project proj, Frame oldFrame, Frame frame) {
 		if (oldFrame != null) {

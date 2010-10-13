@@ -6,6 +6,7 @@ package com.cburch.logisim.gui.main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
@@ -24,22 +25,21 @@ import com.cburch.logisim.circuit.CircuitListener;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
-import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.AttributeSets;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.file.LibraryEvent;
 import com.cburch.logisim.file.LibraryListener;
-import com.cburch.logisim.file.Options;
 import com.cburch.logisim.gui.appear.AppearanceView;
 import com.cburch.logisim.gui.generic.AttributeTable;
 import com.cburch.logisim.gui.generic.AttributeTableListener;
+import com.cburch.logisim.gui.generic.BasicZoomModel;
 import com.cburch.logisim.gui.generic.CanvasPane;
 import com.cburch.logisim.gui.generic.CardPanel;
 import com.cburch.logisim.gui.generic.ZoomControl;
 import com.cburch.logisim.gui.generic.ZoomModel;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
-import com.cburch.logisim.proj.LogisimPreferences;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.proj.ProjectEvent;
@@ -55,10 +55,12 @@ import com.cburch.logisim.util.VerticalSplitPane;
 public class Frame extends JFrame implements LocaleListener {
 	public static final String LAYOUT = "layout";
 	public static final String APPEARANCE = "appearance";
+
+	private static final double[] ZOOM_OPTIONS = { 20, 50, 75, 100, 133, 150, 200 };
 	
 	class MyProjectListener
 			implements ProjectListener, LibraryListener, CircuitListener,
-				AttributeListener, PropertyChangeListener {
+				PropertyChangeListener {
 		public void projectChanged(ProjectEvent event) {
 			int action = event.getAction();
 
@@ -71,10 +73,7 @@ public class Frame extends JFrame implements LocaleListener {
 			if (action == ProjectEvent.ACTION_SET_FILE) {
 				computeTitle();
 				proj.setTool(proj.getOptions().getToolbarData().getFirstTool());
-				
-				AttributeSet attrs = proj.getOptions().getAttributeSet();
-				attrs.addAttributeListener(this);
-				placeToolbar(attrs.getValue(Options.ATTR_TOOLBAR_LOC));
+				placeToolbar();
 			} else if (action == ProjectEvent.ACTION_SET_CURRENT) {
 				setView(LAYOUT);
 				if (appearance != null) {
@@ -110,17 +109,12 @@ public class Frame extends JFrame implements LocaleListener {
 
 		public void attributeListChanged(AttributeEvent e) { }
 
-		public void attributeValueChanged(AttributeEvent e) {
-			if (e.getAttribute() == Options.ATTR_TOOLBAR_LOC) {
-				placeToolbar(e.getValue());
-			}
-		}
-
-		public void propertyChange(PropertyChangeEvent evt) {
-			String prop = evt.getPropertyName();
-			if (prop.equals(LogisimPreferences.SHOW_PROJECT_TOOLBAR)) {
-				boolean val = ((Boolean) evt.getNewValue()).booleanValue();
+		public void propertyChange(PropertyChangeEvent event) {
+			if (LogisimPreferences.SHOW_PROJECT_TOOLBAR.isSource(event)) {
+				boolean val = ((Boolean) event.getNewValue()).booleanValue();
 				projectToolbar.setVisible(val);
+			} else if (LogisimPreferences.TOOLBAR_PLACEMENT.isSource(event)) {
+				placeToolbar();
 			}
 		}
 	}
@@ -174,6 +168,8 @@ public class Frame extends JFrame implements LocaleListener {
 	private LogisimMenuBar  menubar;
 	private MenuListener    menuListener;
 	private Toolbar         toolbar;
+	private HorizontalSplitPane leftRegion;
+	private VerticalSplitPane mainRegion;
 	private JPanel          mainPanelSuper;
 	private CardPanel       mainPanel;
 	// left-side elements
@@ -203,13 +199,14 @@ public class Frame extends JFrame implements LocaleListener {
 		proj.addProjectListener(myProjectListener);
 		proj.addLibraryListener(myProjectListener);
 		proj.addCircuitListener(myProjectListener);
-		proj.getOptions().getAttributeSet().addAttributeListener(myProjectListener);
 		computeTitle();
 		
 		// set up elements for the Layout view
 		layoutToolbarModel = new LayoutToolbarModel(this, proj);
 		layoutCanvas = new Canvas(proj);
-		layoutZoomModel = new ProjectZoomModel(proj);
+		layoutZoomModel = new BasicZoomModel(LogisimPreferences.LAYOUT_SHOW_GRID,
+				LogisimPreferences.LAYOUT_ZOOM, ZOOM_OPTIONS);
+
 		layoutCanvas.getGridPainter().setZoomModel(layoutZoomModel);
 		layoutEditHandler = new LayoutEditHandler(this);
 
@@ -221,6 +218,7 @@ public class Frame extends JFrame implements LocaleListener {
 		// set up the left-side components
 		projectToolbarModel = new ProjectToolbarModel(this);
 		projectToolbar = new Toolbar(projectToolbarModel);
+		projectToolbar.setVisible(LogisimPreferences.SHOW_PROJECT_TOOLBAR.getBoolean());
 		explorer = new Explorer(proj);
 		explorer.setListener(new ExplorerManip(proj, explorer));
 		attrTable = new AttributeTable(this);
@@ -249,43 +247,52 @@ public class Frame extends JFrame implements LocaleListener {
 		attrPanel.add(new JScrollPane(attrTable), BorderLayout.CENTER);
 		attrPanel.add(zoom, BorderLayout.SOUTH);
 
-		VerticalSplitPane contents = new VerticalSplitPane(
-			new HorizontalSplitPane(explPanel, attrPanel, 0.5),
-			mainPanelSuper, 0.25);
+		leftRegion = new HorizontalSplitPane(explPanel, attrPanel,
+				LogisimPreferences.WINDOW_LEFT_SPLIT.get().doubleValue());
+		mainRegion = new VerticalSplitPane(leftRegion, mainPanelSuper,
+				LogisimPreferences.WINDOW_MAIN_SPLIT.get().doubleValue());
 
-		placeToolbar(proj.getOptions().getAttributeSet().getValue(Options.ATTR_TOOLBAR_LOC));
-		getContentPane().add(contents, BorderLayout.CENTER);
+		getContentPane().add(mainRegion, BorderLayout.CENTER);
 
 		computeTitle();
 
-		this.setSize(640, 480);
+		this.setSize(LogisimPreferences.WINDOW_WIDTH.get().intValue(),
+				LogisimPreferences.WINDOW_HEIGHT.get().intValue());
+		this.setExtendedState(LogisimPreferences.WINDOW_STATE.get().intValue());
+		
 		menuListener.register(mainPanel);
 		KeyboardToolSelection.register(toolbar);
 
 		if (proj.getTool() == null) {
 			proj.setTool(proj.getOptions().getToolbarData().getFirstTool());
 		}
-		LogisimPreferences.addPropertyChangeListener(
-				LogisimPreferences.SHOW_PROJECT_TOOLBAR, myProjectListener);
+		LogisimPreferences.SHOW_PROJECT_TOOLBAR.addPropertyChangeListener(myProjectListener);
+		LogisimPreferences.TOOLBAR_PLACEMENT.addPropertyChangeListener(myProjectListener);
+		placeToolbar();
 
 		LocaleManager.addLocaleListener(this);
 	}
 	
-	private void placeToolbar(Object loc) {
+	private void placeToolbar() {
+		String loc = LogisimPreferences.TOOLBAR_PLACEMENT.get();
 		Container contents = getContentPane();
 		contents.remove(toolbar);
 		mainPanelSuper.remove(toolbar);
-		if (loc == Options.TOOLBAR_HIDDEN) {
+		if (LogisimPreferences.TOOLBAR_HIDDEN.equals(loc)) {
 			; // don't place value anywhere
-		} else if (loc == Options.TOOLBAR_DOWN_MIDDLE) {
+		} else if (LogisimPreferences.TOOLBAR_DOWN_MIDDLE.equals(loc)) {
 			toolbar.setOrientation(Toolbar.VERTICAL);
 			mainPanelSuper.add(toolbar, BorderLayout.WEST);
 		} else { // it is a BorderLayout constant
-			Object value;
-			if (loc == Direction.EAST)       value = BorderLayout.EAST;
-			else if (loc == Direction.SOUTH) value = BorderLayout.SOUTH;
-			else if (loc == Direction.WEST)  value = BorderLayout.WEST;
-			else                            value = BorderLayout.NORTH;
+			Object value = BorderLayout.NORTH;
+			for (Direction dir : Direction.cardinals) {
+				if (dir.toString().equals(loc)) {
+					if (dir == Direction.EAST)       value = BorderLayout.EAST;
+					else if (dir == Direction.SOUTH) value = BorderLayout.SOUTH;
+					else if (dir == Direction.WEST)  value = BorderLayout.WEST;
+					else                             value = BorderLayout.NORTH;
+				}
+			}
 
 			contents.add(toolbar, value);
 			boolean vertical = value == BorderLayout.WEST || value == BorderLayout.EAST;
@@ -309,10 +316,6 @@ public class Frame extends JFrame implements LocaleListener {
 		}
 		layoutToolbarModel.setHaloedTool(null);
 		explorer.setHaloedTool(null);
-	}
-
-	boolean getShowHalo() {
-		return layoutCanvas.getShowHalo();
 	}
 
 	public AttributeTable getAttributeTable() {
@@ -416,6 +419,24 @@ public class Frame extends JFrame implements LocaleListener {
 
 	public void localeChanged() {
 		computeTitle();
+	}
+	
+	public void savePreferences() {
+		LogisimPreferences.TICK_FREQUENCY.set(Double.valueOf(proj.getSimulator().getTickFrequency()));
+		LogisimPreferences.LAYOUT_SHOW_GRID.setBoolean(layoutZoomModel.getShowGrid());
+		LogisimPreferences.LAYOUT_ZOOM.set(Double.valueOf(layoutZoomModel.getZoomFactor()));
+		if (appearance != null) {
+			ZoomModel aZoom = appearance.getZoomModel();
+			LogisimPreferences.APPEARANCE_SHOW_GRID.setBoolean(aZoom.getShowGrid());
+			LogisimPreferences.APPEARANCE_ZOOM.set(Double.valueOf(aZoom.getZoomFactor()));
+		}
+		int state = getExtendedState() & ~JFrame.ICONIFIED;
+		LogisimPreferences.WINDOW_STATE.set(Integer.valueOf(state));
+		Dimension dim = getSize();
+		LogisimPreferences.WINDOW_WIDTH.set(Integer.valueOf(dim.width));
+		LogisimPreferences.WINDOW_HEIGHT.set(Integer.valueOf(dim.height));
+		LogisimPreferences.WINDOW_LEFT_SPLIT.set(Double.valueOf(leftRegion.getFraction()));
+		LogisimPreferences.WINDOW_MAIN_SPLIT.set(Double.valueOf(mainRegion.getFraction()));
 	}
 	
 	public boolean confirmClose() {

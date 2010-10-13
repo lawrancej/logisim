@@ -11,12 +11,16 @@ import com.cburch.draw.tools.SelectTool;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.gui.generic.AttributeTable;
+import com.cburch.logisim.gui.generic.BasicZoomModel;
 import com.cburch.logisim.gui.generic.CanvasPane;
 import com.cburch.logisim.gui.generic.ZoomModel;
 import com.cburch.logisim.gui.main.EditHandler;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.proj.Project;
 
 public class AppearanceView {
+	private static final double[] ZOOM_OPTIONS = { 100, 150, 200, 300, 400, 600, 800 };
+
 	private DrawingAttributeSet attrs;
 	private AppearanceCanvas canvas;
 	private CanvasPane canvasPane;
@@ -30,7 +34,8 @@ public class AppearanceView {
 		SelectTool selectTool = new SelectTool();
 		canvas = new AppearanceCanvas(selectTool);
 		toolbarModel = new AppearanceToolbarModel(selectTool, canvas, attrs);
-		zoomModel = new AppearanceZoomModel();
+		zoomModel = new BasicZoomModel(LogisimPreferences.APPEARANCE_SHOW_GRID,
+				LogisimPreferences.APPEARANCE_ZOOM, ZOOM_OPTIONS);
 		canvas.getGridPainter().setZoomModel(zoomModel);
 		attributeManager = null;
 		canvasPane = new CanvasPane(canvas);

@@ -20,7 +20,7 @@ import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.file.ToolbarData;
 import com.cburch.logisim.file.ToolbarData.ToolbarListener;
-import com.cburch.logisim.proj.LogisimPreferences;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.tools.Tool;
 
 class ToolbarList extends JList {
@@ -93,8 +93,7 @@ class ToolbarList extends JList {
 		}
 		
 		public void propertyChange(PropertyChangeEvent event) {
-			String prop = event.getPropertyName();
-			if (prop.equals(LogisimPreferences.GATE_SHAPE)) {
+			if (LogisimPreferences.GATE_SHAPE.isSource(event)) {
 				repaint();
 			}
 		}
@@ -111,7 +110,7 @@ class ToolbarList extends JList {
 		setCellRenderer(new ListRenderer());
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.GATE_SHAPE, model);
+		LogisimPreferences.GATE_SHAPE.addPropertyChangeListener(model);
 		base.addToolbarListener(model);
 		base.addToolAttributeListener(model);
 	}

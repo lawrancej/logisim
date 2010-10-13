@@ -1,22 +1,23 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.logisim.proj;
+package com.cburch.logisim.prefs;
 
 import java.util.prefs.PreferenceChangeEvent;
-import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
 
-class PrefMonitorString implements PreferenceChangeListener {
-	private String name;
-	private String dflt;
+class PrefMonitorStringOpts extends AbstractPrefMonitor<String> {
+	private String[] opts;
 	private String value;
+	private String dflt;
 	
-	PrefMonitorString(String name, String dflt) {
-		this.name = name;
+	PrefMonitorStringOpts(String name, String[] opts, String dflt) {
+		super(name);
+		this.opts = opts;
+		this.value = opts[0];
 		this.dflt = dflt;
 		Preferences prefs = LogisimPreferences.getPrefs();
-		this.value = prefs.get(name, dflt);
+		set(prefs.get(name, dflt));
 		prefs.addPreferenceChangeListener(this);
 	}
 	
@@ -27,20 +28,26 @@ class PrefMonitorString implements PreferenceChangeListener {
 	public void set(String newValue) {
 		String oldValue = value;
 		if (!isSame(oldValue, newValue)) {
-			value = newValue;
-			LogisimPreferences.getPrefs().put(name, newValue);
+			LogisimPreferences.getPrefs().put(getIdentifier(), newValue);
 		}
 	}
 
 	public void preferenceChange(PreferenceChangeEvent event) {
 		Preferences prefs = event.getNode();
 		String prop = event.getKey();
+		String name = getIdentifier();
 		if (prop.equals(name)) {
 			String oldValue = value;
 			String newValue = prefs.get(name, dflt);
 			if (!isSame(oldValue, newValue)) {
-				value = newValue;
-				LogisimPreferences.firePropertyChange(name, oldValue, newValue);
+				String[] o = opts;
+				String chosen = null;
+				for (int i = 0; i < o.length; i++) {
+					if (isSame(o[i], newValue)) { chosen = o[i]; break; }
+				}
+				if (chosen == null) chosen = dflt;
+				value = chosen;
+				LogisimPreferences.firePropertyChange(name, oldValue, chosen);
 			}
 		}
 	}

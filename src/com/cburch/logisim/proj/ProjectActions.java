@@ -21,6 +21,7 @@ import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.gui.main.Frame;
 import com.cburch.logisim.gui.start.SplashScreen;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.JFileChoosers;
 import com.cburch.logisim.util.StringUtil;
@@ -40,8 +41,7 @@ public class ProjectActions {
 		}
 		
 		public void run() {
-			Frame frame = new Frame(proj);
-			proj.setFrame(frame);
+			Frame frame = createFrame(null, proj);
 			frame.setVisible(true);
 			frame.toFront();
 			frame.getCanvas().requestFocus();
@@ -121,11 +121,22 @@ public class ProjectActions {
 		return file;
 	}
 	
+	private static Frame createFrame(Project sourceProject, Project newProject) {
+		if (sourceProject != null) {
+			Frame frame = sourceProject.getFrame();
+			if (frame != null) {
+				frame.savePreferences();
+			}
+		}
+		Frame newFrame = new Frame(newProject);
+		newProject.setFrame(newFrame);
+		return newFrame;
+	}
+	
 	public static Project doNew(Project baseProject) {
 		LogisimFile file = createNewFile(baseProject);
 		Project newProj = new Project(file);
-		Frame frame = new Frame(newProj);
-		newProj.setFrame(frame);
+		Frame frame = createFrame(baseProject, newProj);
 		frame.setVisible(true);
 		frame.getCanvas().requestFocus();
 		newProj.getLogisimFile().getLoader().setParent(frame);
@@ -137,6 +148,7 @@ public class ProjectActions {
 		if (monitor != null) monitor.setProgress(SplashScreen.FILE_LOAD);
 		Loader loader = new Loader(monitor);
 		LogisimFile file = loader.openLogisimFile(source, substitutions);
+		LogisimPreferences.updateRecentFile(source);
 		
 		return completeProject(monitor, loader, file, false);
 	}
@@ -198,6 +210,7 @@ public class ProjectActions {
 
 		try {
 			LogisimFile lib = loader.openLogisimFile(f);
+			LogisimPreferences.updateRecentFile(f);
 			if (lib == null) return null;
 			if (proj == null) {
 				proj = new Project(lib);
@@ -215,8 +228,7 @@ public class ProjectActions {
 		
 		Frame frame = proj.getFrame();
 		if (frame == null) {
-			frame = new Frame(proj);
-			proj.setFrame(frame);
+			frame = createFrame(baseProject, proj);
 		}
 		frame.setVisible(true);
 		frame.toFront();
@@ -296,6 +308,9 @@ public class ProjectActions {
 	}
 
 	public static void doQuit() {
+		Frame top = Projects.getTopFrame();
+		top.savePreferences();
+		
 		for (Project proj : new ArrayList<Project>(Projects.getOpenProjects())) {
 			if (!proj.confirmClose(Strings.get("confirmQuitTitle"))) return;
 		}

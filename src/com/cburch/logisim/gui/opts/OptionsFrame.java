@@ -96,7 +96,6 @@ public class OptionsFrame extends JFrame {
 		setJMenuBar(new LogisimMenuBar(this, project));
 		
 		panels = new OptionsPanel[] {
-				new CanvasOptions(this),
 				new SimulateOptions(this),
 				new ToolbarOptions(this),
 				new MouseOptions(this),

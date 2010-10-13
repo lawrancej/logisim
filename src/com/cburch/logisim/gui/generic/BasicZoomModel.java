@@ -1,24 +1,30 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.logisim.gui.appear;
+package com.cburch.logisim.gui.generic;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import com.cburch.logisim.gui.generic.ZoomModel;
+import com.cburch.logisim.prefs.PrefMonitor;
 
-class AppearanceZoomModel implements ZoomModel {
-	private static final double[] ZOOM_OPTIONS = { 100, 150, 200, 300, 400, 600, 800 };
-
+public class BasicZoomModel implements ZoomModel {
+	private double[] zoomOptions;
+	
 	private PropertyChangeSupport support;
 	private double zoomFactor;
 	private boolean showGrid;
 	
-	public AppearanceZoomModel() {
+	public BasicZoomModel(PrefMonitor<Boolean> gridPref,
+			PrefMonitor<Double> zoomPref, double[] zoomOpts) {
+		zoomOptions = zoomOpts;
 		support = new PropertyChangeSupport(this);
-		zoomFactor = 2.0;
+		zoomFactor = 1.0;
 		showGrid = true;
+
+		setZoomFactor(zoomPref.get().doubleValue());
+		setShowGrid(gridPref.getBoolean());
 	}
 
 	public void addPropertyChangeListener(String prop, PropertyChangeListener l) {
@@ -39,7 +45,7 @@ class AppearanceZoomModel implements ZoomModel {
 	}
 
 	public double[] getZoomOptions() {
-		return ZOOM_OPTIONS;
+		return zoomOptions;
 	}
 
 	public void setShowGrid(boolean value) {
@@ -57,5 +63,4 @@ class AppearanceZoomModel implements ZoomModel {
 					Double.valueOf(value));
 		}
 	}
-
 }

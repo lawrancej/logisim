@@ -7,12 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -20,10 +16,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.cburch.logisim.data.AttributeEvent;
-import com.cburch.logisim.data.AttributeListener;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.file.Options;
 import com.cburch.logisim.file.ToolbarData;
 import com.cburch.logisim.gui.main.Explorer;
 import com.cburch.logisim.gui.main.Explorer.Event;
@@ -33,8 +25,7 @@ import com.cburch.logisim.util.TableLayout;
 
 class ToolbarOptions extends OptionsPanel {
 	private class Listener
-			implements Explorer.Listener, ActionListener,
-				ListSelectionListener, ItemListener, AttributeListener {
+			implements Explorer.Listener, ActionListener, ListSelectionListener {
 		public void selectionChanged(Event event) {
 			computeEnabled();
 		}
@@ -95,25 +86,6 @@ class ToolbarOptions extends OptionsPanel {
 				list.setSelectedIndex(newIndex);
 			}
 		}
-
-		public void itemStateChanged(ItemEvent event) {
-			Object src = event.getSource();
-			if (src == locChoice) {
-				AttributeSet attrs = getOptions().getAttributeSet();
-				attrs.setValue(Options.ATTR_TOOLBAR_LOC, locChoice.getSelectedItem());
-			}
-		}
-
-		public void attributeListChanged(AttributeEvent e) { }
-
-		public void attributeValueChanged(AttributeEvent e) {
-			if (e.getAttribute() == Options.ATTR_TOOLBAR_LOC) {
-				Object value = e.getValue();
-				if (locChoice.getSelectedItem() != value) {
-					locChoice.setSelectedItem(value);
-				}
-			}
-		}
 	}
 	
 	private Listener listener = new Listener();
@@ -124,8 +96,6 @@ class ToolbarOptions extends OptionsPanel {
 	private JButton moveUp;
 	private JButton moveDown;
 	private JButton remove;
-	private JLabel locLabel;
-	private JComboBox locChoice;
 	private ToolbarList list;
 	
 	public ToolbarOptions(OptionsFrame window) {
@@ -136,15 +106,6 @@ class ToolbarOptions extends OptionsPanel {
 		moveUp = new JButton();
 		moveDown = new JButton();
 		remove = new JButton();
-		locLabel = new JLabel();
-		Object locChoiceOpt = Options.ATTR_TOOLBAR_LOC.getCellEditor(window,
-				getOptions().getAttributeSet().getValue(Options.ATTR_TOOLBAR_LOC));
-		if (locChoiceOpt instanceof JComboBox) {
-			locChoice = (JComboBox) locChoiceOpt;
-		} else {
-			locChoice = new JComboBox();
-			locChoice.setSelectedItem(getOptions().getAttributeSet().getValue(Options.ATTR_TOOLBAR_LOC));
-		}
 
 		list = new ToolbarList(getOptions().getToolbarData());
 
@@ -156,8 +117,6 @@ class ToolbarOptions extends OptionsPanel {
 		middle.add(moveDown);
 		middle.add(remove);
 		middleLayout.setRowWeight(4, 1.0);
-		middle.add(locLabel);
-		middle.add(locChoice);
 		
 		explorer.setListener(listener);
 		addTool.addActionListener(listener);
@@ -165,10 +124,8 @@ class ToolbarOptions extends OptionsPanel {
 		moveUp.addActionListener(listener);
 		moveDown.addActionListener(listener);
 		remove.addActionListener(listener);
-		locChoice.addItemListener(listener);
 		list.addListSelectionListener(listener);
 		listener.computeEnabled();
-		getOptions().getAttributeSet().addAttributeListener(listener);
 		
 		GridBagLayout gridbag = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -209,7 +166,6 @@ class ToolbarOptions extends OptionsPanel {
 		moveUp.setText(Strings.get("toolbarMoveUp"));
 		moveDown.setText(Strings.get("toolbarMoveDown"));
 		remove.setText(Strings.get("toolbarRemove"));
-		locLabel.setText(Strings.get("toolbarLocation"));
 		list.localeChanged();
 	}
 }

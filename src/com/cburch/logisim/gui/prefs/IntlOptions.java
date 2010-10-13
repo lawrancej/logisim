@@ -5,63 +5,43 @@ package com.cburch.logisim.gui.prefs;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.cburch.logisim.proj.LogisimPreferences;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.util.LocaleManager;
 
 class IntlOptions extends OptionsPanel {
-	private class MyListener implements ActionListener, PropertyChangeListener {
-		public void actionPerformed(ActionEvent e) {
-			Object src = e.getSource();
-			if (src == gateShape) {
-				ComboOption x = (ComboOption) gateShape.getSelectedItem();
-				LogisimPreferences.setGateShape((String) x.getValue());
-			} else if (src == replaceAccents) {
-				LogisimPreferences.setAccentsReplace(replaceAccents.isSelected());
-			}
-		}
-
-		public void propertyChange(PropertyChangeEvent event) {
-			String prop = event.getPropertyName();
-			if (prop.equals(LogisimPreferences.ACCENTS_REPLACE)) {
-				replaceAccents.setSelected(LogisimPreferences.getAccentsReplace());
-			} else if (prop.equals(LogisimPreferences.GATE_SHAPE)) {
-				ComboOption.setSelected(gateShape, LogisimPreferences.getGateShape());
-			}
-		}
-	}
-	
 	private static class RestrictedLabel extends JLabel {
 		@Override
 		public Dimension getMaximumSize() {
 			return getPreferredSize();
 		}
 	}
-	
-	private MyListener myListener = new MyListener();
 
 	private JLabel localeLabel = new RestrictedLabel();
 	private JComponent locale;
-	private JCheckBox replaceAccents = new JCheckBox();
-	private JLabel gateShapeLabel = new JLabel();
-	private JComboBox gateShape = new JComboBox();
+	private PrefBoolean replAccents;
+	private PrefOptionList gateShape;
 
 	public IntlOptions(PreferencesFrame window) {
 		super(window);
 		
 		locale = Strings.createLocaleSelector();
+		replAccents = new PrefBoolean(LogisimPreferences.ACCENTS_REPLACE,
+				Strings.getter("intlReplaceAccents"));
+		gateShape = new PrefOptionList(LogisimPreferences.GATE_SHAPE,
+				Strings.getter("intlGateShape"), new PrefOption[] {
+					new PrefOption(LogisimPreferences.SHAPE_SHAPED,
+							Strings.getter("shapeShaped")),
+					new PrefOption(LogisimPreferences.SHAPE_RECTANGULAR,
+							Strings.getter("shapeRectangular")),
+					new PrefOption(LogisimPreferences.SHAPE_DIN40700,
+							Strings.getter("shapeDIN40700")) });
 		
 		Box localePanel = new Box(BoxLayout.X_AXIS);
 		localePanel.add(Box.createGlue());
@@ -73,28 +53,15 @@ class IntlOptions extends OptionsPanel {
 		localePanel.add(Box.createGlue());
 		
 		JPanel shapePanel = new JPanel();
-		shapePanel.add(gateShapeLabel);
-		shapePanel.add(gateShape);
+		shapePanel.add(gateShape.getJLabel());
+		shapePanel.add(gateShape.getJComboBox());
 		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		add(Box.createGlue());
 		add(shapePanel);
 		add(localePanel);
-		add(replaceAccents);
+		add(replAccents);
 		add(Box.createGlue());
-		
-		replaceAccents.addActionListener(myListener);
-		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.ACCENTS_REPLACE,
-				myListener);
-		replaceAccents.setSelected(LogisimPreferences.getAccentsReplace());
-		
-		gateShape.addItem(new ComboOption(LogisimPreferences.SHAPE_SHAPED, Strings.getter("shapeShaped")));
-		gateShape.addItem(new ComboOption(LogisimPreferences.SHAPE_RECTANGULAR, Strings.getter("shapeRectangular")));
-		gateShape.addItem(new ComboOption(LogisimPreferences.SHAPE_DIN40700, Strings.getter("shapeDIN40700")));
-		gateShape.addActionListener(myListener);
-		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.GATE_SHAPE,
-				myListener);
-		ComboOption.setSelected(gateShape, LogisimPreferences.getGateShape());
 	}
 	
 	@Override
@@ -109,9 +76,9 @@ class IntlOptions extends OptionsPanel {
 	
 	@Override
 	public void localeChanged() {
+		gateShape.localeChanged();
 		localeLabel.setText(Strings.get("intlLocale") + " ");
-		replaceAccents.setText(Strings.get("intlReplaceAccents"));
-		replaceAccents.setEnabled(LocaleManager.canReplaceAccents());
-		gateShapeLabel.setText(Strings.get("intlGateShape"));
+		replAccents.localeChanged();
+		replAccents.setEnabled(LocaleManager.canReplaceAccents());
 	}
 }

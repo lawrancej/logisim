@@ -18,8 +18,8 @@ import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.gui.main.Canvas;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.proj.Action;
-import com.cburch.logisim.proj.LogisimPreferences;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
 import com.cburch.logisim.util.StringGetter;
@@ -148,7 +148,7 @@ public class WiringTool extends Tool {
 				if (y0 != y1) g.drawLine(x0, y0, x0, y1);
 				if (x0 != x1) g.drawLine(x0, y1, x1, y1);
 			}
-		} else if (LogisimPreferences.getShowGhosts() && inCanvas) {
+		} else if (LogisimPreferences.ADD_SHOW_GHOSTS.getBoolean() && inCanvas) {
 			g.setColor(Color.GRAY);
 			g.fillOval(cur.getX() - 2, cur.getY() - 2, 5, 5);
 		}

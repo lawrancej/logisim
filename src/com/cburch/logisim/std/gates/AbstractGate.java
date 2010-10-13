@@ -28,7 +28,7 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.proj.LogisimPreferences;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.tools.WireRepair;
 import com.cburch.logisim.tools.WireRepairData;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
@@ -384,7 +384,7 @@ abstract class AbstractGate extends InstanceFactory {
 		
 		int axis = baseWidth / 2 + (negateOutput ? 10 : 0);
 		int perp = 0;
-		if (LogisimPreferences.getGateShape() == LogisimPreferences.SHAPE_RECTANGULAR) {
+		if (LogisimPreferences.GATE_SHAPE.get().equals(LogisimPreferences.SHAPE_RECTANGULAR)) {
 			perp += 6;
 		}
 		Location loc = instance.getLocation();

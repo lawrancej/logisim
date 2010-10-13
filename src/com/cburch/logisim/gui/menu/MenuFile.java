@@ -22,6 +22,7 @@ class MenuFile extends Menu implements ActionListener {
 	private LogisimMenuBar menubar;
 	private JMenuItem newi = new JMenuItem();
 	private JMenuItem open = new JMenuItem();
+	private OpenRecent openRecent;
 	private JMenuItem close = new JMenuItem();
 	private JMenuItem save = new JMenuItem();
 	private JMenuItem saveAs = new JMenuItem();
@@ -32,6 +33,7 @@ class MenuFile extends Menu implements ActionListener {
 
 	public MenuFile(LogisimMenuBar menubar) {
 		this.menubar = menubar;
+		openRecent = new OpenRecent(menubar);
 		
 		int menuMask = getToolkit().getMenuShortcutKeyMask();
 
@@ -52,6 +54,7 @@ class MenuFile extends Menu implements ActionListener {
 
 		add(newi);
 		add(open);
+		add(openRecent);
 		addSeparator();
 		add(close);
 		add(save);
@@ -90,6 +93,7 @@ class MenuFile extends Menu implements ActionListener {
 		this.setText(Strings.get("fileMenu"));
 		newi.setText(Strings.get("fileNewItem"));
 		open.setText(Strings.get("fileOpenItem"));
+		openRecent.localeChanged();
 		close.setText(Strings.get("fileCloseItem"));
 		save.setText(Strings.get("fileSaveItem"));
 		saveAs.setText(Strings.get("fileSaveAsItem"));

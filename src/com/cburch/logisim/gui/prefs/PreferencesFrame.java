@@ -82,8 +82,9 @@ public class PreferencesFrame extends JFrame {
 		
 		panels = new OptionsPanel[] {
 				new TemplateOptions(this),
-				new ToolOptions(this),
 				new IntlOptions(this),
+				new WindowOptions(this),
+				new LayoutOptions(this),
 				new ExperimentalOptions(this),
 		};
 		tabbedPane = new JTabbedPane();

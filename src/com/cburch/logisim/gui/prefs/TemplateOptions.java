@@ -26,8 +26,8 @@ import javax.swing.JTextField;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.file.LoaderException;
 import com.cburch.logisim.file.LogisimFile;
-import com.cburch.logisim.proj.LogisimPreferences;
-import com.cburch.logisim.proj.Template;
+import com.cburch.logisim.prefs.LogisimPreferences;
+import com.cburch.logisim.prefs.Template;
 import com.cburch.logisim.util.JFileChoosers;
 import com.cburch.logisim.util.StringUtil;
 

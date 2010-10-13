@@ -4,13 +4,12 @@
 package com.cburch.logisim.circuit;
 
 import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.util.StringGetter;
 
-public abstract class RadixOption extends AttributeOption {
+public abstract class RadixOption  {
 	public static final RadixOption RADIX_2 = new Radix2();
 	public static final RadixOption RADIX_8 = new Radix8();
 	public static final RadixOption RADIX_10_UNSIGNED = new Radix10Unsigned();
@@ -22,9 +21,39 @@ public abstract class RadixOption extends AttributeOption {
 	};
 	public static final Attribute<RadixOption> ATTRIBUTE
 		= Attributes.forOption("radix", Strings.getter("radixAttr"), OPTIONS);
+	
+	public static RadixOption decode(String value) {
+		for (RadixOption opt : OPTIONS) {
+			if (value.equals(opt.saveName)) {
+				return opt;
+			}
+		}
+		return RADIX_2;
+	}
+	
+	private String saveName;
+	private StringGetter displayGetter;
 
-	private RadixOption(String name, StringGetter display) {
-		super(name, display);
+	private RadixOption(String saveName, StringGetter displayGetter) {
+		this.saveName = saveName;
+		this.displayGetter = displayGetter;
+	}
+	
+	public StringGetter getDisplayGetter() {
+		return displayGetter;
+	}
+	
+	public String getSaveString() {
+		return saveName;
+	}
+	
+	public String toDisplayString() {
+		return displayGetter.get();
+	}
+	
+	@Override
+	public String toString() {
+		return saveName;
 	}
 	
 	public abstract String toString(Value value);

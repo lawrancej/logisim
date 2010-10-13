@@ -18,7 +18,7 @@ import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.file.ToolbarData;
-import com.cburch.logisim.proj.LogisimPreferences;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
@@ -43,7 +43,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 		
 		public void paintIcon(Component destination, Graphics g) {
 			// draw halo
-			if (tool == haloedTool && frame.getShowHalo()) {
+			if (tool == haloedTool && LogisimPreferences.ATTRIBUTE_HALO.getBoolean()) {
 				g.setColor(Canvas.HALO_COLOR);
 				g.fillRect(1, 1, 22, 22);
 			}
@@ -123,8 +123,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 		// PropertyChangeListener method
 		//
 		public void propertyChange(PropertyChangeEvent event) {
-			String prop = event.getPropertyName();
-			if (prop.equals(LogisimPreferences.GATE_SHAPE)) {
+			if (LogisimPreferences.GATE_SHAPE.isSource(event)) {
 				fireToolbarAppearanceChanged();
 			}
 		}
@@ -148,7 +147,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 		ToolbarData data = proj.getOptions().getToolbarData();
 		data.addToolbarListener(myListener);
 		data.addToolAttributeListener(myListener);
-		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.GATE_SHAPE, myListener);
+		LogisimPreferences.GATE_SHAPE.addPropertyChangeListener(myListener);
 		proj.addProjectListener(myListener);
 	}
 

@@ -29,7 +29,7 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.proj.LogisimPreferences;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
@@ -98,8 +98,8 @@ class NotGate extends InstanceFactory {
 	protected void configureNewInstance(Instance instance) {
 		configurePorts(instance);
 		instance.addAttributeListener();
-		configureLabel(instance, LogisimPreferences.getGateShape()
-								== LogisimPreferences.SHAPE_RECTANGULAR, null);
+		String gateShape = LogisimPreferences.GATE_SHAPE.get();
+		configureLabel(instance, gateShape.equals(LogisimPreferences.SHAPE_RECTANGULAR), null);
 	}
 	
 	@Override
@@ -107,8 +107,8 @@ class NotGate extends InstanceFactory {
 		if (attr == ATTR_SIZE || attr == StdAttr.FACING) {
 			instance.recomputeBounds();
 			configurePorts(instance);
-			configureLabel(instance, LogisimPreferences.getGateShape()
-								== LogisimPreferences.SHAPE_RECTANGULAR, null);
+			String gateShape = LogisimPreferences.GATE_SHAPE.get();
+			configureLabel(instance, gateShape.equals(LogisimPreferences.SHAPE_RECTANGULAR), null);
 		}
 	}
 	

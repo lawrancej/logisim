@@ -20,7 +20,7 @@ import com.cburch.logisim.gui.main.Print;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.gui.menu.WindowManagers;
 import com.cburch.logisim.gui.start.SplashScreen;
-import com.cburch.logisim.proj.LogisimPreferences;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.util.LocaleManager;
@@ -328,9 +328,9 @@ public class Startup {
 				if (i >= args.length) printUsage();
 				String a = args[i];
 				if (a.equals("shaped")) {
-					LogisimPreferences.setGateShape(LogisimPreferences.SHAPE_SHAPED);
+					LogisimPreferences.GATE_SHAPE.set(LogisimPreferences.SHAPE_SHAPED);
 				} else if (a.equals("rectangular")) {
-					LogisimPreferences.setGateShape(LogisimPreferences.SHAPE_RECTANGULAR);
+					LogisimPreferences.GATE_SHAPE.set(LogisimPreferences.SHAPE_RECTANGULAR);
 				} else {
 					System.err.println(Strings.get("argGatesOptionError")); //OK
 					System.exit(-1);
@@ -344,9 +344,9 @@ public class Startup {
 				if (i >= args.length) printUsage();
 				String a = args[i];
 				if (a.equals("yes")) {
-					LogisimPreferences.setAccentsReplace(false);
+					LogisimPreferences.ACCENTS_REPLACE.setBoolean(false);
 				} else if (a.equals("no")) {
-					LogisimPreferences.setAccentsReplace(true);
+					LogisimPreferences.ACCENTS_REPLACE.setBoolean(true);
 				} else {
 					System.err.println(Strings.get("argAccentsOptionError")); //OK
 					System.exit(-1);

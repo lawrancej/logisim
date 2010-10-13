@@ -23,12 +23,12 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.file.Options;
 import com.cburch.logisim.gui.generic.AttributeTableListener;
 import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.gui.main.SelectionActions;
 import com.cburch.logisim.gui.main.Selection.Event;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.key.KeyConfigurationEvent;
@@ -311,8 +311,7 @@ public class SelectTool extends Tool {
 
 	private boolean shouldConnect(Canvas canvas, int modsEx) {
 		boolean shiftReleased = (modsEx & MouseEvent.SHIFT_DOWN_MASK) == 0;
-		Object option = canvas.getProject().getOptions().getAttributeSet().getValue(Options.ATTR_CONNECT_ON_MOVE);
-		boolean dflt = option == null || ((Boolean) option).booleanValue();
+		boolean dflt = LogisimPreferences.MOVE_KEEP_CONNECT.getBoolean();
 		if (shiftReleased) {
 			return dflt;
 		} else {

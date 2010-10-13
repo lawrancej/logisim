@@ -7,11 +7,11 @@ import javax.swing.JComboBox;
 
 import com.cburch.logisim.util.StringGetter;
 
-class ComboOption {
+class PrefOption {
 	private Object value;
 	private StringGetter getter;
 	
-	ComboOption(String value, StringGetter getter) {
+	PrefOption(String value, StringGetter getter) {
 		this.value = value;
 		this.getter = getter;
 	}
@@ -27,7 +27,7 @@ class ComboOption {
 	
 	static void setSelected(JComboBox combo, Object value) {
 		for (int i = combo.getItemCount() - 1; i >= 0; i--) {
-			ComboOption opt = (ComboOption) combo.getItemAt(i);
+			PrefOption opt = (PrefOption) combo.getItemAt(i);
 			if (opt.getValue().equals(value)) {
 				combo.setSelectedItem(opt);
 				return;

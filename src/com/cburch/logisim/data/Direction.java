@@ -50,6 +50,10 @@ public class Direction implements AttributeOptionInterface {
 		return disp.get();
 	}
 	
+	public StringGetter getDisplayGetter() {
+		return disp;
+	}
+	
 	public String toVerticalDisplayString() {
 		return vert.get();
 	}

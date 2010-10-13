@@ -44,7 +44,7 @@ import com.cburch.logisim.file.Options;
 import com.cburch.logisim.gui.generic.CanvasPane;
 import com.cburch.logisim.gui.generic.CanvasPaneContents;
 import com.cburch.logisim.gui.generic.GridPainter;
-import com.cburch.logisim.proj.LogisimPreferences;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
@@ -200,10 +200,12 @@ public class Canvas extends JPanel
 		public void popupMenuWillBecomeVisible(PopupMenuEvent e) {}
 
 		public void propertyChange(PropertyChangeEvent event) {
-			String prop = event.getPropertyName();
-			if (prop.equals(LogisimPreferences.GATE_SHAPE)
-					|| prop.equals(LogisimPreferences.SHOW_TICK_RATE)) {
+			if (LogisimPreferences.GATE_SHAPE.isSource(event)
+					|| LogisimPreferences.SHOW_TICK_RATE.isSource(event)) {
 				paintThread.requestRepaint();
+			} else if (LogisimPreferences.COMPONENT_TIPS.isSource(event)) {
+				boolean showTips = LogisimPreferences.COMPONENT_TIPS.getBoolean();
+				setToolTipText(showTips ? "" : null);
 			}
 		}
 	}
@@ -342,11 +344,7 @@ public class Canvas extends JPanel
 		public void attributeListChanged(AttributeEvent e) { }
 		public void attributeValueChanged(AttributeEvent e) {
 			Attribute<?> attr = e.getAttribute();
-			Object val = e.getValue();
-			if (attr == Options.showtips_attr) {
-				showTips = ((Boolean) val).booleanValue();
-				setToolTipText(showTips ? "" : null);
-			} else if (attr == Options.ATTR_GATE_UNDEFINED) {
+			if (attr == Options.ATTR_GATE_UNDEFINED) {
 				CircuitState circState = getCircuitState();
 				circState.markComponentsDirty(getCircuit().getNonWires());
 				// TODO actually, we'd want to mark all components in
@@ -478,7 +476,7 @@ public class Canvas extends JPanel
 			if (isSouthwest)    GraphicsUtil.drawArrow(g, 14, sz.height - 14,
 								2, sz.height -  2, 10, 30);
 
-			if (LogisimPreferences.getShowTickRate()) {
+			if (LogisimPreferences.SHOW_TICK_RATE.getBoolean()) {
 				String hz = tickCounter.getTickRate();
 				if (hz != null && !hz.equals("")) {
 					g.setColor(TICK_RATE_COLOR);
@@ -519,7 +517,6 @@ public class Canvas extends JPanel
 
 	private CanvasPaintThread paintThread;
 	private CanvasPainter painter;
-	private boolean showTips = true;
 	private boolean paintDirty = false; // only for within paintComponent
 	private boolean inPaint = false; // only for within paintComponent
 	private Object repaintLock = new Object(); // for waitForRepaintDone
@@ -547,8 +544,9 @@ public class Canvas extends JPanel
 
 		AttributeSet options = proj.getOptions().getAttributeSet();
 		options.addAttributeListener(myProjectListener);
-		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.GATE_SHAPE, myListener);
-		LogisimPreferences.addPropertyChangeListener(LogisimPreferences.SHOW_TICK_RATE, myListener);
+		LogisimPreferences.COMPONENT_TIPS.addPropertyChangeListener(myListener);
+		LogisimPreferences.GATE_SHAPE.addPropertyChangeListener(myListener);
+		LogisimPreferences.SHOW_TICK_RATE.addPropertyChangeListener(myListener);
 		loadOptions(options);
 		paintThread.start();
 	}
@@ -558,8 +556,7 @@ public class Canvas extends JPanel
 	}
 	
 	private void loadOptions(AttributeSet options) {
-		painter.loadOptions(options);
-		showTips = options.getValue(Options.showtips_attr).booleanValue();
+		boolean showTips = LogisimPreferences.COMPONENT_TIPS.getBoolean();
 		setToolTipText(showTips ? "" : null);
 
 		proj.getSimulator().removeSimulatorListener(myProjectListener);
@@ -602,8 +599,6 @@ public class Canvas extends JPanel
 	public Selection getSelection() {
 		return proj.getSelection();
 	}
-
-	public boolean getShowHalo() { return painter.getShowHalo(); }
 
 	GridPainter getGridPainter() {
 		return painter.getGridPainter();
@@ -807,6 +802,7 @@ public class Canvas extends JPanel
 	
 	@Override
 	public String getToolTipText(MouseEvent event) {
+		boolean showTips = LogisimPreferences.COMPONENT_TIPS.getBoolean();
 		if (showTips) {
 			Canvas.snapToGrid(event);
 			Location loc = Location.create(event.getX(), event.getY());

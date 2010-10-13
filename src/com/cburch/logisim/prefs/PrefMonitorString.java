@@ -1,23 +1,20 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.logisim.proj;
+package com.cburch.logisim.prefs;
 
 import java.util.prefs.PreferenceChangeEvent;
-import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
 
-class PrefMonitorStringOpts implements PreferenceChangeListener {
-	private String name;
-	private String[] opts;
+class PrefMonitorString extends AbstractPrefMonitor<String> {
+	private String dflt;
 	private String value;
 	
-	PrefMonitorStringOpts(String name, String[] opts) {
-		this.name = name;
-		this.opts = opts;
-		this.value = opts[0];
+	PrefMonitorString(String name, String dflt) {
+		super(name);
+		this.dflt = dflt;
 		Preferences prefs = LogisimPreferences.getPrefs();
-		set(prefs.get(name, opts[0]));
+		this.value = prefs.get(name, dflt);
 		prefs.addPreferenceChangeListener(this);
 	}
 	
@@ -28,25 +25,21 @@ class PrefMonitorStringOpts implements PreferenceChangeListener {
 	public void set(String newValue) {
 		String oldValue = value;
 		if (!isSame(oldValue, newValue)) {
-			LogisimPreferences.getPrefs().put(name, newValue);
+			value = newValue;
+			LogisimPreferences.getPrefs().put(getIdentifier(), newValue);
 		}
 	}
 
 	public void preferenceChange(PreferenceChangeEvent event) {
 		Preferences prefs = event.getNode();
 		String prop = event.getKey();
+		String name = getIdentifier();
 		if (prop.equals(name)) {
 			String oldValue = value;
-			String newValue = prefs.get(name, opts[0]);
+			String newValue = prefs.get(name, dflt);
 			if (!isSame(oldValue, newValue)) {
-				String[] o = opts;
-				String intern = null;
-				for (int i = 0; i < o.length; i++) {
-					if (isSame(o[i], newValue)) { intern = o[i]; break; }
-				}
-				if (intern == null) intern = o[0];
-				value = intern;
-				LogisimPreferences.firePropertyChange(name, oldValue, intern);
+				value = newValue;
+				LogisimPreferences.firePropertyChange(name, oldValue, newValue);
 			}
 		}
 	}

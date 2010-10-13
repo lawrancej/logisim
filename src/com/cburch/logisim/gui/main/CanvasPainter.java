@@ -9,6 +9,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Collections;
 import java.util.Set;
 
@@ -18,27 +20,21 @@ import com.cburch.logisim.circuit.WidthIncompatibilityData;
 import com.cburch.logisim.circuit.WireSet;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentDrawContext;
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeEvent;
-import com.cburch.logisim.data.AttributeListener;
-import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
-import com.cburch.logisim.file.Options;
 import com.cburch.logisim.gui.generic.GridPainter;
+import com.cburch.logisim.prefs.LogisimPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.GraphicsUtil;
 
-class CanvasPainter implements AttributeListener {
+class CanvasPainter implements PropertyChangeListener {
 	private static final Set<Component> NO_COMPONENTS = Collections.emptySet();
 
 	private Canvas canvas;
 	private GridPainter grid;
-	private boolean printerView = false;
-	private boolean showHalo = true;
 	private Component haloedComponent = null;
 	private Circuit haloedCircuit = null;
 	private WireSet highlightedWires = WireSet.EMPTY;
@@ -46,6 +42,9 @@ class CanvasPainter implements AttributeListener {
 	CanvasPainter(Canvas canvas) {
 		this.canvas = canvas;
 		this.grid = new GridPainter(canvas);
+
+		LogisimPreferences.PRINTER_VIEW.addPropertyChangeListener(this);
+		LogisimPreferences.ATTRIBUTE_HALO.addPropertyChangeListener(this);
 	}
 	
 	//
@@ -55,10 +54,6 @@ class CanvasPainter implements AttributeListener {
 		return grid;
 	}
 	
-	boolean getShowHalo() {
-		return showHalo;
-	}
-	
 	Component getHaloedComponent() {
 		return haloedComponent;
 	}
@@ -66,12 +61,6 @@ class CanvasPainter implements AttributeListener {
 	//
 	// mutator methods
 	//
-	void loadOptions(AttributeSet options) {
-		options.addAttributeListener(this);
-		printerView = options.getValue(Options.preview_attr).booleanValue();
-		showHalo = options.getValue(Options.showhalo_attr).booleanValue();
-	}
-
 	void setHighlightedWires(WireSet value) {
 		highlightedWires = value == null ? WireSet.EMPTY : value;
 	}
@@ -98,18 +87,9 @@ class CanvasPainter implements AttributeListener {
 			(int) Math.round(a), (int) Math.round(b));
 	}
 	
-	//
-	// AtttributeListener methods
-	//
-	public void attributeListChanged(AttributeEvent e) { }
-	public void attributeValueChanged(AttributeEvent e) {
-		Attribute<?> attr = e.getAttribute();
-		Object val = e.getValue();
-		if (attr == Options.preview_attr) {
-			printerView = ((Boolean) val).booleanValue();
-			canvas.repaint();
-		} else if (attr == Options.showhalo_attr) {
-			showHalo = ((Boolean) val).booleanValue();
+	public void propertyChange(PropertyChangeEvent event) {
+		if (LogisimPreferences.PRINTER_VIEW.isSource(event)
+				|| LogisimPreferences.ATTRIBUTE_HALO.isSource(event)) {
 			canvas.repaint();
 		}
 	}
@@ -163,6 +143,7 @@ class CanvasPainter implements AttributeListener {
 		}
 
 		// draw halo around component whose attributes we are viewing
+		boolean showHalo = LogisimPreferences.ATTRIBUTE_HALO.getBoolean();
 		if (showHalo && haloedComponent != null && haloedCircuit == circ
 				&& !hidden.contains(haloedComponent)) {
 			GraphicsUtil.switchToWidth(g, 3);
@@ -181,6 +162,7 @@ class CanvasPainter implements AttributeListener {
 
 		// draw circuit and selection
 		CircuitState circState = proj.getCircuitState();
+		boolean printerView = LogisimPreferences.PRINTER_VIEW.getBoolean();
 		ComponentDrawContext context = new ComponentDrawContext(canvas,
 				circ, circState, base, g, printerView);
 		context.setHighlightedWires(highlightedWires);
