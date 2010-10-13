@@ -42,7 +42,10 @@ def _find_image_paths(locale_src, en_src):
                     same = False
                 else:
                     img_en = build_path(en_src, base_rel, file)
-                    same = filecmp.cmp(img_en, img_xx, False)
+                    if os.path.exists(img_xx):
+                        same = os.path.exists(img_en) and filecmp.cmp(img_en, img_xx, False)
+                    else:
+                        same = False
                 if not same:
                     if file.endswith('.gif'):
                         width, height = (16, 16)

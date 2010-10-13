@@ -1,17 +1,17 @@
-General Logisim Translation Guide - by Ilia Lilov; multiple editing and fixes by Carl Burch
+General Logisim Translation Guide - by Ilia Lilov; multiple edits and fixes by Carl Burch
 
-This guide explains how to work on translation of Logisim using OmegaT program.
-Since the nice recent changes of translation pipeline made by Carl, this guide
-covers translating GUI, translating the documentation, and translating the web
-page. The most part of the guide is common for all three targets; however,
-block ===gui=== below means notes, which are unique for GUI translating,
-===doc=== marks notes for documentation, and ===www=== marks notes for the web page.
+This guide explains how translate Logisim using the OmegaT program, including
+the GUI strings (those appearing in menus and dialogs), the documentation, and
+the home page. Most of this guide applies to all three targets. When there are
+differences, a block marked ===gui=== below means notes unique to the GUI
+translation process; similarly, ===doc=== marks notes for documentation, and
+===www=== marks notes for the home page.
 
 
 STEP 1: GETTING THE ENGLISH TRANSLATION
 
-1.1. First, you have to get English template for translation (the "source" in
-other words). The best way is to use trunk of Logisim's Subversion repository:
+1.1. First, you have to get the English template for translation (the "source"
+in other words). The best way is to use trunk of Logisim's Subversion repository:
 
     https://circuit.svn.sourceforge.net/svnroot/circuit/trunk
 
@@ -19,14 +19,13 @@ If you use Windows, you might try installing and learning the program from
 http://tortoisesvn.tigris.org/. If you use GNU/Linux, you want to make sure
 the 'svn' command is installed.
 
-1.2. Make a directory where you will have the working copy of Logisim's
-SVN repository. I will refer that directory as "SVN-logisim/" below in this guide.
+1.2. Make a directory where you will have the working copy of Logisim's SVN
+repository. I will refer that directory as "SVN-logisim/" below in this guide.
 
-1.3. If you're not familiar with SVN, you will probably want to read up on it a bit.
-
-But basically, you have to know just few commands (for a GNU/Linux installation).
-All need to be executed from SVN-logisim/:
-
+1.3. If you're not familiar with Subversion (SVN), you will probably want to
+read up on it a bit. But basically, you have to know just few commands. If
+you're using a command-line SVN installation (particularly for GNU/Linux), then
+these commands are listed below; all should be done from SVN-logisim/.
 
 * To get the most recent version:
 
@@ -49,17 +48,28 @@ SVN-logisim/. I will refer it as "SUBDIR" below.
 
     svn status SUBDIR
 
-* To upload the files you've produced to the SVN repository:
+* To upload the files you've produced into the SVN repository:
 
     svn ci SUBDIR -m "Short description of changes"
 
-It's good style to always add description to let other contributors know the
-purpose of the change. This command will only upload the files that previously
-existed in the repository and that you have changed.
+  This command will only upload the files that previously existed in the
+  repository and that you have changed.
+
+  It's good style to always add a description to let other contributors know the
+  purpose of the change. Some of us have subscribed to be notified with each
+  message, and we definitely want to read what the update addresses.
 
 * To add new files or folders, use this:
 
     svn add FILES_TO_ADD
+    
+  The "add" command (and the "rm" and "mv" commands below) do not actually
+  change the central Logisim repository; it changes the local copy, and the
+  change is later sent to the central Logisim repository with the next "ci"
+  command.
+  
+  Note that simply adding a file into your SVN-logisim/ directory does not work:
+  You must tell SVN explicitly that you actually wish for it to be uploaded.
     
 * To remove files or folders, use this:
 
@@ -74,7 +84,7 @@ existed in the repository and that you have changed.
 version (a JAR file - which is essentially a ZIP archive) and get templates from
 its subdirectories. This approach is inferior to SVN because (a) you'll be
 working from outdated files and (b) it's a lot more convenient to transfer your
-finished work into Subversion's file system.) If you're sure you want to avoid
+finished work into Subversion's file system. If you're sure you want to avoid
 Subversion, let us know.
 
 1.5. 
@@ -92,12 +102,11 @@ STEP 2: GETTING STARTED WITH OMEGAT
 
 2.1. I strongly recommend using the OmegaT program (http://omegat.org/) for
 the translation process. I know a version called OmegaT+ exists; it has a more
-attractive interface, but it is missing some features we need. Also, I prefer
-to download beta versions of OmegaT; they are stable enough. After installing
-it (OmegaT, not OmegaT+), you'll want to read about it. It includes
-very good documentation. I will not post here HOW to use it (read the
-documentation), but I will post WHAT exactly you have to do within it.
-
+attractive interface, but it is missing some features we need. I prefer to use
+OmegaT's beta versions; they are stable enough. After installing it (OmegaT, not
+OmegaT+), you'll want to read about it. It includes very good documentation. I
+will not post here HOW to use it (read the documentation), but I will post WHAT
+exactly you have to do within it.
 
 Anyway, if you have any problems with it, I will help you as much as I can.
 With this file there is screenshot (01-omegat-handy-window-layout.png)
@@ -116,7 +125,7 @@ we needn't translate or change them (see item 2.9.1 of this guide to know why
 it's true for images' URLs).
 =========
 
-I strongly recommend to use monospace font (menu item Preferences->Font)!
+I strongly recommend using a monospace font (menu item Preferences->Font)!
 It helps to avoid missing or excess spaces, dots, and commas.
 
 2.3 Create a new project (it is actually just a directory). Name of the project
@@ -135,9 +144,9 @@ omegat-logisim-www_de
 =========
 
 We should include standard names for these directories, because they affect
-names of some files, which we will upload to trunk/xtrans of SVN rep.
+names of some files, which we will upload to trunk/xlate of SVN rep.
 
-The OmegaT project has to have the following parameters:
+The OmegaT project should have the following parameters:
  * Source files language: EN;
  * Target file language: DE-DE (for example). Make sure you've specified
  "sublanguage" after a dash, since the spellchecker requires it to be specified.
@@ -146,8 +155,8 @@ The OmegaT project has to have the following parameters:
  replace it with your language, of course.)
  
 ===gui===
- * Source files directory: "SVN-logisim/resources/en/";
- * Translated files directory: "SVN-logisim/resources/de/";
+ * Source files directory: "SVN-logisim/resources/logisim/en/";
+ * Translated files directory: "SVN-logisim/resources/logisim/de/";
 ========= 
 
 ===doc===
@@ -162,7 +171,6 @@ The OmegaT project has to have the following parameters:
  * Translated files directory: "SVN-logisim/www/de/";
 =========
  
-
 Leave other fields with their default values.
 
 
@@ -178,8 +186,8 @@ helper.
 
 2.7.
 ===gui===
-Logisim uses libraries written by other people for the dialogs doing the font
-and the color. Their setup is different from what Logisim uses, and their
+Logisim uses libraries written by other people for the dialogs for choosing
+fonts and colors. Their setup is different from what Logisim uses, and their
 .properties files can be found in resources/bric/ and resources/connectina/.
 These directories have unique (and inconvenient) path, so we have to process
 them separately. Feel free to invent your own way to translate them
@@ -205,13 +213,13 @@ JFontChooser: Christos Bohoris, christos.bohoris@connectina.com
 =========
 
 2.8. Important: OmegaT considers segments with equal English strings as the same
-segment. For example, assume you typed translation for "North" once; when you
-will find the same word once again and will try to edit it to different
-translation, OmegaT will change previous translation too. There is no way to
-change this behavior yet (in this version). Sometimes the same English word or
-phrase can be translated different (since English barely has any endings). If
-you find such a situation, you have to use a trick: For example, you could use
-an intermediate directory as sources for OmegaT project and edit .properties
+segment. For example, suppose you enter a translation for "North" once, and then
+you find the same word again and edit it to different translation; OmegaT will
+change the previous translation too. There is no way to change this behavior yet
+(in this version). Sometimes the same English word or phrase can be translated
+differently (particularly since English has barely any endings). If you find
+such a situation, you have to use a trick: For example, you could use
+an intermediate directory as sources for OmegaT project and edit the .properties
 file manually there, changing the English version slightly, and reload the
 project (F5). For example, I changed "Base" in Vertical alignment section of
 std.properties to "Base-" (as well as three other directions).
@@ -219,39 +227,50 @@ std.properties to "Base-" (as well as three other directions).
 
 ===doc===
 2.9.1. You will probably want to replace (translate) some of the images
-and keep others unchanged from the English documentation. All the images
-are placed in three directories:
+and keep others unchanged from the English documentation. All images are placed
+into three directories:
+
  SVN-logisim/doc/en/icons
  SVN-logisim/doc/en/img-guide
  SVN-logisim/doc/en/img-libs
-If you have no substantive changes to make, then SVN-logisim/doc/de directory
+ 
+If you have no substantive changes to make, then the SVN-logisim/doc/de directory
 shouldn't include any subdirectories except html/. If you have any images to
-replace English ines, create place them to the corresponding subdirectory of
+replace English ones, place them in the corresponding subdirectory of
 SVN-logisim/doc/de. It's most likely you will not want to replace images from
-img-guide/ and img-libs/ directories.
-Actually, you may keep unchanged images from English documentation in your
+icons/ and img-libs/ directories. Do not worry about changing the "img" tags
+in the HTML: The script used for producing a JAR file for distribution will
+identify which images are particular to your translation and which should be
+taken from the English version, and it will quietly transform the HTML as it
+produces the JAR file with a link to the appropriate image.
+
+(Actually, you may keep unchanged images from English documentation in your
 SVN-logisim/doc/de directory. It will help to preview documentation using browser,
-but it will make SVN repository unclear a bit.
-The script used for generating the JAR file used for distribution will identify such
-missing or unchanged images, and it will quietly transform your HTML in the JAR
-file to link instead to the English image. This reduces the download size
-significantly.
+but it will make SVN repository a bit harder to interpret.)
 
 Also, don't worry about specifying the "width" and "height" attributes for img
 elements. As long as you use PNGs, the script for generating the JAR file will
-again insert this into the HTML appearing in the JAR file. In fact, if you
-specify a width or height attribute for an img element, the script will simply
-not copy that into the distributed JAR file.
+again insert this into the HTML that gets archived into the JAR file. (In fact,
+if you specify a width or height attribute for an img element, the script will
+simply overwrite this as it creates the JAR file.)
 
 2.9.2. Return back and translate images wich have to be translated. It's your
 decision which ones. If you decide to remake screen shots (so they show the
-translated GUI), then I have some suggestions. First, try to select a windowing
-theme that is plain (without gradients). Second, when you have a screenshot's
-PNG, open it using some graphic editor (for example, GIMP) and change image mode
-to "indexed 32 colors". After doing this in GIMP, I generally go to the Colormap dialog
-(under Dockable dialogs), click the whitest square, and change it to
-'ffffff' so that it is pure white. Then I go to do the same thing to
-change the blackest square to '000000'. Both suggestions help to reduce image size.
+translated GUI), then it's best if you produce images that don't eat up much
+disk space - if the documentation gets too large, then Logisim will have to be
+distributed without translations of the documentation included. There are three
+different techniques I suggest for this:
+
+* Try to select a windowing theme that is plain (without gradients).
+
+* Try to use windows that aren't much larger than what you are trying to
+  illustrate. (This is good for users browsing on smaller monitors anyway.)
+  
+* Open the PNG file using some graphic editor (for example, GIMP) and change the
+  image mode to "indexed 32 colors" without using any dithering. After doing
+  this in GIMP, I generally go to the Colormap dialog (under Dockable dialogs),
+  click the whitest square, and change it to 'ffffff' so that it is pure white.
+  Then I go to do the same thing to change the blackest square to '000000'.
 
 If you want to remake screenshots, you will surely want the circuits used to
 create the English screenshots. Those can be found in the directory doc/circs
@@ -287,7 +306,7 @@ Here are some guidelines I think are useful for doing the translation.
   terms, and you have to decide which word/phrase in your language fits better.
 
 3.2. Give particular attention to names of components and their
-  attributes of built-in library! Almost all of them have exact
+  attributes for the built-in libraries! Almost all of them have exact
   corresponding term in your language; you should to find them if you
   don't know them. One of the possible ways to find right translations:
   open http://en.wikipedia.org , find English article about a component,
@@ -299,12 +318,12 @@ Here are some guidelines I think are useful for doing the translation.
 
 3.3. Carl left us a freedom to translate words (and even letters) inside
   some components on the canvas (like RAM or Bit Extender). But my
-  decision was to left them untranslated following the simple policy:
+  decision was to leave them untranslated following the simple policy:
   "everything what can get to foreigner (names of circuits or those
   words inside components on canvas on screen shots) has to be in
-  English". For example, you translated "D" letter within D flip-flop as
-  Δ; someone will share screenshot and no one except Greek can determine
-  what kind of flip-flop there. Of course, you can disagree this policy.
+  English". For example, if you translate the "D" letter inside a D flip-flop as
+  a Δ; then a screenshot of the circuit would be difficult to understand for
+  somebody who does not know Greek. Of course, you can sway from this policy.
 
 3.4. When everything seems to be done, read and check all the phrases: any of
   your mistakes will be visible by hundreds - probably thousands - of people!
@@ -337,21 +356,21 @@ OmegaT. Finally, you may make a backup of the project dir if you're worrying.
 
 5.4. Translate new strings. (Press Ctrl+U to locate them.)
 
-5.5. Generate result (target) files (Ctrl+D). They are already in your SVN-logisim dir,
-so now you may commit to SVN. However, you're advised to run 'svn status'
-first to ascertain what you'll change when you commit to SVN.
+5.5. Generate result (target) files (Ctrl+D). They are already in your
+SVN-logisim dir, so now you may commit to SVN. However, you're advised to run
+'svn status' first to ascertain what you'll change when you commit to SVN.
 
 
 STEP 6: SHARING YOUR OMEGAT PROJECT
 
-6.1. It's good idea to share translation process between some people,
-since documentation is large. Also it will be important to your work's continued
-usefulness even if you decide to stop maintaining of the translation - a later
-translator can pick up the work.
+6.1. It's nice to set things up so you could conceivably share the translation
+process, since the documentation is large. Also it will be important to your
+work's continued usefulness even if you decide to stop maintaining of the
+translation - a later translator can continue with your work.
 
 One of the ways to do that is to use SVN to upload OmegaT project files.
-Actually, there are only 5 files in every OmegaT project, which have
-to be shared (TARGET may mean "resources_de". "doc_de", or "www_de", where "de" means your language):
+Actually, there are only 5 files in every OmegaT project that are useful for
+archiving:
 
 omegat-logisim-TARGET-level1.tmx
 omegat-logisim-TARGET-level2.tmx
@@ -359,10 +378,13 @@ omegat-logisim-TARGET-omegat.tmx
 omegat/learned_words.txt
 omegat/project_save.tmx
 
+(TARGET may mean "resources_de", "doc_de", or "www_de", where "de" means your
+language.)
+
 I think it's bad idea to merge for example SVN-logisim/xlate/de/doc
 local directory and omegat-logisim-doc_de local directory. It may cause confusion.
 Also, I think it's bad idea to update trunk/xlate every time if you work on the
-translation alone: *.tmx files very large and it will take long time. It makes
+translation alone: *.tmx files are very large and it will take long time. It makes
 sense to update trunk/xlate one time per 3-5 days or before long period without
 changes. So, my idea is to copy those 5 files manually to SVN-logisim/xlate/de/doc
 every time before committing. If you use GNU/Linux, it's much easier: you could

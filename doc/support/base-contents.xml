@@ -62,13 +62,13 @@
 		</tocitem>
 		<tocitem target="prefs">
 			<tocitem target="prefs_template" />
-			<tocitem target="prefs_tools" />
 			<tocitem target="prefs_intl" />
+			<tocitem target="prefs_window" />
+			<tocitem target="prefs_layout" />
 			<tocitem target="prefs_exp" />
 			<tocitem target="prefs_cmdline" />
 		</tocitem>
 		<tocitem target="opts">
-			<tocitem target="opts_canvas" />
 			<tocitem target="opts_simulate" />
 			<tocitem target="opts_toolbar" />
 			<tocitem target="opts_mouse" />

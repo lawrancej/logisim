@@ -49,12 +49,12 @@
 	<mapID target="verify_multi" url="html/guide/verify/multi.html" />
 	<mapID target="prefs" url="html/guide/prefs/index.html" />
 	<mapID target="prefs_template" url="html/guide/prefs/template.html" />
-	<mapID target="prefs_tools" url="html/guide/prefs/tools.html" />
 	<mapID target="prefs_intl" url="html/guide/prefs/intl.html" />
+	<mapID target="prefs_window" url="html/guide/prefs/window.html" />
+	<mapID target="prefs_layout" url="html/guide/prefs/layout.html" />
 	<mapID target="prefs_exp" url="html/guide/prefs/exp.html" />
 	<mapID target="prefs_cmdline" url="html/guide/prefs/cmdline.html" />
 	<mapID target="opts" url="html/guide/opts/index.html" />
-	<mapID target="opts_canvas" url="html/guide/opts/canvas.html" />
 	<mapID target="opts_simulate" url="html/guide/opts/simulate.html" />
 	<mapID target="opts_toolbar" url="html/guide/opts/toolbar.html" />
 	<mapID target="opts_mouse" url="html/guide/opts/mouse.html" />
