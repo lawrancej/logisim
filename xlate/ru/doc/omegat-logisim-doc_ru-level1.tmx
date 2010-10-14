@@ -158,6 +158,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The command line</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052309Z" changeid="lilovip">
+        <seg>Командная строка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>(It's better to click directly on the input pin than to click where you want the text to go, because then the label will move with the pin.) You can do the same for the output pin.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100812T064735Z" changeid="lilovip">
@@ -414,14 +422,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>For multi-bit values, you can configure exactly how the value is displayed (in binary, decimal, or hexadecimal, for example) using the Canvas pane of the Project Options dialog box.</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Для многобитных значений вы можете настроить, как отображается значение (в двоичном, десятичном или шестнадцатеричном виде, например), используя вкладку Холст диалогового окна Параметры проекта.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Its first part is a sequence of sections introducing the major parts of Logisim.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T123949Z" changeid="lilovip">
@@ -662,14 +662,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Zooming into a circuit is useful for live classroom demonstrations where the screen resolution is too small to view the circuit from the back of the classroom; zooming out can be useful for a orienting yourself to very large circuit.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100815T021146Z" changeid="lilovip">
-        <seg>Увеличение схемы полезно для живой демонстрации в классе, где разрешение экрана слишком мало для просмотра схемы с задних рядов аудитории; уменьшение изображения может быть полезно для ориентирования в очень большой схеме.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>(Note that you cannot enable it until a file is selected below.) The button allows you to pause and restart file entry.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T011311Z" changeid="lilovip">
@@ -794,14 +786,6 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T150740Z" changeid="lilovip">
         <seg>Выбрать все</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>The command line</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T135721Z" changeid="lilovip">
-        <seg>Командная строка</seg>
       </tuv>
     </tu>
     <tu>
@@ -1154,14 +1138,6 @@ make exceptions for this.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Show Grid check box specifies whether to draw dots in the background indicating the grid size.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100809T105901Z" changeid="lilovip">
-        <seg>Флажок Показывать сетку определяет, нужно ли рисовать на заднем фоне точки, показывающие размер сетки.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Selecting one of the circuits displays the corresponding circuit.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T225512Z" changeid="lilovip">
@@ -1194,6 +1170,14 @@ make exceptions for this.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>By default, the &quot;Plain template&quot; option will be selected, using the default template shipped with Logisim.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053951Z" changeid="lilovip">
+        <seg>По умолчанию будет выбран вариант &quot;Обычный шаблон&quot;, использующий поставляемый с Logisim шаблон по умолчанию.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>// 16x16 image.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T151715Z" changeid="lilovip">
@@ -1210,18 +1194,18 @@ make exceptions for this.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Clock - when triggered while the write-enable pin isn't 0, the current ASCII value on the Data input is processed by the terminal.</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Тактовый вход - когда срабатывает при ненулевом значении на контакте Разрешение записи, текущее ASCII значение на входе Данные обрабатывается терминалом.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>But if you change the input to 1, the circuit will effectively enter an infinite loop.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T172937Z" changeid="lilovip">
         <seg>Но если вы измените значение на входе на 1, то схема фактически войдёт в бесконечный цикл.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock - when triggered while the write-enable pin isn't 0, the current ASCII value on the Data input is processed by the terminal.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Тактовый вход - когда срабатывает при ненулевом значении на контакте Разрешение записи, текущее ASCII значение на входе Данные обрабатывается терминалом.</seg>
       </tuv>
     </tu>
     <tu>
@@ -1334,14 +1318,6 @@ make exceptions for this.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T194552Z" changeid="lilovip">
         <seg>* Logisim, за исключением того, что он манипулирует с объектами Value и BitWidth.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Show Ghosts While Adding: When checked, and when a tool for adding a new component is selected, a light-gray outline of a component to be added is drawn as the mouse moves across the canvas.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T161620Z" changeid="lilovip">
-        <seg>Показывать призраки во время добавления: когда включено, и когда выбран инструмент для добавления нового компонента, при движении мыши по холсту отрисовывается светло-серый контур компонента.</seg>
       </tuv>
     </tu>
     <tu>
@@ -1644,14 +1620,6 @@ distribute the Program or its derivative works.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Note that it certainly won't have any effect until Logisim is restarted.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100810T220651Z" changeid="lilovip">
-        <seg>Обратите внимание, что это, конечно, не будет иметь никакого эффекта, пока Logisim не будет перезапущен.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Now, we can delete the two existing AND gates and add two new AND gates in their place.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100803T225927Z" changeid="lilovip">
@@ -1712,6 +1680,14 @@ distribute the Program or its derivative works.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T190706Z" changeid="lilovip">
         <seg>Мне придется оставить этих людей анонимными, потому что я не имею их разрешения упоминать о них здесь, но: спасибо!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Toolbar tab </seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052149Z" changeid="lilovip">
+        <seg>Вкладка Панель инструментов </seg>
       </tuv>
     </tu>
     <tu>
@@ -2148,6 +2124,14 @@ import com.cburch.logisim.util.StringUtil;
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>It won't have any effect until Logisim is restarted.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T131834Z" changeid="lilovip">
+        <seg>Это не будет иметь никакого эффекта, пока Logisim не будет перезапущен.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>We wish to avoid the danger that redistributors of a free
 program will individually obtain patent licenses, in effect making the
 program proprietary.</seg>
@@ -2254,6 +2238,14 @@ making modifications to it.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T235049Z" changeid="lilovip">
         <seg>Категория комбинационных схем является более простой из них.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Graphics acceleration: One Logisim user observed that adding -Dsun.java2d.d3d=True to the command line seemed to improve Logisim's graphics performance by telling it to use hardware graphics acceleration.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052223Z" changeid="lilovip">
+        <seg>Ускорение графики: один из пользователей Logisim отметил, что добавление -Dsun.java2d.d3d=True к командной строке кажется улучшает производительность графики Logisim, заставляя его использовать аппаратное ускорение графики.</seg>
       </tuv>
     </tu>
     <tu>
@@ -2556,14 +2548,6 @@ FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Show Attribute Halo check box specifies whether to draw the pale teal oval around the component or tool whose attributes are currently displayed in the attribute table.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100809T110614Z" changeid="lilovip">
-        <seg>Флажок Показывать ореол определяет, нужно ли рисовать голубой овал вокруг компонента или инструмента, атрибуты которого в данный момент отображаются в таблице атрибутов.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>GrayCounter</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T150531Z" changeid="lilovip">
@@ -2758,10 +2742,26 @@ covered by this License; they are outside its scope.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>If you want a bare-bones configuration, you might choose &quot;Empty template.&quot; But if you want to designate another file to use as the template, select a template via the Select... button, and then choose the &quot;Custom template&quot; option.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054003Z" changeid="lilovip">
+        <seg>Если вы хотите скелетную конфигурацию, вы можете выбрать &quot;Пустой шаблон&quot;. Но если вы хотите назначить другой файл для использования в качестве шаблона, выберите шаблон через кнопку Выбрать..., а затем укажите вариант &quot;Специальный шаблон&quot;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>A on west edge (input, bit width matches Address Bit Width attribute)</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>A на западном крае (вход, разрядность соответствует атрибуту Разрядность адреса)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Replace accented characters: Some platforms have poor support for characters (such as ñ or ö) that do not appear in the 7-bit ASCII character set.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052435Z" changeid="lilovip">
+        <seg>Заменять специфичные символы: некоторые платформы имеют плохую поддержку для символов (например ñ или ö), которых нет в 7-битном наборе символов ASCII.</seg>
       </tuv>
     </tu>
     <tu>
@@ -2818,14 +2818,6 @@ covered by this License; they are outside its scope.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100816T014622Z" changeid="lilovip">
         <seg>(Это также может быть полезно, если вы левша.) Каждая комбинация кнопки мыши и клавиши-модификатора (любая комбинация Shift, Control и Alt) может быть привязана к определённому инструменту.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>The Zoom Factor drop-down menu allows you to &quot;blow up&quot; or &quot;condense&quot; the image by a ratio.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100809T111717Z" changeid="lilovip">
-        <seg>Раскрывающееся меню Коэффициент масштабирования позволяет вам &quot;растягивать&quot; или &quot;сжимать&quot; изображение с помощью отношения.</seg>
       </tuv>
     </tu>
     <tu>
@@ -2962,6 +2954,14 @@ covered by this License; they are outside its scope.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T185715Z" changeid="lilovip">
         <seg>* в коде Грея.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show Ghosts while adding: When checked, and when a tool for adding a new component is selected, a light-gray outline of a component to be added is drawn as the mouse moves across the canvas.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053612Z" changeid="lilovip">
+        <seg>Показывать призраки во время добавления: когда включено, и когда выбран инструмент для добавления нового компонента, при движении мыши по холсту отрисовывается светло-серый контур компонента.</seg>
       </tuv>
     </tu>
     <tu>
@@ -3206,14 +3206,6 @@ covered by this License; they are outside its scope.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>When checked, this menu item indicates that a small toolbar should be displayed above the explorer pane, allowing the user easy access to adding, renaming, reordering, and removing circuits from a project.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100808T204430Z" changeid="lilovip">
-        <seg>Когда этот пункт меню выбран, небольшая панель будет отображена над панелью проводника, предоставляя пользователю простой доступ к добавлению, переименованию, переупорядочиванию и удалению схем из проекта.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>And if Input, the component has a second input on its north side whose one-bit value is used for the additional bits.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T073908Z" changeid="lilovip">
@@ -3238,18 +3230,18 @@ covered by this License; they are outside its scope.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Also, manipulating a component via the Poke tool () or the Text tool () will display that component's attributes.)</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100902T145811Z" changeid="lilovip">
-        <seg>Кроме того, взаимодействие с компонентом через Инструмент Нажатие () или Инструмент Текст () покажет атрибуты этого компонента.)</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Now we can simply run Logisim substituting each query file.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T014848Z" changeid="lilovip">
         <seg>Теперь мы можем просто запускать Logisim, подставляя каждый проверяемый файл.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Also, manipulating a component via the Poke tool () or the Text tool () will display that component's attributes.)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100902T145811Z" changeid="lilovip">
+        <seg>Кроме того, взаимодействие с компонентом через Инструмент Нажатие () или Инструмент Текст () покажет атрибуты этого компонента.)</seg>
       </tuv>
     </tu>
     <tu>
@@ -3438,6 +3430,14 @@ covered by this License; they are outside its scope.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Printer view: Specifies whether to display the circuit on the screen in the same way it is displayed through the printer.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053054Z" changeid="lilovip">
+        <seg>Вид для печати: определяет, показывать ли схемы на экране так же, как они выводятся через принтер.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>As a result, when this circuit's input changes from 0 to 1, the AND gate will briefly see two 1 inputs, and it will emit a 1 briefly.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T164624Z" changeid="lilovip">
@@ -3470,18 +3470,18 @@ covered by this License; they are outside its scope.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Clock input: At the instant that this input value rises from 0 to 1 (the rising edge), the register's value will be updated to the values of the other inputs on the west edge.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100813T063721Z" changeid="lilovip">
-        <seg>Тактовый вход: в момент, когда значение на этом входе возрастает с 0 на 1 (передний фронт), значение регистра будет обновлено на значения остальных входов на западном крае.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Pop-up menus and files </seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T152053Z" changeid="lilovip">
         <seg>Всплывающие меню и файлы </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clock input: At the instant that this input value rises from 0 to 1 (the rising edge), the register's value will be updated to the values of the other inputs on the west edge.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100813T063721Z" changeid="lilovip">
+        <seg>Тактовый вход: в момент, когда значение на этом входе возрастает с 0 на 1 (передний фронт), значение регистра будет обновлено на значения остальных входов на западном крае.</seg>
       </tuv>
     </tu>
     <tu>
@@ -3662,10 +3662,18 @@ covered by this License; they are outside its scope.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>the Program is not required to print an announcement.)</seg>
+        <seg>The drop-down box allows you to change this behavior so that Logisim stays at the same tool for adding more of the same component, until you yourself opt to choose the Edit Tool.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100819T025536Z" changeid="lilovip">
-        <seg>Программе, не обязано выводить объявление.)</seg>
+      <tuv lang="RU-RU" changedate="20101013T053706Z" changeid="lilovip">
+        <seg>Этот выпадающий список позволяет вам изменить это поведение так, чтобы Logisim оставался на том же инструменте для добавления ещё одного такого же компонента, пока вы сами не выберите Инструмент Правка.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This tab allows configuration of Logisim according to regional preferences.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052343Z" changeid="lilovip">
+        <seg>Эта вкладка позволяет настроить Logisim в соответствии с региональными предпочтениями.</seg>
       </tuv>
     </tu>
     <tu>
@@ -4138,14 +4146,6 @@ covered by this License; they are outside its scope.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100806T171942Z" changeid="lilovip">
         <seg>// текущее значение в экземпляре.)</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>The First Radix When Wire Poked drop-down menu configures how values are displayed when a wire is clicked using the Poke Tool.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100814T211646Z" changeid="lilovip">
-        <seg>Раскрывающееся меню Первое основание при взаимодействии с проводом настраивает, как отображаются значения, когда на провод нажали Инструментом Нажатие.</seg>
       </tuv>
     </tu>
     <tu>
@@ -4822,6 +4822,14 @@ these terms and conditions.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Show component tips: Specifies whether to display the &quot;tool tips&quot; that will temporarily appear when the mouse hovers over components supporting them.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053135Z" changeid="lilovip">
+        <seg>Показывать подсказки для компонентов: указывает, следует ли отображать &quot;подсказки&quot;, которые будут появляться на время при наведении указателя мыши на компоненты, поддерживающие их.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>There is no way to insert a line break into a label.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -5244,6 +5252,14 @@ these terms and conditions.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Входные значения, нумерованные с 0 на верхнем/западном конце края.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>You can configure many of Logisim's application preferences via command line options.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T003110Z" changeid="lilovip">
+        <seg>Вы можете изменять многие настройки приложения Logisim через параметры командной строки.</seg>
       </tuv>
     </tu>
     <tu>
@@ -5825,18 +5841,18 @@ anyone to deny you these rights or to ask you to surrender the rights.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Project options</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20101007T142848Z" changeid="lilovip">
-        <seg>Параметры проекта</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Welcome to Logisim!</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100820T100750Z" changeid="lilovip">
         <seg>Добро пожаловать в Logisim!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Project options</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142848Z" changeid="lilovip">
+        <seg>Параметры проекта</seg>
       </tuv>
     </tu>
     <tu>
@@ -6154,14 +6170,6 @@ REPAIR OR CORRECTION.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T151912Z" changeid="lilovip">
         <seg>Просчёт значений </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>The Simulation tab </seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100902T154633Z" changeid="lilovip">
-        <seg>Вкладка Моделирование </seg>
       </tuv>
     </tu>
     <tu>
@@ -6587,10 +6595,26 @@ implemented by public license practices.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Gate shape: Logisim supports three standards for drawing gates: shaped gates, rectangular gates, and DIN 40700 gates.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052402Z" changeid="lilovip">
+        <seg>Форма элементов: Logisim поддерживает три стандарта для отрисовки логических элементов: фигурные элементы, прямоугольные элементы, и элементы DIN 40700.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>return state.getInstance().getBounds().contains(e.getX(), e.getY());</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T153602Z" changeid="lilovip">
         <seg>return state.getInstance().getBounds().contains(e.getX(), e.getY());</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Mouse tab</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052156Z" changeid="lilovip">
+        <seg>Вкладка Мышь</seg>
       </tuv>
     </tu>
     <tu>
@@ -7868,14 +7892,6 @@ import com.cburch.logisim.instance.StdAttr;
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Clicking temporarily displays the value until the user clicks elsewhere in the circuit.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100815T021221Z" changeid="lilovip">
-        <seg>Нажатие временно отображает значение, пока пользователь не нажмёт в другом месте схемы.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>(Empty circuits are not displayed as options.) Logisim will print one circuit per page.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T192654Z" changeid="lilovip">
@@ -7920,14 +7936,6 @@ import com.cburch.logisim.instance.StdAttr;
       </tuv>
       <tuv lang="RU-RU">
         <seg>Значение, которое будет перенаправлено на один из выходов на восточном крае.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>The Canvas tab allows configuration of the circuit drawing area's appearance.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100809T104640Z" changeid="lilovip">
-        <seg>Вкладка Холст позволяет настраивать внешний вид области рисования схемы.</seg>
       </tuv>
     </tu>
     <tu>
@@ -8205,6 +8213,14 @@ may not distribute the Program at all.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>For example, if you hover over a subcircuit component's pin, it will display the label of the corresponding pin within the subcircuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053230Z" changeid="lilovip">
+        <seg>Например, если вы подержите указатель над контактом компонента подсхемы, то отобразится метка соответствующего контакта внутри подсхемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The component's control input.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -8281,6 +8297,14 @@ the scope of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Clear all application preferences at startup, so Logisim will act as if it were being executed on the host system for the first time.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T003307Z" changeid="lilovip">
+        <seg>Очистить все настройки приложения при запуске, так что Logisim будет вести себя так, как будто он запущен в данной системе первый раз.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>It is also consistent with the intuitive meaning underlying the term exclusive or: A waiter asking whether you want a side dish of mashed potatoes, carrots, peas, or cole slaw will only accept one choice, not three, whatever some authorities may tell you.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -8325,6 +8349,14 @@ the scope of this License.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T124529Z" changeid="lilovip">
         <seg>Чтобы помочь в подсчёте, каждая группа из четырех значений имеет больший промежуток между ними.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Window tab</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T051921Z" changeid="lilovip">
+        <seg>Вкладка Окно</seg>
       </tuv>
     </tu>
     <tu>
@@ -8381,6 +8413,14 @@ the scope of this License.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Если значение - Передний фронт, то когда значение тактового входа изменяется с 0 на 1, то значение с входа Данные обрабатывается (если разрешено входами Разрешение записи и Очистка).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Simulation tab </seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052142Z" changeid="lilovip">
+        <seg>Вкладка Моделирование </seg>
       </tuv>
     </tu>
     <tu>
@@ -8913,14 +8953,6 @@ entire whole, and thus to each and every part regardless of who wrote it.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Keep Connections When Moving check box indicates whether Logisim should add new wires when components are moved to preserve their connections.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100818T052253Z" changeid="lilovip">
-        <seg>Флажок Сохранять соединения при перемещении указывает, должен ли Logisim добавлять новые провода, когда компоненты перемещены, чтобы сохранять их соединения.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Base Library</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -8989,14 +9021,6 @@ entire whole, and thus to each and every part regardless of who wrote it.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T145823Z" changeid="lilovip">
         <seg>Так, в библиотеке Базовые вы найдете Инструмент Нажатие (), Инструмент Правка(), и другие инструменты, которые не связаны напрямую с конкретными компонентами.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>The Experimental tab </seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100902T154648Z" changeid="lilovip">
-        <seg>Вкладка Экспериментальные </seg>
       </tuv>
     </tu>
     <tu>
@@ -9673,14 +9697,6 @@ freedom to share and change it.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Tools tab</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T160935Z" changeid="lilovip">
-        <seg>Вкладка Инструменты</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Button</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -9813,18 +9829,18 @@ using it.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>D Flip-Flop</seg>
+        <seg>When the component is selected or being added, Alt-2 through Alt-5 alter its Bit Width attribute.</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>D триггер</seg>
+      <tuv lang="RU-RU" changedate="20101014T003338Z" changeid="lilovip">
+        <seg>Когда компонент выбран, или уже добавлен, комбинации от Alt-2 до Alt-5 меняют его атрибут Разрядность.</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>You can configure Logisim's application preferences via command line options.</seg>
+        <seg>D Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100810T212308Z" changeid="lilovip">
-        <seg>Вы можете указывать настройки приложения Logisim через параметры командной строки.</seg>
+      <tuv lang="RU-RU">
+        <seg>D триггер</seg>
       </tuv>
     </tu>
     <tu>
@@ -9865,14 +9881,6 @@ using it.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Шестнадцатеричный дисплей</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>This option allows you to configure this behavior so that Logisim stays at the same tool for adding more of the same component, until you yourself opt to choose the Edit Tool.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100814T213020Z" changeid="lilovip">
-        <seg>Эта опция позволяет вам настроить это поведение так, чтобы Logisim оставался на том же инструменте для добавления ещё одного такого же компонента, пока вы сами не выберите Инструмент Правка.</seg>
       </tuv>
     </tu>
     <tu>
@@ -10143,14 +10151,6 @@ TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Tools tab </seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100902T154643Z" changeid="lilovip">
-        <seg>Вкладка Инструменты </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>tools = Arrays.asList(new AddTool[] {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100827T085434Z" changeid="lilovip">
@@ -10223,14 +10223,6 @@ TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Next: The Tools tab.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T160927Z" changeid="lilovip">
-        <seg>Далее: Вкладка Инструменты.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>So that a script can process the file at the same time as Logisim is running, Logisim will flush the new records onto the disk every 500 ms.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T011649Z" changeid="lilovip">
@@ -10243,6 +10235,14 @@ TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>2.2.0</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The tick rate is measured by averaging over the previous 1,000 ticks.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T130725Z" changeid="lilovip">
+        <seg>Скорость тактов измеряется как средняя за предыдущую 1000 тактов.</seg>
       </tuv>
     </tu>
     <tu>
@@ -10267,14 +10267,6 @@ TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T071833Z" changeid="lilovip">
         <seg>Разрядность значений, хранящихся в каждой ступени.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>The Show Component Tips check box specifies whether to display the &quot;tool tips&quot; that will temporarily appear when the mouse hovers components supporting them.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100815T021030Z" changeid="lilovip">
-        <seg>Флажок Показывать подсказки для компонентов указывает, следует ли отображать &quot;подсказки&quot;, которые будут появляться на время при наведении указателя мыши на компоненты, поддерживающие их.</seg>
       </tuv>
     </tu>
     <tu>
@@ -10423,14 +10415,6 @@ TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Show Project Toolbar</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100808T204248Z" changeid="lilovip">
-        <seg>Показать панель инструментов проекта</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>You are free to distribute any JARs you develop without restriction.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T181401Z" changeid="lilovip">
@@ -10443,6 +10427,14 @@ TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T025839Z" changeid="lilovip">
         <seg>Значение переноса для добавления к произведению.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(If you find these tips irritating, you can disable them via the Preferences window's Layout tab.)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054905Z" changeid="lilovip">
+        <seg>(Если вы находите эти подсказки раздражающими, вы можете отключить их через вкладку Чертёж окна Настройки.)</seg>
       </tuv>
     </tu>
     <tu>
@@ -10527,18 +10519,18 @@ TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>If yes, then the segments light when the corresponding input is 1.</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Если да , то сегменты горят, когда значение на соответствующем входе 1.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Now suppose we have two Logisim circuits that are supposed to do the same thing.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T005252Z" changeid="lilovip">
         <seg>Теперь предположим, что у нас есть две схемы Logisim, которые должны делать одно и то же.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>If yes, then the segments light when the corresponding input is 1.</seg>
+      </tuv>
+      <tuv lang="RU-RU">
+        <seg>Если да , то сегменты горят, когда значение на соответствующем входе 1.</seg>
       </tuv>
     </tu>
     <tu>
@@ -10711,6 +10703,14 @@ along with the Program.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Плексоры</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Next: The International tab.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054019Z" changeid="lilovip">
+        <seg>Далее: Вкладка Интернациональные.</seg>
       </tuv>
     </tu>
     <tu>
@@ -10923,14 +10923,6 @@ along with the Program.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Graphics Acceleration: Several Logisim users have reported that Logisim seems quite slow at rendering graphics.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100810T220330Z" changeid="lilovip">
-        <seg>Ускорение графики: Некоторые пользователи Logisim сообщили, что Logisim кажется довольно медленным при отрисовке графики.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Their exact behavior depends on the flip-flop; the above tables summarize their behavior.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -11067,10 +11059,10 @@ along with the Program.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Canvas tab</seg>
+        <seg>The Experimental tab </seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100809T104606Z" changeid="lilovip">
-        <seg>Вкладка Холст</seg>
+      <tuv lang="RU-RU" changedate="20101013T052302Z" changeid="lilovip">
+        <seg>Вкладка Экспериментальные </seg>
       </tuv>
     </tu>
     <tu>
@@ -11207,6 +11199,14 @@ collective works based on the Program.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Notice than the number of repetitions is written in base 10.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100808T131905Z" changeid="lilovip">
+        <seg>Обратите внимание, что количество повторений записывается по основанию 10.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Each mouse-mapped tool has its own set of attributes, different from the attributes used in the explorer pane and in the toolbar.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T155639Z" changeid="lilovip">
@@ -11223,14 +11223,6 @@ collective works based on the Program.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Notice than the number of repetitions is written in base 10.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100808T131905Z" changeid="lilovip">
-        <seg>Обратите внимание, что количество повторений записывается по основанию 10.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Next: User's Guide.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T184036Z" changeid="lilovip">
@@ -11243,6 +11235,14 @@ collective works based on the Program.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T051058Z" changeid="lilovip">
         <seg>Нижний многобитный вход имеет столько битов, сколько строк в матрице; младший бит соответствует нижней строке.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>After adding component: By default, after adding each individual component, Logisim switches back to the Edit Tool to allow you to move components around and to add wires.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053621Z" changeid="lilovip">
+        <seg>После добавления компонента: по умолчанию, после добавления каждого компонента, Logisim переключается на Инструмент Правка, позволяющий перемещать компоненты и добавлять провода.</seg>
       </tuv>
     </tu>
     <tu>
@@ -11575,14 +11575,6 @@ collective works based on the Program.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The International tab </seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100902T154645Z" changeid="lilovip">
-        <seg>Вкладка Интернациональные </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>The value rising edge indicates that the flip-flop should update its value at the instant when the clock rises from 0 to 1.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -11611,14 +11603,6 @@ collective works based on the Program.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T193340Z" changeid="lilovip">
         <seg>Value out = nextGray(in);</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>There are eight options.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100818T051727Z" changeid="lilovip">
-        <seg>Здесь восемь параметров.</seg>
       </tuv>
     </tu>
     <tu>
@@ -11723,14 +11707,6 @@ itself accompanies the executable.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T054939Z" changeid="lilovip">
         <seg>Ситуации ошибки - такие как обнаруженное возбуждение - отображаются в любом случае.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>For example, if you hover over a subcircuit component's pin, it will display the label of the corresponding pin within the subcircuit - or it will display the subcircuit's name it has no label.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100809T111002Z" changeid="lilovip">
-        <seg>Например, если вы подержите указатель над контактом компонента подсхемы, то отобразится метка соответствующего контакта внутри подсхемы - или название подсхемы, если метки нет.</seg>
       </tuv>
     </tu>
     <tu>
@@ -12504,6 +12480,14 @@ distribute and/or modify the software.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>This toolbar allows the user easy access to adding, renaming, reordering, and removing circuits from a project, and it supports switching between editing a circuit's layout and its appearance.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054501Z" changeid="lilovip">
+        <seg>Эта панель инструментов предоставляет пользователю простой доступ к добавлению, переименованию, переупорядочиванию и удалению схем из проекта, а также поддерживает переключение между редактированием чертежа схемы и её внешнего вида.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Cut</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T142526Z" changeid="lilovip">
@@ -12552,18 +12536,18 @@ distribute and/or modify the software.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Command-line verification </seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100902T151859Z" changeid="lilovip">
-        <seg>Проверка из командной строки </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Note that when the logging module switches to logging another simulation, it will cease any logging into a file.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T202022Z" changeid="lilovip">
         <seg>Заметьте, что когда модуль ведения журнала переключается на запись другого моделирования, он перестаёт записывать что-либо в файл.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Command-line verification </seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100902T151859Z" changeid="lilovip">
+        <seg>Проверка из командной строки </seg>
       </tuv>
     </tu>
     <tu>
@@ -12702,14 +12686,6 @@ signed it.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T022721Z" changeid="lilovip">
         <seg>Достаточно сказать, что алгоритм является достаточно сложным, чтобы учитывать задержки элементов, но не достаточно реалистичным, чтобы учитывать сложные явления, такие как колебание напряжения или состояние гонки.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>The Canvas tab </seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100902T154630Z" changeid="lilovip">
-        <seg>Вкладка Холст </seg>
       </tuv>
     </tu>
     <tu>
@@ -12959,14 +12935,6 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Location configures the location of the toolbar within the overall window.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100810T211734Z" changeid="lilovip">
-        <seg>Расположение: настраивает расположение панели инструментов в пределах окна.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Bounds bds = instance.getBounds();</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T152637Z" changeid="lilovip">
@@ -12989,14 +12957,6 @@ price.</seg>
       <tuv lang="RU-RU" changedate="20101003T155038Z" changeid="lilovip">
         <seg>Когда мы говорим о свободном ПО, мы имеем в виду свободу, а не цену.
 </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>This tab includes options affecting how the built-in tools behave.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T161016Z" changeid="lilovip">
-        <seg>На этой вкладке находятся параметры, влияющие на то, как ведут себя встроенные инструменты.</seg>
       </tuv>
     </tu>
     <tu>
@@ -13045,14 +13005,6 @@ price.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T115946Z" changeid="lilovip">
         <seg>Средний столбец кнопок позволяет манипулировать элементами внутри выборки.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>One user observed that adding -Dsun.java2d.d3d=True to the command line seemed to address this completely.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100810T220438Z" changeid="lilovip">
-        <seg>Один из пользователей отметил, что добавление -Dsun.java2d.d3d=True к командной строке кажется полностью решает это.</seg>
       </tuv>
     </tu>
     <tu>
@@ -13143,6 +13095,14 @@ control compilation and installation of the executable.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Keep connections while moving: Indicates whether Logisim should add new wires when components are moved to preserve their connections.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053520Z" changeid="lilovip">
+        <seg>Сохранять соединения при перемещении: указывает, должен ли Logisim добавлять новые провода, когда компоненты перемещены, чтобы сохранять их соединения.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>If an involved point lies within a subcircuit, Logisim will draw that subcircuit's outline in red.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T023400Z" changeid="lilovip">
@@ -13163,6 +13123,14 @@ control compilation and installation of the executable.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T091921Z" changeid="lilovip">
         <seg>Когда компонент выбран, или уже добавлен, клавиши от 1 до 4 меняют его атрибут Выбирающие биты, а клавиши со стрелками меняют его атрибут Направление.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This drop-down box attempts to configure Logisim to set this up; reports about whether this drop-down box has any effect on performance would be welcome.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T131818Z" changeid="lilovip">
+        <seg>Этот выпадающий список пытается настроить Logisim так, чтобы эта возможность была включена; сообщения о том, влияет ли этот список на производительность, будут приветствоваться.</seg>
       </tuv>
     </tu>
     <tu>
@@ -13195,6 +13163,14 @@ control compilation and installation of the executable.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20101002T141059Z" changeid="lilovip">
         <seg>Текущая версия снабжена переводами на английский, испанский, русский и немецкий языки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(Disabling ticks or changing the maximum tick rate will clear its history.)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T130810Z" changeid="lilovip">
+        <seg>(Выключение тактов или изменение максимальной тактовой частоты очистит эту историю.)</seg>
       </tuv>
     </tu>
     <tu>
@@ -13363,14 +13339,6 @@ control compilation and installation of the executable.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T071546Z" changeid="lilovip">
         <seg>D триггер: когда значение на тактовом входе возрастает с 0 до 1, значение, хранящееся в триггере, становится значением входа D (Данные) в тот момент.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Next: The Canvas tab.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100809T115737Z" changeid="lilovip">
-        <seg>Далее: Вкладка Холст.</seg>
       </tuv>
     </tu>
     <tu>
@@ -13724,14 +13692,6 @@ of promoting the sharing and reuse of software generally.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>These requirements apply to the modified work as a whole.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100819T034522Z" changeid="lilovip">
-        <seg>Эти требования применяются к модифицированному произведению в целом.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>For the analysis to be successful, each input must be attached to an input pin, and each output must be attached to an output pin.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100803T185754Z" changeid="lilovip">
@@ -14028,26 +13988,18 @@ of promoting the sharing and reuse of software generally.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>After a while, Logisim will simply give up and show an &quot;Oscillation apparent&quot; message telling you that it believes that the circuit is oscillating.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T173110Z" changeid="lilovip">
-        <seg>Через некоторое время Logisim просто сдастся и покажет сообщение &quot;Обнаружено возбуждение&quot;, говорящее вам, что он считает, что схема возбуждается.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>If you want a bare-bones configuration, you might choose &quot;Empty Template.&quot; But if you want to designate another file to use as the template, select a template via the Select... button, and then choose the &quot;Custom Template&quot; option.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T160914Z" changeid="lilovip">
-        <seg>Если вы хотите скелетную конфигурацию, вы можете выбрать &quot;Пустой шаблон&quot;. Но если вы хотите назначить другой файл для использования в качестве шаблона, выберите шаблон через кнопку Выбрать..., а затем укажите вариант &quot;Специальный шаблон&quot;.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Now suppose we want to build a 4-to-1 multiplexer using instances of our 2-to-1 multiplexer.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T220904Z" changeid="lilovip">
         <seg>Теперь предположим, что мы хотим построить мультиплексор 4-в-1, используя экземпляры нашего мультиплексора 2-в-1.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>After a while, Logisim will simply give up and show an &quot;Oscillation apparent&quot; message telling you that it believes that the circuit is oscillating.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100811T173110Z" changeid="lilovip">
+        <seg>Через некоторое время Logisim просто сдастся и покажет сообщение &quot;Обнаружено возбуждение&quot;, говорящее вам, что он считает, что схема возбуждается.</seg>
       </tuv>
     </tu>
     <tu>
@@ -14160,14 +14112,6 @@ of promoting the sharing and reuse of software generally.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T021419Z" changeid="lilovip">
         <seg>Вам может понадобиться уменьшить число итераций, если вы работаете со схемой, предрасположенной к возбуждению, и вы используете необыкновенно медленный процессор.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>You can attempt to control this using a drop-down box.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100810T220501Z" changeid="lilovip">
-        <seg>Вы можете попытаться управлять этим с помощью выпадающего списка.</seg>
       </tuv>
     </tu>
     <tu>
@@ -14318,6 +14262,18 @@ import com.cburch.logisim.util.StringUtil;
       </tuv>
       <tuv lang="RU-RU" changedate="20100819T025527Z" changeid="lilovip">
         <seg>обычно не выводит подобное объявление, то ваше произведение, основанное на</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>the Program is not required to print an announcement.)
+
+These requirements apply to the modified work as a whole.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T141110Z" changeid="lilovip">
+        <seg>Программе, не обязано выводить объявление.)
+
+Эти требования применяются к модифицированному произведению в целом.</seg>
       </tuv>
     </tu>
     <tu>
@@ -14658,10 +14614,10 @@ import com.cburch.logisim.util.StringUtil;
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Second Radix When Wire Poked drop-down menu configures the second part of the value display.</seg>
+        <seg>This tab includes preferences affecting the appearance of the main window used for Logisim.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100814T211700Z" changeid="lilovip">
-        <seg>Раскрывающееся меню Второе основание при нажатии на провод настраивает вторую часть отображаемого значения.</seg>
+      <tuv lang="RU-RU" changedate="20101013T054112Z" changeid="lilovip">
+        <seg>На этой вкладке находятся настройки, влияющие на внешний вид главного окна Logisim.</seg>
       </tuv>
     </tu>
     <tu>
@@ -14903,14 +14859,6 @@ Sections 1 and 2 above provided that you also do one of the following:</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Gate Shape: Logisim supports three standards for drawing gates: shaped gates, rectangular gates, and DIN 40700 gates.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100902T160922Z" changeid="lilovip">
-        <seg>Форма элементов: Logisim поддерживает три стандарта для отрисовки логических элементов: фигурные элементы, прямоугольные элементы, и элементы DIN 40700.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>A multi-bit NOT gate will perform the above transformation bitwise on its input.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -15071,14 +15019,6 @@ Sections 1 and 2 above provided that you also do one of the following:</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The toolbar also supports switching between editing a circuit's layout and its appearance.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100922T034946Z" changeid="lilovip">
-        <seg>Панель инструментов также поддерживает переключение между редактированием чертежа схемы и её внешнего вида.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Configures which translation to use.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100810T213101Z" changeid="lilovip">
@@ -15223,14 +15163,6 @@ Sections 1 and 2 above provided that you also do one of the following:</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>(If you find these tips irritating, you can disable them via the Project Options window's Canvas tab.)</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T222446Z" changeid="lilovip">
-        <seg>(Если вы находите эти подсказки раздражающими, вы можете отключить их через вкладку Холст окна Параметры Проекта.)</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>XOR/XNOR/Odd Parity/Even Parity Gate</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -15348,6 +15280,14 @@ language.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T145922Z" changeid="lilovip">
         <seg>Разветвители </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This actual tick rate may be much less than the selected tick rate, because Logisim cannot simulate larger circuits at a very fast rate.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T130922Z" changeid="lilovip">
+        <seg>Эта фактическая скорость тактов может быть намного меньше, чем вы бранная тактовая частота, потому что Logisim не может моделировать большие схем с очень большой скоростью.</seg>
       </tuv>
     </tu>
     <tu>
@@ -15504,6 +15444,14 @@ language.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The Window tab </seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052248Z" changeid="lilovip">
+        <seg>Вкладка Окно </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>ct = (ct &gt;&gt; 1) ^ ct;</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T194555Z" changeid="lilovip">
@@ -15640,6 +15588,14 @@ class SimpleGrayCounter extends InstanceFactory {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100803T222951Z" changeid="lilovip">
         <seg>Это имя класса должно быть предоставлено тем, кто распространяет этот JAR файл.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Normally this is off, and Logisim displays the on-screen circuit with indications of the current circuit state, and it displays some hints about component interface (most notably, it draws legs on OR gates to indicate where they would connect).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053021Z" changeid="lilovip">
+        <seg>Как правило этот пункт отключен, и Logisim показывает схемы на экране с отображением текущего состояния схемы и выводит некоторые подсказки связанные с интерфейсом компонентов (самое заметное - он отрисовывает ножки элементов ИЛИ чтобы показать, где они должны присоединяться).</seg>
       </tuv>
     </tu>
     <tu>
@@ -15828,6 +15784,14 @@ class SimpleGrayCounter extends InstanceFactory {</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Next: The Window tab.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052501Z" changeid="lilovip">
+        <seg>Далее: Вкладка Окно.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The split ends are indexed starting from 0 at the top (for a splitter facing east or west) or from 0 at the left/west (for a splitter facing north or south).</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -15840,6 +15804,14 @@ class SimpleGrayCounter extends InstanceFactory {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T025820Z" changeid="lilovip">
         <seg>/* Обратите внимание на то, что нет переменных экземпляра.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show attribute halo: Specifies whether to draw the pale teal oval around the component or tool whose attributes are currently displayed in the attribute table.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053110Z" changeid="lilovip">
+        <seg>Показывать ореол: определяет, нужно ли рисовать голубой овал вокруг компонента или инструмента, атрибуты которого в данный момент отображаются в таблице атрибутов.</seg>
       </tuv>
     </tu>
     <tu>
@@ -16342,6 +16314,14 @@ source code.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Show tick rate: If checked, then when ticks are enabled, Logisim displays a measurement of the rate at which it has been able to complete ticks.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054119Z" changeid="lilovip">
+        <seg>Показать скорость тактов: если выбрано, то когда такты включены, Logisim отображает скорость, с которой он выполняет такты.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Go In To State</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T225347Z" changeid="lilovip">
@@ -16405,6 +16385,14 @@ to ask for permission.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Расположение этого контакта определяется атрибутом Направление.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Open Recent</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T051941Z" changeid="lilovip">
+        <seg>Открыть недавние</seg>
       </tuv>
     </tu>
     <tu>
@@ -16714,6 +16702,14 @@ to ask for permission.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>While more intuitive, this behavior requires more mouse movement to switch between tools.)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053740Z" changeid="lilovip">
+        <seg>Хотя такое поведение более интуитивно, оно требует больше перемещений мыши для переключения между инструментами.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>This orientation to the Logisim libraries concludes with a fairly sophisticated Gray code counter that allows the user to alter its current value using the Poke Tool and to place a label on the component using the Text Tool.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T211438Z" changeid="lilovip">
@@ -16818,18 +16814,18 @@ to ask for permission.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Normally this is off, and Logisim displays the on-screen circuit with indications of the current circuit state, and it displays some hints about component interface (most particularly, it draws legs on OR gates to indicate where they would connect).</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100815T020950Z" changeid="lilovip">
-        <seg>Как правило этот пункт отключен, и Logisim показывает схемы на экране с отображением текущего состояния схемы, выводит некоторые подсказки связанные с интерфейсом компонентов (например, он отрисовывает ножки элементов ИЛИ чтобы показать, где они должны присоединяться).</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>For example, if Data Bits were 8, this input would require 3 bits; but if it were 9, it would require 4 bits.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T040423Z" changeid="lilovip">
         <seg>Например, если значение Биты данных равно 8, то этот вход должен иметь 3 бита; но если оно равно 9, то потребуются 4 бита.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clicking a wire displays temporarily the value, staying until the user clicks elsewhere in the circuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053918Z" changeid="lilovip">
+        <seg>Щелчок на проводе временно отображает значение, пока пользователь не щёлкнет в другом месте схемы.</seg>
       </tuv>
     </tu>
     <tu>
@@ -17162,14 +17158,6 @@ to ask for permission.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Toolbar tab </seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100902T154637Z" changeid="lilovip">
-        <seg>Вкладка Панель инструментов </seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>BitWidth bits = prev.getBitWidth();</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T194553Z" changeid="lilovip">
@@ -17487,14 +17475,6 @@ patents.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>While more intuitive, this behavior required moving the mouse more to switch between tools.)</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T161358Z" changeid="lilovip">
-        <seg>Хотя такое поведение более интуитивно, оно требует больше перемещений мыши для переключения между инструментами.)</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Select Bits</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -17637,18 +17617,18 @@ patents.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>It uses a two-bit adder as a subcircuit and iterates using a counter through all 16 possible inputs to it.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100812T225536Z" changeid="lilovip">
-        <seg>Она использует двухбитный сумматор как подсхему и пробегает все 16 возможных комбинаций на входах, используя счётчик.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Now to try another combination of inputs.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T234926Z" changeid="lilovip">
         <seg>Теперь попробуем другую комбинацию входов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>It uses a two-bit adder as a subcircuit and iterates using a counter through all 16 possible inputs to it.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100812T225536Z" changeid="lilovip">
+        <seg>Она использует двухбитный сумматор как подсхему и пробегает все 16 возможных комбинаций на входах, используя счётчик.</seg>
       </tuv>
     </tu>
     <tu>
@@ -17681,6 +17661,14 @@ patents.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T160652Z" changeid="lilovip">
         <seg>// этому.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Layout tab </seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052254Z" changeid="lilovip">
+        <seg>Вкладка Чертёж </seg>
       </tuv>
     </tu>
     <tu>
@@ -17773,18 +17761,18 @@ patents.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>JAR libraries</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20101007T142854Z" changeid="lilovip">
-        <seg>Библиотеки JAR</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>(The anchor and the ports are exceptions — they are always on top.)</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100924T154758Z" changeid="lilovip">
         <seg>(Якорь и порты являются исключениями - они всегда наверху.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>JAR libraries</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T142854Z" changeid="lilovip">
+        <seg>Библиотеки JAR</seg>
       </tuv>
     </tu>
     <tu>
@@ -17939,6 +17927,14 @@ the term &quot;modification&quot;.)  Each licensee is addressed as &quot;you&quo
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T192013Z" changeid="lilovip">
         <seg>new Port(0, 0, Port.OUTPUT, StdAttr.WIDTH),</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>First radix when wire poked: Configures how values are displayed when a wire is clicked using the Poke Tool.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053835Z" changeid="lilovip">
+        <seg>Первое основание при взаимодействии с проводом: настраивает, как отображаются значения, когда на проводе щёлкнули Инструментом Нажатие.</seg>
       </tuv>
     </tu>
     <tu>
@@ -18248,20 +18244,20 @@ impose that choice.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>// compute the next value</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100805T155936Z" changeid="lilovip">
-        <seg>// вычислить следующее значение</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>*/
 public class Components extends Library {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100806T155747Z" changeid="lilovip">
         <seg>*/
 public class Components extends Library {</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>// compute the next value</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20100805T155936Z" changeid="lilovip">
+        <seg>// вычислить следующее значение</seg>
       </tuv>
     </tu>
     <tu>
@@ -18362,6 +18358,14 @@ public class Components extends Library {</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>This tab includes preferences affecting the behavior of the circuit layout editor.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052800Z" changeid="lilovip">
+        <seg>На этой вкладке находятся настройки, влияющие на поведение редактора чертежа схемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>But by the time you finish it, none of your wires should be blue or gray.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T224925Z" changeid="lilovip">
@@ -18382,14 +18386,6 @@ public class Components extends Library {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T203444Z" changeid="lilovip">
         <seg>Нажатие на компонент Тактовый генератор будет немедленно переключать его текущее выходное значение.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>After Adding Component: By default, after adding each individual component, Logisim switches back to the Edit Tool to allow you to move components around and to add wires.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100815T015755Z" changeid="lilovip">
-        <seg>После добавления компонента: по умолчанию, после добавления каждого компонента, Logisim переключается на Инструмент Правка, позволяющий перемещать компоненты и добавлять провода.</seg>
       </tuv>
     </tu>
     <tu>
@@ -18590,6 +18586,14 @@ public class Components extends Library {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T173355Z" changeid="lilovip">
         <seg>Этот пункт меню доступен только при редактировании внешнего вида схемы и при условии, что выделена вершина на ломанной или на многоугольнике. Он удаляет выделенную вершину.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>For multi-bit values, you can configure exactly how the value is displayed (in binary, decimal, or hexadecimal, for example) using the Layout pane of the Logisim Preferences dialog box.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T055008Z" changeid="lilovip">
+        <seg>Для многобитных значений вы можете настроить, как отображается значение (в двоичном, десятичном или шестнадцатеричном виде, например), используя вкладку Чертёж диалогового окна Настройки Logisim.</seg>
       </tuv>
     </tu>
     <tu>
@@ -18806,14 +18810,6 @@ public class Components extends Library {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T225904Z" changeid="lilovip">
         <seg>Такты включены</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>By default, the &quot;Plain Template&quot; option will be selected, using the default template shipped with Logisim.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T160724Z" changeid="lilovip">
-        <seg>По умолчанию будет выбран вариант &quot;Обычный шаблон&quot;, использующий поставляемый с Logisim шаблон по умолчанию.</seg>
       </tuv>
     </tu>
     <tu>
@@ -19073,6 +19069,14 @@ sections when you distribute them as separate works.</seg>
 обоснованно считаться независимыми и самостоятельными произведениями, то эта
 Лицензия и ее условия не распространяются на эти части, если вы распространяете
 их как отдельные произведения.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Layout tab</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T051930Z" changeid="lilovip">
+        <seg>Вкладка Чертёж</seg>
       </tuv>
     </tu>
     <tu>
@@ -19337,6 +19341,14 @@ sections when you distribute them as separate works.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T235224Z" changeid="lilovip">
         <seg>таблицы истинности, которые перечисляют все возможные комбинации значений на входах и значения на соответствующих выходах</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Toolbar location: This drop-down menu configures the location of the toolbar within the overall window.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054753Z" changeid="lilovip">
+        <seg>Расположение панели инструментов: это выпадающее меню настраивает расположение панели инструментов в пределах окна.</seg>
       </tuv>
     </tu>
     <tu>
@@ -19761,6 +19773,14 @@ class GrayIncrementer extends InstanceFactory {</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>For example, Logisim's maximum speed for a reasonably large circuit might be 16 Hz; you can select a faster tick rate, but the actual speed will not exceed 16 Hz.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T131041Z" changeid="lilovip">
+        <seg>Например, максимальная скорость Logisim для достаточно большой схемы может быть 16 Гц; вы можете выбрать более высокую тактовую частоту, но фактическая скорость не будет превышать 16 Гц.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>To edit a particular value, click the value within the display rectangle.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T141027Z" changeid="lilovip">
@@ -19958,18 +19978,18 @@ circumstances.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Even</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20101007T144346Z" changeid="lilovip">
-        <seg>Чётность</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Wire bundles </seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T151840Z" changeid="lilovip">
         <seg>Пучки проводов </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Even</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101007T144346Z" changeid="lilovip">
+        <seg>Чётность</seg>
       </tuv>
     </tu>
     <tu>
@@ -20066,14 +20086,6 @@ circumstances.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100816T015730Z" changeid="lilovip">
         <seg>Западный край (входы, разрядность соответствует атрибуту Биты данных)</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Next: The International tab.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T161837Z" changeid="lilovip">
-        <seg>Далее: Вкладка Интернациональные.</seg>
       </tuv>
     </tu>
     <tu>
@@ -20178,6 +20190,14 @@ circumstances.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T015543Z" changeid="lilovip">
         <seg>Это особенно вероятно, если курс интенсивно использует Logisim и многие его продвинутые возможности; в таком случае настройки по умолчанию могут оказаться слишком простыми.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show project toolbar: When checked, a small toolbar is available above the explorer pane.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054327Z" changeid="lilovip">
+        <seg>Показать панель инструментов проекта: когда выбрано, выше панели проводника доступна маленькая панель инструментов.</seg>
       </tuv>
     </tu>
     <tu>
@@ -20501,14 +20521,6 @@ refrain entirely from distribution of the Program.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>If this option is unchecked, then the default will be not to add wires during a move — though you can turn it on temporarily by pressing the shift key during the move.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100818T052503Z" changeid="lilovip">
-        <seg>Если эта опция отключена, то по умолчанию при перемещении провода не будут добавляться - но вы можете включить это временно нажатием клавиши Shift при перемещении.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>The Mouse tab allows you to configure these mappings.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T153848Z" changeid="lilovip">
@@ -20711,14 +20723,6 @@ public class CounterPoker extends InstancePoker {</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>I haven't myself observed speed problems in Logisim, so I can't evaluate its effectiveness; I'm relying on user reports about whether this helps.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100815T020444Z" changeid="lilovip">
-        <seg>Я сам не наблюдал проблем со скоростью в Logisim, поэтому не могу оценить эффективность этого, и я надеюсь на сообщения пользователей о том, помогает ли это.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Guide to Being a Logisim User </seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100904T140447Z" changeid="lilovip">
@@ -20799,6 +20803,14 @@ public class CounterPoker extends InstancePoker {</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Opens a recently opened project in a new window without prompting the user to navigate through a file selection dialog.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052118Z" changeid="lilovip">
+        <seg>Открывает недавно открытый проект в новом окне без приглашения пользователя к навигации через диалог выбора файла.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Available only when editing how a circuit's appearance, this menu item raises the currently selected object(s) to be drawn on top of an object that currently overlaps the selection.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T173321Z" changeid="lilovip">
@@ -20875,6 +20887,14 @@ public class CounterPoker extends InstancePoker {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T212734Z" changeid="lilovip">
         <seg>См. Нажатие на память в Руководстве пользователя.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Next: The Layout tab.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054811Z" changeid="lilovip">
+        <seg>Далее: Вкладка Чертёж.</seg>
       </tuv>
     </tu>
     <tu>
@@ -21900,6 +21920,14 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The International tab </seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052237Z" changeid="lilovip">
+        <seg>Вкладка Интернациональные </seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Simulation Enabled</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T210801Z" changeid="lilovip">
@@ -21976,14 +22004,6 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T025425Z" changeid="lilovip">
         <seg>Множимое (то есть первое из двух чисел для перемножения).</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Replace Accented Characters: Some platforms have poor support for characters (such as ñ or ö) that do not appear in the 7-bit ASCII character set.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T143309Z" changeid="lilovip">
-        <seg>Заменять специфичные символы: некоторые платформы имеют плохую поддержку для символов (например ñ или ö), которых нет в 7-битном наборе символов ASCII.</seg>
       </tuv>
     </tu>
     <tu>
@@ -22453,14 +22473,6 @@ in new free programs; and that you know you can do these things.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>These preferences support options allowing Logisim to be used in many countries.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T140222Z" changeid="lilovip">
-        <seg>Эти настройки позволяют Logisim использоваться во многих странах.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>If any of the bits are floating or error, then a dash ('-') is displayed.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -22513,14 +22525,6 @@ in new free programs; and that you know you can do these things.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T053725Z" changeid="lilovip">
         <seg>(Это не будет работать, когда загружен графический интерфейс - это только для выполнения в командной строке.)</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>The tab includes three options.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T140254Z" changeid="lilovip">
-        <seg>Вкладка включает три опции.</seg>
       </tuv>
     </tu>
     <tu>
@@ -22693,14 +22697,6 @@ in new free programs; and that you know you can do these things.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Printer View check box specifies whether to display the circuit on the screen in the same way it is displayed through the printer.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100815T020901Z" changeid="lilovip">
-        <seg>Флажок Вид для печати определяет, показывать ли схемы на экране так же, как они выводятся через принтер.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>The bit width of the values to be divided and of the result.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T023519Z" changeid="lilovip">
@@ -22745,6 +22741,14 @@ in new free programs; and that you know you can do these things.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100812T211255Z" changeid="lilovip">
         <seg>В Logisim синий показывает, что значение в этой точке &quot;неизвестно&quot;, а серый показывает, что провод не подключен ни к чему.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Second radix when wire poked: Configures the second part of how wire values are displayed.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053940Z" changeid="lilovip">
+        <seg>Второе основание при нажатии на провод: настраивает вторую часть отображаемого значения.</seg>
       </tuv>
     </tu>
     <tu>
@@ -22806,14 +22810,6 @@ POSSIBILITY OF SUCH DAMAGES.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The Mouse tab</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100809T115411Z" changeid="lilovip">
-        <seg>Вкладка Мышь</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Exit</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T183351Z" changeid="lilovip">
@@ -22858,6 +22854,14 @@ POSSIBILITY OF SUCH DAMAGES.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T190433Z" changeid="lilovip">
         <seg>/** Конструктор конфигурирует фабрику.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-clearprops</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T003145Z" changeid="lilovip">
+        <seg>-clearprops</seg>
       </tuv>
     </tu>
     <tu>
@@ -23163,6 +23167,14 @@ above, provided that you also meet all of these conditions:</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>If this box is unchecked, then the default will be not to add wires during a move — though you can turn it on temporarily by pressing the shift key during the move.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053558Z" changeid="lilovip">
+        <seg>Если этот флажок отключен, то по умолчанию при перемещении провода не будут добавляться - но вы можете включить это временно нажатием клавиши Shift при перемещении.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>public GrayCounter() {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T150903Z" changeid="lilovip">
@@ -23300,14 +23312,6 @@ software--to make sure the software is free for all its users.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T011923Z" changeid="lilovip">
         <seg>Западный край (вход, разрядность соответствует атрибуту Разрядность входа)</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Unselecting the check box will disable this behavior.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100811T161825Z" changeid="lilovip">
-        <seg>Снятие этого флажка отключит это поведение.</seg>
       </tuv>
     </tu>
     <tu>

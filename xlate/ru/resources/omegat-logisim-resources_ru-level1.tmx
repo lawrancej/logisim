@@ -22,6 +22,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Configure the main editing window</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041536Z" changeid="lilovip">
+        <seg>Настроить главное окно редактирования</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Carry In: an amount to be added into the output</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T190819Z" changeid="lilovip">
@@ -74,14 +82,6 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Выход:</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Show Grid</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Показывать сетку</seg>
       </tuv>
     </tu>
     <tu>
@@ -294,14 +294,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Print Preview</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Предпросмотр печати</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Dot Shape</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -346,6 +338,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Встроенная библиотека...</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Printer view</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041635Z" changeid="lilovip">
+        <seg>Вид для печати</seg>
       </tuv>
     </tu>
     <tu>
@@ -454,14 +454,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Edit options affecting behavior of drawing area.</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Редактировать параметры, влияющие на поведение области рисования.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Polygon</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -538,14 +530,6 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Удалить привязку мыши</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Iterations Until Oscillation</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Итераций до возбуждения</seg>
       </tuv>
     </tu>
     <tu>
@@ -814,6 +798,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>After adding component:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041654Z" changeid="lilovip">
+        <seg>После добавления компонента:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Three-state?</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -910,6 +902,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Gate shape:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041502Z" changeid="lilovip">
+        <seg>Форма элементов:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Cannot Create Directory</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -922,14 +922,6 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Невозможно анализировать</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Location:</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100810T211653Z" changeid="lilovip">
-        <seg>Расположение:</seg>
       </tuv>
     </tu>
     <tu>
@@ -1082,14 +1074,6 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T191429Z" changeid="lilovip">
         <seg>Выход: инвертированное входное значение в дополнительном коде</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Configure behavior of tools</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Настроить поведение инструментов</seg>
       </tuv>
     </tu>
     <tu>
@@ -1302,10 +1286,10 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Second Radix When Wire Poked</seg>
+        <seg>Keep connections while moving</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100814T210831Z" changeid="lilovip">
-        <seg>Второе основание при нажатии на провод</seg>
+      <tuv lang="RU-RU" changedate="20101013T041641Z" changeid="lilovip">
+        <seg>Сохранять соединения при перемещении</seg>
       </tuv>
     </tu>
     <tu>
@@ -1322,14 +1306,6 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T011624Z" changeid="lilovip">
         <seg>Разрядность выхода</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Keep Connections When Moving</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100809T104012Z" changeid="lilovip">
-        <seg>Сохранять соединения при перемещении</seg>
       </tuv>
     </tu>
     <tu>
@@ -1406,6 +1382,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Show ghosts while adding</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041633Z" changeid="lilovip">
+        <seg>Показывать призраки во время добавления</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>View and edit the set of input variables.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -1426,6 +1410,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Состояние уровнем выше</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Configure behavior of layout editor</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041630Z" changeid="lilovip">
+        <seg>Настроить поведение редактора чертежа</seg>
       </tuv>
     </tu>
     <tu>
@@ -1490,6 +1482,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Загрузить файл Logisim</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show project toolbar</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041542Z" changeid="lilovip">
+        <seg>Показать панель инструментов проекта</seg>
       </tuv>
     </tu>
     <tu>
@@ -1606,10 +1606,26 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Second radix when wire poked:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041735Z" changeid="lilovip">
+        <seg>Второе основание при нажатии на провод:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Set %s</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Установить %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Gate output when undefined</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041429Z" changeid="lilovip">
+        <seg>Выход элемента при неопределённости</seg>
       </tuv>
     </tu>
     <tu>
@@ -1670,14 +1686,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Plain Template</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Обычный шаблон</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Help</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -1718,18 +1726,18 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>The clipboard goes beyond the end of the file.</seg>
+        <seg>(None)</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Буфер выходит за пределы файла.</seg>
+      <tuv lang="RU-RU" changedate="20101013T041412Z" changeid="lilovip">
+        <seg>(Нет)</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>First Radix When Wire Poked</seg>
+        <seg>The clipboard goes beyond the end of the file.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100814T210844Z" changeid="lilovip">
-        <seg>Первое основание при нажатии на провод</seg>
+      <tuv lang="RU-RU">
+        <seg>Буфер выходит за пределы файла.</seg>
       </tuv>
     </tu>
     <tu>
@@ -1870,14 +1878,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Replace Accented Characters</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Заменять специфичные символы</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Separate load and store ports</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -1958,14 +1958,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Empty Template</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Пустой шаблон</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>RAM</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -2018,6 +2010,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Руководство пользователя</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Layout</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041609Z" changeid="lilovip">
+        <seg>Чертёж</seg>
       </tuv>
     </tu>
     <tu>
@@ -2286,6 +2286,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Replace accented characters</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041459Z" changeid="lilovip">
+        <seg>Заменять специфичные символы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Logical Right</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -2322,14 +2330,6 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T171726Z" changeid="lilovip">
         <seg>Редактировать внешний вид схемы</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Canvas</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Холст</seg>
       </tuv>
     </tu>
     <tu>
@@ -2518,6 +2518,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>-clearprops       clear application preferences at startup</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T002829Z" changeid="lilovip">
+        <seg>-clearprops       очистить настройки приложения при запуске</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Destination Project:</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -2538,14 +2546,6 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Справка по библиотеке</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Tools</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Инструменты</seg>
       </tuv>
     </tu>
     <tu>
@@ -2586,6 +2586,22 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Текущее состояние триггера</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Custom template:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041451Z" changeid="lilovip">
+        <seg>Специальный шаблон:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Switch to Edit Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041725Z" changeid="lilovip">
+        <seg>Переключиться на Инструмент Правка</seg>
       </tuv>
     </tu>
     <tu>
@@ -2730,6 +2746,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Потерять изменения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Down middle</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041556Z" changeid="lilovip">
+        <seg>Посередине вниз</seg>
       </tuv>
     </tu>
     <tu>
@@ -2910,14 +2934,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Use Defaults</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Использовать умолчания</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Tutorial</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T215743Z" changeid="lilovip">
@@ -2982,6 +2998,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Open Recent</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041407Z" changeid="lilovip">
+        <seg>Открыть недавние</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Bottom</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -3014,10 +3038,26 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Empty template</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041447Z" changeid="lilovip">
+        <seg>Пустой шаблон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Demultiplexer</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Демультиплексор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Keep at component tool</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041720Z" changeid="lilovip">
+        <seg>Остаться на инструменте Компонент</seg>
       </tuv>
     </tu>
     <tu>
@@ -3278,14 +3318,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Show Ghosts While Adding</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Показывать призраки во время добавления</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Data: value loaded or stored at address</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -3346,14 +3378,6 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>shift reg</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Toolbar Location</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Расположение панели инструментов</seg>
       </tuv>
     </tu>
     <tu>
@@ -3750,14 +3774,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>After Adding Component:</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>После добавления компонента:</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Output: result of shifting the input</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T192000Z" changeid="lilovip">
@@ -3858,6 +3874,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100824T140300Z" changeid="lilovip">
         <seg>Не менять</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Graphics acceleration:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041746Z" changeid="lilovip">
+        <seg>Ускорение графики:</seg>
       </tuv>
     </tu>
     <tu>
@@ -4190,26 +4214,10 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Gate Shape:</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Форма элементов:</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Cannot create circular reference.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Невозможно создать циклическую ссылку.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Add Noise To Component Delays</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Добавить шум к задержкам компонентов</seg>
       </tuv>
     </tu>
     <tu>
@@ -4334,14 +4342,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Keep At Component Tool</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Остаться на Инструменте Компонент</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>wire start not defined</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -4434,14 +4434,6 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Знаковое десятичное</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Switch To Edit Tool</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100814T211148Z" changeid="lilovip">
-        <seg>Переключиться на Инструмент Правка</seg>
       </tuv>
     </tu>
     <tu>
@@ -4610,6 +4602,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Беззнаковое десятичное</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Add noise to component delays</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041433Z" changeid="lilovip">
+        <seg>Добавить шум к задержкам компонентов</seg>
       </tuv>
     </tu>
     <tu>
@@ -4802,6 +4802,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T010649Z" changeid="lilovip">
         <seg>Ошибка при чтении файла образа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Use defaults</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041749Z" changeid="lilovip">
+        <seg>Использовать умолчания</seg>
       </tuv>
     </tu>
     <tu>
@@ -5398,6 +5406,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>First radix when wire poked:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041731Z" changeid="lilovip">
+        <seg>Первое основание при нажатии на провод:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>wire end not defined</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -5498,14 +5514,6 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Название схемы:</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Down Middle</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Посередине вниз</seg>
       </tuv>
     </tu>
     <tu>
@@ -5662,18 +5670,18 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Show Component Tips</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Показывать подсказки для компонентов</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Not at end of group</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Не в конце группы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show tick rate</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041540Z" changeid="lilovip">
+        <seg>Показать скорость тактов</seg>
       </tuv>
     </tu>
     <tu>
@@ -5942,6 +5950,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Show attribute halo</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041648Z" changeid="lilovip">
+        <seg>Показывать ореол</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>No file known corresponding to %s.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -5974,18 +5990,18 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>str</seg>
+        <seg>Plain template</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>str</seg>
+      <tuv lang="RU-RU" changedate="20101013T041444Z" changeid="lilovip">
+        <seg>Обычный шаблон</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Zoom Factor</seg>
+        <seg>str</seg>
       </tuv>
       <tuv lang="RU-RU">
-        <seg>Коэффициент масштабирования</seg>
+        <seg>str</seg>
       </tuv>
     </tu>
     <tu>
@@ -6070,6 +6086,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Iterations until oscillation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041426Z" changeid="lilovip">
+        <seg>Итераций до возбуждения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>%s: Log</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100806T190915Z" changeid="lilovip">
@@ -6134,14 +6158,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Graphics Acceleration:</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Ускорение графики:</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Remove Toolbar Button</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6198,14 +6214,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Show Project Toolbar</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Показать панель инструментов проекта</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>%sMB ROM</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6238,18 +6246,18 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Open...</seg>
+        <seg>doc/doc_en.hs</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Открыть...</seg>
+      <tuv lang="RU-RU" changedate="20101008T125635Z" changeid="lilovip">
+        <seg>doc/doc_ru.hs</seg>
       </tuv>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Show Attribute Halo</seg>
+        <seg>Open...</seg>
       </tuv>
       <tuv lang="RU-RU">
-        <seg>Показывать ореол</seg>
+        <seg>Открыть...</seg>
       </tuv>
     </tu>
     <tu>
@@ -6326,6 +6334,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Toolbar location:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041552Z" changeid="lilovip">
+        <seg>Расположение панели инструментов:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Left</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6366,6 +6382,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Show component tips</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041651Z" changeid="lilovip">
+        <seg>Показывать подсказки для компонентов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Plexers</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6386,14 +6410,6 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Редактировать инструменты панели инструментов</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>doc/en/doc.hs</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20100815T191350Z" changeid="lilovip">
-        <seg>doc/ru/doc.hs</seg>
       </tuv>
     </tu>
     <tu>
@@ -6534,14 +6550,6 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Custom Template:</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Специальный шаблон:</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Create a new circuit state?</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6570,14 +6578,6 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Выход</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
-        <seg>Printer View</seg>
-      </tuv>
-      <tuv lang="RU-RU">
-        <seg>Вид для печати</seg>
       </tuv>
     </tu>
     <tu>
@@ -6626,6 +6626,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Выход элемента при неопределённости</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim Documentation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T002747Z" changeid="lilovip">
+        <seg>Документация Logisim</seg>
       </tuv>
     </tu>
     <tu>

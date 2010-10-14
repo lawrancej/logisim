@@ -134,6 +134,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>(Disabling ticks or changing the maximum tick rate will clear its history.)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T130810Z" changeid="lilovip">
+        <seg>(Выключение тактов или изменение максимальной тактовой частоты очистит эту историю.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>(Empty circuits are not displayed as options.)</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T192624Z" changeid="lilovip">
@@ -236,6 +244,14 @@ the term &quot;modification&quot;.)  Each licensee is addressed as &quot;you&quo
       </tuv>
       <tuv lang="RU-RU" changedate="20100803T230022Z" changeid="lilovip">
         <seg>(Если вы решили уменьшить число входов до 3, то элемент И не будет иметь вертикальное расширение на левой стороне.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(If you find these tips irritating, you can disable them via the &lt;a1&gt;Preferences window's Layout tab&lt;/a1&gt;.)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054905Z" changeid="lilovip">
+        <seg>(Если вы находите эти подсказки раздражающими, вы можете отключить их через &lt;a1&gt;вкладку Чертёж окна Настройки&lt;/a1&gt;.)</seg>
       </tuv>
     </tu>
     <tu>
@@ -1148,6 +1164,14 @@ public class CounterPoker extends InstancePoker {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100810T213243Z" changeid="lilovip">
         <seg>-accents &lt;e0&gt;[&lt;b1&gt;yes&lt;/b1&gt;|&lt;b2&gt;no&lt;/b2&gt;]&lt;/e0&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-clearprops</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T003145Z" changeid="lilovip">
+        <seg>-clearprops</seg>
       </tuv>
     </tu>
     <tu>
@@ -4641,6 +4665,14 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;a0&gt;The Simulation tab&lt;/a0&gt; &lt;br1&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052142Z" changeid="lilovip">
+        <seg>&lt;a0&gt;Вкладка Моделирование&lt;/a0&gt; &lt;br1&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;a0&gt;The Template tab&lt;/a0&gt; &lt;br1/&gt;</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T135638Z" changeid="lilovip">
@@ -4693,6 +4725,14 @@ Copyright (C) перевод на русский язык,
       </tuv>
       <tuv lang="RU-RU">
         <seg>&lt;a10&gt;ПЗУ&lt;/a10&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;a10&gt;The command line&lt;/a10&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052309Z" changeid="lilovip">
+        <seg>&lt;a10&gt;Командная строка&lt;/a10&gt;</seg>
       </tuv>
     </tu>
     <tu>
@@ -4953,6 +4993,14 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;a2&gt;The International tab&lt;/a2&gt; &lt;br3&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052237Z" changeid="lilovip">
+        <seg>&lt;a2&gt;Вкладка Интернациональные&lt;/a2&gt; &lt;br3&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;a2&gt;The Simulation tab&lt;/a2&gt; &lt;br3/&gt;</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T115348Z" changeid="lilovip">
@@ -4981,6 +5029,14 @@ Copyright (C) перевод на русский язык,
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T152007Z" changeid="lilovip">
         <seg>&lt;a2&gt;Вкладка Таблица&lt;/a2&gt; &lt;br3&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;a2&gt;The Toolbar tab&lt;/a2&gt; &lt;br3&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052149Z" changeid="lilovip">
+        <seg>&lt;a2&gt;Вкладка Панель инструментов&lt;/a2&gt; &lt;br3&gt;</seg>
       </tuv>
     </tu>
     <tu>
@@ -5217,6 +5273,14 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;a4&gt;The Mouse tab&lt;/a4&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052156Z" changeid="lilovip">
+        <seg>&lt;a4&gt;Вкладка Мышь&lt;/a4&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;a4&gt;The Project menu&lt;/a4&gt; &lt;br5/&gt;</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T193505Z" changeid="lilovip">
@@ -5245,6 +5309,14 @@ Copyright (C) перевод на русский язык,
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T154637Z" changeid="lilovip">
         <seg>&lt;a4&gt;Вкладка Панель инструментов&lt;/a4&gt; &lt;br5&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;a4&gt;The Window tab&lt;/a4&gt; &lt;br5&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052248Z" changeid="lilovip">
+        <seg>&lt;a4&gt;Вкладка Окно&lt;/a4&gt; &lt;br5&gt;</seg>
       </tuv>
     </tu>
     <tu>
@@ -5369,6 +5441,14 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;a6&gt;The Layout tab&lt;/a6&gt; &lt;br7&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052254Z" changeid="lilovip">
+        <seg>&lt;a6&gt;Вкладка Чертёж&lt;/a6&gt; &lt;br7&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;a6&gt;The Mouse tab&lt;/a6&gt;</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T115411Z" changeid="lilovip">
@@ -5473,6 +5553,14 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;a8&gt;The Experimental tab&lt;/a8&gt; &lt;br9&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052302Z" changeid="lilovip">
+        <seg>&lt;a8&gt;Вкладка Экспериментальные&lt;/a8&gt; &lt;br9&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;a8&gt;The Window and Help menus&lt;/a8&gt;</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T193535Z" changeid="lilovip">
@@ -5492,6 +5580,14 @@ Copyright (C) перевод на русский язык,
         <seg>&lt;b0&gt;After Adding Component:&lt;/b0&gt; By default, after adding each individual component, Logisim switches back to the Edit Tool to allow you to move components around and to add wires.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T015755Z" changeid="lilovip">
+        <seg>&lt;b0&gt;После добавления компонента:&lt;/b0&gt; по умолчанию, после добавления каждого компонента, Logisim переключается на Инструмент Правка, позволяющий перемещать компоненты и добавлять провода.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;After adding component:&lt;/b0&gt; By default, after adding each individual component, Logisim switches back to the Edit Tool to allow you to move components around and to add wires.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053621Z" changeid="lilovip">
         <seg>&lt;b0&gt;После добавления компонента:&lt;/b0&gt; по умолчанию, после добавления каждого компонента, Logisim переключается на Инструмент Правка, позволяющий перемещать компоненты и добавлять провода.</seg>
       </tuv>
     </tu>
@@ -5521,10 +5617,34 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;b0&gt;Gate shape:&lt;/b0&gt; Logisim supports three standards for drawing gates: &lt;e1&gt;shaped&lt;/e1&gt; gates, &lt;e2&gt;rectangular&lt;/e2&gt; gates, and &lt;e3&gt;DIN 40700&lt;/e3&gt; gates.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052402Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Форма элементов:&lt;/b0&gt; Logisim поддерживает три стандарта для отрисовки логических элементов: &lt;e1&gt;фигурные&lt;/e1&gt; элементы, &lt;e2&gt;прямоугольные&lt;/e2&gt; элементы, и элементы &lt;e3&gt;DIN 40700&lt;/e3&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Graphics Acceleration:&lt;/b0&gt; One Logisim user observed that adding &lt;t1&gt;-Dsun.java2d.d3d=True&lt;/t1&gt; to the command line seemed to improve Logisim's graphics performance by telling it to use hardware graphics acceleration.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T131341Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Ускорение графики:&lt;/b0&gt; один из пользователей Logisim отметил, что добавление &lt;t1&gt;-Dsun.java2d.d3d=True&lt;/t1&gt; к командной строке кажется улучшает производительность графики Logisim, заставляя его использовать аппаратное ускорение графики.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;b0&gt;Graphics Acceleration:&lt;/b0&gt; Several Logisim users have reported that Logisim seems quite slow at rendering graphics.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100810T220330Z" changeid="lilovip">
         <seg>&lt;b0&gt;Ускорение графики:&lt;/b0&gt; Некоторые пользователи Logisim сообщили, что Logisim кажется довольно медленным при отрисовке графики.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Graphics acceleration:&lt;/b0&gt; One Logisim user observed that adding &lt;t1&gt;-Dsun.java2d.d3d=True&lt;/t1&gt; to the command line seemed to improve Logisim's graphics performance by telling it to use hardware graphics acceleration.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052223Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Ускорение графики:&lt;/b0&gt; один из пользователей Logisim отметил, что добавление &lt;t1&gt;-Dsun.java2d.d3d=True&lt;/t1&gt; к командной строке кажется улучшает производительность графики Logisim, заставляя его использовать аппаратное ускорение графики.</seg>
       </tuv>
     </tu>
     <tu>
@@ -5541,6 +5661,14 @@ Copyright (C) перевод на русский язык,
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T184511Z" changeid="lilovip">
         <seg>&lt;b0&gt;Формат изображения:&lt;/b0&gt; Вы можете создавать PNG, GIF и JPEG файлы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Keep connections while moving:&lt;/b0&gt; Indicates whether Logisim should add new wires when components are moved to preserve their connections.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053520Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Сохранять соединения при перемещении:&lt;/b0&gt; указывает, должен ли Logisim добавлять новые провода, когда компоненты перемещены, чтобы сохранять их соединения.</seg>
       </tuv>
     </tu>
     <tu>
@@ -5617,9 +5745,25 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;b0&gt;Printer view:&lt;/b0&gt; Specifies whether to display the circuit on the screen in the same way it is displayed through the printer.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053054Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Вид для печати:&lt;/b0&gt; определяет, показывать ли схемы на экране так же, как они выводятся через принтер.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;b0&gt;Replace Accented Characters:&lt;/b0&gt; Some platforms have poor support for characters (such as ñ or ö) that do not appear in the 7-bit ASCII character set.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T143309Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Заменять специфичные символы:&lt;/b0&gt; некоторые платформы имеют плохую поддержку для символов (например ñ или ö), которых нет в 7-битном наборе символов ASCII.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Replace accented characters:&lt;/b0&gt; Some platforms have poor support for characters (such as ñ or ö) that do not appear in the 7-bit ASCII character set.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052435Z" changeid="lilovip">
         <seg>&lt;b0&gt;Заменять специфичные символы:&lt;/b0&gt; некоторые платформы имеют плохую поддержку для символов (например ñ или ö), которых нет в 7-битном наборе символов ASCII.</seg>
       </tuv>
     </tu>
@@ -5645,6 +5789,62 @@ Copyright (C) перевод на русский язык,
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T161620Z" changeid="lilovip">
         <seg>&lt;b0&gt;Показывать призраки во время добавления:&lt;/b0&gt; когда включено, и когда выбран инструмент для добавления нового компонента, при движении мыши по холсту отрисовывается светло-серый контур компонента.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Show Ghosts while adding:&lt;/b0&gt; When checked, and when a tool for adding a new component is selected, a light-gray outline of a component to be added is drawn as the mouse moves across the canvas.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053612Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Показывать призраки во время добавления:&lt;/b0&gt; когда включено, и когда выбран инструмент для добавления нового компонента, при движении мыши по холсту отрисовывается светло-серый контур компонента.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Show Tick Rate:&lt;/b0&gt; If checked, then when ticks are enabled, Logisim displays a measurement of the rate at which it has been able to complete ticks.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T130603Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Показать скорость тактов:&lt;/b0&gt; если выбрано, то когда такты включены, Logisim отображает скорость, с которой он выполняет такты.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Show attribute halo:&lt;/b0&gt; Specifies whether to draw the pale teal oval around the component or tool whose attributes are currently displayed in the attribute table.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053110Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Показывать ореол:&lt;/b0&gt; определяет, нужно ли рисовать голубой овал вокруг компонента или инструмента, атрибуты которого в данный момент отображаются в таблице атрибутов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Show component tips:&lt;/b0&gt; Specifies whether to display the &quot;tool tips&quot; that will temporarily appear when the mouse hovers over components supporting them.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053135Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Показывать подсказки для компонентов:&lt;/b0&gt; указывает, следует ли отображать &quot;подсказки&quot;, которые будут появляться на время при наведении указателя мыши на компоненты, поддерживающие их.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Show project toolbar:&lt;/b0&gt; When checked, a small toolbar is available above the explorer pane.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054327Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Показать панель инструментов проекта:&lt;/b0&gt; когда выбрано, выше панели проводника доступна маленькая панель инструментов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Show tick rate:&lt;/b0&gt; If checked, then when ticks are enabled, Logisim displays a measurement of the rate at which it has been able to complete ticks.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054119Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Показать скорость тактов:&lt;/b0&gt; если выбрано, то когда такты включены, Logisim отображает скорость, с которой он выполняет такты.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;b0&gt;Toolbar location:&lt;/b0&gt; This drop-down menu configures the location of the toolbar within the overall window.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054753Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Расположение панели инструментов:&lt;/b0&gt; это выпадающее меню настраивает расположение панели инструментов в пределах окна.</seg>
       </tuv>
     </tu>
     <tu>
@@ -5821,6 +6021,14 @@ Copyright (C) перевод на русский язык,
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T184724Z" changeid="lilovip">
         <seg>&lt;s0&gt;Тёмно-зелёный:&lt;/s0&gt; Провод несёт однобитное значение 0.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;s0&gt;First radix when wire poked:&lt;/s0&gt; Configures how values are displayed when a wire is clicked using the Poke Tool.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053835Z" changeid="lilovip">
+        <seg>&lt;s0&gt;Первое основание при взаимодействии с проводом:&lt;/s0&gt; настраивает, как отображаются значения, когда на проводе щёлкнули Инструментом Нажатие.</seg>
       </tuv>
     </tu>
     <tu>
@@ -6177,6 +6385,14 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;s0&gt;Next:&lt;/s0&gt; &lt;a1&gt;The International tab&lt;/a1&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054019Z" changeid="lilovip">
+        <seg>&lt;s0&gt;Далее:&lt;/s0&gt; &lt;a1&gt;Вкладка Интернациональные&lt;/a1&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;s0&gt;Next:&lt;/s0&gt; &lt;a1&gt;The Mouse tab&lt;/a1&gt;.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100810T212047Z" changeid="lilovip">
@@ -6329,6 +6545,22 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;s0&gt;Next:&lt;/s0&gt; &lt;e1&gt;&lt;a2&gt;The Layout tab&lt;/a2&gt;&lt;/e1&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054811Z" changeid="lilovip">
+        <seg>&lt;s0&gt;Далее:&lt;/s0&gt; &lt;e1&gt;&lt;a2&gt;Вкладка Чертёж&lt;/a2&gt;&lt;/e1&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;s0&gt;Next:&lt;/s0&gt; &lt;e1&gt;&lt;a2&gt;The Window tab&lt;/a2&gt;&lt;/e1&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052501Z" changeid="lilovip">
+        <seg>&lt;s0&gt;Далее:&lt;/s0&gt; &lt;e1&gt;&lt;a2&gt;Вкладка Окно&lt;/a2&gt;&lt;/e1&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;s0&gt;Next:&lt;/s0&gt; &lt;e1&gt;&lt;a2&gt;User's Guide&lt;/a2&gt;.&lt;/e1&gt;</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T184036Z" changeid="lilovip">
@@ -6437,6 +6669,14 @@ Copyright (C) перевод на русский язык,
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T071717Z" changeid="lilovip">
         <seg>&lt;s0&gt;S-R триггер:&lt;/s0&gt; когда тактовый вход срабатывает, значение, хранящееся в триггере, остаётся неизменным, если на входах &lt;v1&gt;R&lt;/v1&gt; и &lt;v2&gt;S&lt;/v2&gt; - 0; становится 0, если на входе &lt;v3&gt;R&lt;/v3&gt; (&lt;e4&gt;Сброс&lt;/e4&gt;) - 1, и становится 1, если на входе &lt;v5&gt;S&lt;/v5&gt; (&lt;e6&gt;Установка&lt;/e6&gt;) - 1.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>&lt;s0&gt;Second radix when wire poked:&lt;/s0&gt; Configures the second part of how wire values are displayed.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053940Z" changeid="lilovip">
+        <seg>&lt;s0&gt;Второе основание при нажатии на провод:&lt;/s0&gt; настраивает вторую часть отображаемого значения.</seg>
       </tuv>
     </tu>
     <tu>
@@ -8771,6 +9011,14 @@ software--to make sure the software is free for all its users.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>By default, the &quot;Plain template&quot; option will be selected, using the default template shipped with Logisim.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053951Z" changeid="lilovip">
+        <seg>По умолчанию будет выбран вариант &quot;Обычный шаблон&quot;, использующий поставляемый с Logisim шаблон по умолчанию.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>By default, the circuit is represented as a rectangle with a gray &lt;q0&gt;notch&lt;/q0&gt; on its north end, but this menu option allows you to draw a different appearance for the subcircuit.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T173432Z" changeid="lilovip">
@@ -8875,6 +9123,14 @@ software--to make sure the software is free for all its users.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Clear all application preferences at startup, so Logisim will act as if it were being executed on the host system for the first time.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T003307Z" changeid="lilovip">
+        <seg>Очистить все настройки приложения при запуске, так что Logisim будет вести себя так, как будто он запущен в данной системе первый раз.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Clear: When 0 or undefined, this input has no effect.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -8935,6 +9191,14 @@ software--to make sure the software is free for all its users.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100816T042330Z" changeid="lilovip">
         <seg>Щелчок на триггере с помощью Инструмента Нажатие переключают бит, хранящийся в триггере, если входы Асинхронный сброс/установка не фиксируют значение в данный момент.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clicking a wire displays temporarily the value, staying until the user clicks elsewhere in the circuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053918Z" changeid="lilovip">
+        <seg>Щелчок на проводе временно отображает значение, пока пользователь не щёлкнет в другом месте схемы.</seg>
       </tuv>
     </tu>
     <tu>
@@ -11058,6 +11322,14 @@ control compilation and installation of the executable.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>For example, Logisim's maximum speed for a reasonably large circuit might be 16 Hz; you can select a faster tick rate, but the actual speed will not exceed 16 Hz.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T131041Z" changeid="lilovip">
+        <seg>Например, максимальная скорость Logisim для достаточно большой схемы может быть 16 Гц; вы можете выбрать более высокую тактовую частоту, но фактическая скорость не будет превышать 16 Гц.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>For example, a signal may end up entering a gate during one step, but the gate won't show a different signal until the next simulation step.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T211720Z" changeid="lilovip">
@@ -11157,6 +11429,14 @@ you have.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>For example, if you hover over a subcircuit component's pin, it will display the label of the corresponding pin within the subcircuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053230Z" changeid="lilovip">
+        <seg>Например, если вы подержите указатель над контактом компонента подсхемы, то отобразится метка соответствующего контакта внутри подсхемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>For example, if you select the AND gate tool and move the mouse into the window (without pressing the mouse's button), a gray outline of an AND gate will display where the AND gate will appear when the mouse is clicked.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T161805Z" changeid="lilovip">
@@ -11249,6 +11529,14 @@ you have.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Для многобитных значений вы можете настроить, как отображается значение (в двоичном, десятичном или шестнадцатеричном виде, например), используя &lt;a0&gt;вкладку Холст&lt;/a0&gt; диалогового окна Параметры проекта.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>For multi-bit values, you can configure exactly how the value is displayed (in binary, decimal, or hexadecimal, for example) using the &lt;a0&gt;Layout pane&lt;/a0&gt; of the Logisim Preferences dialog box.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T055008Z" changeid="lilovip">
+        <seg>Для многобитных значений вы можете настроить, как отображается значение (в двоичном, десятичном или шестнадцатеричном виде, например), используя &lt;a0&gt;вкладку Чертёж&lt;/a0&gt; диалогового окна Настройки Logisim.</seg>
       </tuv>
     </tu>
     <tu>
@@ -12826,6 +13114,14 @@ authors' reputations.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>If this box is unchecked, then the default will be not to add wires during a move — though you can turn it on temporarily by pressing the shift key during the move.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053558Z" changeid="lilovip">
+        <seg>Если этот флажок отключен, то по умолчанию при перемещении провода не будут добавляться - но вы можете включить это временно нажатием клавиши Shift при перемещении.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>If this is 0 (the default), then the starting value is based on the time that the current simulation began.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -13075,6 +13371,14 @@ may not distribute the Program at all.</seg>
         <seg>If you want a bare-bones configuration, you might choose &quot;Empty Template.&quot; But if you want to designate another file to use as the template, select a template via the Select... button, and then choose the &quot;Custom Template&quot; option.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T160914Z" changeid="lilovip">
+        <seg>Если вы хотите скелетную конфигурацию, вы можете выбрать &quot;Пустой шаблон&quot;. Но если вы хотите назначить другой файл для использования в качестве шаблона, выберите шаблон через кнопку Выбрать..., а затем укажите вариант &quot;Специальный шаблон&quot;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>If you want a bare-bones configuration, you might choose &quot;Empty template.&quot; But if you want to designate another file to use as the template, select a template via the Select... button, and then choose the &quot;Custom template&quot; option.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054003Z" changeid="lilovip">
         <seg>Если вы хотите скелетную конфигурацию, вы можете выбрать &quot;Пустой шаблон&quot;. Но если вы хотите назначить другой файл для использования в качестве шаблона, выберите шаблон через кнопку Выбрать..., а затем укажите вариант &quot;Специальный шаблон&quot;.</seg>
       </tuv>
     </tu>
@@ -14199,6 +14503,14 @@ implemented by public license practices.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T173210Z" changeid="lilovip">
         <seg>Он будет показывать значения, которые были, когда он сдался.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>It won't have any effect until Logisim is restarted.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T131834Z" changeid="lilovip">
+        <seg>Это не будет иметь никакого эффекта, пока Logisim не будет перезапущен.</seg>
       </tuv>
     </tu>
     <tu>
@@ -15500,6 +15812,14 @@ impose that choice.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Normally this is off, and Logisim displays the on-screen circuit with indications of the current circuit state, and it displays some hints about component interface (most notably, it draws legs on OR gates to indicate where they would connect).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053021Z" changeid="lilovip">
+        <seg>Как правило этот пункт отключен, и Logisim показывает схемы на экране с отображением текущего состояния схемы и выводит некоторые подсказки связанные с интерфейсом компонентов (самое заметное - он отрисовывает ножки элементов ИЛИ чтобы показать, где они должны присоединяться).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Normally this is off, and Logisim displays the on-screen circuit with indications of the current circuit state, and it displays some hints about component interface (most particularly, it draws legs on OR gates to indicate where they would connect).</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T020950Z" changeid="lilovip">
@@ -16196,6 +16516,14 @@ impose that choice.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Open Recent</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T051941Z" changeid="lilovip">
+        <seg>Открыть недавние</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Open...</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T182748Z" changeid="lilovip">
@@ -16216,6 +16544,14 @@ impose that choice.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T002223Z" changeid="lilovip">
         <seg>Открывает новый проект в новом окне.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Opens a recently opened project in a new window without prompting the user to navigate through a file selection dialog.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052118Z" changeid="lilovip">
+        <seg>Открывает недавно открытый проект в новом окне без приглашения пользователя к навигации через диалог выбора файла.</seg>
       </tuv>
     </tu>
     <tu>
@@ -19142,6 +19478,14 @@ of the General Public License from time to time.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The Layout tab</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T051930Z" changeid="lilovip">
+        <seg>Вкладка Чертёж</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The Legacy library includes components that exist only for backward compatibility with versions of Logisim in the 1.0x series.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T062844Z" changeid="lilovip">
@@ -19426,6 +19770,14 @@ of the General Public License from time to time.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T102432Z" changeid="lilovip">
         <seg>Меню Окно</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Window tab</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T051921Z" changeid="lilovip">
+        <seg>Вкладка Окно</seg>
       </tuv>
     </tu>
     <tu>
@@ -20513,6 +20865,14 @@ Program (independent of having been made by running the Program).</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T023057Z" changeid="lilovip">
         <seg>Делитель (то есть второй операнд деления)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The drop-down box allows you to change this behavior so that Logisim stays at the same tool for adding more of the same component, until you yourself opt to choose the Edit Tool.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053706Z" changeid="lilovip">
+        <seg>Этот выпадающий список позволяет вам изменить это поведение так, чтобы Logisim оставался на том же инструменте для добавления ещё одного такого же компонента, пока вы сами не выберите Инструмент Правка.</seg>
       </tuv>
     </tu>
     <tu>
@@ -22001,6 +22361,14 @@ modification follow.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The tick rate is measured by averaging over the previous 1,000 ticks.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T130725Z" changeid="lilovip">
+        <seg>Скорость тактов измеряется как средняя за предыдущую 1000 тактов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The toolbar also supports switching between editing a circuit's layout and its appearance.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T034946Z" changeid="lilovip">
@@ -22703,6 +23071,14 @@ under the terms of this General Public License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>This actual tick rate may be much less than the selected tick rate, because Logisim cannot simulate larger circuits at a very fast rate.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T130922Z" changeid="lilovip">
+        <seg>Эта фактическая скорость тактов может быть намного меньше, чем вы бранная тактовая частота, потому что Logisim не может моделировать большие схем с очень большой скоростью.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>This already tells us that the circuit already computes a 0 when both inputs are 0.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T234904Z" changeid="lilovip">
@@ -22891,6 +23267,14 @@ under the terms of this General Public License.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T195908Z" changeid="lilovip">
         <seg>Этого не происходит, если выбраны все порты.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This drop-down box attempts to configure Logisim to set this up; reports about whether this drop-down box has any effect on performance would be welcome.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T131818Z" changeid="lilovip">
+        <seg>Этот выпадающий список пытается настроить Logisim так, чтобы эта возможность была включена; сообщения о том, влияет ли этот список на производительность, будут приветствоваться.</seg>
       </tuv>
     </tu>
     <tu>
@@ -23369,6 +23753,14 @@ be a consequence of the rest of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>This tab allows configuration of Logisim according to regional preferences.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052343Z" changeid="lilovip">
+        <seg>Эта вкладка позволяет настроить Logisim в соответствии с региональными предпочтениями.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>This tab includes options affecting how the built-in tools behave.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T161016Z" changeid="lilovip">
@@ -23377,10 +23769,34 @@ be a consequence of the rest of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>This tab includes preferences affecting the appearance of the main window used for Logisim.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054112Z" changeid="lilovip">
+        <seg>На этой вкладке находятся настройки, влияющие на внешний вид главного окна Logisim.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This tab includes preferences affecting the behavior of the circuit layout editor.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T052800Z" changeid="lilovip">
+        <seg>На этой вкладке находятся настройки, влияющие на поведение редактора чертежа схемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>This time, they will be narrow.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100803T225931Z" changeid="lilovip">
         <seg>На этот раз они будут узкими.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This toolbar allows the user easy access to adding, renaming, reordering, and removing circuits from a project, and it supports switching between editing a circuit's layout and its appearance.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T054501Z" changeid="lilovip">
+        <seg>Эта панель инструментов предоставляет пользователю простой доступ к добавлению, переименованию, переупорядочиванию и удалению схем из проекта, а также поддерживает переключение между редактированием чертежа схемы и её внешнего вида.</seg>
       </tuv>
     </tu>
     <tu>
@@ -24861,6 +25277,14 @@ program proprietary.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>When the component is selected or being added, Alt-2 through Alt-5 alter its &lt;q0&gt;Bit Width&lt;/q0&gt; attribute.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T003338Z" changeid="lilovip">
+        <seg>Когда компонент выбран, или уже добавлен, комбинации от Alt-2 до Alt-5 меняют его атрибут &lt;q0&gt;Разрядность&lt;/q0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>When the component is selected or being added, the arrow keys alter its &lt;q0&gt;Facing&lt;/q0&gt; attribute.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T060800Z" changeid="lilovip">
@@ -25279,6 +25703,14 @@ price.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>While more intuitive, this behavior requires more mouse movement to switch between tools.)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T053740Z" changeid="lilovip">
+        <seg>Хотя такое поведение более интуитивно, оно требует больше перемещений мыши для переключения между инструментами.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Wire bundles</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T201223Z" changeid="lilovip">
@@ -25590,6 +26022,14 @@ this License.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100810T212308Z" changeid="lilovip">
         <seg>Вы можете указывать настройки приложения Logisim через параметры командной строки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>You can configure many of Logisim's application preferences via command line options.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T003110Z" changeid="lilovip">
+        <seg>Вы можете изменять многие настройки приложения Logisim через параметры командной строки.</seg>
       </tuv>
     </tu>
     <tu>
@@ -29018,6 +29458,18 @@ import com.cburch.logisim.tools.Tool;
       </tuv>
       <tuv lang="RU-RU" changedate="20100819T025536Z" changeid="lilovip">
         <seg>Программе, не обязано выводить объявление.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>the Program is not required to print an announcement.)
+
+These requirements apply to the modified work as a whole.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T141110Z" changeid="lilovip">
+        <seg>Программе, не обязано выводить объявление.)
+
+Эти требования применяются к модифицированному произведению в целом.</seg>
       </tuv>
     </tu>
     <tu>

@@ -174,6 +174,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>(None)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041412Z" changeid="lilovip">
+        <seg>(Нет)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>(Reached maximum size of %s.)</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -226,6 +234,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>-accents yes|no   использовать специфичные символы или ASCII эквиваленты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-clearprops       clear application preferences at startup</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T002829Z" changeid="lilovip">
+        <seg>-clearprops       очистить настройки приложения при запуске</seg>
       </tuv>
     </tu>
     <tu>
@@ -582,6 +598,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Add noise to component delays</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041433Z" changeid="lilovip">
+        <seg>Добавить шум к задержкам компонентов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Add wires to circuit</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100816T082419Z" changeid="lilovip">
@@ -617,6 +641,14 @@
         <seg>After Adding Component:</seg>
       </tuv>
       <tuv lang="RU-RU">
+        <seg>После добавления компонента:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>After adding component:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041654Z" changeid="lilovip">
         <seg>После добавления компонента:</seg>
       </tuv>
     </tu>
@@ -1750,6 +1782,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Configure behavior of layout editor</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041630Z" changeid="lilovip">
+        <seg>Настроить поведение редактора чертежа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Configure behavior of tools</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -1770,6 +1810,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Настроить поведение движка для моделирования схемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Configure the main editing window</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041536Z" changeid="lilovip">
+        <seg>Настроить главное окно редактирования</seg>
       </tuv>
     </tu>
     <tu>
@@ -2070,6 +2118,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Custom template:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041451Z" changeid="lilovip">
+        <seg>Специальный шаблон:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Cut</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -2342,6 +2398,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Down middle</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041556Z" changeid="lilovip">
+        <seg>Посередине вниз</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Drop Component</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100829T123705Z" changeid="lilovip">
@@ -2521,6 +2585,14 @@
         <seg>Empty Template</seg>
       </tuv>
       <tuv lang="RU-RU">
+        <seg>Пустой шаблон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Empty template</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041447Z" changeid="lilovip">
         <seg>Пустой шаблон</seg>
       </tuv>
     </tu>
@@ -2918,6 +2990,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>First radix when wire poked:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041731Z" changeid="lilovip">
+        <seg>Первое основание при нажатии на провод:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Flat</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100901T124736Z" changeid="lilovip">
@@ -2962,6 +3042,22 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Размер элемента</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Gate output when undefined</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041429Z" changeid="lilovip">
+        <seg>Выход элемента при неопределённости</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Gate shape:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041502Z" changeid="lilovip">
+        <seg>Форма элементов:</seg>
       </tuv>
     </tu>
     <tu>
@@ -3017,6 +3113,14 @@
         <seg>Graphics Acceleration:</seg>
       </tuv>
       <tuv lang="RU-RU">
+        <seg>Ускорение графики:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Graphics acceleration:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041746Z" changeid="lilovip">
         <seg>Ускорение графики:</seg>
       </tuv>
     </tu>
@@ -3398,6 +3502,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Iterations until oscillation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041426Z" changeid="lilovip">
+        <seg>Итераций до возбуждения</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>J-K Flip-Flop</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -3449,6 +3561,22 @@
         <seg>Keep Connections When Moving</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T104012Z" changeid="lilovip">
+        <seg>Сохранять соединения при перемещении</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Keep at component tool</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041720Z" changeid="lilovip">
+        <seg>Остаться на инструменте Компонент</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Keep connections while moving</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041641Z" changeid="lilovip">
         <seg>Сохранять соединения при перемещении</seg>
       </tuv>
     </tu>
@@ -3522,6 +3650,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Язык:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Layout</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041609Z" changeid="lilovip">
+        <seg>Чертёж</seg>
       </tuv>
     </tu>
     <tu>
@@ -3842,6 +3978,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Файл Logisim 1.0 содержит неподдерживаемый компонент ОЗУ.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim Documentation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101014T002747Z" changeid="lilovip">
+        <seg>Документация Logisim</seg>
       </tuv>
     </tu>
     <tu>
@@ -4526,6 +4670,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Open Recent</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041407Z" changeid="lilovip">
+        <seg>Открыть недавние</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Open...</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -4886,6 +5038,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Plain template</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041444Z" changeid="lilovip">
+        <seg>Обычный шаблон</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Please select the file from the following dialog.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -5010,6 +5170,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Вид для печати:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Printer view</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041635Z" changeid="lilovip">
+        <seg>Вид для печати</seg>
       </tuv>
     </tu>
     <tu>
@@ -5358,6 +5526,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Replace accented characters</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041459Z" changeid="lilovip">
+        <seg>Заменять специфичные символы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Reset Simulation</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -5578,6 +5754,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T210831Z" changeid="lilovip">
         <seg>Второе основание при нажатии на провод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Second radix when wire poked:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041735Z" changeid="lilovip">
+        <seg>Второе основание при нажатии на провод:</seg>
       </tuv>
     </tu>
     <tu>
@@ -5886,6 +6070,54 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Show Tick Rate</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T125921Z" changeid="lilovip">
+        <seg>Показать скорость тактов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show attribute halo</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041648Z" changeid="lilovip">
+        <seg>Показывать ореол</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show component tips</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041651Z" changeid="lilovip">
+        <seg>Показывать подсказки для компонентов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show ghosts while adding</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041633Z" changeid="lilovip">
+        <seg>Показывать призраки во время добавления</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show project toolbar</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041542Z" changeid="lilovip">
+        <seg>Показать панель инструментов проекта</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show tick rate</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041540Z" changeid="lilovip">
+        <seg>Показать скорость тактов</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Sign</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T012312Z" changeid="lilovip">
@@ -6081,6 +6313,14 @@
         <seg>Switch To Edit Tool</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T211148Z" changeid="lilovip">
+        <seg>Переключиться на Инструмент Правка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Switch to Edit Tool</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041725Z" changeid="lilovip">
         <seg>Переключиться на Инструмент Правка</seg>
       </tuv>
     </tu>
@@ -6430,6 +6670,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Toolbar location:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041552Z" changeid="lilovip">
+        <seg>Расположение панели инструментов:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Tools</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6594,6 +6842,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Использовать только двухвходовые элементы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Use defaults</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101013T041749Z" changeid="lilovip">
+        <seg>Использовать умолчания</seg>
       </tuv>
     </tu>
     <tu>
@@ -7050,6 +7306,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>ctr</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>doc/doc_en.hs</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101008T125635Z" changeid="lilovip">
+        <seg>doc/doc_ru.hs</seg>
       </tuv>
     </tu>
     <tu>
