@@ -1,35 +1,26 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<title>Ausklappmenüs und Dateien</title>
+	<title>Kontextmenüs und Dateien</title>
 </head>
 <body bgcolor="FFFFFF">
 
-<h1>Ausklappmenüs und Dateien</h1>
+<h1>Kontextmenüs und Dateien</h1>
 
-<p>The pop-up menu for memory includes four options in addition
-to the options common to all components:</p>
+<p>Abgesehen von den üblichen Punkten enthält das Kontextmenü für Speicherbauelemente vier weitere Optionen:</p>
 <ul>
 
-<li>Edit Contents: Bring up a hex editor for editing the contents
-of memory.</li>
+<li>Inhalt bearbeiten...: Öffnet den Hex-Editor um den Speicherinhalt zu bearbeiten.</li>
 
-<li>Clear Contents: Resets all values in memory to 0.</li>
+<li>Inhalt löschen: Setzt alle Werte im Speicher auf 0.</li>
 
-<li>Load Image...: Resets all values in memory based on the values
-found in a file using the format described below.</li>
+<li>Speicherabbild laden...: Setzt alle Werte des Speichers auf die Werte aus einer Datei. Das Dateiformat ist weiter unten beschrieben.</li>
 
-<li>Save Image...: Stores all values in memory into a file using
-the format described below.</li>
+<li>Speicherabbild speichern...: Speichert alle Daten aus dem Speicher in dem unten beschriebenen Dateiformat.</li>
 
 </ul>
 
-<p>The file format used for image files is intentionally simple;
-this permits you to write a program, such as an assembler, that
-generates memory images that can then be loaded into memory.
-As an example of this file format, if we had a 256-byte memory whose
-first five bytes were 2, 3, 0, 20, and -1, and all subsequent values
-were 0, then the image would be the following text file.</p>
+<p>Das Dateiformat für Speicherabbilder wurde bewußt einfach gehalten. Dies erlaubt es Ihnen, eigene Programme, wie z.B. einen Assembler, zu schreiben, das Speicherabbilder erzeugt. Als ein Beispiel für das Dateiformat können wir den Fall eines Speichers mit 256 Byte betrachten, dessen fünf erste Speicherstellen auf 2, 3, 0, 20 und -1 gesetzt sind, während alle folgenden Speicherstellen Nullen enthalten. Ein entsprechendes Speicherabbild sieht dann wie folgt aus:</p>
 <blockquote><pre>
 v2.0 raw
 02
@@ -38,23 +29,13 @@ v2.0 raw
 14
 ff
 </pre></blockquote>
-<p>The first line identifies the file format used (currently, there is only
-one file format recognized). Subsequent values list the values in
-hexadecimal, starting from address 0; you can place several such
-values on the same line. If there are more memory locations than are identified
-in the file, Logisim will load 0 into the other memory locations.</p>
+<p>Die erste Zeile identifiziert das benutzte Dateiformat (zur Zeit gibt es nur ein unterstütztes Dateiformat). Die folgenden Einträge bilden eine Liste der hexadezimalen Werte, die beginnend mit der Adresse 0 in den Speicher geschrieben werden. Mehrere Werte dürfen in einer Zeile stehen. Wenn der Speicher mehr Speicherstellen hat, als Werte in der Datei vorhanden sind, füllt Logisim die verbleibenden Positionen mit Nullen.</p>
 
-<p>The image file can use run-length encoding; for example, rather than
-list the value <tt>00</tt> sixteen times in a row, the file can include
-<tt>16*00</tt>. Notice
-than the number of repetitions is written in base 10.
-Files produced by Logisim will use run-length encoding for runs of
-at least four values.</p>
+<p>Das Dateiformat unterstützt eine Lauflängenkodierung: anstatt sechzehn Mal nacheinander den Wert <tt>00</tt> zu schreiben, können Sie dies mit <tt>16*00</tt> abkürzen. Beachten Sie, daß die Anzahl der Wiederholungen im Dezimalformat (mit der Basis 10) dargestellt wird. Beim Speichern von Dateien verwendet Logisim diese Lauflängenkodierung ab einer viermaligen Wiederholung desselben Wertes.</p>
 
-<p>You can place comments into the file by using the '#' symbol: All characters
-in the line starting from the '#' symbol will be ignored by Logisim.</p>
+<p>Mit dem '#'-Zeichen können Sie Kommentare in die Dateien einbetten: Alle Zeichen, die in einer Zeile auf eine solche Raute folgen, werden von Logisim ignoriert.</p>
 
-<p><strong>Next:</strong> <a href="hex.html">Hex editor</a>.</p>
+<p><strong>Weiter:</strong> <a href="hex.html">Hex-Editor</a>.</p>
 
 </body>
 </html>

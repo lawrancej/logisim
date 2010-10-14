@@ -9,114 +9,76 @@
 
 <dl>
 
-<dt><strong>New</strong></dt>
-<dd><p>Opens a new project in a new window. The project will
-initially be a copy of <a href="../prefs/template.html">the
-currently selected template</a>.</p></dd>
+<dt><strong>Neu</strong></dt>
+<dd><p>Öffnet ein neues Projekt in einem neuen Fenster. Das neue Projekt ist zunächst eine Kopie <a href="../prefs/template.html">der gerade ausgewählten Vorlage</a>.</p></dd>
 
-<dt><strong>Open...</strong></dt>
-<dd><p>Opens an existing file as a project in a new window.</p></dd>
+<dt><strong>Öffnen...</strong></dt>
+<dd><p>Öffnet eine existierende Datei als Projekt in einem neuen Fenster.</p></dd>
 
-<dt><strong>Open Recent</strong></dt>
-<dd><p>Opens a recently opened project in a new window
-without prompting the user to navigate through a file selection dialog.</p></dd>
+<dt><strong>Zuletzt geöffnet</strong></dt>
+<dd><p>Öffnet ein kürzlich bearbeitetes Projekt in einem neuen Fenster, ohne, daß der Benutzer durch einen Dateidialog navigieren muß.</p></dd>
 
-<dt><strong>Close</strong></dt>
-<dd><p>Closes all windows associated with the currently viewed
-project.</p></dd>
+<dt><strong>Schließen</strong></dt>
+<dd><p>Schließt alle Fenster des aktuell angezeigten Projekts.</p></dd>
 
-<dt><strong>Save</strong></dt>
-<dd><p>Saves the currently viewed project, overwriting what was
-previously in the file.</p></dd>
+<dt><strong>Speichern</strong></dt>
+<dd><p>Speichert das aktuell angezeigte Projekt, und überschreibt dabei eine eventuell vorhandene Datei.</p></dd>
 
-<dt><strong>Save As...</strong></dt>
-<dd><p>Saves the currently viewed project, prompting the user to
-save into a different file than before.</p></dd>
+<dt><strong>Speichern unter...</strong></dt>
+<dd><p>Speichert das aktuell angezeigte Projekt, und fragt den Benutzer nach einem neuen Dateinamen.</p></dd>
 
-<dt><strong>Export Image...</strong></dt>
-<dd><p>Creates image file(s) corresponding to circuits.
-The configuration dialog box is described below.</p></dd>
+<dt><strong>Bild exportieren...</strong></dt>
+<dd><p>Erzeugt eine Bilddatei, die die Schaltung darstellt. Der zugehörige Konfigurationsdialog ist weiter unten beschrieben.</p></dd>
 
-<dt><strong>Print...</strong></dt>
-<dd><p>Sends circuit(s) to a printer. The configuration dialog box
-is described below.</p></dd>
+<dt><strong>Drucken...</strong></dt>
+<dd><p>Sendet die Schaltung an einen Drucker. Der zugehörige Konfigurationsdialog ist weiter unten beschrieben.</p></dd>
 
-<dt><strong>Preferences...</strong></dt>
-<dd><p>Displays the <a href="../prefs/index.html">application
-preferences</a> window. (On Mac OS systems, this will appear
-in the Logisim menu.)</p></dd>
+<dt><strong>Voreinstellungen...</strong></dt>
+<dd><p>Öffnet den Dialog der  <a href="../prefs/index.html">programmbezogenen Einstellungen</a>. (Auf Mac OS-Systemen wird dies im Logisim-Menü angezeigt.)</p></dd>
 
-<dt><strong>Exit</strong></dt>
-<dd><p>Closes all currently open projects and terminates Logisim.
-(On Mac OS systems, this will appear
-as Quit in the Logisim menu.)</p></dd>
+<dt><strong>Beenden</strong></dt>
+<dd><p>Schließt alle derzeit geöffneten Projekte und beendet Logisim. (Auf Mac OS-Systemen wird dies als Beenden im Logisim-Menü angezeigt.)</p></dd>
 
 </dl>
 
-<h2>Configuring Export</h2>
+<h2>Export konfigurieren</h2>
 
-<p>When you select Export Image..., Logisim displays a dialog box
-with four options.</P>
+<p>Wenn Sie den Punkt "Bild exportieren..." aufrufen, öffnet Logisim ein Dialogfenster mit vier Optionen.</P>
 <ul>
 
-<li><b>Circuits:</b> A list where you can select one or more circuits
-that should be exported into image files. (Empty circuits are not
-displayed as options.)</li>
+<li><b>Schaltungen:</b> Eine Liste, aus der Sie eine oder mehrere Schaltungen auswählen können, deren Bild exportiert werden soll. (Leere Schaltungen erscheinen nicht in dieser Liste.)</li>
 
-<li><b>Image Format:</b> You can create PNG, GIF, and JPEG files. I would
-recommend PNG files: The GIF format is quite dated, and the JPEG format will
-introduce artifacts into the image, as the JPEG format is
-really meant for photographic images.</li>
+<li><b>Bildformat:</b> Hier können Sie zwischen PNG-, GIF- und JPEG-Dateien wählen. Das empfohlene Format sind PNG-Dateien: Das GIF-Dateiformat ist schon ziemlich betagt, und das JPEG-Format führt zu Komprimierungs-Artefakten, weil JPEG-Dateien eigentlich für fotografische Abbildungen entwickelt wurden.</li>
 
-<li><b>Scale Factor:</b> You can scale the images as they are dumped
-into image files using this slider.</li>
+<li><b>Skalierung:</b> Sie können das Bild mit diesem Schieberegler skalieren, bevor es gespeichert wird.</li>
 
-<li><b>Printer View:</b> Whether to use
-"<a href="../prefs/layout.html">printer view</a>" in exporting
-the circuits.</li>
+<li><b>Druckeransicht:</b> Wählt aus, ob die "<a href="../prefs/layout.html">Druckeransicht</a>" beim Export verwendet werden soll.</li>
 
 </ul>
-<p>After clicking OK, Logisim will display a file selection dialog
-box. If you have selected one circuit, select the file into which
-the image should be placed. If you have selected multiple circuits,
-select a directory where the files should be placed; Logisim will
-name the images based on the circuits' names (<tt>main.png</tt>,
-for example).</p>
+<p>Nach dem Anklicken der Schaltfläche OK wird Logisim einen Dateidialog anzeigen. Wenn Sie eine einzelne Schaltung ausgewählt haben, dann wählen Sie hier aus, in welcher Datei Das Bild gespeichert werden soll. Wenn Sie mehrere Schaltungen ausgewählt haben, dann wählen Sie nur das Verzeichnis aus, in das die Bilddateien gespeichert werden sollen. Logisim wird die einzelnen Bilddateien nach den Namen der Schaltungen benennen (zum Beispiel <tt>main.png</tt>).</p>
 
-<h2>Configuring Print</h2>
+<h2>Drucken konfigurieren</h2>
 
-<p>When you choose Print..., Logisim displays a dialog box for
-configuring what is printed.</p>
+<p>Wenn Sie den Punkt "Drucken..." aufrufen, öffnet Logisim ein Dialogfenster zur Konfiguration des Ausdrucks.</p>
 <ul>
 
-<li><b>Circuits:</b> A list where you can select one or more circuits
-to be printed. (Empty circuits are not
-displayed as options.) Logisim will print one circuit per page. If the circuit is too
-large for the page, the image will be scaled down to fit.</li>
+<li><b>Schaltungen:</b> Eine Liste, aus der Sie eine oder mehrere Schaltungen auswählen können, deren Bild gedruckt werden soll. (Leere Schaltungen erscheinen nicht in dieser Liste.) Logisim druckt eine Schaltung pro Druckseite. Wenn die Schaltung zu groß für die Seite ist, wird das Bild passend verkleinert werden.</li>
 
-<li><b>Header:</b> Text that should appear centered at the top of
-each page. The following substitutions will be made into the text.
-<center><table>
-<tr><td><tt>%n</tt></td><td>Name of circuit on page</td></tr>
-<tr><td><tt>%p</tt></td><td>Page number</td></tr>
-<tr><td><tt>%P</tt></td><td>Total page count</td></tr>
-<tr><td><tt>%%</tt></td><td>A single percent sign ('%')</td></tr>
+<li><b>Titel:</b> Der Text, der zentriert oben auf jeder einzelnen Seite erscheinen soll. Die folgenden Substitutionen werden im Text vorgenommen.<center><table>
+<tr><td><tt>%n</tt></td><td>Name der Schaltung auf der Seite</td></tr>
+<tr><td><tt>%p</tt></td><td>Seitennummer</td></tr>
+<tr><td><tt>%P</tt></td><td>Gesamtseitenzahl</td></tr>
+<tr><td><tt>%%</tt></td><td>Ein einzelnes Prozentzeichen ('%')</td></tr>
 </table></center></li>
 
-<li><b>Rotate To Fit:</b> If checked, then Logisim will rotate
-each circuit by 90 degrees when the circuit is too large to
-fit onto the page and it does not need to be scaled as
-small when rotated 90 degrees.</li>
+<li><b>Drehen zum Anpassen:</b> Wenn angekreuzt wird Logisim das Druckbild um 90 Grad drehen, wenn dies eine bessere Ausnutzung der Druckseite erlaubt.</li>
 
-<li><b>Printer View:</b> Whether to use
-"<a href="../prefs/layout.html">printer view</a>" in printing
-the circuits.</li>
+<li><b>Druckeransicht:</b> Wählt aus, ob die "<a href="../prefs/layout.html">Druckeransicht</a>" beim Drucken verwendet werden soll.</li>
 
 </ul>
-<p>After clicking OK, Logisim will display the standard page setup
-dialog box before printing the circuits.</p>
+<p>Nach dem Anklicken der Schaltfläche OK wird Logisim den Standard-Dialog zum Einrichten der Seite vor dem Druck der Schaltungen anzeigen.</p>
 
-<p><strong>Next:</strong> <a href="edit.html">The Edit menu</a>.</p>
+<p><strong>Weiter:</strong> <a href="edit.html">Das Bearbeitungsmenü</a>.</p>
 
 </body>
 </html>
