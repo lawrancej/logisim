@@ -39,6 +39,11 @@ public class ReplacementMap {
 		this.inverse = inverse;
 	}
 	
+	public void reset() {
+		map.clear();
+		inverse.clear();
+	}
+	
 	public boolean isEmpty() {
 		return map.isEmpty() && inverse.isEmpty();
 	}

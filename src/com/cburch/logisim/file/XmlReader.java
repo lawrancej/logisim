@@ -94,7 +94,7 @@ class XmlReader {
 				if (name.equals("circuit") || name.equals("lib")) {
 					; // Nothing to do: Done earlier.
 				} else if (name.equals("options")) {
-					initAttributeSet(elt, file.getOptions().getAttributeSet(), null);
+					initAttributeSet(sub_elt, file.getOptions().getAttributeSet(), null);
 				} else if (name.equals("mappings")) {
 					initMouseMappings(sub_elt);
 				} else if (name.equals("toolbar")) {

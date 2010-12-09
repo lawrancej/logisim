@@ -144,6 +144,8 @@ public class AppPreferences {
 		= create(new PrefMonitorInt("windowWidth", 640));
 	public static final PrefMonitor<Integer> WINDOW_HEIGHT
 		= create(new PrefMonitorInt("windowHeight", 480));
+	public static final PrefMonitor<String> WINDOW_LOCATION
+		= create(new PrefMonitorString("windowLocation", "0,0"));
 	public static final PrefMonitor<Double> WINDOW_MAIN_SPLIT
 		= create(new PrefMonitorDouble("windowMainSplit", 0.25));
 	public static final PrefMonitor<Double> WINDOW_LEFT_SPLIT

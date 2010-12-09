@@ -143,7 +143,9 @@ class SvgCreator {
 			elt.setAttribute("fill", "none");
 		} else {
 			Color fill = shape.getValue(DrawAttr.FILL_COLOR);
-			if (!colorMatches(fill, Color.BLACK)) {
+			if (colorMatches(fill, Color.BLACK)) {
+				elt.removeAttribute("fill");
+			} else {
 				elt.setAttribute("fill", getColorString(fill));
 			}
 			if (showOpacity(fill)) {

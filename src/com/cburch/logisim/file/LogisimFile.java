@@ -270,8 +270,8 @@ public class LogisimFile extends Library implements LibraryEventSource {
 				factories.add(((AddTool) tool).getFactory());
 			}
 		}
-		for (AddTool tool : tools) {
-			Circuit circuit = (Circuit) tool.getFactory();
+		
+		for (Circuit circuit : getCircuits()) {
 			for (Component comp : circuit.getNonWires()) {
 				if (factories.contains(comp.getFactory())) {
 					return StringUtil.format(Strings.get("unloadUsedError"),
@@ -298,10 +298,6 @@ public class LogisimFile extends Library implements LibraryEventSource {
 		if (circuit == null) return;
 		this.main = circuit;
 		fireEvent(LibraryEvent.SET_MAIN, circuit);
-	}
-
-	public void setOptions(Options options) {
-		this.options = options;
 	}
 
 	//

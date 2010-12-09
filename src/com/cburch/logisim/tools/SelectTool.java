@@ -380,7 +380,18 @@ public class SelectTool extends Tool {
 		if (state == MOVING && e.getKeyCode() == KeyEvent.VK_SHIFT) {
 			handleMoveDrag(canvas, curDx, curDy, e.getModifiersEx());
 		} else {
-			processKeyEvent(canvas, e, KeyConfigurationEvent.KEY_PRESSED);
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_BACK_SPACE:
+			case KeyEvent.VK_DELETE:
+				if (!canvas.getSelection().isEmpty()) {
+					Action act = SelectionActions.clear(canvas.getSelection());
+					canvas.getProject().doAction(act);
+					e.consume();
+				}
+				break;
+			default:
+				processKeyEvent(canvas, e, KeyConfigurationEvent.KEY_PRESSED);
+			}
 		}
 	}
 	

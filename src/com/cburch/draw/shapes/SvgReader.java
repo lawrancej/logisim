@@ -49,7 +49,7 @@ public class SvgReader {
 			String fill = elt.getAttribute("fill");
 			if (stroke.equals("") || stroke.equals("none")) {
 				ret.setValue(DrawAttr.PAINT_TYPE, DrawAttr.PAINT_FILL);
-			} else if (fill.equals("") || fill.equals("none")) {
+			} else if (fill.equals("none")) {
 				ret.setValue(DrawAttr.PAINT_TYPE, DrawAttr.PAINT_STROKE);
 			} else {
 				ret.setValue(DrawAttr.PAINT_TYPE, DrawAttr.PAINT_STROKE_FILL);
@@ -69,6 +69,7 @@ public class SvgReader {
 		}
 		if (attrs.contains(DrawAttr.FILL_COLOR)) {
 			String color = elt.getAttribute("fill");
+			if (color.equals("")) color = "#000000";
 			String opacity = elt.getAttribute("fill-opacity");
 			if (!color.equals("none")) {
 				ret.setValue(DrawAttr.FILL_COLOR, getColor(color, opacity));

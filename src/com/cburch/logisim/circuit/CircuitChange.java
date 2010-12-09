@@ -145,20 +145,28 @@ class CircuitChange {
 		}
 	}
 	
-	void execute(CircuitMutator mutator) {
+	void execute(CircuitMutator mutator, ReplacementMap prevReplacements) {
 		switch (type) {
-		case CLEAR: mutator.clear(circuit); break;
-		case ADD: mutator.add(circuit, comp); break;
+		case CLEAR: mutator.clear(circuit); prevReplacements.reset(); break;
+		case ADD: prevReplacements.add(comp); break;
 		case ADD_ALL:
-			for (Component comp : comps) mutator.add(circuit, comp);
+			for (Component comp : comps) prevReplacements.add(comp);
 			break;
-		case REMOVE: mutator.remove(circuit, comp); break;
+		case REMOVE: prevReplacements.remove(comp); break;
 		case REMOVE_ALL:
-			for (Component comp : comps) mutator.remove(circuit, comp);
+			for (Component comp : comps) prevReplacements.remove(comp);
 			break;
-		case REPLACE: mutator.replace(circuit, (ReplacementMap) newValue); break;
-		case SET: mutator.set(circuit, comp, attr, newValue); break;
-		case SET_FOR_CIRCUIT: mutator.setForCircuit(circuit, attr, newValue); break;
+		case REPLACE: prevReplacements.append((ReplacementMap) newValue); break;
+		case SET:
+			mutator.replace(circuit, prevReplacements);
+			prevReplacements.reset();
+			mutator.set(circuit, comp, attr, newValue);
+			break;
+		case SET_FOR_CIRCUIT:
+			mutator.replace(circuit, prevReplacements);
+			prevReplacements.reset();
+			mutator.setForCircuit(circuit, attr, newValue);
+			break;
 		default: throw new IllegalArgumentException("unknown change type " + type);
 		}
 	}

@@ -400,7 +400,7 @@ public class Startup {
 		System.err.println(); //OK
 		System.err.println(Strings.get("argOptionHeader")); //OK
 		System.err.println("   " + Strings.get("argAccentsOption")); //OK
-		System.err.println("   " + Strings.get("argClearPropsOption")); //OK
+		System.err.println("   " + Strings.get("argClearOption")); //OK
 		System.err.println("   " + Strings.get("argEmptyOption")); //OK
 		System.err.println("   " + Strings.get("argGatesOption")); //OK
 		System.err.println("   " + Strings.get("argHelpOption")); //OK

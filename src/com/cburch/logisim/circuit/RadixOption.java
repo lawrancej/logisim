@@ -4,12 +4,13 @@
 package com.cburch.logisim.circuit;
 
 import com.cburch.logisim.data.Attribute;
+import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.util.StringGetter;
 
-public abstract class RadixOption  {
+public abstract class RadixOption extends AttributeOption {
 	public static final RadixOption RADIX_2 = new Radix2();
 	public static final RadixOption RADIX_8 = new Radix8();
 	public static final RadixOption RADIX_10_UNSIGNED = new Radix10Unsigned();
@@ -35,6 +36,7 @@ public abstract class RadixOption  {
 	private StringGetter displayGetter;
 
 	private RadixOption(String saveName, StringGetter displayGetter) {
+		super(saveName, displayGetter);
 		this.saveName = saveName;
 		this.displayGetter = displayGetter;
 	}
@@ -47,6 +49,7 @@ public abstract class RadixOption  {
 		return saveName;
 	}
 	
+	@Override
 	public String toDisplayString() {
 		return displayGetter.get();
 	}

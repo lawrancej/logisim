@@ -5,6 +5,7 @@ package com.cburch.logisim.proj;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeListener;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.gui.main.Frame;
@@ -20,6 +22,9 @@ import com.cburch.logisim.util.PropertyChangeWeakSupport;
 
 public class Projects {
 	public static final String projectListProperty = "projectList";
+	
+	private static final WeakHashMap<Window, Point> frameLocations
+		= new WeakHashMap<Window, Point>();
 	
 	private static void projectRemoved(Project proj, Frame frame,
 			MyListener listener) {
@@ -40,6 +45,9 @@ public class Projects {
 			Frame frame = (Frame) event.getSource();
 			if ((frame.getExtendedState() & Frame.ICONIFIED) == 0) {
 				mostRecentFrame = frame;
+				try {
+					frameLocations.put(frame, frame.getLocationOnScreen());
+				} catch (Throwable t) { }
 			}
 		}
 		
@@ -158,5 +166,10 @@ public class Projects {
 	}
 	public static void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
 		propertySupport.removePropertyChangeListener(propertyName, listener);
+	}
+	
+	public static Point getLocation(Window win) {
+		Point ret = frameLocations.get(win);
+		return ret == null ? null : (Point) ret.clone();
 	}
 }

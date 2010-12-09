@@ -10,6 +10,7 @@ import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Value;
+import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
@@ -114,5 +115,19 @@ public class Comparator extends InstanceFactory {
 		painter.drawPort(GT, ">", Direction.WEST);
 		painter.drawPort(EQ, "=", Direction.WEST);
 		painter.drawPort(LT, "<", Direction.WEST);
+	}
+	
+	
+	//
+	// methods for instances
+	//
+	@Override
+	protected void configureNewInstance(Instance instance) {
+		instance.addAttributeListener();
+	}
+
+	@Override
+	protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
+		instance.fireInvalidated();
 	}
 }

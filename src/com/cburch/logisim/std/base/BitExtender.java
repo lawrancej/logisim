@@ -103,6 +103,9 @@ public class BitExtender extends InstanceFactory {
 	protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
 		if (attr == ATTR_TYPE) {
 			configurePorts(instance);
+			instance.fireInvalidated();
+		} else {
+			instance.fireInvalidated();
 		}
 	}
 	

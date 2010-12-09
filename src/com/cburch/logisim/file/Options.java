@@ -32,11 +32,15 @@ public class Options {
 			GATE_UNDEFINED_IGNORE, Integer.valueOf(1000), Integer.valueOf(0),
 	};
 	
-	private AttributeSet attrs = AttributeSets.fixedSet(ATTRIBUTES, DEFAULTS);
-	private MouseMappings mmappings = new MouseMappings();
-	private ToolbarData toolbar = new ToolbarData();
+	private AttributeSet attrs;
+	private MouseMappings mmappings;
+	private ToolbarData toolbar;
 
-	public Options() { }
+	public Options() {
+		attrs = AttributeSets.fixedSet(ATTRIBUTES, DEFAULTS);
+		mmappings = new MouseMappings();
+		toolbar = new ToolbarData();
+	}
 
 	public AttributeSet getAttributeSet() {
 		return attrs;

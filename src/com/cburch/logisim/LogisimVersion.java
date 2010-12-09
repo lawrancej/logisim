@@ -15,7 +15,7 @@ public class LogisimVersion {
 	}
 	
 	public static LogisimVersion parse(String versionString) {
-		String[] parts = versionString.split(".");
+		String[] parts = versionString.split("\\.");
 		int major = 0;
 		int minor = 0;
 		int release = 0;

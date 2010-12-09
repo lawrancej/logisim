@@ -7,6 +7,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.IllegalComponentStateException;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
@@ -45,6 +51,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
+import com.cburch.logisim.proj.Projects;
 import com.cburch.logisim.tools.SetAttributeAction;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.HorizontalSplitPane;
@@ -64,12 +71,6 @@ public class Frame extends LFrame implements LocaleListener {
 				PropertyChangeListener {
 		public void projectChanged(ProjectEvent event) {
 			int action = event.getAction();
-
-			if (action == ProjectEvent.ACTION_COMPLETE
-					|| action == ProjectEvent.UNDO_COMPLETE
-					|| action == ProjectEvent.ACTION_SET_FILE) {
-				enableSave();
-			}
 
 			if (action == ProjectEvent.ACTION_SET_FILE) {
 				computeTitle();
@@ -93,6 +94,8 @@ public class Frame extends LFrame implements LocaleListener {
 		public void libraryChanged(LibraryEvent e) {
 			if (e.getAction() == LibraryEvent.SET_NAME) {
 				computeTitle();
+			} else if (e.getAction() == LibraryEvent.DIRTY_STATE) {
+				enableSave();
 			}
 		}
 
@@ -259,6 +262,10 @@ public class Frame extends LFrame implements LocaleListener {
 
 		this.setSize(AppPreferences.WINDOW_WIDTH.get().intValue(),
 				AppPreferences.WINDOW_HEIGHT.get().intValue());
+		Point prefPoint = getInitialLocation();
+		if (prefPoint != null) {
+			this.setLocation(prefPoint);
+		}
 		this.setExtendedState(AppPreferences.WINDOW_STATE.get().intValue());
 		
 		menuListener.register(mainPanel);
@@ -372,6 +379,7 @@ public class Frame extends LFrame implements LocaleListener {
 			s = StringUtil.format(Strings.get("titleFileKnown"), name);
 		}
 		this.setTitle(s);
+		myProjectListener.enableSave();
 	}
 	
 	void viewAttributes(Tool newTool) {
@@ -436,6 +444,15 @@ public class Frame extends LFrame implements LocaleListener {
 		Dimension dim = getSize();
 		AppPreferences.WINDOW_WIDTH.set(Integer.valueOf(dim.width));
 		AppPreferences.WINDOW_HEIGHT.set(Integer.valueOf(dim.height));
+		Point loc;
+		try {
+			loc = getLocationOnScreen();
+		} catch (IllegalComponentStateException e) {
+			loc = Projects.getLocation(this);
+		}
+		if (loc != null) {
+			AppPreferences.WINDOW_LOCATION.set(loc.x + "," + loc.y);
+		}
 		AppPreferences.WINDOW_LEFT_SPLIT.set(Double.valueOf(leftRegion.getFraction()));
 		AppPreferences.WINDOW_MAIN_SPLIT.set(Double.valueOf(mainRegion.getFraction()));
 	}
@@ -467,5 +484,63 @@ public class Frame extends LFrame implements LocaleListener {
 			dispose();
 		}
 		return ret;
+	}
+	
+	private static Point getInitialLocation() {
+		String s = AppPreferences.WINDOW_LOCATION.get();
+		if (s == null) return null;
+		int comma = s.indexOf(',');
+		if (comma < 0) return null;
+		try {
+			int x = Integer.parseInt(s.substring(0, comma));
+			int y = Integer.parseInt(s.substring(comma + 1));
+			while (isProjectFrameAt(x, y)) {
+				x += 20;
+				y += 20;
+			}
+			Rectangle desired = new Rectangle(x, y, 50, 50);
+		
+			int gcBestSize = 0;
+			Point gcBestPoint = null;
+			GraphicsEnvironment ge;
+			ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			for (GraphicsDevice gd : ge.getScreenDevices()) {
+				for (GraphicsConfiguration gc : gd.getConfigurations()) {
+					Rectangle gcBounds = gc.getBounds();
+					if (gcBounds.intersects(desired)) {
+						Rectangle inter = gcBounds.intersection(desired);
+						int size = inter.width * inter.height;
+						if (size > gcBestSize) {
+							gcBestSize = size;
+							int x2 = Math.max(gcBounds.x, Math.min(inter.x,
+									inter.x + inter.width - 50));
+							int y2 = Math.max(gcBounds.y, Math.min(inter.y,
+									inter.y + inter.height - 50));
+							gcBestPoint = new Point(x2, y2);
+						}
+					}
+				}
+			}
+			if (gcBestPoint != null) {
+				if (isProjectFrameAt(gcBestPoint.x, gcBestPoint.y)) {
+					gcBestPoint = null;
+				}
+			}
+			return gcBestPoint;
+		} catch (Throwable t) {
+			return null;
+		}
+	}
+
+	private static boolean isProjectFrameAt(int x, int y) {
+		for (Project current : Projects.getOpenProjects()) {
+			Frame frame = current.getFrame();
+			if (frame != null) {
+				Point loc = frame.getLocationOnScreen();
+				int d = Math.abs(loc.x - x) + Math.abs(loc.y - y);
+				if (d <= 3) return true;
+			}
+		}
+		return false;
 	}
 }

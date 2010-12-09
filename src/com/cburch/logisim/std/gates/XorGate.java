@@ -28,8 +28,15 @@ class XorGate extends AbstractGate {
 	@Override
 	public String getRectangularLabel(AttributeSet attrs) {
 		if (attrs == null) return "";
+		boolean isOdd = false;
 		Object behavior = attrs.getValue(GateAttributes.ATTR_XOR);
-		return behavior == GateAttributes.XOR_ODD ? "2k+1" : "1";
+		if (behavior == GateAttributes.XOR_ODD) {
+			Object inputs = attrs.getValue(GateAttributes.ATTR_INPUTS);
+			if (inputs == null || ((Integer) inputs).intValue() != 2) {
+				isOdd = true;
+			}
+		}
+		return isOdd ? "2k+1" : "=1";
 	}
 
 	@Override

@@ -26,7 +26,7 @@ class MenuHelp extends JMenu implements ActionListener {
 	private JMenuItem library = new JMenuItem();
 	private JMenuItem about = new JMenuItem();
 	private HelpSet helpSet;
-	private String helpSetUrl;
+	private String helpSetUrl = "";
 	private JHelp helpComponent;
 	private LFrame helpFrame;
 
@@ -77,11 +77,11 @@ class MenuHelp extends JMenu implements ActionListener {
 	
 	private void loadBroker() {
 		String helpUrl = Strings.get("helpsetUrl");
-		if (helpUrl == null) helpUrl = "doc/en/doc.hs";
+		if (helpUrl == null) helpUrl = "doc/doc_en.hs";
 		if (helpSet == null || helpFrame == null || !helpUrl.equals(helpSetUrl)) {
-			ClassLoader cl = MenuHelp.class.getClassLoader();
+			ClassLoader loader = MenuHelp.class.getClassLoader();
 			try {
-				URL hsURL = HelpSet.findHelpSet(cl, helpUrl);
+				URL hsURL = HelpSet.findHelpSet(loader, helpUrl);
 				if (hsURL == null) {
 					disableHelp();
 					JOptionPane.showMessageDialog(menubar.getParentWindow(),
@@ -100,6 +100,7 @@ class MenuHelp extends JMenu implements ActionListener {
 				} else {
 					helpFrame.getContentPane().removeAll();
 					helpFrame.getContentPane().add(helpComponent);
+					helpComponent.revalidate();
 				}
 			} catch (Exception e) {
 				disableHelp();

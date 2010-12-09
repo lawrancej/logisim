@@ -103,8 +103,21 @@ public final class CircuitMutation extends CircuitTransaction {
 	
 	@Override
 	protected void run(CircuitMutator mutator) {
+		Circuit curCircuit = null;
+		ReplacementMap curReplacements = null;
 		for (CircuitChange change : changes) {
-			change.execute(mutator);
+			Circuit circ = change.getCircuit();
+			if (circ != curCircuit) {
+				if (curCircuit != null) {
+					mutator.replace(curCircuit, curReplacements);
+				}
+				curCircuit = circ;
+				curReplacements = new ReplacementMap();
+			}
+			change.execute(mutator, curReplacements);
+		}
+		if (curCircuit != null) {
+			mutator.replace(curCircuit, curReplacements);
 		}
 	}
 }

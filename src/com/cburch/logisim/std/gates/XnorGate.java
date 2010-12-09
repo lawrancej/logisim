@@ -54,7 +54,12 @@ class XnorGate extends AbstractGate {
 
 	@Override
 	protected Value computeOutput(Value[] inputs, int numInputs, InstanceState state) {
-		return GateFunctions.computeOddParity(inputs, numInputs).not();
+		Object behavior = state.getAttributeValue(GateAttributes.ATTR_XOR);
+		if (behavior == GateAttributes.XOR_ODD) {
+			return GateFunctions.computeOddParity(inputs, numInputs).not();
+		} else {
+			return GateFunctions.computeExactlyOne(inputs, numInputs).not();
+		}
 	}
 
 	@Override
