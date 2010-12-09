@@ -15,13 +15,33 @@ Feature: In the I/O library, the Joystick component's Bit Width attribute can be
 
 Feature: A first version of the German documentation is included.
 
+Appearance change: Rectangular XOR and XNOR gates are drawn with "=1" to conform to the ISO standard (previously it was simply "1"). However, if the "Multiple-Input Behavior" attribute is "When an odd number are on" and there are more than two inputs, the label is "2k+1" to reflect that it is actually doing an odd parity. (Previously it showed this label for odd parity even when there were just two inputs.)
+
 Bug fix: The tick rate would default to 1 KHz, although the initially checked tick rate was 1 Hz.
+
+Bug fix: Libraries could not be unloaded.
+
+Bug fix: The XNOR gate incorrectly did even parity by default, rather than being off only when exactly one input is one.
+
+Bug fix: Most options were not loaded when a file was later reopened (all except the toolbar and mouse mappings).
+
+Bug fix: The Logisim version saved in the project file was not interpreted correctly when opening the project. One consequence: If you edited the toolbar to include the Select and Wiring tools, they would be replaced by the Edit tool when reloaded.
+
+Bug fix: When moving a selection so that one wire in the selection is moved exactly into the location of a wire being moved, the wire would sometimes disappear entirely rather than be moved. 
+
+Bug fix: With the Edit Tool, pressing the backspace key deletes the current selection (just as it does when the delete key is pressed).
 
 Bug fix: The project toolbar would appear at startup regardless of whether its menu item was checked
 
 Bug fix: In loading from a file into RAM or ROM, very long strings of non-zero values would see large portions treated as zero.
 
+Bug fix: When a rectangle, oval, or rounded rectangle in a circuit's appearance had a paint type of "Border & Fill" and it was filled with solid black, that information was not properly stored in the saved file.
+
 Bug fix: In editing the appearance and creating a rectangle, oval, or rounded rectangle, there would sometimes be artifacts left behind as the mouse was dragged.
+
+Bug fix: Edits to the Bit Extender's Extension Type attribute or the Comparator's did not have an immediate effect in the circuit.
+
+Bug fix: Under MacOS X, the title bar's close-window button would indicate that the file was changed after the first change, but the indicator would not disappear when the file was saved.
 
 Interface change: A customized application icon is configured to appear in each window's title bar, where the Java logo had previously appeared.
 
