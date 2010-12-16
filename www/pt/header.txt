@@ -1,0 +1,7 @@
+TRADUTOR: Em todos os arquivos HTML, por fafor usar codificação UTF-8.
+
+TRADUTOR: Se você não puder traduzir o arquivo SVG de forma conveniente,
+você pode tentar traduzir o texto que se segue, e ficarei feliz em acrescentá-lo
+ao arquivo SVG:
+
+a graphical tool for designing and simulating logic circuits

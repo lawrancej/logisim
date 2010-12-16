@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Depurar subcircuitos</title>
+</head>
+
+<body bgcolor="FFFFFF">
+
+<h1>Depurar subcircuitos</h1>
+
+<p> Ao testar circuitos maiores, você provavelmente encontrará <i>bugs</i>.
+Para se descobrir o que estiver acontecendo de errado, explorar o que estiver
+acontecendo no subcircuitos enquanto estiver testando o circuito global poderá
+ser bastante útil.
+Você poderá ver o estado do subcircuito de duas maneiras: primeiro, você poderá
+abrir o menu <i>pop-up</i> do subcircuito pelo botão direito do mouse ou 
+<i>control-click</i>, e escolher a opção Exibir. 
+</p>
+
+<center> <img src="4-delve.png" width="381" height="254"> </center>
+
+<p> Ou se você tiver a ferramenta Testar (Poke) selecionada, você poderá clicar
+no circuito, e uma lupa aparecerá sobre o seu centro; um duplo clique na lupa que 
+aparecerá e também entrará no estado do subcircuito. 
+</p>
+
+<center> <img src="2-delve.png" width="381" height="254"> </center>
+
+<p> Observar que os valores dos pinos no subcircuito corresponderão aos valores
+que estiverem sendo enviados a esses no circuito que os contém.
+</p>
+
+<p> Enquanto no subcircuito, você terá permissão para alterar o circuito. Se as
+mudanças afetarem qualquer das saídas do subcircuito, elas serão propagadas para esse.
+Uma exceção: as entradas do subcircuito serão determinadas com base
+nos valores que entram no supercircuito, por isso não faz sentido alternar esses valores. 
+Se você tentar introduzir uma modificação no subcircuito, uma caixa de diálogo se 
+abrirá perguntando se <q> o pino está ligado ao estado do supercircuito.
+Criar um estado novo para o circuito? </q> Se clicar em Não, cancelarará o pedido de 
+alteração, se clicar em Sim irá criar uma cópia dos estados vistos,
+diferente do circuito externo, com o pino de entrada alterado.
+</p>
+
+<p> Depois de ter completado a visualização e/ou edição, poderá retornar ao circuito 
+original ao clicar duas vezes no circuito principal no painel do Explorador, ou 
+através do submenu Ir Ao Estado do menu Simulação. 
+</p>
+
+<p><strong>Próximo:</strong> <a href="library.html">Bibliotecas do Logisim</a>.</p>
+
+</body>
+</html>
