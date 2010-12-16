@@ -1,73 +1,73 @@
 <html>
-<head>
-<title> Criar expressões </title>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title> Criar expressÃµes </title>
 </head>
 <body bgcolor="FFFFFF">
 
 
-<h1> Criar expressões </h1>
+<h1> Criar expressÃµes </h1>
 
-<p> Para cada variável de saída, a janela Análise Combinacional
-manterá duas estruturas - uma coluna correspondente na tabela-verdade,
-e uma expressão lógica - que especificará a forma como cada entrada se
-relacionará com a sua saída. Você poderá editar tanto a tabela-verdade ou a expressão,
-que isso mudará a outra automaticamente, conforme necessário, para mantê-las coerentes.
+<p> Para cada variÃ¡vel de saÃ­da, a janela AnÃ¡lise Combinacional
+manterÃ¡ duas estruturas - uma coluna correspondente na tabela-verdade,
+e uma expressÃ£o lÃ³gica - que especificarÃ¡ a forma como cada entrada se
+relacionarÃ¡ com a sua saÃ­da. VocÃª poderÃ¡ editar tanto a tabela-verdade ou a expressÃ£o,
+que isso mudarÃ¡ a outra automaticamente, conforme necessÃ¡rio, para mantÃª-las coerentes.
 </p>
 
-<p> Como veremos a seguir, as expressões lógicas (ou booleanas) são
-particularmente úteis, pois a janela Análise Combinacional as usará quando
+<p> Como veremos a seguir, as expressÃµes lÃ³gicas (ou booleanas) sÃ£o
+particularmente Ãºteis, pois a janela AnÃ¡lise Combinacional as usarÃ¡ quando
 for construir um circuito que corresponda ao estado atual.
 </p>
 
-<p> Você poderá visualizar e editar as expressões usando as duas últimas
-guias da janela: a Expressão (Expression) e a Minimizada (Minimized). 
+<p> VocÃª poderÃ¡ visualizar e editar as expressÃµes usando as duas Ãºltimas
+guias da janela: a ExpressÃ£o (Expression) e a Minimizada (Minimized). 
 </p>
 
-<h2> A guia Expressão (Expression) </h2>
+<h2> A guia ExpressÃ£o (Expression) </h2>
 
 <center> <img src="combexpr.png" width="460" height="389"> 
-<h5>(Figura do original em inglês)</h5></center>
+<h5>(Figura do original em inglÃªs)</h5></center>
 
-<p> A guia Expression permite visualizar e editar as expressões correntes 
-associadas a cada variável de saída. Você poderá selecionar a expressão de saída 
-que desejar visualizar e editá-la usando o seletor rotulado como "Saída:" 
+<p> A guia Expression permite visualizar e editar as expressÃµes correntes 
+associadas a cada variÃ¡vel de saÃ­da. VocÃª poderÃ¡ selecionar a expressÃ£o de saÃ­da 
+que desejar visualizar e editÃ¡-la usando o seletor rotulado como "SaÃ­da:" 
 ("Output:") na parte superior do painel.
 </p>
 
-<p> Logo abaixo do seletor aparecerá a expressão formatada em uma notação
-particularmente comum, onde uma porta OR será representada como adição,
-uma porta AND será representada como multiplicação, e porta NOT é denotada
-com uma barra acima da parte afetada pela negação. 
+<p> Logo abaixo do seletor aparecerÃ¡ a expressÃ£o formatada em uma notaÃ§Ã£o
+particularmente comum, onde uma porta OR serÃ¡ representada como adiÃ§Ã£o,
+uma porta AND serÃ¡ representada como multiplicaÃ§Ã£o, e porta NOT Ã© denotada
+com uma barra acima da parte afetada pela negaÃ§Ã£o. 
 </p>
 
-<p> O painel de texto embaixo mostra a mesma informação em formato ASCII.
-Aqui, uma porta NOT será representada por um til ('~').
+<p> O painel de texto embaixo mostra a mesma informaÃ§Ã£o em formato ASCII.
+Aqui, uma porta NOT serÃ¡ representada por um til ('~').
 </p>
 
-<p> Você poderá editar a expressão no painel de texto e clicar no botão
-Entrar (Enter) para torná-la efetiva; isso também irá atualizar a tabela-verdade
-para mantê-la coerente. O botão Limpar (Clear) apagará o painel de texto,
-e botão Restaurar (Revert) fará o painel voltar a representar a expressão atual.
+<p> VocÃª poderÃ¡ editar a expressÃ£o no painel de texto e clicar no botÃ£o
+Entrar (Enter) para tornÃ¡-la efetiva; isso tambÃ©m irÃ¡ atualizar a tabela-verdade
+para mantÃª-la coerente. O botÃ£o Limpar (Clear) apagarÃ¡ o painel de texto,
+e botÃ£o Restaurar (Revert) farÃ¡ o painel voltar a representar a expressÃ£o atual.
 </p>
 
-<p> Observar que as expressões editadas serão perdidas se você editar a
+<p> Observar que as expressÃµes editadas serÃ£o perdidas se vocÃª editar a
 tabela-verdade.
 </p>
 
-<p> Além dos sinais de multiplicação e adição em lugar das portas AND e OR, 
-uma expressão poderá conter qualquer tipo de operadores lógicos em  C/Java, 
-bem como as próprias palavras (AND, OR, NOT).
+<p> AlÃ©m dos sinais de multiplicaÃ§Ã£o e adiÃ§Ã£o em lugar das portas AND e OR, 
+uma expressÃ£o poderÃ¡ conter qualquer tipo de operadores lÃ³gicos em  C/Java, 
+bem como as prÃ³prias palavras (AND, OR, NOT).
 </p>
 
 <center><table>
-<tr><th>maior precedência:</th><td align="center"><tt>~</tt> <tt>!</tt></td> <th>NOT</th></tr>
+<tr><th>maior precedÃªncia:</th><td align="center"><tt>~</tt> <tt>!</tt></td> <th>NOT</th></tr>
 <tr><th></th><td align="center">(nada) <tt>&amp;</tt> <tt>&amp;&amp;</tt></td> <th>AND</th></tr>
 <tr><th></th><td align="center"><tt>^</tt></td> <th>XOR</th></tr>
-<tr><th>menor precedência:</th><td align="center"><tt>+</tt> <tt>|</tt> <tt>||</tt></td> <th>OR</th></tr>
+<tr><th>menor precedÃªncia:</th><td align="center"><tt>+</tt> <tt>|</tt> <tt>||</tt></td> <th>OR</th></tr>
 </table></center>
 
-<p> Os exemplos a seguir são representações válidas de uma mesma expressão. Você também
-poderá misturar os operadores.
+<p> Os exemplos a seguir sÃ£o representaÃ§Ãµes vÃ¡lidas de uma mesma expressÃ£o. VocÃª tambÃ©m
+poderÃ¡ misturar os operadores.
 </p>
 
 <table>
@@ -76,44 +76,44 @@ poderá misturar os operadores.
 <tr><td><tt>NOT a AND (b OR c)</tt></td></tr>
 </table>
 
-<p> Em geral, os parênteses sobre uma sequência de ANDs (ou ORs ou XORs) não importam.
-(Em particular, se criar um circuito correspondente no Logisim, ele irá ignorá-los.) 
+<p> Em geral, os parÃªnteses sobre uma sequÃªncia de ANDs (ou ORs ou XORs) nÃ£o importam.
+(Em particular, se criar um circuito correspondente no Logisim, ele irÃ¡ ignorÃ¡-los.) 
 </p>
 
 <h2> A guia Minimizada (Minimized)</h2>
 
 <center><img src="combmin.png" width="460" height="389">
-<h5>(Figura do original em inglês)</h5></center>
+<h5>(Figura do original em inglÃªs)</h5></center>
 
-<p> A última guia exibe uma soma de produtos minimizada correspondente 
-a uma coluna da tabela-verdade. Você poderá selecionar qual a expressão
-minimizada de saída deverá ser exibida usando o seletor na parte superior.
+<p> A Ãºltima guia exibe uma soma de produtos minimizada correspondente 
+a uma coluna da tabela-verdade. VocÃª poderÃ¡ selecionar qual a expressÃ£o
+minimizada de saÃ­da deverÃ¡ ser exibida usando o seletor na parte superior.
 </p>
 
 <p> Se houver quatro entradas ou menos, um mapa de Karnaugh correspondente
-à variável irá aparecer abaixo do seletor. Você poderá clicar no
+Ã  variÃ¡vel irÃ¡ aparecer abaixo do seletor. VocÃª poderÃ¡ clicar no
 mapa de Karnaugh para alterar os valores na tabela-verdade. O mapa de Karnaugh
-também apresentará os termos selecionados para a expressão minimizada por meio de
-retângulos arredondados, sólidos, semitransparentes.
+tambÃ©m apresentarÃ¡ os termos selecionados para a expressÃ£o minimizada por meio de
+retÃ¢ngulos arredondados, sÃ³lidos, semitransparentes.
 </p>
 
-<p> Embaixo estará a expressão minimizada, formatada como mostrado na guia
-Expressão (Expression). Se houver mais de quatro entradas, o mapa de Karnaugh 
-não aparecerá, mas a expressão minimizada ainda será calculada. 
-(O Logisim usa o algoritmo de Quine-McCluskey para calcular a expressão minimizada. 
-Isso é equivalente a um mapa de Karnaugh, mas se aplica a qualquer número de variáveis
+<p> Embaixo estarÃ¡ a expressÃ£o minimizada, formatada como mostrado na guia
+ExpressÃ£o (Expression). Se houver mais de quatro entradas, o mapa de Karnaugh 
+nÃ£o aparecerÃ¡, mas a expressÃ£o minimizada ainda serÃ¡ calculada. 
+(O Logisim usa o algoritmo de Quine-McCluskey para calcular a expressÃ£o minimizada. 
+Isso Ã© equivalente a um mapa de Karnaugh, mas se aplica a qualquer nÃºmero de variÃ¡veis
 de entrada.)
 </p>
 
-<p> O botão Definir Como Expressão (Set As Expression) permitirá selecionar
-a expressão minimizada como aquela correspondente à variável. Isso geralmente 
-não será necessário, já que editar a tabela-verdade resultará no uso da
-expressão minimizada para a coluna alterada, mas se você digitar uma expressão 
-através da guia apropriada, esta também poderá ser uma maneira conveniente
-para se alterar a expressão minimizada correspondente.
+<p> O botÃ£o Definir Como ExpressÃ£o (Set As Expression) permitirÃ¡ selecionar
+a expressÃ£o minimizada como aquela correspondente Ã  variÃ¡vel. Isso geralmente 
+nÃ£o serÃ¡ necessÃ¡rio, jÃ¡ que editar a tabela-verdade resultarÃ¡ no uso da
+expressÃ£o minimizada para a coluna alterada, mas se vocÃª digitar uma expressÃ£o 
+atravÃ©s da guia apropriada, esta tambÃ©m poderÃ¡ ser uma maneira conveniente
+para se alterar a expressÃ£o minimizada correspondente.
 </p>
 
-<p><strong>Próximo:</strong> <a href="gen.html">Gerar um circuito</a>.</p>
+<p><strong>PrÃ³ximo:</strong> <a href="gen.html">Gerar um circuito</a>.</p>
 
 </body>
 </html>

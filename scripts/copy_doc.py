@@ -143,14 +143,17 @@ def copy_files(locale, src_dir, dst_dir, translate_html=None,
                     if (base_rel, file) in image_paths_locale:
                         shutil.copy(file_src, file_dst)
                 elif file.endswith('.html') or file.endswith('.jhm'):
-                    with open(file_src, 'r', encoding='utf-8') as html_file:
-                        html_text = html_file.read()
-                    html_text = img_re.sub(img_handler, html_text)
-                    if translate_html is not None:
-                        file_rel = file_rel.replace('\\', '/')
-                        html_text = translate_html(html_text, file_rel)
-                    with open(file_dst, 'w', encoding='utf-8') as html_file:
-                        html_file.write(html_text)
+                    try:
+                        with open(file_src, 'r', encoding='utf-8') as html_file:
+                            html_text = html_file.read()
+                        html_text = img_re.sub(img_handler, html_text)
+                        if translate_html is not None:
+                            file_rel = file_rel.replace('\\', '/')
+                            html_text = translate_html(html_text, file_rel)
+                        with open(file_dst, 'w', encoding='utf-8') as html_file:
+                            html_file.write(html_text)
+                    except UnicodeDecodeError as e:
+                        print('error copying ' + file_rel + ': ' + str(e))
                 else:
                     shutil.copy(file_src, file_dst)
 

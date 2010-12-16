@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Registrador de Deslocamento</title>
 </head>
 
@@ -10,127 +10,127 @@
 
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
-	<td><a href="index.html">MemÛria</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+	<td><a href="index.html">Mem√≥ria</a></td></tr>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.3.0</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/shiftreg.png" width="104" height="44"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Esse registrador È constituÌdo por v·rios est·gios, onde a cada variaÁ„o do 
-<i>clock</i> far· com que um est·gio receba o valor do est·gio anterior, enquanto 
-um novo valor ser· carregado no primeiro est·gio. O componente tambÈm poder· 
-opcionalmente oferecer a carga e o armazenamento em paralelo para todos os est·gios.
+<p> Esse registrador √© constitu√≠do por v√°rios est√°gios, onde a cada varia√ß√£o do 
+<i>clock</i> far√° com que um est√°gio receba o valor do est√°gio anterior, enquanto 
+um novo valor ser√° carregado no primeiro est√°gio. O componente tamb√©m poder√° 
+opcionalmente oferecer a carga e o armazenamento em paralelo para todos os est√°gios.
 </p>
 
-<p> A entrada <var>Limpar (clear)</var> reiniciar· todos os est·gios com valor 
+<p> A entrada <var>Limpar (clear)</var> reiniciar√° todos os est√°gios com valor 
 igual a 0 assincronamente; ou seja, enquanto a entrada <var>Limpar (clear)</var> 
-for igual a 1, todos os valores ser„o iguais a 0, independente da entrada do 
+for igual a 1, todos os valores ser√£o iguais a 0, independente da entrada do 
 <i>clock</i>.
 </p>
 
 <h2>Pinos</h2>
 
-<p> Um asterisco (*) marcar· os pinos que existir„o somente quando o atributo
+<p> Um asterisco (*) marcar√° os pinos que existir√£o somente quando o atributo
 Carga em Paralelo estiver habilitado.
 </p>
 
 <dl>
 
 <dt> Na face oeste, pino superior (entrada, com largura de 1 bit)</dt>
-<dd> Deslocar: se for 1 ou desconectado, todos os est·gios avanÁar„o ao gatilho 
-do <i>clock</i>; mas se for 0, n„o haver· avanÁo. Essa entrada ser· ignorada 
+<dd> Deslocar: se for 1 ou desconectado, todos os est√°gios avan√ßar√£o ao gatilho 
+do <i>clock</i>; mas se for 0, n√£o haver√° avan√ßo. Essa entrada ser√° ignorada 
 se a entrada Carga for 1.
 </dd>
 
 <dt> Na face oeste, pino central (entrada, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> Dado: quando houver avanÁo dos est·gios, o valor encontrado nessa entrada
-ser· carregado no primeiro est·gio. </dd>
+<dd> Dado: quando houver avan√ßo dos est√°gios, o valor encontrado nessa entrada
+ser√° carregado no primeiro est√°gio. </dd>
 
-<dt> Na face oeste, pino inferior marcado com um tri‚ngulo (entrada, 
+<dt> Na face oeste, pino inferior marcado com um tri√¢ngulo (entrada, 
 com largura de 1 bit)</dt>
-<dd> <i>Clock</i>: no instante em que sofrer variaÁ„o, conforme especificado 
-pelo atributo Gatilho, o componente poder· avanÁar os est·gios ou carregar novos 
+<dd> <i>Clock</i>: no instante em que sofrer varia√ß√£o, conforme especificado 
+pelo atributo Gatilho, o componente poder√° avan√ßar os est√°gios ou carregar novos 
 valores. </dd>
 
-<dt>*Na face norte, pino ‡ esquerda (entrada, com largura de 1 bit)</dt>
+<dt>*Na face norte, pino √† esquerda (entrada, com largura de 1 bit)</dt>
 <dd> Carga: se for 1, os valores encontrados nos outros pinos na face norte
-ser„o carregados em todos os est·gios na prÛxima variaÁ„o do <i>clock</i>. Se for 0
-ou desconectado, n„o haver· carga. </dd>
+ser√£o carregados em todos os est√°gios na pr√≥xima varia√ß√£o do <i>clock</i>. Se for 0
+ou desconectado, n√£o haver√° carga. </dd>
 
 <dt>*Na face norte, outros pinos (entrada, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> Dado: esses valores ser„o carregados em todos os est·gios quando houver
-variaÁ„o do <i>clock</i> e enquanto <var>Carga</var> estiver em 1. A entrada 
-mais ‡ esquerda corresponder· ao valor mais recente. </dd>
+<dd> Dado: esses valores ser√£o carregados em todos os est√°gios quando houver
+varia√ß√£o do <i>clock</i> e enquanto <var>Carga</var> estiver em 1. A entrada 
+mais √† esquerda corresponder√° ao valor mais recente. </dd>
 
-<dt> Na face sul, pino ‡ esquerda (entrada, com largura de 1 bit)</dt>
-<dd> Limpar (<i>clear</i>): se for 1, todos os est·gios ser„o levados para zero
-assincronamente, e todas as outras entradas ser„o ignoradas. </dd>
+<dt> Na face sul, pino √† esquerda (entrada, com largura de 1 bit)</dt>
+<dd> Limpar (<i>clear</i>): se for 1, todos os est√°gios ser√£o levados para zero
+assincronamente, e todas as outras entradas ser√£o ignoradas. </dd>
 
-<dt>*Na face sul, outros pins (saÌda, com largura em bits de acordo com o
+<dt>*Na face sul, outros pins (sa√≠da, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> SaÌda: Emitir· o valor armazenado em cada est·gio, com o est·gio mais
-recente refletido nos pinos mais ‡ esquerda (prÛximo ‡ entrada
+<dd> Sa√≠da: Emitir√° o valor armazenado em cada est√°gio, com o est√°gio mais
+recente refletido nos pinos mais √† esquerda (pr√≥ximo √† entrada
 <var>Limpar (<i>clear</i>)</var>). </dd>
 
-<dt> Face leste (saÌda, com largura em bits de acordo com o
+<dt> Face leste (sa√≠da, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> SaÌda: Emitir· o valor armazenado no est·gio final (mais antigo).</dd>
+<dd> Sa√≠da: Emitir√° o valor armazenado no est√°gio final (mais antigo).</dd>
 
 </dl>
 
 <h2>Atributos</h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-os dÌgitos de '0 'a '9' poder„o alterar o atributo <q> N˙mero de Est·gios</q>,
-Alt-0 atÈ ALT-9 ir„o alterar o seu atributo <q> Bits de Dados</q>.
+os d√≠gitos de '0 'a '9' poder√£o alterar o atributo <q> N√∫mero de Est√°gios</q>,
+Alt-0 at√© ALT-9 ir√£o alterar o seu atributo <q> Bits de Dados</q>.
 </p>
 
 <dl>
 
 <dt> Bits de Dados </dt>
-<dd> A largura em bits do valor armazenado em cada est·gio. </dd>
+<dd> A largura em bits do valor armazenado em cada est√°gio. </dd>
 
-<dt> N˙mero de Est·gios </dt>
-<dd> O n˙mero de est·gios incluÌdos no componente. </dd>
+<dt> N√∫mero de Est√°gios </dt>
+<dd> O n√∫mero de est√°gios inclu√≠dos no componente. </dd>
 
 <dt> Carga em Paralelo </dt>
-<dd> Se <q>sim,</q> ent„o o componente incluir· entradas e saÌdas facilitando o
-acesso em paralelo a todos os valores dos est·gios. </dd>
+<dd> Se <q>sim,</q> ent√£o o componente incluir√° entradas e sa√≠das facilitando o
+acesso em paralelo a todos os valores dos est√°gios. </dd>
 
 <dt> Gatilho </dt>
-<dd> Serve para configurar como a entrada de <i>clock</i> ser· interpretada. O valor
-<q> Borda de Subida </q> serve para indicar que o registrador dever·
+<dd> Serve para configurar como a entrada de <i>clock</i> ser√° interpretada. O valor
+<q> Borda de Subida </q> serve para indicar que o registrador dever√°
 atualizar seu valor no instante em o <i>clock</i> variar de 0 para 1. O valor
-<q> Borda de Descida </q> indicar· que ele dever· realizar a atualizaÁ„o 
+<q> Borda de Descida </q> indicar√° que ele dever√° realizar a atualiza√ß√£o 
 no instante em que o <i>clock</i> variar de 1 para 0. </dd>
 
-<dt> RÛtulo </dt>
-<dd> O texto para o rÛtulo associado ao componente. </dd>
+<dt> R√≥tulo </dt>
+<dd> O texto para o r√≥tulo associado ao componente. </dd>
 
-<dt> Fonte do RÛtulo </dt>
-<dd> A fonte com a qual o rÛtulo ser· mostrado. </dd>
+<dt> Fonte do R√≥tulo </dt>
+<dd> A fonte com a qual o r√≥tulo ser√° mostrado. </dd>
 
 </dl>
 
 <h2> Comportamento da ferramenta Testar </h2>
 
-<p> Se o atributo Carga em Paralelo for n„o, ou se o atributo Bits de Dados
-for maior que 4, ent„o o acionamento do registrador n„o ter· efeito. Do contr·rio,
-ao clicar sobre o componente, o foco do teclado estar· sobre o est·gio selecionado
-(indicado por um ret‚ngulo vermelho), e ao digitar um dÌgito hexadecimal, o valor
-desse est·gio ir· mudar.
+<p> Se o atributo Carga em Paralelo for n√£o, ou se o atributo Bits de Dados
+for maior que 4, ent√£o o acionamento do registrador n√£o ter√° efeito. Do contr√°rio,
+ao clicar sobre o componente, o foco do teclado estar√° sobre o est√°gio selecionado
+(indicado por um ret√¢ngulo vermelho), e ao digitar um d√≠gito hexadecimal, o valor
+desse est√°gio ir√° mudar.
 </p>
 
 <h2> Comportamento da ferramenta Texto </h2>
 
-<p> Permite que o rÛtulo associado ‡ porta seja editado.</p>
+<p> Permite que o r√≥tulo associado √† porta seja editado.</p>
 
-<p><a href="../index.html">Voltar ‡ <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar √† <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

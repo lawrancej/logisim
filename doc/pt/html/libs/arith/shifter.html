@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Deslocador</title>
 </head>
 
@@ -10,57 +10,57 @@
 
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
-	<td><a href="index.html">AritmÈtica</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+	<td><a href="index.html">Aritm√©tica</a></td></tr>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.3.0</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/shifter.png" width="44" height="42"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
 <p> Esse componente inclui duas entradas, os <var>dados</var> e <var>dist</var>, e
-uma saÌda, que ser· o resultado do deslocamento dos <var>dados</var> por
-<var>dist</var> posiÁıes. Ambos, os <var>dados</var> e a saÌda, possuem o mesmo 
-n˙mero de bits. O componente oferece os seguintes tipos de deslocamento:
+uma sa√≠da, que ser√° o resultado do deslocamento dos <var>dados</var> por
+<var>dist</var> posi√ß√µes. Ambos, os <var>dados</var> e a sa√≠da, possuem o mesmo 
+n√∫mero de bits. O componente oferece os seguintes tipos de deslocamento:
 </p>
 
 <ul>
 
-<li> LÛgico para a Esquerda: Todos os bits de <var>dados</var> ser„o deslocados
-no sentido dos bits mais significativo <var>dist</var> posiÁıes, com os bits
-menos significativos nas <var>dist</var> posiÁıes sendo preenchidos com 0's.
-Por exemplo, 11001011 logicamente deslocado para a esquerda duas vezes ser· 00101100.
-(Os dois primeiros ser„o perdidos.) </li>
+<li> L√≥gico para a Esquerda: Todos os bits de <var>dados</var> ser√£o deslocados
+no sentido dos bits mais significativo <var>dist</var> posi√ß√µes, com os bits
+menos significativos nas <var>dist</var> posi√ß√µes sendo preenchidos com 0's.
+Por exemplo, 11001011 logicamente deslocado para a esquerda duas vezes ser√° 00101100.
+(Os dois primeiros ser√£o perdidos.) </li>
 
-<li> LÛgico para a Direita: Todos os bits de <var>dados</var> ser„o deslocados
-no sentido dos bits menos significativos <var>dist</var> posiÁıes, com os
-bits mais significativos nas <var>dist</var> posiÁıes preenchidos com 0's.
-Por exemplo, 11001011 logicamente deslocado para a direita duas vezes ser· 00110010.
-(Os dois ˙ltimos ser„o perdidos.) </li>
+<li> L√≥gico para a Direita: Todos os bits de <var>dados</var> ser√£o deslocados
+no sentido dos bits menos significativos <var>dist</var> posi√ß√µes, com os
+bits mais significativos nas <var>dist</var> posi√ß√µes preenchidos com 0's.
+Por exemplo, 11001011 logicamente deslocado para a direita duas vezes ser√° 00110010.
+(Os dois √∫ltimos ser√£o perdidos.) </li>
 
-<li> AritmÈtico para a direita: Todos os bits de <var>dados</var> ser„o deslocados
-no sentido dos bits menos significativos <var>dist</var> posiÁıes, com a parte
-mais significativa das <var>dist</var> posiÁıes preenchidas com qualquer que seja
-o conte˙do igualmente na parte mais significativa dos <var>dados</var>.
-Por exemplo, 11001011 aritmeticamente deslocado para a direita duas vezes ser· 11110010.
+<li> Aritm√©tico para a direita: Todos os bits de <var>dados</var> ser√£o deslocados
+no sentido dos bits menos significativos <var>dist</var> posi√ß√µes, com a parte
+mais significativa das <var>dist</var> posi√ß√µes preenchidas com qualquer que seja
+o conte√∫do igualmente na parte mais significativa dos <var>dados</var>.
+Por exemplo, 11001011 aritmeticamente deslocado para a direita duas vezes ser√° 11110010.
 </li>
 
-<li> Com RotaÁ„o para a Esquerda: Todos os bits de <var>dados</var> ser„o deslocados
-no sentido dos bits mais significativo <var>dist</var> posiÁıes, com os bits mais
-significativos das <var>dist</var> posiÁıes copiados para a parte menos significativa.
-Por exemplo, 11001011 rotacionado para a esquerda duas vezes ser· 00101111. </li>
+<li> Com Rota√ß√£o para a Esquerda: Todos os bits de <var>dados</var> ser√£o deslocados
+no sentido dos bits mais significativo <var>dist</var> posi√ß√µes, com os bits mais
+significativos das <var>dist</var> posi√ß√µes copiados para a parte menos significativa.
+Por exemplo, 11001011 rotacionado para a esquerda duas vezes ser√° 00101111. </li>
 
-<li> Com RotaÁ„o para a Direita: Todos os bits de <var>dados</var> ser„o deslocados
-no sentido dos bits menos significativo <var>dist</var> posiÁıes, com os bits menos
-significativos das <var>dist</var> posiÁıes copiados para a parte mais significativa.
-Por exemplo, 11001011 direito rotacionado duas vezes ser· 11110010. </li>
+<li> Com Rota√ß√£o para a Direita: Todos os bits de <var>dados</var> ser√£o deslocados
+no sentido dos bits menos significativo <var>dist</var> posi√ß√µes, com os bits menos
+significativos das <var>dist</var> posi√ß√µes copiados para a parte mais significativa.
+Por exemplo, 11001011 direito rotacionado duas vezes ser√° 11110010. </li>
 
 </ul>
 
 <p> Observar que <var>dist</var> contiver quaisquer entradas flutuantes ou erro,
-a saÌda ser· composta inteiramente por valores de erro, j· que n„o h· maneira de
-supor atÈ que ponto dever· ser deslocada a entrada.
+a sa√≠da ser√° composta inteiramente por valores de erro, j√° que n√£o h√° maneira de
+supor at√© que ponto dever√° ser deslocada a entrada.
 </p>
 
 <h2>Pinos</h2>
@@ -73,33 +73,33 @@ atributo Bits de Dados) </dt>
 
 <dt> Na face oeste, extremo sul (entrada, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> O n˙mero de bits para os quais a entrada de <var>dados</var> dever· ser deslocada.
-Essa entrada dever· ter tantos bits quanto o n˙mero mÌnimo para indicar qualquer
-dist‚ncia desde 0 atÈ Bits de Dados menos um, ou seja, dever· ter como limite m·ximo
+<dd> O n√∫mero de bits para os quais a entrada de <var>dados</var> dever√° ser deslocada.
+Essa entrada dever√° ter tantos bits quanto o n√∫mero m√≠nimo para indicar qualquer
+dist√¢ncia desde 0 at√© Bits de Dados menos um, ou seja, dever√° ter como limite m√°ximo
 o logaritmo de base 2 dos Bits de Dados. Por exemplo, se os bits de dados
-forem 8, essa entrada exigir· 3 bits; mas, se fosse 9, exigiria 4 bits. </dd>
+forem 8, essa entrada exigir√° 3 bits; mas, se fosse 9, exigiria 4 bits. </dd>
 
-<dt> Na face leste (saÌda, com largura em bits de acordo com o
+<dt> Na face leste (sa√≠da, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> O resultado do deslocamento do valor de entrada pela quantidade em posiÁıes. </dd>
+<dd> O resultado do deslocamento do valor de entrada pela quantidade em posi√ß√µes. </dd>
 
 </dl>
 
 <h2>Atributos</h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-Alt-0 atÈ ALT-9 ir„o alterar o seu atributo <q> Bits de Dados </q>.
+Alt-0 at√© ALT-9 ir√£o alterar o seu atributo <q> Bits de Dados </q>.
 </p>
 
 <dl>
 
 <dt> Bits de Dados </dt>
-<dd> A largura em bits dos <var>dados</var> de entrada e de saÌda.</dd>
+<dd> A largura em bits dos <var>dados</var> de entrada e de sa√≠da.</dd>
 
 <dt> Tipo de deslocamento </dt>
-<dd> Um dos cinco tipos possÌveis para deslocamento como destacado acima
-(LÛgico para a Esquerda, LÛgico para a Direita, AritmÈtico para a Direita,
-Com RotaÁ„o para a Esquerda, Com RotaÁ„o para a Direita).
+<dd> Um dos cinco tipos poss√≠veis para deslocamento como destacado acima
+(L√≥gico para a Esquerda, L√≥gico para a Direita, Aritm√©tico para a Direita,
+Com Rota√ß√£o para a Esquerda, Com Rota√ß√£o para a Direita).
 </dd>
 
 </dl>
@@ -112,7 +112,7 @@ Com RotaÁ„o para a Esquerda, Com RotaÁ„o para a Direita).
 
 <p> Nenhum. </p>
 
-<p><a href="../index.html">Voltar ‡ <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar √† <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

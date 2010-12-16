@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Flip-Flop D/J-K do Logisim 1.0</title>
 </head>
 
@@ -12,25 +12,25 @@
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
 	<td><a href="index.html">Legada</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.0 Beta 12</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/legacy-flipflops.png" width="84" height="33"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Esses componentes existem apenas para compatibilidade com versıes anteriores
+<p> Esses componentes existem apenas para compatibilidade com vers√µes anteriores
 como as Logisim 1.0<var>X</var>, pois os novos circuitos, <i>flip-flops</i> da
-<a href="../mem/flipflops.html">biblioteca MemÛria</a> devem ser usados em seu lugar. 
+<a href="../mem/flipflops.html">biblioteca Mem√≥ria</a> devem ser usados em seu lugar. 
 </p>
 
-<p> Cada <i>flip-flop</i> armazenar· um ˙nico bit de dado, que ser· emitido atravÈs
-da saÌda <var> Q </var> no lado leste. Normalmente, o valor pode ser
-controlado atravÈs das entradas do lado oeste. Em particular, haver· variaÁ„o
-quando a entrada de <strong><i>clock</i></strong>, marcada por um tri‚ngulo em
+<p> Cada <i>flip-flop</i> armazenar√° um √∫nico bit de dado, que ser√° emitido atrav√©s
+da sa√≠da <var> Q </var> no lado leste. Normalmente, o valor pode ser
+controlado atrav√©s das entradas do lado oeste. Em particular, haver√° varia√ß√£o
+quando a entrada de <strong><i>clock</i></strong>, marcada por um tri√¢ngulo em
 cada <i>flip-flop</i>, varia de 0 para 1 (borda de subida), e o valor
-mudar· de acordo com a tabela abaixo.
+mudar√° de acordo com a tabela abaixo.
 
 <center><table>
 <tr><th><i>Flip-Flop D  </i></th>
@@ -55,17 +55,17 @@ mudar· de acordo com a tabela abaixo.
 </table>
 </tr></table></center>
 Outra forma para descrever o comportamento singular dos <i>flip-flops</i>
-est· no texto original em inglÍs.
+est√° no texto original em ingl√™s.
 <ul>
 
-<li> <strong> <i>Flip-Flop D:  </i></strong> Quando o relÛgio varia de 0 para 1,
-o valor a ser guardado pelo <i>flip-flop</i> ser· aquele presente na entrada
+<li> <strong> <i>Flip-Flop D:  </i></strong> Quando o rel√≥gio varia de 0 para 1,
+o valor a ser guardado pelo <i>flip-flop</i> ser√° aquele presente na entrada
 <var> D </var> (<em>Dado</em>) naquele instante. </p>
 
-<li> <strong> <i>Flip-Flop JK: </i></strong> Quando o relÛgio varia de 0 para 1,
-o valor a ser guardado pelo <i>flip-flop</i> alternar· se as entradas <var> J </var>
-e <var> K </var> forem iguais a 1, e permanecer· o mesmo se ambos forem 0;
-se forem diferentes, ent„o o valor torna-se 1 se a entrada <var> J </var>
+<li> <strong> <i>Flip-Flop JK: </i></strong> Quando o rel√≥gio varia de 0 para 1,
+o valor a ser guardado pelo <i>flip-flop</i> alternar√° se as entradas <var> J </var>
+e <var> K </var> forem iguais a 1, e permanecer√° o mesmo se ambos forem 0;
+se forem diferentes, ent√£o o valor torna-se 1 se a entrada <var> J </var>
 (<em> Jump </em>) for 1 e 0 se a entrada <var> K </var> (<em>Kill</em>)
 for 1. </p> </li>
 
@@ -75,22 +75,22 @@ for 1. </p> </li>
 
 <dl>
 
-<dt> Na face oeste, marcada pelo tri‚ngulo (entrada, com largura de 1 bit)
+<dt> Na face oeste, marcada pelo tri√¢ngulo (entrada, com largura de 1 bit)
 <dd> entrada do <i>clock</i>: no instante em que esse valor de entrada muda de 0 para
-1 (a borda de subida), o valor ser· atualizado de acordo com os outras
+1 (a borda de subida), o valor ser√° atualizado de acordo com os outras
 entradas na face oeste. Enquanto permanecer em 0 ou 1, nenhuma das outras
-entradas na face oeste ter· qualquer efeito.
+entradas na face oeste ter√° qualquer efeito.
 
 <dt> Na face oeste, outro pino(s) rotulado(s) (entrada(s), com largura de 1 bit)
-<dd> Essas entradas controlam como ser„o as mudanÁas do valor <i>flip-flop</i> quando
-houver subida de borda do <i>clock</i>. Seu comportamento exato depender· do
+<dd> Essas entradas controlam como ser√£o as mudan√ßas do valor <i>flip-flop</i> quando
+houver subida de borda do <i>clock</i>. Seu comportamento exato depender√° do
 <i>flip-flop</i>; as tabelas acima resumem seu comportamento.
 
-<dt> Na borda leste, marcado como <var> Q</var>, em cima (saÌda, com largura de 1 bit)
-<dd> SaÌda com o valor atualmente armazenado pelo <i>flip-flop</i>.
+<dt> Na borda leste, marcado como <var> Q</var>, em cima (sa√≠da, com largura de 1 bit)
+<dd> Sa√≠da com o valor atualmente armazenado pelo <i>flip-flop</i>.
 
-<dt> Na borda leste, em baixo (saÌda, com largura de 1 bit)
-<dd> SaÌda com o complemento do valor atualmente armazenado pelo <i>flip-flop</i>.
+<dt> Na borda leste, em baixo (sa√≠da, com largura de 1 bit)
+<dd> Sa√≠da com o complemento do valor atualmente armazenado pelo <i>flip-flop</i>.
 
 </dl>
 
@@ -106,7 +106,7 @@ houver subida de borda do <i>clock</i>. Seu comportamento exato depender· do
 
 <p>Nenhum.</p>
 
-<p><a href="../index.html">Back to <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Back to <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

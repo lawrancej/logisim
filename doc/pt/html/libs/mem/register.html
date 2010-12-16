@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Registrador</title>
 </head>
 
@@ -10,62 +10,62 @@
 
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
-	<td><a href="index.html">MemÛria</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+	<td><a href="index.html">Mem√≥ria</a></td></tr>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.0 Beta 1</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/register.png" width="35" height="43"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Um registrador serve para guardar um ˙nico valor multibit, que ser· mostrado em
-hexadecimal dentro de seu ret‚ngulo, e emitido em sua saÌda <var> Q </var> saÌda. 
-Quando a entrada de <i>clock</i> (marcada por um tri‚ngulo na face sul), assim indicar,
-o valor armazenado no registrador ser· alterado para o valor na entrada
-<var> D </var> naquele instante. Exatamente quando a entrada de <i>clock</i> indicar·
-a situaÁ„o para que isso aconteÁa ser· configurado atravÈs do atributo Gatilho. </p>
+<p> Um registrador serve para guardar um √∫nico valor multibit, que ser√° mostrado em
+hexadecimal dentro de seu ret√¢ngulo, e emitido em sua sa√≠da <var> Q </var> sa√≠da. 
+Quando a entrada de <i>clock</i> (marcada por um tri√¢ngulo na face sul), assim indicar,
+o valor armazenado no registrador ser√° alterado para o valor na entrada
+<var> D </var> naquele instante. Exatamente quando a entrada de <i>clock</i> indicar√°
+a situa√ß√£o para que isso aconte√ßa ser√° configurado atrav√©s do atributo Gatilho. </p>
 
-<p> A entrada <var> Reset </var> levar· o valor no registrador para 0 (em todos os bits)
-de forma assÌncrona, ou seja, enquanto essa entrada for 1, o valor ficar· fixo em 0, 
+<p> A entrada <var> Reset </var> levar√° o valor no registrador para 0 (em todos os bits)
+de forma ass√≠ncrona, ou seja, enquanto essa entrada for 1, o valor ficar√° fixo em 0, 
 independente da entrada de <i>clock</i>. </p>
 
 <h2>Pinos</h2>
 
 <dl>
 
-<dt> Na face leste, marcado por <var> Q </var> (saÌda, com largura em bits 
+<dt> Na face leste, marcado por <var> Q </var> (sa√≠da, com largura em bits 
 de acordo com o atributo Bits de Dados) </dt>
-<dd> Emitir· o valor atualmente armazenado pelo registrador. </dd>
+<dd> Emitir√° o valor atualmente armazenado pelo registrador. </dd>
 
-<dt> Na face oeste, marcado por <var> D </var> (entrada, (saÌda, com largura em bits 
+<dt> Na face oeste, marcado por <var> D </var> (entrada, (sa√≠da, com largura em bits 
 de acordo com o atributo Bits de Dados) </dt>
 <dd> Entrada de Dados: no instante em que o valor do clock variar de 0 para 1,
-o valor no registrador ir· mudar para o valor da entrada <var> D </var> naquele 
+o valor no registrador ir√° mudar para o valor da entrada <var> D </var> naquele 
 instante. </dd>
 
 <dt> Na face oeste, marcado por <var> en </var> (entrada, com largura de 1 bit) </dt>
-<dd> Enable: quando for 0, os gatilhos de clock ser„o ignorados. O valor atual
-continuar· a aparecer na saÌda. Os gatilhos de <i>clock</i> estar„o ativados quando essa
+<dd> Enable: quando for 0, os gatilhos de clock ser√£o ignorados. O valor atual
+continuar√° a aparecer na sa√≠da. Os gatilhos de <i>clock</i> estar√£o ativados quando essa
 entrada for 1 ou indefinida. </dd>
 
-<dt> Na face sul, indicada por um tri‚ngulo (entrada, com largura de 1 bit) </dt>
+<dt> Na face sul, indicada por um tri√¢ngulo (entrada, com largura de 1 bit) </dt>
 <dd> Entrada do <i>Clock</i>: no instante em que o valor da entrada variar de 0 para
-1 (borda de subida), o valor no registrador ser· atualizado para o valor
+1 (borda de subida), o valor no registrador ser√° atualizado para o valor
 da entrada <var> D </var>. </dd>
 
 <dt> Na face sul, marcado por <var> 0 </var> (entrada, com largura de 1 bit) </dt>
-<dd> Reset assÌncrono: quando for 0 ou indefinido, essa entrada n„o ter· efeito.
-Enquanto ele permanecer em 1, o valor de registrador ficar· fixo em 0. Isso ocorrer·
-assÌncronamente - ou seja, sem levar em conta o valor atual da entrada de <i>clock</i>.
-Enquanto se mantiver em 1, as outras entradas n„o ter„o qualquer efeito. </dd>
+<dd> Reset ass√≠ncrono: quando for 0 ou indefinido, essa entrada n√£o ter√° efeito.
+Enquanto ele permanecer em 1, o valor de registrador ficar√° fixo em 0. Isso ocorrer√°
+ass√≠ncronamente - ou seja, sem levar em conta o valor atual da entrada de <i>clock</i>.
+Enquanto se mantiver em 1, as outras entradas n√£o ter√£o qualquer efeito. </dd>
 
 </dl>
 
 <h2>Atributos</h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-Alt-0 atÈ ALT-9 ir„o alterar o seu atributo <q> Bits de Dados</q>.
+Alt-0 at√© ALT-9 ir√£o alterar o seu atributo <q> Bits de Dados</q>.
 </p>
 
 <dl>
@@ -74,35 +74,35 @@ Alt-0 atÈ ALT-9 ir„o alterar o seu atributo <q> Bits de Dados</q>.
 <dd> A largura em bits do valor armazenado no registrador. </dd>
 
 <dt> Gatilho </dt>
-<dd> Serve para configurar como a entrada de <i>clock</i> ser· interpretada.
-O valor <q> Borda de Subida </q> serve para indicar que o registrador dever· 
+<dd> Serve para configurar como a entrada de <i>clock</i> ser√° interpretada.
+O valor <q> Borda de Subida </q> serve para indicar que o registrador dever√° 
 atualizar o seu valor no instante em o <i>clock</i> variar de 0 para 1. O valor
-<q> Borda de Descida </q> indicar· que ele dever· realizar a atualizaÁ„o 
-no instante em que o <i>clock</i> variar de 1 para 0. O valor <q> NÌvel Alto </q>
-indicar· que o registrador dever· atualizar continuamente, enquanto a entrada
-de <i>clock</i> for igual a 1. E o valor <q> Nivel Baixo </q> indicar· que ele dever·
-realizar a atualizaÁ„o continuamente enquanto a entrada de <i>clock</i> for 0. </dd>
+<q> Borda de Descida </q> indicar√° que ele dever√° realizar a atualiza√ß√£o 
+no instante em que o <i>clock</i> variar de 1 para 0. O valor <q> N√≠vel Alto </q>
+indicar√° que o registrador dever√° atualizar continuamente, enquanto a entrada
+de <i>clock</i> for igual a 1. E o valor <q> Nivel Baixo </q> indicar√° que ele dever√°
+realizar a atualiza√ß√£o continuamente enquanto a entrada de <i>clock</i> for 0. </dd>
 
-<dt> RÛtulo </dt>
-<dd> O texto para o rÛtulo associado ao componente. </dd>
+<dt> R√≥tulo </dt>
+<dd> O texto para o r√≥tulo associado ao componente. </dd>
 
-<dt> Fonte do RÛtulo </dt>
-<dd> A fonte com a qual o rÛtulo ser· mostrado. </dd>
+<dt> Fonte do R√≥tulo </dt>
+<dd> A fonte com a qual o r√≥tulo ser√° mostrado. </dd>
 
 </dl>
 
 <h2> Comportamento da ferramenta Testar </h2>
 
-<p> Ao clicar sobre o registrador mudar· o foco do teclado para esse componente
-(indicado por um ret‚ngulo vermelho), e ao digitar dÌgitos hexadecimais poder·
+<p> Ao clicar sobre o registrador mudar√° o foco do teclado para esse componente
+(indicado por um ret√¢ngulo vermelho), e ao digitar d√≠gitos hexadecimais poder√°
 alterar o valor armazenado no registrador.
 </p>
 
 <h2> Comportamento da ferramenta Texto </h2>
 
-<p> Permite que o rÛtulo associado ‡ porta seja editado.</p>
+<p> Permite que o r√≥tulo associado √† porta seja editado.</p>
 
-<p><a href="../index.html">Voltar ‡ <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar √† <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

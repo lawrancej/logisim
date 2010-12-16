@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Extensor de Bits</title>
 </head>
 
@@ -11,19 +11,19 @@
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
 	<td><a href="index.html">Base</a></td></tr>
-<tr><td><strong>Introdução:</strong></td>
+<tr><td><strong>IntroduÃ§Ã£o:</strong></td>
 	<td>2.5.0</td></tr>
-<tr><td valign="top"><strong>Aparência:</strong></td>
+<tr><td valign="top"><strong>AparÃªncia:</strong></td>
 	<td valign="top"><img src="../images/extender.png" width="44" height="42"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> O extensor de bits transformará um valor em outro de largura diferente.
+<p> O extensor de bits transformarÃ¡ um valor em outro de largura diferente.
 Se for para transformar para uma largura menor, os bits de mais baixa ordem
-serão simplesmente truncados. Se for para transformar para uma largura maior,
-os bits menos significativos serão os mesmos, e você terá uma escolha para os
-bits de mais alta ordem: eles poderão ser todos iguais a 0, ou todos iguais a 1,
+serÃ£o simplesmente truncados. Se for para transformar para uma largura maior,
+os bits menos significativos serÃ£o os mesmos, e vocÃª terÃ¡ uma escolha para os
+bits de mais alta ordem: eles poderÃ£o ser todos iguais a 0, ou todos iguais a 1,
 o concordarem com a entrada do <q>bit de sinal</q> (o mais significativo), ou
 ainda ter esse valor determinado por uma entrada adicional.
 </p>
@@ -34,15 +34,15 @@ ainda ter esse valor determinado por uma entrada adicional.
 
 <dt> Na face oeste (entrada, com largura em bits de acordo com o
 atributo Largura da Entrada) </dt>
-<dd><p> A entrada multibit cujo valor será transformado.</p></dd>
+<dd><p> A entrada multibit cujo valor serÃ¡ transformado.</p></dd>
 
-<dt> Na face leste (saída, com largura em bits de acordo com o
-atributo Largura da Saída) </dt>
-<dd><p> A saída calculada. </p></dd>
+<dt> Na face leste (saÃ­da, com largura em bits de acordo com o
+atributo Largura da SaÃ­da) </dt>
+<dd><p> A saÃ­da calculada. </p></dd>
 
 <dt> Na face norte (entrada, com largura de 1 bit) </dt>
-<dd><p> Especificará como deverão ser os bits adicionais à saída.
-Esse pino estará disponível apenas se o atributo Tipo da Extensão for
+<dd><p> EspecificarÃ¡ como deverÃ£o ser os bits adicionais Ã  saÃ­da.
+Esse pino estarÃ¡ disponÃ­vel apenas se o atributo Tipo da ExtensÃ£o for
 <q>Entrada.</q></p></dd>
 
 </dl>
@@ -50,8 +50,8 @@ Esse pino estará disponível apenas se o atributo Tipo da Extensão for
 <h2>Atributos</h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-os dígitos de '0 'a '9' poderão alterar o atributo <q> Largura da Entrada </q>,
-Alt-0 até ALT-9 irão alterar o seu atributo <q> Largura da Saída</q>.
+os dÃ­gitos de '0 'a '9' poderÃ£o alterar o atributo <q> Largura da Entrada </q>,
+Alt-0 atÃ© ALT-9 irÃ£o alterar o seu atributo <q> Largura da SaÃ­da</q>.
 </p>
 
 <dl>
@@ -59,15 +59,15 @@ Alt-0 até ALT-9 irão alterar o seu atributo <q> Largura da Saída</q>.
 <dt> Largura da Entrada </dt>
 <dd> A largura em bits da entrada. </dd>
 
-<dt> Largura da Saída </dt>
-<dd> A largura em bits da saída. </dd>
+<dt> Largura da SaÃ­da </dt>
+<dd> A largura em bits da saÃ­da. </dd>
 
-<dt> Tipo da Extensão </dt>
-<dd> Se a largura dos bits à saída puderem exceder aquela à entrada,
-esse atributo irá configurar como deverão ser os bits adicionais da saída.
-Se <q>Zero</q> ou <q>Um</q>, os bits adicionais serão 0 ou 1 respectivamente.
-Se <q>Sinal</q>, os bits adicionais serão tomados de acordo com o bit de mais alta ordem
-da entrada. E se <q>Entrada</q>, o componente usará o valor de uma segunda entrada
+<dt> Tipo da ExtensÃ£o </dt>
+<dd> Se a largura dos bits Ã  saÃ­da puderem exceder aquela Ã  entrada,
+esse atributo irÃ¡ configurar como deverÃ£o ser os bits adicionais da saÃ­da.
+Se <q>Zero</q> ou <q>Um</q>, os bits adicionais serÃ£o 0 ou 1 respectivamente.
+Se <q>Sinal</q>, os bits adicionais serÃ£o tomados de acordo com o bit de mais alta ordem
+da entrada. E se <q>Entrada</q>, o componente usarÃ¡ o valor de uma segunda entrada
 adicional na face norte. </dd>
 
 </dl>
@@ -80,7 +80,7 @@ adicional na face norte. </dd>
 
 <p> Nenhum. </p>
 
-<p><a href="../index.html">Voltar à <em>Referência para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar Ã  <em>ReferÃªncia para bibliotecas</em></a></p>
 
 </body>
 </html>

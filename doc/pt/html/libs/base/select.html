@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Ferramenta Selecionar</title>
 </head>
 
@@ -11,91 +11,91 @@
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
 	<td><a href="index.html">Base</a></td></tr>
-<tr><td><strong>Introdução:</strong></td>
+<tr><td><strong>IntroduÃ§Ã£o:</strong></td>
 	<td>2.0 Beta 1</td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Permite que componentes individuais possam ser colocados em uma mesma seleção.
-Há certo número de ações possíveis com essa ferramenta.
+<p> Permite que componentes individuais possam ser colocados em uma mesma seleÃ§Ã£o.
+HÃ¡ certo nÃºmero de aÃ§Ãµes possÃ­veis com essa ferramenta.
 <ul>
 
-<li> Ao pressionar o botão do mouse enquanto ele estiver sobre um componente
-selecionado, ele irá arrastar todos os componentes na mesma seleção.
+<li> Ao pressionar o botÃ£o do mouse enquanto ele estiver sobre um componente
+selecionado, ele irÃ¡ arrastar todos os componentes na mesma seleÃ§Ã£o.
 </p>
 
-<p> Por padrão, Logisim irá calcular uma forma de acrescentar novos fios
-de modo que nenhuma conexão existente seja perdida durante o movimento.
-(Às vezes, ele irá eliminar ou encurtar fios existentes.)
-Se você estiver realizando um movimento em que você queira que essas alterações
-sejam feitas, você poderá pressionar a tecla Shift durante a movimentação.
-Se você quiser desabilitar esse comportamento por completo,
-basta ir a Projeto &gt; Opções, selecionar a guia Área de Desenho,
-e desmarcar a caixa <q> Manter Conexões ao Mover </q>;
-nesse caso, as conexões serão calculadas somente quando a tecla <i>shift</i> for
+<p> Por padrÃ£o, Logisim irÃ¡ calcular uma forma de acrescentar novos fios
+de modo que nenhuma conexÃ£o existente seja perdida durante o movimento.
+(Ã€s vezes, ele irÃ¡ eliminar ou encurtar fios existentes.)
+Se vocÃª estiver realizando um movimento em que vocÃª queira que essas alteraÃ§Ãµes
+sejam feitas, vocÃª poderÃ¡ pressionar a tecla Shift durante a movimentaÃ§Ã£o.
+Se vocÃª quiser desabilitar esse comportamento por completo,
+basta ir a Projeto &gt; OpÃ§Ãµes, selecionar a guia Ãrea de Desenho,
+e desmarcar a caixa <q> Manter ConexÃµes ao Mover </q>;
+nesse caso, as conexÃµes serÃ£o calculadas somente quando a tecla <i>shift</i> for
 <em>pressionada</em>.
 </p>
-<p> Ao arrastar uma seleção isso poderá levar a um comportamento inesperado dos fios: 
-se ao fazer isso, alguns fios passarem sobre outros, eles serão conectados, 
-e todos serão colocados na mesma seleção. Como resultado, se você arrastar a seleção 
-pela segunda vez, os fios que existirem previamente no local não serão deixados para 
-trás. Esse comportamento é necessário manter coerência com o comportamento esperado 
-para as conexões de fios no Logisim. E não constituirá, normalmente, um grande problema:
-o Logisim irá traçar a seleção inteira no instante em que desejar efetivá-la,
-e você não deverá fazê-lo, até que você tenha certeza que esteja no local correto.
+<p> Ao arrastar uma seleÃ§Ã£o isso poderÃ¡ levar a um comportamento inesperado dos fios: 
+se ao fazer isso, alguns fios passarem sobre outros, eles serÃ£o conectados, 
+e todos serÃ£o colocados na mesma seleÃ§Ã£o. Como resultado, se vocÃª arrastar a seleÃ§Ã£o 
+pela segunda vez, os fios que existirem previamente no local nÃ£o serÃ£o deixados para 
+trÃ¡s. Esse comportamento Ã© necessÃ¡rio manter coerÃªncia com o comportamento esperado 
+para as conexÃµes de fios no Logisim. E nÃ£o constituirÃ¡, normalmente, um grande problema:
+o Logisim irÃ¡ traÃ§ar a seleÃ§Ã£o inteira no instante em que desejar efetivÃ¡-la,
+e vocÃª nÃ£o deverÃ¡ fazÃª-lo, atÃ© que vocÃª tenha certeza que esteja no local correto.
 </p>
 
-<li><p> Caso contrário, ao clicar com o mouse em um componente apagará todos os
-componentes na seleção, ao invés daquele(s) sobre onde houve a marcação.
+<li><p> Caso contrÃ¡rio, ao clicar com o mouse em um componente apagarÃ¡ todos os
+componentes na seleÃ§Ã£o, ao invÃ©s daquele(s) sobre onde houve a marcaÃ§Ã£o.
 </p></li>
 
-<li><p> <i>Shift+click</i> do mouse sobre um componente alternará sua presença 
-na seleção. Se vários componentes compartilharem a mesma posição, a presença 
-de todos será alternada. Nada disso ocorrerá, porém, se for feito por outra ferramenta 
-(via a janela de opções de projeto <a href="../../guide/opts/mouse.html">
+<li><p> <i>Shift+click</i> do mouse sobre um componente alternarÃ¡ sua presenÃ§a 
+na seleÃ§Ã£o. Se vÃ¡rios componentes compartilharem a mesma posiÃ§Ã£o, a presenÃ§a 
+de todos serÃ¡ alternada. Nada disso ocorrerÃ¡, porÃ©m, se for feito por outra ferramenta 
+(via a janela de opÃ§Ãµes de projeto <a href="../../guide/opts/mouse.html">
 Guia do Mouse</a >).
 </p></li>
 
-<li><p> Ao começar a arrastar o mouse em uma posição que não contenha qualquer
-componente, irá iniciar-se o traçado de uma área retangular para seleção.
-Todos os componentes contidos dentro dessa área serão colocados na seleção.
+<li><p> Ao comeÃ§ar a arrastar o mouse em uma posiÃ§Ã£o que nÃ£o contenha qualquer
+componente, irÃ¡ iniciar-se o traÃ§ado de uma Ã¡rea retangular para seleÃ§Ã£o.
+Todos os componentes contidos dentro dessa Ã¡rea serÃ£o colocados na seleÃ§Ã£o.
 </p></li>
 
-<li><p> Ao clicar Shift e arrastar o mouse a partir de uma posição que não contiver
-qualquer componente iniciará uma seleção retangular. A presença de todos os 
-componentes contidos nessa área será alternada. Isso não irá ocorrer,
-porém, se a ação do mouse for mapeado para outra ferramenta em seu lugar.
+<li><p> Ao clicar Shift e arrastar o mouse a partir de uma posiÃ§Ã£o que nÃ£o contiver
+qualquer componente iniciarÃ¡ uma seleÃ§Ã£o retangular. A presenÃ§a de todos os 
+componentes contidos nessa Ã¡rea serÃ¡ alternada. Isso nÃ£o irÃ¡ ocorrer,
+porÃ©m, se a aÃ§Ã£o do mouse for mapeado para outra ferramenta em seu lugar.
 </p></li>
 
 </ul></p>
 
-<p> Após selecionar os itens desejados, você poderá, naturalmente,
+<p> ApÃ³s selecionar os itens desejados, vocÃª poderÃ¡, naturalmente,
 recortar/copiar/colar/apagar todos os itens via
 <a href="../../guide/menu/edit.html"> menu Editar </a>.
 </p>
-<p> O comportamento do Logisim quando colar a área de transferência em um circuito
-será um tanto peculiar: ele não irá colocar imediatamente os componentes no circuito,
-em vez disso, a seleção será uma coleção de "esboços transparentes", que será deixada
-no circuito assim que forem levados para outra posição ou removidos da seleção. 
-(Esse comportamento peculiar é necessário porque, caso contrário, as conexões na
-seleção seriam fundidas àquelas no circuito atual de uma só vez, e não permitir que
-pudessem ser arrastadas de sua posição anterior junto com o conteúdo da área de
-transferência, até que fossem coladas onde o usuário desejasse.)
+<p> O comportamento do Logisim quando colar a Ã¡rea de transferÃªncia em um circuito
+serÃ¡ um tanto peculiar: ele nÃ£o irÃ¡ colocar imediatamente os componentes no circuito,
+em vez disso, a seleÃ§Ã£o serÃ¡ uma coleÃ§Ã£o de "esboÃ§os transparentes", que serÃ¡ deixada
+no circuito assim que forem levados para outra posiÃ§Ã£o ou removidos da seleÃ§Ã£o. 
+(Esse comportamento peculiar Ã© necessÃ¡rio porque, caso contrÃ¡rio, as conexÃµes na
+seleÃ§Ã£o seriam fundidas Ã quelas no circuito atual de uma sÃ³ vez, e nÃ£o permitir que
+pudessem ser arrastadas de sua posiÃ§Ã£o anterior junto com o conteÃºdo da Ã¡rea de
+transferÃªncia, atÃ© que fossem coladas onde o usuÃ¡rio desejasse.)
 </p>
 
 
 <h2>Atributos</h2>
 
-<p> Nenhum. Ao selecionar um componente, seus atributos serão apresentados.
-Se vários componentes forem selecionados, os atributos compartilhados por todos 
-serão mostrados, em branco ficarão aqueles com valores diferentes e
-de outro modo os que tiverem em comum. (As conexões serão ignoradas, 
-se não houver qualquer outro componente na seleção.) Mudanças no valor do atributo 
-afetarão todos os componentes selecionados.
+<p> Nenhum. Ao selecionar um componente, seus atributos serÃ£o apresentados.
+Se vÃ¡rios componentes forem selecionados, os atributos compartilhados por todos 
+serÃ£o mostrados, em branco ficarÃ£o aqueles com valores diferentes e
+de outro modo os que tiverem em comum. (As conexÃµes serÃ£o ignoradas, 
+se nÃ£o houver qualquer outro componente na seleÃ§Ã£o.) MudanÃ§as no valor do atributo 
+afetarÃ£o todos os componentes selecionados.
 </p>
 
-<p><a href="../index.html">Voltar à <em>Referência para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar Ã  <em>ReferÃªncia para bibliotecas</em></a></p>
 
 </body>
 </html>

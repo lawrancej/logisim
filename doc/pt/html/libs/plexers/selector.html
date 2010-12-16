@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Seletor de Bits</title>
 </head>
 
@@ -11,24 +11,24 @@
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
 	<td><a href="index.html">Plexers</a></td></tr>
-<tr><td><strong>Introdução:</strong></td>
+<tr><td><strong>IntroduÃ§Ã£o:</strong></td>
 	<td>2.0.5</td></tr>
-<tr><td valign="top"><strong>Aparência:</strong></td>
+<tr><td valign="top"><strong>AparÃªncia:</strong></td>
 	<td valign="top"><img src="../images/selector.png" width="34" height="33"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Dada uma entrada com vários bits, o seletor irá dividi-lo em grupos de igual 
-tamanho (a partir do bit de mais baixa ordem - LSB) e dar saída
-ao grupo escolhido pela seleção feita à entrada. </p>
+<p> Dada uma entrada com vÃ¡rios bits, o seletor irÃ¡ dividi-lo em grupos de igual 
+tamanho (a partir do bit de mais baixa ordem - LSB) e dar saÃ­da
+ao grupo escolhido pela seleÃ§Ã£o feita Ã  entrada. </p>
 
 <p> Por exemplo, se tivermos uma entrada de oito bits com 01010101, e desejarmos ter
-uma saída de três bits, em seguida, o grupo 0 será o de menor ordem com três bits em 101;
-grupo 1 serão os próximos três bits, 010; e o grupo 2 serão os próximos três bits,
-001. (Se faltarem bits, serão preenchidos com 0.) A escolha feita à entrada 
-deverá ser um número de dois bits que selecionará qual desses três grupos irá
-para a saída, se a seleção for 3, então 000 irá a saída </p>.
+uma saÃ­da de trÃªs bits, em seguida, o grupo 0 serÃ¡ o de menor ordem com trÃªs bits em 101;
+grupo 1 serÃ£o os prÃ³ximos trÃªs bits, 010; e o grupo 2 serÃ£o os prÃ³ximos trÃªs bits,
+001. (Se faltarem bits, serÃ£o preenchidos com 0.) A escolha feita Ã  entrada 
+deverÃ¡ ser um nÃºmero de dois bits que selecionarÃ¡ qual desses trÃªs grupos irÃ¡
+para a saÃ­da, se a seleÃ§Ã£o for 3, entÃ£o 000 irÃ¡ a saÃ­da </p>.
 
 <h2> Pinos (componente supondo voltado para leste) </h2>
 
@@ -36,38 +36,38 @@ para a saída, se a seleção for 3, então 000 irá a saída </p>.
 
 <dt> Na face oeste (entrada, com largura de bits de acordo com o 
 atributo Bits de Dados) </dt>
-<dd> Valores dos dados a partir da qual os bits deverão ser selecionados para a saída. 
+<dd> Valores dos dados a partir da qual os bits deverÃ£o ser selecionados para a saÃ­da. 
 </dd>
 
-<dt> Na face leste (saída, com largura de bits de acordo com o atributo Bits de Saída) 
+<dt> Na face leste (saÃ­da, com largura de bits de acordo com o atributo Bits de SaÃ­da) 
 </dt>
 <dd> Um grupo de bits de dados, escolhido pelo Seletor de Entrada. </dd>
 
 <dt> Na face sul (entrada, com a largura de bits igual ao quociente entre Bits de Dados
-e Bits de Saída, arredondada para cima) </dt>
-<dd> Seletor de Entrada: determinará qual dos grupos de bits deverá ser encaminhado
-para a saída. </dd>
+e Bits de SaÃ­da, arredondada para cima) </dt>
+<dd> Seletor de Entrada: determinarÃ¡ qual dos grupos de bits deverÃ¡ ser encaminhado
+para a saÃ­da. </dd>
 
 </dl>
 
 <h2>Atributos</h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-os dígitos de '0' a '9' poderão ter o seu atributo <q> Bits de Saída </q> alterado,
-Alt-0 até ALT-9 irão alterar o seu atributo <q> Bits de dados </q>,
-e as teclas com setas poderão alterar o seu atributo <q> Direção </q>.
+os dÃ­gitos de '0' a '9' poderÃ£o ter o seu atributo <q> Bits de SaÃ­da </q> alterado,
+Alt-0 atÃ© ALT-9 irÃ£o alterar o seu atributo <q> Bits de dados </q>,
+e as teclas com setas poderÃ£o alterar o seu atributo <q> DireÃ§Ã£o </q>.
 </p>
 
 <dl>
 
-<dt> Direção </dt>
-<dd> A direção do componente (especificará qual a saída relativa à entrada). </dd>
+<dt> DireÃ§Ã£o </dt>
+<dd> A direÃ§Ã£o do componente (especificarÃ¡ qual a saÃ­da relativa Ã  entrada). </dd>
 
 <dt> Bits de Dados </dt>
 <dd> Largura em bits da entrada de dados do componente.</dd>
 
-<dt> Bits de saída </dt>
-<dd> Largura em bits da saída do componente.</dd>
+<dt> Bits de saÃ­da </dt>
+<dd> Largura em bits da saÃ­da do componente.</dd>
 
 </dl>
 
@@ -79,7 +79,7 @@ e as teclas com setas poderão alterar o seu atributo <q> Direção </q>.
 
 <p> Nenhum. </p>
 
-<p><a href="../index.html">Voltar à <em>Referência para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar Ã  <em>ReferÃªncia para bibliotecas</em></a></p>
 
 </body>
 </html>

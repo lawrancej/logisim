@@ -1,29 +1,29 @@
 <html>
-<head>
-    <title>Contador simples em cÛdigo de Gray</title>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Contador simples em c√≥digo de Gray</title>
 </head>
 <body bgcolor="FFFFFF">
 
-<h1>Contador simples em cÛdigo de Gray</h1>
+<h1>Contador simples em c√≥digo de Gray</h1>
 
-<p> Muitas vezes queremos componentes que n„o s„o exclusivamente combinacionais
-em sua natureza - ou seja, queremos que o componente tenha alguma memÛria.
-H· uma sutileza importante na definiÁ„o de tais componentes: vocÍ
-n„o poder· ter o componente armazenando por si mesmo o estado, porque um
-componente individual poder· aparecer v·rias vezes no mesmo circuito.
-Ele poder· atÈ n„o aparecer diretamente dentro de um circuito, mas
-poder· ser contado mais de uma vez se existir em um subcircuito que
-seja usado v·rias vezes.
+<p> Muitas vezes queremos componentes que n√£o s√£o exclusivamente combinacionais
+em sua natureza - ou seja, queremos que o componente tenha alguma mem√≥ria.
+H√° uma sutileza importante na defini√ß√£o de tais componentes: voc√™
+n√£o poder√° ter o componente armazenando por si mesmo o estado, porque um
+componente individual poder√° aparecer v√°rias vezes no mesmo circuito.
+Ele poder√° at√© n√£o aparecer diretamente dentro de um circuito, mas
+poder√° ser contado mais de uma vez se existir em um subcircuito que
+seja usado v√°rias vezes.
 </p>
 
-<p> A soluÁ„o ser· criar uma nova classe para representar o estado atual do objeto
-e, associar inst‚ncias a esse componente atravÈs do estado do circuito do qual
-for herdado. Neste exemplo, que implementa um contador em cÛdigo de Gray de 4 bits
-sensÌvel ‡ borda, definimos uma classe <code> CounterData </code> para representar
-o estado do contador, alÈm da subclasse <code> InstanceFactory </code> como
+<p> A solu√ß√£o ser√° criar uma nova classe para representar o estado atual do objeto
+e, associar inst√¢ncias a esse componente atrav√©s do estado do circuito do qual
+for herdado. Neste exemplo, que implementa um contador em c√≥digo de Gray de 4 bits
+sens√≠vel √† borda, definimos uma classe <code> CounterData </code> para representar
+o estado do contador, al√©m da subclasse <code> InstanceFactory </code> como
 ilustrado anteriormente.
-Um objeto <code> CounterData </code> se lembrar· tanto do valor atual do contador,
-bem como da entrada de clock visto pela ˙ltima vez (para detectar a borda de subida).
+Um objeto <code> CounterData </code> se lembrar√° tanto do valor atual do contador,
+bem como da entrada de clock visto pela √∫ltima vez (para detectar a borda de subida).
 </p>
 
 <h2>CounterData</h2>
@@ -169,7 +169,7 @@ class SimpleGrayCounter extends InstanceFactory {
 }
 </pre>
 
-<p><strong>PrÛximo:</strong> <a href="counter.html">Contador em cÛdigo de Gray</a>.</p>
+<p><strong>Pr√≥ximo:</strong> <a href="counter.html">Contador em c√≥digo de Gray</a>.</p>
 
 </body>
 </html>

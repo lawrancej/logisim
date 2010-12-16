@@ -1,62 +1,62 @@
 <html>
-<head>
-    <title>Incrementador em código de Gray</title>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Incrementador em cÃ³digo de Gray</title>
 </head>
 <body bgcolor="FFFFFF">
 
-<h1>Incrementador em código de Gray</h1>
+<h1>Incrementador em cÃ³digo de Gray</h1>
 
-<p> Cada componente incluído em uma biblioteca é definido através da criação de 
+<p> Cada componente incluÃ­do em uma biblioteca Ã© definido atravÃ©s da criaÃ§Ã£o de 
 uma subclasse de <code> InstanceFactory </code> encontrada no pacote
 <code> com.cburch.logisim.instance</code>. Esta subclasse tem todo
-o código necessário.
+o cÃ³digo necessÃ¡rio.
 </p>
 
-<p> (Aqui descreveremos a API para a versão atual do Logisim.
-Você poderá encontrar algumas bibliotecas desenvolvidas para versões anteriores 
-do Logisim, para componentes que foram desenvolvidos através da definição de duas 
-classes, uma extensão <code> Component </code> e outra que estende 
+<p> (Aqui descreveremos a API para a versÃ£o atual do Logisim.
+VocÃª poderÃ¡ encontrar algumas bibliotecas desenvolvidas para versÃµes anteriores 
+do Logisim, para componentes que foram desenvolvidos atravÃ©s da definiÃ§Ã£o de duas 
+classes, uma extensÃ£o <code> Component </code> e outra que estende 
 <code> ComponentFactory</code>.
-Versão 2.3.0 introduziu uma API muito mais simples a <code> InstanceFactory</code>,
-a técnica anterior está obsoleta.) 
+VersÃ£o 2.3.0 introduziu uma API muito mais simples a <code> InstanceFactory</code>,
+a tÃ©cnica anterior estÃ¡ obsoleta.) 
 </p>
 
-<p> Três pacotes do Logisim resumem a maioria das classes relevantes para a definição
+<p> TrÃªs pacotes do Logisim resumem a maioria das classes relevantes para a definiÃ§Ã£o
 bibliotecas de componentes. 
 </p>
 
 <dl>
 
 <dt> <code> com.cburch.logisim.instance </code> </dt>
-<dd> <p> Contém classes especificamente relacionadas com a definição de componentes,
+<dd> <p> ContÃ©m classes especificamente relacionadas com a definiÃ§Ã£o de componentes,
 incluindo as classes <code> InstanceFactory</code>, <code> InstanceState</code>,
 <code> InstancePainter</code> e <code> Instance</code>.
 </p> </dd>
 
 <dt> <code> com.cburch.logisim.data </code> </dt>
-<dd> <p> Contém classes relacionadas com os elementos de dados associados aos 
-componentes, como a classe <code> Bounds </code> para representar retângulos limítrofes,
+<dd> <p> ContÃ©m classes relacionadas com os elementos de dados associados aos 
+componentes, como a classe <code> Bounds </code> para representar retÃ¢ngulos limÃ­trofes,
 ou a classe <code> Value </code> para representar os valores que possam
-existir em uma conexão. 
+existir em uma conexÃ£o. 
 </p> </dd>
 
 <dt> <code> com.cburch.logisim.tools </code> </dt>
-<dd> <p> Contém classes relacionadas com a definição da biblioteca. 
+<dd> <p> ContÃ©m classes relacionadas com a definiÃ§Ã£o da biblioteca. 
 </p> </dd>
 
 </dl>
 
-<h2> Acerca dos códigos de Gray </h2>
+<h2> Acerca dos cÃ³digos de Gray </h2>
 
-<p> Antes de prosseguir, descreverei brevemente o código Gray em que estes
-exemplos se baseiam. Não é realmente importante para se entender como esses
-exemplos funcionam, assim você poderá pular para o código abaixo, se desejar -
-especialmente se você já conhecer os códigos de Gray.
+<p> Antes de prosseguir, descreverei brevemente o cÃ³digo Gray em que estes
+exemplos se baseiam. NÃ£o Ã© realmente importante para se entender como esses
+exemplos funcionam, assim vocÃª poderÃ¡ pular para o cÃ³digo abaixo, se desejar -
+especialmente se vocÃª jÃ¡ conhecer os cÃ³digos de Gray.
 </p>
 
-<p> O código de Gray é uma técnica (em homenagem a Frank Gray) para iterar
-<var> n </var> sequências de bits com apenas uma ligeira modificação em cada etapa. 
-Como exemplo, considere os 4 bits do código de Gray listados abaixo. </p>
+<p> O cÃ³digo de Gray Ã© uma tÃ©cnica (em homenagem a Frank Gray) para iterar
+<var> n </var> sequÃªncias de bits com apenas uma ligeira modificaÃ§Ã£o em cada etapa. 
+Como exemplo, considere os 4 bits do cÃ³digo de Gray listados abaixo. </p>
 
 <blockquote><table><tbody>
 <tr><td valign="top">000<u>0</u>
@@ -80,24 +80,24 @@ Como exemplo, considere os 4 bits do código de Gray listados abaixo. </p>
 <br><u>1</u>000
 </td></tr></tbody></table></blockquote>
 
-<p> Cada valor tem o bit sublinhado que irá mudar no próximo valor da
-sequência. Por exemplo, depois de 0000 virá 0001, no qual o bit final foi
-alterado, por isso o último bit será sublinhado. 
+<p> Cada valor tem o bit sublinhado que irÃ¡ mudar no prÃ³ximo valor da
+sequÃªncia. Por exemplo, depois de 0000 virÃ¡ 0001, no qual o bit final foi
+alterado, por isso o Ãºltimo bit serÃ¡ sublinhado. 
 </p>
 
-<p> Os componentes predefinidos do Logisim não incluem recurso para se trabalhar 
-com códigos de Gray.
-Porém, os projetistas eletrônicos consideram os códigos de Gray úteis às vezes. Um
-exemplo de aplicação particularmente notável dos códigos de Gray é sobre os eixos em
+<p> Os componentes predefinidos do Logisim nÃ£o incluem recurso para se trabalhar 
+com cÃ³digos de Gray.
+PorÃ©m, os projetistas eletrÃ´nicos consideram os cÃ³digos de Gray Ãºteis Ã s vezes. Um
+exemplo de aplicaÃ§Ã£o particularmente notÃ¡vel dos cÃ³digos de Gray Ã© sobre os eixos em
 mapas de Karnaugh. 
 </p>
 
 <h2> GrayIncrementer </h2>
 
-<p> Este é um pequeno exemplo que ilustra os elementos essenciais para se definir 
-um componente. Esse componente em particular é um incrementador,
-que tem uma entrada multibit e produz o código de Gray imediatamente seguinte a ele
-em sequência.
+<p> Este Ã© um pequeno exemplo que ilustra os elementos essenciais para se definir 
+um componente. Esse componente em particular Ã© um incrementador,
+que tem uma entrada multibit e produz o cÃ³digo de Gray imediatamente seguinte a ele
+em sequÃªncia.
 </p>
 
 <pre>
@@ -213,11 +213,11 @@ class GrayIncrementer extends InstanceFactory {
 }
 </pre>
 
-<p> Este exemplo, por si só não é suficiente para se criar um arquivo JAR funcional;
-você também deverá prover uma classe Library, conforme ilustrado na página a seguir. 
+<p> Este exemplo, por si sÃ³ nÃ£o Ã© suficiente para se criar um arquivo JAR funcional;
+vocÃª tambÃ©m deverÃ¡ prover uma classe Library, conforme ilustrado na pÃ¡gina a seguir. 
 </p>
 
-<p><strong>Próximo:</strong> <a href="library.html">Classe Library</a>.</p>
+<p><strong>PrÃ³ximo:</strong> <a href="library.html">Classe Library</a>.</p>
 
 </body>
 </html>

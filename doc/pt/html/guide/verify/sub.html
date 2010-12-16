@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Substituir bibliotecas</title>
 </head>
 
@@ -8,15 +8,15 @@
 <h1>Substituir bibliotecas</h1>
 
 <p> Agora suponha que tenhamos dois circuitos do Logisim que deveriam fazer a mesma coisa.
-Como instrutor, você poderia ter pedido aos seus alunos concluírem uma tarefa.
-Você tem um arquivo que contém sua solução, mas também vários arquivos de alunos
+Como instrutor, vocÃª poderia ter pedido aos seus alunos concluÃ­rem uma tarefa.
+VocÃª tem um arquivo que contÃ©m sua soluÃ§Ã£o, mas tambÃ©m vÃ¡rios arquivos de alunos
 contendo seus trabalhos. Talvez a tarefa tenha sido construir um somador de dois bits. 
 </p>
 
 <p> Imaginarei dois arquivos, chamados <tt> adder-master.circ </tt>
-e <tt> adder-query.circ</tt>. Cada arquivo conterá um circuito chamado
-<q> 2-bit adder </q> (é importante que o circuito para teste seja chamado
-exatamente igual), cuja aparência poderá ser a seguinte.
+e <tt> adder-query.circ</tt>. Cada arquivo conterÃ¡ um circuito chamado
+<q> 2-bit adder </q> (Ã© importante que o circuito para teste seja chamado
+exatamente igual), cuja aparÃªncia poderÃ¡ ser a seguinte.
 </p>
 
 <blockquote><table><tbody>
@@ -26,35 +26,35 @@ exatamente igual), cuja aparência poderá ser a seguinte.
     <td><img src="adder-query.png" width="171" height="92"></td></tr>
 </tbody></table></blockquote>
 
-<p> Como você poderá ver, o circuito principal usará o somador predefinido no Logisim,
-enquanto o circuito para teste usará dois subcircuitos representando uma meia-soma e
-uma soma-completa (os quais serão constituídos apenas por portas simples).
-Para os fins do nosso exemplo, o circuito para teste terá um erro estúpido:
-O <i>carry</i> da meia-soma não estará conectado à soma completa.
+<p> Como vocÃª poderÃ¡ ver, o circuito principal usarÃ¡ o somador predefinido no Logisim,
+enquanto o circuito para teste usarÃ¡ dois subcircuitos representando uma meia-soma e
+uma soma-completa (os quais serÃ£o constituÃ­dos apenas por portas simples).
+Para os fins do nosso exemplo, o circuito para teste terÃ¡ um erro estÃºpido:
+O <i>carry</i> da meia-soma nÃ£o estarÃ¡ conectado Ã  soma completa.
 </p>
 
-<p> Nós construíremos o nosso circuito de teste em um arquivo diferente.
-Lá, carregaremos <tt> adder-master.circ </tt> como uma biblioteca do Logisim
+<p> NÃ³s construÃ­remos o nosso circuito de teste em um arquivo diferente.
+LÃ¡, carregaremos <tt> adder-master.circ </tt> como uma biblioteca do Logisim
 (Projeto > Carregar Biblioteca > Biblioteca do Logisim ...), e inserir seu
-somador de 2 bits como um subcircuito. Nós poderíamos executar esse circuito 
-diretamente para obter a saída desejada para uma solução perfeita. 
+somador de 2 bits como um subcircuito. NÃ³s poderÃ­amos executar esse circuito 
+diretamente para obter a saÃ­da desejada para uma soluÃ§Ã£o perfeita. 
 </p>
 
 <blockquote><tt>java&nbsp;-jar&nbsp;logisim-filename.jar&nbsp;adder-test.circ&nbsp;-tty&nbsp;table</tt></blockquote>
 
 <p> Mas queremos executar o circuito usando <tt> adder-query.circ </tt>
-ao invés de <tt> adder-master.circ </tt> como o da biblioteca carregada.
-A abordagem ingênua seria abrir Logisim e carregar essa biblioteca de uma vez;
-ou você poderá simplesmente remover o <tt> adder-master.circ </tt> e renomear
+ao invÃ©s de <tt> adder-master.circ </tt> como o da biblioteca carregada.
+A abordagem ingÃªnua seria abrir Logisim e carregar essa biblioteca de uma vez;
+ou vocÃª poderÃ¡ simplesmente remover o <tt> adder-master.circ </tt> e renomear
 <tt> adder-query.circ </tt> para ser chamado de <tt> adder-master.circ </tt> em vez disso.
-Mas Logisim inclui uma prática opção <q> <tt> sub </tt> </q> que substituirá 
-temporariamente um arquivo por outro durante a sessão - sem fazer quaisquer 
-alterações em disco.
+Mas Logisim inclui uma prÃ¡tica opÃ§Ã£o <q> <tt> sub </tt> </q> que substituirÃ¡ 
+temporariamente um arquivo por outro durante a sessÃ£o - sem fazer quaisquer 
+alteraÃ§Ãµes em disco.
 </p>
 <blockquote><tt>java&nbsp;-jar&nbsp;logisim-filename.jar&nbsp;adder-test.circ&nbsp;-tty&nbsp;table&nbsp;-sub&nbsp;adder-master.circ&nbsp;adder-query.circ</tt></blockquote>
-<p> A saída que você iria ver a partir disso é mostrada abaixo, naturalmente é diferente
-daquela vista na <a href="index.html"> seção anterior</a> já que agora será a
-execução usando o <tt> adder-query.circ </tt> errado. 
+<p> A saÃ­da que vocÃª iria ver a partir disso Ã© mostrada abaixo, naturalmente Ã© diferente
+daquela vista na <a href="index.html"> seÃ§Ã£o anterior</a> jÃ¡ que agora serÃ¡ a
+execuÃ§Ã£o usando o <tt> adder-query.circ </tt> errado. 
 </p>
 
 <blockquote>
@@ -77,7 +77,7 @@ execução usando o <tt> adder-query.circ </tt> errado.
 11      11      1E0
 </pre></blockquote>
 
-<p><strong>Próximo:</strong>&nbsp;<a href="other.html">Outras opções para verificações</a>.</p>
+<p><strong>PrÃ³ximo:</strong>&nbsp;<a href="other.html">Outras opÃ§Ãµes para verificaÃ§Ãµes</a>.</p>
 
 </body>
 </html>

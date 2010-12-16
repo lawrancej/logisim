@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Usar subcircuitos</title>
 </head>
 
@@ -8,78 +8,78 @@
 <h1>Usar subcircuitos</h1>
 
 <p> Agora, suponha que queiramos construir um multiplexador 4:1, utilizando
-inst‚ncias de nosso multiplexador 2:1. … claro que gostarÌamos de criar, primeiro,
+inst√¢ncias de nosso multiplexador 2:1. √â claro que gostar√≠amos de criar, primeiro,
 um novo circuito, que chamaremos de "MUX 4:1". Para adicionar multiplexadores 2:1
 em nosso circuito, clicar no circuito <em> MUX 2:1 </em> uma vez no painel do
-Explorador para selecion·-lo como uma ferramenta, e depois poderemos juntar cÛpias
-disso, representadas como caixas, clicando na ·rea de desenho.
+Explorador para selecion√°-lo como uma ferramenta, e depois poderemos juntar c√≥pias
+disso, representadas como caixas, clicando na √°rea de desenho.
 </p>
 
 <center> <img src="4-add.png" width="381" height="254"> </center>
 
-<p> Se vocÍ clicar duas vezes no circuito MUX 2:1 no painel do explorador,
-ent„o a janela mudar· para a ediÁ„o do circuito MUX 2:01.
+<p> Se voc√™ clicar duas vezes no circuito MUX 2:1 no painel do explorador,
+ent√£o a janela mudar√° para a edi√ß√£o do circuito MUX 2:01.
 </p>
 
 <p> Depois de construir o circuito, obteremos o seguinte. </p>
 
 <center> <img src="4-done.png" width="381" height="254"> </center>
 
-<p> Nosso circuito multiplexador 4:1 usar· trÍs cÛpias do
-multiplexador 2:1, cada uma desenhada como uma caixa com conexıes em suas bordas.
-Os pinos nessa caixa corresponder„o aos pinos de entrada e saÌda no
-circuito MUX 2:1. Os dois pinos no lado oeste da caixa corresponder„o
+<p> Nosso circuito multiplexador 4:1 usar√° tr√™s c√≥pias do
+multiplexador 2:1, cada uma desenhada como uma caixa com conex√µes em suas bordas.
+Os pinos nessa caixa corresponder√£o aos pinos de entrada e sa√≠da no
+circuito MUX 2:1. Os dois pinos no lado oeste da caixa corresponder√£o
 aos dois pinos direcionados para leste no circuito MUX 2:1; o pino do
-lado leste da caixa corresponder· ao pino a oeste no MUX 2:1
-(que passa a ser um pino de saÌda) e os pinos no sul da caixa
-corresponder„o aos pinos ao norte do MUX 2:1. A ordem dos dois pinos no 
-lado oeste da caixa corresponder„o aos mesmos de cima para baixo,
-de acordo com a concepÁ„o do subcircuito. (Se houvesse v·rios pinos
-no norte da caixa ou do lado sul, eles corresponderiam ‡ mesma
+lado leste da caixa corresponder√° ao pino a oeste no MUX 2:1
+(que passa a ser um pino de sa√≠da) e os pinos no sul da caixa
+corresponder√£o aos pinos ao norte do MUX 2:1. A ordem dos dois pinos no 
+lado oeste da caixa corresponder√£o aos mesmos de cima para baixo,
+de acordo com a concep√ß√£o do subcircuito. (Se houvesse v√°rios pinos
+no norte da caixa ou do lado sul, eles corresponderiam √† mesma
 ordem da esquerda para a direita no subcircuito.) 
 </p>
 
-<p> Se os pinos no <i>layout</i> do subcircuito tiverem rÛtulos associados
-eles, ent„o Logisim ir· mostrar a etiqueta como uma <strong> dica </strong>
-(isto È, uma caixa de texto tempor·ria) quando o usu·rio passar o mouse sobre o
-localizaÁ„o correspondente do componente no subcircuito. (Se vocÍ encontrar essas
-dicas irritantes, poder· desativ·-las atravÈs da janela
-<a href="../opts/canvas.html"> OpÁıes de Projeto </a> na guia ¡rea de Desenho.)
+<p> Se os pinos no <i>layout</i> do subcircuito tiverem r√≥tulos associados
+eles, ent√£o Logisim ir√° mostrar a etiqueta como uma <strong> dica </strong>
+(isto √©, uma caixa de texto tempor√°ria) quando o usu√°rio passar o mouse sobre o
+localiza√ß√£o correspondente do componente no subcircuito. (Se voc√™ encontrar essas
+dicas irritantes, poder√° desativ√°-las atrav√©s da janela
+<a href="../opts/canvas.html"> Op√ß√µes de Projeto </a> na guia √Årea de Desenho.)
 </p>
 
 <center> <img src="4-tip.png" width="381" height="254"> </center>
 
-<p> V·rios outros componentes ir„o mostrar essas dicas tambÈm: para alguns dos
+<p> V√°rios outros componentes ir√£o mostrar essas dicas tamb√©m: para alguns dos
 pinos de um <a href="../../libs/mem/flipflops.html"> <i>flip-flop</i> </a> predefinido,
-por exemplo, ao passar sobre ele explicar· a funÁ„o do que faz o pino. 
+por exemplo, ao passar sobre ele explicar√° a fun√ß√£o do que faz o pino. 
 </p>
 
-<p> Ali·s, todos os pinos de um circuito dever„o ser uma entrada ou
-uma saÌda. Muitos <i>chips</i> fabricados tÍm pinos que se comportam como uma entrada
-em algumas situaÁıes e como uma saÌda em outras, vocÍ n„o poder· construir
-esses tipos de <i>chips</i> dentro Logisim (pelo menos na vers„o atual).
+<p> Ali√°s, todos os pinos de um circuito dever√£o ser uma entrada ou
+uma sa√≠da. Muitos <i>chips</i> fabricados t√™m pinos que se comportam como uma entrada
+em algumas situa√ß√µes e como uma sa√≠da em outras, voc√™ n√£o poder√° construir
+esses tipos de <i>chips</i> dentro Logisim (pelo menos na vers√£o atual).
 </p>
 
-<p> O Logisim ir· manter informaÁıes de estado diferentes para todos os subcircuitos
+<p> O Logisim ir√° manter informa√ß√µes de estado diferentes para todos os subcircuitos
 que aparecerem. Por exemplo, se um circuito contiver um <i>flip-flop</i>,
-e se for usado diversas vezes como subcircuito, ent„o cada um deles
-ter· o seu prÛprio valor quando for simular o circuito maior.
+e se for usado diversas vezes como subcircuito, ent√£o cada um deles
+ter√° o seu pr√≥prio valor quando for simular o circuito maior.
 </p>
 
-<p> Um vez que tenhamos o multiplexador 4:1 definido, poderemos us·-lo
-em outros circuitos. O Logisim n„o tem limites em qu„o profundo os circuitos
-possam ser aninhados - embora ele ir· opor-se ‡ colocaÁ„o desses dentro de si prÛprios! 
+<p> Um vez que tenhamos o multiplexador 4:1 definido, poderemos us√°-lo
+em outros circuitos. O Logisim n√£o tem limites em qu√£o profundo os circuitos
+possam ser aninhados - embora ele ir√° opor-se √† coloca√ß√£o desses dentro de si pr√≥prios! 
 </p>
 
-<strong> Nota: </strong> N„o h· nada de errado com a ediÁ„o de um
-circuito que estiver sendo usado como um subcircuito, na verdade, isso È muito
-comum. Esteja ciente, no entanto, que quaisquer alteraÁıes nos pinos de um circuito 
-(adicionando, excluindo ou movendo-os) ir· reorganiz·-los tambÈm naquele que o contiver. 
-Assim, se vocÍ alterar os pinos em um circuito, vocÍ tambÈm ter· necessidade 
-de editar qualquer circuito que us·-lo como um subcircuito. 
+<strong> Nota: </strong> N√£o h√° nada de errado com a edi√ß√£o de um
+circuito que estiver sendo usado como um subcircuito, na verdade, isso √© muito
+comum. Esteja ciente, no entanto, que quaisquer altera√ß√µes nos pinos de um circuito 
+(adicionando, excluindo ou movendo-os) ir√° reorganiz√°-los tamb√©m naquele que o contiver. 
+Assim, se voc√™ alterar os pinos em um circuito, voc√™ tamb√©m ter√° necessidade 
+de editar qualquer circuito que us√°-lo como um subcircuito. 
 </p>
 
-<p><strong>PrÛximo:</strong> <a href="appear.html">Editar a aparÍncia de subcircuito</a>.</p>
+<p><strong>Pr√≥ximo:</strong> <a href="appear.html">Editar a apar√™ncia de subcircuito</a>.</p>
 
 </body>
 </html>

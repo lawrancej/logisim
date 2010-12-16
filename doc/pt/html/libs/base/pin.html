@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Pino</title>
 </head>
 
@@ -12,120 +12,120 @@
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
 	<td><a href="index.html">Base</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.0 Beta 1</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/pin.png" width="101" height="51"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Um pino pode ser uma saÌda ou uma entrada para um circuito,
-dependendo do valor de seu atributo SaÌda?. Ao desenhar um pino, o Logisim
-representar· as saÌdas por cÌrculos ou ret‚ngulos com bordas arredondadas,
-e as entradas ser„o representadas por quadrados ou ret‚ngulos.
+<p> Um pino pode ser uma sa√≠da ou uma entrada para um circuito,
+dependendo do valor de seu atributo Sa√≠da?. Ao desenhar um pino, o Logisim
+representar√° as sa√≠das por c√≠rculos ou ret√¢ngulos com bordas arredondadas,
+e as entradas ser√£o representadas por quadrados ou ret√¢ngulos.
 Em ambos os casos, os bits individuais do valor que for recebido ou 
-enviado ser· mostrada pelo componente (exceto quando for prÈvia de uma
-impress„o, quando o componente apenas informar· quantos bits poder·
+enviado ser√° mostrada pelo componente (exceto quando for pr√©via de uma
+impress√£o, quando o componente apenas informar√° quantos bits poder√°
 comportar).
 </p>
 
-<p> Um pino È conveniente para se interagir com um circuito, e os usu·rios
-iniciantes do Logisim n„o precisar„o us·-los necessariamente. Mas um usu·rio
-que estiver construindo um circuito que use v·rios subcircuitos (como descrito
-na seÁ„o '<a href="../../guide/subcirc/index.html">Subcircuitos</a>' do
-<em>Guia do Usu·rio</em>) poder· usar pinos para especificar a interface entre
+<p> Um pino √© conveniente para se interagir com um circuito, e os usu√°rios
+iniciantes do Logisim n√£o precisar√£o us√°-los necessariamente. Mas um usu√°rio
+que estiver construindo um circuito que use v√°rios subcircuitos (como descrito
+na se√ß√£o '<a href="../../guide/subcirc/index.html">Subcircuitos</a>' do
+<em>Guia do Usu√°rio</em>) poder√° usar pinos para especificar a interface entre
 um circuito e um subcircuito. Em particular, o pino de um <i>layout</i> de circuito
-define como ele aparecer· quando for tomado por subcircuito e seu <i>layout</i> estiver
+define como ele aparecer√° quando for tomado por subcircuito e seu <i>layout</i> estiver
 sendo usado por outro. Em tal circuito, os valores enviados ou recebidos
-por essas posiÁıes no subcircuito ser„o vinculados aos pinos internos
+por essas posi√ß√µes no subcircuito ser√£o vinculados aos pinos internos
 de seu <i>layout</i>.
 </p>
 
 <h2>Pinos</h2>
 
-<p> O componente tem apenas um ponto de conex„o, que poder· ser uma entrada
-para o componente se for um pino de saÌda, ou uma saÌda para o componente 
+<p> O componente tem apenas um ponto de conex√£o, que poder√° ser uma entrada
+para o componente se for um pino de sa√≠da, ou uma sa√≠da para o componente 
 caso seja um pino de entrada. Em ambos os casos, sua largura em bits
-ir· corresponder ao atributo Bits de Dados, e sua posiÁ„o ser· especificada
-pelo atributo DireÁ„o.
+ir√° corresponder ao atributo Bits de Dados, e sua posi√ß√£o ser√° especificada
+pelo atributo Dire√ß√£o.
 </p>
 
 <h2>Atributos</h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-os dÌgitos de '0 'a '9' poder„o alterar o atributo <q> Bits de Dados </q>,
-Alt-0 atÈ ALT-9 ir· alterar o atributo <q> DireÁ„o </q> e
-e Alt com as teclas com setas poder„o alterar o seu atributo <q>PosiÁ„o do RÛtulo</q>.
+os d√≠gitos de '0 'a '9' poder√£o alterar o atributo <q> Bits de Dados </q>,
+Alt-0 at√© ALT-9 ir√° alterar o atributo <q> Dire√ß√£o </q> e
+e Alt com as teclas com setas poder√£o alterar o seu atributo <q>Posi√ß√£o do R√≥tulo</q>.
 </p>
 
 
 <dl>
 
-<dt> DireÁ„o </dt>
-<dd> A face do componente onde sua entrada/saÌda dever· estar. </dd>
+<dt> Dire√ß√£o </dt>
+<dd> A face do componente onde sua entrada/sa√≠da dever√° estar. </dd>
 
-<dt> SaÌda? </dt>
-<dd> Serve para especificar se o componente ir· funcionar com entrada ou saÌda.
-(Observar que se for um pino de entrada, ent„o o pino ir· funcionar como se sua
-interface dentro do circuito fosse uma saÌda, e vice-versa.) </dd>
+<dt> Sa√≠da? </dt>
+<dd> Serve para especificar se o componente ir√° funcionar com entrada ou sa√≠da.
+(Observar que se for um pino de entrada, ent√£o o pino ir√° funcionar como se sua
+interface dentro do circuito fosse uma sa√≠da, e vice-versa.) </dd>
 
 <dt> Bits de Dados </dt>
-<dd> O n˙mero de bits para o valor que o pino pode tratar.</dd>
+<dd> O n√∫mero de bits para o valor que o pino pode tratar.</dd>
 
 <dt> Tri-state? </dt>
-<dd> Para um pino de entrada, serve para configurar se o usu·rio poder·
-indicar que o pino poder· emitir valores indefinidos (ou seja, flutuantes).
-Esse atributo lida apenas com a interface com o usu·rio; ele n„o ter·
-qualquer efeito sobre como o pino se comportar· quanto o <i>layout</i>
+<dd> Para um pino de entrada, serve para configurar se o usu√°rio poder√°
+indicar que o pino poder√° emitir valores indefinidos (ou seja, flutuantes).
+Esse atributo lida apenas com a interface com o usu√°rio; ele n√£o ter√°
+qualquer efeito sobre como o pino se comportar√° quanto o <i>layout</i>
 do circuito for usado como um subcircuito.
-Para um pino de saÌda, o atributo n„o ter· efeito algum.</dd>
+Para um pino de sa√≠da, o atributo n√£o ter√° efeito algum.</dd>
 
 <dt> Comportamento para Ajuste </dt>
-<dd> Para um pino de entrada, o atributo especificar· como um valor flutuante
-dever· ser tratado quando recebido por uma entrada, talvez de um circuito que
-esteja usando o <i>layout</i>, como no caso de um subcircuito. Se "imut·vel", 
-os valores flutuantes ser„o enviados como tal; se "<i>pull-up</i>", eles ser„o 
+<dd> Para um pino de entrada, o atributo especificar√° como um valor flutuante
+dever√° ser tratado quando recebido por uma entrada, talvez de um circuito que
+esteja usando o <i>layout</i>, como no caso de um subcircuito. Se "imut√°vel", 
+os valores flutuantes ser√£o enviados como tal; se "<i>pull-up</i>", eles ser√£o 
 convertidos para 1 antes de serem submetidos; e se "<i>pull-down</i>", 
-eles ser„o convertidos para 0 antes de serem entregues.
+eles ser√£o convertidos para 0 antes de serem entregues.
 </dd>
 
-<dt> RÛtulo </dt>
-<dd> O texto para o rÛtulo associado ao componente. </dd>
+<dt> R√≥tulo </dt>
+<dd> O texto para o r√≥tulo associado ao componente. </dd>
 
-<dt> PosiÁ„o do RÛtulo</dt>
-<dd> A posiÁ„o do rÛtulo em relaÁ„o ao componente.</dd>
+<dt> Posi√ß√£o do R√≥tulo</dt>
+<dd> A posi√ß√£o do r√≥tulo em rela√ß√£o ao componente.</dd>
 
-<dt> Fonte do RÛtulo </dt>
-<dd> A fonte com a qual o rÛtulo ser· mostrado. </dd>
+<dt> Fonte do R√≥tulo </dt>
+<dd> A fonte com a qual o r√≥tulo ser√° mostrado. </dd>
 
 
 </dl>
 
 <h2> Comportamento da ferramenta Testar </h2>
 
-<p> Ao clicar em um pino de saÌda n„o ter· efeito algum, embora os atributos do 
+<p> Ao clicar em um pino de sa√≠da n√£o ter√° efeito algum, embora os atributos do 
 pino sejam apresentados.
 </p>
 
-<p> Ao clicar em um pino de entrada ir· alternar bit que for clicado. Se for um
-pino <i>tri-state</i>, em seguida, o bit correspondente ir· alternar entre eles.
+<p> Ao clicar em um pino de entrada ir√° alternar bit que for clicado. Se for um
+pino <i>tri-state</i>, em seguida, o bit correspondente ir√° alternar entre eles.
 </p>
 
-<p> Se, no entanto, o usu·rio estiver consultando o estado de um subcircuito
-conforme descrito em <a href="../../guide/subcirc/debug.html"> 'DepuraÁ„o
-de Subcircuitos' </a> do <em>Guia do Usu·rio</em>, ent„o o valor do pino 
-ficar· fixo em qualquer valor que o subcircuito que estiver recebendo do
-circuito que o contiver. O usu·rio n„o poder· alterar o valor sem quebrar
-o vÌnculo entre os estados do subcircuito e o do circuito, e o Logisim pedir·
-ao usu·rio para verificar se a quebra desse vÌnculo È realmente desejada.
+<p> Se, no entanto, o usu√°rio estiver consultando o estado de um subcircuito
+conforme descrito em <a href="../../guide/subcirc/debug.html"> 'Depura√ß√£o
+de Subcircuitos' </a> do <em>Guia do Usu√°rio</em>, ent√£o o valor do pino 
+ficar√° fixo em qualquer valor que o subcircuito que estiver recebendo do
+circuito que o contiver. O usu√°rio n√£o poder√° alterar o valor sem quebrar
+o v√≠nculo entre os estados do subcircuito e o do circuito, e o Logisim pedir√°
+ao usu√°rio para verificar se a quebra desse v√≠nculo √© realmente desejada.
 </p>
 
 <h2> Comportamento da ferramenta Texto </h2>
 
-<p> Permite que o rÛtulo associado ao componente seja editado.</p>
+<p> Permite que o r√≥tulo associado ao componente seja editado.</p>
 
-<p><a href="../index.html">Voltar ‡ <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar √† <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

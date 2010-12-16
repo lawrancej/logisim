@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Teclado</title>
 </head>
 
@@ -10,57 +10,57 @@
 
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
-	<td><a href="index.html">Entrada/SaÌda</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+	<td><a href="index.html">Entrada/Sa√≠da</a></td></tr>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.2.0</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/keyboard.png" width="148" height="28"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Esse componente permitir· ao circuito ler o que for digitado no teclado -
-contanto que as teclas sejam represent·veis no cÛdigo ASCII de 7 bits.
-Depois de clicar no componente usando a ferramenta Testar (Poke), o usu·rio poder· 
-digitar caracteres, que ser„o armazenados em um <i>buffer</i>. Sempre que necess·rio,
-o valor ASCII do caractere mais a esquerda no <i>buffer</i> ser· enviado para a saÌda
-mais ‡ direita. Quando a entrada de <i>clock</i> for disparada, o caracteres mais ‡
-esquerda ser· suprimida do <i>buffer</i> e o caractere mais ‡ esquerda ser· enviado
-para a saÌda da direita. </p>
+<p> Esse componente permitir√° ao circuito ler o que for digitado no teclado -
+contanto que as teclas sejam represent√°veis no c√≥digo ASCII de 7 bits.
+Depois de clicar no componente usando a ferramenta Testar (Poke), o usu√°rio poder√° 
+digitar caracteres, que ser√£o armazenados em um <i>buffer</i>. Sempre que necess√°rio,
+o valor ASCII do caractere mais a esquerda no <i>buffer</i> ser√° enviado para a sa√≠da
+mais √† direita. Quando a entrada de <i>clock</i> for disparada, o caracteres mais √†
+esquerda ser√° suprimida do <i>buffer</i> e o caractere mais √† esquerda ser√° enviado
+para a sa√≠da da direita. </p>
 
-<p> Os caracteres armazen·veis no buffer ser„o todos os caracteres ASCII imprimÌveis,
-como o espaÁo, nova linha, <i>backspace</i>, e <i>control-L</i>. AlÈm disso, 
-as setas para a esquerda e a direita mover„o o cursor dentro do <i>buffer</i>, 
-e a tecla <i>backspace</i> apagar· o caractere ‡ direita do cursor (se houver). </p>
+<p> Os caracteres armazen√°veis no buffer ser√£o todos os caracteres ASCII imprim√≠veis,
+como o espa√ßo, nova linha, <i>backspace</i>, e <i>control-L</i>. Al√©m disso, 
+as setas para a esquerda e a direita mover√£o o cursor dentro do <i>buffer</i>, 
+e a tecla <i>backspace</i> apagar√° o caractere √† direita do cursor (se houver). </p>
 
-<p> O componente È assÌncrono no sentido que quando o buffer estiver vazio e
-o usu·rio digitar um caractere, esse ser· enviado imediatamente para uma saÌda,
+<p> O componente √© ass√≠ncrono no sentido que quando o buffer estiver vazio e
+o usu√°rio digitar um caractere, esse ser√° enviado imediatamente para uma sa√≠da,
 sem esperar por um pulso de <i>clock</i>. </p>
 
 <h2>Pinos</h2>
 
 <dl>
 
-<dt> Na face oeste, marcada por um tri‚ngulo (entrada, com largura de 1 bit) </dt>
-<dd> <i>Clock</i> - quando for ativado, e enquanto o pino de leitura n„o for 0, 
-o caractere mais ‡ esquerda do <i>buffer</i> ser· excluÌdo, e as saÌdas ser„o 
+<dt> Na face oeste, marcada por um tri√¢ngulo (entrada, com largura de 1 bit) </dt>
+<dd> <i>Clock</i> - quando for ativado, e enquanto o pino de leitura n√£o for 0, 
+o caractere mais √† esquerda do <i>buffer</i> ser√° exclu√≠do, e as sa√≠das ser√£o 
 atualizadas para refletir novo status do <i>buffer</i>. </dd>
 
-<dt> Na face sul, o pino mais ‡ esquerda (entrada, com largura de 1 bit) </dt>
-<dd> Ativar Leitura - quando 1 (ou flutuante, ou erro), quando houver uma variaÁ„o de
-borda do sinal de <i>clock</i> o caractere mais ‡ esquerda do <i>buffer</i> ser· consumido.
-A entrada de <i>clock</i> ser· ignorada quando o Ativar Leitura for 0. </dd>
+<dt> Na face sul, o pino mais √† esquerda (entrada, com largura de 1 bit) </dt>
+<dd> Ativar Leitura - quando 1 (ou flutuante, ou erro), quando houver uma varia√ß√£o de
+borda do sinal de <i>clock</i> o caractere mais √† esquerda do <i>buffer</i> ser√° consumido.
+A entrada de <i>clock</i> ser√° ignorada quando o Ativar Leitura for 0. </dd>
 
-<dt> Na face sul, o segundo pino mais ‡ esquerda (entrada, com largura de 1 bit) </dt>
-<dd> Limpar - se for 1, o <i>buffer</i> ser· esvaziado e n„o aceitar· mais caracteres. 
+<dt> Na face sul, o segundo pino mais √† esquerda (entrada, com largura de 1 bit) </dt>
+<dd> Limpar - se for 1, o <i>buffer</i> ser√° esvaziado e n√£o aceitar√° mais caracteres. 
 </dd>
 
-<dt> Na face sul, o segundo pino mais ‡ direita (saÌda, com largura de 1 bit) </dt>
-<dd> DisponÌvel - ser· 1 quando o buffer contiver pelo menos um caractere
-e ser· 0 quando o <i>buffer</i> estiver vazio. </dd>
+<dt> Na face sul, o segundo pino mais √† direita (sa√≠da, com largura de 1 bit) </dt>
+<dd> Dispon√≠vel - ser√° 1 quando o buffer contiver pelo menos um caractere
+e ser√° 0 quando o <i>buffer</i> estiver vazio. </dd>
 
-<dt> Na face sul, o pino mais ‡ direita (saÌda, com largura de 7 bits) </dt>
-<dd> Dados - cÛdigo ASCII com 7-bits para o caractere mais ‡ esquerda no buffer;
+<dt> Na face sul, o pino mais √† direita (sa√≠da, com largura de 7 bits) </dt>
+<dd> Dados - c√≥digo ASCII com 7-bits para o caractere mais √† esquerda no buffer;
 ou 0, se o <i>buffer</i> estiver vazio. </dd>
 
 </dl>
@@ -70,34 +70,34 @@ ou 0, se o <i>buffer</i> estiver vazio. </dd>
 <dl>
 
 <dt> Tamanho do <i>Buffer</i> </dt>
-<dd> O n˙mero de caracteres que o <i>buffer</i> poder· conter. </dd>
+<dd> O n√∫mero de caracteres que o <i>buffer</i> poder√° conter. </dd>
 
 <dt> Gatillho </dt>
-<dd> Se o valor for <q> Borda de Subida</q>, ent„o, quando o valor do <i>clock</i>
-variar de 0 para 1, o caractere mais ‡ esquerda ser· consumido (quando ativado 
+<dd> Se o valor for <q> Borda de Subida</q>, ent√£o, quando o valor do <i>clock</i>
+variar de 0 para 1, o caractere mais √† esquerda ser√° consumido (quando ativado 
 pela entrada Habilitar Leitura). Se for <q> Borda de Descida</q>, isso
-acontecer· quando o <i>clock</i> mudar de 1 para 0. </dd>
+acontecer√° quando o <i>clock</i> mudar de 1 para 0. </dd>
 
 </dl>
 
 <h2> Comportamento da ferramenta Testar </h2>
 
-<p> Ao pressionar o bot„o do mouse mudar· o foco do teclado para esse componente, 
-e um cursor na forma de barra vertical ser· exibido. </p>
+<p> Ao pressionar o bot√£o do mouse mudar√° o foco do teclado para esse componente, 
+e um cursor na forma de barra vertical ser√° exibido. </p>
 
-<p> Cada caractere digitado ser· inserido no buffer, enquanto este n„o atingir 
-a sua capacidade e o caractere for um daqueles aceit·veis pelo componente: 
-os caracteres imprimÌveis em cÛdigo ASCII de 7 bits, como espaÁo, <i>backspace</i>,
-nova linha, e <i>control-L</i>. AlÈm disso, o usu·rio poder· usar as setas para a
-esquerda e para a direita para alterar a posiÁ„o do cursor no <i>buffer</i>, e o
-usu·rio poder· usar a tecla Delete para apagar o caractere no <i>buffer</i>
-(se houver) ‡ direita do cursor. </p>
+<p> Cada caractere digitado ser√° inserido no buffer, enquanto este n√£o atingir 
+a sua capacidade e o caractere for um daqueles aceit√°veis pelo componente: 
+os caracteres imprim√≠veis em c√≥digo ASCII de 7 bits, como espa√ßo, <i>backspace</i>,
+nova linha, e <i>control-L</i>. Al√©m disso, o usu√°rio poder√° usar as setas para a
+esquerda e para a direita para alterar a posi√ß√£o do cursor no <i>buffer</i>, e o
+usu√°rio poder√° usar a tecla Delete para apagar o caractere no <i>buffer</i>
+(se houver) √† direita do cursor. </p>
 
 <h2> Comportamento da ferramenta Texto </h2>
 
 <p> Nenhum. </p>
 
-<p><a href="../index.html">Voltar ‡ <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar √† <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

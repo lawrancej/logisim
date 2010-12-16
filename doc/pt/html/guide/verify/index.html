@@ -1,57 +1,57 @@
 <html>
-<head>
-<title>Verificação pela linha de comando</title>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>VerificaÃ§Ã£o pela linha de comando</title>
 </head>
 
 <body bgcolor="FFFFFF">
 
-<h1>Verificação pela linha de comando</h1>
+<h1>VerificaÃ§Ã£o pela linha de comando</h1>
 
-<blockquote><em>Subseções:</em>
+<blockquote><em>SubseÃ§Ãµes:</em>
 <br><a href="sub.html">Substituir bibliotecas</a>
-<br><a href="other.html">Outras opções para verificação</a>
-<br><a href="multi.html">Testar múltiplos arquivos</a>
+<br><a href="other.html">Outras opÃ§Ãµes para verificaÃ§Ã£o</a>
+<br><a href="multi.html">Testar mÃºltiplos arquivos</a>
 </blockquote>
 
-<p> O Logisim inclui suporte básico para a execução de circuitos a partir 
+<p> O Logisim inclui suporte bÃ¡sico para a execuÃ§Ã£o de circuitos a partir 
 da linha de comando.
-Isso destina-se tanto para ajudar a verificação orientada de projetos de circuitos,
-quanto para que instrutores realizem testes automatizados em soluções feitas por alunos.
+Isso destina-se tanto para ajudar a verificaÃ§Ã£o orientada de projetos de circuitos,
+quanto para que instrutores realizem testes automatizados em soluÃ§Ãµes feitas por alunos.
 </p>
 
-<p> Vamos começar por mostrar como executar um circuito pela linha de comando.
-Para o nosso exemplo, vamos supor que tenhamos construído o circuito a seguir 
+<p> Vamos comeÃ§ar por mostrar como executar um circuito pela linha de comando.
+Para o nosso exemplo, vamos supor que tenhamos construÃ­do o circuito a seguir 
 em um arquivo chamado <tt> adder-test.circ</tt>.
-Ele utilizará um somador de dois bits como um subcircuito
-e iterará através de um contador com todas as 16 possíveis entradas para ele. 
+Ele utilizarÃ¡ um somador de dois bits como um subcircuito
+e iterarÃ¡ atravÃ©s de um contador com todas as 16 possÃ­veis entradas para ele. 
 </p>
 
 <blockquote> <img src="adder-test.png" width="207" height="121"> </blockquote>
 
-<p> Após esse circuito ter sido construído, executaremos a linha de comando do Logisim,
-fornecendo o nome do projeto e a opção <q>-tty </q> opção com o parâmetro <q>table</q>. 
+<p> ApÃ³s esse circuito ter sido construÃ­do, executaremos a linha de comando do Logisim,
+fornecendo o nome do projeto e a opÃ§Ã£o <q>-tty </q> opÃ§Ã£o com o parÃ¢metro <q>table</q>. 
 </p>
 
 <blockquote><tt>java -jar logisim-filename.jar adder-test.circ -tty table</tt></blockquote>
 
-<p> Sem abrir qualquer janela, o Logisim carregará o circuito e começará a executá-lo,
-variando qualquer <i>clock</i> tão rápido quanto possível até concluir a propagação 
+<p> Sem abrir qualquer janela, o Logisim carregarÃ¡ o circuito e comeÃ§arÃ¡ a executÃ¡-lo,
+variando qualquer <i>clock</i> tÃ£o rÃ¡pido quanto possÃ­vel atÃ© concluir a propagaÃ§Ã£o 
 entre cada instante.
-Após cada propagação ter sido concluída, o Logisim carregará os valores atuais dos
-pinos de saída; caso tenham mudado na propagação anterior,
-os valores serão exibidos em formato delimitado por tabulações.
-Se houver um pino de saída marcado com a palavra especial <q> halt </q>,
-sua saída não será exibida - mas uma vez que o valor do pino chegue a 1, depois
-que uma propagação for concluída, o Logisim terminará a simulação. 
+ApÃ³s cada propagaÃ§Ã£o ter sido concluÃ­da, o Logisim carregarÃ¡ os valores atuais dos
+pinos de saÃ­da; caso tenham mudado na propagaÃ§Ã£o anterior,
+os valores serÃ£o exibidos em formato delimitado por tabulaÃ§Ãµes.
+Se houver um pino de saÃ­da marcado com a palavra especial <q> halt </q>,
+sua saÃ­da nÃ£o serÃ¡ exibida - mas uma vez que o valor do pino chegue a 1, depois
+que uma propagaÃ§Ã£o for concluÃ­da, o Logisim terminarÃ¡ a simulaÃ§Ã£o. 
 </p>
 
-<p> Para o nosso exemplo, o Logisim mostrará a tabela abaixo. 
-Por termos dois pinos de saída correspondentes às duas entradas <var> a </var> e 
-<var> b </var> para o somador de dois bits, essas saídas serão incluídas como 
-as duas primeiras colunas da saída.
-E como há outro pino de saída correspondente no somador de dois bits, por isso, 
-haverá uma terceira coluna.
-As colunas serão ordenadas da esquerda para a direita de acordo com a ordem 
+<p> Para o nosso exemplo, o Logisim mostrarÃ¡ a tabela abaixo. 
+Por termos dois pinos de saÃ­da correspondentes Ã s duas entradas <var> a </var> e 
+<var> b </var> para o somador de dois bits, essas saÃ­das serÃ£o incluÃ­das como 
+as duas primeiras colunas da saÃ­da.
+E como hÃ¡ outro pino de saÃ­da correspondente no somador de dois bits, por isso, 
+haverÃ¡ uma terceira coluna.
+As colunas serÃ£o ordenadas da esquerda para a direita de acordo com a ordem 
 de cima para baixo dentro do circuito. 
 </p>
 
@@ -74,7 +74,7 @@ de cima para baixo dentro do circuito.
 11      11      110
 </pre></blockquote>
 
-<p><strong>Próximo:</strong> <a href="sub.html">Substituir bibliotecas</a>.</p>
+<p><strong>PrÃ³ximo:</strong> <a href="sub.html">Substituir bibliotecas</a>.</p>
 
 </body>
 </html>

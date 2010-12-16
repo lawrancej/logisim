@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Matriz de LED</title>
 </head>
 
@@ -10,56 +10,56 @@
 
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
-	<td><a href="index.html">Entrada/SaÌda</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+	<td><a href="index.html">Entrada/Sa√≠da</a></td></tr>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.2.0</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/dotmat.png" width="52" height="73"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Exibir· uma pequena matriz de pixels, cujos valores ser„o determinados pelas entradas
-atuais. A matriz poder· ter atÈ 32 linhas e 32 colunas. </p>
+<p> Exibir√° uma pequena matriz de pixels, cujos valores ser√£o determinados pelas entradas
+atuais. A matriz poder√° ter at√© 32 linhas e 32 colunas. </p>
 
 <h2> Pinos </h2>
 
-<p> A interface para o componente ir· variar dependendo do valor do atributo
-Formato da Entrada. Ele tem trÍs valores possÌveis. </p>
+<p> A interface para o componente ir√° variar dependendo do valor do atributo
+Formato da Entrada. Ele tem tr√™s valores poss√≠veis. </p>
 
 <dl>
 
 <dt> Colunas </dt>
-<dd> As entradas ser„o alinhadas ao longo da face sul do componente, com uma
+<dd> As entradas ser√£o alinhadas ao longo da face sul do componente, com uma
 entrada multibit para cada coluna da matriz. Cada entrada tem tantos bits
 quanto existirem linhas na matriz, com o bit de mais baixa ordem correspondente ao
-pixel mais ao final de cada coluna. Um valor igual a 1 indicar· que o pixel 
-correspondente dever· ser ligado, enquanto um valor igual a 0 indicar· que o pixel 
-dever· permanecer apagado. Se algum bit de uma coluna for flutuante ou erro, 
-ent„o todos os pixels da coluna ficar„o acesos. </dd>
+pixel mais ao final de cada coluna. Um valor igual a 1 indicar√° que o pixel 
+correspondente dever√° ser ligado, enquanto um valor igual a 0 indicar√° que o pixel 
+dever√° permanecer apagado. Se algum bit de uma coluna for flutuante ou erro, 
+ent√£o todos os pixels da coluna ficar√£o acesos. </dd>
 
 <dt> Linhas </dt>
-<dd> As entradas ser„o alinhadas ao longo da face oeste do componente, com uma
-entrada multibit para cada linha da matriz. Cada entrada ter· tantos bits quantos
+<dd> As entradas ser√£o alinhadas ao longo da face oeste do componente, com uma
+entrada multibit para cada linha da matriz. Cada entrada ter√° tantos bits quantos
 forem as colunas na matriz, com o bit de mais baixa ordem correspondente ao pixel
-mais ‡ direita na linha. Tal como acontece com o formato de colunas, um valor igual a 1
-indicar· que o pixel correspondente dever· ser ligado, e um valor igual a 0 indicar·
-que o pixel dever· se manter apagado. Se algum bit de uma linha for flutuante ou erro,
-ent„o, todos os pixels da linha ficar„o acesos. </dd>
+mais √† direita na linha. Tal como acontece com o formato de colunas, um valor igual a 1
+indicar√° que o pixel correspondente dever√° ser ligado, e um valor igual a 0 indicar√°
+que o pixel dever√° se manter apagado. Se algum bit de uma linha for flutuante ou erro,
+ent√£o, todos os pixels da linha ficar√£o acesos. </dd>
 
 <dt> Selecionar Linhas/Colunas </dt>
-<dd> H· duas entradas na face oeste do componente. A entrada multibit superior
-ter· tantos bits quantos forem as colunas na matriz, com o bit de mais baixa ordem
-correspondente ‡ coluna mais ‡ direita. A entrada multibit inferior ter· tantos
+<dd> H√° duas entradas na face oeste do componente. A entrada multibit superior
+ter√° tantos bits quantos forem as colunas na matriz, com o bit de mais baixa ordem
+correspondente √† coluna mais √† direita. A entrada multibit inferior ter√° tantos
 bits quanto as linhas da matriz, com o bit de mais baixa ordem correspondente
 para o final de cada linha. Se algum bit for flutuante ou erro, todos os pixels 
-da matriz estar„o acesos. Normalmente, no entanto, um pixel em uma certa linha-coluna
-ficar· aceso, se o bit correspondente ‡ coluna na entrada superior for 1 e
-o bit da linha correspondente na entrada inferior tambÈm for 1.
+da matriz estar√£o acesos. Normalmente, no entanto, um pixel em uma certa linha-coluna
+ficar√° aceso, se o bit correspondente √† coluna na entrada superior for 1 e
+o bit da linha correspondente na entrada inferior tamb√©m for 1.
 Por exemplo, para uma matriz 5x7, se a primeira entrada for 01010 e a segunda for
-0111010, ent„o, a segunda e a quarta coluna estar„o acesas para a segunda, a terceira,
-a quarta e a sexta linha, o resultado aparecer· como um par de pontos de exclamaÁ„o.
-(Esse formato de entrada pode parecer pouco intuitivo, mas matrizes de LED s„o 
+0111010, ent√£o, a segunda e a quarta coluna estar√£o acesas para a segunda, a terceira,
+a quarta e a sexta linha, o resultado aparecer√° como um par de pontos de exclama√ß√£o.
+(Esse formato de entrada pode parecer pouco intuitivo, mas matrizes de LED s√£o 
 vendidas exatamente com essa interface. A Lite-On vende componentes como esse, 
 por exemplo.) </dd>
 
@@ -69,16 +69,16 @@ por exemplo.) </dd>
 
 <dl>
 
-<dt> Formato da Entrada (somente leitura apÛs o componente ser criado) </dt>
-<dd> Serve para selecionar como os pinos corresponder„o aos pixels, 
+<dt> Formato da Entrada (somente leitura ap√≥s o componente ser criado) </dt>
+<dd> Serve para selecionar como os pinos corresponder√£o aos pixels, 
 como descrito acima. </dd>
 
 <dt> Colunas da Matriz </dt>
-<dd> Serve para selecionar quantas colunas estar„o na matriz, o que poder· variar de 1 a
+<dd> Serve para selecionar quantas colunas estar√£o na matriz, o que poder√° variar de 1 a
 32. </dd>
 
 <dt> Linhas da Matriz </dt>
-<dd> Serve para selecionar quantas linhas estar„o na matriz, o que poder· variar de 1 a
+<dd> Serve para selecionar quantas linhas estar√£o na matriz, o que poder√° variar de 1 a
 32. </dd>
 
 <dt> Cor se Ligado </dt>
@@ -87,16 +87,16 @@ como descrito acima. </dd>
 <dt> Cor se Desligado </dt>
 <dd> Serve para selecionar a cor de um pixel quando estiver <q> apagado. </q> </dd>
 
-<dt> PersistÍncia da Luz </dt>
-<dd> Quando for diferente de 0, um pixel <q> aceso </q> permanecer· aceso
-pelo n˙mero de altern‚ncias do <i>clock</i> apÛs quantidade da entrada do componente 
-indicar que o pixel dever· ficar <q> apagado. </q> </dd>
+<dt> Persist√™ncia da Luz </dt>
+<dd> Quando for diferente de 0, um pixel <q> aceso </q> permanecer√° aceso
+pelo n√∫mero de altern√¢ncias do <i>clock</i> ap√≥s quantidade da entrada do componente 
+indicar que o pixel dever√° ficar <q> apagado. </q> </dd>
 
 <dt> Forma dos pontos </dt>
-<dd> A opÁ„o quadrado significa que cada pixel ser· desenhado como um quadrado 10x10, 
-preenchendo o componente, sem lacunas entre os pixels. A opÁ„o cÌrculo significa que cada 
-pixel ser· desenhado como um cÌrculo de di‚metro-8, com intervalos entre cada cÌrculo. 
-O cÌrculo È a opÁ„o mais difÌcil de interpretar, mas È mais se aproxima dos
+<dd> A op√ß√£o quadrado significa que cada pixel ser√° desenhado como um quadrado 10x10, 
+preenchendo o componente, sem lacunas entre os pixels. A op√ß√£o c√≠rculo significa que cada 
+pixel ser√° desenhado como um c√≠rculo de di√¢metro-8, com intervalos entre cada c√≠rculo. 
+O c√≠rculo √© a op√ß√£o mais dif√≠cil de interpretar, mas √© mais se aproxima dos
 componentes do tipo matriz de LEDs comerciais. </dd>
 
 </dl>
@@ -109,7 +109,7 @@ componentes do tipo matriz de LEDs comerciais. </dd>
 
 <p> Nenhum. </p>
 
-<p><a href="../index.html">Voltar ‡ <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar √† <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

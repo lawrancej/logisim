@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Multiplicador</title>
 </head>
 
@@ -10,29 +10,29 @@
 
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
-	<td><a href="index.html">AritmÈtica</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+	<td><a href="index.html">Aritm√©tica</a></td></tr>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.0 Beta 20</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/multiplier.png" width="44" height="45"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Esse componente multiplicar· os dois valores que vierem atravÈs das entradas a oeste
-e fornecer· o produto na saÌda leste. O componente È projetado de forma
+<p> Esse componente multiplicar√° os dois valores que vierem atrav√©s das entradas a oeste
+e fornecer√° o produto na sa√≠da leste. O componente √© projetado de forma
 a poder ser conectado a outros multiplicadores para tratar com um
-multiplicando com mais bits do que for possÌvel para um ˙nico multiplicador.
-A entrada <i>carry-in</i> fornecer· um valor multibit para ser adicionado ao
-produto (se ele for especificado), e saÌda <i>carry-out</i> fornecer· a metade superior
-do resultado do produto, que poder· ser enviada para outro multiplicador. </p>
+multiplicando com mais bits do que for poss√≠vel para um √∫nico multiplicador.
+A entrada <i>carry-in</i> fornecer√° um valor multibit para ser adicionado ao
+produto (se ele for especificado), e sa√≠da <i>carry-out</i> fornecer√° a metade superior
+do resultado do produto, que poder√° ser enviada para outro multiplicador. </p>
 
 <p> Se o multiplicando, o multiplicador, ou a entrada <i>carry-in</i> de entrada contiverem
-algum bit flutuante ou erro, ent„o, o componente ir· realizar uma
-multiplicaÁ„o parcial. Ou seja, ele ir· calcular como tantos bits de mais baixa ordem
-quanto possÌvel. Mas acima do bit flutuante ou do erro, o resultado ter·
+algum bit flutuante ou erro, ent√£o, o componente ir√° realizar uma
+multiplica√ß√£o parcial. Ou seja, ele ir√° calcular como tantos bits de mais baixa ordem
+quanto poss√≠vel. Mas acima do bit flutuante ou do erro, o resultado ter√°
 bits flutuantes ou de erro. Observar que se a entrada <i>carry-in</i> for completamente
-flutuante, ent„o ser„o supostos todos os valores iguais a zero.
+flutuante, ent√£o ser√£o supostos todos os valores iguais a zero.
 </p>
 
 <h2>Pinos</h2>
@@ -41,25 +41,25 @@ flutuante, ent„o ser„o supostos todos os valores iguais a zero.
 
 <dt> Na face oeste, extremo norte (entrada, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> O multiplicando (ou seja, o primeiro dos dois n˙meros para se
+<dd> O multiplicando (ou seja, o primeiro dos dois n√∫meros para se
 multiplicar).
 
 <dt> Na face oeste, extremo sul (entrada, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> O multiplicador (ou seja, o segundo dos dois n˙meros a serem multiplicados).
+<dd> O multiplicador (ou seja, o segundo dos dois n√∫meros a serem multiplicados).
 
 <dt> Na face norte, marcado por <var>c in</var> (entrada, com largura em bits
 de acordo com o atributo Bits de Dados) </dt>
 <dd> Valor de <i>carry-in</i> a ser adicionado ao produto. Se todos os bits do valor forem
-desconhecidos (ou seja, flutuantes), ent„o eles ser„o considerados iguais a 0.
+desconhecidos (ou seja, flutuantes), ent√£o eles ser√£o considerados iguais a 0.
 
-<dt> Na face leste (saÌda, com largura em bits de acordo com o
+<dt> Na face leste (sa√≠da, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
 <dd> Os bits de mais baixa ordem dos <var>Bits de Dados </var> do produto dos 
 dois valores que vierem da face oeste, mais o valor do 
 <var>c </var><sub><var>in</var></sub>.
 
-<dt> Na face sul, marcado <var>c out</var> (saÌda, com largura em bits de acordo com o
+<dt> Na face sul, marcado <var>c out</var> (sa√≠da, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
 <dd> Os bits mais significativos dos <var> Bits de Dados </var> do produto.
 
@@ -68,13 +68,13 @@ atributo Bits de Dados) </dt>
 <h2>Atributos</h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-Alt-0 atÈ ALT-9 ir„o alterar o seu atributo <q> Bits de Dados </q>.
+Alt-0 at√© ALT-9 ir√£o alterar o seu atributo <q> Bits de Dados </q>.
 </p>
 
 <dl>
 
 <dt> Bits de Dados</dt>
-<dd> A largura dos bits dos valores a serem multiplicados e tambÈm do resultado.</dd>
+<dd> A largura dos bits dos valores a serem multiplicados e tamb√©m do resultado.</dd>
 
 </dl>
 
@@ -86,7 +86,7 @@ Alt-0 atÈ ALT-9 ir„o alterar o seu atributo <q> Bits de Dados </q>.
 
 <p> Nenhum. </p>
 
-<p><a href="../index.html">Voltar ‡ <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar √† <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

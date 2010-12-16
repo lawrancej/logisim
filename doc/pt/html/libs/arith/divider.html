@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Divisor</title>
 </head>
 
@@ -10,42 +10,42 @@
 
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
-	<td><a href="index.html">AritmÈtica</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+	<td><a href="index.html">Aritm√©tica</a></td></tr>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.0 Beta 22</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/divider.png" width="44" height="45"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Esse componente divide dois valores que vierem atravÈs das entradas a oeste e
-fornecer· o quociente na saÌda a leste. O componente È projetado de forma
+<p> Esse componente divide dois valores que vierem atrav√©s das entradas a oeste e
+fornecer√° o quociente na sa√≠da a leste. O componente √© projetado de forma
 a poder ser conectado a outros divisores tratar um dividendo com mais bits que
-o possÌvel apenas um ˙nico divisor. A entrada superior fornecer· com os bits mais 
+o poss√≠vel apenas um √∫nico divisor. A entrada superior fornecer√° com os bits mais 
 significativos dentre os <var> Bits de Dados</var> do dividendo
-(se isso tiver sido especificado), e os bits em <var>rem</var> ser„o o resto inteiro 
-da divis„o, que pode ser enviado para a entrada <var>superior</var> em outro divisor.
+(se isso tiver sido especificado), e os bits em <var>rem</var> ser√£o o resto inteiro 
+da divis√£o, que pode ser enviado para a entrada <var>superior</var> em outro divisor.
 </p>
 
-<p> Se o divisor for 0, nenhuma divis„o ser· feita (ou seja, supıe-se o divisor
-no mÌnimo igual a 1). 
+<p> Se o divisor for 0, nenhuma divis√£o ser√° feita (ou seja, sup√µe-se o divisor
+no m√≠nimo igual a 1). 
 </p>
 
-<p> O divisor executar· essencialmente uma divis„o sem sinal. Ou seja, o
-resto estar· sempre entre 0 e <var> divisor </var>-1. O quociente ser· sempre um 
-n˙mero inteiro de modo que
+<p> O divisor executar√° essencialmente uma divis√£o sem sinal. Ou seja, o
+resto estar√° sempre entre 0 e <var> divisor </var>-1. O quociente ser√° sempre um 
+n√∫mero inteiro de modo que
 </p>
 <center>
  <var>quociente </var> * <var> divisor </var> +  <var>resto</var> = <var> dividendo </var>.
 </center>
-<p> Se, no entanto, o  <var>quociente</var> n„o couber nos <var> Bits de Dados </var>,
-apenas os bits menos significativos ser„o reportados. O componente n„o oferecer· mÈtodo 
+<p> Se, no entanto, o  <var>quociente</var> n√£o couber nos <var> Bits de Dados </var>,
+apenas os bits menos significativos ser√£o reportados. O componente n√£o oferecer√° m√©todo 
 algum para o acesso aos bits mais significativos dos <var> Bits de Dados </var>. 
 </p>
 
 <p> Se qualquer um dos operandos contiver algum bit flutuante, ou com erro,
-ent„o o componente ter· as saÌdas ou inteiramente flutuantes ou
+ent√£o o componente ter√° as sa√≠das ou inteiramente flutuantes ou
 integralmente com valores de erro. 
 </p>
 
@@ -56,32 +56,32 @@ integralmente com valores de erro.
 <dt> Na face oeste, extremo norte (entrada, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
 <dd> Os bits menos significativos dentre os <var> Bits de Dados </var> do dividendo 
-(ou seja, o primeiro operando para a divis„o).
+(ou seja, o primeiro operando para a divis√£o).
 
 <dt> Na face oeste, extremo sul (entrada, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> O divisor (ou seja, o segundo operando para a divis„o).
+<dd> O divisor (ou seja, o segundo operando para a divis√£o).
 
 <dt> Na face norte, marcado por <var>upper</var> (entrada, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
 <dd> Os bits mais significativos dentre os <var> Bits de Dados </var> do dividendo
-(ou seja, o primeiro operando para a divis„o).
+(ou seja, o primeiro operando para a divis√£o).
 
-<dt> Na face  leste (saÌda, com largura em bits de acordo com o
+<dt> Na face  leste (sa√≠da, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
 <dd> Os bits menos significativos dentre os <var> Bits de Dados </var> do quociente,
 conforme especificado acima.
 
-<dt> Na face sul, marcado por <var>rem</var> (saÌda, com largura em bits de acordo com o
+<dt> Na face sul, marcado por <var>rem</var> (sa√≠da, com largura em bits de acordo com o
 atributo Bits de Dados) </dt>
-<dd> O resto da divis„o. Esse valor estar· sempre entre 0 e <var>divisor</var>-1.
+<dd> O resto da divis√£o. Esse valor estar√° sempre entre 0 e <var>divisor</var>-1.
 
 </dl>
 
 <h2>Atributos</h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-Alt-0 atÈ ALT-9 ir„o alterar o seu atributo <q> Bits de Dados </q>.
+Alt-0 at√© ALT-9 ir√£o alterar o seu atributo <q> Bits de Dados </q>.
 </p>
 
 <dl>
@@ -99,7 +99,7 @@ Alt-0 atÈ ALT-9 ir„o alterar o seu atributo <q> Bits de Dados </q>.
 
 <p> Nenhum. </p>
 
-<p><a href="../index.html">Voltar ‡ <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar √† <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Demultiplexador</title>
 </head>
 
@@ -11,7 +11,7 @@
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
 	<td><a href="index.html">Plexers</a></td></tr>
-<tr><td><strong>Introdução:</strong></td>
+<tr><td><strong>IntroduÃ§Ã£o:</strong></td>
 	<td>2.0 Beta 11</td></tr>
 <tr><td valign="top"><strong>Appearance:</strong></td>
 	<td valign="top"><img src="../images/demux.png" width="44" height="63"></td></tr>
@@ -19,15 +19,15 @@
 
 <h2>Comportamento</h2>
 
-<p> Copiará a entrada na face oeste para apenas uma das saídas na face leste;
-qual será a saída será especificado pelo valor atual recebido através da entrada 
-na face sul. Acho útil pensar em um demultiplexador como análogo a um
-comutador de trilhos em uma estrada de ferro, controlado por uma seleção feita à entrada. 
+<p> CopiarÃ¡ a entrada na face oeste para apenas uma das saÃ­das na face leste;
+qual serÃ¡ a saÃ­da serÃ¡ especificado pelo valor atual recebido atravÃ©s da entrada 
+na face sul. Acho Ãºtil pensar em um demultiplexador como anÃ¡logo a um
+comutador de trilhos em uma estrada de ferro, controlado por uma seleÃ§Ã£o feita Ã  entrada. 
 </p>
 
-<p> (A propósito, algumas autoridades sugerem o termo em inglês
+<p> (A propÃ³sito, algumas autoridades sugerem o termo em inglÃªs
 <em>demultiplex<strong>o</strong>r</em>, mas <em>demultiplex<strong>e</strong>r</em>
-é a ortografia predominante.) </p>
+Ã© a ortografia predominante.) </p>
 
 <h2> Pinos (componente supondo voltado para leste) </h2>
 
@@ -35,50 +35,50 @@ comutador de trilhos em uma estrada de ferro, controlado por uma seleção feita à
 
 <dt> Na face oeste (entrada, com largura de bits de acordo com o atributo Bits de Dados) 
 </dt>
-<dd> O valor a ser encaminhado para uma das saídas na face leste. </dd>
+<dd> O valor a ser encaminhado para uma das saÃ­das na face leste. </dd>
 
-<dt> Na face leste, quantidade variável (saídas, com largura de bits de acordo com o 
+<dt> Na face leste, quantidade variÃ¡vel (saÃ­das, com largura de bits de acordo com o 
 atributo Bits de Dados) </dt>
-<dd> As saídas são numeradas a partir de 0 começando na face norte. Uma saída
-irá coincidir com a entrada oeste, se seu número coincidir com o valor atual
-recebido através da seleção de entrada na face sul; caso contrário, seu valor
-será ou todos zeros ou todos flutuantes, dependendo do valor do atributo
+<dd> As saÃ­das sÃ£o numeradas a partir de 0 comeÃ§ando na face norte. Uma saÃ­da
+irÃ¡ coincidir com a entrada oeste, se seu nÃºmero coincidir com o valor atual
+recebido atravÃ©s da seleÃ§Ã£o de entrada na face sul; caso contrÃ¡rio, seu valor
+serÃ¡ ou todos zeros ou todos flutuantes, dependendo do valor do atributo
 <i>Tri-state</i>?.
-Se a selecção de entrada contiver bits não especificados, todas as saídas serão
+Se a selecÃ§Ã£o de entrada contiver bits nÃ£o especificados, todas as saÃ­das serÃ£o
 flutuantes. </dd>
 
 <dt> Na face sul (entrada, com largura de bits de acordo com o atributo
 Bits de Dados) </dt>
-<dd> Entrada selecionada: o valor dessa entrada determinará para qual a saída
-na face leste será encaminhado o valor recebido na face oeste. </dd>
+<dd> Entrada selecionada: o valor dessa entrada determinarÃ¡ para qual a saÃ­da
+na face leste serÃ¡ encaminhado o valor recebido na face oeste. </dd>
 
 </dl>
 
 <h2> Atributos </h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-os dígitos de '1' a '4' poderão ter o seu atributo <q> Bits Selecionados </q> alterado,
-Alt-0 até ALT-9 irão alterar o seu atributo <q> Bits de dados</q>,
-e as teclas com setas poderão alterar o seu atributo <q> Direção</q>.
+os dÃ­gitos de '1' a '4' poderÃ£o ter o seu atributo <q> Bits Selecionados </q> alterado,
+Alt-0 atÃ© ALT-9 irÃ£o alterar o seu atributo <q> Bits de dados</q>,
+e as teclas com setas poderÃ£o alterar o seu atributo <q> DireÃ§Ã£o</q>.
 </p>
 
 <dl>
 
-<dt> Direção </dt>
-<dd> A direção do componente (especificará qual dos lados terá as saídas). </dd>
+<dt> DireÃ§Ã£o </dt>
+<dd> A direÃ§Ã£o do componente (especificarÃ¡ qual dos lados terÃ¡ as saÃ­das). </dd>
 
 <dt> Bits Selecionados </dt>
 <dd> A largura em bits da entrada selecionada do componente na face sul.
-O número de saídas para o demultiplexador será 
+O nÃºmero de saÃ­das para o demultiplexador serÃ¡ 
 2<sup><small><var> Bits Selecionados</var></small></sup>.
 </dd>
 
 <dt> Bits de dados</dt>
-<dd> Largura dos bits de dados que serão roteados pelo demultiplexador.</dd>
+<dd> Largura dos bits de dados que serÃ£o roteados pelo demultiplexador.</dd>
 
 <dt> <i>Tri-state</i>? </dt>
-<dd> Especificará se as saídas não selecionadas deverão ser flutuantes (Sim) ou
-zero (Não). </dd>
+<dd> EspecificarÃ¡ se as saÃ­das nÃ£o selecionadas deverÃ£o ser flutuantes (Sim) ou
+zero (NÃ£o). </dd>
 
 </dl>
 
@@ -90,7 +90,7 @@ zero (Não). </dd>
 
 <p> Nenhum. </p>
 
-<p><a href="../index.html">Voltar à <em>Referência para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar Ã  <em>ReferÃªncia para bibliotecas</em></a></p>
 
 </body>
 </html>

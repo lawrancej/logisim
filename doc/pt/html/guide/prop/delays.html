@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Atrasos em porta (Gate delays)</title>
 </head>
 
@@ -7,56 +7,56 @@
 
 <h1>Atrasos em porta (Gate delays)</h1>
 
-<p> Como um exemplo do nível de sofisticação do algoritmo do Logisim,
+<p> Como um exemplo do nÃ­vel de sofisticaÃ§Ã£o do algoritmo do Logisim,
 considere o circuito a seguir. 
 </p>
 
 <center> <img src="const0.png" width="171" height="55"> </center>
 
-<p> "obviamente" sempre terá saídas em 0. Mas, na verdade, as portas não
-reagem instantaneamente às suas entradas, e nem tampouco o Logisim.
+<p> "obviamente" sempre terÃ¡ saÃ­das em 0. Mas, na verdade, as portas nÃ£o
+reagem instantaneamente Ã s suas entradas, e nem tampouco o Logisim.
 Como resultado, quando as entradas nesse circuito variam de 0 para 1, a
-porta AND brevemente verá duas entradas iguais a 1, e irá emitir um breve 1.
-Você não vai vê-lo na tela. Mas esse efeito é perceptível quando se
-utilizar a saída da porta AND como entrada de <i>clock</i> de um <i>flip-flop</i> 
+porta AND brevemente verÃ¡ duas entradas iguais a 1, e irÃ¡ emitir um breve 1.
+VocÃª nÃ£o vai vÃª-lo na tela. Mas esse efeito Ã© perceptÃ­vel quando se
+utilizar a saÃ­da da porta AND como entrada de <i>clock</i> de um <i>flip-flop</i> 
 tipo D. 
 </p>
 
 <center> <img src="using-const0.png" width="231" height="68"> </center>
 
-<p> Se testar a entrada, variando de 0 para 1, isso levará a um valor instantâneo
-igual a 1 que irá para o <i>flip-flop</i> tipo D e, portanto, 
-o valor do <i>flip-flop</i> irá alternar cada vez que o circuito de entrada 
+<p> Se testar a entrada, variando de 0 para 1, isso levarÃ¡ a um valor instantÃ¢neo
+igual a 1 que irÃ¡ para o <i>flip-flop</i> tipo D e, portanto, 
+o valor do <i>flip-flop</i> irÃ¡ alternar cada vez que o circuito de entrada 
 for de 0 para 1.
 </p>
 
 <p> Cada componente tem um atraso associado a ele. Componentes mais sofisticados
-construídos em Logisim tendem a ter atrasos maiores, mas esses atrasos são um tanto
-arbitrários e podem não refletir a realidade.
+construÃ­dos em Logisim tendem a ter atrasos maiores, mas esses atrasos sÃ£o um tanto
+arbitrÃ¡rios e podem nÃ£o refletir a realidade.
 </p>
 
-<p> Do ponto de vista técnico, é relativamente fácil lidar com
-esse nível de sofisticação em um único circuito. Lidar com atrasos de porta
-em subcircuitos, porém, é um pouco mais complexo; o Logisim tem a pretensão de
-abordar isso corretamente, colocando todos os valores primitivos de propagação
-do componente em uma programação única, independentemente do subcircuito em que o 
+<p> Do ponto de vista tÃ©cnico, Ã© relativamente fÃ¡cil lidar com
+esse nÃ­vel de sofisticaÃ§Ã£o em um Ãºnico circuito. Lidar com atrasos de porta
+em subcircuitos, porÃ©m, Ã© um pouco mais complexo; o Logisim tem a pretensÃ£o de
+abordar isso corretamente, colocando todos os valores primitivos de propagaÃ§Ã£o
+do componente em uma programaÃ§Ã£o Ãºnica, independentemente do subcircuito em que o 
 componente se encontrar. 
 </p>
 
-<p> (Via a opção <a href="../opts/index.html"> Opções de projeto </a> na janela
-<a guia href="../opts/simulate.html"> Simulação</a>, você poderá configurar o Logisim
-para adicionar um atraso aleatório, ocasional, para a propagação de um componente.
+<p> (Via a opÃ§Ã£o <a href="../opts/index.html"> OpÃ§Ãµes de projeto </a> na janela
+<a guia href="../opts/simulate.html"> SimulaÃ§Ã£o</a>, vocÃª poderÃ¡ configurar o Logisim
+para adicionar um atraso aleatÃ³rio, ocasional, para a propagaÃ§Ã£o de um componente.
 Isso tem o objetivo de simular a desigualdade de circuitos reais. Em particular, um 
-<i>latch</i> SR construído com duas portas NOR irá oscilar sem essa aleatoriedade, 
-já que ambas as portas irão processar suas entradas em sincronia. Essa aleatoriedade é
-desabilitada por padrão.)
+<i>latch</i> SR construÃ­do com duas portas NOR irÃ¡ oscilar sem essa aleatoriedade, 
+jÃ¡ que ambas as portas irÃ£o processar suas entradas em sincronia. Essa aleatoriedade Ã©
+desabilitada por padrÃ£o.)
 </p>
 
-<p> Notar que pararei de dizer o Logisim sempre tratará bem atrasos de porta.
-Mas pelo menos ele tentará.
+<p> Notar que pararei de dizer o Logisim sempre tratarÃ¡ bem atrasos de porta.
+Mas pelo menos ele tentarÃ¡.
 </p>
 
-<p><strong>Próximo:</strong> <a href="oscillate.html">Erros de oscilação</a>.</p>
+<p><strong>PrÃ³ximo:</strong> <a href="oscillate.html">Erros de oscilaÃ§Ã£o</a>.</p>
 
 </body>
 </html>

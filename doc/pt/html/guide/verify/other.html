@@ -1,108 +1,108 @@
 <html>
-<head>
-<title>Outras opções para verificação</title>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Outras opÃ§Ãµes para verificaÃ§Ã£o</title>
 </head>
 
 <body bgcolor="FFFFFF">
 
-<h1>Outras opções para verificação</h1>
+<h1>Outras opÃ§Ãµes para verificaÃ§Ã£o</h1>
 
-<p> Existem algumas opções adicionais relacionadas com a execução pela linha de comandos. 
+<p> Existem algumas opÃ§Ãµes adicionais relacionadas com a execuÃ§Ã£o pela linha de comandos. 
 </p>
 
-<h2> O parâmetro <tt> -load </tt> na linha de comando </h2>
+<h2> O parÃ¢metro <tt> -load </tt> na linha de comando </h2>
 
-<p> Um circuito mais complexo poderá incluir um componente de memória RAM que precisará
-ser carregado com um programa para que o circuito possa usá-lo.
-Você poderá especificar um arquivo de imagem da memória na linha de comando, 
-que será carregado em qualquer componente de RAM no circuito antes da simulação começar.
-(Isso não funcionará quando se carregar a interface gráfica - só servirá para a
-execução de linha de comando.)
+<p> Um circuito mais complexo poderÃ¡ incluir um componente de memÃ³ria RAM que precisarÃ¡
+ser carregado com um programa para que o circuito possa usÃ¡-lo.
+VocÃª poderÃ¡ especificar um arquivo de imagem da memÃ³ria na linha de comando, 
+que serÃ¡ carregado em qualquer componente de RAM no circuito antes da simulaÃ§Ã£o comeÃ§ar.
+(Isso nÃ£o funcionarÃ¡ quando se carregar a interface grÃ¡fica - sÃ³ servirÃ¡ para a
+execuÃ§Ã£o de linha de comando.)
 </p>
 
 <blockquote><tt>java -jar logisim-filename.jar cpu.circ -tty table -load mem-image.txt</tt></blockquote>
 
-<p> A ordem dos parâmetros não é importante (exceto para o parâmetro <tt> table </tt>
-que deverá ser imediatamente após <tt>-tty </tt>, e o nome do arquivo de imagem da 
-memória que deverá ser logo após <tt>-load </tt>).
-O arquivo de imagem deverá estar no <a href="../mem/menu.html"> formato de imagem da
-memória do Logisim </a>. 
+<p> A ordem dos parÃ¢metros nÃ£o Ã© importante (exceto para o parÃ¢metro <tt> table </tt>
+que deverÃ¡ ser imediatamente apÃ³s <tt>-tty </tt>, e o nome do arquivo de imagem da 
+memÃ³ria que deverÃ¡ ser logo apÃ³s <tt>-load </tt>).
+O arquivo de imagem deverÃ¡ estar no <a href="../mem/menu.html"> formato de imagem da
+memÃ³ria do Logisim </a>. 
 </p>
 
-<p> O Logisim pesquisará pela RAM recursivamente, de modo que esse continuará a
+<p> O Logisim pesquisarÃ¡ pela RAM recursivamente, de modo que esse continuarÃ¡ a
 funcionar mesmo se a RAM estiver embutida em um subcircuito.
-Não há maneira alguma, no entanto, de distinguir diferentes componentes do tipo RAM:
-o Logisim irá tentar carregar o mesmo arquivo em todas as RAMs que puder encontrar.
+NÃ£o hÃ¡ maneira alguma, no entanto, de distinguir diferentes componentes do tipo RAM:
+o Logisim irÃ¡ tentar carregar o mesmo arquivo em todas as RAMs que puder encontrar.
 </p>
 
-<h2> Opções para o parâmetro <tt>-tty </tt> </h2>
+<h2> OpÃ§Ãµes para o parÃ¢metro <tt>-tty </tt> </h2>
 
-<p> Em nossos exemplos até agora, sempre usamos tabela <q><tt>-tty&nbsp;table</tt></q>
-para indicar que uma tabela de valores de saída deverá ser exibida. Você poderá
-personalizar o comportamento de outras formas, listando uma ou mais opções,
-separados por vírgulas. Por exemplo, você poderá escrever
+<p> Em nossos exemplos atÃ© agora, sempre usamos tabela <q><tt>-tty&nbsp;table</tt></q>
+para indicar que uma tabela de valores de saÃ­da deverÃ¡ ser exibida. VocÃª poderÃ¡
+personalizar o comportamento de outras formas, listando uma ou mais opÃ§Ãµes,
+separados por vÃ­rgulas. Por exemplo, vocÃª poderÃ¡ escrever
 <q><tt>-tty&nbsp;table,halt,speed</tt></q>,
-e o programa irá executar todas os três comportamentos listados abaixo.
-(A ordem em que estão listados não importa.) 
+e o programa irÃ¡ executar todas os trÃªs comportamentos listados abaixo.
+(A ordem em que estÃ£o listados nÃ£o importa.) 
 </p>
 
 <dl>
 
 <dt> <tt> halt </tt> </dt>
-<dd> <p> Após a simulação terminar, aparecerá uma mensagem de uma linha 
-explicando porque a simulação terminou. Condições de erro - como uma oscilação detectada -
-serão exibidas em qualquer caso. 
+<dd> <p> ApÃ³s a simulaÃ§Ã£o terminar, aparecerÃ¡ uma mensagem de uma linha 
+explicando porque a simulaÃ§Ã£o terminou. CondiÃ§Ãµes de erro - como uma oscilaÃ§Ã£o detectada -
+serÃ£o exibidas em qualquer caso. 
 </p> </dd>
 
 <dt> <tt> speed </tt> </dt>
-<dd> <p> Se você usar essa opção em conjunto com <q> <tt>-tty </tt> </q>,
-em seguida, depois que completar a simulação o Logisim irá exibir um resumo de
-quão rápido o circuito foi simulado, tal como:
+<dd> <p> Se vocÃª usar essa opÃ§Ã£o em conjunto com <q> <tt>-tty </tt> </q>,
+em seguida, depois que completar a simulaÃ§Ã£o o Logisim irÃ¡ exibir um resumo de
+quÃ£o rÃ¡pido o circuito foi simulado, tal como:
 </p>
 
 <blockquote><tt>714 Hz (509 ticks in 712 milliseconds)</tt></blockquote>
 
-<p> Observar que a exibição de informações durante a simulação
-fará a simulação ser muito mais lento. Como apenas uma comparação, 
-para o mesmo circuito e imagem funcionou acima de 714 Hz com a opção <tt> speed </tt>
-e apenas a 490 Hz com a opção <tt>table</tt> também. 
+<p> Observar que a exibiÃ§Ã£o de informaÃ§Ãµes durante a simulaÃ§Ã£o
+farÃ¡ a simulaÃ§Ã£o ser muito mais lento. Como apenas uma comparaÃ§Ã£o, 
+para o mesmo circuito e imagem funcionou acima de 714 Hz com a opÃ§Ã£o <tt> speed </tt>
+e apenas a 490 Hz com a opÃ§Ã£o <tt>table</tt> tambÃ©m. 
 </p> </dd>
 
 <dt> <tt> statistics </tt> </dt>
-<dd> <p> Mostrar uma tabela delimitada por tabulações contendo dados estatísticos
+<dd> <p> Mostrar uma tabela delimitada por tabulaÃ§Ãµes contendo dados estatÃ­sticos
 sobre os componentes utilizados pelo circuito <q> principal </q> no projeto. 
 A tabela inclui quatro colunas: 
 </p>
 <ul>
-<li> Exclusiva: O número de vezes que o componente aparecer na hierarquia do circuito,
-onde cada subcircuito dentro da hierarquia será contabilizado apenas uma vez. </li>
-<li> Recursiva: O número de vezes que o componente aparecer na hierarquia do circuito,
+<li> Exclusiva: O nÃºmero de vezes que o componente aparecer na hierarquia do circuito,
+onde cada subcircuito dentro da hierarquia serÃ¡ contabilizado apenas uma vez. </li>
+<li> Recursiva: O nÃºmero de vezes que o componente aparecer na hierarquia do circuito,
 onde contamos cada subcircuito quantas vezes ele aparecer na hierarquia. </li>
 <li> Componente: O nome do componente </li>
 <li> Biblioteca: O nome da biblioteca a partir do qual o componente veio </li>
 </ul>
-<p> A distinção entre <q> exclusiva </q> e <q> recursiva </q> também está explicada
-na seção <q> <a href="../menu/project.html"> menu de Projeto </a> </q>.
+<p> A distinÃ§Ã£o entre <q> exclusiva </q> e <q> recursiva </q> tambÃ©m estÃ¡ explicada
+na seÃ§Ã£o <q> <a href="../menu/project.html"> menu de Projeto </a> </q>.
 Se o arquivo utilizar circuitos de uma biblioteca carregada do Logisim,
-os componentes serão considerado <q> caixas pretas </q>: o conteúdo dos circuitos 
-da biblioteca não serão incluídos na contagem exclusiva ou recursiva. </p>
+os componentes serÃ£o considerado <q> caixas pretas </q>: o conteÃºdo dos circuitos 
+da biblioteca nÃ£o serÃ£o incluÃ­dos na contagem exclusiva ou recursiva. </p>
 
-<p> (Esse recurso pode ser útil para os instrutores que peçam aos alunos para criar
+<p> (Esse recurso pode ser Ãºtil para os instrutores que peÃ§am aos alunos para criar
 projetos com um subconjunto de bibliotecas de Logisim.) 
 </p> </dd>
 
 <dt> <tt> table </tt> </dt>
-<dd> <p> (já visto) </p> </dd>
+<dd> <p> (jÃ¡ visto) </p> </dd>
 
 <dt> <tt> tty </tt> </dt>
-<dd> <p> Quaisquer componentes TTY enviarão suas saída para a tela (saída padrão),
-e todas as informações digitadas no teclado serão enviadas para todos os 
+<dd> <p> Quaisquer componentes TTY enviarÃ£o suas saÃ­da para a tela (saÃ­da padrÃ£o),
+e todas as informaÃ§Ãµes digitadas no teclado serÃ£o enviadas para todos os 
 equivalentes no circuito.
-Esses componentes serão incluídos, mesmo que sejam profundamente aninhados
-à hierarquia do subcircuito. 
+Esses componentes serÃ£o incluÃ­dos, mesmo que sejam profundamente aninhados
+Ã  hierarquia do subcircuito. 
 </p> </dd>
 
-<p><strong>Próximo:</strong>&nbsp;<a href="multi.html">Testar múltiplos arquivos</a>.</p>
+<p><strong>PrÃ³ximo:</strong>&nbsp;<a href="multi.html">Testar mÃºltiplos arquivos</a>.</p>
 
 </body>
 </html>

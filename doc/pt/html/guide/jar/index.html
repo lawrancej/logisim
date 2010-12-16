@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Bibliotecas JAR</title>
 </head>
 <body bgcolor="FFFFFF">
@@ -9,66 +9,66 @@
 <h2>Uso de bibliotecas JAR</h2>
 
 <p> O Logisim tem dois tipos de componentes de circuito: os que
-s„o concebidos dentro Logisim como combinaÁıes de outros; e os primitivos,
-que s„o escritos em Java. Os circuitos do Logisim s„o mais f·ceis de projetar, 
-mas eles n„o podem oferecer suporte mais sofisticado ‡ interaÁ„o com o usu·rio, 
-e s„o relativamente ineficientes.
+s√£o concebidos dentro Logisim como combina√ß√µes de outros; e os primitivos,
+que s√£o escritos em Java. Os circuitos do Logisim s√£o mais f√°ceis de projetar, 
+mas eles n√£o podem oferecer suporte mais sofisticado √† intera√ß√£o com o usu√°rio, 
+e s√£o relativamente ineficientes.
 </p>
 
-<p> O Logisim contÈm uma coleÁ„o bastante completa de bibliotecas predefinidas
-de componentes em Java, mas poder· tambÈm acomodar bibliotecas adicionais escritas
-por vocÍ ou por outros. Uma vez em posse do cÛdigo de uma biblioteca, vocÍ poder·
-import·-lo em seu projeto ao clicar em Projeto no painel de explorador (linha superior)
-e escolher carregar a biblioteca (Load Library > JAR Library)... Ent„o, o Logisim
-pedir· para vocÍ selecionar o arquivo JAR.
-(Em algumas circunst‚ncias, vocÍ poder· ter que digitar o nome da classe inicial,
-quando solicitado, isso dever· ser previsto pelo desenvolvedor da biblioteca.
-No entanto, um desenvolvedor normalmente dever· configurar a biblioteca JAR para
+<p> O Logisim cont√©m uma cole√ß√£o bastante completa de bibliotecas predefinidas
+de componentes em Java, mas poder√° tamb√©m acomodar bibliotecas adicionais escritas
+por voc√™ ou por outros. Uma vez em posse do c√≥digo de uma biblioteca, voc√™ poder√°
+import√°-lo em seu projeto ao clicar em Projeto no painel de explorador (linha superior)
+e escolher carregar a biblioteca (Load Library > JAR Library)... Ent√£o, o Logisim
+pedir√° para voc√™ selecionar o arquivo JAR.
+(Em algumas circunst√¢ncias, voc√™ poder√° ter que digitar o nome da classe inicial,
+quando solicitado, isso dever√° ser previsto pelo desenvolvedor da biblioteca.
+No entanto, um desenvolvedor normalmente dever√° configurar a biblioteca JAR para
 evitar isso (ao incluir no <q> manifesto </q> do arquivo JAR um atributo
 Library-Class especificando o principal nome da classe).)
 </p>
 
 <h2>Criar bibliotecas JAR</h2>
 
-<p> O restante desta seÁ„o ser· dedicado a uma sÈrie de exemplos
+<p> O restante desta se√ß√£o ser√° dedicado a uma s√©rie de exemplos
 bem comentados que ilustram como desenvolver bibliotecas do Logisim. 
-VocÍ sÛ dever· tentar fazer isso, se for um programador Java experiente. 
-AlÈm desses exemplos, vocÍ ir· encontrar documentaÁ„o bastante escassa.
+Voc√™ s√≥ dever√° tentar fazer isso, se for um programador Java experiente. 
+Al√©m desses exemplos, voc√™ ir√° encontrar documenta√ß√£o bastante escassa.
 </p>
 
-VocÍ poder· baixar um arquivo JAR que lhe permitir· importar esses exemplos
-do <i>website</i> do Logisim na seÁ„o Links. Esse arquivo JAR tambÈm conter· 
-o cÛdigo-fonte desses exemplos.
+Voc√™ poder√° baixar um arquivo JAR que lhe permitir√° importar esses exemplos
+do <i>website</i> do Logisim na se√ß√£o Links. Esse arquivo JAR tamb√©m conter√° 
+o c√≥digo-fonte desses exemplos.
 </p>
 
 <dl>
 
-<dt> <a href="incr.html"> Incrementador em cÛdigo de Gray</a> </dt>
+<dt> <a href="incr.html"> Incrementador em c√≥digo de Gray</a> </dt>
 <dd> <p> Ilustra os elementos essenciais de qualquer tipo de componente
 por meio de um exemplo simples de um componente que tem uma entrada multibit
-e calcula o valor do prÛximo cÛdigo de Gray que o segue.
+e calcula o valor do pr√≥ximo c√≥digo de Gray que o segue.
 </p> </dd>
 
 <dt> <a href="library.html"> Biblioteca de classes </a> </dt>
-<dd> <p> Ilustra como definir uma biblioteca. Este È o ponto de entrada
-para qualquer arquivo JAR - a classe cujo nome o usu·rio fornecer· quando
+<dd> <p> Ilustra como definir uma biblioteca. Este √© o ponto de entrada
+para qualquer arquivo JAR - a classe cujo nome o usu√°rio fornecer√° quando
 for carregar a biblioteca JAR.
 </p> </dd>
 
-<a <dt> href="simpctr.html"> Contador simples em cÛdigo Gray </a> </dt>
+<a <dt> href="simpctr.html"> Contador simples em c√≥digo Gray </a> </dt>
 <dd> <p> Ilustra como fazer um componente que tem estado interno;
-em particular, um contador de 8 bits que itera em cÛdigo de Gray.
+em particular, um contador de 8 bits que itera em c√≥digo de Gray.
 </p> </dd>
 
-<dt> <a href="counter.html"> Contador em cÛdigo de Gray </a> </dt>
+<dt> <a href="counter.html"> Contador em c√≥digo de Gray </a> </dt>
 <dd> <p> Demonstra um componente completo, bem mais sofisticado, com o qual
-o usu·rio poder· interagir. Ele implementa um contador em cÛdigo de Gray, onde o
-n˙mero de bits guardado È customiz·vel, e onde o usu·rio poder· editar o valor
+o usu√°rio poder√° interagir. Ele implementa um contador em c√≥digo de Gray, onde o
+n√∫mero de bits guardado √© customiz√°vel, e onde o usu√°rio poder√° editar o valor
 corrente, ao clicar nele com a ferramenta Testar e digitar um novo valor.
 </p>
 
-<a <dt> href="guide.html"> OrientaÁıes </a>
-<dd> InformaÁıes gerais para as bibliotecas com desenvolvimento por terceiros. </p>
+<a <dt> href="guide.html"> Orienta√ß√µes </a>
+<dd> Informa√ß√µes gerais para as bibliotecas com desenvolvimento por terceiros. </p>
 
 </dl>
 
@@ -101,7 +101,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.</p>
 
-<p><strong>PrÛximo:</strong> <a href="incr.html">Incrementador em cÛdigo de Gray</a>.</p>
+<p><strong>Pr√≥ximo:</strong> <a href="incr.html">Incrementador em c√≥digo de Gray</a>.</p>
 
 </body>
 </html>

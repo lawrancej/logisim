@@ -1,76 +1,76 @@
 <html>
-<head>
-<title>Túnel</title>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>TÃºnel</title>
 </head>
 
 <body bgcolor="FFFFFF">
 
 <h1><img  align="center" src="../../icons/tunnel.gif" width="32" height="32">
-<em>Túnel</em></h1>
+<em>TÃºnel</em></h1>
 
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
 	<td><a href="index.html">Base</a></td></tr>
-<tr><td><strong>Introdução:</strong></td>
+<tr><td><strong>IntroduÃ§Ã£o:</strong></td>
 	<td>2.5.0</td></tr>
-<tr><td valign="top"><strong>Aparência:</strong></td>
+<tr><td valign="top"><strong>AparÃªncia:</strong></td>
 	<td valign="top"><img src="../images/tunnel.png" width="220" height="90"></td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Um <q>túnel</q> funciona como um fio na medida em que vincula pontos,
-mas ao contrário de um fio, a uma conexão não será traçada explicitamente.
-Isso será útil quando você precisar conectar pontos distantes no circuito
-e uma rede de fios possa tornar o circuito menos legível.
-A ilustração abaixo mostra como isso funciona.
+<p> Um <q>tÃºnel</q> funciona como um fio na medida em que vincula pontos,
+mas ao contrÃ¡rio de um fio, a uma conexÃ£o nÃ£o serÃ¡ traÃ§ada explicitamente.
+Isso serÃ¡ Ãºtil quando vocÃª precisar conectar pontos distantes no circuito
+e uma rede de fios possa tornar o circuito menos legÃ­vel.
+A ilustraÃ§Ã£o abaixo mostra como isso funciona.
 </p>
 
 <blockquote> <img src="../images/tunnel-demo.png" width="204" height="86"> </blockquote>
 
-<p> Aqui, todos os três túneis tem o mesmo rótulo, <em> a</em>,
-e assim todos os três pontos estarão conectados ao mesmo ponto.
-(Se um dos túneis tiver sido rotulado diferentemente, como <em> b</em>,
-então será parte de outro conjunto de túneis).
-O <i>buffer</i> controlado na parte superior emitirá uma saída flutuante
-uma vez que a sua entrada de mais baixa ordem é 0.
-Isso normalmente levará a conexão que venha do <i>buffer</i> controlado a ser azul;
-mas aqui ela está verde-escura, porque a saída flutuante combina-se
-através do túnel com o 0 originário do pino na parte inferior.
-Se a entrada de controle para as alterações do <i>buffer</i> for igual a 1,
-então, esse <i>buffer</i> controlado irá alimentar o túnel com 1,
-que combinado com 0 do pino ao fundo irá resultar em um valor de erro;
-portanto, fios vermelhos serão vistos alimentando todos os três túneis.
+<p> Aqui, todos os trÃªs tÃºneis tem o mesmo rÃ³tulo, <em> a</em>,
+e assim todos os trÃªs pontos estarÃ£o conectados ao mesmo ponto.
+(Se um dos tÃºneis tiver sido rotulado diferentemente, como <em> b</em>,
+entÃ£o serÃ¡ parte de outro conjunto de tÃºneis).
+O <i>buffer</i> controlado na parte superior emitirÃ¡ uma saÃ­da flutuante
+uma vez que a sua entrada de mais baixa ordem Ã© 0.
+Isso normalmente levarÃ¡ a conexÃ£o que venha do <i>buffer</i> controlado a ser azul;
+mas aqui ela estÃ¡ verde-escura, porque a saÃ­da flutuante combina-se
+atravÃ©s do tÃºnel com o 0 originÃ¡rio do pino na parte inferior.
+Se a entrada de controle para as alteraÃ§Ãµes do <i>buffer</i> for igual a 1,
+entÃ£o, esse <i>buffer</i> controlado irÃ¡ alimentar o tÃºnel com 1,
+que combinado com 0 do pino ao fundo irÃ¡ resultar em um valor de erro;
+portanto, fios vermelhos serÃ£o vistos alimentando todos os trÃªs tÃºneis.
 </p>
 
 <h2>Pinos</h2>
 
-<p> Um túnel tem apenas um pino, cuja largura em bits será de acordo com o seu atributo
-Bits de Dados. Esse pino não é uma entrada nem uma saída &mdash; túneis correspondentes
-estarão conectados de forma transparente.
+<p> Um tÃºnel tem apenas um pino, cuja largura em bits serÃ¡ de acordo com o seu atributo
+Bits de Dados. Esse pino nÃ£o Ã© uma entrada nem uma saÃ­da &mdash; tÃºneis correspondentes
+estarÃ£o conectados de forma transparente.
 </p>
 
 <h2>Atributos</h2>
 
 <p> Quando o componente for selecionado ou estiver sendo acrescentado,
-Alt-0 até ALT-9 irão alterar o seu atributo <q> Bits de Dados</q>,
-e as teclas com setas poderão alterar o seu atributo <q> Direção</q>.
+Alt-0 atÃ© ALT-9 irÃ£o alterar o seu atributo <q> Bits de Dados</q>,
+e as teclas com setas poderÃ£o alterar o seu atributo <q> DireÃ§Ã£o</q>.
 </p>
 
 <dl>
 
-<dt> Direção </dt>
-<dd> A direção na qual o túnel aponta.</dd>
+<dt> DireÃ§Ã£o </dt>
+<dd> A direÃ§Ã£o na qual o tÃºnel aponta.</dd>
 
 <dt> Bits de Dados </dt>
-<dd> O número de bits para o túnel. </dd>
+<dd> O nÃºmero de bits para o tÃºnel. </dd>
 
-<dt> Rótulo </dt>
-<dd> O texto do rótulo associado ao túnel. 
-Esse túnel estará conectado a todos os outros com o mesmo rótulo. </dd>
+<dt> RÃ³tulo </dt>
+<dd> O texto do rÃ³tulo associado ao tÃºnel. 
+Esse tÃºnel estarÃ¡ conectado a todos os outros com o mesmo rÃ³tulo. </dd>
 
-<dt> Fonte do Rótulo </dt>
-<dd> A fonte com a qual o rótulo será mostrado. </dd>
+<dt> Fonte do RÃ³tulo </dt>
+<dd> A fonte com a qual o rÃ³tulo serÃ¡ mostrado. </dd>
 
 
 </dl>
@@ -81,9 +81,9 @@ Esse túnel estará conectado a todos os outros com o mesmo rótulo. </dd>
 
 <h2> Comportamento da ferramenta Texto </h2>
 
-<p> Permite que o rótulo associado ao túnel seja editado.</p>
+<p> Permite que o rÃ³tulo associado ao tÃºnel seja editado.</p>
 
-<p><a href="../index.html">Voltar à <em>Referência para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar Ã  <em>ReferÃªncia para bibliotecas</em></a></p>
 
 </body>
 </html>

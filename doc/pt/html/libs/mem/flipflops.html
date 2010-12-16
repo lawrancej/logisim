@@ -1,5 +1,5 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Flip-Flops D/T/J-K/S-R</title>
 </head>
 
@@ -13,22 +13,22 @@
 
 <p><table>
 <tr><td><strong>Biblioteca:</strong></td>
-	<td><a href="index.html">MemÛria</a></td></tr>
-<tr><td><strong>IntroduÁ„o:</strong></td>
+	<td><a href="index.html">Mem√≥ria</a></td></tr>
+<tr><td><strong>Introdu√ß√£o:</strong></td>
 	<td>2.0 Beta 1</td></tr>
-<tr><td valign="top"><strong>AparÍncia:</strong></td>
+<tr><td valign="top"><strong>Apar√™ncia:</strong></td>
 	<td valign="top"><img src="../images/flipflops.png" width="225" height="43">
         </td></tr>
 </table></p>
 
 <h2>Comportamento</h2>
 
-<p> Cada <i>flip-flop</i> armazena um ˙nico bit como dado, o qual ser· emitido atravÈs
-da saÌda <var>Q</var> na face leste. Normalmente, o valor poder· ser controlado
-pelas entradas do lado oeste. Em particuar, o valor ir· mudar quando houver variaÁ„o
-da entrada de <i>clock</i>, marcada por um tri‚ngulo em cada <i>flip-flop</i>, quando 
-essa passar de 0 para 1 (ou o contr·rio se assim configurado); ao ocorrer, portanto, 
-uma borda de subida, o valor mudar· de acordo com a tabela abaixo.
+<p> Cada <i>flip-flop</i> armazena um √∫nico bit como dado, o qual ser√° emitido atrav√©s
+da sa√≠da <var>Q</var> na face leste. Normalmente, o valor poder√° ser controlado
+pelas entradas do lado oeste. Em particuar, o valor ir√° mudar quando houver varia√ß√£o
+da entrada de <i>clock</i>, marcada por um tri√¢ngulo em cada <i>flip-flop</i>, quando 
+essa passar de 0 para 1 (ou o contr√°rio se assim configurado); ao ocorrer, portanto, 
+uma borda de subida, o valor mudar√° de acordo com a tabela abaixo.
 </p>
 
 <center><table>
@@ -75,39 +75,39 @@ uma borda de subida, o valor mudar· de acordo com a tabela abaixo.
 </tr></table></center>
 
 <p> Outra maneira de descrever os diferentes comportamentos dos <i>flip-flops</i>
-est· no texto original em inglÍs.</p>
+est√° no texto original em ingl√™s.</p>
 <ul>
 
-<li><p><strong>Flip-Flop D:</strong> Quando houver variaÁ„o do <i>clock</i>, o valor
-guardado no <i>flip-flop</i> ser· o valor na entrada <var>D</var> (<em>Data</em>)
+<li><p><strong>Flip-Flop D:</strong> Quando houver varia√ß√£o do <i>clock</i>, o valor
+guardado no <i>flip-flop</i> ser√° o valor na entrada <var>D</var> (<em>Data</em>)
 naquele instante.</p></li>
 
-<li><p><strong>Flip-Flop T:</strong> Quando houver variaÁ„o do <i>clock</i>, o valor
-guardado no <i>flip-flop</i> ser· alternado ou mantido dependendo se o valor na entrada
+<li><p><strong>Flip-Flop T:</strong> Quando houver varia√ß√£o do <i>clock</i>, o valor
+guardado no <i>flip-flop</i> ser√° alternado ou mantido dependendo se o valor na entrada
 <var>T</var> (<em>Toggle</em>) for 1 ou 0.</p></li>
 
-<li><p><strong>Flip-Flop J-K:</strong> Quando houver variaÁ„o do <i>clock</i>, o valor
-guardado no <i>flip-flop</i> ser· alternado se as entradas <var>J</var> e <var>K</var>
-forem ambas iguais a 1 e ser· mantido se ambas forem iguais a zero; se forem 
-diferentes, ent„o o valor se tornar· 1 se a entrada <var>J</var>
-(<em>Jump</em>) for 1 e ser· 0 se a entrada <var>K</var> (<em>Kill</em>)
+<li><p><strong>Flip-Flop J-K:</strong> Quando houver varia√ß√£o do <i>clock</i>, o valor
+guardado no <i>flip-flop</i> ser√° alternado se as entradas <var>J</var> e <var>K</var>
+forem ambas iguais a 1 e ser√° mantido se ambas forem iguais a zero; se forem 
+diferentes, ent√£o o valor se tornar√° 1 se a entrada <var>J</var>
+(<em>Jump</em>) for 1 e ser√° 0 se a entrada <var>K</var> (<em>Kill</em>)
 for 1.</p></li>
 
-<li><p><strong>Flip-Flop S-R:</strong> Quando houver variaÁ„o do <i>clock</i>, o valor
-guardado no <i>flip-flop</i> ser· mantido se <var>R</var> e <var>S</var> forem ambos 
-iguais a 0; ir· mudar para 0, se a entrada <var>R</var> (<em>Reset</em>) for 1, e
-se tornar· 1 se a entrada <var>S</var> (<em>Set</em>) for 1.
-O comportamento n„o ser· especificado se as duas entradas forem forem iguais a 1.
-(No Logisim, o valor anterior do <i>flip-flop</i> ser· mantido.)</p></li>
+<li><p><strong>Flip-Flop S-R:</strong> Quando houver varia√ß√£o do <i>clock</i>, o valor
+guardado no <i>flip-flop</i> ser√° mantido se <var>R</var> e <var>S</var> forem ambos 
+iguais a 0; ir√° mudar para 0, se a entrada <var>R</var> (<em>Reset</em>) for 1, e
+se tornar√° 1 se a entrada <var>S</var> (<em>Set</em>) for 1.
+O comportamento n√£o ser√° especificado se as duas entradas forem forem iguais a 1.
+(No Logisim, o valor anterior do <i>flip-flop</i> ser√° mantido.)</p></li>
 
 </ul>
 
-<p> Por padr„o, o <i>clock</i> ir· variar na borda de subida &mdash; ou seja, quando a
-entrada de <i>clock</i> variar de 0 para 1. Contudo, o atributo Gatilho permitir· que
-essa mudanÁa ocorra na borda de descida (quando a entrada de <i>clock</i> variar de 1
-para 0), ou em nÌvel baixo (enquanto a entrada de <i>clock</i> permanecer em 0). As
-opÁıes de disparo dependentes do nÌvel n„o est„o disponÌveis para os <i>flip-flops</i>
-T e J-K, porque esses se comportam de forma imprevisÌvel quando forÁados a
+<p> Por padr√£o, o <i>clock</i> ir√° variar na borda de subida &mdash; ou seja, quando a
+entrada de <i>clock</i> variar de 0 para 1. Contudo, o atributo Gatilho permitir√° que
+essa mudan√ßa ocorra na borda de descida (quando a entrada de <i>clock</i> variar de 1
+para 0), ou em n√≠vel baixo (enquanto a entrada de <i>clock</i> permanecer em 0). As
+op√ß√µes de disparo dependentes do n√≠vel n√£o est√£o dispon√≠veis para os <i>flip-flops</i>
+T e J-K, porque esses se comportam de forma imprevis√≠vel quando for√ßados a
 alternar por tempo indeterminado.
 </p>
 
@@ -115,40 +115,40 @@ alternar por tempo indeterminado.
 
 <dl>
 
-<dt> Na face oeste, marcado por um tri‚ngulo (entrada, com largura de 1 bit) </dt>
+<dt> Na face oeste, marcado por um tri√¢ngulo (entrada, com largura de 1 bit) </dt>
 <dd> <i>clock</i>: no instante em que o valor dessa entrada variar de 0 para 1
-(borda de subida), haver· atualizaÁ„o de acordo com as entradas na face oeste.
-Enquanto se mantiver em 0 ou 1, essas entradas n„o ter„o efeito. </dd>
+(borda de subida), haver√° atualiza√ß√£o de acordo com as entradas na face oeste.
+Enquanto se mantiver em 0 ou 1, essas entradas n√£o ter√£o efeito. </dd>
 
 <dt> Na face oeste, outros pino(s) rotulados (entrada(s), com largura de 1 bit) </dt>
-<dd> Essas entradas controlar„o como o valor do flip-flop ir· mudar durante a 
-subida de borda do <i>clock</i>. O comportamento exato depender· do tipo de 
+<dd> Essas entradas controlar√£o como o valor do flip-flop ir√° mudar durante a 
+subida de borda do <i>clock</i>. O comportamento exato depender√° do tipo de 
 <i>flip-flop</i>; a tabela acima resume esses comportamentos. </dd>
 
-<dt> Na face leste, marcado por <var>Q</var>, extremo norte (saÌda,
+<dt> Na face leste, marcado por <var>Q</var>, extremo norte (sa√≠da,
 com largura de 1 bit) </dt>
-<dd> Emitir· o valor corrente armazenado pelo <i>flip-flop</i>. </dd>
+<dd> Emitir√° o valor corrente armazenado pelo <i>flip-flop</i>. </dd>
 
-<dt> Na face leste, extremo sul end (saÌda, com largura de 1 bit) </dt>
-<dd> Emitir· o complemento do valor corrente armazenado pelo <i>flip-flop</i>. </dd>
+<dt> Na face leste, extremo sul end (sa√≠da, com largura de 1 bit) </dt>
+<dd> Emitir√° o complemento do valor corrente armazenado pelo <i>flip-flop</i>. </dd>
 
 <dt> Na face sul, extremo leste (entrada, com largura de 1 bit) </dt>
-<dd> reset assÌncrono: se for igual a 0 ou indefinido, essa entrada n„o ter· efeito
-algum. Enquanto se mantiver em 1, o valor do <i>flip-flop</i> ficar· fixo em 0. 
-Isso ocorrer· assincronamente - ou seja, sem depender do valor corrente da entrada 
-de <i>clock</i>. Enquanto se mantiver em 1, as outras entradas n„o ter„o efeito algum. 
+<dd> reset ass√≠ncrono: se for igual a 0 ou indefinido, essa entrada n√£o ter√° efeito
+algum. Enquanto se mantiver em 1, o valor do <i>flip-flop</i> ficar√° fixo em 0. 
+Isso ocorrer√° assincronamente - ou seja, sem depender do valor corrente da entrada 
+de <i>clock</i>. Enquanto se mantiver em 1, as outras entradas n√£o ter√£o efeito algum. 
 </dd>
 
-<dt> Na face sul, posiÁ„o central (entrada, com largura de 1 bit) </dt>
-<dd> enable: se for igual a 0, o disparo do <i>clock</i> ser· ignorado. O valor 
-corrente continuar· a aparecer na saÌda. Os gatilhos do clock estar„o habilitados 
+<dt> Na face sul, posi√ß√£o central (entrada, com largura de 1 bit) </dt>
+<dd> enable: se for igual a 0, o disparo do <i>clock</i> ser√° ignorado. O valor 
+corrente continuar√° a aparecer na sa√≠da. Os gatilhos do clock estar√£o habilitados 
 quando essa entrada for 1 ou indefinida. </dd>
 
 <dt> Na face sul, extremo oeste (entrada, com largura de 1 bit) </dt>
-<dd> set assÌncrono: se for igual a 1 ou indefinido, essa entrada n„o ter· efeito
-algum. Enquanto se mantiver em 1, o valor do <i>flip-flop</i> ficar· fixo em 1.
-Enquanto se mantiver em 1, as outras entradas n„o ter„o efeito algum,
-exceÁ„o feita para a entrada reset, que tem prioridade. </dd>
+<dd> set ass√≠ncrono: se for igual a 1 ou indefinido, essa entrada n√£o ter√° efeito
+algum. Enquanto se mantiver em 1, o valor do <i>flip-flop</i> ficar√° fixo em 1.
+Enquanto se mantiver em 1, as outras entradas n√£o ter√£o efeito algum,
+exce√ß√£o feita para a entrada reset, que tem prioridade. </dd>
 
 </dl>
 
@@ -157,36 +157,36 @@ exceÁ„o feita para a entrada reset, que tem prioridade. </dd>
 <dl>
 
 <dt> Gatilho </dt>
-<dd> Serve para configurar como a entrada de <i>clock</i> dever· ser interpretada.
-O valor <q>borda de subida</q> indicar· que a atualizaÁ„o do <i>flip-flop</i> dever·
+<dd> Serve para configurar como a entrada de <i>clock</i> dever√° ser interpretada.
+O valor <q>borda de subida</q> indicar√° que a atualiza√ß√£o do <i>flip-flop</i> dever√°
 ocorrer no instante em que o clock variar de 0 para 1. O valor <q>borda de descida</q>
-indicar· que a atualizaÁ„o dever· ocorrer no instante em que o clock variar de 
-1 para 0. O valor <q>nÌvel alto</q> indicar· que a atualizaÁ„o dever· ocorrer
-continuamente enquanto o <i>clock</i> se mantiver em 1. E o valor <q>nÌvel alto</q>
-indicar· que o valor dever· ser atualizado continuamente enquanto a entrada de
-<i>clock</i> se mantiver em 0. Observar que as duas ˙ltimas opÁıes n„o est„o disponÌveis
+indicar√° que a atualiza√ß√£o dever√° ocorrer no instante em que o clock variar de 
+1 para 0. O valor <q>n√≠vel alto</q> indicar√° que a atualiza√ß√£o dever√° ocorrer
+continuamente enquanto o <i>clock</i> se mantiver em 1. E o valor <q>n√≠vel alto</q>
+indicar√° que o valor dever√° ser atualizado continuamente enquanto a entrada de
+<i>clock</i> se mantiver em 0. Observar que as duas √∫ltimas op√ß√µes n√£o est√£o dispon√≠veis
 para os <i>flip-flops</i> T e J-K. </dd>
 
-<dt> RÛtulo </dt>
-<dd> O texto para o rÛtulo associado ao <i>flip-flop</i>. </dd>
+<dt> R√≥tulo </dt>
+<dd> O texto para o r√≥tulo associado ao <i>flip-flop</i>. </dd>
 
-<dt> Fonte do RÛtulo </dt>
-<dd> A fonte com a qual o rÛtulo ser· mostrado. </dd>
+<dt> Fonte do R√≥tulo </dt>
+<dd> A fonte com a qual o r√≥tulo ser√° mostrado. </dd>
 
 </dl>
 
 <h2> Comportamento da ferramenta Testar </h2>
 
-<p> Ao cliclar sobre um <i>flip-flop</i> usando a ferramenta Testar isso ir· alternar
-o bit nele armazenado, a menos que as entradas assÌncronas set/reset tenham fixado
+<p> Ao cliclar sobre um <i>flip-flop</i> usando a ferramenta Testar isso ir√° alternar
+o bit nele armazenado, a menos que as entradas ass√≠ncronas set/reset tenham fixado
 o valor corrente do <i>flip-flop</i>. 
 </p>
 
 <h2> Comportamento da ferramenta Texto </h2>
 
-<p> Permite que o rÛtulo associado ‡ porta seja editado.</p>
+<p> Permite que o r√≥tulo associado √† porta seja editado.</p>
 
-<p><a href="../index.html">Voltar ‡ <em>ReferÍncia para bibliotecas</em></a></p>
+<p><a href="../index.html">Voltar √† <em>Refer√™ncia para bibliotecas</em></a></p>
 
 </body>
 </html>

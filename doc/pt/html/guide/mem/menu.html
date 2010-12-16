@@ -1,38 +1,38 @@
 <html>
-<head>
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Menus <i>pop-up</i> e arquivos</title>
 </head>
 <body bgcolor="FFFFFF">
 
 <h1>Menus <i>pop-up</i> e arquivos</h1>
 
-<p> O menu <i>pop-up</i> para a memória inclui quatro opções além
-das opções comuns a todos os componentes: </p>
+<p> O menu <i>pop-up</i> para a memÃ³ria inclui quatro opÃ§Ãµes alÃ©m
+das opÃ§Ãµes comuns a todos os componentes: </p>
 <ul>
 
-<li> Editar conteúdo: Abrir um editor hexadecimal para editar o conteúdo
-de memória. 
+<li> Editar conteÃºdo: Abrir um editor hexadecimal para editar o conteÃºdo
+de memÃ³ria. 
 </li>
 
-<li> Limpar conteúdo: Redefinir todos os valores na memória como 0
+<li> Limpar conteÃºdo: Redefinir todos os valores na memÃ³ria como 0
 </li>
 
-<li> Carregar imagem...: Redefinir todos os valores na memória com base em valores
+<li> Carregar imagem...: Redefinir todos os valores na memÃ³ria com base em valores
 encontrados em um arquivo usando o formato descrito abaixo. 
 </li>
 
-<li> Salvar imagem...: Armazenar todos os valores na memória em um arquivo usando
+<li> Salvar imagem...: Armazenar todos os valores na memÃ³ria em um arquivo usando
 o formato descrito abaixo. 
 </li>
 
 </ul>
 
-<p> O formato de arquivo usado para arquivos de imagem é intencionalmente simples;
-isso lhe permitirá escrever um programa, como um montador, que
-gerará imagens de conteúdos que poderão ser carregados na memória.
-Como exemplo desse formato de arquivo, se tivermos uma memória de 256-bytes cujos
+<p> O formato de arquivo usado para arquivos de imagem Ã© intencionalmente simples;
+isso lhe permitirÃ¡ escrever um programa, como um montador, que
+gerarÃ¡ imagens de conteÃºdos que poderÃ£o ser carregados na memÃ³ria.
+Como exemplo desse formato de arquivo, se tivermos uma memÃ³ria de 256-bytes cujos
 cinco primeiros bytes de 2, 3, 0, 20, e -1, e todos os valores subsequentes
-forem 0, a imagem em arquivo texto teria o seguinte conteúdo:
+forem 0, a imagem em arquivo texto teria o seguinte conteÃºdo:
 </p>
 <blockquote><pre>
 v2.0 raw
@@ -42,25 +42,25 @@ v2.0 raw
 14
 ff
 </pre></blockquote>
-<p> A primeira linha identifica o formato de arquivo usado (atualmente, só existe
+<p> A primeira linha identifica o formato de arquivo usado (atualmente, sÃ³ existe
 um formato de arquivo reconhecido). Valores subsequentes listados em
-hexadecimal, a partir de endereço 0. Você poderá colocar vários desses
-em uma mesma linha. Se houver mais posições de memória que as identificadas
-no arquivo, o Logisim irá carregar 0 nessas outras posições.
+hexadecimal, a partir de endereÃ§o 0. VocÃª poderÃ¡ colocar vÃ¡rios desses
+em uma mesma linha. Se houver mais posiÃ§Ãµes de memÃ³ria que as identificadas
+no arquivo, o Logisim irÃ¡ carregar 0 nessas outras posiÃ§Ãµes.
 </p>
 
-<p> O arquivo de imagem poderá usar codificação do tipo <i>run-length</i>. Por exemplo,
-ao invés de listar o valor <tt> 00</tt> dezesseis vezes em sequência, o arquivo
-poderá incluir <tt> 16*00</tt>. Alerto que o número de repetições é escrito em base 10.
-Arquivos produzidos pelo Logisim usarão essa codificação para todos os casos com
+<p> O arquivo de imagem poderÃ¡ usar codificaÃ§Ã£o do tipo <i>run-length</i>. Por exemplo,
+ao invÃ©s de listar o valor <tt> 00</tt> dezesseis vezes em sequÃªncia, o arquivo
+poderÃ¡ incluir <tt> 16*00</tt>. Alerto que o nÃºmero de repetiÃ§Ãµes Ã© escrito em base 10.
+Arquivos produzidos pelo Logisim usarÃ£o essa codificaÃ§Ã£o para todos os casos com
 pelo menos quatro valores.
 </p>
 
-<p> Você poderá colocar comentários no arquivo usando o símbolo '#'. Todos os caracteres
-na linha a partir do símbolo "#" serão ignorado pelo Logisim. 
+<p> VocÃª poderÃ¡ colocar comentÃ¡rios no arquivo usando o sÃ­mbolo '#'. Todos os caracteres
+na linha a partir do sÃ­mbolo "#" serÃ£o ignorado pelo Logisim. 
 </p>
 
-<p><strong>Próximo:</strong> <a href="hex.html">Editor hexadecimal</a>.</p>
+<p><strong>PrÃ³ximo:</strong> <a href="hex.html">Editor hexadecimal</a>.</p>
 
 </body>
 </html>

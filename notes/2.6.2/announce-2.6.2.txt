@@ -29,7 +29,7 @@ Bug fix: The Logisim version saved in the project file was not interpreted corre
 
 Bug fix: When moving a selection so that one wire in the selection is moved exactly into the location of a wire being moved, the wire would sometimes disappear entirely rather than be moved. 
 
-Bug fix: With the Edit Tool, pressing the backspace key deletes the current selection (just as it does when the delete key is pressed).
+Bug fix: With the Select Tool, pressing the backspace key deletes the current selection (just as it does when the delete key is pressed).
 
 Bug fix: The project toolbar would appear at startup regardless of whether its menu item was checked
 
