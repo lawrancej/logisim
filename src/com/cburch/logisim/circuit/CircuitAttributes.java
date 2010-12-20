@@ -19,7 +19,7 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.StdAttr;
 
-class CircuitAttributes extends AbstractAttributeSet {
+public class CircuitAttributes extends AbstractAttributeSet {
 	public static final Attribute<String> NAME_ATTR
 		= Attributes.forString("circuit", Strings.getter("circuitName"));
 	
@@ -38,10 +38,10 @@ class CircuitAttributes extends AbstractAttributeSet {
 				StdAttr.LABEL, LABEL_UP_ATTR, StdAttr.LABEL_FONT,
 			});
 	
-	private static class Listener implements AttributeListener {
+	private static class StaticListener implements AttributeListener {
 		private Circuit source;
 		
-		private Listener(Circuit s) { source = s; }
+		private StaticListener(Circuit s) { source = s; }
 		
 		public void attributeListChanged(AttributeEvent e) { }
 
@@ -77,7 +77,7 @@ class CircuitAttributes extends AbstractAttributeSet {
 	static AttributeSet createBaseAttrs(Circuit source, String name) {
 		AttributeSet ret = AttributeSets.fixedSet(STATIC_ATTRS, STATIC_DEFAULTS);
 		ret.setValue(CircuitAttributes.NAME_ATTR, name);
-		ret.addAttributeListener(new Listener(source));
+		ret.addAttributeListener(new StaticListener(source));
 		return ret;
 	}
 
@@ -119,6 +119,7 @@ class CircuitAttributes extends AbstractAttributeSet {
 	protected void copyInto(AbstractAttributeSet dest) {
 		CircuitAttributes other = (CircuitAttributes) dest;
 		other.subcircInstance = null;
+		other.listener = null;
 	}
 	
 	@Override

@@ -39,11 +39,15 @@ class SelectionAttributes extends AbstractAttributeSet
 		}
 
 		public void attributeListChanged(AttributeEvent e) {
-			if (listening) updateList(false);
+			if (listening) {
+				updateList(false);
+			}
 		}
 
 		public void attributeValueChanged(AttributeEvent e) {
-			if (listening) updateList(false);
+			if (listening) {
+				updateList(false);
+			}
 		}
 	}
 	
@@ -84,7 +88,9 @@ class SelectionAttributes extends AbstractAttributeSet
 	void setListening(boolean value) {
 		if (listening != value) {
 			listening = value;
-			if (value) updateList(false);
+			if (value) {
+				updateList(false);
+			}
 		}
 	}
 	

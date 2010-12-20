@@ -3,6 +3,9 @@
 
 package com.cburch.logisim.circuit;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -205,6 +208,27 @@ public class SubcircuitFactory extends InstanceFactory {
 	@Override
 	public void paintGhost(InstancePainter painter) {
 		Graphics g = painter.getGraphics();
+		Color fg = g.getColor();
+		int v = fg.getRed() + fg.getGreen() + fg.getBlue();
+		Composite oldComposite = null;
+		if (g instanceof Graphics2D && v > 50) {
+			oldComposite = ((Graphics2D) g).getComposite();
+			Composite c = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
+			((Graphics2D) g).setComposite(c);
+		}
+		paintBase(painter, g);
+		if (oldComposite != null) {
+			((Graphics2D) g).setComposite(oldComposite);
+		}
+	}
+
+	@Override
+	public void paintInstance(InstancePainter painter) {
+		paintBase(painter, painter.getGraphics());
+		painter.drawPorts();
+	}
+	
+	private void paintBase(InstancePainter painter, Graphics g) {
 		CircuitAttributes attrs = (CircuitAttributes) painter.getAttributeSet();
 		Direction facing = attrs.getFacing();
 		Direction defaultFacing = source.getAppearance().getFacing();
@@ -213,12 +237,6 @@ public class SubcircuitFactory extends InstanceFactory {
 		source.getAppearance().paintSubcircuit(g, facing);
 		drawLabel(painter, getOffsetBounds(attrs), facing, defaultFacing);
 		g.translate(-loc.getX(), -loc.getY());
-	}
-
-	@Override
-	public void paintInstance(InstancePainter painter) {
-		paintGhost(painter);
-		painter.drawPorts();
 	}
 	
 	private void drawLabel(InstancePainter painter, Bounds bds,

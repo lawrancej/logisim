@@ -198,6 +198,7 @@ class SelectionBase {
 			xn.add(entry.getValue());
 			selected.add(entry.getValue());
 		}
+		fireSelectionChanged();
 	}
 
 	//
