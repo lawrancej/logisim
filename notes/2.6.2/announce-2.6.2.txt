@@ -11,7 +11,9 @@ Feature: Added Open Recent submenu to the File menu.
 
 Feature: Added a "-clearprops" command-line option that clears all saved application preferences on startup.
 
-Feature: In the I/O library, the Joystick component's Bit Width attribute can be configured through pressing Alt-2 through Alt-5.  
+Feature: In the I/O library, the Joystick component's Bit Width attribute can be configured through pressing Alt-2 through Alt-5.
+
+Feature: A first version of the Portuguese translation is included.  
 
 Feature: A first version of the German documentation is included.
 
@@ -32,6 +34,12 @@ Bug fix: When moving a selection so that one wire in the selection is moved exac
 Bug fix: With the Select Tool, pressing the backspace key deletes the current selection (just as it does when the delete key is pressed).
 
 Bug fix: The project toolbar would appear at startup regardless of whether its menu item was checked
+
+Bug fix: When elements are duplicated, the attribute table does not allow changes to those elements to occur until the elements are deselected and reselected.
+
+Bug fix: When adding a subcircuit, the "ghost" would not be drawn faded as with other regular components.
+
+Bug fix: When a subcircuit element is selected and the Circuit Name altered through the attribute table, the updated value would not always be reflected in the attribute table.
 
 Bug fix: In loading from a file into RAM or ROM, very long strings of non-zero values would see large portions treated as zero.
 
