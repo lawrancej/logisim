@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.util.List;
 
 import com.cburch.logisim.data.Attribute;
+import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Bounds;
@@ -25,6 +26,15 @@ public class Plexers extends Library {
 	public static final Attribute<Boolean> ATTR_TRISTATE
 		= Attributes.forBoolean("tristate", Strings.getter("plexerThreeStateAttr"));
 	public static final Object DEFAULT_TRISTATE = Boolean.FALSE;
+	
+	public static final AttributeOption DISABLED_FLOATING
+		= new AttributeOption("Z", Strings.getter("plexerDisabledFloating"));
+	public static final AttributeOption DISABLED_ZERO
+		= new AttributeOption("0", Strings.getter("plexerDisabledZero"));
+	public static final Attribute<AttributeOption> ATTR_DISABLED
+		= Attributes.forOption("disabled", Strings.getter("plexerDisabledAttr"),
+				new AttributeOption[] { DISABLED_FLOATING, DISABLED_ZERO });
+				
 
 	protected static final int DELAY = 3;
 	
@@ -88,9 +98,9 @@ public class Plexers extends Library {
 				if (y == bds.getY() + bds.getHeight()) {
 					int xMid = bds.getX() + bds.getWidth() / 2;
 					if (facing == Direction.EAST) {
-						return x < xMid;
+						return x < xMid + 10;
 					} else {
-						return x > xMid;
+						return x > xMid - 10;
 					}
 				} else {
 					return true;
@@ -99,9 +109,9 @@ public class Plexers extends Library {
 				if (x == bds.getX()) {
 					int yMid = bds.getY() + bds.getHeight() / 2;
 					if (facing == Direction.SOUTH) {
-						return y < yMid;
+						return y < yMid + 10;
 					} else {
-						return y > yMid;
+						return y > yMid - 10;
 					}
 				} else {
 					return true;

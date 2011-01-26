@@ -63,6 +63,8 @@ public class SelectTool extends Tool {
 
 	private static final Color COLOR_UNMATCHED = new Color(192, 0, 0);
 	private static final Color COLOR_COMPUTING = new Color(96, 192, 96);
+	private static final Color COLOR_RECT_SELECT = new Color(0, 64, 128, 255);
+	private static final Color BACKGROUND_RECT_SELECT = new Color(192, 192, 255, 192);
 	
 	private static class MoveRequestHandler implements MoveRequestListener {
 		private Canvas canvas;
@@ -182,10 +184,31 @@ public class SelectTool extends Tool {
 			int top = start.getY();
 			int bot = top + dy;
 			if (top > bot) { int i = top; top = bot; bot = i; }
+			
+			Graphics gBase = context.getGraphics();
+			int w = right - left - 1;
+			int h = bot - top - 1;
+			if (w > 2 && h > 2) {
+				gBase.setColor(BACKGROUND_RECT_SELECT);
+				gBase.fillRect(left + 1, top + 1, w - 1, h - 1);
+			}
+			
+			Circuit circ = canvas.getCircuit();
+			Bounds bds = Bounds.create(left, top, right - left, bot - top);
+			for (Component c : circ.getAllWithin(bds)) {
+				Location cloc = c.getLocation();
+				Graphics gDup = gBase.create();
+				context.setGraphics(gDup);
+				c.getFactory().drawGhost(context, COLOR_RECT_SELECT,
+						cloc.getX(), cloc.getY(), c.getAttributeSet());
+				gDup.dispose();
+			}
 
-			Graphics g = context.getGraphics();
-			g.setColor(Color.gray);
-			g.drawRect(left, top, right - left, bot - top);
+			gBase.setColor(COLOR_RECT_SELECT);
+			GraphicsUtil.switchToWidth(gBase, 2);
+			if (w < 0) w = 0;
+			if (h < 0) h = 0;
+			gBase.drawRect(left, top, w, h);
 		}
 	}
 	

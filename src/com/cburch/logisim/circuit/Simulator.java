@@ -125,6 +125,11 @@ public class Simulator {
 						}
 					} else {
 						if (stepsRequested > 0) {
+							if (ticksRequested > 0) {
+								ticksRequested = 1;
+								doTick();
+							}
+							
 							synchronized(this) {
 								stepsRequested--;
 							}

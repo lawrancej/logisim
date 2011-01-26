@@ -4,6 +4,7 @@
 package com.cburch.logisim.data;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 import com.cburch.logisim.util.Cache;
 
@@ -86,6 +87,19 @@ public class Value {
 			Value ret= new Value(width, error, unknown, value);
 			cache.put(hashCode, ret);
 			return ret;
+		}
+	}
+	
+	public static Value repeat(Value base, int bits) {
+		if (base.getWidth() != 1) {
+			throw new IllegalArgumentException("first parameter must be one bit");
+		}
+		if (bits == 1) {
+			return base;
+		} else {
+			Value[] ret = new Value[bits];
+			Arrays.fill(ret, base);
+			return create(ret);
 		}
 	}
 

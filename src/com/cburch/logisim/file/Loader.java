@@ -177,6 +177,9 @@ public class Loader implements LibraryLoader {
 			return false;
 		}
 		
+		File backup = determineBackupName(dest);
+		boolean backupCreated = backup != null && dest.renameTo(backup);
+		
 		FileOutputStream fwrite = null;
 		try {
 			try {
@@ -190,6 +193,7 @@ public class Loader implements LibraryLoader {
 			setMainFile(dest);
 			LibraryManager.instance.fileSaved(this, dest, oldFile, file);
 		} catch (IOException e) {
+			if (backupCreated) recoverBackup(backup, dest);
 			JOptionPane.showMessageDialog(parent,
 				StringUtil.format(Strings.get("fileSaveError"),
 					e.toString()),
@@ -201,6 +205,7 @@ public class Loader implements LibraryLoader {
 				try {
 					fwrite.close();
 				} catch (IOException e) {
+					if (backupCreated) recoverBackup(backup, dest);
 					JOptionPane.showMessageDialog(parent,
 						StringUtil.format(Strings.get("fileSaveCloseError"),
 							e.toString()),
@@ -210,7 +215,45 @@ public class Loader implements LibraryLoader {
 				}
 			}
 		}
+		
+		if (!dest.exists() || dest.length() == 0) {
+			if (backupCreated && backup != null && backup.exists()) {
+				recoverBackup(backup, dest);
+			} else {
+				dest.delete();
+			}
+			JOptionPane.showMessageDialog(parent,
+					Strings.get("fileSaveZeroError"),
+					Strings.get("fileSaveErrorTitle"),
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		if (backupCreated && backup.exists()) {
+			backup.delete();
+		}
 		return true;
+	}
+	
+	private static File determineBackupName(File base) {
+		File dir = base.getParentFile();
+		String name = base.getName();
+		if (name.endsWith(LOGISIM_EXTENSION)) {
+			name = name.substring(0, name.length() - LOGISIM_EXTENSION.length());
+		}
+		for (int i = 1; i <= 20; i++) {
+			String ext = i == 1 ? ".bak" : (".bak" + i);
+			File candidate = new File(dir, name + ext);
+			if (!candidate.exists()) return candidate;
+		}
+		return null;
+	}
+	
+	private static void recoverBackup(File backup, File dest) {
+		if (backup != null && backup.exists()) {
+			if (dest.exists()) dest.delete();
+			backup.renameTo(dest);
+		}
 	}
 
 	//

@@ -22,14 +22,18 @@ import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenuItemManager;
 
 public class PreferencesFrame extends LFrame {
-	private static final WindowMenuManager windowMenuManager = new WindowMenuManager();
+	private static WindowMenuManager MENU_MANAGER = null;
+	
+	public static void initializeManager() {
+		MENU_MANAGER = new WindowMenuManager();
+	}
 	
 	private static class WindowMenuManager extends WindowMenuItemManager
 			implements LocaleListener {
 		private PreferencesFrame window = null;
 
 		WindowMenuManager() {
-			super(Strings.get("preferencesFrameMenuItem"), false);
+			super(Strings.get("preferencesFrameMenuItem"), true);
 			LocaleManager.addLocaleListener(this);
 		}
 		
@@ -113,7 +117,7 @@ public class PreferencesFrame extends LFrame {
 	}
 	
 	public static void showPreferences() {
-		JFrame frame = windowMenuManager.getJFrame(true);
+		JFrame frame = MENU_MANAGER.getJFrame(true);
 		frame.setVisible(true);
 	}
 }

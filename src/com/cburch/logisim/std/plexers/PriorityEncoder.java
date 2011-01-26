@@ -30,9 +30,9 @@ public class PriorityEncoder extends InstanceFactory {
 	public PriorityEncoder() {
 		super("Priority Encoder", Strings.getter("priorityEncoderComponent"));
 		setAttributes(new Attribute[] {
-				StdAttr.FACING, Plexers.ATTR_SELECT
+				StdAttr.FACING, Plexers.ATTR_SELECT, Plexers.ATTR_DISABLED
 			}, new Object[] {
-				Direction.EAST, BitWidth.create(3)
+				Direction.EAST, BitWidth.create(3), Plexers.DISABLED_FLOATING
 			});
 		setKeyConfigurator(new BitWidthConfigurator(Plexers.ATTR_SELECT, 1, 5, 0));
 		setIconName("priencod.gif");
@@ -70,6 +70,8 @@ public class PriorityEncoder extends InstanceFactory {
 			updatePorts(instance);
 		} else if (attr == Plexers.ATTR_SELECT) {
 			updatePorts(instance);
+		} else if (attr == Plexers.ATTR_DISABLED) {
+			instance.fireInvalidated();
 		}
 	}
 
@@ -118,16 +120,22 @@ public class PriorityEncoder extends InstanceFactory {
 		boolean enabled = state.getPort(n + EN_IN) != Value.FALSE;
 		
 		int out = -1;
+		Value outDefault;
 		if (enabled) {
+			outDefault = Value.createUnknown(select);
 			for (int i = n - 1; i >= 0; i--) {
 				if (state.getPort(i) == Value.TRUE) {
 					out = i;
 					break;
 				}
 			}
+		} else {
+			Object opt = state.getAttributeValue(Plexers.ATTR_DISABLED);
+			Value base = opt == Plexers.DISABLED_ZERO ? Value.FALSE : Value.UNKNOWN;
+			outDefault = Value.repeat(base, select.getWidth());
 		}
 		if (out < 0) {
-			state.setPort(n + OUT, Value.createUnknown(select), Plexers.DELAY);
+			state.setPort(n + OUT, outDefault, Plexers.DELAY);
 			state.setPort(n + EN_OUT, enabled ? Value.TRUE : Value.FALSE, Plexers.DELAY);
 			state.setPort(n + GS, Value.FALSE, Plexers.DELAY);
 		} else {

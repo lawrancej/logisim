@@ -27,9 +27,11 @@ public class Demultiplexer extends InstanceFactory {
 	public Demultiplexer() {
 		super("Demultiplexer", Strings.getter("demultiplexerComponent"));
 		setAttributes(new Attribute[] {
-				StdAttr.FACING, Plexers.ATTR_SELECT, StdAttr.WIDTH, Plexers.ATTR_TRISTATE
+				StdAttr.FACING, Plexers.ATTR_SELECT, StdAttr.WIDTH,
+				Plexers.ATTR_TRISTATE, Plexers.ATTR_DISABLED
 			}, new Object[] {
-				Direction.EAST, Plexers.DEFAULT_SELECT, BitWidth.ONE, Plexers.DEFAULT_TRISTATE
+				Direction.EAST, Plexers.DEFAULT_SELECT, BitWidth.ONE,
+				Plexers.DEFAULT_TRISTATE, Plexers.DISABLED_FLOATING
 			});
 		setKeyConfigurator(JoinedConfigurator.create(
 				new BitWidthConfigurator(Plexers.ATTR_SELECT, 1, 5, 0),
@@ -72,7 +74,7 @@ public class Demultiplexer extends InstanceFactory {
 			updatePorts(instance);
 		} else if (attr == StdAttr.WIDTH) {
 			updatePorts(instance);
-		} else if (attr == Plexers.ATTR_TRISTATE) {
+		} else if (attr == Plexers.ATTR_TRISTATE || attr == Plexers.ATTR_DISABLED) {
 			instance.fireInvalidated();
 		}
 	}
@@ -82,64 +84,65 @@ public class Demultiplexer extends InstanceFactory {
 		BitWidth data = instance.getAttributeValue(StdAttr.WIDTH);
 		BitWidth select = instance.getAttributeValue(Plexers.ATTR_SELECT);
 		int outputs = 1 << select.getWidth();
-		Port[] ps = new Port[outputs + 2];
+		Port[] ps = new Port[outputs + 3];
+		Location sel;
 		if (outputs == 2) {
 			Location end0;
 			Location end1;
-			Location end2;
 			if (facing == Direction.WEST) {
 				end0 = Location.create(-30, -10);
 				end1 = Location.create(-30,  10);
-				end2 = Location.create(-20,  20);
+				sel = Location.create(-20,  20);
 			} else if (facing == Direction.NORTH) {
 				end0 = Location.create(-10, -30);
 				end1 = Location.create( 10, -30);
-				end2 = Location.create(-20, -20);
+				sel = Location.create(-20, -20);
 			} else if (facing == Direction.SOUTH) {
 				end0 = Location.create(-10,  30);
 				end1 = Location.create( 10,  30);
-				end2 = Location.create(-20,  20);
+				sel = Location.create(-20,  20);
 			} else {
 				end0 = Location.create(30, -10);
 				end1 = Location.create(30,  10);
-				end2 = Location.create(20,  20);
+				sel = Location.create(20,  20);
 			}
 			ps[0] = new Port(end0.getX(), end0.getY(), Port.OUTPUT, data.getWidth());
 			ps[1] = new Port(end1.getX(), end1.getY(), Port.OUTPUT, data.getWidth());
-			ps[2] = new Port(end2.getX(), end2.getY(), Port.INPUT, select.getWidth());
 		} else {
-			Location selLoc;
 			int dx = -(outputs / 2) * 10;
 			int ddx = 10;
 			int dy = dx;
 			int ddy = 10;
 			if (facing == Direction.WEST) {
 				dx = -40; ddx = 0;
-				selLoc = Location.create(-20, dy + 10 * outputs);
+				sel = Location.create(-20, dy + 10 * outputs);
 			} else if (facing == Direction.NORTH) {
 				dy = -40; ddy = 0;
-				selLoc = Location.create(dx, -20);
+				sel = Location.create(dx, -20);
 			} else if (facing == Direction.SOUTH) {
 				dy = 40; ddy = 0;
-				selLoc = Location.create(dx, 20);
+				sel = Location.create(dx, 20);
 			} else {
 				dx = 40; ddx = 0;
-				selLoc = Location.create(20, dy + 10 * outputs);
+				sel = Location.create(20, dy + 10 * outputs);
 			}
 			for (int i = 0; i < outputs; i++) {
 				ps[i] = new Port(dx, dy, Port.OUTPUT, data.getWidth());
 				dx += ddx;
 				dy += ddy;
 			}
-			ps[outputs] = new Port(selLoc.getX(), selLoc.getY(), Port.INPUT, select.getWidth());
 		}
-		ps[outputs + 1] = new Port(0, 0, Port.INPUT, data.getWidth());
+		Location en = sel.translate(facing, -10);
+		ps[outputs] = new Port(sel.getX(), sel.getY(), Port.INPUT, select.getWidth());
+		ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
+		ps[outputs + 2] = new Port(0, 0, Port.INPUT, data.getWidth());
 		
 		for (int i = 0; i < outputs; i++) {
 			ps[i].setToolTip(Strings.getter("demultiplexerOutTip", "" + i));
 		}
 		ps[outputs].setToolTip(Strings.getter("demultiplexerSelectTip"));
-		ps[outputs + 1].setToolTip(Strings.getter("demultiplexerInTip"));
+		ps[outputs + 1].setToolTip(Strings.getter("demultiplexerEnableTip"));
+		ps[outputs + 2].setToolTip(Strings.getter("demultiplexerInTip"));
 
 		instance.setPorts(ps);
 	}
@@ -151,7 +154,7 @@ public class Demultiplexer extends InstanceFactory {
 		BitWidth select = state.getAttributeValue(Plexers.ATTR_SELECT);
 		Boolean threeState = state.getAttributeValue(Plexers.ATTR_TRISTATE);
 		int outputs = 1 << select.getWidth();
-		Value sel = state.getPort(outputs);
+		Value en = state.getPort(outputs + 1);
 
 		// determine output values
 		Value others; // the default output
@@ -162,13 +165,22 @@ public class Demultiplexer extends InstanceFactory {
 		}
 		int outIndex = -1; // the special output
 		Value out = null;
-		if (sel.isFullyDefined()) {
-			outIndex = sel.toIntValue();
-			out = state.getPort(outputs + 1);
-		} else if (sel.isErrorValue()) {
+		if (en == Value.FALSE) {
+			Object opt = state.getAttributeValue(Plexers.ATTR_DISABLED);
+			Value base = opt == Plexers.DISABLED_ZERO ? Value.FALSE : Value.UNKNOWN;
+			others = Value.repeat(base, data.getWidth());
+		} else if (en == Value.ERROR && state.isPortConnected(outputs + 1)) {
 			others = Value.createError(data);
 		} else {
-			others = Value.createUnknown(data);
+			Value sel = state.getPort(outputs);
+			if (sel.isFullyDefined()) {
+				outIndex = sel.toIntValue();
+				out = state.getPort(outputs + 2);
+			} else if (sel.isErrorValue()) {
+				others = Value.createError(data);
+			} else {
+				others = Value.createUnknown(data);
+			}
 		}
 
 		// now propagate them
@@ -188,26 +200,32 @@ public class Demultiplexer extends InstanceFactory {
 	@Override
 	public void paintInstance(InstancePainter painter) {
 		Graphics g = painter.getGraphics();
+		Bounds bds = painter.getBounds();
 		Direction facing = painter.getAttributeValue(StdAttr.FACING);
 		BitWidth select = painter.getAttributeValue(Plexers.ATTR_SELECT);
 		int outputs = 1 << select.getWidth();
 
+		// draw select and enable inputs
+		GraphicsUtil.switchToWidth(g, 3);
+		boolean vertical = facing == Direction.NORTH || facing == Direction.SOUTH;
+		int dx = vertical ? 1 : 0;
+		int dy = vertical ? 0 : -1;
 		if (outputs == 2) { // draw select wire
-			GraphicsUtil.switchToWidth(g, 3);
-			Location pt = painter.getLocation();
+			Location sel = painter.getInstance().getPortLocation(outputs);
 			if (painter.getShowState()) {
 				g.setColor(painter.getPort(outputs).getColor());
 			}
-			boolean vertical = facing == Direction.NORTH || facing == Direction.SOUTH;
-			int dx = vertical ? 3 : 0;
-			int dy = vertical ? 0 : -3;
-			g.drawLine(pt.getX(), pt.getY(), pt.getX() + dx, pt.getY() + dy);
-			GraphicsUtil.switchToWidth(g, 1);
-			g.setColor(Color.BLACK);
+			g.drawLine(sel.getX(), sel.getY(), sel.getX() + 2 * dx, sel.getY() + 2 * dy);
 		}
-		Bounds bds = painter.getBounds();
-		Plexers.drawTrapezoid(g, bds, facing.reverse(), select.getWidth() == 1 ? 10 : 20);
-		g.setColor(Color.GRAY);
+		Location en = painter.getInstance().getPortLocation(outputs + 1);
+		if (painter.getShowState()) {
+			g.setColor(painter.getPort(outputs + 1).getColor());
+		}
+		int len = outputs == 2 ? 6 : 4;
+		g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
+		GraphicsUtil.switchToWidth(g, 1);
+
+		// draw "0" next to first input
 		int x0;
 		int y0;
 		int halign;
@@ -228,9 +246,13 @@ public class Demultiplexer extends InstanceFactory {
 			y0 = 15;
 			halign = GraphicsUtil.H_RIGHT;
 		}
+		g.setColor(Color.GRAY);
 		GraphicsUtil.drawText(g, "0", bds.getX() + x0, bds.getY() + y0,
 				halign, GraphicsUtil.V_BASELINE);
+
+		// draw trapezoid, "DMX" label, and ports
 		g.setColor(Color.BLACK);
+		Plexers.drawTrapezoid(g, bds, facing.reverse(), select.getWidth() == 1 ? 10 : 20);
 		GraphicsUtil.drawCenteredText(g, "DMX",
 				bds.getX() + bds.getWidth() / 2,
 				bds.getY() + bds.getHeight() / 2);

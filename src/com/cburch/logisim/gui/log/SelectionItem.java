@@ -12,6 +12,7 @@ import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.Value;
+import com.cburch.logisim.instance.StdAttr;
 
 class SelectionItem implements AttributeListener, CircuitListener {
 	private Model model;
@@ -60,8 +61,13 @@ class SelectionItem implements AttributeListener, CircuitListener {
 		StringBuilder buf = new StringBuilder();
 		for (int i = 0; i < path.length; i++) {
 			if (i > 0) buf.append(".");
-			buf.append(path[i].getFactory().getDisplayName());
-			buf.append(path[i].getLocation());
+			String label = path[i].getAttributeSet().getValue(StdAttr.LABEL);
+			if (label != null && !label.equals("")) {
+				buf.append(label);
+			} else {
+				buf.append(path[i].getFactory().getDisplayName());
+				buf.append(path[i].getLocation());
+			}
 			buf.append(".");
 		}
 		buf.append(shortDescriptor);

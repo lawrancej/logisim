@@ -87,7 +87,7 @@ public class AttributeSets {
 		@Override
 		public void setReadOnly(Attribute<?> attr, boolean value) {
 			int index = attrs.indexOf(attr);
-			if (index < 0) throw new IllegalArgumentException("attribute absent");
+			if (index < 0) throw new IllegalArgumentException("attribute " + attr.getName() + " absent");
 			readOnly = value;
 		}
 
@@ -102,7 +102,7 @@ public class AttributeSets {
 		@Override
 		public <V> void setValue(Attribute<V> attr, V value) {
 			int index = attrs.indexOf(attr);
-			if (index < 0) throw new IllegalArgumentException("attribute absent");
+			if (index < 0) throw new IllegalArgumentException("attribute " + attr.getName() + " absent");
 			if (readOnly) throw new IllegalArgumentException("read only");
 			this.value = value;
 			fireAttributeValueChanged(attr, value);
@@ -148,7 +148,7 @@ public class AttributeSets {
 		@Override
 		public void setReadOnly(Attribute<?> attr, boolean value) {
 			int index = attrs.indexOf(attr);
-			if (index < 0) throw new IllegalArgumentException("attribute absent");
+			if (index < 0) throw new IllegalArgumentException("attribute " + attr.getName() + " absent");
 			
 			if (value) readOnly |= (1 << index);
 			else readOnly &= ~(1 << index);
@@ -169,7 +169,7 @@ public class AttributeSets {
 		@Override
 		public <V> void setValue(Attribute<V> attr, V value) {
 			int index = attrs.indexOf(attr);
-			if (index < 0) throw new IllegalArgumentException("attribute absent");
+			if (index < 0) throw new IllegalArgumentException("attribute " + attr.getName() + " absent");
 			if (isReadOnly(index)) throw new IllegalArgumentException("read only");
 			values[index] = value;
 			fireAttributeValueChanged(attr, value);

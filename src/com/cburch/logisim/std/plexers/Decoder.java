@@ -26,9 +26,11 @@ public class Decoder extends InstanceFactory {
 	public Decoder() {
 		super("Decoder", Strings.getter("decoderComponent"));
 		setAttributes(new Attribute[] {
-				StdAttr.FACING, Plexers.ATTR_SELECT, Plexers.ATTR_TRISTATE
+				StdAttr.FACING, Plexers.ATTR_SELECT,
+				Plexers.ATTR_TRISTATE, Plexers.ATTR_DISABLED
 			}, new Object[] {
-				Direction.EAST, Plexers.DEFAULT_SELECT, Plexers.DEFAULT_TRISTATE
+				Direction.EAST, Plexers.DEFAULT_SELECT,
+				Plexers.DEFAULT_TRISTATE, Plexers.DISABLED_FLOATING
 			});
 		setKeyConfigurator(new BitWidthConfigurator(Plexers.ATTR_SELECT, 1, 5, 0));
 		setIconName("decoder.gif");
@@ -72,7 +74,7 @@ public class Decoder extends InstanceFactory {
 			updatePorts(instance);
 		} else if (attr == Plexers.ATTR_SELECT) {
 			updatePorts(instance);
-		} else if (attr == Plexers.ATTR_TRISTATE) {
+		} else if (attr == Plexers.ATTR_TRISTATE || attr == Plexers.ATTR_DISABLED) {
 			instance.fireInvalidated();
 		}
 	}
@@ -81,7 +83,7 @@ public class Decoder extends InstanceFactory {
 		Direction facing = instance.getAttributeValue(StdAttr.FACING);
 		BitWidth select = instance.getAttributeValue(Plexers.ATTR_SELECT);
 		int outputs = 1 << select.getWidth();
-		Port[] ps = new Port[outputs + 1];
+		Port[] ps = new Port[outputs + 2];
 		if (outputs == 2) {
 			Location end0;
 			Location end1;
@@ -120,11 +122,14 @@ public class Decoder extends InstanceFactory {
 				dy += ddy;
 			}
 		}
+		Location en = Location.create(0, 0).translate(facing, -10);
 		ps[outputs] = new Port(0, 0, Port.INPUT, select.getWidth());
+		ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
 		for (int i = 0; i < outputs; i++) {
 			ps[i].setToolTip(Strings.getter("decoderOutTip", "" + i));
 		}
 		ps[outputs].setToolTip(Strings.getter("decoderSelectTip"));
+		ps[outputs + 1].setToolTip(Strings.getter("decoderEnableTip"));
 		instance.setPorts(ps);
 	}
 
@@ -135,24 +140,35 @@ public class Decoder extends InstanceFactory {
 		BitWidth select = state.getAttributeValue(Plexers.ATTR_SELECT);
 		Boolean threeState = state.getAttributeValue(Plexers.ATTR_TRISTATE);
 		int outputs = 1 << select.getWidth();
-		Value sel = state.getPort(outputs);
-
-		// determine output values
+		
+		// determine default output values
 		Value others; // the default output
 		if (threeState.booleanValue()) {
 			others = Value.UNKNOWN;
 		} else {
 			others = Value.FALSE;
 		}
+
+		// determine selected output value
 		int outIndex = -1; // the special output
 		Value out = null;
-		if (sel.isFullyDefined()) {
-			outIndex = sel.toIntValue();
-			out = Value.TRUE;
-		} else if (sel.isErrorValue()) {
+		Value en = state.getPort(outputs + 1);
+		if (en == Value.FALSE) {
+			Object opt = state.getAttributeValue(Plexers.ATTR_DISABLED);
+			Value base = opt == Plexers.DISABLED_ZERO ? Value.FALSE : Value.UNKNOWN;
+			others = Value.repeat(base, data.getWidth());
+		} else if (en == Value.ERROR && state.isPortConnected(outputs + 1)) {
 			others = Value.createError(data);
 		} else {
-			others = Value.createUnknown(data);
+			Value sel = state.getPort(outputs);
+			if (sel.isFullyDefined()) {
+				outIndex = sel.toIntValue();
+				out = Value.TRUE;
+			} else if (sel.isErrorValue()) {
+				others = Value.createError(data);
+			} else {
+				others = Value.createUnknown(data);
+			}
 		}
 
 		// now propagate them
@@ -172,25 +188,32 @@ public class Decoder extends InstanceFactory {
 	@Override
 	public void paintInstance(InstancePainter painter) {
 		Graphics g = painter.getGraphics();
+		Bounds bds = painter.getBounds();
 		Direction facing = painter.getAttributeValue(StdAttr.FACING);
 		BitWidth select = painter.getAttributeValue(Plexers.ATTR_SELECT);
 		int outputs = 1 << select.getWidth();
 
+		// draw stubs for select and enable ports
+		GraphicsUtil.switchToWidth(g, 3);
+		boolean vertical = facing == Direction.NORTH || facing == Direction.SOUTH;
+		int dx = vertical ? 1 : 0;
+		int dy = vertical ? 0 : -1;
 		if (outputs == 2) { // draw select wire
-			GraphicsUtil.switchToWidth(g, 3);
 			if (painter.getShowState()) {
 				g.setColor(painter.getPort(outputs).getColor());
 			}
-			boolean vertical = facing == Direction.NORTH || facing == Direction.SOUTH;
-			int dx = vertical ? 3 : 0;
-			int dy = vertical ? 0 : -3;
-			Location pt = painter.getLocation();
-			g.drawLine(pt.getX(), pt.getY(), pt.getX() + dx, pt.getY() + dy);
-			GraphicsUtil.switchToWidth(g, 1);
-			g.setColor(Color.BLACK);
+			Location pt = painter.getInstance().getPortLocation(outputs);
+			g.drawLine(pt.getX(), pt.getY(), pt.getX() + 2 * dx, pt.getY() + 2 * dy);
 		}
-		Bounds bds = painter.getBounds();
-		Plexers.drawTrapezoid(g, bds, facing.reverse(), outputs == 2 ? 10 : 20);
+		Location en = painter.getInstance().getPortLocation(outputs + 1);
+		int len = outputs == 2 ? 6 : 4;
+		if (painter.getShowState()) {
+			g.setColor(painter.getPort(outputs + 1).getColor());
+		}
+		g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
+		GraphicsUtil.switchToWidth(g, 1);
+		
+		// draw "0"
 		int x0;
 		int y0;
 		int halign;
@@ -211,9 +234,13 @@ public class Decoder extends InstanceFactory {
 			y0 = 15;
 			halign = GraphicsUtil.H_RIGHT;
 		}
+		g.setColor(Color.GRAY);
 		GraphicsUtil.drawText(g, "0", bds.getX() + x0, bds.getY() + y0,
 				halign, GraphicsUtil.V_BASELINE);
+		
+		// draw trapezoid, "Decd", and ports
 		g.setColor(Color.BLACK);
+		Plexers.drawTrapezoid(g, bds, facing.reverse(), outputs == 2 ? 10 : 20);
 		GraphicsUtil.drawCenteredText(g, "Decd",
 				bds.getX() + bds.getWidth() / 2,
 				bds.getY() + bds.getHeight() / 2);

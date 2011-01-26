@@ -117,12 +117,15 @@ public class SubcircuitFactory extends InstanceFactory {
 		
 		instance.addAttributeListener();
 		computePorts(instance);
+		// configureLabel(instance); already done in computePorts
 	}
 	
 	@Override
 	public void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
 		if (attr == StdAttr.FACING) {
 			computePorts(instance);
+		} else if (attr == CircuitAttributes.LABEL_LOCATION_ATTR) {
+			configureLabel(instance);
 		}
 	}
 	
@@ -156,6 +159,32 @@ public class SubcircuitFactory extends InstanceFactory {
 		CircuitAttributes attrs = (CircuitAttributes) instance.getAttributeSet();
 		attrs.setPinInstances(pins);
 		instance.setPorts(ports);
+		instance.recomputeBounds();
+		configureLabel(instance); // since this affects the circuit's bounds
+	}
+	
+	private void configureLabel(Instance instance) {
+		Bounds bds = instance.getBounds();
+		Direction loc = instance.getAttributeValue(CircuitAttributes.LABEL_LOCATION_ATTR);
+		
+		int x = bds.getX() + bds.getWidth() / 2;
+		int y = bds.getY() + bds.getHeight() / 2;
+		int ha = GraphicsUtil.H_CENTER;
+		int va = GraphicsUtil.V_CENTER;
+		if (loc == Direction.EAST) {
+			x = bds.getX() + bds.getWidth() + 2;
+			ha = GraphicsUtil.H_LEFT;
+		} else if (loc == Direction.WEST) {
+			x = bds.getX() - 2;
+			ha = GraphicsUtil.H_RIGHT;
+		} else if (loc == Direction.SOUTH) {
+			y = bds.getY() + bds.getHeight() + 2;
+			va = GraphicsUtil.V_TOP;
+		} else {
+			y = bds.getY() - 2;
+			va = GraphicsUtil.V_BASELINE;
+		}
+		instance.setTextField(StdAttr.LABEL, StdAttr.LABEL_FONT, x, y, ha, va);
 	}
 
 	//
@@ -235,17 +264,18 @@ public class SubcircuitFactory extends InstanceFactory {
 		Location loc = painter.getLocation();
 		g.translate(loc.getX(), loc.getY());
 		source.getAppearance().paintSubcircuit(g, facing);
-		drawLabel(painter, getOffsetBounds(attrs), facing, defaultFacing);
+		drawCircuitLabel(painter, getOffsetBounds(attrs), facing, defaultFacing);
 		g.translate(-loc.getX(), -loc.getY());
+		painter.drawLabel();
 	}
 	
-	private void drawLabel(InstancePainter painter, Bounds bds,
+	private void drawCircuitLabel(InstancePainter painter, Bounds bds,
 			Direction facing, Direction defaultFacing) {
 		AttributeSet staticAttrs = source.getStaticAttributes();
-		String label = staticAttrs.getValue(StdAttr.LABEL);
+		String label = staticAttrs.getValue(CircuitAttributes.CIRCUIT_LABEL_ATTR);
 		if (label != null && !label.equals("")) {
-			Direction up = staticAttrs.getValue(CircuitAttributes.LABEL_UP_ATTR);
-			Font font = staticAttrs.getValue(StdAttr.LABEL_FONT);
+			Direction up = staticAttrs.getValue(CircuitAttributes.CIRCUIT_LABEL_FACING_ATTR);
+			Font font = staticAttrs.getValue(CircuitAttributes.CIRCUIT_LABEL_FONT_ATTR);
 
 			int back = label.indexOf('\\');
 			int lines = 1;

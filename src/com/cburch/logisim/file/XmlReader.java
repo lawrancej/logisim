@@ -363,6 +363,16 @@ class XmlReader {
 				}
 			}
 		}
+		if (version.compareTo(LogisimVersion.get(2, 6, 3)) < 0) {
+			for (Element circElt : XmlIterator.forChildElements(root, "circuit")) {
+				for (Element attrElt : XmlIterator.forChildElements(circElt, "a")) {
+					String name = attrElt.getAttribute("name");
+					if (name != null && name.startsWith("label")) {
+						attrElt.setAttribute("name", "c" + name);
+					}
+				}
+			}
+		}
 	}
 
 }

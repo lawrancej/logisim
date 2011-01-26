@@ -22,6 +22,7 @@ import com.cburch.logisim.circuit.CircuitListener;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
+import com.cburch.logisim.instance.StdAttr;
 
 class ComponentSelector extends JTree {
 	private static class CompareByName implements Comparator<Object> {
@@ -49,6 +50,12 @@ class ComponentSelector extends JTree {
 		
 		@Override
 		public String toString() {
+			if (subcircComp != null) {
+				String label = subcircComp.getAttributeSet().getValue(StdAttr.LABEL);
+				if (label != null && !label.equals("")) {
+					return label;
+				}
+			}
 			String ret = circuitState.getCircuit().getName();
 			if (subcircComp != null) {
 				ret += subcircComp.getLocation();
