@@ -1,0 +1,9 @@
+Feature: Saving project files is more cautious, creating a backup before starting to write to disk and recoving from the backup if for some reason the save is detected to fail (whether nothing has been written to the file or an error has occurred while saving).
+
+Feature: Individual subcircuit instances can have a label, in addition to the "shared label" that is displayed in the center of each instance of a subcircuit.
+
+Feature: Added an enable input to the multiplexer, demultiplexer, and decoder, and added the Disabled Output attribute to the priority encoder.
+
+Feature: During a rectangular selection, the rectangle is drawn with a light blue, and components that will be affected are indicated with a slate-blue outline.
+
+Bug fix: When simulation is disabled, selecting Tick Once will still cause a tick once the simulation is stepped.

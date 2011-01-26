@@ -47,7 +47,11 @@ the Three-State? attribute.
 If the select input contains any unspecified bits, then all outputs are
 floating.</dd>
 
-<dt>South edge (input, bit width matches Select Bits attribute)</dt>
+<dt>South edge, left side (input, bit width 1)</dt>
+<dd>Enable: When 0, all outputs consist of all floating bits,
+regardless of the data and select inputs.</dd>
+
+<dt>South edge, right side (input, bit width matches Select Bits attribute)</dt>
 <dd>Select input: The value of this input determines to which output on
 the east edge to route the value received on the west edge.</dd>
 
@@ -76,6 +80,11 @@ The number of outputs for the demultiplexer will be
 <dt>Three-state?</dt>
 <dd>Specifies whether the unselected outputs should be floating (Yes) or
 zero (No).</dd>
+
+<dt>Disabled Output</dt>
+<dd>Specifies what each bit of the outputs should be when the component is
+disabled (i.e., when the enable pin is 0). Options include zero and floating;
+in the latter case, the outputs are effectively disconnected from any other ports.</dd>
 
 </dl>
 

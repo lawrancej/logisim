@@ -50,6 +50,7 @@ langmenu_names = {
 	'de': 'Deutsch',
 	'en': 'English',
 	'es': 'espa\u00f1ol',
+	'pt': 'Portugu\u00eas',
 	'ru': '\u0420\u0443\u0441\u0441\u043a\u0438\u0439',
 }
 

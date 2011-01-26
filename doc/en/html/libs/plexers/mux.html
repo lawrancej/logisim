@@ -45,9 +45,13 @@ through the select input on the south.
 If the select input contains any unspecified (i.e., floating) bits,
 then the output is completely floating.</dd>
 
-<dt>South edge (input, bit width matches Select Bits attribute)</dt>
+<dt>South edge, left side (input, bit width matches Select Bits attribute)</dt>
 <dd>Select input: The value of this input determines which input
 on the west edge to route to the output on the east edge.</dd>
+
+<dt>South edge, right side (input, bit width 1)</dt>
+<dd>Enable: When 0, the multiplexer's output consists of all floating bits,
+regardless of the data and select inputs.</dd>
 
 </dl>
 
@@ -70,6 +74,11 @@ The number of inputs to the multiplexer will be
 
 <dt>Data Bits</dt>
 <dd>The bit width of the data being routed through the multiplexer.</dd>
+
+<dt>Disabled Output</dt>
+<dd>Specifies what each bit of the output should be when the component is
+disabled (i.e., when the enable pin is 0). Options include zero and floating;
+in the latter case, the output is effectively disconnected from any other ports.</dd>
 
 </dl>
 

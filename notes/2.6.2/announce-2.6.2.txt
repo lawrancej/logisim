@@ -1,7 +1,18 @@
+LOGISIM 2.6.2 ADDS PORTUGUESE, FIXES BUGS
+
+Logisim, a graphical design and simulation tool for logic circuits, is now at version 2.6.2. This new version fixes numerous bugs from the previous release, while also adding a complete translation into Brazilian Portuguese and a preliminary German translation of the documentation, as well as several minor enhancements.
+
+Most enhancements revolve around preferences. Some preferences that were previously stored as options are now stored as application preferences, and the preferences window has been reorganized a bit to reflect this. Perhaps a bigger feature is that Logisim now attempts to remember your window state - such as tick rate, zoom factor, and window size - so that on startup it restores the appearance it had when you last exited. It also adds a new Open Recent submenu into the File menu, allowing access to the most recently edited projects without needing to find anything through the dialog box.
+
+Another enhancement new to this feature is that Logisim can be configured to display the actual tick rate. This will often be much smaller than the actual tick rate, because Logisim will not perform a tick until it has completed propagation for the current tick. To show the actual tick rate, go to the Windows tab of the Preferences window.
+
+Educational institutions around the world use Logisim as an aid to teaching about digital logic and computer architecture. As a Java application, Logisim can run on most major operating systems. Read more about Logisim at http://www.cburch.com/logisim/, and download it from SourceForge.net at http://sourceforge.net/projects/circuit/.
 
 CHANGE LOG
 
 Feature: If you go to the Preference window's Window tab and check "Show Tick Rate," Logisim will measure the actual rate of ticks and display it in the canvas's upper right corner. For complex circuits, the circuit cannot be simulated at the faster rates listed in the Simulate menu, and so the measured tick rate can be much less than what the user has selected.
+
+Feature: A Portuguese (Brazilian) translation is included.  
 
 Feature: Several configuration items were moved from the project-specific Options dialog into the application-wide Preferences dialog, since users are unlikely to want the values to vary between projects. This includes all items formerly under the Option window's Canvas tab and the Toolbar Location item under its Toolbar tab. These were moved into the application-wide Preferences dialog's new Window and Layout tabs.
 
@@ -13,9 +24,7 @@ Feature: Added a "-clearprops" command-line option that clears all saved applica
 
 Feature: In the I/O library, the Joystick component's Bit Width attribute can be configured through pressing Alt-2 through Alt-5.
 
-Feature: A first version of the Portuguese translation is included.  
-
-Feature: A first version of the German documentation is included.
+Feature: A very partial translation of the German documentation is included.
 
 Appearance change: Rectangular XOR and XNOR gates are drawn with "=1" to conform to the ISO standard (previously it was simply "1"). However, if the "Multiple-Input Behavior" attribute is "When an odd number are on" and there are more than two inputs, the label is "2k+1" to reflect that it is actually doing an odd parity. (Previously it showed this label for odd parity even when there were just two inputs.)
 
@@ -41,6 +50,8 @@ Bug fix: When adding a subcircuit, the "ghost" would not be drawn faded as with 
 
 Bug fix: When a subcircuit element is selected and the Circuit Name altered through the attribute table, the updated value would not always be reflected in the attribute table.
 
+Bug fix: When a subcircuit is added into a circuit and moved, changes to the underlying circuit's pins were not reflected in the subcircuit component.
+
 Bug fix: In loading from a file into RAM or ROM, very long strings of non-zero values would see large portions treated as zero.
 
 Bug fix: When a rectangle, oval, or rounded rectangle in a circuit's appearance had a paint type of "Border & Fill" and it was filled with solid black, that information was not properly stored in the saved file.
@@ -50,6 +61,8 @@ Bug fix: In editing the appearance and creating a rectangle, oval, or rounded re
 Bug fix: Edits to the Bit Extender's Extension Type attribute or the Comparator's did not have an immediate effect in the circuit.
 
 Bug fix: Under MacOS X, the title bar's close-window button would indicate that the file was changed after the first change, but the indicator would not disappear when the file was saved.
+
+Interface change: The Window menu now includes a menu item for accessing the window for application preferences.
 
 Interface change: A customized application icon is configured to appear in each window's title bar, where the Java logo had previously appeared.
 
