@@ -53,7 +53,7 @@ e as teclas com setas poderão alterar o seu atributo <q> Direção</q>.
 <dt> Direção </dt>
 <dd> A direção do componente (especificará qual dos lados terá as saídas). </dd>
 
-<dt> Bits Selecionados </dt>
+<dt> Bits selecionados </dt>
 <dd> A largura em bits da entrada selecionada do componente na face sul.
 O número de saídas para o decodificador será 
 2<sup><small><var> Bits Selecionados </var><small></sup>.
@@ -62,6 +62,13 @@ O número de saídas para o decodificador será
 <dt> Tri-state? </dt>
 <dd> Especificará se as saídas não selecionadas deverão ser flutuantes (Sim) ou
 zero (Não). </dd>
+
+<dt> Saída desabilitada </dt>
+<dd> Especificará qual deverá ser o valor de cada bit das saídas quando o 
+componente estiver desabilitado (ou seja, quando o pino de habilitação estiver
+em 0). Opções incluem zero e flutuante; e neste caso, as saídas estarão 
+efetivamente desconectadas de quaisquer outras portas.
+</dd>
 
 </dl>
 

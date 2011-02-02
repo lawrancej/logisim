@@ -72,12 +72,19 @@ O número de saídas para o multiplexador será
 2 <sup><small><var> Bits Selecionados </var></small></sup>.
 </dd>
 
-<dt> Bits de dados</dt>
+<dt> Bits de dados </dt>
 <dd> Largura dos bits de dados que serão roteados pelo multiplexador.</dd>
 
 <dt> <i>Tri-state</i>? </dt>
 <dd> Especificará se as saídas não selecionadas deverão ser flutuantes (Sim) ou
 zero (Não). </dd>
+
+<dt> Saída desabilitada </dt>
+<dd> Especificará qual deverá ser o valor de cada bit das saídas quando o 
+componente estiver desabilitado (ou seja, quando o pino de habilitação estiver
+em 0). Opções incluem zero e flutuante; e neste caso, as saídas estarão 
+efetivamente desconectadas de quaisquer outras portas.
+</dd>
 
 </dl>
 
