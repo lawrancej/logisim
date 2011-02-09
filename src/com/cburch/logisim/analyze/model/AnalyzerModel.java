@@ -12,6 +12,9 @@ public class AnalyzerModel {
 	public static final int MAX_INPUTS = 12;
 	public static final int MAX_OUTPUTS = 12;
 	
+	public static final int FORMAT_SUM_OF_PRODUCTS = 0;
+	public static final int FORMAT_PRODUCT_OF_SUMS = 1;
+	
 	private VariableList inputs = new VariableList(MAX_INPUTS);
 	private VariableList outputs = new VariableList(MAX_OUTPUTS);
 	private TruthTable table;

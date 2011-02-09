@@ -223,7 +223,7 @@ class ControlledBuffer extends InstanceFactory {
 		if (control == Value.TRUE) {
 			Value in = state.getPort(1);
 			state.setPort(0, isInverter ? in.not() : in, GateAttributes.DELAY);
-		} else if (control == Value.ERROR) {
+		} else if (control == Value.ERROR || control == Value.UNKNOWN) {
 			state.setPort(0, Value.createError(width), GateAttributes.DELAY);
 		} else {
 			Value out;

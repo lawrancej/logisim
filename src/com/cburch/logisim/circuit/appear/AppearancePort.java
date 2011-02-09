@@ -16,7 +16,7 @@ import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.std.base.Pin;
+import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.util.UnmodifiableList;
 
 public class AppearancePort extends AppearanceElement {

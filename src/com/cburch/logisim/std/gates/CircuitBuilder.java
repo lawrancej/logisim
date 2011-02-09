@@ -22,7 +22,8 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.std.base.Pin;
+import com.cburch.logisim.std.wiring.Constant;
+import com.cburch.logisim.std.wiring.Pin;
 
 public class CircuitBuilder {
 	private CircuitBuilder() { }

@@ -15,7 +15,6 @@ public class Gates extends Library {
 
 	public Gates() {
 		tools = Arrays.asList(new Tool[] {
-			new AddTool(Constant.FACTORY),
 			new AddTool(NotGate.FACTORY),
 			new AddTool(Buffer.FACTORY),
 			new AddTool(AndGate.FACTORY),

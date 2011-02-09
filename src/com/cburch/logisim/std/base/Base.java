@@ -6,7 +6,6 @@ package com.cburch.logisim.std.base;
 import java.util.Arrays;
 import java.util.List;
 
-import com.cburch.logisim.circuit.SplitterFactory;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.MenuTool;
 import com.cburch.logisim.tools.PokeTool;
@@ -31,13 +30,6 @@ public class Base extends Library {
 			wiring,
 			new TextTool(),
 			new MenuTool(),
-			new AddTool(SplitterFactory.instance),
-			new AddTool(Pin.FACTORY),
-			new AddTool(Tunnel.FACTORY),
-			new AddTool(PullResistor.FACTORY),
-			new AddTool(Probe.FACTORY),
-			new AddTool(Clock.FACTORY),
-			new AddTool(BitExtender.FACTORY),
 			new AddTool(Text.FACTORY),
 		});
 	}

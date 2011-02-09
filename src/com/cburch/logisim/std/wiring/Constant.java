@@ -1,7 +1,7 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.logisim.std.gates;
+package com.cburch.logisim.std.wiring;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -31,7 +31,7 @@ import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 
-class Constant extends InstanceFactory {
+public class Constant extends InstanceFactory {
 	public static final Attribute<Integer> ATTR_VALUE
 		= Attributes.forHexInteger("value", Strings.getter("constantValueAttr"));
 

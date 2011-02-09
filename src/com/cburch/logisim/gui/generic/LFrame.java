@@ -5,6 +5,7 @@ package com.cburch.logisim.gui.generic;
 
 import java.awt.Image;
 import java.awt.Window;
+import java.awt.event.WindowEvent;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,7 +14,9 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class LFrame extends JFrame {
+import com.cburch.logisim.util.WindowClosable;
+
+public class LFrame extends JFrame implements WindowClosable {
 	private static final String PATH = "resources/logisim/img/logisim-icon-";
 	private static final int[] SIZES = { 16, 20, 24, 48, 64, 128 };
 	private static List<Image> ICONS = null;
@@ -54,4 +57,28 @@ public class LFrame extends JFrame {
 	public LFrame() {
 		LFrame.attachIcon(this);
 	}
+
+	public void requestClose() {
+		WindowEvent closing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+		processWindowEvent(closing);		
+		WindowEvent closed = new WindowEvent(this, WindowEvent.WINDOW_CLOSED);
+		processWindowEvent(closed);
+	}
+	
+	/*
+	protected void processWindowEvent(WindowEvent e) {
+		Ssystem.err.print("process " + e.getID() + " " + this.hashCode() + " ");
+		switch (e.getID()) {
+		case WindowEvent.WINDOW_CLOSING: Ssystem.err.println("closing"); break;
+		case WindowEvent.WINDOW_CLOSED: Ssystem.err.println("closed"); break;
+		case WindowEvent.WINDOW_DEACTIVATED: Ssystem.err.println("deactivated"); break;
+		case WindowEvent.WINDOW_ACTIVATED: Ssystem.err.println("activated"); break;
+		case WindowEvent.WINDOW_GAINED_FOCUS: Ssystem.err.println("gainedFocus"); break;
+		case WindowEvent.WINDOW_LOST_FOCUS: Ssystem.err.println("lostFocus"); break;
+		case WindowEvent.WINDOW_OPENED: Ssystem.err.println("opened"); break;
+		case WindowEvent.WINDOW_STATE_CHANGED: Ssystem.err.println("stateChanged"); break;
+		}
+		super.processWindowEvent(e);
+	}
+	*/
 }

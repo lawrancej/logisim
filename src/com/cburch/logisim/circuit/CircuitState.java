@@ -21,8 +21,8 @@ import com.cburch.logisim.instance.InstanceData;
 import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.std.base.Clock;
-import com.cburch.logisim.std.base.Pin;
+import com.cburch.logisim.std.wiring.Clock;
+import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.util.ArraySet;
 import com.cburch.logisim.util.SmallSet;
 
@@ -338,6 +338,9 @@ public class CircuitState implements InstanceData {
 	}
 
 	void processDirtyPoints() {
+		if (circuit.wires.isMapVoided()) {
+			dirtyPoints.addAll(circuit.wires.points.getSplitLocations());
+		}
 		if (!dirtyPoints.isEmpty()) {
 			circuit.wires.propagate(this, dirtyPoints);
 			dirtyPoints.clear();

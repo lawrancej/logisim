@@ -52,7 +52,7 @@ public class About {
 			}
 		}
 	}
-
+	
 	private static class MyPanel extends JPanel implements AncestorListener {
 		private final Color fadeColor = new Color(255, 255, 255, 128);
 		private final Color headerColor = new Color(143, 0, 0);
@@ -237,13 +237,14 @@ public class About {
 
 	private About() { }
 
-	public static JPanel getImagePanel() {
+	public static MyPanel getImagePanel() {
 		return new MyPanel();
 	}
 
 	public static void showAboutDialog(JFrame owner) {
+		MyPanel imgPanel = getImagePanel();
 		JPanel panel = new JPanel(new BorderLayout());
-		panel.add(getImagePanel());
+		panel.add(imgPanel);
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
 		JOptionPane.showMessageDialog(owner, panel,

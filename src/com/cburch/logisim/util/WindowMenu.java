@@ -23,6 +23,7 @@ public class WindowMenu extends JMenu {
 		public void localeChanged() {
 			WindowMenu.this.setText(Strings.get("windowMenu"));
 			minimize.setText(Strings.get("windowMinimizeItem"));
+			close.setText(Strings.get("windowCloseItem"));
 			zoom.setText(MacCompatibility.isQuitAutomaticallyPresent() ?
 					Strings.get("windowZoomItemMac") : Strings.get("windowZoomItem"));
 		}
@@ -60,6 +61,7 @@ public class WindowMenu extends JMenu {
 	private MyListener myListener = new MyListener();
 	private JMenuItem minimize = new JMenuItem();
 	private JMenuItem zoom = new JMenuItem();
+	private JMenuItem close = new JMenuItem();
 	private JRadioButtonMenuItem nullItem = new JRadioButtonMenuItem();
 	private ArrayList<WindowMenuItem> persistentItems = new ArrayList<WindowMenuItem>();
 	private ArrayList<WindowMenuItem> transientItems = new ArrayList<WindowMenuItem>();
@@ -70,13 +72,16 @@ public class WindowMenu extends JMenu {
 		
 		int menuMask = getToolkit().getMenuShortcutKeyMask();
 		minimize.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, menuMask));
+		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, menuMask));
 		
 		if (owner == null) {
 			minimize.setEnabled(false);
 			zoom.setEnabled(false);
+			close.setEnabled(false);
 		} else {
 			minimize.addActionListener(myListener);
 			zoom.addActionListener(myListener);
+			close.addActionListener(myListener);
 		}
 
 		computeEnabled();
@@ -104,6 +109,7 @@ public class WindowMenu extends JMenu {
 		WindowMenuItemManager currentManager = WindowMenuManager.getCurrentManager();
 		minimize.setEnabled(currentManager != null);
 		zoom.setEnabled(currentManager != null);
+		close.setEnabled(currentManager != null);
 	}
 	
 	void setNullItemSelected(boolean value) {
@@ -117,6 +123,7 @@ public class WindowMenu extends JMenu {
 		removeAll();
 		add(minimize);
 		add(zoom);
+		add(close);
 		
 		if (!persistentItems.isEmpty()) {
 			addSeparator();
@@ -144,8 +151,24 @@ public class WindowMenu extends JMenu {
 	}
 	
 	void doMinimize() {
-		if (owner == null) return;
-		owner.setExtendedState(Frame.ICONIFIED);
+		if (owner != null) {
+			owner.setExtendedState(Frame.ICONIFIED);
+		}
+	}
+	
+	void doClose() {
+		if (owner instanceof WindowClosable) {
+			((WindowClosable) owner).requestClose();
+		} else if (owner != null) {
+			int action = owner.getDefaultCloseOperation();
+			if (action == JFrame.EXIT_ON_CLOSE) {
+				System.exit(0);
+			} else if (action == JFrame.HIDE_ON_CLOSE) {
+				owner.setVisible(false);
+			} else if (action == JFrame.DISPOSE_ON_CLOSE) {
+				owner.dispose();
+			}
+		}
 	}
 	
 	void doZoom() {

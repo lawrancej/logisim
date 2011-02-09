@@ -25,8 +25,8 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.std.base.PullResistor;
-import com.cburch.logisim.std.base.Tunnel;
+import com.cburch.logisim.std.wiring.PullResistor;
+import com.cburch.logisim.std.wiring.Tunnel;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.IteratorUtil;
 import com.cburch.logisim.util.SmallSet;
@@ -147,19 +147,23 @@ class CircuitWires {
 	private HashSet<Wire> wires = new HashSet<Wire>();
 	private HashSet<Splitter> splitters = new HashSet<Splitter>();
 	private HashSet<Component> tunnels = new HashSet<Component>(); // of Components with Tunnel factory
+	private TunnelListener tunnelListener = new TunnelListener();
 	private HashSet<Component> pulls = new HashSet<Component>(); // of Components with PullResistor factory
 	final CircuitPoints points = new CircuitPoints();
 
 	// derived data
 	private Bounds bounds = Bounds.EMPTY_BOUNDS;
 	private BundleMap bundleMap = null;
-	private TunnelListener tunnelListener = new TunnelListener();
 
 	CircuitWires() { }
 
 	//
 	// query methods
 	//
+	boolean isMapVoided() {
+		return bundleMap == null;
+	}
+	
 	Set<WidthIncompatibilityData> getWidthIncompatibilityData() {
 		return getBundleMap().getWidthIncompatibilityData();
 	}

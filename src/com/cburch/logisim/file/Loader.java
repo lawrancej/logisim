@@ -342,7 +342,13 @@ public class Loader implements LibraryLoader {
 	}
 
 	public void showError(String description) {
-		try { throw new RuntimeException(); } catch (Throwable t ) { t.printStackTrace(); }
+		try {
+			throw new RuntimeException();
+		} catch (Throwable t ) {
+			System.err.println(description); //OK
+			t.printStackTrace(System.err); //OK
+		}
+		
 		if (!filesOpening.empty()) {
 			File top = filesOpening.peek();
 			description = toProjectName(top) + ": " + description;

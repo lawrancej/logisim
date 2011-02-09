@@ -8,7 +8,7 @@ import java.util.Collection;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.std.base.Pin;
+import com.cburch.logisim.std.wiring.Pin;
 
 class CircuitChange {
 	static final int CLEAR = 0;

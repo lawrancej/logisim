@@ -95,7 +95,7 @@ public class Implicant implements Comparable<Implicant> {
 		return values;
 	}
 	
-	private Expression toExpression(TruthTable source) {
+	private Expression toProduct(TruthTable source) {
 		Expression term = null;
 		int cols = source.getInputColumnCount();
 		for (int i = cols - 1; i >= 0; i--) {
@@ -108,34 +108,46 @@ public class Implicant implements Comparable<Implicant> {
 		return term == null ? Expressions.constant(1) : term;
 	}
 	
-	static Expression toExpression(AnalyzerModel model, List<Implicant> implicants) {
-		if (implicants == null) return null;
-		TruthTable table = model.getTruthTable();
-		Expression sum = null;
-		for (Implicant imp : implicants) {
-			sum = Expressions.or(sum, imp.toExpression(table));
-		}
-		return sum == null ? Expressions.constant(0) : sum;
-	}
-	
-	static List<Implicant> computeSum(AnalyzerModel model, String variable) {
-		TruthTable table = model.getTruthTable();
-		int column = model.getOutputs().indexOf(variable);
-		if (column < 0) return Collections.emptyList();
-
-		ArrayList<Implicant> ret = new ArrayList<Implicant>();
-		for (int i = 0; i < table.getRowCount(); i++) {
-			if (table.getOutputEntry(i, column) == Entry.ONE) {
-				ret.add(new Implicant(0, i));
+	private Expression toSum(TruthTable source) {
+		Expression term = null;
+		int cols = source.getInputColumnCount();
+		for (int i = cols - 1; i >= 0; i--) {
+			if ((unknowns & (1 << i)) == 0) {
+				Expression literal = Expressions.variable(source.getInputHeader(cols - 1 - i));
+				if ((values & (1 << i)) == 1) literal = Expressions.not(literal);
+				term = Expressions.or(term, literal);
 			}
 		}
-		return ret;
+		return term == null ? Expressions.constant(1) : term;
 	}
 	
-	static List<Implicant> computeMinimal(AnalyzerModel model, String variable) {
+	static Expression toExpression(int format, AnalyzerModel model, List<Implicant> implicants) {
+		if (implicants == null) return null;
+		TruthTable table = model.getTruthTable();
+		if (format == AnalyzerModel.FORMAT_PRODUCT_OF_SUMS) {
+			Expression product = null;
+			for (Implicant imp : implicants) {
+				product = Expressions.and(product, imp.toSum(table));
+			}
+			return product == null ? Expressions.constant(1) : product;
+		} else {
+			Expression sum = null;
+			for (Implicant imp : implicants) {
+				sum = Expressions.or(sum, imp.toProduct(table));
+			}
+			return sum == null ? Expressions.constant(0) : sum;
+		}
+	}
+	
+	static List<Implicant> computeMinimal(int format, AnalyzerModel model,
+			String variable) {
 		TruthTable table = model.getTruthTable();
 		int column = model.getOutputs().indexOf(variable);
 		if (column < 0) return Collections.emptyList();
+		
+		Entry desired = format == AnalyzerModel.FORMAT_SUM_OF_PRODUCTS
+			? Entry.ONE : Entry.ZERO;
+		Entry undesired = desired == Entry.ONE ? Entry.ZERO : Entry.ONE;
 
 		// determine the first-cut implicants, as well as the rows
 		// that we need to cover.
@@ -144,9 +156,9 @@ public class Implicant implements Comparable<Implicant> {
 		boolean knownFound = false;
 		for (int i = 0; i < table.getRowCount(); i++) {
 			Entry entry = table.getOutputEntry(i, column);
-			if (entry == Entry.ZERO) {
+			if (entry == undesired) {
 				knownFound = true;
-			} else if (entry == Entry.ONE) {
+			} else if (entry == desired) {
 				knownFound = true;
 				Implicant imp = new Implicant(0, i);
 				base.put(imp, entry);
@@ -181,7 +193,7 @@ public class Implicant implements Comparable<Implicant> {
 							if (oppEntry == Entry.DONT_CARE && detEntry == Entry.DONT_CARE) {
 								e = Entry.DONT_CARE;
 							} else {
-								e = Entry.ONE;
+								e = desired;
 							}
 							next.put(i, e);
 						}
@@ -191,7 +203,7 @@ public class Implicant implements Comparable<Implicant> {
 			
 			for (Map.Entry<Implicant,Entry> curEntry : current.entrySet()) {
 				Implicant det = curEntry.getKey();
-				if (!toRemove.contains(det) && curEntry.getValue() == Entry.ONE) {
+				if (!toRemove.contains(det) && curEntry.getValue() == desired) {
 					primes.add(det);
 				}
 			}
@@ -203,7 +215,7 @@ public class Implicant implements Comparable<Implicant> {
 		// is probably prime.
 		for (Map.Entry<Implicant,Entry> curEntry : current.entrySet()) {
 			Implicant imp = curEntry.getKey();
-			if (current.get(imp) == Entry.ONE) {
+			if (current.get(imp) == desired) {
 				primes.add(imp);
 			}
 		}
@@ -262,10 +274,12 @@ public class Implicant implements Comparable<Implicant> {
 			}
 			
 			// add it to our choice, and remove the covered rows
-			retSet.add(max);
-			primes.remove(max);
-			for (Implicant term : max.getTerms()) {
-				toCover.remove(term);
+			if (max != null) {
+				retSet.add(max);
+				primes.remove(max);
+				for (Implicant term : max.getTerms()) {
+					toCover.remove(term);
+				}
 			}
 		}
 

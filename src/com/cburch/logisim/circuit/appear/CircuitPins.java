@@ -19,7 +19,7 @@ import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.std.base.Pin;
+import com.cburch.logisim.std.wiring.Pin;
 
 public class CircuitPins {
 	private class MyComponentListener

@@ -29,7 +29,7 @@ import com.cburch.logisim.data.AttributeDefaultProvider;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.std.base.Pin;
+import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.InputEventUtil;
@@ -319,7 +319,7 @@ class XmlReader {
 	LogisimFile readLibrary(InputStream is) throws IOException, SAXException {
 		Document doc = loadXmlFrom(is);
 		Element elt = doc.getDocumentElement();
-		considerRepairs(elt);
+		considerRepairs(doc, elt);
 		LogisimFile file = new LogisimFile((Loader) loader);
 		ReadContext context = new ReadContext(file);
 		context.toLogisimFile(elt);
@@ -339,7 +339,7 @@ class XmlReader {
 		return builder.parse(is);
 	}
 	
-	private void considerRepairs(Element root) {
+	private void considerRepairs(Document doc, Element root) {
 		LogisimVersion version = LogisimVersion.parse(root.getAttribute("source"));
 		if (version.compareTo(LogisimVersion.get(2, 3, 0)) < 0) {
 			// This file was saved before an Edit tool existed. Most likely
@@ -372,7 +372,125 @@ class XmlReader {
 					}
 				}
 			}
+			
+			repairForWiringLibrary(doc, root);
+		}
+	}
+	
+	private void repairForWiringLibrary(Document doc, Element root) {
+		Element oldBaseElt = null;
+		String oldBaseLabel = null;
+		Element gatesElt = null;
+		String gatesLabel = null;
+		int maxLabel = -1;
+		Element firstLibElt = null;
+		Element lastLibElt = null;
+		for (Element libElt : XmlIterator.forChildElements(root, "lib")) {
+			String desc = libElt.getAttribute("desc");
+			String label = libElt.getAttribute("name");
+			if (desc == null) {
+				// skip these tests
+			} else if (desc.equals("#Base")) {
+				oldBaseElt = libElt;
+				oldBaseLabel = label;
+			} else if (desc.equals("#Wiring")) {
+				// Wiring library already in file. This shouldn't happen, but if
+				// somehow it does, we don't want to add it again.
+				return;
+			} else if (desc.equals("#Gates")) {
+				gatesElt = libElt;
+				gatesLabel = label;
+			}
+
+			if (firstLibElt == null) firstLibElt = libElt;
+			lastLibElt = libElt;
+			try {
+				if (label != null) {
+					int thisLabel = Integer.parseInt(label);
+					if (thisLabel > maxLabel) maxLabel = thisLabel;
+				}
+			} catch (NumberFormatException e) { }
+		}
+		
+		Element wiringElt;
+		String wiringLabel;
+		Element newBaseElt;
+		String newBaseLabel;
+		if (oldBaseElt != null) {
+			wiringLabel = oldBaseLabel;
+			wiringElt = oldBaseElt;
+			wiringElt.setAttribute("desc", "#Wiring");
+			
+			newBaseLabel = "" + (maxLabel + 1);
+			newBaseElt = doc.createElement("lib");
+			newBaseElt.setAttribute("desc", "#Base");
+			newBaseElt.setAttribute("name", newBaseLabel);
+			root.insertBefore(newBaseElt, lastLibElt.getNextSibling());
+		} else {
+			wiringLabel = "" + (maxLabel + 1);
+			wiringElt = doc.createElement("lib");
+			wiringElt.setAttribute("desc", "#Wiring");
+			wiringElt.setAttribute("name", wiringLabel);
+			root.insertBefore(wiringElt, lastLibElt.getNextSibling());
+			
+			newBaseLabel = null;
+			newBaseElt = null;
+		}
+
+		HashMap<String,String> labelMap = new HashMap<String,String>();
+		addToLabelMap(labelMap, oldBaseLabel, newBaseLabel, "Poke Tool;"
+				+ "Edit Tool;Select Tool;Wiring Tool;Text Tool;Menu Tool;Text");
+		addToLabelMap(labelMap, oldBaseLabel, wiringLabel, "Splitter;Pin;"
+				+ "Probe;Tunnel;Clock;Pull Resistor;Bit Extender");
+		addToLabelMap(labelMap, gatesLabel, wiringLabel, "Constant");
+		relocateTools(oldBaseElt, newBaseElt, labelMap);
+		relocateTools(oldBaseElt, wiringElt, labelMap);
+		relocateTools(gatesElt, wiringElt, labelMap);
+		updateFromLabelMap(XmlIterator.forDescendantElements(root, "comp"), labelMap);
+		updateFromLabelMap(XmlIterator.forDescendantElements(root, "tool"), labelMap);
+	}
+	
+	private void addToLabelMap(HashMap<String,String> labelMap, String srcLabel,
+			String dstLabel, String toolNames) {
+		if (srcLabel != null && dstLabel != null) {
+			for (String tool : toolNames.split(";")) {
+				labelMap.put(srcLabel + ":" + tool, dstLabel);
+			}
+		}
+	}
+	
+	private void relocateTools(Element src, Element dest,
+			HashMap<String,String> labelMap) {
+		if (src == null || src == dest) return;
+		String srcLabel = src.getAttribute("name");
+		if (srcLabel == null) return;
+		
+		ArrayList<Element> toRemove = new ArrayList<Element>();
+		for (Element elt : XmlIterator.forChildElements(src, "tool")) {
+			String name = elt.getAttribute("name");
+			if (name != null && labelMap.containsKey(srcLabel + ":" + name)) {
+				toRemove.add(elt);
+			}
+		}
+		for (Element elt : toRemove) {
+			src.removeChild(elt);
+			if (dest != null) {
+				dest.appendChild(elt);
+			}
 		}
 	}
 
+	private void updateFromLabelMap(Iterable<Element> elts,
+			HashMap<String,String> labelMap) {
+		for (Element elt : elts) {
+			String oldLib = elt.getAttribute("lib");
+			String name = elt.getAttribute("name");
+			if (oldLib != null && name != null) {
+				String newLib = labelMap.get(oldLib + ":" + name);
+				if (newLib != null) {
+					elt.setAttribute("lib", newLib);
+				}
+			}
+		}
+	}
 }

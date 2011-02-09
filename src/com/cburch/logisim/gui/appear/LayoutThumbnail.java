@@ -19,7 +19,7 @@ import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.std.base.Pin;
+import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.util.GraphicsUtil;
 
 public class LayoutThumbnail extends JComponent {

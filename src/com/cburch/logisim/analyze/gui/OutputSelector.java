@@ -16,7 +16,7 @@ import com.cburch.logisim.analyze.model.VariableList;
 import com.cburch.logisim.analyze.model.VariableListEvent;
 import com.cburch.logisim.analyze.model.VariableListListener;
 
-class OutputSelector extends JPanel {
+class OutputSelector {
 	private class Model extends AbstractListModel
 			implements ComboBoxModel, VariableListListener {
 		private Object selected;
@@ -102,9 +102,21 @@ class OutputSelector extends JPanel {
 		Model listModel = new Model();
 		select.setModel(listModel);
 		source.addVariableListListener(listModel);
-		
-		add(label);
-		add(select);
+	}
+	
+	public JPanel createPanel() {
+		JPanel ret = new JPanel();
+		ret.add(label);
+		ret.add(select);
+		return ret;
+	}
+	
+	public JLabel getLabel() {
+		return label;
+	}
+	
+	public JComboBox getComboBox() {
+		return select;
 	}
 	
 	void localeChanged() {
@@ -137,7 +149,7 @@ class OutputSelector extends JPanel {
 		if (prototypeValue == null || newValue.length() != prototypeValue.length()) {
 			prototypeValue = newValue;
 			select.setPrototypeDisplayValue(prototypeValue + "xx");
-			revalidate();
+			select.revalidate();
 		}
 	}
 }

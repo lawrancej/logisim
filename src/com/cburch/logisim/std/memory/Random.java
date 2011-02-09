@@ -131,24 +131,26 @@ public class Random extends InstanceFactory {
 		private final static long addend = 0xBL;
 		private final static long mask = (1L << 48) - 1;
 
-		private long startSeed;
+		private long initSeed;
 		private long curSeed;
 		private int value;
 	
 		public StateData(Object seed) {
-			long start = seed instanceof Integer ? ((Integer) seed).intValue() : 0;
-			if (start == 0) {
-				start = (System.currentTimeMillis() ^ multiplier) & mask;
-			}
-			this.startSeed = start;
-			this.curSeed = start;
-			this.value = (int) start;
+			reset(seed);
 		}
 		
 		void reset(Object seed) {
 			long start = seed instanceof Integer ? ((Integer) seed).intValue() : 0;
-			if (start == 0) start = startSeed;
-			else this.startSeed = start;
+			if (start == 0) {
+				// Prior to 2.7.0, this would reset to the seed at the time of
+				// the StateData's creation. It seems more likely that what
+				// would be intended was starting a new sequence entirely...
+				start = (System.currentTimeMillis() ^ multiplier) & mask;
+				if (start == initSeed) {
+					start = (start + multiplier) & mask;
+				}
+			}
+			this.initSeed = start;
 			this.curSeed = start;
 			this.value = (int) start;
 		}

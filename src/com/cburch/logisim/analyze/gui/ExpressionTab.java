@@ -152,7 +152,8 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 		gc.gridy = GridBagConstraints.RELATIVE;
 		gc.fill = GridBagConstraints.BOTH;
 		
-		gb.setConstraints(selector, gc); add(selector);
+		JPanel selectorPanel = selector.createPanel();
+		gb.setConstraints(selectorPanel, gc); add(selectorPanel);
 		gb.setConstraints(prettyView, gc); add(prettyView);
 		  Insets oldInsets = gc.insets;
 		  gc.insets = new Insets(10, 10, 0, 10);

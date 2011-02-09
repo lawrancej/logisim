@@ -240,7 +240,8 @@ class Connector {
 		while (!q.isEmpty() && iters < MAX_SEARCH_ITERATIONS) {
 			iters++;
 			SearchNode n = q.remove();
-			if (iters % 64 == 0 && ConnectorThread.isOverrideRequested()) {
+			if (iters % 64 == 0 && ConnectorThread.isOverrideRequested()
+					|| n == null) {
 				return null;
 			}
 			if (n.isDestination()) {

@@ -77,6 +77,10 @@ public class FactoryDescription {
 		return displayName.get();
 	}
 	
+	public boolean isFactoryLoaded() {
+		return factoryLoadAttempted;
+	}
+	
 	public Icon getIcon() {
 		Icon ret = icon;
 		if (ret != null || iconLoadAttempted) {

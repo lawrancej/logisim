@@ -455,7 +455,7 @@ public class AddTool extends Tool {
 	@Override
 	public void paintIcon(ComponentDrawContext c, int x, int y) {
 		FactoryDescription desc = description;
-		if (desc != null) {
+		if (desc != null && !desc.isFactoryLoaded()) {
 			Icon icon = desc.getIcon();
 			if (icon != null) {
 				icon.paintIcon(c.getDestination(), c.getGraphics(), x + 2, y + 2);

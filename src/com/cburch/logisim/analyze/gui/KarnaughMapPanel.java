@@ -270,6 +270,7 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
 			for (Implicant imp : implicants) {
 				g.setColor(IMP_COLORS[index % IMP_COLORS.length]);
 				paintImplicant(g, imp, x, y, rows, cols);
+				index++;
 			}
 		}
 		
