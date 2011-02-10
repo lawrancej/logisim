@@ -43,12 +43,23 @@ class GateAttributes extends AbstractAttributeSet {
 		= Attributes.forOption("xor", Strings.getter("xorBehaviorAttr"),
 				new AttributeOption[] { XOR_ONE, XOR_ODD });
 	
+	static final AttributeOption OUTPUT_01
+		= new AttributeOption("01", Strings.getter("gateOutput01"));
+	static final AttributeOption OUTPUT_0Z
+		= new AttributeOption("0Z", Strings.getter("gateOutput0Z"));
+	static final AttributeOption OUTPUT_Z1
+		= new AttributeOption("Z1", Strings.getter("gateOutputZ1"));
+	public static final Attribute<AttributeOption> ATTR_OUTPUT
+		= Attributes.forOption("out", Strings.getter("gateOutputAttr"),
+			new AttributeOption[] { OUTPUT_01, OUTPUT_0Z, OUTPUT_Z1 });
+	
 
 	Direction facing = Direction.EAST;
 	BitWidth width = BitWidth.ONE;
 	AttributeOption size = SIZE_MEDIUM;
 	int inputs = 5;
 	int negated = 0;
+	AttributeOption out = OUTPUT_01;
 	AttributeOption xorBehave;
 	String label = "";
 	Font labelFont = StdAttr.DEFAULT_LABEL_FONT;
@@ -76,6 +87,7 @@ class GateAttributes extends AbstractAttributeSet {
 		if (attr == StdAttr.LABEL_FONT) return (V) labelFont;
 		if (attr == ATTR_SIZE) return (V) size;
 		if (attr == ATTR_INPUTS) return (V) Integer.valueOf(inputs);
+		if (attr == ATTR_OUTPUT) return (V) out;
 		if (attr == ATTR_XOR) return (V) xorBehave;
 		if (attr instanceof NegateAttribute) {
 			int index = ((NegateAttribute) attr).index;
@@ -105,6 +117,8 @@ class GateAttributes extends AbstractAttributeSet {
 			fireAttributeListChanged();
 		} else if (attr == ATTR_XOR) {
 			xorBehave = (AttributeOption) value;
+		} else if (attr == ATTR_OUTPUT) {
+			out = (AttributeOption) value;
 		} else if (attr instanceof NegateAttribute) {
 			int index = ((NegateAttribute) attr).index;
 			if (((Boolean) value).booleanValue()) {

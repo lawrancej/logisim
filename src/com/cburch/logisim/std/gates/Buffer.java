@@ -34,9 +34,9 @@ class Buffer extends InstanceFactory {
 	private Buffer() {
 		super("Buffer", Strings.getter("bufferComponent"));
 		setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH,
-					StdAttr.LABEL, StdAttr.LABEL_FONT },
+					GateAttributes.ATTR_OUTPUT, StdAttr.LABEL, StdAttr.LABEL_FONT },
 				new Object[] { Direction.EAST, BitWidth.ONE,
-					"", StdAttr.DEFAULT_LABEL_FONT });
+					GateAttributes.OUTPUT_01, "", StdAttr.DEFAULT_LABEL_FONT });
 		setIcon(Icons.getIcon("bufferGate.gif"));
 		setFacingAttribute(StdAttr.FACING);
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
@@ -158,6 +158,7 @@ class Buffer extends InstanceFactory {
 		AttributeSet opts = state.getProject().getOptions().getAttributeSet();
 		Object onUndefined = opts.getValue(Options.ATTR_GATE_UNDEFINED);
 		boolean errorIfUndefined = onUndefined.equals(Options.GATE_UNDEFINED_ERROR);
+		Value repaired;
 		if (errorIfUndefined) {
 			int vw = v.getWidth();
 			BitWidth w = state.getAttributeValue(StdAttr.WIDTH);
@@ -168,9 +169,12 @@ class Buffer extends InstanceFactory {
 				Value ini = i < vw ? v.get(i) : Value.ERROR;
 				vs[i] = ini.isFullyDefined() ? ini : Value.ERROR;
 			}
-			return Value.create(vs);
+			repaired = Value.create(vs);
 		} else {
-			return v;
+			repaired = v;
 		}
+
+		Object outType = state.getAttributeValue(GateAttributes.ATTR_OUTPUT);
+		return AbstractGate.pullOutput(repaired, outType);
 	}
 }

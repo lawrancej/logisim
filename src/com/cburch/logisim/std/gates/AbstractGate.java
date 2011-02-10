@@ -452,8 +452,27 @@ abstract class AbstractGate extends InstanceFactory {
 			out = Value.createError(attrs.width);
 		} else {
 			out = computeOutput(inputs, numInputs, state);
+			out = pullOutput(out, attrs.out);
 		}
 		state.setPort(0, out, GateAttributes.DELAY);
+	}
+	
+	static Value pullOutput(Value value, Object outType) {
+		if (outType == GateAttributes.OUTPUT_01) {
+			return value;
+		} else {
+			Value[] v = value.getAll();
+			if (outType == GateAttributes.OUTPUT_0Z) {
+				for (int i = 0; i < v.length; i++) {
+					if (v[i] == Value.TRUE) v[i] = Value.UNKNOWN;
+				}
+			} else if (outType == GateAttributes.OUTPUT_Z1) {
+				for (int i = 0; i < v.length; i++) {
+					if (v[i] == Value.FALSE) v[i] = Value.UNKNOWN;
+				}
+			}
+			return Value.create(v);
+		}
 	}
 	
 	@Override

@@ -210,6 +210,9 @@ public class Multiplexer extends InstanceFactory {
 				en.getX(), en.getY());
 		GraphicsUtil.switchToWidth(g, 1);
 		
+		// draw a circle indicating where the select input is located
+		Multiplexer.drawSelectCircle(g, bds, painter.getInstance().getPortLocation(inputs));
+		
 		// draw a 0 indicating where the numbering starts for inputs
 		int x0;
 		int y0;
@@ -241,5 +244,25 @@ public class Multiplexer extends InstanceFactory {
 				bds.getX() + bds.getWidth() / 2,
 				bds.getY() + bds.getHeight() / 2);
 		painter.drawPorts();
+	}
+	
+	static void drawSelectCircle(Graphics g, Bounds bds, Location loc) {
+		int locDelta = Math.max(bds.getHeight(), bds.getWidth()) <= 50 ? 8 : 6;
+		Location circLoc;
+		if (bds.getHeight() >= bds.getWidth()) { // vertically oriented
+			if (loc.getY() < bds.getY() + bds.getHeight() / 2) { // at top
+				circLoc = loc.translate(0, locDelta);
+			} else { // at bottom
+				circLoc = loc.translate(0, -locDelta);
+			}
+		} else {
+			if (loc.getX() < bds.getX() + bds.getWidth() / 2) { // at left
+				circLoc = loc.translate(locDelta, 0);
+			} else { // at right
+				circLoc = loc.translate(-locDelta, 0);
+			}
+		}
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillOval(circLoc.getX() - 3, circLoc.getY() - 3, 6, 6);
 	}
 }

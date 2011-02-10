@@ -213,6 +213,9 @@ public class Decoder extends InstanceFactory {
 		g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
 		GraphicsUtil.switchToWidth(g, 1);
 		
+		// draw a circle indicating where the select input is located
+		Multiplexer.drawSelectCircle(g, bds, painter.getInstance().getPortLocation(outputs));
+		
 		// draw "0"
 		int x0;
 		int y0;

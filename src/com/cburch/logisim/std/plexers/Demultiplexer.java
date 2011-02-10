@@ -224,6 +224,9 @@ public class Demultiplexer extends InstanceFactory {
 		int len = outputs == 2 ? 6 : 4;
 		g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
 		GraphicsUtil.switchToWidth(g, 1);
+		
+		// draw a circle indicating where the select input is located
+		Multiplexer.drawSelectCircle(g, bds, painter.getInstance().getPortLocation(outputs));
 
 		// draw "0" next to first input
 		int x0;
