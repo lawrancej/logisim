@@ -1,4 +1,8 @@
-Feature: Saving project files is more cautious, creating a backup before starting to write to disk and recoving from the backup if for some reason the save is detected to fail (whether nothing has been written to the file or an error has occurred while saving).
+Feature: Added a Wiring library containing transistor, transmission gate, power and ground components. Also, the splitter, pin, probe, tunnel, clock, pull resistor, and bit extender were moved into the Wiring library from the Base library, and constant was moved into the Wiring library from the Gates library.
+
+Feature: In the Combinational Analysis module, the user can select between using a sum of products or a product of sums.
+
+Feature: Saving project files is more cautious, creating a backup before starting to write to disk and recovering from the backup if for some reason the save is detected to fail (whether nothing has been written to the file or an error has occurred while saving).
 
 Feature: Individual subcircuit instances can have a label, in addition to the "shared label" that is displayed in the center of each instance of a subcircuit.
 
@@ -7,3 +11,11 @@ Feature: Added an enable input to the multiplexer, demultiplexer, and decoder, a
 Feature: During a rectangular selection, the rectangle is drawn with a light blue, and components that will be affected are indicated with a slate-blue outline.
 
 Bug fix: When simulation is disabled, selecting Tick Once will still cause a tick once the simulation is stepped.
+
+Bug fix: Changing the label for a Tunnel would not immediately affect the values propagated through the circuit.
+
+Bug fix: In the Karnaugh maps drawn by the Combinational Analysis module, each implicant was indicated by a red rectangle, but they were meant to use varied colors.
+
+Design change: Added a "Close" item to the Window menu, which closes the current window. The "Close" item in the File menu continues to close the current project; its shortcut is now Control-Shift-W.
+
+Design change: For the Memory library's Random component, a reset when the seed is 0 computes a new initial seed based on the current time. (It previously reset to the initial seed for the current simulation.)

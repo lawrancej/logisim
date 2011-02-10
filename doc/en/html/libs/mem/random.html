@@ -45,9 +45,8 @@ to the initial seed <var>r</var><sub><small>0</small></sub>.</p>
 
 <p>The initial seed is user-configurable. If it is configured at 0 (which is
 the default), then the seed is based on the current time; when instructed
-to reset through the <var>reset</var> input, the component starts with the
-same seed based on the past time. It acquires a new seed only when the entire
-simulation is reset.</p> 
+to reset through the <var>reset</var> input, the component computes a new
+seed based on the new current time.</p> 
 
 <h2>Pins</h2>
 
@@ -66,7 +65,8 @@ but if it is 0, then the clock input is ignored.</dd>
 
 <dt>South edge (input, bit width 1)</dt>
 <dd>Reset: When this is 1, the pseudorandom sequence asynchronously resets to
-its initial seed.</dd>
+the initial seed. (If seed is 0, this new seed should be different from the
+initial seed used previously.)</dd>
 
 </dl>
 
@@ -83,8 +83,8 @@ Alt-0 through Alt-9 alter its <q>Data Bits</q> attribute.</p>
 
 <dt>Seed</dt>
 <dd>The starting value used for the pseudorandom sequence. If this is 0
-(the default), then the starting value is based on the time that the current
-simulation began.</dd>
+(the default), then the starting value is based on the time that the random
+sequence began.</dd>
 
 <dt>Trigger</dt>
 <dd>Configures how the clock input is interpreted. The value <q>rising edge</q>

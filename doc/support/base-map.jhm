@@ -78,23 +78,19 @@
 	<mapID target="about_gpl" url="html/guide/about/gpl.html" />
 
 	<mapID target="libs" url="html/libs/index.html" />
-	<mapID target="base" url="html/libs/base/index.html" />
-	<mapID target="base_poke" url="html/libs/base/poke.html" />
-	<mapID target="base_edit" url="html/libs/base/edit.html" />
-	<mapID target="base_select" url="html/libs/base/select.html" />
-	<mapID target="base_wiring" url="html/libs/base/wiring.html" />
-	<mapID target="base_text" url="html/libs/base/text.html" />
-	<mapID target="base_menu" url="html/libs/base/menu.html" />
-	<mapID target="base_splitter" url="html/libs/base/splitter.html" />
-	<mapID target="base_pin" url="html/libs/base/pin.html" />
-	<mapID target="base_tunnel" url="html/libs/base/tunnel.html" />
-	<mapID target="base_pull" url="html/libs/base/pull.html" />
-	<mapID target="base_probe" url="html/libs/base/probe.html" />
-	<mapID target="base_clock" url="html/libs/base/clock.html" />
-	<mapID target="base_extender" url="html/libs/base/extender.html" />
-	<mapID target="base_label" url="html/libs/base/label.html" />
+	<mapID target="wiring" url="html/libs/wiring/index.html" />
+	<mapID target="wiring_splitter" url="html/libs/wiring/splitter.html" />
+	<mapID target="wiring_pin" url="html/libs/wiring/pin.html" />
+	<mapID target="wiring_probe" url="html/libs/wiring/probe.html" />
+	<mapID target="wiring_tunnel" url="html/libs/wiring/tunnel.html" />
+	<mapID target="wiring_pull" url="html/libs/wiring/pull.html" />
+	<mapID target="wiring_clock" url="html/libs/wiring/clock.html" />
+	<mapID target="wiring_constant" url="html/libs/wiring/constant.html" />
+	<mapID target="wiring_const01" url="html/libs/wiring/const01.html" />
+	<mapID target="wiring_transist" url="html/libs/wiring/transist.html" />
+	<mapID target="wiring_transmis" url="html/libs/wiring/transmis.html" />
+	<mapID target="wiring_extender" url="html/libs/wiring/extender.html" />
 	<mapID target="gates" url="html/libs/gates/index.html" />
-	<mapID target="gates_constant" url="html/libs/gates/constant.html" />
 	<mapID target="gates_not" url="html/libs/gates/not.html" />
 	<mapID target="gates_buffer" url="html/libs/gates/buffer.html" />
 	<mapID target="gates_basic" url="html/libs/gates/basic.html" />
@@ -134,6 +130,14 @@
 	<mapID target="io_dotmat" url="html/libs/io/dotmat.html" />
 	<mapID target="io_tty" url="html/libs/io/tty.html" />
 	<mapID target="legacy" url="html/libs/legacy/index.html" />
+	<mapID target="base" url="html/libs/base/index.html" />
+	<mapID target="base_poke" url="html/libs/base/poke.html" />
+	<mapID target="base_edit" url="html/libs/base/edit.html" />
+	<mapID target="base_select" url="html/libs/base/select.html" />
+	<mapID target="base_wiring" url="html/libs/base/wiring.html" />
+	<mapID target="base_text" url="html/libs/base/text.html" />
+	<mapID target="base_menu" url="html/libs/base/menu.html" />
+	<mapID target="base_label" url="html/libs/base/label.html" />
 	<mapID target="legacy_flipflops" url="html/libs/legacy/flipflops.html" />
 	<mapID target="legacy_register" url="html/libs/legacy/register.html" />
 
@@ -152,6 +156,9 @@
 	<mapID target="icon_extender" url="icons/extender.gif" />
 	<mapID target="icon_label" url="icons/text.gif" />
 	<mapID target="icon_constant" url="icons/constant.gif" />
+	<mapID target="icon_const01" url="icons/ground.gif" />
+	<mapID target="icon_transist" url="icons/trans0.gif" />
+	<mapID target="icon_transmis" url="icons/transmis.gif" />
 	<mapID target="icon_not" url="icons/notGate.gif" />
 	<mapID target="icon_buffer" url="icons/bufferGate.gif" />
 	<mapID target="icon_basic" url="icons/andGate.gif" />

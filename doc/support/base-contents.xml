@@ -91,24 +91,20 @@
 	</tocitem>
 
 	<tocitem target="libs">
-	  <tocitem target="base">
-		<tocitem target="base_poke" image="icon_poke" />
-		<tocitem target="base_edit" image="icon_edit" />
-		<tocitem target="base_select" image="icon_select" />
-		<tocitem target="base_wiring" image="icon_wiring" />
-		<tocitem target="base_text" image="icon_text" />
-		<tocitem target="base_menu" image="icon_menu" />
-		<tocitem target="base_splitter" image="icon_splitter" />
-		<tocitem target="base_pin" image="icon_pin" />
-		<tocitem target="base_tunnel" image="icon_tunnel" />
-		<tocitem target="base_pull" image="icon_pull" />
-		<tocitem target="base_probe" image="icon_probe" />
-		<tocitem target="base_clock" image="icon_clock" />
-		<tocitem target="base_extender" image="icon_extender" />
-		<tocitem target="base_label" image="icon_label" />
+	  <tocitem target="wiring">
+		<tocitem target="wiring_splitter" image="icon_splitter" />
+		<tocitem target="wiring_pin" image="icon_pin" />
+		<tocitem target="wiring_probe" image="icon_probe" />
+		<tocitem target="wiring_tunnel" image="icon_tunnel" />
+		<tocitem target="wiring_pull" image="icon_pull" />
+		<tocitem target="wiring_clock" image="icon_clock" />
+		<tocitem target="wiring_constant" image="icon_constant" />
+		<tocitem target="wiring_const01" image="icon_const01" />
+		<tocitem target="wiring_transist" image="icon_transist" />
+		<tocitem target="wiring_transmis" image="icon_transmis" />
+		<tocitem target="wiring_extender" image="icon_extender" />
 	  </tocitem>
 	  <tocitem target="gates">
-		<tocitem target="gates_constant" image="icon_constant" />
 		<tocitem target="gates_not" image="icon_not" />
 		<tocitem target="gates_buffer" image="icon_buffer" />
 		<tocitem target="gates_basic" image="icon_basic" />
@@ -151,6 +147,15 @@
 		<tocitem target="io_hexdig" image="icon_hexdig" />
 		<tocitem target="io_dotmat" image="icon_dotmat" />
 		<tocitem target="io_tty" image="icon_tty" />
+	  </tocitem>
+	  <tocitem target="base">
+		<tocitem target="base_poke" image="icon_poke" />
+		<tocitem target="base_edit" image="icon_edit" />
+		<tocitem target="base_select" image="icon_select" />
+		<tocitem target="base_wiring" image="icon_wiring" />
+		<tocitem target="base_text" image="icon_text" />
+		<tocitem target="base_menu" image="icon_menu" />
+		<tocitem target="base_label" image="icon_label" />
 	  </tocitem>
 	  <tocitem target="legacy">
 		<tocitem target="legacy_flipflops" image="icon_legacy_ff" />
