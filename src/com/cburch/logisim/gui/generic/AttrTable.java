@@ -1,10 +1,13 @@
-/* Copyright (c) 2010, Carl Burch. License information is located in the
+/* Copyright (c) 2011, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
 package com.cburch.logisim.gui.generic;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Window;
 import java.awt.Dialog;
 import java.awt.Frame;
@@ -15,11 +18,13 @@ import java.awt.event.FocusEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.TableModelEvent;
@@ -43,8 +48,17 @@ public class AttrTable extends JPanel implements LocaleListener {
 		public void addAttrTableModelListener(AttrTableModelListener listener) { }
 		public void removeAttrTableModelListener(AttrTableModelListener listener) { }
 		
+		public String getTitle() { return null; }
 		public int getRowCount() { return 0; }
 		public AttrTableModelRow getRow(int rowIndex) { return null; }
+	}
+	
+	private static class TitleLabel extends JLabel {
+		@Override
+		public Dimension getMinimumSize() {
+			Dimension ret = super.getMinimumSize();
+			return new Dimension(1, ret.height);
+		}
 	}
 
 	private static class MyDialog extends JDialogOk {
@@ -86,7 +100,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 		}
 	}
 
-	private static class TableModelAdapter
+	private class TableModelAdapter
 			implements TableModel, AttrTableModelListener {
 		Window parent;
 		LinkedList<TableModelListener> listeners;
@@ -167,6 +181,14 @@ public class AttrTable extends JPanel implements LocaleListener {
 		//
 		// AttrTableModelListener methods
 		//
+		public void attrTitleChanged(AttrTableModelEvent e) {
+			if (e.getSource() != attrModel) {
+				attrModel.removeAttrTableModelListener(this);
+				return;
+			}
+			updateTitle();
+		}
+		
 		public void attrStructureChanged(AttrTableModelEvent e) {
 			if (e.getSource() != attrModel) {
 				attrModel.removeAttrTableModelListener(this);
@@ -330,25 +352,58 @@ public class AttrTable extends JPanel implements LocaleListener {
 	}
 
 	private Window parent;
+	private boolean titleEnabled;
+	private JLabel title;
 	private JTable table;
 	private TableModelAdapter tableModel;
 	private CellEditor editor = new CellEditor();
 
 	public AttrTable(Window parent) {
+		super(new BorderLayout());
 		this.parent = parent;
 		
+		titleEnabled = true;
+		title = new TitleLabel();
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setVerticalAlignment(SwingConstants.CENTER);
 		tableModel = new TableModelAdapter(parent, NULL_ATTR_MODEL);
 		table = new JTable(tableModel);
 		table.setDefaultEditor(Object.class, editor);
 		table.setTableHeader(null);
 		table.setRowHeight(20);
 		
-		this.add(table);
+		Font baseFont = title.getFont();
+		int titleSize = Math.round(baseFont.getSize() * 1.2f);
+		Font titleFont = baseFont.deriveFont((float) titleSize).deriveFont(Font.BOLD);
+		title.setFont(titleFont);
+		Color bgColor = new Color(240, 240, 240);
+		setBackground(bgColor);
+		table.setBackground(bgColor);
+		Object renderer = table.getDefaultRenderer(String.class);
+		if (renderer instanceof JComponent) {
+			((JComponent) renderer).setBackground(Color.WHITE);
+		}
+		
+		JScrollPane tableScroll = new JScrollPane(table);
+		
+		this.add(title, BorderLayout.PAGE_START);
+		this.add(tableScroll, BorderLayout.CENTER);
 		LocaleManager.addLocaleListener(this);
+		localeChanged();
+	}
+	
+	public void setTitleEnabled(boolean value) {
+		titleEnabled = value;
+		updateTitle();
+	}
+	
+	public boolean getTitleEnabled() {
+		return titleEnabled;
 	}
 	
 	public void setAttrTableModel(AttrTableModel value) {
 		tableModel.setAttrTableModel(value == null ? NULL_ATTR_MODEL : value);
+		updateTitle();
 	}
 	
 	public AttrTableModel getAttrTableModel() {
@@ -356,6 +411,21 @@ public class AttrTable extends JPanel implements LocaleListener {
 	}
 
 	public void localeChanged() {
+		updateTitle();
 		tableModel.fireTableChanged();
+	}
+	
+	private void updateTitle() {
+		if (titleEnabled) {
+			String text = tableModel.attrModel.getTitle();
+			if (text == null) {
+				title.setVisible(false);
+			} else {
+				title.setText(text);
+				title.setVisible(true);
+			}
+		} else {
+			title.setVisible(false);
+		}
 	}
 }

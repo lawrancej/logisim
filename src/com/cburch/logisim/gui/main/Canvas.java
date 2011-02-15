@@ -507,6 +507,7 @@ public class Canvas extends JPanel
 
 	private Project proj;
 	private Tool drag_tool;
+	private Selection selection;
 	private MouseMappings mappings;
 	private CanvasPane canvasPane;
 	private Bounds oldPreferredSize;
@@ -523,6 +524,7 @@ public class Canvas extends JPanel
 
 	public Canvas(Project proj) {
 		this.proj = proj;
+		this.selection = new Selection(proj, this);
 		this.painter = new CanvasPainter(this);
 		this.oldPreferredSize = null;
 		this.paintThread = new CanvasPaintThread(this);
@@ -539,7 +541,7 @@ public class Canvas extends JPanel
 		proj.addLibraryListener(myProjectListener);
 		proj.addCircuitListener(myProjectListener);
 		proj.getSimulator().addSimulatorListener(tickCounter);
-		proj.getSelection().addListener(myProjectListener);
+		selection.addListener(myProjectListener);
 		LocaleManager.addLocaleListener(this);
 
 		AttributeSet options = proj.getOptions().getAttributeSet();
@@ -597,7 +599,7 @@ public class Canvas extends JPanel
 	}
 	
 	public Selection getSelection() {
-		return proj.getSelection();
+		return selection;
 	}
 
 	GridPainter getGridPainter() {

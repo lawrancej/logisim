@@ -230,8 +230,7 @@ public class SelectionActions {
 		@Override
 		public void doIt(Project proj) {
 			oldClip = Clipboard.get();
-			Clipboard.set(sel,
-					proj.getFrame().getAttributeTable().getAttributeSet());
+			Clipboard.set(sel, sel.getAttributeSet());
 		}
 
 		@Override

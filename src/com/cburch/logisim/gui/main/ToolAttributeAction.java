@@ -1,7 +1,7 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.logisim.tools;
+package com.cburch.logisim.gui.main;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,11 +10,13 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
+import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.tools.key.KeyConfigurationEvent;
 import com.cburch.logisim.tools.key.KeyConfigurationResult;
 
 public class ToolAttributeAction extends Action {
-	public static Action create(AttributeSet attrs, Attribute<?> attr, Object value) {
+	public static Action create(Tool tool, Attribute<?> attr, Object value) {
+		AttributeSet attrs = tool.getAttributeSet();
 		KeyConfigurationEvent e = new KeyConfigurationEvent(0, attrs, null, null);
 		KeyConfigurationResult r = new KeyConfigurationResult(e, attr, value);
 		return new ToolAttributeAction(r);

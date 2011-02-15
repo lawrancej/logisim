@@ -1,7 +1,7 @@
 /* Copyright (c) 2010, Carl Burch. License information is located in the
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
-package com.cburch.logisim.tools;
+package com.cburch.logisim.gui.main;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -20,16 +20,10 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.gui.generic.AttributeTable;
-import com.cburch.logisim.gui.generic.AttributeTableListener;
-import com.cburch.logisim.gui.main.Canvas;
-import com.cburch.logisim.gui.main.CircuitAttributeListener;
-import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.UnmodifiableList;
 
-class SelectionAttributes extends AbstractAttributeSet
-		implements AttributeTableListener {
+class SelectionAttributes extends AbstractAttributeSet {
 	private static final Attribute<?>[] EMPTY_ATTRIBUTES = new Attribute<?>[0];
 	private static final Object[] EMPTY_VALUES = new Object[0];
 	
@@ -51,38 +45,33 @@ class SelectionAttributes extends AbstractAttributeSet
 		}
 	}
 	
+	private Canvas canvas;
+	private Selection selection;
 	private Listener listener;
 	private boolean listening;
-	private Project project;
-	private Circuit circuit;
-	private Selection oldSelection;
 	private Set<Component> selected;
 	private Attribute<?>[] attrs;
 	private boolean[] readOnly;
 	private Object[] values;
 	private List<Attribute<?>> attrsView;
 	
-	public SelectionAttributes() {
+	public SelectionAttributes(Canvas canvas, Selection selection) {
+		this.canvas = canvas;
+		this.selection = selection;
 		this.listener = new Listener();
 		this.listening = true;
-		this.oldSelection = null;
 		this.selected = Collections.emptySet();
 		this.attrs = EMPTY_ATTRIBUTES;
 		this.values = EMPTY_VALUES;
 		this.attrsView = Collections.emptyList();
+
+		selection.addListener(listener);
+		updateList(true);
+		setListening(true);
 	}
 	
-	void setCanvas(Canvas value) {
-		Selection oldSel = oldSelection;
-		Selection newSel = value.getSelection();
-		project = value.getProject();
-		circuit = value.getCircuit();
-		if (newSel != oldSel) {
-			if (oldSel != null) oldSel.removeListener(listener);
-			oldSelection = newSel;
-			if (newSel != null) newSel.addListener(listener);
-			updateList(true);
-		}
+	public Selection getSelection() {
+		return selection;
 	}
 	
 	void setListening(boolean value) {
@@ -95,11 +84,11 @@ class SelectionAttributes extends AbstractAttributeSet
 	}
 	
 	private void updateList(boolean ignoreIfSelectionSame) {
-		Selection selection = oldSelection;
+		Selection sel = selection;
 		Set<Component> oldSel = selected;
 		Set<Component> newSel;
-		if (selection == null) newSel = Collections.emptySet();
-		else newSel = createSet(selection.getComponents());
+		if (sel == null) newSel = Collections.emptySet();
+		else newSel = createSet(sel.getComponents());
 		if (haveSameElements(newSel, oldSel)) {
 			if (ignoreIfSelectionSame) return;
 			newSel = oldSel;
@@ -237,8 +226,9 @@ class SelectionAttributes extends AbstractAttributeSet
 
 	@Override
 	public List<Attribute<?>> getAttributes() {
-		if (selected.isEmpty() && circuit != null) {
-			return circuit.getStaticAttributes().getAttributes();
+		Circuit circ = canvas.getCircuit();
+		if (selected.isEmpty() && circ != null) {
+			return circ.getStaticAttributes().getAttributes();
 		} else {
 			return attrsView;
 		}
@@ -246,9 +236,12 @@ class SelectionAttributes extends AbstractAttributeSet
 	
 	@Override
 	public boolean isReadOnly(Attribute<?> attr) {
-		if (!project.getLogisimFile().contains(circuit)) return true;
-		if (selected.isEmpty() && circuit != null) {
-			return circuit.getStaticAttributes().isReadOnly(attr);
+		Project proj = canvas.getProject();
+		Circuit circ = canvas.getCircuit();
+		if (!proj.getLogisimFile().contains(circ)) {
+			return true;
+		} else if (selected.isEmpty() && circ != null) {
+			return circ.getStaticAttributes().isReadOnly(attr);
 		} else {
 			int i = findIndex(attr);
 			boolean[] ro = readOnly;
@@ -263,8 +256,9 @@ class SelectionAttributes extends AbstractAttributeSet
 
 	@Override
 	public <V> V getValue(Attribute<V> attr) {
-		if (selected.isEmpty() && circuit != null) {
-			return circuit.getStaticAttributes().getValue(attr);
+		Circuit circ = canvas.getCircuit();
+		if (selected.isEmpty() && circ != null) {
+			return circ.getStaticAttributes().getValue(attr);
 		} else {
 			int i = findIndex(attr);
 			Object[] vs = values;
@@ -276,8 +270,9 @@ class SelectionAttributes extends AbstractAttributeSet
 
 	@Override
 	public <V> void setValue(Attribute<V> attr, V value) {
-		if (selected.isEmpty() && circuit != null) {
-			circuit.getStaticAttributes().setValue(attr, value);
+		Circuit circ = canvas.getCircuit();
+		if (selected.isEmpty() && circ != null) {
+			circ.getStaticAttributes().setValue(attr, value);
 		} else {
 			int i = findIndex(attr);
 			Object[] vs = values;
@@ -296,20 +291,5 @@ class SelectionAttributes extends AbstractAttributeSet
 			if (attr == as[i]) return i;
 		}
 		return -1;
-	}
-
-	public void valueChangeRequested(AttributeTable table, AttributeSet attrs,
-			Attribute<?> attr, Object value) {
-		if (selected.isEmpty() && circuit != null) {
-			CircuitAttributeListener list = new CircuitAttributeListener(project, circuit);
-			list.valueChangeRequested(table, attrs, attr, value);
-		} else {
-			SetAttributeAction act = new SetAttributeAction(circuit,
-					Strings.getter("selectionAttributeAction"));
-			for (Component comp : selected) {
-				act.set(comp, attr, value);
-			}
-			project.doAction(act);
-		}
 	}
 }

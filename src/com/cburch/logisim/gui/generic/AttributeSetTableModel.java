@@ -1,3 +1,6 @@
+/* Copyright (c) 2011, Carl Burch. License information is located in the
+ * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
+
 package com.cburch.logisim.gui.generic;
 
 import java.awt.Component;
@@ -27,7 +30,12 @@ public abstract class AttributeSetTableModel
 		}
 		
 		public String getValue() {
-			return attr.toDisplayString(attrs.getValue(attr));
+			Object value = attrs.getValue(attr);
+			if (value == null) {
+				return "";
+			} else {
+				return attr.toDisplayString(value);
+			}
 		}
 		
 		public boolean isValueEditable() {
@@ -47,21 +55,12 @@ public abstract class AttributeSetTableModel
 				if (value instanceof String) {
 					value = attr.parse((String) value);
 				}
-				requestSetValue(attr, value);
+				setValueRequested(attr, value);
 			} catch (ClassCastException e) {
 				String msg = Strings.get("attributeChangeInvalidError")
 					+ ": " + e;
 				throw new AttrTableSetException(msg);
 			} catch (NumberFormatException e) {
-				/*
-				long now = System.currentTimeMillis();
-				if (aValue.equals(lastValue) && now < lastUpdate + 500) {
-					return;
-				}
-				lastValue = aValue;
-				lastUpdate = System.currentTimeMillis();
-				*/
-
 				String msg = Strings.get("attributeChangeInvalidError");
 				String emsg = e.getMessage();
 				if (emsg != null && emsg.length() > 0) msg += ": " + emsg;
@@ -81,15 +80,36 @@ public abstract class AttributeSetTableModel
 		this.listeners = new ArrayList<AttrTableModelListener>();
 		this.rowMap = new HashMap<Attribute<?>, AttrRow>();
 		this.rows = new ArrayList<AttrRow>();
-		for (Attribute<?> attr : attrs.getAttributes()) {
-			AttrRow row = new AttrRow(attr);
-			rowMap.put(attr, row);
-			rows.add(row);
+		if (attrs != null) {
+			for (Attribute<?> attr : attrs.getAttributes()) {
+				AttrRow row = new AttrRow(attr);
+				rowMap.put(attr, row);
+				rows.add(row);
+			}
+		}
+	}
+	
+	public abstract String getTitle();
+	
+	public AttributeSet getAttributeSet() {
+		return attrs;
+	}
+	
+	public void setAttributeSet(AttributeSet value) {
+		if (attrs != value) {
+			if (!listeners.isEmpty()) {
+				attrs.removeAttributeListener(this);
+			}
+			attrs = value;
+			if (!listeners.isEmpty()) {
+				attrs.addAttributeListener(this);
+			}
+			attributeListChanged(null);
 		}
 	}
 
 	public void addAttrTableModelListener(AttrTableModelListener listener) {
-		if (listeners.isEmpty()) {
+		if (listeners.isEmpty() && attrs != null) {
 			attrs.addAttributeListener(this);
 		}
 		listeners.add(listener);
@@ -97,8 +117,29 @@ public abstract class AttributeSetTableModel
 
 	public void removeAttrTableModelListener(AttrTableModelListener listener) {
 		listeners.remove(listener);
-		if (listeners.isEmpty()) {
+		if (listeners.isEmpty() && attrs != null) {
 			attrs.removeAttributeListener(this);
+		}
+	}
+	
+	protected void fireTitleChanged() {
+		AttrTableModelEvent event = new AttrTableModelEvent(this);
+		for (AttrTableModelListener l : listeners) {
+			l.attrTitleChanged(event);
+		}
+	}
+	
+	protected void fireStructureChanged() {
+		AttrTableModelEvent event = new AttrTableModelEvent(this);
+		for (AttrTableModelListener l : listeners) {
+			l.attrStructureChanged(event);
+		}
+	}
+	
+	protected void fireValueChanged(int index) {
+		AttrTableModelEvent event = new AttrTableModelEvent(this, index);
+		for (AttrTableModelListener l : listeners) {
+			l.attrValueChanged(event);
 		}
 	}
 
@@ -110,7 +151,8 @@ public abstract class AttributeSetTableModel
 		return rows.get(rowIndex);
 	}
 
-	protected abstract void requestSetValue(Attribute<Object> attr, Object value);
+	protected abstract void setValueRequested(Attribute<Object> attr, Object value)
+		throws AttrTableSetException;
 	
 	//
 	// AttributeListener methods
@@ -119,11 +161,15 @@ public abstract class AttributeSetTableModel
 		// if anything has changed, don't do anything
 		int index = 0;
 		boolean match = true;
+		int rowsSize = rows.size();
 		for (Attribute<?> attr : attrs.getAttributes()) {
-			if (rows.get(index).attr != attr) { match = false; break; }
+			if (index >= rowsSize || rows.get(index).attr != attr) {
+				match = false;
+				break;
+			}
 			index++;
 		}
-		if (!match || index != rows.size()) return;
+		if (match && index == rows.size()) return;
 		
 		// compute the new list of rows, possible adding into hash map
 		ArrayList<AttrRow> newRows = new ArrayList<AttrRow>();
@@ -143,11 +189,7 @@ public abstract class AttributeSetTableModel
 			rowMap.remove(attr);
 		}
 
-		// fire event
-		AttrTableModelEvent event = new AttrTableModelEvent(this);
-		for (AttrTableModelListener l : listeners) {
-			l.attrStructureChanged(event);
-		}
+		fireStructureChanged();
 	}
 
 	public void attributeValueChanged(AttributeEvent e) {
@@ -156,10 +198,7 @@ public abstract class AttributeSetTableModel
 		if (row != null) {
 			int index = rows.indexOf(row);
 			if (index >= 0) {
-				AttrTableModelEvent event = new AttrTableModelEvent(this, index);
-				for (AttrTableModelListener l : listeners) {
-					l.attrValueChanged(event);
-				}
+				fireValueChanged(index);
 			}
 		}
 	}

@@ -4,13 +4,13 @@
 package com.cburch.logisim.gui.appear;
 
 import com.cburch.draw.canvas.Canvas;
-import com.cburch.draw.gui.AttributeManager;
+import com.cburch.draw.gui.AttrTableDrawManager;
 import com.cburch.draw.toolbar.ToolbarModel;
 import com.cburch.draw.tools.DrawingAttributeSet;
 import com.cburch.draw.tools.SelectTool;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.gui.generic.AttributeTable;
+import com.cburch.logisim.gui.generic.AttrTable;
 import com.cburch.logisim.gui.generic.BasicZoomModel;
 import com.cburch.logisim.gui.generic.CanvasPane;
 import com.cburch.logisim.gui.generic.ZoomModel;
@@ -25,7 +25,7 @@ public class AppearanceView {
 	private AppearanceCanvas canvas;
 	private CanvasPane canvasPane;
 	private AppearanceToolbarModel toolbarModel;
-	private AttributeManager attributeManager;
+	private AttrTableDrawManager attrTableManager;
 	private ZoomModel zoomModel;
 	private AppearanceEditHandler editHandler;
 	
@@ -37,7 +37,7 @@ public class AppearanceView {
 		zoomModel = new BasicZoomModel(AppPreferences.APPEARANCE_SHOW_GRID,
 				AppPreferences.APPEARANCE_ZOOM, ZOOM_OPTIONS);
 		canvas.getGridPainter().setZoomModel(zoomModel);
-		attributeManager = null;
+		attrTableManager = null;
 		canvasPane = new CanvasPane(canvas);
 		canvasPane.setZoomModel(zoomModel);
 		editHandler = new AppearanceEditHandler(canvas);
@@ -67,11 +67,11 @@ public class AppearanceView {
 		return attrs;
 	}
 	
-	public AttributeManager getAttributeManager(AttributeTable table) {
-		AttributeManager ret = attributeManager;
+	public AttrTableDrawManager getAttrTableDrawManager(AttrTable table) {
+		AttrTableDrawManager ret = attrTableManager;
 		if (ret == null) {
-			ret = new AttributeManager(canvas, table, attrs);
-			attributeManager = ret;
+			ret = new AttrTableDrawManager(canvas, table, attrs);
+			attrTableManager = ret;
 		}
 		return ret;
 	}

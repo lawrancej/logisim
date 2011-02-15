@@ -29,16 +29,14 @@ import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitEvent;
 import com.cburch.logisim.circuit.CircuitListener;
 import com.cburch.logisim.comp.Component;
-import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.AttributeSets;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.file.LibraryEvent;
 import com.cburch.logisim.file.LibraryListener;
 import com.cburch.logisim.gui.appear.AppearanceView;
-import com.cburch.logisim.gui.generic.AttributeTable;
-import com.cburch.logisim.gui.generic.AttributeTableListener;
+import com.cburch.logisim.gui.generic.AttrTable;
+import com.cburch.logisim.gui.generic.AttrTableModel;
 import com.cburch.logisim.gui.generic.BasicZoomModel;
 import com.cburch.logisim.gui.generic.CanvasPane;
 import com.cburch.logisim.gui.generic.CardPanel;
@@ -52,7 +50,6 @@ import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
 import com.cburch.logisim.proj.Projects;
-import com.cburch.logisim.tools.SetAttributeAction;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.HorizontalSplitPane;
 import com.cburch.logisim.util.LocaleListener;
@@ -138,33 +135,6 @@ public class Frame extends LFrame implements LocaleListener {
 		}
 	}
 
-	private static class ComponentAttributeListener
-			implements AttributeTableListener {
-		Project proj;
-		Circuit circ;
-		Component comp;
-
-		ComponentAttributeListener(Project proj, Circuit circ,
-				Component comp) {
-			this.proj = proj;
-			this.circ = circ;
-			this.comp = comp;
-		}
-
-		public void valueChangeRequested(AttributeTable table,
-				AttributeSet attrs, Attribute<?> attr, Object value) {
-			if (!proj.getLogisimFile().contains(circ)) {
-				JOptionPane.showMessageDialog(proj.getFrame(),
-					Strings.get("cannotModifyCircuitError"));
-			} else {
-				SetAttributeAction act = new SetAttributeAction(circ,
-						Strings.getter("changeAttributeAction"));
-				act.set(comp, attr, value);
-				proj.doAction(act);
-			}
-		}
-	}
-	
 	private Project         proj;
 	private MyProjectListener myProjectListener = new MyProjectListener();
 
@@ -180,7 +150,7 @@ public class Frame extends LFrame implements LocaleListener {
 	private Toolbar         projectToolbar;
 	private ProjectToolbarModel projectToolbarModel;
 	private Explorer        explorer;
-	private AttributeTable  attrTable;
+	private AttrTable       attrTable;
 	private ZoomControl     zoom;
 	
 	// for the Layout view
@@ -188,13 +158,13 @@ public class Frame extends LFrame implements LocaleListener {
 	private Canvas          layoutCanvas;
 	private ZoomModel       layoutZoomModel;
 	private LayoutEditHandler layoutEditHandler;
+	private AttrTableSelectionModel attrTableSelectionModel;
 	
 	// for the Appearance view
 	private AppearanceView appearance;
 
 	public Frame(Project proj) {
 		this.proj = proj;
-		proj.setFrame(this);
 
 		setBackground(Color.white);
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -213,6 +183,7 @@ public class Frame extends LFrame implements LocaleListener {
 
 		layoutCanvas.getGridPainter().setZoomModel(layoutZoomModel);
 		layoutEditHandler = new LayoutEditHandler(this);
+		attrTableSelectionModel = new AttrTableSelectionModel(proj, layoutCanvas);
 
 		// set up menu bar and toolbar
 		menubar = new LogisimMenuBar(this, proj);
@@ -225,7 +196,7 @@ public class Frame extends LFrame implements LocaleListener {
 		projectToolbar.setVisible(AppPreferences.SHOW_PROJECT_TOOLBAR.getBoolean());
 		explorer = new Explorer(proj);
 		explorer.setListener(new ExplorerManip(proj, explorer));
-		attrTable = new AttributeTable(this);
+		attrTable = new AttrTable(this);
 		zoom = new ZoomControl(layoutZoomModel);
 
 		// set up the central area
@@ -248,7 +219,7 @@ public class Frame extends LFrame implements LocaleListener {
 		explPanel.add(projectToolbar, BorderLayout.NORTH);
 		explPanel.add(new JScrollPane(explorer), BorderLayout.CENTER);
 		JPanel attrPanel = new JPanel(new BorderLayout());
-		attrPanel.add(new JScrollPane(attrTable), BorderLayout.CENTER);
+		attrPanel.add(attrTable, BorderLayout.CENTER);
 		attrPanel.add(zoom, BorderLayout.SOUTH);
 
 		leftRegion = new HorizontalSplitPane(explPanel, attrPanel,
@@ -271,6 +242,7 @@ public class Frame extends LFrame implements LocaleListener {
 		menuListener.register(mainPanel);
 		KeyboardToolSelection.register(toolbar);
 
+		proj.setFrame(this);
 		if (proj.getTool() == null) {
 			proj.setTool(proj.getOptions().getToolbarData().getFirstTool());
 		}
@@ -315,18 +287,18 @@ public class Frame extends LFrame implements LocaleListener {
 
 	public void viewComponentAttributes(Circuit circ, Component comp) {
 		if (comp == null) {
-			attrTable.setAttributeSet(null, null);
+			attrTable.setAttrTableModel(null);
 			layoutCanvas.setHaloedComponent(null, null);
 		} else {
-			attrTable.setAttributeSet(comp.getAttributeSet(),
-				new ComponentAttributeListener(proj, circ, comp));
+			attrTable.setAttrTableModel(new AttrTableComponentModel(proj,
+					circ, comp));
 			layoutCanvas.setHaloedComponent(circ, comp);
 		}
 		layoutToolbarModel.setHaloedTool(null);
 		explorer.setHaloedTool(null);
 	}
 
-	public AttributeTable getAttributeTable() {
+	public AttrTable getAttributeTable() {
 		return attrTable;
 	}
 	
@@ -347,9 +319,7 @@ public class Frame extends LFrame implements LocaleListener {
 				appearance = app;
 			}
 			toolbar.setToolbarModel(app.getToolbarModel());
-			attrTable.setAttributeSet(app.getAttributeSet(),
-					app.getAttributeManager(attrTable));
-			app.getAttributeManager(attrTable).attributesSelected();
+			app.getAttrTableDrawManager(attrTable).attributesSelected();
 			zoom.setZoomModel(app.getZoomModel());
 			menuListener.setEditHandler(app.getEditHandler());
 			mainPanel.setView(view);
@@ -391,30 +361,32 @@ public class Frame extends LFrame implements LocaleListener {
 	}
 
 	private void viewAttributes(Tool oldTool, Tool newTool, boolean force) {
-		AttributeSet newAttrs = null;
+		AttributeSet newAttrs;
 		if (newTool == null) {
+			newAttrs = null;
 			if (!force) return;
 		} else {
-			newAttrs = newTool.getAttributeSet();
+			newAttrs = newTool.getAttributeSet(layoutCanvas);
 		}
 		if (newAttrs == null) {
-			AttributeSet oldAttrs = oldTool == null ? null : oldTool.getAttributeSet();
-			AttributeTableListener listen = attrTable.getAttributeTableListener();
-			if (!force && attrTable.getAttributeSet() != oldAttrs
-					&& !(listen instanceof CircuitAttributeListener)) {
+			AttrTableModel oldModel = attrTable.getAttrTableModel();
+			boolean same = oldModel instanceof AttrTableToolModel
+				&& ((AttrTableToolModel) oldModel).getTool() == oldTool;
+			if (!force && !same && !(oldModel instanceof AttrTableCircuitModel)) {
 				return;
 			}
 		}
 		if (newAttrs == null) {
 			Circuit circ = proj.getCurrentCircuit();
 			if (circ != null) {
-				attrTable.setAttributeSet(circ.getStaticAttributes(),
-						new CircuitAttributeListener(proj, circ));
+				attrTable.setAttrTableModel(new AttrTableCircuitModel(proj, circ));
 			} else if (force) {
-				attrTable.setAttributeSet(AttributeSets.EMPTY, null);
+				attrTable.setAttrTableModel(null);
 			}
+		} else if (newAttrs instanceof SelectionAttributes) {
+			attrTable.setAttrTableModel(attrTableSelectionModel);
 		} else {
-			attrTable.setAttributeSet(newAttrs, newTool.getAttributeTableListener(proj));
+			attrTable.setAttrTableModel(new AttrTableToolModel(proj, newTool));
 		}
 		if (newAttrs != null && newAttrs.getAttributes().size() > 0) {
 			layoutToolbarModel.setHaloedTool(newTool);

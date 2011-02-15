@@ -15,10 +15,7 @@ import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeDefaultProvider;
 import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.gui.generic.AttributeTable;
-import com.cburch.logisim.gui.generic.AttributeTableListener;
 import com.cburch.logisim.gui.main.Canvas;
-import com.cburch.logisim.proj.Project;
 
 //
 // DRAWING TOOLS
@@ -27,31 +24,13 @@ public abstract class Tool implements AttributeDefaultProvider {
 	private static Cursor dflt_cursor
 		= Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
 
-	private static class ToolAttributeListener
-			implements AttributeTableListener {
-		Project proj;
-		Tool tool;
-		
-		ToolAttributeListener(Project proj, Tool tool) {
-			this.proj = proj;
-			this.tool = tool;
-		}
-		
-		public void valueChangeRequested(AttributeTable table,
-				AttributeSet attrs, Attribute<?> attr, Object value) {
-			proj.doAction(ToolAttributeAction.create(attrs, attr, value));
-		}
-	}
-
 	public abstract String getName();
 	public abstract String getDisplayName();
 	public abstract String getDescription();
 	public Tool cloneTool() { return this; }
 	public boolean sharesSource(Tool other) { return this == other; }
 	public AttributeSet getAttributeSet() { return null; }
-	public AttributeTableListener getAttributeTableListener(Project proj) {
-		return new ToolAttributeListener(proj, this);
-	}
+	public AttributeSet getAttributeSet(Canvas canvas) { return getAttributeSet(); }
 	public boolean isAllDefaultValues(AttributeSet attrs, LogisimVersion ver) {
 		return false;
 	}

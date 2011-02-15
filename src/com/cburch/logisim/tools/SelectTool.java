@@ -23,7 +23,6 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.gui.generic.AttributeTableListener;
 import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.gui.main.SelectionActions;
@@ -90,7 +89,6 @@ public class SelectTool extends Tool {
 	private int curDy;
 	private boolean drawConnections;
 	private MoveGesture moveGesture;
-	private SelectionAttributes attrs;
 	private HashMap<Component,KeyConfigurator> keyHandlers;
 	private HashSet<Selection> selectionsAdded;
 	private Listener selListener;
@@ -98,7 +96,6 @@ public class SelectTool extends Tool {
 	public SelectTool() {
 		start = null;
 		state = IDLE;
-		attrs = new SelectionAttributes();
 		selectionsAdded = new HashSet<Selection>();
 		selListener = new Listener();
 		keyHandlers = null;
@@ -130,8 +127,8 @@ public class SelectTool extends Tool {
 	}
 	
 	@Override
-	public AttributeSet getAttributeSet() {
-		return attrs;
+	public AttributeSet getAttributeSet(Canvas canvas) {
+		return canvas.getSelection().getAttributeSet();
 	}
 
 	@Override
@@ -140,13 +137,7 @@ public class SelectTool extends Tool {
 	}
 
 	@Override
-	public AttributeTableListener getAttributeTableListener(Project proj) {
-		return attrs;
-	}
-
-	@Override
 	public void draw(Canvas canvas, ComponentDrawContext context) {
-		attrs.setCanvas(canvas);
 		Project proj = canvas.getProject();
 		int dx = curDx;
 		int dy = curDy;
@@ -218,7 +209,6 @@ public class SelectTool extends Tool {
 		if (!selectionsAdded.contains(sel)) {
 			sel.addListener(selListener);
 		}
-		attrs.setCanvas(canvas);
 	}
 	
 	@Override
@@ -233,7 +223,6 @@ public class SelectTool extends Tool {
 
 	@Override
 	public void mousePressed(Canvas canvas, Graphics g, MouseEvent e) {
-		attrs.setCanvas(canvas);
 		Project proj = canvas.getProject();
 		Selection sel = proj.getSelection();
 		Circuit circuit = canvas.getCircuit();
@@ -345,8 +334,6 @@ public class SelectTool extends Tool {
 	@Override
 	public void mouseReleased(Canvas canvas, Graphics g, MouseEvent e) {
 		Project proj = canvas.getProject();
-		proj.getFrame().viewComponentAttributes(proj.getCurrentCircuit(), null);
-		proj.getFrame().getAttributeTable().setAttributeSet(attrs, attrs);
 		if (state == MOVING) {
 			setState(proj, IDLE);
 			computeDxDy(proj, e, g);

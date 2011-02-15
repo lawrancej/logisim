@@ -30,9 +30,10 @@ abstract class AbstractFlipFlop extends InstanceFactory {
 	
 	private Attribute<AttributeOption> triggerAttribute;
 	
-	protected AbstractFlipFlop(String name, StringGetter desc,
+	protected AbstractFlipFlop(String name, String iconName, StringGetter desc,
 			int numInputs, boolean allowLevelTriggers) {
 		super(name, desc);
+		setIconName(iconName);
 		triggerAttribute = allowLevelTriggers ? StdAttr.TRIGGER : StdAttr.EDGE_TRIGGER;
 		setAttributes(new Attribute[] {
 				triggerAttribute, StdAttr.LABEL, StdAttr.LABEL_FONT
@@ -71,9 +72,6 @@ abstract class AbstractFlipFlop extends InstanceFactory {
 	//
 	// abstract methods intended to be implemented in subclasses
 	//
-	@Override
-	public abstract void paintIcon(InstancePainter painter);
-
 	protected abstract String getInputName(int index);
 
 	protected abstract Value computeValue(Value[] inputs,

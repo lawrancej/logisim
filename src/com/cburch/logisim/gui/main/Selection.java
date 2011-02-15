@@ -117,11 +117,13 @@ public class Selection extends SelectionBase {
 
 	private MyListener myListener;
 	private boolean isVisible = true;
+	private SelectionAttributes attrs;
 
-	public Selection(Project proj) {
+	public Selection(Project proj, Canvas canvas) {
 		super(proj);
 		
 		myListener = new MyListener();
+		attrs = new SelectionAttributes(canvas, this);
 		proj.addProjectListener(myListener);
 		proj.addCircuitListener(myListener);
 	}
@@ -131,6 +133,10 @@ public class Selection extends SelectionBase {
 	//
 	public boolean isEmpty() {
 		return selected.isEmpty() && lifted.isEmpty();
+	}
+	
+	public AttributeSet getAttributeSet() {
+		return attrs;
 	}
 
 	@Override

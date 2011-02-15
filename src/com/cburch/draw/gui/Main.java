@@ -15,7 +15,7 @@ import com.cburch.draw.shapes.Rectangle;
 import com.cburch.draw.tools.DrawingAttributeSet;
 import com.cburch.draw.undo.UndoLog;
 import com.cburch.draw.undo.UndoLogDispatcher;
-import com.cburch.logisim.gui.generic.AttributeTable;
+import com.cburch.logisim.gui.generic.AttrTable;
 import com.cburch.logisim.util.HorizontalSplitPane;
 import com.cburch.logisim.util.VerticalSplitPane;
 
@@ -39,9 +39,9 @@ public class Main {
 		canvas.setModel(model, new UndoLogDispatcher(new UndoLog()));
 		canvas.setTool(toolbar.getDefaultTool());
 		
-		AttributeTable table = new AttributeTable(frame);
-		AttributeManager manager = new AttributeManager(canvas, table, attrs);
-		table.setAttributeSet(attrs, manager);
+		AttrTable table = new AttrTable(frame);
+		AttrTableDrawManager manager = new AttrTableDrawManager(canvas, table, attrs);
+		manager.attributesSelected();
 		HorizontalSplitPane west = new HorizontalSplitPane(toolbar, table, 0.5);
 		VerticalSplitPane all = new VerticalSplitPane(west, canvas, 0.3);
 

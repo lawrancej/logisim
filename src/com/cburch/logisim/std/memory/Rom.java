@@ -3,8 +3,6 @@
 
 package com.cburch.logisim.std.memory;
 
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Window;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -26,11 +24,9 @@ import com.cburch.logisim.gui.hex.HexFile;
 import com.cburch.logisim.gui.hex.HexFrame;
 import com.cburch.logisim.gui.main.Frame;
 import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.GraphicsUtil;
 
 public class Rom extends Mem {
 	public static Attribute<MemContents> CONTENTS_ATTR = new ContentsAttribute();
@@ -41,6 +37,7 @@ public class Rom extends Mem {
 	
 	public Rom() {
 		super("ROM", Strings.getter("romComponent"), 0);
+		setIconName("rom.gif");
 		memListeners = new WeakHashMap<Instance,MemListener>();
 	}
 
@@ -112,20 +109,6 @@ public class Rom extends Mem {
 
 		int val = myState.getContents().get(addr);
 		state.setPort(DATA, Value.createKnown(dataBits, val), DELAY);
-	}
-
-	@Override
-	public void paintIcon(InstancePainter painter) {
-		Graphics g = painter.getGraphics();
-		Font old = g.getFont();
-		g.setFont(old.deriveFont(9.0f));
-		GraphicsUtil.drawCenteredText(g, "ROM", 10, 9);
-		g.setFont(old);
-		g.drawRect(0, 4, 19, 12);
-		for (int dx = 2; dx < 20; dx += 5) {
-			g.drawLine(dx,  2, dx,  4);
-			g.drawLine(dx, 16, dx, 18);
-		}
 	}
 	
 	@Override

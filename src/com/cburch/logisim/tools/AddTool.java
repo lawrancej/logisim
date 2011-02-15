@@ -29,6 +29,7 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.gui.main.SelectionActions;
+import com.cburch.logisim.gui.main.ToolAttributeAction;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Dependencies;
@@ -447,7 +448,7 @@ public class AddTool extends Tool {
 		@SuppressWarnings("unchecked")
 		Attribute<Direction> attr = (Attribute<Direction>) feature;
 		if (attr != null) {
-			Action act = ToolAttributeAction.create(attrs, attr, facing);
+			Action act = ToolAttributeAction.create(this, attr, facing);
 			canvas.getProject().doAction(act);
 		}
 	}

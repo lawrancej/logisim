@@ -4,7 +4,6 @@
 package com.cburch.logisim.file;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
@@ -14,7 +13,6 @@ import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.io.BufferedReader;
-import java.io.StringWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,7 +29,6 @@ import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentFactory;
-import com.cburch.logisim.legacy.Version1Support;
 import com.cburch.logisim.proj.Projects;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
@@ -422,9 +419,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
 		} else if (firstLine.equals("Logisim v1.0")) {
 			// if this is a 1.0 file, then set up a pipe to translate to
 			// 2.0 and then interpret as a 2.0 file
-			StringWriter out = new StringWriter();
-			Version1Support.translate(buf, out); 
-			in = new ByteArrayInputStream(out.toString().getBytes("UTF-8"));
+			throw new IOException("Version 1.0 files no longer supported");
 		}
 
 		XmlReader xmlReader = new XmlReader(loader);

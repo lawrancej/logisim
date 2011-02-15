@@ -27,13 +27,11 @@ import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
-import com.cburch.logisim.gui.generic.AttributeTableListener;
 import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.gui.main.SelectionActions;
 import com.cburch.logisim.gui.main.Selection.Event;
 import com.cburch.logisim.proj.Action;
-import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.GraphicsUtil;
 
 public class EditTool extends Tool {
@@ -114,13 +112,13 @@ public class EditTool extends Tool {
 	}
 	
 	@Override
-	public AttributeTableListener getAttributeTableListener(Project proj) {
-		return select.getAttributeTableListener(proj);
+	public void setAttributeSet(AttributeSet attrs) {
+		select.setAttributeSet(attrs);
 	}
 	
 	@Override
-	public void setAttributeSet(AttributeSet attrs) {
-		select.setAttributeSet(attrs);
+	public AttributeSet getAttributeSet(Canvas canvas) {
+		return canvas.getSelection().getAttributeSet();
 	}
 
 	@Override

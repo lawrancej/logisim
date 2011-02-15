@@ -99,11 +99,12 @@ public class PullResistor extends InstanceFactory {
 	
 	private void paintBase(InstancePainter painter, Value pullValue,
 			Color inColor, Color outColor) {
+		boolean color = painter.shouldDrawColor();
 		Direction facing = painter.getAttributeValue(StdAttr.FACING);
 		Graphics g = painter.getGraphics();
 		Color baseColor = g.getColor();
 		GraphicsUtil.switchToWidth(g, 3);
-		if (inColor != null) g.setColor(inColor);
+		if (color && inColor != null) g.setColor(inColor);
 		if (facing == Direction.EAST) {
 			GraphicsUtil.drawText(g, pullValue.toDisplayString(), -32, 0,
 					GraphicsUtil.H_RIGHT, GraphicsUtil.V_CENTER);
@@ -125,7 +126,7 @@ public class PullResistor extends InstanceFactory {
 		}
 		g.drawLine(0, -30, 0, -26);
 		g.drawLine(-6, -30, 6, -30);
-		if (outColor != null) g.setColor(outColor);
+		if (color && outColor != null) g.setColor(outColor);
 		g.drawLine(0, -4, 0, 0);
 		g.setColor(baseColor);
 		GraphicsUtil.switchToWidth(g, 2);

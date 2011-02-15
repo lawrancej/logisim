@@ -46,7 +46,7 @@ public class Project {
 
 	private class MyListener implements Selection.Listener, LibraryListener {
 		public void selectionChanged(Selection.Event e) {
-			fireEvent(ProjectEvent.ACTION_SELECTION, selection);
+			fireEvent(ProjectEvent.ACTION_SELECTION, e.getSource());
 		}
 		
 		public void libraryChanged(LibraryEvent event) {
@@ -88,17 +88,12 @@ public class Project {
 		= new EventSourceWeakSupport<LibraryListener>();
 	private EventSourceWeakSupport<CircuitListener> circuitListeners
 		= new EventSourceWeakSupport<CircuitListener>();
-	// private ProjectEvent repaint;
 	private Dependencies depends;
-	private Selection selection = new Selection(this);
 	private MyListener myListener = new MyListener();
 	private boolean startupScreen = false;
 
 	public Project(LogisimFile file) {
-		selection.addListener(myListener);
 		addLibraryListener(myListener);
-		// this.repaint = new ProjectEvent(ProjectEvent.ACTION_COMPLETED,
-		//  this, null);
 		setLogisimFile(file);
 	}
 
@@ -107,6 +102,7 @@ public class Project {
 		Frame oldValue = frame;
 		frame = value;
 		Projects.windowCreated(this, oldValue, value);
+		value.getCanvas().getSelection().addListener(myListener);
 	}
 
 	//
@@ -181,7 +177,10 @@ public class Project {
 	}
 
 	public Selection getSelection() {
-		return selection;
+		if (frame == null) return null;
+		Canvas canvas = frame.getCanvas();
+		if (canvas == null) return null;
+		return canvas.getSelection();
 	}
 
 	public boolean isFileDirty() {
@@ -291,12 +290,18 @@ public class Project {
 		Circuit newCircuit = value.getCircuit();
 		boolean circuitChanged = old == null || oldCircuit != newCircuit;
 		if (circuitChanged) {
-			if (tool != null) tool.deselect(frame.getCanvas());
-			Action act = SelectionActions.dropAll(selection);
-			if (act != null) {
-				doAction(act);
+			Canvas canvas = frame == null ? null : frame.getCanvas();
+			if (canvas != null) {
+				if (tool != null) tool.deselect(canvas);
+				Selection selection = canvas.getSelection();
+				if (selection != null) {
+					Action act = SelectionActions.dropAll(selection);
+					if (act != null) {
+						doAction(act);
+					}
+				}
+				if (tool != null) tool.select(canvas);
 			}
-			if (tool != null) tool.select(frame.getCanvas());
 			if (oldCircuit != null) {
 				for (CircuitListener l : circuitListeners) {
 					oldCircuit.removeCircuitListener(l);
@@ -328,7 +333,8 @@ public class Project {
 		Tool old = tool;
 		Canvas canvas = frame.getCanvas();
 		if (old != null) old.deselect(canvas);
-		if (!selection.isEmpty()) {
+		Selection selection = canvas.getSelection();
+		if (selection != null && !selection.isEmpty()) {
 			Circuit circuit = canvas.getCircuit();
 			CircuitMutation xn = new CircuitMutation(circuit);
 			if (value == null) {

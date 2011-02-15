@@ -30,9 +30,12 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 import com.cburch.logisim.file.MouseMappings;
-import com.cburch.logisim.gui.generic.AttributeTable;
+import com.cburch.logisim.gui.generic.AttrTable;
+import com.cburch.logisim.gui.generic.AttrTableModel;
+import com.cburch.logisim.gui.main.AttrTableToolModel;
 import com.cburch.logisim.gui.main.Explorer;
 import com.cburch.logisim.gui.main.Explorer.Event;
+import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.InputEventUtil;
@@ -120,12 +123,18 @@ class MouseOptions extends OptionsPanel {
 			int row = mappings.getSelectedRow();
 			if (row < 0) {
 				remove.setEnabled(false);
-				attr_table.setAttributeSet(null, null);
+				attrTable.setAttrTableModel(null);
 			} else {
 				remove.setEnabled(true);
 				Tool tool = model.getTool(row);
-				attr_table.setAttributeSet(tool.getAttributeSet(),
-					tool.getAttributeTableListener(getProject()));
+				Project proj = getProject();
+				AttrTableModel model;
+				if (tool.getAttributeSet() == null) {
+					model = null;
+				} else {
+					model = new AttrTableToolModel(proj, tool);
+				}
+				attrTable.setAttrTableModel(model);
 			}
 		}
 
@@ -212,7 +221,7 @@ class MouseOptions extends OptionsPanel {
 	private Explorer explorer;
 	private JPanel addArea = new AddArea();
 	private JTable mappings = new JTable();
-	private AttributeTable attr_table;
+	private AttrTable attrTable;
 	private JButton remove = new JButton();
 
 	public MouseOptions(OptionsFrame window) {
@@ -231,17 +240,16 @@ class MouseOptions extends OptionsPanel {
 		mappings.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		mappings.getSelectionModel().addListSelectionListener(listener);
 		mappings.clearSelection();
-		JScrollPane mapping_pane = new JScrollPane(mappings);
+		JScrollPane mapPane = new JScrollPane(mappings);
 
 		// Button for removing current mapping
-		JPanel remove_area = new JPanel();
+		JPanel removeArea = new JPanel();
 		remove.addActionListener(listener);
 		remove.setEnabled(false);
-		remove_area.add(remove);
+		removeArea.add(remove);
 
 		// Area for viewing/changing attributes
-		attr_table = new AttributeTable(getOptionsFrame());
-		JScrollPane attr_pane = new JScrollPane(attr_table);
+		attrTable = new AttrTable(getOptionsFrame());
 
 		GridBagLayout gridbag = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -264,9 +272,9 @@ class MouseOptions extends OptionsPanel {
 		gbc.gridx = 2;
 		gbc.gridy = GridBagConstraints.RELATIVE;
 		gbc.weighty = 0.0; gridbag.setConstraints(addArea, gbc); add(addArea);
-		gbc.weighty = 1.0; gridbag.setConstraints(mapping_pane, gbc); add(mapping_pane);
-		gbc.weighty = 0.0; gridbag.setConstraints(remove_area, gbc); add(remove_area);
-		gbc.weighty = 1.0; gridbag.setConstraints(attr_pane, gbc); add(attr_pane);
+		gbc.weighty = 1.0; gridbag.setConstraints(mapPane, gbc); add(mapPane);
+		gbc.weighty = 0.0; gridbag.setConstraints(removeArea, gbc); add(removeArea);
+		gbc.weighty = 1.0; gridbag.setConstraints(attrTable, gbc); add(attrTable);
 
 		getOptions().getMouseMappings().addMouseMappingsListener(listener);
 		setCurrentTool(null);

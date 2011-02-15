@@ -3,22 +3,12 @@
 
 package com.cburch.logisim.std.memory;
 
-import java.awt.Graphics;
-
 import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.util.GraphicsUtil;
 
 public class TFlipFlop extends AbstractFlipFlop {
 	public TFlipFlop() {
-		super("T Flip-Flop", Strings.getter("tFlipFlopComponent"), 1, false);
-	}
-
-	@Override
-	public void paintIcon(InstancePainter painter) {
-		Graphics g = painter.getGraphics();
-		g.drawRect(2, 2, 16, 16);
-		GraphicsUtil.drawCenteredText(g, "T", 10, 8);
+		super("T Flip-Flop", "tFlipFlop.gif",
+				Strings.getter("tFlipFlopComponent"), 1, false);
 	}
 
 	@Override

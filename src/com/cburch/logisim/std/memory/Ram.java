@@ -4,8 +4,6 @@
 package com.cburch.logisim.std.memory;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -30,7 +28,6 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.GraphicsUtil;
 
 public class Ram extends Mem {
 	static final AttributeOption BUS_COMBINED
@@ -61,6 +58,7 @@ public class Ram extends Mem {
 
 	public Ram() {
 		super("RAM", Strings.getter("ramComponent"), 3);
+		setIconName("ram.gif");
 		setInstanceLogger(Logger.class);
 	}
 	
@@ -221,20 +219,6 @@ public class Ram extends Mem {
 			painter.drawPort(WE, Strings.get("ramWELabel"), Direction.SOUTH);
 			painter.getGraphics().setColor(Color.BLACK);
 			painter.drawPort(DIN, Strings.get("ramDataLabel"), Direction.EAST);
-		}
-	}
-
-	@Override
-	public void paintIcon(InstancePainter painter) {
-		Graphics g = painter.getGraphics();
-		Font old = g.getFont();
-		g.setFont(old.deriveFont(9.0f));
-		GraphicsUtil.drawCenteredText(g, "RAM", 10, 9);
-		g.setFont(old);
-		g.drawRect(0, 4, 19, 12);
-		for (int dx = 2; dx < 20; dx += 5) {
-			g.drawLine(dx,  2, dx,  4);
-			g.drawLine(dx, 16, dx, 18);
 		}
 	}
 

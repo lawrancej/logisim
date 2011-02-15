@@ -6,6 +6,7 @@ package com.cburch.draw.tools;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.AbstractCanvasObject;
 import com.cburch.draw.shapes.DrawAttr;
+import com.cburch.logisim.data.AbstractAttributeSet;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
@@ -35,32 +36,66 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 				DrawAttr.PAINT_STROKE,
 				Integer.valueOf(1), Color.BLACK,
 				Color.WHITE, Color.BLACK, Integer.valueOf(10) });
+	
+	private class Restriction extends AbstractAttributeSet
+			implements AttributeListener {
+		private List<Attribute<?>> selectedAttrs;
+		private List<Attribute<?>> selectedView;
+		
+		Restriction(List<Attribute<?>> attrs) {
+			selectedAttrs = new ArrayList<Attribute<?>>(attrs);
+			selectedView = Collections.unmodifiableList(selectedAttrs);
+			DrawingAttributeSet.this.addAttributeListener(this);
+		}
+
+		@Override
+		protected void copyInto(AbstractAttributeSet dest) {
+			DrawingAttributeSet.this.addAttributeListener(this);
+		}
+
+		@Override
+		public List<Attribute<?>> getAttributes() {
+			return selectedView;
+		}
+
+		@Override
+		public <V> V getValue(Attribute<V> attr) {
+			return DrawingAttributeSet.this.getValue(attr);
+		}
+
+		@Override
+		public <V> void setValue(Attribute<V> attr, V value) {
+			DrawingAttributeSet.this.setValue(attr, value);
+		}
+
+		//
+		// AttributeListener methods
+		//
+		public void attributeListChanged(AttributeEvent e) {
+			fireAttributeListChanged();
+		}
+
+		public void attributeValueChanged(AttributeEvent e) {
+			if (selectedAttrs.contains(e.getAttribute())) {
+				@SuppressWarnings("unchecked")
+				Attribute<Object> attr = (Attribute<Object>) e.getAttribute();
+				fireAttributeValueChanged(attr, e.getValue());
+			}
+		}
+	}
 
 	private EventSourceWeakSupport<AttributeListener> listeners;
 	private List<Attribute<?>> attrs;
 	private List<Object> values;
-	private List<Attribute<?>> selectedAttrs;
-	private List<Attribute<?>> selectedView;
 	
 	public DrawingAttributeSet() {
 		listeners = new EventSourceWeakSupport<AttributeListener>();
 		attrs = ATTRS_ALL;
 		values = DEFAULTS_ALL;
-		selectedAttrs = new ArrayList<Attribute<?>>();
-		selectedAttrs.addAll(attrs);
-		selectedView = Collections.unmodifiableList(selectedAttrs);
 	}
 	
-	public void setAttributes(List<Attribute<?>> attrs) {
-		List<Attribute<?>> selected = selectedAttrs;
-		if (!selected.equals(attrs)) {
-			selected.clear();
-			selected.addAll(attrs);
-			AttributeEvent e = new AttributeEvent(this);
-			for (AttributeListener listener : listeners) {
-				listener.attributeListChanged(e);
-			}
-		}
+	public AttributeSet createSubset(List<Attribute<?>> attrs) {
+		return new Restriction(attrs);
 	}
 	
 	public void addAttributeListener(AttributeListener l) {
@@ -77,7 +112,6 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 			DrawingAttributeSet ret = (DrawingAttributeSet) super.clone();
 			ret.listeners = new EventSourceWeakSupport<AttributeListener>();
 			ret.values = new ArrayList<Object>(this.values);
-			ret.selectedAttrs = new ArrayList<Attribute<?>>(this.selectedAttrs);
 			return ret;
 		} catch (CloneNotSupportedException e) {
 			return null;
@@ -85,15 +119,15 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 	}
 	
 	public List<Attribute<?>> getAttributes() {
-		return selectedView;
+		return attrs;
 	}
 
 	public boolean containsAttribute(Attribute<?> attr) {
-		return selectedAttrs.contains(attr);
+		return attrs.contains(attr);
 	}
 	
 	public Attribute<?> getAttribute(String name) {
-		for (Attribute<?> attr : selectedAttrs) {
+		for (Attribute<?> attr : attrs) {
 			if (attr.getName().equals(name)) return attr;
 		}
 		return null;

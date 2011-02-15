@@ -342,7 +342,7 @@ public class Attributes {
 
 		@Override
 		public String toDisplayString(Direction value) {
-			return value.toDisplayString();
+			return value == null ? "???" : value.toDisplayString();
 		}
 
 		@Override
@@ -358,6 +358,7 @@ public class Attributes {
 
 		@Override
 		public String toDisplayString(Font f) {
+			if (f == null) return "???";
 			return f.getFamily()
 				+ " " + FontUtil.toStyleDisplayString(f.getStyle())
 				+ " " + f.getSize();

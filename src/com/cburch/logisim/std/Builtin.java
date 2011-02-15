@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.cburch.logisim.legacy.Legacy;
 import com.cburch.logisim.std.arith.Arithmetic;
 import com.cburch.logisim.std.base.Base;
 import com.cburch.logisim.std.gates.Gates;
@@ -30,7 +29,6 @@ public class Builtin extends Library {
 			new Arithmetic(),
 			new Memory(),
 			new Io(),
-			new Legacy(),
 		});
 	}
 
