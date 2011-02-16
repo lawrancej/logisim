@@ -129,7 +129,6 @@
 	<mapID target="io_hexdig" url="html/libs/io/hexdig.html" />
 	<mapID target="io_dotmat" url="html/libs/io/dotmat.html" />
 	<mapID target="io_tty" url="html/libs/io/tty.html" />
-	<mapID target="legacy" url="html/libs/legacy/index.html" />
 	<mapID target="base" url="html/libs/base/index.html" />
 	<mapID target="base_poke" url="html/libs/base/poke.html" />
 	<mapID target="base_edit" url="html/libs/base/edit.html" />
@@ -138,8 +137,6 @@
 	<mapID target="base_text" url="html/libs/base/text.html" />
 	<mapID target="base_menu" url="html/libs/base/menu.html" />
 	<mapID target="base_label" url="html/libs/base/label.html" />
-	<mapID target="legacy_flipflops" url="html/libs/legacy/flipflops.html" />
-	<mapID target="legacy_register" url="html/libs/legacy/register.html" />
 
 	<mapID target="icon_poke" url="icons/poke.gif" />
 	<mapID target="icon_edit" url="icons/select.gif" />
@@ -193,6 +190,4 @@
 	<mapID target="icon_hexdig" url="icons/hexdig.gif" />
 	<mapID target="icon_dotmat" url="icons/dotmat.gif" />
 	<mapID target="icon_tty" url="icons/tty.gif" />
-	<mapID target="icon_legacy_ff" url="icons/dFlipFlop.gif" />
-	<mapID target="icon_legacy_reg" url="icons/register.gif" />
 </map>

@@ -157,10 +157,6 @@
 		<tocitem target="base_menu" image="icon_menu" />
 		<tocitem target="base_label" image="icon_label" />
 	  </tocitem>
-	  <tocitem target="legacy">
-		<tocitem target="legacy_flipflops" image="icon_legacy_ff" />
-		<tocitem target="legacy_register" image="icon_legacy_reg" />
-	  </tocitem>
 	</tocitem>
 </tocitem>
 </toc>
