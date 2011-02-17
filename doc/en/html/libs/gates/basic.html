@@ -152,9 +152,11 @@ side.</dd>
 <dd>Indicates how false and true results should be translated into output values.
 By default, false is indicated by a low voltage (0) and true by a high voltage (1),
 but one or the other can be replaced by a high-impedance (<q>floating</q>) value
-instead. This allows wired-or and wired-and connections, as illustrated below;
-at left, the wired-or is built using floating/1 output values on the gates and a pull-to-0 resistor,
-at right, the wired-and is built using 0/floating output values on the gates and a pull-to-1 resistor.
+instead. This allows wired-or and wired-and connections, as illustrated below:
+At left, the buffers' Output Value attribute is floating/1 and the resistor pulls to 0,
+giving wired-or behavior;
+at right, the buffers' Output Value attribute is 0/floating and the resistor pulls to 1,
+giving wired-and behavior.
 
 <center><img src="../../../img-libs/wand-wor.png"></center></dd> 
 

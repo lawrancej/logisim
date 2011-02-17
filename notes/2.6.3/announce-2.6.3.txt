@@ -10,6 +10,10 @@ Feature: Added an enable input to the multiplexer, demultiplexer, and decoder, a
 
 Feature: During a rectangular selection, the rectangle is drawn with a light blue, and components that will be affected are indicated with a slate-blue outline.
 
+Feature: The gates in the Gates library (except Controlled Buffer and Controlled Inverter) have a new Output Value attribute so that a gate can output a floating value when the result is true or when the result is false. This is useful for building a wired-or and wired-and connections.
+
+Feature: The attribute table contains a header line describing which attributes are being edited.
+
 Feature: Added a "Close" item to the Window menu, which closes the current window. The "Close" item in the File menu continues to close the current project; its shortcut is now Control-Shift-W.
 
 Bug fix: When simulation is disabled, selecting Tick Once will still cause a tick once the simulation is stepped.
@@ -18,14 +22,9 @@ Bug fix: Changing the label for a Tunnel would not immediately affect the values
 
 Bug fix: In the Karnaugh maps drawn by the Combinational Analysis module, each implicant was indicated by a red rectangle, but they were meant to use varied colors.
 
-Design change: For the Memory library's Random component, a reset when the seed is 0 computes a new initial seed based on the current time. (It previously reset to the initial seed for the current simulation.)
-
-
-Feature: The gates in the Gates library (except Controlled Buffer and Controlled Inverter) have a new Output Value attribute so that a gate can output a floating value when the result is true or when the result is false. This is useful for building a wired-or and wired-and connections.
-
-Feature: The attribute table contains a header line describing which attributes are being edited.
-
 Bug fix: Pull resistors did not respect "printer view," which is meant to be black and white.
+
+Design change: For the Memory library's Random component, a reset when the seed is 0 computes a new initial seed based on the current time. (It previously reset to the initial seed for the current simulation.)
 
 Design change: Deleted the "Legacy" library for supporting versions 1.x of Logisim.
 
