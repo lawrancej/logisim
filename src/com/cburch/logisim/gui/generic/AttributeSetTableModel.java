@@ -34,7 +34,11 @@ public abstract class AttributeSetTableModel
 			if (value == null) {
 				return "";
 			} else {
-				return attr.toDisplayString(value);
+				try {
+					return attr.toDisplayString(value);
+				} catch (Exception e) {
+					return "???";
+				}
 			}
 		}
 		

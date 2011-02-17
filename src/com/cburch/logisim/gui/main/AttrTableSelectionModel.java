@@ -33,6 +33,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 		ComponentFactory wireFactory = null;
 		ComponentFactory factory = null;
 		int factoryCount = 0;
+		int totalCount = 0;
 		boolean variousFound = false;
 		
 		Selection selection = canvas.getSelection();
@@ -51,6 +52,9 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 			} else {
 				variousFound = true;
 			}
+			if (!(comp instanceof Wire)) {
+				totalCount++;
+			}
 		}
 		
 		if (factory == null) {
@@ -58,7 +62,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 		}
 
 		if (variousFound) {
-			return Strings.get("selectionVarious");
+			return Strings.get("selectionVarious", "" + totalCount);
 		} else if (factoryCount == 0) {
 			String circName = canvas.getCircuit().getName();
 			return Strings.get("circuitAttrTitle", circName);

@@ -111,6 +111,8 @@ class SelectionAttributes extends AbstractAttributeSet {
 		if (same) {
 			if (newSel != oldSel) this.selected = newSel;
 		} else {
+			Attribute<?>[] oldAttrs = this.attrs;
+			Object[] oldValues = this.values;
 			Attribute<?>[] newAttrs = new Attribute[attrMap.size()];
 			Object[] newValues = new Object[newAttrs.length];
 			boolean[] newReadOnly = new boolean[newAttrs.length];
@@ -126,7 +128,32 @@ class SelectionAttributes extends AbstractAttributeSet {
 			this.attrsView = new UnmodifiableList<Attribute<?>>(newAttrs);
 			this.values = newValues;
 			this.readOnly = newReadOnly;
-			fireAttributeListChanged();
+			
+			boolean listSame = oldAttrs != null && oldAttrs.length == newAttrs.length;
+			if (listSame) {
+				for (i = 0; i < oldAttrs.length; i++) {
+					if (!oldAttrs[i].equals(newAttrs[i])) {
+						listSame = false;
+						break;
+					}
+				}
+			}
+			
+			if (listSame) {
+				for (i = 0; i < oldValues.length; i++) {
+					Object oldVal = oldValues[i];
+					Object newVal = newValues[i];
+					boolean sameVals = oldVal == null ? newVal == null
+							: oldVal.equals(newVal);
+					if (!sameVals) {
+						@SuppressWarnings("unchecked")
+						Attribute<Object> attr = (Attribute<Object>) oldAttrs[i];
+						fireAttributeValueChanged(attr, newVal);
+					}
+				}
+			} else {
+				fireAttributeListChanged();
+			}
 		}
 	}
 	
@@ -202,7 +229,7 @@ class SelectionAttributes extends AbstractAttributeSet {
 				j++;
 
 				Attribute<Object> a = entry.getKey();
-				if (oldAttrs[j] != a || j >= oldValues.length) return false;
+				if (!oldAttrs[j].equals(a) || j >= oldValues.length) return false;
 				Object ov = oldValues[j];
 				Object nv = entry.getValue();
 				if (ov == null ? nv != null : !ov.equals(nv)) return false;
@@ -286,9 +313,10 @@ class SelectionAttributes extends AbstractAttributeSet {
 	}
 	
 	private int findIndex(Attribute<?> attr) {
+		if (attr == null) return -1;
 		Attribute<?>[] as = attrs;
 		for (int i = 0; i < as.length; i++) {
-			if (attr == as[i]) return i;
+			if (attr.equals(as[i])) return i;
 		}
 		return -1;
 	}

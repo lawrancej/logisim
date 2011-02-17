@@ -35,6 +35,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 		Class<? extends CanvasObject> commonClass = null;
 		int commonCount = 0;
 		CanvasObject firstObject = null;
+		int totalCount = 0;
 		for (CanvasObject obj : sel.getSelected()) {
 			if (firstObject == null) {
 				firstObject = obj;
@@ -45,12 +46,13 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 			} else {
 				commonClass = null;
 			}
+			totalCount++;
 		}
 		
 		if (firstObject == null) {
 			return null;
 		} else if (commonClass == null) {
-			return Strings.get("selectionVarious");
+			return Strings.get("selectionVarious", "" + totalCount);
 		} else if (commonCount == 1) {
 			return Strings.get("selectionOne", firstObject.getDisplayName());
 		} else {

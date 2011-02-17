@@ -292,6 +292,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 				Component editor = row.getEditor(parent);
 				if (editor instanceof JComboBox) {
 					((JComboBox) editor).addActionListener(this);
+					editor.addFocusListener(this);
 				} else if (editor instanceof JInputComponent) {
 					JInputComponent input = (JInputComponent) editor;
 					MyDialog dlog;
