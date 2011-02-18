@@ -7,24 +7,18 @@ import java.util.List;
 
 import com.cburch.draw.toolbar.AbstractToolbarModel;
 import com.cburch.draw.toolbar.ToolbarItem;
-import com.cburch.draw.toolbar.ToolbarSeparator;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.util.UnmodifiableList;
 
-class ProjectToolbarModel extends AbstractToolbarModel
+class ToolboxToolbarModel extends AbstractToolbarModel
 		implements MenuListener.EnabledListener {
-	private Frame frame;
 	private LogisimToolbarItem itemAdd;
 	private LogisimToolbarItem itemUp;
 	private LogisimToolbarItem itemDown;
 	private LogisimToolbarItem itemDelete;
-	private LogisimToolbarItem itemLayout;
-	private LogisimToolbarItem itemAppearance;
 	private List<ToolbarItem> items;
 	
-	public ProjectToolbarModel(Frame frame, MenuListener menu) {
-		this.frame = frame;
-		
+	public ToolboxToolbarModel(MenuListener menu) {
 		itemAdd = new LogisimToolbarItem(menu, "projadd.gif", LogisimMenuBar.ADD_CIRCUIT,
 				Strings.getter("projectAddCircuitTip"));
 		itemUp = new LogisimToolbarItem(menu, "projup.gif", LogisimMenuBar.MOVE_CIRCUIT_UP,
@@ -33,19 +27,12 @@ class ProjectToolbarModel extends AbstractToolbarModel
 				Strings.getter("projectMoveCircuitDownTip"));
 		itemDelete = new LogisimToolbarItem(menu, "projdel.gif", LogisimMenuBar.REMOVE_CIRCUIT,
 				Strings.getter("projectRemoveCircuitTip"));
-		itemLayout = new LogisimToolbarItem(menu, "projlayo.gif", LogisimMenuBar.EDIT_LAYOUT,
-				Strings.getter("projectEditLayoutTip"));
-		itemAppearance = new LogisimToolbarItem(menu, "projapp.gif", LogisimMenuBar.EDIT_APPEARANCE,
-				Strings.getter("projectEditAppearanceTip"));
 		
 		items = UnmodifiableList.create(new ToolbarItem[] {
 				itemAdd,
 				itemUp,
 				itemDown,
 				itemDelete,
-				new ToolbarSeparator(4),
-				itemLayout,
-				itemAppearance,
 			});
 		
 		menu.addEnabledListener(this);
@@ -58,14 +45,7 @@ class ProjectToolbarModel extends AbstractToolbarModel
 	
 	@Override
 	public boolean isSelected(ToolbarItem item) {
-		String view = frame.getView();
-		if (item == itemLayout) {
-			return view.equals(Frame.LAYOUT);
-		} else if (item == itemAppearance) {
-			return view.equals(Frame.APPEARANCE);
-		} else {
-			return false;
-		}
+		return false;
 	}
 
 	@Override

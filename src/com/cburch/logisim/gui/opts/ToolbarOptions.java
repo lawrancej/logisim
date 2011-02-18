@@ -17,15 +17,15 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.cburch.logisim.file.ToolbarData;
-import com.cburch.logisim.gui.main.Explorer;
-import com.cburch.logisim.gui.main.Explorer.Event;
+import com.cburch.logisim.gui.main.ProjectExplorer;
+import com.cburch.logisim.gui.main.ProjectExplorer.Event;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.TableLayout;
 
 class ToolbarOptions extends OptionsPanel {
 	private class Listener
-			implements Explorer.Listener, ActionListener, ListSelectionListener {
+			implements ProjectExplorer.Listener, ActionListener, ListSelectionListener {
 		public void selectionChanged(Event event) {
 			computeEnabled();
 		}
@@ -90,7 +90,7 @@ class ToolbarOptions extends OptionsPanel {
 	
 	private Listener listener = new Listener();
 	
-	private Explorer explorer;
+	private ProjectExplorer explorer;
 	private JButton addTool;
 	private JButton addSeparator;
 	private JButton moveUp;
@@ -100,7 +100,7 @@ class ToolbarOptions extends OptionsPanel {
 	
 	public ToolbarOptions(OptionsFrame window) {
 		super(window);
-		explorer = new Explorer(getProject());
+		explorer = new ProjectExplorer(getProject());
 		addTool = new JButton();
 		addSeparator = new JButton();
 		moveUp = new JButton();

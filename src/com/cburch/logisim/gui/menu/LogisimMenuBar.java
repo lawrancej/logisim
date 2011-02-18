@@ -3,6 +3,7 @@
 
 package com.cburch.logisim.gui.menu;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
@@ -122,5 +123,16 @@ public class LogisimMenuBar extends JMenuBar {
 		if (simulateListener != null) {
 			simulateListener.stateChangeRequested(sim, state);
 		}
+	}
+	
+	public void doAction(LogisimMenuItem which) {
+		MenuItem item = (MenuItem) menuItems.get(which);
+		item.actionPerformed(new ActionEvent(item, ActionEvent.ACTION_PERFORMED,
+				which.toString()));
+	}
+	
+	public boolean isEnabled(LogisimMenuItem item) {
+		JMenuItem menuItem = menuItems.get(item);
+		return menuItem != null && menuItem.isEnabled();
 	}
 }

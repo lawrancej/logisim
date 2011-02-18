@@ -4,18 +4,11 @@
 package com.cburch.logisim.gui.main;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
-import java.util.List;
 
-import javax.swing.JLabel;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
 
 import com.cburch.logisim.circuit.CircuitEvent;
 import com.cburch.logisim.circuit.CircuitListener;
@@ -24,9 +17,8 @@ import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.instance.StdAttr;
 
-class SimulationTreeCircuitNode {
-		//TODO implements TreeNode, CircuitListener, Comparator<Component> {
-	/* TODO
+class SimulationTreeCircuitNode
+		implements TreeNode, CircuitListener, Comparator<Component> {
 	private static class CompareByName implements Comparator<Object> {
 		public int compare(Object a, Object b) {
 			return a.toString().compareToIgnoreCase(b.toString());
@@ -100,22 +92,7 @@ class SimulationTreeCircuitNode {
 			model.fireNodeChanged(this);
 		} else {
 			if (computeChildren()) {
-				model.fireNodeStructureChanged(this);
-			} else if (action == CircuitEvent.ACTION_INVALIDATE) {
-				Object o = event.getData();
-				for (int i = children.size() - 1; i >= 0; i--) {
-					Object o2 = children.get(i);
-					if (o2 instanceof ComponentNode) {
-						ComponentNode n = (ComponentNode) o2;
-						if (n.comp == o) {
-							int[] changed = { i };
-							children.remove(i);
-							model.nodesWereRemoved(this, changed, new Object[] { n });
-							children.add(i, new ComponentNode(this, n.comp));
-							model.nodesWereInserted(this, changed);
-						}
-					}
-				}
+				model.fireStructureChanged(this);
 			}
 		}
 	}
@@ -128,7 +105,7 @@ class SimulationTreeCircuitNode {
 			if (comp.getFactory() instanceof SubcircuitFactory) {
 				subcircs.add(comp);
 			} else {
-				Object toAdd = model.mapComponentToNode(comp);
+				TreeNode toAdd = model.mapComponentToNode(comp);
 				if (toAdd != null) {
 					newChildren.add(toAdd);
 				}
@@ -141,13 +118,13 @@ class SimulationTreeCircuitNode {
 			CircuitState state = factory.getSubstate(circuitState, comp);
 			SimulationTreeCircuitNode toAdd = null;
 			for (TreeNode o : children) {
-				if (o instanceof CircuitNode) {
-					CircuitNode n = (CircuitNode) o;
+				if (o instanceof SimulationTreeCircuitNode) {
+					SimulationTreeCircuitNode n = (SimulationTreeCircuitNode) o;
 					if (n.circuitState == state) { toAdd = n; break; }
 				}
 			}
 			if (toAdd == null) {
-				toAdd = new CircuitNode(this, state, comp);
+				toAdd = new SimulationTreeCircuitNode(model, this, state, comp);
 			}
 			newChildren.add(toAdd);
 		}
@@ -169,5 +146,4 @@ class SimulationTreeCircuitNode {
 		}
 		return a.getLocation().toString().compareTo(b.getLocation().toString());
 	}
-	*/
 }

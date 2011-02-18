@@ -33,8 +33,8 @@ import com.cburch.logisim.file.MouseMappings;
 import com.cburch.logisim.gui.generic.AttrTable;
 import com.cburch.logisim.gui.generic.AttrTableModel;
 import com.cburch.logisim.gui.main.AttrTableToolModel;
-import com.cburch.logisim.gui.main.Explorer;
-import com.cburch.logisim.gui.main.Explorer.Event;
+import com.cburch.logisim.gui.main.ProjectExplorer;
+import com.cburch.logisim.gui.main.ProjectExplorer.Event;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Tool;
@@ -85,7 +85,7 @@ class MouseOptions extends OptionsPanel {
 	
 	private class MyListener
 			implements ActionListener, MouseListener, ListSelectionListener,
-				MouseMappings.MouseMappingsListener, Explorer.Listener {
+				MouseMappings.MouseMappingsListener, ProjectExplorer.Listener {
 		//
 		// ActionListener method
 		//
@@ -218,7 +218,7 @@ class MouseOptions extends OptionsPanel {
 	private Tool curTool = null;
 	private MappingsModel model;
 	
-	private Explorer explorer;
+	private ProjectExplorer explorer;
 	private JPanel addArea = new AddArea();
 	private JTable mappings = new JTable();
 	private AttrTable attrTable;
@@ -227,7 +227,7 @@ class MouseOptions extends OptionsPanel {
 	public MouseOptions(OptionsFrame window) {
 		super(window, new GridLayout(1, 3));
 		
-		explorer = new Explorer(getProject());
+		explorer = new ProjectExplorer(getProject());
 		explorer.setListener(listener);
 
 		// Area for adding mappings

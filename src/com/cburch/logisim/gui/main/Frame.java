@@ -21,10 +21,10 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 
 import com.cburch.draw.toolbar.Toolbar;
+import com.cburch.draw.toolbar.ToolbarModel;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitEvent;
 import com.cburch.logisim.circuit.CircuitListener;
@@ -148,8 +148,8 @@ public class Frame extends LFrame implements LocaleListener {
 	private CardPanel       mainPanel;
 	// left-side elements
 	private Toolbar         projectToolbar;
-	private ProjectToolbarModel projectToolbarModel;
-	private Explorer        explorer;
+	private ExplorerPane    explorerPane;
+	private Toolbox         toolbox;
 	private AttrTable       attrTable;
 	private ZoomControl     zoom;
 	
@@ -187,15 +187,18 @@ public class Frame extends LFrame implements LocaleListener {
 
 		// set up menu bar and toolbar
 		menubar = new LogisimMenuBar(this, proj);
+		menuListener = new MenuListener(this, menubar);
+		menuListener.setEditHandler(layoutEditHandler);
 		setJMenuBar(menubar);
 		toolbar = new Toolbar(layoutToolbarModel);
 
 		// set up the left-side components
-		projectToolbarModel = new ProjectToolbarModel(this);
+		ToolbarModel projectToolbarModel = new ProjectToolbarModel(this, menuListener);
 		projectToolbar = new Toolbar(projectToolbarModel);
 		projectToolbar.setVisible(AppPreferences.SHOW_PROJECT_TOOLBAR.getBoolean());
-		explorer = new Explorer(proj);
-		explorer.setListener(new ExplorerManip(proj, explorer));
+		toolbox = new Toolbox(proj, menuListener);
+		explorerPane = new ExplorerPane();
+		explorerPane.setView(toolbox);
 		attrTable = new AttrTable(this);
 		zoom = new ZoomControl(layoutZoomModel);
 
@@ -208,16 +211,12 @@ public class Frame extends LFrame implements LocaleListener {
 		mainPanel.setView(LAYOUT);
 		mainPanelSuper.add(mainPanel, BorderLayout.CENTER);
 
-		// now register the menu listener
-		menuListener = new MenuListener(this, menubar, projectToolbarModel);
-		menuListener.setEditHandler(layoutEditHandler);
-
 		// set up the contents, split down the middle, with the canvas
 		// on the right and a split pane on the left containing the
 		// explorer and attribute values.
 		JPanel explPanel = new JPanel(new BorderLayout());
 		explPanel.add(projectToolbar, BorderLayout.NORTH);
-		explPanel.add(new JScrollPane(explorer), BorderLayout.CENTER);
+		explPanel.add(explorerPane, BorderLayout.CENTER);
 		JPanel attrPanel = new JPanel(new BorderLayout());
 		attrPanel.add(attrTable, BorderLayout.CENTER);
 		attrPanel.add(zoom, BorderLayout.SOUTH);
@@ -249,6 +248,7 @@ public class Frame extends LFrame implements LocaleListener {
 		AppPreferences.SHOW_PROJECT_TOOLBAR.addPropertyChangeListener(myProjectListener);
 		AppPreferences.TOOLBAR_PLACEMENT.addPropertyChangeListener(myProjectListener);
 		placeToolbar();
+		((MenuListener.EnabledListener) projectToolbarModel).menuEnableChanged(menuListener);
 
 		LocaleManager.addLocaleListener(this);
 	}
@@ -295,7 +295,7 @@ public class Frame extends LFrame implements LocaleListener {
 			layoutCanvas.setHaloedComponent(circ, comp);
 		}
 		layoutToolbarModel.setHaloedTool(null);
-		explorer.setHaloedTool(null);
+		toolbox.setHaloedTool(null);
 	}
 
 	public AttrTable getAttributeTable() {
@@ -390,10 +390,10 @@ public class Frame extends LFrame implements LocaleListener {
 		}
 		if (newAttrs != null && newAttrs.getAttributes().size() > 0) {
 			layoutToolbarModel.setHaloedTool(newTool);
-			explorer.setHaloedTool(newTool);
+			toolbox.setHaloedTool(newTool);
 		} else {
 			layoutToolbarModel.setHaloedTool(null);
-			explorer.setHaloedTool(null);
+			toolbox.setHaloedTool(null);
 		}
 		layoutCanvas.setHaloedComponent(null, null);
 	}

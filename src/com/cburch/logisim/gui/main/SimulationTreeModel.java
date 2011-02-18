@@ -20,11 +20,11 @@ public class SimulationTreeModel implements TreeModel {
 	
 	public SimulationTreeModel(Simulator simulator) {
 		this.listeners = new ArrayList<TreeModelListener>();
-		//TODO this.root = new SimulationTreeCircuitNode(this, null,
-		//		simulator.getCircuitState(), null);
+		this.root = new SimulationTreeCircuitNode(this, null,
+				simulator.getCircuitState(), null);
 	}
 	
-	protected Object mapComponentToNode(Component comp) {
+	protected TreeNode mapComponentToNode(Component comp) {
 		return null;
 	}
 
@@ -40,6 +40,13 @@ public class SimulationTreeModel implements TreeModel {
 		TreeModelEvent e = new TreeModelEvent(this, findPath(node));
 		for (TreeModelListener l : listeners) {
 			l.treeNodesChanged(e);
+		}
+	}
+	
+	protected void fireStructureChanged(Object node) {
+		TreeModelEvent e = new TreeModelEvent(this, findPath(node));
+		for (TreeModelListener l : listeners) {
+			l.treeStructureChanged(e);
 		}
 	}
 	

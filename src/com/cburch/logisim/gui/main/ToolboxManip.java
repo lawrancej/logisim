@@ -26,7 +26,7 @@ import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 
-class ExplorerManip implements Explorer.Listener {
+class ToolboxManip implements ProjectExplorer.Listener {
 	private class MyListener
 			implements ProjectListener, LibraryListener, AttributeListener {
 		private LogisimFile curFile = null;
@@ -108,18 +108,18 @@ class ExplorerManip implements Explorer.Listener {
 	}
 	
 	private Project proj;
-	private Explorer explorer;
+	private ProjectExplorer explorer;
 	private MyListener myListener = new MyListener();
 	private Tool lastSelected = null;
 	
-	ExplorerManip(Project proj, Explorer explorer) {
+	ToolboxManip(Project proj, ProjectExplorer explorer) {
 		this.proj = proj;
 		this.explorer = explorer;
 		proj.addProjectListener(myListener);
 		myListener.setFile(null, proj.getLogisimFile());
 	}
 
-	public void selectionChanged(Explorer.Event event) {
+	public void selectionChanged(ProjectExplorer.Event event) {
 		Object selected = event.getTarget();
 		if (selected instanceof Tool) {
 			lastSelected = proj.getTool();
@@ -129,7 +129,7 @@ class ExplorerManip implements Explorer.Listener {
 		}
 	}
 
-	public void doubleClicked(Explorer.Event event) {
+	public void doubleClicked(ProjectExplorer.Event event) {
 		Object clicked = event.getTarget();
 		if (clicked instanceof AddTool) {
 			AddTool tool = (AddTool) clicked;
@@ -143,7 +143,7 @@ class ExplorerManip implements Explorer.Listener {
 		}
 	}
 	
-	public void moveRequested(Explorer.Event event, AddTool dragged, AddTool target) {
+	public void moveRequested(ProjectExplorer.Event event, AddTool dragged, AddTool target) {
 		LogisimFile file = proj.getLogisimFile();
 		int draggedIndex = file.getTools().indexOf(dragged);
 		int targetIndex = file.getTools().indexOf(target);
@@ -151,7 +151,7 @@ class ExplorerManip implements Explorer.Listener {
 		proj.doAction(LogisimFileActions.moveCircuit(dragged, targetIndex));
 	}
 	
-	public void deleteRequested(Explorer.Event event) {
+	public void deleteRequested(ProjectExplorer.Event event) {
 		Object request = event.getTarget();
 		if (request instanceof Library) {
 			ProjectLibraryActions.doUnloadLibrary(proj, (Library) request);
@@ -164,7 +164,7 @@ class ExplorerManip implements Explorer.Listener {
 		}
 	}
 
-	public JPopupMenu menuRequested(Explorer.Event event) {
+	public JPopupMenu menuRequested(ProjectExplorer.Event event) {
 		Object clicked = event.getTarget();
 		if (clicked instanceof AddTool) {
 			AddTool tool = (AddTool) clicked;

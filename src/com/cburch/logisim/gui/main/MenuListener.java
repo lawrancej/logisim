@@ -5,6 +5,7 @@ package com.cburch.logisim.gui.main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.event.ChangeEvent;
@@ -29,6 +30,10 @@ import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
 
 class MenuListener {
+	interface EnabledListener {
+		public void menuEnableChanged(MenuListener source);
+	}
+	
 	private class FileListener implements ActionListener {
 		private void register() {
 			menubar.addActionListener(LogisimMenuBar.EXPORT_IMAGE, this);
@@ -105,6 +110,7 @@ class MenuListener {
 				boolean value) {
 			if (handler == this.handler) {
 				menubar.setEnabled(action, value);
+				fireEnableChanged();
 			}
 		}
 	}
@@ -125,7 +131,6 @@ class MenuListener {
 				circ.getAppearance().addCanvasModelListener(this);
 			}
 			
-			projbar.setActionListener(this);
 			menubar.addActionListener(LogisimMenuBar.ADD_CIRCUIT, this);
 			menubar.addActionListener(LogisimMenuBar.MOVE_CIRCUIT_UP, this);
 			menubar.addActionListener(LogisimMenuBar.MOVE_CIRCUIT_DOWN, this);
@@ -222,17 +227,12 @@ class MenuListener {
 			menubar.setEnabled(LogisimMenuBar.MOVE_CIRCUIT_DOWN, canMoveDown);
 			menubar.setEnabled(LogisimMenuBar.SET_MAIN_CIRCUIT, canSetMain);
 			menubar.setEnabled(LogisimMenuBar.REMOVE_CIRCUIT, canRemove);
-			projbar.setEnabled(LogisimMenuBar.ADD_CIRCUIT, true);
-			projbar.setEnabled(LogisimMenuBar.MOVE_CIRCUIT_UP, canMoveUp);
-			projbar.setEnabled(LogisimMenuBar.MOVE_CIRCUIT_DOWN, canMoveDown);
-			projbar.setEnabled(LogisimMenuBar.REMOVE_CIRCUIT, canRemove);
 			menubar.setEnabled(LogisimMenuBar.EDIT_LAYOUT, !viewLayout);
 			menubar.setEnabled(LogisimMenuBar.EDIT_APPEARANCE, !viewAppearance);
 			menubar.setEnabled(LogisimMenuBar.REVERT_APPEARANCE, canRevert);
-			projbar.setEnabled(LogisimMenuBar.EDIT_LAYOUT, !view.equals(Frame.LAYOUT));
-			projbar.setEnabled(LogisimMenuBar.EDIT_APPEARANCE, !view.equals(Frame.APPEARANCE));
 			menubar.setEnabled(LogisimMenuBar.ANALYZE_CIRCUIT, true);
 			menubar.setEnabled(LogisimMenuBar.CIRCUIT_STATS, true);
+			fireEnableChanged();
 		}
 		
 		private void computeRevertEnabled() {
@@ -244,7 +244,11 @@ class MenuListener {
 			boolean viewAppearance = frame.getView().equals(Frame.APPEARANCE);
 			boolean canRevert = isProjectCircuit && viewAppearance
 				&& !cur.getAppearance().isDefaultAppearance();
-			menubar.setEnabled(LogisimMenuBar.REVERT_APPEARANCE, canRevert);
+			boolean oldValue = menubar.isEnabled(LogisimMenuBar.REVERT_APPEARANCE);
+			if (canRevert != oldValue) {
+				menubar.setEnabled(LogisimMenuBar.REVERT_APPEARANCE, canRevert);
+				fireEnableChanged();
+			}
 		}
 
 		public void stateChanged(ChangeEvent e) {
@@ -274,17 +278,16 @@ class MenuListener {
 	
 	private Frame frame;
 	private LogisimMenuBar menubar;
-	private ProjectToolbarModel projbar;
+	private ArrayList<EnabledListener> listeners;
 	private FileListener fileListener = new FileListener();
 	private EditListener editListener = new EditListener();
 	private ProjectMenuListener projectListener = new ProjectMenuListener();
 	private SimulateMenuListener simulateListener = new SimulateMenuListener();
 
-	public MenuListener(Frame frame, LogisimMenuBar menubar,
-			ProjectToolbarModel projectToolbar) {
+	public MenuListener(Frame frame, LogisimMenuBar menubar) {
 		this.frame = frame;
 		this.menubar = menubar;
-		this.projbar = projectToolbar;
+		this.listeners = new ArrayList<EnabledListener>();
 	}
 	
 	public void register(CardPanel mainPanel) {
@@ -296,6 +299,28 @@ class MenuListener {
 
 	public void setEditHandler(EditHandler handler) {
 		editListener.setHandler(handler);
+	}
+	
+	public void addEnabledListener(EnabledListener listener) {
+		listeners.add(listener);
+	}
+	
+	public void removeEnabledListener(EnabledListener listener) {
+		listeners.remove(listener);
+	}
+	
+	public void doAction(LogisimMenuItem item) {
+		menubar.doAction(item);
+	}
+	
+	public boolean isEnabled(LogisimMenuItem item) {
+		return menubar.isEnabled(item);
+	}
+	
+	private void fireEnableChanged() {
+		for (EnabledListener listener : listeners) {
+			listener.menuEnableChanged(this);
+		}
 	}
 }
 

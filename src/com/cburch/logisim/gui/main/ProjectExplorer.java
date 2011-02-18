@@ -59,7 +59,7 @@ import com.cburch.logisim.util.JTreeUtil;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 
-public class Explorer extends JTree implements LocaleListener {
+public class ProjectExplorer extends JTree implements LocaleListener {
 	private static final String DIRTY_MARKER = "*";
 	
 	private static final Color MAGNIFYING_INTERIOR = new Color(200, 200, 255, 64);
@@ -129,7 +129,7 @@ public class Explorer extends JTree implements LocaleListener {
 		}
 		
 		public void valueForPathChanged(TreePath path, Object value) {
-			TreeModelEvent e = new TreeModelEvent(Explorer.this, path);
+			TreeModelEvent e = new TreeModelEvent(ProjectExplorer.this, path);
 			fireNodesChanged(Collections.singletonList(e));
 		}
 			
@@ -142,12 +142,12 @@ public class Explorer extends JTree implements LocaleListener {
 		}
 
 		void fireStructureChanged() {
-			TreeModelEvent e = new TreeModelEvent(Explorer.this,
+			TreeModelEvent e = new TreeModelEvent(ProjectExplorer.this,
 				new Object[] { model.getRoot() });
 			for (TreeModelListener l : listeners) {
 				l.treeStructureChanged(e);
 			}
-			Explorer.this.repaint();
+			ProjectExplorer.this.repaint();
 		}
 
 		private ArrayList<TreeModelEvent> findPaths(Object value) {
@@ -162,7 +162,7 @@ public class Explorer extends JTree implements LocaleListener {
 			stack.add(node);
 			if (node == value) {
 				TreePath path = new TreePath(stack.toArray());
-				paths.add(new TreeModelEvent(Explorer.this, path));
+				paths.add(new TreeModelEvent(ProjectExplorer.this, path));
 			}
 			for (Object child : getChildren(node)) {
 				findPathsSub(value, child, stack, paths);
@@ -189,7 +189,7 @@ public class Explorer extends JTree implements LocaleListener {
 					indices[i] = i;
 					tools[i] = toolList.get(i);
 				}
-				paths.add(new TreeModelEvent(Explorer.this, path, indices, tools));
+				paths.add(new TreeModelEvent(ProjectExplorer.this, path, indices, tools));
 			}
 			for (Object child : getChildren(node)) {
 				findPathsForToolsSub(value, child, stack, paths);
@@ -231,7 +231,7 @@ public class Explorer extends JTree implements LocaleListener {
 
 			// draw tool icon
 			Graphics gIcon = g.create();
-			ComponentDrawContext context = new ComponentDrawContext(Explorer.this, null, null, g, gIcon);
+			ComponentDrawContext context = new ComponentDrawContext(ProjectExplorer.this, null, null, g, gIcon);
 			tool.paintIcon(context, x, y);
 			gIcon.dispose();
 
@@ -387,7 +387,7 @@ public class Explorer extends JTree implements LocaleListener {
 			if (listener != null && path != null && path.getPathCount() == 2) {
 				listener.deleteRequested(new Event(path));
 			}
-			Explorer.this.requestFocus();
+			ProjectExplorer.this.requestFocus();
 		}
 	}
 
@@ -400,7 +400,7 @@ public class Explorer extends JTree implements LocaleListener {
 		public void mouseEntered(MouseEvent e) { }
 		public void mouseExited(MouseEvent e) { }
 		public void mousePressed(MouseEvent e) {
-			Explorer.this.requestFocus();
+			ProjectExplorer.this.requestFocus();
 			checkForPopup(e);
 		}
 		public void mouseReleased(MouseEvent e) {
@@ -412,7 +412,7 @@ public class Explorer extends JTree implements LocaleListener {
 				if (path != null && listener != null) {
 					JPopupMenu menu = listener.menuRequested(new Event(path));
 					if (menu != null) {
-						menu.show(Explorer.this, e.getX(), e.getY());
+						menu.show(ProjectExplorer.this, e.getX(), e.getY());
 					}
 				}
 			}
@@ -449,7 +449,7 @@ public class Explorer extends JTree implements LocaleListener {
 			} else if (act == ProjectEvent.ACTION_SET_FILE) {
 				setFile(event.getLogisimFile());
 			} else if (act == ProjectEvent.ACTION_SET_CURRENT) {
-				Explorer.this.repaint();
+				ProjectExplorer.this.repaint();
 			}
 		}
 
@@ -547,7 +547,7 @@ public class Explorer extends JTree implements LocaleListener {
 	private Listener listener = null;
 	private Tool haloedTool = null;
 
-	public Explorer(Project proj) {
+	public ProjectExplorer(Project proj) {
 		super();
 		this.proj = proj;
 
