@@ -150,6 +150,7 @@ public class Frame extends LFrame implements LocaleListener {
 	private Toolbar         projectToolbar;
 	private ExplorerPane    explorerPane;
 	private Toolbox         toolbox;
+	private SimulationExplorer simExplorer;
 	private AttrTable       attrTable;
 	private ZoomControl     zoom;
 	
@@ -197,6 +198,7 @@ public class Frame extends LFrame implements LocaleListener {
 		projectToolbar = new Toolbar(projectToolbarModel);
 		projectToolbar.setVisible(AppPreferences.SHOW_PROJECT_TOOLBAR.getBoolean());
 		toolbox = new Toolbox(proj, menuListener);
+		simExplorer = new SimulationExplorer(proj, menuListener);
 		explorerPane = new ExplorerPane();
 		explorerPane.setView(toolbox);
 		attrTable = new AttrTable(this);
@@ -304,6 +306,14 @@ public class Frame extends LFrame implements LocaleListener {
 	
 	public String getView() {
 		return mainPanel.getView();
+	}
+	
+	public void setExplorerPane(String view) {
+		if (view.equals("toolbox")) {
+			explorerPane.setView(toolbox);
+		} else if (view.equals("simulation")) {
+			explorerPane.setView(simExplorer);
+		}
 	}
 	
 	public void setView(String view) {

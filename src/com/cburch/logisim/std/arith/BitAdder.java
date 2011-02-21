@@ -80,11 +80,7 @@ public class BitAdder extends InstanceFactory {
 
 		Port[] ps = new Port[inputs + 1];
 		ps[0] = new Port(0, 0, Port.OUTPUT, BitWidth.create(outWidth));
-		if (inputs == 1) {
-			ps[0].setToolTip(Strings.getter("bitAdderOutputOneTip"));
-		} else {
-			ps[0].setToolTip(Strings.getter("bitAdderOutputManyTip"));
-		}
+		ps[0].setToolTip(Strings.getter("bitAdderOutputManyTip"));
 		for (int i = 0; i < inputs; i++) {
 			ps[i + 1] = new Port(-40, y + i * dy, Port.INPUT, inWidth);
 			ps[i + 1].setToolTip(Strings.getter("bitAdderInputTip"));
