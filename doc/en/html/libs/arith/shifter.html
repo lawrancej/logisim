@@ -40,13 +40,13 @@ places, with the upper <var>dist</var> places filled with repetitions of
 whatever the uppermost bit in <var>data</var>. For example, 11001011
 arithmetically shifted right twice is 11110010.</li>
 
-<li>Roll Left: All bits in <var>data</var> are shifted up <var>dist</var>
+<li>Rotate Left: All bits in <var>data</var> are shifted up <var>dist</var>
 places, with the top <var>dist</var> places wrapped around into the bottom.
-For example, 11001011 rolled left twice is 00101111.</li>
+For example, 11001011 rotated left twice is 00101111.</li>
 
-<li>Roll Right: All bits in <var>data</var> are shifted down <var>dist</var>
+<li>Rotate Right: All bits in <var>data</var> are shifted down <var>dist</var>
 places, with the bottom <var>dist</var> places wrapped around into the top.
-For example, 11001011 rolled right twice is 11110010.</li>
+For example, 11001011 rotated right twice is 11110010.</li>
 
 </ul> 
 
@@ -86,7 +86,7 @@ Alt-0 through Alt-9 alter its <q>Data Bits</q> attribute.</p>
 
 <dt>Shift Type</dt>
 <dd>One of the five possible shift types as outlined above (Logical Left,
-Logical Right, Arithmetic Right, Roll Left, Roll Right).</dd>
+Logical Right, Arithmetic Right, Rotate Left, Rotate Right).</dd>
 
 </dl>
 

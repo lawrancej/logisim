@@ -29,5 +29,3 @@ Design change: For the Memory library's Random component, a reset when the seed 
 Design change: Deleted the "Legacy" library for supporting versions 1.x of Logisim.
 
 Design change: All components except Constant now use the included GIF icons rather than Java code.
-
-(Design change: Added a circle to Plexers components to distinguish the select and enable inputs.)
