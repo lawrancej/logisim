@@ -1,0 +1,7 @@
+TRANSLATOR: On all HTML files, please save them with the UTF-8 encoding.
+
+TRANSLATOR: If you can't conveniently translate the SVG file, you can just
+translate the following text, and I'll be happy to deal with pasting it into
+the SVG file.
+
+a graphical tool for designing and simulating logic circuits
