@@ -32,11 +32,10 @@ public class Wiring extends Library {
 		new AddTool(Tunnel.FACTORY),
 		new AddTool(PullResistor.FACTORY),
 		new AddTool(Clock.FACTORY),
+		new AddTool(Constant.FACTORY),
 	};
 	
 	private static FactoryDescription[] DESCRIPTIONS = {
-		new FactoryDescription("Constant", Strings.getter("constantComponent"),
-				"constant.gif", "Constant"),
 		new FactoryDescription("Power", Strings.getter("powerComponent"),
 				"power.gif", "Power"),
 		new FactoryDescription("Ground", Strings.getter("groundComponent"),
