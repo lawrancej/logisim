@@ -46,21 +46,21 @@ current expression.</p>
 <p>Note that your edited expression will be lost if you edit the truth table.</p>
 
 <p>In addition to multiplication and addition standing for AND and OR, an expression
-you type may contain any of C/Java logical operators, as well as simply the words themselves.
+you type may contain any of C/Java logical operators, as well as simply the words themselves.</p>
 <center><table>
-<tr><th>highest precedence</th><td align="center"><tt>~</tt> <tt>!</tt></td> <th>NOT</th></tr>
+<tr><th>highest precedence</th><td align="center"><tt>~</tt> <tt>!</tt> <tt>'</tt></td> <th>NOT</th></tr>
 <tr><th></th><td align="center">(none) <tt>&amp;</tt> <tt>&amp;&amp;</tt></td> <th>AND</th></tr>
 <tr><th></th><td align="center"><tt>^</tt></td> <th>XOR</th></tr>
 <tr><th>lowest precedence</th><td align="center"><tt>+</tt> <tt>|</tt> <tt>||</tt></td> <th>OR</th></tr>
 </table></center>
-The following examples are all valid representations of the same expression. You could
-also mix the operators.
+<p>The following examples are all valid representations of the same expression. You could
+also mix the operators.</p>
 <table>
-<tr><td><tt>~a (b + c)</tt></td></tr>
+<tr><td><tt>a' (b + c)</tt></td></tr>
 <tr><td><tt>!a &amp;&amp; (b || c)</tt></td></tr>
 <tr><td><tt>NOT a AND (b OR c)</tt></td></tr>
 </table>
-In general, parentheses within a sequence of ANDs (or ORs or
+<p>In general, parentheses within a sequence of ANDs (or ORs or
 XORs) do not matter. (In particular, when Logisim creates a
 corresponding circuit, it will ignore such parentheses.)</p>
 
@@ -68,10 +68,11 @@ corresponding circuit, it will ignore such parentheses.)</p>
 
 <center><img src="../../../img-guide/analyze-min.png"></center>
 
-<p>The final tab displays a minimized sum-of-products expression
+<p>The final tab displays a minimized expression
 corresponding to a column of the truth table. You can select which
 output's minimized expression you want to view using the selector
-at top.</p>
+at top, and you can indicate whether you want to derive a sum-of-products
+expression or a product-of-sums expression using the selector below.</p>
 
 <p>If there are four or fewer inputs, a Karnaugh map corresponding
 to the variable will appear below the selector. You can click the

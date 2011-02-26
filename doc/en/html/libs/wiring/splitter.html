@@ -77,6 +77,17 @@ and the arrow keys alter its <q>Facing</q> attribute.</p>
 <dt>Bit Width In</dt>
 <dd>The bit width of the combined end.</dd>
 
+<dt>Appearance</dt>
+<dd>Supports different ways of depicting the splitter in the circuit.
+The <q>Trapezoid</q> option (the default) includes a trapezoid
+inside which is a small label by each split end indicating which bits
+from the combined end are routed there.
+The <q>Fat Trapezoid</q> option uses a wider trapezoid to facilitate longer
+labels.
+The <q>Lines</q> option draws lines from the combined end to the split end,
+without any labels; this option is primarily for compatibility versions
+older than 2.7.0, at which time splitters were always drawn this way.</dd>
+
 <dt>Bit <var>x</var></dt>
 <dd>The index of the split end to which bit <var>x</var> of the combined
 end corresponds. The split ends are indexed starting from 0 at the top
