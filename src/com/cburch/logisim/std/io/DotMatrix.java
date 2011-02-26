@@ -85,14 +85,14 @@ public class DotMatrix extends InstanceFactory {
 
 	@Override
 	protected void configureNewInstance(Instance instance) {
-		instance.setAttributeReadOnly(ATTR_INPUT_TYPE, true);
 		instance.addAttributeListener();
 		updatePorts(instance);
 	}
 
 	@Override
 	protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
-		if (attr == ATTR_MATRIX_ROWS || attr == ATTR_MATRIX_COLS) {
+		if (attr == ATTR_MATRIX_ROWS || attr == ATTR_MATRIX_COLS
+				|| attr == ATTR_INPUT_TYPE) {
 			instance.recomputeBounds();
 			updatePorts(instance);
 		}

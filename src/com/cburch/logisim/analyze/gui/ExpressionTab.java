@@ -3,6 +3,7 @@
 
 package com.cburch.logisim.analyze.gui;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -138,6 +139,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 		field.setWrapStyleWord(true);
 		field.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), myListener);
 		field.getDocument().addDocumentListener(myListener);
+		field.setFont(new Font("Monospaced", Font.PLAIN, 14));
 
 		JPanel buttons = new JPanel();
 		buttons.add(clear);

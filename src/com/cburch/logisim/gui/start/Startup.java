@@ -228,7 +228,7 @@ public class Startup {
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equals("-tty")) {
 				isTty = true;
-			} else if (args[i].equals("-clearprefs")) {
+			} else if (args[i].equals("-clearprefs") || args[i].equals("-clearprops")) {
 				isClearPreferences = true;
 			}
 		}

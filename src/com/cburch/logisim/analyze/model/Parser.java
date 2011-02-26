@@ -95,12 +95,13 @@ public class Parser {
 	private static final int TOKEN_OR = 1;
 	private static final int TOKEN_XOR = 2;
 	private static final int TOKEN_NOT = 3;
-	private static final int TOKEN_LPAREN = 4;
-	private static final int TOKEN_RPAREN = 5;
-	private static final int TOKEN_IDENT = 6;
-	private static final int TOKEN_CONST = 7;
-	private static final int TOKEN_WHITE = 8;
-	private static final int TOKEN_ERROR = 9;
+	private static final int TOKEN_NOT_POSTFIX = 4;
+	private static final int TOKEN_LPAREN = 5;
+	private static final int TOKEN_RPAREN = 6;
+	private static final int TOKEN_IDENT = 7;
+	private static final int TOKEN_CONST = 8;
+	private static final int TOKEN_WHITE = 9;
+	private static final int TOKEN_ERROR = 10;
 	
 	private static class Token {
 		int type;
@@ -151,6 +152,7 @@ public class Parser {
 				case ')': tokens.add(new Token(TOKEN_RPAREN, start, ")")); break;
 				case '0': case '1': tokens.add(new Token(TOKEN_CONST, start, "" + startChar)); break;
 				case '~': tokens.add(new Token(TOKEN_NOT, start, "~")); break;
+				case '\'': tokens.add(new Token(TOKEN_NOT_POSTFIX, start, "'")); break;
 				case '^': tokens.add(new Token(TOKEN_XOR, start, "^")); break;
 				case '+': tokens.add(new Token(TOKEN_OR, start, "+")); break;
 				case '!': tokens.add(new Token(TOKEN_NOT, start, "!")); break;
@@ -192,13 +194,18 @@ public class Parser {
 	private static Expression parse(ArrayList<Token> tokens) throws ParserException {
 		ArrayList<Context> stack = new ArrayList<Context>();
 		Expression current = null;
-		for (Token t : tokens) {
+		for (int i = 0; i < tokens.size(); i++) {
+			Token t = tokens.get(i);
 			if (t.type == TOKEN_IDENT || t.type == TOKEN_CONST) {
 				Expression here;
 				if (t.type == TOKEN_IDENT) {
 					here = Expressions.variable(t.text);
 				} else {
 					here = Expressions.constant(Integer.parseInt(t.text, 16));
+				}
+				while (i + 1 < tokens.size() && tokens.get(i + 1).type == TOKEN_NOT_POSTFIX) {
+					here = Expressions.not(here);
+					i++;
 				}
 				while (peekLevel(stack) == Expression.NOT_LEVEL) {
 					here = Expressions.not(here);
@@ -216,6 +223,8 @@ public class Parser {
 				}
 				push(stack, null, Expression.NOT_LEVEL, t);
 				current = null;
+			} else if (t.type == TOKEN_NOT_POSTFIX) {
+				throw t.error(Strings.getter("unexpectedApostrophe"));
 			} else if (t.type == TOKEN_LPAREN) {
 				if (current != null) {
 					push(stack, current, Expression.AND_LEVEL,
@@ -230,6 +239,10 @@ public class Parser {
 					throw t.error(Strings.getter("lparenMissingError"));
 				}
 				pop(stack);
+				while (i + 1 < tokens.size() && tokens.get(i + 1).type == TOKEN_NOT_POSTFIX) {
+					current = Expressions.not(current);
+					i++;
+				}
 				current = popTo(stack, Expression.AND_LEVEL, current);
 			} else {
 				if (current == null) {
