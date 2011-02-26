@@ -36,21 +36,23 @@ class MenuProject extends Menu {
 	private LogisimMenuBar menubar;
 	private MyListener myListener = new MyListener();
 	
-	private MenuItem addCircuit = new MenuItem(this, LogisimMenuBar.ADD_CIRCUIT);
+	private MenuItemImpl addCircuit = new MenuItemImpl(this, LogisimMenuBar.ADD_CIRCUIT);
 	private JMenu loadLibrary = new JMenu();
 	private JMenuItem loadBuiltin = new JMenuItem();
 	private JMenuItem loadLogisim = new JMenuItem();
 	private JMenuItem loadJar = new JMenuItem();
 	private JMenuItem unload = new JMenuItem();
-	private MenuItem moveUp = new MenuItem(this, LogisimMenuBar.MOVE_CIRCUIT_UP);
-	private MenuItem moveDown = new MenuItem(this, LogisimMenuBar.MOVE_CIRCUIT_DOWN);
-	private MenuItem remove = new MenuItem(this, LogisimMenuBar.REMOVE_CIRCUIT);
-	private MenuItem setAsMain = new MenuItem(this, LogisimMenuBar.SET_MAIN_CIRCUIT);
-	private MenuItem layout = new MenuItem(this, LogisimMenuBar.EDIT_LAYOUT);
-	private MenuItem appearance = new MenuItem(this, LogisimMenuBar.EDIT_APPEARANCE);
-	private MenuItem revertAppearance = new MenuItem(this, LogisimMenuBar.REVERT_APPEARANCE);
-	private MenuItem analyze = new MenuItem(this, LogisimMenuBar.ANALYZE_CIRCUIT);
-	private MenuItem stats = new MenuItem(this, LogisimMenuBar.CIRCUIT_STATS);
+	private MenuItemImpl moveUp = new MenuItemImpl(this, LogisimMenuBar.MOVE_CIRCUIT_UP);
+	private MenuItemImpl moveDown = new MenuItemImpl(this, LogisimMenuBar.MOVE_CIRCUIT_DOWN);
+	private MenuItemImpl remove = new MenuItemImpl(this, LogisimMenuBar.REMOVE_CIRCUIT);
+	private MenuItemImpl setAsMain = new MenuItemImpl(this, LogisimMenuBar.SET_MAIN_CIRCUIT);
+	private MenuItemImpl revertAppearance = new MenuItemImpl(this, LogisimMenuBar.REVERT_APPEARANCE);
+	private MenuItemImpl layout = new MenuItemImpl(this, LogisimMenuBar.EDIT_LAYOUT);
+	private MenuItemImpl appearance = new MenuItemImpl(this, LogisimMenuBar.EDIT_APPEARANCE);
+	private MenuItemImpl viewToolbox = new MenuItemImpl(this, LogisimMenuBar.VIEW_TOOLBOX);
+	private MenuItemImpl viewSimulation = new MenuItemImpl(this, LogisimMenuBar.VIEW_SIMULATION);
+	private MenuItemImpl analyze = new MenuItemImpl(this, LogisimMenuBar.ANALYZE_CIRCUIT);
+	private MenuItemImpl stats = new MenuItemImpl(this, LogisimMenuBar.CIRCUIT_STATS);
 	private JMenuItem options = new JMenuItem();
 
 	MenuProject(LogisimMenuBar menubar) {
@@ -65,9 +67,11 @@ class MenuProject extends Menu {
 		menubar.registerItem(LogisimMenuBar.MOVE_CIRCUIT_DOWN, moveDown);
 		menubar.registerItem(LogisimMenuBar.SET_MAIN_CIRCUIT, setAsMain);
 		menubar.registerItem(LogisimMenuBar.REMOVE_CIRCUIT, remove);
+		menubar.registerItem(LogisimMenuBar.REVERT_APPEARANCE, revertAppearance);
 		menubar.registerItem(LogisimMenuBar.EDIT_LAYOUT, layout);
 		menubar.registerItem(LogisimMenuBar.EDIT_APPEARANCE, appearance);
-		menubar.registerItem(LogisimMenuBar.REVERT_APPEARANCE, revertAppearance);
+		menubar.registerItem(LogisimMenuBar.VIEW_TOOLBOX, viewToolbox);
+		menubar.registerItem(LogisimMenuBar.VIEW_SIMULATION, viewSimulation);
 		menubar.registerItem(LogisimMenuBar.ANALYZE_CIRCUIT, analyze);
 		menubar.registerItem(LogisimMenuBar.CIRCUIT_STATS, stats);
 		options.addActionListener(myListener);
@@ -84,10 +88,13 @@ class MenuProject extends Menu {
 		add(moveDown);
 		add(setAsMain);
 		add(remove);
+		add(revertAppearance);
 		addSeparator();
+		add(viewToolbox);
+		add(viewSimulation);
 		add(layout);
 		add(appearance);
-		add(revertAppearance);
+		addSeparator();
 		add(analyze);
 		add(stats);
 		addSeparator();
@@ -115,9 +122,11 @@ class MenuProject extends Menu {
 		moveDown.setText(Strings.get("projectMoveCircuitDownItem"));
 		setAsMain.setText(Strings.get("projectSetAsMainItem"));
 		remove.setText(Strings.get("projectRemoveCircuitItem"));
+		revertAppearance.setText(Strings.get("projectRevertAppearanceItem"));
 		layout.setText(Strings.get("projectEditCircuitLayoutItem"));
 		appearance.setText(Strings.get("projectEditCircuitAppearanceItem"));
-		revertAppearance.setText(Strings.get("projectRevertAppearanceItem"));
+		viewToolbox.setText(Strings.get("projectViewToolboxItem"));
+		viewSimulation.setText(Strings.get("projectViewSimulationItem"));
 		analyze.setText(Strings.get("projectAnalyzeCircuitItem"));
 		stats.setText(Strings.get("projectGetCircuitStatisticsItem"));
 		options.setText(Strings.get("projectOptionsItem"));
@@ -132,9 +141,12 @@ class MenuProject extends Menu {
 				|| setAsMain.hasListeners()
 				|| remove.hasListeners()
 				|| layout.hasListeners()
-				|| appearance.hasListeners()
 				|| revertAppearance.hasListeners()
+				|| appearance.hasListeners()
+				|| viewToolbox.hasListeners()
+				|| viewSimulation.hasListeners()
 				|| analyze.hasListeners()
 				|| stats.hasListeners());
+		menubar.fireEnableChanged();
 	}
 }

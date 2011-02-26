@@ -168,7 +168,10 @@ public class ProjectActions {
 					
 		int returnVal = chooser.showOpenDialog(parent);
 		if (returnVal != JFileChooser.APPROVE_OPTION) return;
-		doOpen(parent, baseProject, chooser.getSelectedFile());
+		File selected = chooser.getSelectedFile();
+		if (selected != null) {
+			doOpen(parent, baseProject, selected);
+		}
 	}
 
 	public static Project doOpen(Component parent,

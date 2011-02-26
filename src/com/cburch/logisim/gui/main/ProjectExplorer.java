@@ -62,7 +62,7 @@ import com.cburch.logisim.util.LocaleManager;
 public class ProjectExplorer extends JTree implements LocaleListener {
 	private static final String DIRTY_MARKER = "*";
 	
-	private static final Color MAGNIFYING_INTERIOR = new Color(200, 200, 255, 64);
+	static final Color MAGNIFYING_INTERIOR = new Color(200, 200, 255, 64);
 	
 	public static class Event {
 		private TreePath path;

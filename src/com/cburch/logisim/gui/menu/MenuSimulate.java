@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
 import javax.swing.KeyStroke;
@@ -29,7 +28,7 @@ import com.cburch.logisim.util.StringUtil;
 
 import java.util.ArrayList;
 
-class MenuSimulate extends JMenu {
+class MenuSimulate extends Menu {
 	private class TickFrequencyChoice extends JRadioButtonMenuItem
 			implements ActionListener {
 		private double freq;
@@ -101,21 +100,19 @@ class MenuSimulate extends JMenu {
 			Object src = e.getSource();
 			Project proj = menubar.getProject();
 			Simulator sim = proj == null ? null : proj.getSimulator();
-			if (src == run) {
-				boolean value = run.isSelected();
+			if (src == run || src == LogisimMenuBar.SIMULATE_ENABLE) {
 				if (sim != null) {
-					sim.setIsRunning(value);
+					sim.setIsRunning(!sim.isRunning());
 					proj.repaintCanvas();
 				}
 			} else if (src == reset) {
 				if (sim != null) sim.requestReset();
-			} else if (src == step) {
+			} else if (src == step || src == LogisimMenuBar.SIMULATE_STEP) {
 				if (sim != null) sim.step();
-			} else if (src == tickOnce) {
+			} else if (src == tickOnce || src == LogisimMenuBar.TICK_STEP) {
 				if (sim != null) sim.tick();
-			} else if (src == ticksEnabled) {
-				boolean value = ticksEnabled.isSelected();
-				if (sim != null) sim.setIsTicking(value);
+			} else if (src == ticksEnabled || src == LogisimMenuBar.TICK_ENABLE) {
+				if (sim != null) sim.setIsTicking(!sim.isTicking());
 			} else if (src == log) {
 				LogFrame frame = menubar.getProject().getLogFrame(true);
 				frame.setVisible(true);
@@ -127,8 +124,8 @@ class MenuSimulate extends JMenu {
 		public void simulatorStateChanged(SimulatorEvent e) {
 			Simulator sim = e.getSource();
 			if (sim != currentSim) return;
+			computeEnabled();
 			run.setSelected(sim.isRunning());
-			ticksEnabled.setEnabled(sim.isRunning());
 			ticksEnabled.setSelected(sim.isTicking());
 			double freq = sim.getTickFrequency();
 			for (int i = 0; i < tickFreqs.length; i++) {
@@ -148,11 +145,11 @@ class MenuSimulate extends JMenu {
 	private CircuitState bottomState = null;
 	private Simulator currentSim = null;
 
-	private JCheckBoxMenuItem run = new JCheckBoxMenuItem();
+	private MenuItemCheckImpl run;
 	private JMenuItem reset = new JMenuItem();
-	private JMenuItem step = new JMenuItem();
-	private JCheckBoxMenuItem ticksEnabled = new JCheckBoxMenuItem();
-	private JMenuItem tickOnce = new JMenuItem();
+	private MenuItemImpl step;
+	private MenuItemCheckImpl ticksEnabled;
+	private MenuItemImpl tickOnce;
 	private JMenu tickFreq = new JMenu();
 	private TickFrequencyChoice[] tickFreqs = {
 		new TickFrequencyChoice(4096),
@@ -181,6 +178,16 @@ class MenuSimulate extends JMenu {
 
 	public MenuSimulate(LogisimMenuBar menubar) {
 		this.menubar = menubar;
+		
+		run = new MenuItemCheckImpl(this, LogisimMenuBar.SIMULATE_ENABLE);
+		step = new MenuItemImpl(this, LogisimMenuBar.SIMULATE_STEP);
+		ticksEnabled = new MenuItemCheckImpl(this, LogisimMenuBar.TICK_ENABLE);
+		tickOnce = new MenuItemImpl(this, LogisimMenuBar.TICK_STEP);
+
+		menubar.registerItem(LogisimMenuBar.SIMULATE_ENABLE, run);
+		menubar.registerItem(LogisimMenuBar.SIMULATE_STEP, step);
+		menubar.registerItem(LogisimMenuBar.TICK_ENABLE, ticksEnabled);
+		menubar.registerItem(LogisimMenuBar.TICK_STEP, tickOnce);
 
 		int menuMask = getToolkit().getMenuShortcutKeyMask();
 		run.setAccelerator(KeyStroke.getKeyStroke(
@@ -224,12 +231,18 @@ class MenuSimulate extends JMenu {
 		tickFreq.setEnabled(false);
 		
 		run.addChangeListener(myListener);
-		run.addActionListener(myListener);
+		menubar.addActionListener(LogisimMenuBar.SIMULATE_ENABLE, myListener);
+		menubar.addActionListener(LogisimMenuBar.SIMULATE_STEP, myListener);
+		menubar.addActionListener(LogisimMenuBar.TICK_ENABLE, myListener);
+		menubar.addActionListener(LogisimMenuBar.TICK_STEP, myListener);
+		// run.addActionListener(myListener);
 		reset.addActionListener(myListener);
-		step.addActionListener(myListener);
-		tickOnce.addActionListener(myListener);
-		ticksEnabled.addActionListener(myListener);
+		// step.addActionListener(myListener);
+		// tickOnce.addActionListener(myListener);
+		// ticksEnabled.addActionListener(myListener);
 		log.addActionListener(myListener);
+		
+		computeEnabled();
 	}
 
 	public void localeChanged() {
@@ -265,19 +278,11 @@ class MenuSimulate extends JMenu {
 			}
 			if (cur == null) bottomState = currentState;
 		}
-
+		
 		boolean oldPresent = oldState != null;
 		boolean present = currentState != null;
 		if (oldPresent != present) {
-			setEnabled(present);
-			run.setEnabled(present);
-			reset.setEnabled(present);
-			step.setEnabled(present && !run.isSelected());
-			upStateMenu.setEnabled(present);
-			downStateMenu.setEnabled(present);
-			tickOnce.setEnabled(present);
-			ticksEnabled.setEnabled(present);
-			tickFreq.setEnabled(present);
+			computeEnabled();
 		}
 
 		if (currentSim != oldSim) {
@@ -334,5 +339,22 @@ class MenuSimulate extends JMenu {
 				item.setAccelerator(null);
 			}
 		}
+	}
+
+	@Override
+	void computeEnabled() {
+		boolean present = currentState != null;
+		Simulator sim = this.currentSim;
+		boolean simRunning = sim != null && sim.isRunning();
+		setEnabled(present);
+		run.setEnabled(present);
+		reset.setEnabled(present);
+		step.setEnabled(present && !simRunning);
+		upStateMenu.setEnabled(present);
+		downStateMenu.setEnabled(present);
+		tickOnce.setEnabled(present);
+		ticksEnabled.setEnabled(present && simRunning);
+		tickFreq.setEnabled(present);
+		menubar.fireEnableChanged();
 	}
 }

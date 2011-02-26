@@ -26,8 +26,8 @@ class MenuFile extends Menu implements ActionListener {
 	private JMenuItem close = new JMenuItem();
 	private JMenuItem save = new JMenuItem();
 	private JMenuItem saveAs = new JMenuItem();
-	private MenuItem print = new MenuItem(this, LogisimMenuBar.PRINT);
-	private MenuItem exportImage = new MenuItem(this, LogisimMenuBar.EXPORT_IMAGE);
+	private MenuItemImpl print = new MenuItemImpl(this, LogisimMenuBar.PRINT);
+	private MenuItemImpl exportImage = new MenuItemImpl(this, LogisimMenuBar.EXPORT_IMAGE);
 	private JMenuItem prefs = new JMenuItem();
 	private JMenuItem quit = new JMenuItem();
 
@@ -106,6 +106,7 @@ class MenuFile extends Menu implements ActionListener {
 	@Override
 	void computeEnabled() {
 		setEnabled(true);
+		menubar.fireEnableChanged();
 	}
 	
 	public void actionPerformed(ActionEvent e) {

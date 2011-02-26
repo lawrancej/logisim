@@ -69,8 +69,6 @@ public class AppPreferences {
 	public static final String TOOLBAR_HIDDEN = "hidden";
 	public static final String TOOLBAR_DOWN_MIDDLE = "downMiddle";
 	
-	public static final PrefMonitor<Boolean> SHOW_PROJECT_TOOLBAR
-		= create(new PrefMonitorBoolean("showProjectToolbar",  false));
 	public static final PrefMonitor<Boolean> SHOW_TICK_RATE
 		= create(new PrefMonitorBoolean("showTickRate", false));
 	public static final PrefMonitor<String> TOOLBAR_PLACEMENT

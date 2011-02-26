@@ -3,6 +3,8 @@
 
 package com.cburch.logisim.tools.move;
 
+import com.cburch.logisim.circuit.ReplacementMap;
+
 class ConnectorThread extends Thread {
 	private static ConnectorThread INSTANCE = new ConnectorThread();
 	
@@ -43,6 +45,7 @@ class ConnectorThread extends Thread {
 	public void run() {
 		while (true) {
 			MoveRequest req;
+			boolean wasOverride;
 			synchronized (lock) {
 				processingRequest = null;
 				while (nextRequest == null) {
@@ -54,6 +57,7 @@ class ConnectorThread extends Thread {
 					}
 				}
 				req = nextRequest;
+				wasOverride = overrideRequest;
 				nextRequest = null;
 				overrideRequest = false;
 				processingRequest = req;
@@ -67,6 +71,13 @@ class ConnectorThread extends Thread {
 				}
 			} catch (Throwable t) {
 				t.printStackTrace();
+				if (wasOverride) {
+					MoveResult result = new MoveResult(req,
+							new ReplacementMap(),
+							req.getMoveGesture().getConnections(),
+							0);
+					req.getMoveGesture().notifyResult(req, result);
+				}
 			}
 		}
 	}

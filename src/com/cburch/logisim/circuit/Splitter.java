@@ -4,7 +4,9 @@
 package com.cburch.logisim.circuit;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.CircuitWires;
@@ -18,6 +20,7 @@ import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.BitWidth;
+import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.StdAttr;
@@ -107,20 +110,21 @@ public class Splitter extends ManagedComponent
 
 		// compute end positions
 		int offs = -(fanout / 2) * 10;
+		int wid = attrs.appear == SplitterAttributes.APPEAR_FAT_TRAPEZOID ? 40 : 20;
 		int dx, ddx;
 		int dy, ddy;
 		if (facing == Direction.EAST) {
-			dx =  20;   ddx =   0;
+			dx =  wid;  ddx =   0;
 			dy = offs;  ddy =  10;
 		} else if (facing == Direction.WEST) {
-			dx = -20;   ddx =   0;
+			dx = -wid;  ddx =   0;
 			dy = offs;  ddy =  10;
 		} else if (facing == Direction.NORTH) {
 			dx = offs + (fanout - 1) * 10;  ddx = -10;
-			dy = -20;                       ddy =   0;
+			dy = -wid;                      ddy =   0;
 		} else if (facing == Direction.SOUTH) {
 			dx = offs + (fanout - 1) * 10;  ddx = -10;
-			dy =  20;                       ddy =   0;
+			dy =  wid;                      ddy =   0;
 		} else {
 			throw new IllegalArgumentException("unrecognized direction");
 		}
@@ -143,9 +147,123 @@ public class Splitter extends ManagedComponent
 	// user interface methods
 	//
 	public void draw(ComponentDrawContext context) {
+		SplitterAttributes attrs = (SplitterAttributes) getAttributeSet();
+		if (attrs.appear == SplitterAttributes.APPEAR_LINES) {
+			drawLines(context, attrs);
+		} else if (attrs.appear == SplitterAttributes.APPEAR_FAT_TRAPEZOID) {
+			drawTrapezoid(context, attrs, 40);
+		} else {
+			drawTrapezoid(context, attrs, 20);
+		}
+	}
+	
+	static void drawTrapezoidShape(ComponentDrawContext context,
+			SplitterAttributes attrs, Location origin,
+			Bounds bds) {
+		Direction facing = attrs.facing;
+		Location ein = origin;
+		int[] trapx;
+		int[] trapy;
+		int[] trix;
+		int[] triy;
+		int x0 = bds.getX();
+		int x1 = x0 + bds.getWidth();
+		int y0 = bds.getY();
+		int y1 = y0 + bds.getHeight();
+		if (facing == Direction.NORTH || facing == Direction.SOUTH) {
+			int ylong = facing == Direction.NORTH ? y0 : y1;
+			int yshort = facing == Direction.NORTH ? y1 - 4 : y0 + 4;
+			trapx = new int[] { x0 + 4, x0, x1, x1 - 4 };
+			trapy = new int[] { yshort, ylong, ylong, yshort };
+
+			int xin = ein.getX();
+			int yin = ein.getY();
+			trix = new int[] { xin, xin - 4, xin + 4 };
+			triy = new int[] { yin, yshort, yshort };
+		} else {
+			int xlong = facing == Direction.WEST ? x0 : x1;
+			int xshort = facing == Direction.WEST ? x1 - 4 : x0 + 4;
+			trapy = new int[] { y0 + 4, y0, y1, y1 - 4 };
+			trapx = new int[] { xshort, xlong, xlong, xshort };
+
+			int xin = ein.getX();
+			int yin = ein.getY();
+			trix = new int[] { xin, xshort, xshort };
+			triy = new int[] { yin, yin - 4, yin + 4 };
+		}
+		
+		Graphics g = context.getGraphics();
+		g.fillPolygon(trix, triy, 3);
+		GraphicsUtil.switchToWidth(g, 2);
+		g.drawPolygon(trapx, trapy, 4);
+	}
+	
+	private void drawTrapezoid(ComponentDrawContext context, SplitterAttributes attrs,
+			int width) {
+		Graphics g = context.getGraphics();
+		Direction facing = attrs.facing;
+		drawTrapezoidShape(context, attrs, getLocation(), getBounds());
+		
+		Font font = g.getFont();
+		g.setFont(font.deriveFont(7.0f));
+		String[] ends = new String[attrs.fanout + 1];
+		int curEnd = -1;
+		int cur0 = 0;
+		for (int i = 0, n = attrs.bit_end.length; i <= n; i++) {
+			int bit = i == n ? -1 : attrs.bit_end[i];
+			if (bit != curEnd) {
+				int cur1 = i - 1;
+				String toAdd;
+				if (curEnd <= 0) {
+					toAdd = null;
+				} else if (cur0 == cur1) {
+					toAdd = "" + cur0;
+				} else {
+					toAdd = cur0 + "-" + cur1;
+				}
+				if (toAdd != null) {
+					String old = ends[curEnd];
+					if (old == null) {
+						ends[curEnd] = toAdd;
+					} else {
+						ends[curEnd] = old + "," + toAdd;
+					}
+				}
+				curEnd = bit;
+				cur0 = i;
+			}
+		}
+		int dx = 0;
+		int dy = 0;
+		if (facing == Direction.NORTH) {
+			dy = 2;
+		} else if (facing == Direction.SOUTH) {
+			dy = -2;
+		} else if (facing == Direction.WEST) {
+			dx = 2;
+		} else {
+			dx = -2;
+		}
+		int halign = dx + dy < 0 ? GraphicsUtil.H_RIGHT : GraphicsUtil.H_LEFT;
+		double radians = dx == 0 ? Math.PI / 2.0 : 0;
+		for (int i = 1, n = ends.length; i < n; i++) {
+			String text = ends[i];
+			if (text != null) {
+				Location loc = getEndLocation(i);
+				Graphics g2 = g.create();
+				g2.translate(loc.getX() + dx, loc.getY() + dy);
+				((Graphics2D) g2).rotate(radians);
+				GraphicsUtil.drawText(g2, ends[i],
+						0, 0, halign, GraphicsUtil.V_CENTER);
+				g2.dispose();
+			}
+		}
+		context.drawPins(this);
+	}
+	
+	private void drawLines(ComponentDrawContext context, SplitterAttributes attrs) {
 		Graphics g = context.getGraphics();
 		CircuitState state = context.getCircuitState();
-		SplitterAttributes attrs = (SplitterAttributes) getAttributeSet();
 		Direction facing = attrs.facing;
 		int fanout = attrs.fanout;
 		

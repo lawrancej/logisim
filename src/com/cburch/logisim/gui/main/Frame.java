@@ -22,6 +22,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.cburch.draw.toolbar.Toolbar;
 import com.cburch.draw.toolbar.ToolbarModel;
@@ -58,14 +60,18 @@ import com.cburch.logisim.util.StringUtil;
 import com.cburch.logisim.util.VerticalSplitPane;
 
 public class Frame extends LFrame implements LocaleListener {
-	public static final String LAYOUT = "layout";
-	public static final String APPEARANCE = "appearance";
+	public static final String EDITOR_VIEW = "editorView";
+	public static final String EXPLORER_VIEW = "explorerView";
+	public static final String EDIT_LAYOUT = "layout";
+	public static final String EDIT_APPEARANCE = "appearance";
+	public static final String VIEW_TOOLBOX = "toolbox";
+	public static final String VIEW_SIMULATION = "simulation";
 
 	private static final double[] ZOOM_OPTIONS = { 20, 50, 75, 100, 133, 150, 200 };
 	
 	class MyProjectListener
 			implements ProjectListener, LibraryListener, CircuitListener,
-				PropertyChangeListener {
+				PropertyChangeListener, ChangeListener {
 		public void projectChanged(ProjectEvent event) {
 			int action = event.getAction();
 
@@ -74,7 +80,7 @@ public class Frame extends LFrame implements LocaleListener {
 				proj.setTool(proj.getOptions().getToolbarData().getFirstTool());
 				placeToolbar();
 			} else if (action == ProjectEvent.ACTION_SET_CURRENT) {
-				setView(LAYOUT);
+				setEditorView(EDIT_LAYOUT);
 				if (appearance != null) {
 					appearance.setCircuit(proj, proj.getCircuitState());
 				}
@@ -111,11 +117,17 @@ public class Frame extends LFrame implements LocaleListener {
 		public void attributeListChanged(AttributeEvent e) { }
 
 		public void propertyChange(PropertyChangeEvent event) {
-			if (AppPreferences.SHOW_PROJECT_TOOLBAR.isSource(event)) {
-				boolean val = ((Boolean) event.getNewValue()).booleanValue();
-				projectToolbar.setVisible(val);
-			} else if (AppPreferences.TOOLBAR_PLACEMENT.isSource(event)) {
+			if (AppPreferences.TOOLBAR_PLACEMENT.isSource(event)) {
 				placeToolbar();
+			}
+		}
+		
+		public void stateChanged(ChangeEvent event) {
+			Object source = event.getSource();
+			if (source == explorerPane) {
+				firePropertyChange(EXPLORER_VIEW, "???", getExplorerView());
+			} else if (source == mainPanel) {
+				firePropertyChange(EDITOR_VIEW, "???", getEditorView());
 			}
 		}
 	}
@@ -148,7 +160,7 @@ public class Frame extends LFrame implements LocaleListener {
 	private CardPanel       mainPanel;
 	// left-side elements
 	private Toolbar         projectToolbar;
-	private ExplorerPane    explorerPane;
+	private CardPanel       explorerPane;
 	private Toolbox         toolbox;
 	private SimulationExplorer simExplorer;
 	private AttrTable       attrTable;
@@ -194,13 +206,14 @@ public class Frame extends LFrame implements LocaleListener {
 		toolbar = new Toolbar(layoutToolbarModel);
 
 		// set up the left-side components
-		ToolbarModel projectToolbarModel = new ProjectToolbarModel(this, menuListener);
+		ToolbarModel projectToolbarModel = new ExplorerToolbarModel(this, menuListener);
 		projectToolbar = new Toolbar(projectToolbarModel);
-		projectToolbar.setVisible(AppPreferences.SHOW_PROJECT_TOOLBAR.getBoolean());
 		toolbox = new Toolbox(proj, menuListener);
 		simExplorer = new SimulationExplorer(proj, menuListener);
-		explorerPane = new ExplorerPane();
-		explorerPane.setView(toolbox);
+		explorerPane = new CardPanel();
+		explorerPane.addView(VIEW_TOOLBOX, toolbox);
+		explorerPane.addView(VIEW_SIMULATION, simExplorer);
+		explorerPane.setView(VIEW_TOOLBOX);
 		attrTable = new AttrTable(this);
 		zoom = new ZoomControl(layoutZoomModel);
 
@@ -209,8 +222,8 @@ public class Frame extends LFrame implements LocaleListener {
 		mainPanelSuper = new JPanel(new BorderLayout());
 		canvasPane.setZoomModel(layoutZoomModel);
 		mainPanel = new CardPanel();
-		mainPanel.addView(LAYOUT, canvasPane);
-		mainPanel.setView(LAYOUT);
+		mainPanel.addView(EDIT_LAYOUT, canvasPane);
+		mainPanel.setView(EDIT_LAYOUT);
 		mainPanelSuper.add(mainPanel, BorderLayout.CENTER);
 
 		// set up the contents, split down the middle, with the canvas
@@ -247,7 +260,8 @@ public class Frame extends LFrame implements LocaleListener {
 		if (proj.getTool() == null) {
 			proj.setTool(proj.getOptions().getToolbarData().getFirstTool());
 		}
-		AppPreferences.SHOW_PROJECT_TOOLBAR.addPropertyChangeListener(myProjectListener);
+		mainPanel.addChangeListener(myProjectListener);
+		explorerPane.addChangeListener(myProjectListener);
 		AppPreferences.TOOLBAR_PLACEMENT.addPropertyChangeListener(myProjectListener);
 		placeToolbar();
 		((MenuListener.EnabledListener) projectToolbarModel).menuEnableChanged(menuListener);
@@ -304,28 +318,24 @@ public class Frame extends LFrame implements LocaleListener {
 		return attrTable;
 	}
 	
-	public String getView() {
-		return mainPanel.getView();
+	public void setExplorerView(String view) {
+		explorerPane.setView(view);
 	}
 	
-	public void setExplorerPane(String view) {
-		if (view.equals("toolbox")) {
-			explorerPane.setView(toolbox);
-		} else if (view.equals("simulation")) {
-			explorerPane.setView(simExplorer);
-		}
+	public String getExplorerView() {
+		return explorerPane.getView();
 	}
 	
-	public void setView(String view) {
+	public void setEditorView(String view) {
 		String curView = mainPanel.getView();
 		if (curView.equals(view)) return;
 		
-		if (view.equals(APPEARANCE)) { // appearance view
+		if (view.equals(EDIT_APPEARANCE)) { // appearance view
 			AppearanceView app = appearance;
 			if (app == null) {
 				app = new AppearanceView();
 				app.setCircuit(proj, proj.getCircuitState());
-				mainPanel.addView(APPEARANCE, app.getCanvasPane());
+				mainPanel.addView(EDIT_APPEARANCE, app.getCanvasPane());
 				appearance = app;
 			}
 			toolbar.setToolbarModel(app.getToolbarModel());
@@ -342,6 +352,10 @@ public class Frame extends LFrame implements LocaleListener {
 			mainPanel.setView(view);
 			layoutCanvas.requestFocus();
 		}
+	}
+
+	public String getEditorView() {
+		return mainPanel.getView();
 	}
 
 	public Canvas getCanvas() {

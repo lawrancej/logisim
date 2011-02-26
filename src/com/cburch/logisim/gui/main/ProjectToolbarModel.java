@@ -58,11 +58,11 @@ class ProjectToolbarModel extends AbstractToolbarModel
 	
 	@Override
 	public boolean isSelected(ToolbarItem item) {
-		String view = frame.getView();
+		String view = frame.getEditorView();
 		if (item == itemLayout) {
-			return view.equals(Frame.LAYOUT);
+			return view.equals(Frame.EDIT_LAYOUT);
 		} else if (item == itemAppearance) {
-			return view.equals(Frame.APPEARANCE);
+			return view.equals(Frame.EDIT_APPEARANCE);
 		} else {
 			return false;
 		}

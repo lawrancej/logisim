@@ -11,20 +11,89 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import com.cburch.logisim.circuit.Simulator;
+import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.comp.Component;
 
 public class SimulationTreeModel implements TreeModel {
 	private ArrayList<TreeModelListener> listeners;
 	private SimulationTreeCircuitNode root;
+	private CircuitState currentView;
 	
-	public SimulationTreeModel(Simulator simulator) {
+	public SimulationTreeModel(CircuitState rootState) {
 		this.listeners = new ArrayList<TreeModelListener>();
 		this.root = new SimulationTreeCircuitNode(this, null,
-				simulator.getCircuitState(), null);
+				rootState, null);
+		this.currentView = null;
 	}
 	
-	protected TreeNode mapComponentToNode(Component comp) {
+	public CircuitState getRootState() {
+		return root.getCircuitState();
+	}
+	
+	public CircuitState getCurrentView() {
+		return currentView;
+	}
+	
+	public void setCurrentView(CircuitState value) {
+		CircuitState oldView = currentView;
+		if (oldView != value) {
+			currentView = value;
+
+			SimulationTreeCircuitNode node1 = mapToNode(oldView);
+			if (node1 != null) fireNodeChanged(node1);
+
+			SimulationTreeCircuitNode node2 = mapToNode(value);
+			if (node2 != null) fireNodeChanged(node2);
+		}
+	}
+	
+	private SimulationTreeCircuitNode mapToNode(CircuitState state) {
+		TreePath path = mapToPath(state);
+		if (path == null) {
+			return null;
+		} else {
+			return (SimulationTreeCircuitNode) path.getLastPathComponent();
+		}
+	}
+	
+	public TreePath mapToPath(CircuitState state) {
+		if (state == null) return null;
+		ArrayList<CircuitState> path = new ArrayList<CircuitState>();
+		CircuitState current = state;
+		CircuitState parent = current.getParentState();
+		while (parent != null && parent != state) {
+			path.add(current);
+			current = parent;
+			parent = current.getParentState();
+		}
+		
+		Object[] pathNodes = new Object[path.size() + 1];
+		pathNodes[0] = root;
+		int pathPos = 1;
+		SimulationTreeCircuitNode node = root;
+		for (int i = path.size() - 1; i >= 0; i--) {
+			current = path.get(i);
+			SimulationTreeCircuitNode oldNode = node;
+			for (int j = 0, n = node.getChildCount(); j < n; j++) {
+				Object child = node.getChildAt(j);
+				if (child instanceof SimulationTreeCircuitNode) {
+					SimulationTreeCircuitNode circNode = (SimulationTreeCircuitNode) child;
+					if (circNode.getCircuitState() == current) {
+						node = circNode;
+						break;
+					}
+				}
+			}
+			if (node == oldNode) {
+				return null;
+			}
+			pathNodes[pathPos] = node;
+			pathPos++;
+		}
+		return new TreePath(pathNodes);
+	}
+	
+	protected SimulationTreeNode mapComponentToNode(Component comp) {
 		return null;
 	}
 

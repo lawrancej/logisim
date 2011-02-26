@@ -12,7 +12,7 @@ import com.cburch.draw.toolbar.Toolbar;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
 
-class Toolbox extends JPanel implements ExplorerPane.View {
+class Toolbox extends JPanel {
 	private ProjectExplorer toolbox;
 	
 	Toolbox(Project proj, MenuListener menu) {
@@ -20,7 +20,7 @@ class Toolbox extends JPanel implements ExplorerPane.View {
 		
 		ToolboxToolbarModel toolbarModel = new ToolboxToolbarModel(menu);
 		Toolbar toolbar = new Toolbar(toolbarModel);
-		// add(toolbar, BorderLayout.NORTH);
+		add(toolbar, BorderLayout.NORTH);
 		
 		toolbox = new ProjectExplorer(proj);
 		toolbox.setListener(new ToolboxManip(proj, toolbox));

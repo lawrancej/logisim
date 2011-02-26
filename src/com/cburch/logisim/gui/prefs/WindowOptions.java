@@ -19,8 +19,6 @@ class WindowOptions extends OptionsPanel {
 		checks = new PrefBoolean[] {
 				new PrefBoolean(AppPreferences.SHOW_TICK_RATE,
 						Strings.getter("windowTickRate")),
-				new PrefBoolean(AppPreferences.SHOW_PROJECT_TOOLBAR,
-						Strings.getter("windowProjectToolbar")),
 			};
 
 		toolbarPlacement = new PrefOptionList(AppPreferences.TOOLBAR_PLACEMENT,

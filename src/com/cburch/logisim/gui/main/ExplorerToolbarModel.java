@@ -24,9 +24,9 @@ class ExplorerToolbarModel extends AbstractToolbarModel
 		this.frame = frame;
 		
 		itemToolbox = new LogisimToolbarItem(menu, "projtool.gif",
-				LogisimMenuBar.EDIT_LAYOUT, Strings.getter("projectViewToolboxTip"));
+				LogisimMenuBar.VIEW_TOOLBOX, Strings.getter("projectViewToolboxTip"));
 		itemSimulation = new LogisimToolbarItem(menu, "projsim.gif",
-				LogisimMenuBar.EDIT_APPEARANCE, Strings.getter("projectViewSimulationTip"));
+				LogisimMenuBar.VIEW_SIMULATION, Strings.getter("projectViewSimulationTip"));
 		itemLayout = new LogisimToolbarItem(menu, "projlayo.gif",
 				LogisimMenuBar.EDIT_LAYOUT, Strings.getter("projectEditLayoutTip"));
 		itemAppearance = new LogisimToolbarItem(menu, "projapp.gif",
@@ -50,11 +50,14 @@ class ExplorerToolbarModel extends AbstractToolbarModel
 	
 	@Override
 	public boolean isSelected(ToolbarItem item) {
-		String view = frame.getView();
 		if (item == itemLayout) {
-			return view.equals(Frame.LAYOUT);
+			return frame.getEditorView().equals(Frame.EDIT_LAYOUT);
 		} else if (item == itemAppearance) {
-			return view.equals(Frame.APPEARANCE);
+			return frame.getEditorView().equals(Frame.EDIT_APPEARANCE);
+		} else if (item == itemToolbox) {
+			return frame.getExplorerView().equals(Frame.VIEW_TOOLBOX);
+		} else if (item == itemSimulation) {
+			return frame.getExplorerView().equals(Frame.VIEW_SIMULATION);
 		} else {
 			return false;
 		}

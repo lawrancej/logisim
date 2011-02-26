@@ -117,7 +117,7 @@ public class Popups {
 			boolean canChange = proj.getLogisimFile().contains(circuit);
 			LogisimFile file = proj.getLogisimFile();
 			if (circuit == proj.getCurrentCircuit()) {
-				if (proj.getFrame().getView().equals(Frame.APPEARANCE)) {
+				if (proj.getFrame().getEditorView().equals(Frame.EDIT_APPEARANCE)) {
 					editAppearance.setEnabled(false);
 				} else {
 					editLayout.setEnabled(false);
@@ -132,10 +132,10 @@ public class Popups {
 			Object source = e.getSource();
 			if (source == editLayout) {
 				proj.setCurrentCircuit(circuit);
-				proj.getFrame().setView(Frame.LAYOUT);
+				proj.getFrame().setEditorView(Frame.EDIT_LAYOUT);
 			} else if (source == editAppearance) {
 				proj.setCurrentCircuit(circuit);
-				proj.getFrame().setView(Frame.APPEARANCE);
+				proj.getFrame().setEditorView(Frame.EDIT_APPEARANCE);
 			} else if (source == analyze) {
 				ProjectCircuitActions.doAnalyze(proj, circuit);
 			} else if (source == stats) {

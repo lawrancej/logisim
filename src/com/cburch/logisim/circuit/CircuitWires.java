@@ -586,8 +586,10 @@ class CircuitWires {
 				index++;
 				Location p = end.getLocation();
 				WireBundle pb = ret.getBundleAt(p);
-				pb.setWidth(end.getWidth(), p);
-				spl.wire_data.end_bundle[index] = pb;
+				if (pb != null) {
+					pb.setWidth(end.getWidth(), p);
+					spl.wire_data.end_bundle[index] = pb;
+				}
 			}
 		}
 
@@ -606,11 +608,15 @@ class CircuitWires {
 						int thr = spl.bit_thread[i];
 						WireBundle to_bundle = spl_data.end_bundle[j];
 						if (to_bundle.isValid()) {
-							if (i >= from_bundle.threads.length) {
-								throw new ArrayIndexOutOfBoundsException("from " + i + " of " + from_bundle.threads.length);
+							WireThread[] from_threads = from_bundle.threads;
+							int from_len = from_threads == null ? 0 : from_threads.length;
+							if (i >= from_len) {
+								throw new ArrayIndexOutOfBoundsException("from " + i + " of " + from_len);
 							}
-							if (thr >= to_bundle.threads.length) {
-								throw new ArrayIndexOutOfBoundsException("to " + thr + " of " + to_bundle.threads.length);
+							WireThread[] to_threads = to_bundle.threads;
+							int to_len = to_threads == null ? 0 : to_threads.length;
+							if (thr >= to_len) {
+								throw new ArrayIndexOutOfBoundsException("to " + thr + " of " + to_len);
 							}
 							from_bundle.threads[i].unite(to_bundle.threads[thr]);
 						}

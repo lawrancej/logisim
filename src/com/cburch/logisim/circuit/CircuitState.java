@@ -5,6 +5,7 @@ package com.cburch.logisim.circuit;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -338,12 +339,13 @@ public class CircuitState implements InstanceData {
 	}
 
 	void processDirtyPoints() {
+		HashSet<Location> dirty = new HashSet<Location>(dirtyPoints);
+		dirtyPoints.clear();
 		if (circuit.wires.isMapVoided()) {
-			dirtyPoints.addAll(circuit.wires.points.getSplitLocations());
+			dirty.addAll(circuit.wires.points.getSplitLocations());
 		}
-		if (!dirtyPoints.isEmpty()) {
-			circuit.wires.propagate(this, dirtyPoints);
-			dirtyPoints.clear();
+		if (!dirty.isEmpty()) {
+			circuit.wires.propagate(this, dirty);
 		}
 
 		CircuitState[] subs = new CircuitState[substates.size()];

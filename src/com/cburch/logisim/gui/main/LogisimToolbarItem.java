@@ -32,6 +32,14 @@ class LogisimToolbarItem implements ToolbarItem {
 		this.toolTip = toolTip;
 	}
 	
+	public void setIcon(String iconName) {
+		this.icon = Icons.getIcon(iconName);
+	}
+	
+	public void setToolTip(StringGetter toolTip) {
+		this.toolTip = toolTip;
+	}
+	
 	public void doAction() {
 		if (menu != null && menu.isEnabled(action)) {
 			menu.doAction(action);

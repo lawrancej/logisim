@@ -42,18 +42,18 @@ class MenuEdit extends Menu {
 
 	private LogisimMenuBar menubar;
 	private JMenuItem undo  = new JMenuItem();
-	private MenuItem cut    = new MenuItem(this, LogisimMenuBar.CUT);
-	private MenuItem copy   = new MenuItem(this, LogisimMenuBar.COPY);
-	private MenuItem paste  = new MenuItem(this, LogisimMenuBar.PASTE);
-	private MenuItem delete = new MenuItem(this, LogisimMenuBar.DELETE);
-	private MenuItem dup    = new MenuItem(this, LogisimMenuBar.DUPLICATE);
-	private MenuItem selall = new MenuItem(this, LogisimMenuBar.SELECT_ALL);
-	private MenuItem raise = new MenuItem(this, LogisimMenuBar.RAISE);
-	private MenuItem lower = new MenuItem(this, LogisimMenuBar.LOWER);
-	private MenuItem raiseTop = new MenuItem(this, LogisimMenuBar.RAISE_TOP);
-	private MenuItem lowerBottom = new MenuItem(this, LogisimMenuBar.LOWER_BOTTOM);
-	private MenuItem addCtrl = new MenuItem(this, LogisimMenuBar.ADD_CONTROL);
-	private MenuItem remCtrl = new MenuItem(this, LogisimMenuBar.REMOVE_CONTROL);
+	private MenuItemImpl cut    = new MenuItemImpl(this, LogisimMenuBar.CUT);
+	private MenuItemImpl copy   = new MenuItemImpl(this, LogisimMenuBar.COPY);
+	private MenuItemImpl paste  = new MenuItemImpl(this, LogisimMenuBar.PASTE);
+	private MenuItemImpl delete = new MenuItemImpl(this, LogisimMenuBar.DELETE);
+	private MenuItemImpl dup    = new MenuItemImpl(this, LogisimMenuBar.DUPLICATE);
+	private MenuItemImpl selall = new MenuItemImpl(this, LogisimMenuBar.SELECT_ALL);
+	private MenuItemImpl raise = new MenuItemImpl(this, LogisimMenuBar.RAISE);
+	private MenuItemImpl lower = new MenuItemImpl(this, LogisimMenuBar.LOWER);
+	private MenuItemImpl raiseTop = new MenuItemImpl(this, LogisimMenuBar.RAISE_TOP);
+	private MenuItemImpl lowerBottom = new MenuItemImpl(this, LogisimMenuBar.LOWER_BOTTOM);
+	private MenuItemImpl addCtrl = new MenuItemImpl(this, LogisimMenuBar.ADD_CONTROL);
+	private MenuItemImpl remCtrl = new MenuItemImpl(this, LogisimMenuBar.REMOVE_CONTROL);
 	private MyListener myListener = new MyListener();
 
 	public MenuEdit(LogisimMenuBar menubar) {
