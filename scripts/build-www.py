@@ -48,6 +48,7 @@ template_langmenu_other = '''<tr>
 template_langmenu_cur = '''<tr><th>[{xn}]</th><td>{xnname}</td></tr>'''
 langmenu_names = {
 	'de': 'Deutsch',
+	'el': '\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC',
 	'en': 'English',
 	'es': 'espa\u00f1ol',
 	'pt': 'Portugu\u00eas',

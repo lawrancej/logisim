@@ -79,14 +79,15 @@ and the arrow keys alter its <q>Facing</q> attribute.</p>
 
 <dt>Appearance</dt>
 <dd>Supports different ways of depicting the splitter in the circuit.
-The <q>Trapezoid</q> option (the default) includes a trapezoid
-inside which is a small label by each split end indicating which bits
-from the combined end are routed there.
-The <q>Fat Trapezoid</q> option uses a wider trapezoid to facilitate longer
-labels.
-The <q>Lines</q> option draws lines from the combined end to the split end,
-without any labels; this option is primarily for compatibility versions
-older than 2.7.0, at which time splitters were always drawn this way.</dd>
+The <q>Left-handed</q> option (the default) draws a spine going left from the
+combined end, with a labeled line coming from the spine for each split end.
+The <q>Right-handed</q> option is the same except the spine goes right (if you're
+facing according to the Facing attribute).
+The <q>Centered</q> option centers the spine so it goes in roughly equal directions
+left and right.
+And the <q>Legacy</q> option draws diagonal lines to each split end, without labels;
+this option is primarily for compatibility with versions
+older than 2.7.0, when this was the only option for splitter appearance.</dd>
 
 <dt>Bit <var>x</var></dt>
 <dd>The index of the split end to which bit <var>x</var> of the combined
