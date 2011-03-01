@@ -523,9 +523,19 @@ class CircuitWires {
 		}
 		try {
 			// Ok, we have to create our own.
-			ret = new BundleMap();
-			bundleMap = ret;
-			computeBundleMap(ret);
+			for (int tries = 4; tries >= 0; tries--) {
+				try {
+					ret = new BundleMap();
+					computeBundleMap(ret);
+					bundleMap = ret;
+					break;
+				} catch (Throwable t) {
+					if (tries == 0) {
+						t.printStackTrace();
+						bundleMap = ret;
+					}
+				}
+			}
 		} catch (RuntimeException ex) {
 			ret.invalidate();
 			ret.markComputed();
@@ -560,7 +570,7 @@ class CircuitWires {
 
 		// make a WireBundle object for each end of a splitter
 		for (Splitter spl : splitters) {
-			List<EndData> ends = spl.getEnds();
+			List<EndData> ends = new ArrayList<EndData>(spl.getEnds());
 			for (EndData end : ends) {
 				Location p = end.getLocation();
 				WireBundle pb = ret.createBundleAt(p);
@@ -580,7 +590,7 @@ class CircuitWires {
 
 		// determine the bundles at the end of each splitter
 		for (Splitter spl : splitters) {
-			List<EndData> ends = spl.getEnds();
+			List<EndData> ends = new ArrayList<EndData>(spl.getEnds());
 			int index = -1;
 			for (EndData end : ends) {
 				index++;
@@ -607,18 +617,16 @@ class CircuitWires {
 					if (j > 0) {
 						int thr = spl.bit_thread[i];
 						WireBundle to_bundle = spl_data.end_bundle[j];
-						if (to_bundle.isValid()) {
+						WireThread[] to_threads = to_bundle.threads;
+						if (to_threads != null && to_bundle.isValid()) {
 							WireThread[] from_threads = from_bundle.threads;
-							int from_len = from_threads == null ? 0 : from_threads.length;
-							if (i >= from_len) {
-								throw new ArrayIndexOutOfBoundsException("from " + i + " of " + from_len);
+							if (i >= from_threads.length) {
+								throw new ArrayIndexOutOfBoundsException("from " + i + " of " + from_threads.length);
 							}
-							WireThread[] to_threads = to_bundle.threads;
-							int to_len = to_threads == null ? 0 : to_threads.length;
-							if (thr >= to_len) {
-								throw new ArrayIndexOutOfBoundsException("to " + thr + " of " + to_len);
+							if (thr >= to_threads.length) {
+								throw new ArrayIndexOutOfBoundsException("to " + thr + " of " + to_threads.length);
 							}
-							from_bundle.threads[i].unite(to_bundle.threads[thr]);
+							from_threads[i].unite(to_threads[thr]);
 						}
 					}
 				}

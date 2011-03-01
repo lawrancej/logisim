@@ -4,6 +4,7 @@
 package com.cburch.logisim.circuit;
 
 import java.util.Collection;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -342,7 +343,15 @@ public class CircuitState implements InstanceData {
 		HashSet<Location> dirty = new HashSet<Location>(dirtyPoints);
 		dirtyPoints.clear();
 		if (circuit.wires.isMapVoided()) {
-			dirty.addAll(circuit.wires.points.getSplitLocations());
+			for (int i = 2; i >= 0; i--) {
+				try {
+					dirty.addAll(circuit.wires.points.getSplitLocations());
+					break;
+				} catch (ConcurrentModificationException e) {
+					// try again...
+					if (i == 0) e.printStackTrace();
+				}
+			}
 		}
 		if (!dirty.isEmpty()) {
 			circuit.wires.propagate(this, dirty);

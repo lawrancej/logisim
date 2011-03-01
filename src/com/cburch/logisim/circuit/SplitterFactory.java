@@ -53,9 +53,9 @@ public class SplitterFactory extends AbstractComponentFactory {
 	public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
 		if (attr == SplitterAttributes.ATTR_APPEARANCE) {
 			if (ver.compareTo(LogisimVersion.get(2, 6, 3, 202)) < 0) {
-				return SplitterAttributes.APPEAR_LINES;
+				return SplitterAttributes.APPEAR_LEGACY;
 			} else {
-				return SplitterAttributes.APPEAR_TRAPEZOID;
+				return SplitterAttributes.APPEAR_LEFT;
 			}
 		} else if (attr instanceof SplitterAttributes.BitOutAttribute) {
 			SplitterAttributes.BitOutAttribute a;
@@ -72,26 +72,17 @@ public class SplitterFactory extends AbstractComponentFactory {
 	}
 
 	@Override
-	public Bounds getOffsetBounds(AttributeSet attrs) {
-		Direction dir = attrs.getValue(StdAttr.FACING);
-		int fanout = attrs.getValue(SplitterAttributes.ATTR_FANOUT).intValue();
-		Object appear = attrs.getValue(SplitterAttributes.ATTR_APPEARANCE);
-		int extra = appear == SplitterAttributes.APPEAR_LINES ? 0 : 8;
-		int width = appear == SplitterAttributes.APPEAR_FAT_TRAPEZOID ? 40 : 20;
-		int height = 10 * (fanout - 1) + 2 * extra;
-		int offs = -(fanout / 2) * 10 - extra;
-
-		if (dir == Direction.EAST) {
-			return Bounds.create(0, offs, width, height);
-		} else if (dir == Direction.WEST) {
-			return Bounds.create(-width, offs, width, height);
-		} else if (dir == Direction.NORTH) {
-			return Bounds.create(offs, -width, height, width);
-		} else if (dir == Direction.SOUTH) {
-			return Bounds.create(offs, 0, height, width);
-		} else {
-			throw new IllegalArgumentException("unrecognized direction");
-		}
+	public Bounds getOffsetBounds(AttributeSet attrsBase) {
+		SplitterAttributes attrs = (SplitterAttributes) attrsBase;
+		int fanout = attrs.fanout;
+		SplitterParameters parms = attrs.getParameters();
+		int xEnd0 = parms.getEnd0X();
+		int yEnd0 = parms.getEnd0Y();
+		Bounds bds = Bounds.create(0, 0, 1, 1);
+		bds = bds.add(xEnd0, yEnd0);
+		bds = bds.add(xEnd0 + (fanout - 1) * parms.getEndToEndDeltaX(),
+				yEnd0 + (fanout - 1) * parms.getEndToEndDeltaY());
+		return bds;
 	}
 
 	//
@@ -101,12 +92,11 @@ public class SplitterFactory extends AbstractComponentFactory {
 	public void drawGhost(ComponentDrawContext context,
 			Color color, int x, int y, AttributeSet attrsBase) {
 		SplitterAttributes attrs = (SplitterAttributes) attrsBase;
-		if (attrs.appear == SplitterAttributes.APPEAR_LINES) {
+		if (attrs.appear == SplitterAttributes.APPEAR_LEGACY) {
 			drawGhostLines(context, color, x, y, attrs);
 		} else {
 			context.getGraphics().setColor(color);
-			Splitter.drawTrapezoidShape(context, attrs, Location.create(x, y),
-					getOffsetBounds(attrs).translate(x, y));
+			Splitter.drawLines(context, attrs, Location.create(x, y), null);
 		}
 	}
 	

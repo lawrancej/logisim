@@ -17,16 +17,19 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.instance.StdAttr;
 
 class SplitterAttributes extends AbstractAttributeSet {
-	public static final AttributeOption APPEAR_LINES
-		= new AttributeOption("lines", Strings.getter("splitterAppearanceLines"));
-	public static final AttributeOption APPEAR_TRAPEZOID
-		= new AttributeOption("trap", Strings.getter("splitterAppearanceTrapezoid"));
-	public static final AttributeOption APPEAR_FAT_TRAPEZOID
-		= new AttributeOption("fat", Strings.getter("splitterAppearanceFatTrapezoid"));
+	public static final AttributeOption APPEAR_LEGACY
+		= new AttributeOption("legacy", Strings.getter("splitterAppearanceLegacy"));
+	public static final AttributeOption APPEAR_LEFT
+		= new AttributeOption("left", Strings.getter("splitterAppearanceLeft"));
+	public static final AttributeOption APPEAR_RIGHT
+		= new AttributeOption("right", Strings.getter("splitterAppearanceRight"));
+	public static final AttributeOption APPEAR_CENTER
+		= new AttributeOption("center", Strings.getter("splitterAppearanceCenter"));
 	
 	public static final Attribute<AttributeOption> ATTR_APPEARANCE
 		= Attributes.forOption("appear", Strings.getter("splitterAppearanceAttr"),
-				new AttributeOption[] { APPEAR_TRAPEZOID, APPEAR_FAT_TRAPEZOID, APPEAR_LINES });
+				new AttributeOption[] { APPEAR_LEFT, APPEAR_RIGHT, APPEAR_CENTER,
+					APPEAR_LEGACY});
 	
 	public static final Attribute<BitWidth> ATTR_WIDTH
 		= Attributes.forBitWidth("incoming", Strings.getter("splitterBitWidthAttr"));
@@ -126,7 +129,8 @@ class SplitterAttributes extends AbstractAttributeSet {
 	}
 
 	private ArrayList<Attribute<?>> attrs = new ArrayList<Attribute<?>>(INIT_ATTRIBUTES);
-	AttributeOption appear = APPEAR_TRAPEZOID;
+	private SplitterParameters parameters;
+	AttributeOption appear = APPEAR_LEFT;
 	Direction facing = Direction.EAST;
 	byte fanout = 2;                 // number of ends this splits into
 	byte[] bit_end = new byte[2];    // how each bit maps to an end (0 if nowhere);
@@ -136,12 +140,13 @@ class SplitterAttributes extends AbstractAttributeSet {
 	SplitterAttributes() {
 		configureOptions();
 		configureDefaults();
+		parameters = new SplitterParameters(this);
 	}
 
 	@Override
 	protected void copyInto(AbstractAttributeSet destObj) {
 		SplitterAttributes dest = (SplitterAttributes) destObj;
-		
+		dest.parameters = this.parameters;
 		dest.attrs = new ArrayList<Attribute<?>>(this.attrs.size());
 		dest.attrs.addAll(INIT_ATTRIBUTES);
 		for (int i = INIT_ATTRIBUTES.size(), n = this.attrs.size(); i < n; i++) {
@@ -154,6 +159,15 @@ class SplitterAttributes extends AbstractAttributeSet {
 		dest.appear = this.appear;
 		dest.bit_end = this.bit_end.clone();
 		dest.options = this.options;
+	}
+	
+	public SplitterParameters getParameters() {
+		SplitterParameters ret = parameters;
+		if (ret == null) {
+			ret = new SplitterParameters(this);
+			parameters = ret;
+		}
+		return ret;
 	}
 
 	@Override
@@ -185,6 +199,7 @@ class SplitterAttributes extends AbstractAttributeSet {
 		if (attr == StdAttr.FACING) {
 			facing = (Direction) value;
 			configureOptions();
+			parameters = null;
 		} else if (attr == ATTR_FANOUT) {
 			int newValue = ((Integer) value).intValue();
 			byte[] bits = bit_end;
@@ -194,6 +209,7 @@ class SplitterAttributes extends AbstractAttributeSet {
 			fanout = (byte) newValue;
 			configureOptions();
 			configureDefaults();
+			parameters = null;
 		} else if (attr == ATTR_WIDTH) {
 			BitWidth width = (BitWidth) value;
 			bit_end = new byte[width.getWidth()];
@@ -201,6 +217,7 @@ class SplitterAttributes extends AbstractAttributeSet {
 			configureDefaults();
 		} else if (attr == ATTR_APPEARANCE) {
 			appear = (AttributeOption) value;
+			parameters = null;
 		} else if (attr instanceof BitOutAttribute) {
 			BitOutAttribute bitOutAttr = (BitOutAttribute) attr;
 			int val;

@@ -20,9 +20,9 @@ import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
+import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.ToolTipMaker;
 import com.cburch.logisim.tools.WireRepair;
@@ -32,8 +32,8 @@ import com.cburch.logisim.util.StringUtil;
 
 public class Splitter extends ManagedComponent
 		implements WireRepair, ToolTipMaker {
-	private static final int SPINE_WIDTH = Wire.WIDTH + 1;
-	private static final int SPINE_DOT = Wire.WIDTH + 1;
+	private static final int SPINE_WIDTH = Wire.WIDTH + 2;
+	private static final int SPINE_DOT = Wire.WIDTH + 4;
 	
 	private class MyAttributeListener implements AttributeListener {
 		public void attributeListChanged(AttributeEvent e) { }
@@ -90,7 +90,7 @@ public class Splitter extends ManagedComponent
 		recomputeBounds();
 
 		SplitterAttributes attrs = (SplitterAttributes) getAttributeSet();
-		Direction facing = attrs.facing;
+		SplitterParameters parms = attrs.getParameters();
 		int fanout = attrs.fanout;
 		byte[] bit_end = attrs.bit_end;
 
@@ -109,35 +109,19 @@ public class Splitter extends ManagedComponent
 		}
 
 		// compute end positions
-		int offs = -(fanout / 2) * 10;
-		int wid = attrs.appear == SplitterAttributes.APPEAR_FAT_TRAPEZOID ? 40 : 20;
-		int dx, ddx;
-		int dy, ddy;
-		if (facing == Direction.EAST) {
-			dx =  wid;  ddx =   0;
-			dy = offs;  ddy =  10;
-		} else if (facing == Direction.WEST) {
-			dx = -wid;  ddx =   0;
-			dy = offs;  ddy =  10;
-		} else if (facing == Direction.NORTH) {
-			dx = offs + (fanout - 1) * 10;  ddx = -10;
-			dy = -wid;                      ddy =   0;
-		} else if (facing == Direction.SOUTH) {
-			dx = offs + (fanout - 1) * 10;  ddx = -10;
-			dy =  wid;                      ddy =   0;
-		} else {
-			throw new IllegalArgumentException("unrecognized direction");
-		}
-
-		// now we can configure the ends
-		Location loc = getLocation();
+		Location origin = getLocation();
+		int x = origin.getX() + parms.getEnd0X();
+		int y = origin.getY() + parms.getEnd0Y();
+		int dx = parms.getEndToEndDeltaX();
+		int dy = parms.getEndToEndDeltaY();
+		
 		EndData[] ends = new EndData[fanout + 1];
-		ends[0] = new EndData(loc, BitWidth.create(bit_end.length), EndData.INPUT_OUTPUT);
-		for (int i = 1; i <= fanout; i++) {
-			Location p = loc.translate(dx, dy);
-			ends[i] = new EndData(p, BitWidth.create(end_width[i]), EndData.INPUT_OUTPUT);
-			dx += ddx;
-			dy += ddy;
+		ends[0] = new EndData(origin, BitWidth.create(bit_end.length), EndData.INPUT_OUTPUT);
+		for (int i = 0; i < fanout; i++) {
+			ends[i + 1] = new EndData(Location.create(x, y),
+					BitWidth.create(end_width[i + 1]), EndData.INPUT_OUTPUT);
+			x += dx;
+			y += dy;
 		}
 		setEnds(ends);
 		wire_data = new CircuitWires.SplitterData(fanout);
@@ -148,64 +132,91 @@ public class Splitter extends ManagedComponent
 	//
 	public void draw(ComponentDrawContext context) {
 		SplitterAttributes attrs = (SplitterAttributes) getAttributeSet();
-		if (attrs.appear == SplitterAttributes.APPEAR_LINES) {
-			drawLines(context, attrs);
-		} else if (attrs.appear == SplitterAttributes.APPEAR_FAT_TRAPEZOID) {
-			drawTrapezoid(context, attrs, 40);
+		if (attrs.appear == SplitterAttributes.APPEAR_LEGACY) {
+			drawLegacy(context, attrs);
 		} else {
-			drawTrapezoid(context, attrs, 20);
+			Location loc = getLocation();
+			drawLines(context, attrs, loc, this);
+			drawLabels(context, attrs, loc, this);
+			context.drawPins(this);
 		}
 	}
 	
-	static void drawTrapezoidShape(ComponentDrawContext context,
-			SplitterAttributes attrs, Location origin,
-			Bounds bds) {
-		Direction facing = attrs.facing;
-		Location ein = origin;
-		int[] trapx;
-		int[] trapy;
-		int[] trix;
-		int[] triy;
-		int x0 = bds.getX();
-		int x1 = x0 + bds.getWidth();
-		int y0 = bds.getY();
-		int y1 = y0 + bds.getHeight();
-		if (facing == Direction.NORTH || facing == Direction.SOUTH) {
-			int ylong = facing == Direction.NORTH ? y0 : y1;
-			int yshort = facing == Direction.NORTH ? y1 - 4 : y0 + 4;
-			trapx = new int[] { x0 + 4, x0, x1, x1 - 4 };
-			trapy = new int[] { yshort, ylong, ylong, yshort };
+	static void drawLines(ComponentDrawContext context,
+			SplitterAttributes attrs, Location origin, Splitter comp) {
+		boolean showState = comp != null && context.getShowState();
+		CircuitState state = showState ? context.getCircuitState() : null;
+		if (state == null) showState = false;
 
-			int xin = ein.getX();
-			int yin = ein.getY();
-			trix = new int[] { xin, xin - 4, xin + 4 };
-			triy = new int[] { yin, yshort, yshort };
-		} else {
-			int xlong = facing == Direction.WEST ? x0 : x1;
-			int xshort = facing == Direction.WEST ? x1 - 4 : x0 + 4;
-			trapy = new int[] { y0 + 4, y0, y1, y1 - 4 };
-			trapx = new int[] { xshort, xlong, xlong, xshort };
-
-			int xin = ein.getX();
-			int yin = ein.getY();
-			trix = new int[] { xin, xshort, xshort };
-			triy = new int[] { yin, yin - 4, yin + 4 };
+		SplitterParameters parms = attrs.getParameters();
+		int x0 = origin.getX();
+		int y0 = origin.getY();
+		int x = x0 + parms.getEnd0X();
+		int y = y0 + parms.getEnd0Y();
+		int dx = parms.getEndToEndDeltaX();
+		int dy = parms.getEndToEndDeltaY();
+		int dxEndSpine = parms.getEndToSpineDeltaX();
+		int dyEndSpine = parms.getEndToSpineDeltaY();
+		
+		Graphics g = context.getGraphics();
+		Color oldColor = g.getColor();
+		GraphicsUtil.switchToWidth(g, Wire.WIDTH);
+		for (int i = 0, n = attrs.fanout; i < n; i++) {
+			if (showState) {
+				Value val = state.getValue(comp.getEndLocation(i + 1));
+				g.setColor(val.getColor());
+			}
+			g.drawLine(x, y, x + dxEndSpine, y + dyEndSpine);
+			x += dx;
+			y += dy;
 		}
-		
-		Graphics g = context.getGraphics();
-		g.fillPolygon(trix, triy, 3);
-		GraphicsUtil.switchToWidth(g, 2);
-		g.drawPolygon(trapx, trapy, 4);
+		GraphicsUtil.switchToWidth(g, SPINE_WIDTH);
+		g.setColor(oldColor);
+		int spine0x = x0 + parms.getSpine0X();
+		int spine0y = y0 + parms.getSpine0Y();
+		int spine1x = x0 + parms.getSpine1X();
+		int spine1y = y0 + parms.getSpine1Y();
+		if (spine0x == spine1x && spine0y == spine1y) { // centered
+			int fanout = attrs.fanout;
+			spine0x = x0 + parms.getEnd0X() + parms.getEndToSpineDeltaX();
+			spine0y = y0 + parms.getEnd0Y() + parms.getEndToSpineDeltaY();
+			spine1x = spine0x + (fanout - 1) * parms.getEndToEndDeltaX();
+			spine1y = spine0y + (fanout - 1) * parms.getEndToEndDeltaY();
+			if (parms.getEndToEndDeltaX() == 0) { // vertical spine
+				if (spine0y < spine1y) {
+					spine0y++;
+					spine1y--;
+				} else {
+					spine0y--;
+					spine1y++;
+				}
+				g.drawLine(x0 + parms.getSpine1X() / 4, y0, spine0x, y0);
+			} else {
+				if (spine0x < spine1x) {
+					spine0x++;
+					spine1x--;
+				} else {
+					spine0x--;
+					spine1x++;
+				}
+				g.drawLine(x0, y0 + parms.getSpine1Y() / 4, x0, spine0y);
+			}
+			if (fanout <= 1) { // spine is empty
+				int diam = SPINE_DOT;
+				g.fillOval(spine0x - diam / 2, spine0y - diam / 2, diam, diam);
+			} else {
+				g.drawLine(spine0x, spine0y, spine1x, spine1y);
+			}
+		} else {
+			int[] xSpine = { spine0x, spine1x, x0 + parms.getSpine1X() / 4 };
+			int[] ySpine = { spine0y, spine1y, y0 + parms.getSpine1Y() / 4 };
+			g.drawPolyline(xSpine, ySpine, 3);
+		}
 	}
-	
-	private void drawTrapezoid(ComponentDrawContext context, SplitterAttributes attrs,
-			int width) {
-		Graphics g = context.getGraphics();
-		Direction facing = attrs.facing;
-		drawTrapezoidShape(context, attrs, getLocation(), getBounds());
-		
-		Font font = g.getFont();
-		g.setFont(font.deriveFont(7.0f));
+
+	static void drawLabels(ComponentDrawContext context,
+			SplitterAttributes attrs, Location origin, Splitter comp) {
+		// compute labels
 		String[] ends = new String[attrs.fanout + 1];
 		int curEnd = -1;
 		int cur0 = 0;
@@ -233,35 +244,39 @@ public class Splitter extends ManagedComponent
 				cur0 = i;
 			}
 		}
-		int dx = 0;
-		int dy = 0;
-		if (facing == Direction.NORTH) {
-			dy = 2;
-		} else if (facing == Direction.SOUTH) {
-			dy = -2;
-		} else if (facing == Direction.WEST) {
-			dx = 2;
-		} else {
-			dx = -2;
+
+		Graphics g = context.getGraphics().create();
+		Font font = g.getFont();
+		g.setFont(font.deriveFont(7.0f));
+		
+		SplitterParameters parms = attrs.getParameters();
+		int x = origin.getX() + parms.getEnd0X() + parms.getEndToSpineDeltaX();
+		int y = origin.getY() + parms.getEnd0Y() + parms.getEndToSpineDeltaY();
+		int dx = parms.getEndToEndDeltaX();
+		int dy = parms.getEndToEndDeltaY();
+		if (parms.getTextAngle() != 0) {
+			((Graphics2D) g).rotate(Math.PI / 2.0);
+			int t;
+			t = -x; x = y; y = t;
+			t = -dx; dx = dy; dy = t;
 		}
-		int halign = dx + dy < 0 ? GraphicsUtil.H_RIGHT : GraphicsUtil.H_LEFT;
-		double radians = dx == 0 ? Math.PI / 2.0 : 0;
-		for (int i = 1, n = ends.length; i < n; i++) {
-			String text = ends[i];
+		int halign = parms.getTextHorzAlign();
+		int valign = parms.getTextVertAlign();
+		x += (halign == GraphicsUtil.H_RIGHT ? -1 : 1) * (SPINE_WIDTH / 2 + 1);
+		y += valign == GraphicsUtil.V_TOP ? 0 : -3;
+		for (int i = 0, n = attrs.fanout; i < n; i++) {
+			String text = ends[i + 1];
 			if (text != null) {
-				Location loc = getEndLocation(i);
-				Graphics g2 = g.create();
-				g2.translate(loc.getX() + dx, loc.getY() + dy);
-				((Graphics2D) g2).rotate(radians);
-				GraphicsUtil.drawText(g2, ends[i],
-						0, 0, halign, GraphicsUtil.V_CENTER);
-				g2.dispose();
+				GraphicsUtil.drawText(g, text, x, y, halign, valign);
 			}
+			x += dx;
+			y += dy;
 		}
-		context.drawPins(this);
+
+		g.dispose();
 	}
 	
-	private void drawLines(ComponentDrawContext context, SplitterAttributes attrs) {
+	private void drawLegacy(ComponentDrawContext context, SplitterAttributes attrs) {
 		Graphics g = context.getGraphics();
 		CircuitState state = context.getCircuitState();
 		Direction facing = attrs.facing;
@@ -285,7 +300,7 @@ public class Splitter extends ManagedComponent
 				g.drawLine(tx, t.getY(),
 						tx < mx ? tx + 10 : (tx > mx ? tx - 10 : tx), my);
 			}
-			if (fanout > 3) {
+			if (fanout >= 3) {
 				GraphicsUtil.switchToWidth(g, SPINE_WIDTH);
 				g.setColor(Color.BLACK);
 				t = getEndLocation(1);
@@ -311,7 +326,7 @@ public class Splitter extends ManagedComponent
 				g.drawLine(t.getX(), ty,
 						mx, ty < my ? ty + 10 : (ty > my ? ty - 10 : ty));
 			}
-			if (fanout > 3) {
+			if (fanout >= 3) {
 				GraphicsUtil.switchToWidth(g, SPINE_WIDTH);
 				g.setColor(Color.BLACK);
 				t = getEndLocation(1);

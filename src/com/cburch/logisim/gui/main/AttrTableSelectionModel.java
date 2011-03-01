@@ -86,7 +86,9 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 			SetAttributeAction act = new SetAttributeAction(circuit,
 					Strings.getter("selectionAttributeAction"));
 			for (Component comp : selection.getComponents()) {
-				act.set(comp, attr, value);
+				if (!(comp instanceof Wire)) {
+					act.set(comp, attr, value);
+				}
 			}
 			project.doAction(act);
 		}
