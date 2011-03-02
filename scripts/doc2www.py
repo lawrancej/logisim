@@ -95,10 +95,11 @@ support_dst = dst_dir
 if not os.path.exists(support_dst):
 	os.mkdir(support_dst)
 for file in os.listdir(support_src):
-	file_dst = build_path(support_dst, file)
-	if os.path.exists(file_dst):
-		os.remove(file_dst)
-	shutil.copy(build_path(support_src, file), file_dst)
+	if file != '.svn':
+		file_dst = build_path(support_dst, file)
+		if os.path.exists(file_dst):
+			os.remove(file_dst)
+		shutil.copy(build_path(support_src, file), file_dst)
 
 # create the directory for each locale
 for locale in copy_doc.get_doc_locales(src_dir):
