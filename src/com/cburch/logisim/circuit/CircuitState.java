@@ -343,12 +343,13 @@ public class CircuitState implements InstanceData {
 		HashSet<Location> dirty = new HashSet<Location>(dirtyPoints);
 		dirtyPoints.clear();
 		if (circuit.wires.isMapVoided()) {
-			for (int i = 2; i >= 0; i--) {
+			for (int i = 3; i >= 0; i--) {
 				try {
 					dirty.addAll(circuit.wires.points.getSplitLocations());
 					break;
 				} catch (ConcurrentModificationException e) {
 					// try again...
+					try { Thread.sleep(1); } catch (InterruptedException e2) { }
 					if (i == 0) e.printStackTrace();
 				}
 			}

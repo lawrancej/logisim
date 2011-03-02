@@ -142,6 +142,10 @@ class SplitterAttributes extends AbstractAttributeSet {
 		configureDefaults();
 		parameters = new SplitterParameters(this);
 	}
+	
+	Attribute<?> getBitOutAttribute(int index) {
+		return attrs.get(INIT_ATTRIBUTES.size() + index);
+	}
 
 	@Override
 	protected void copyInto(AbstractAttributeSet destObj) {
@@ -257,27 +261,7 @@ class SplitterAttributes extends AbstractAttributeSet {
 		int curNum = attrs.size() - offs;
 
 		// compute default values
-		byte[] dflt = new byte[bit_end.length];
-		if (fanout >= bit_end.length) {
-			for (int i = 0; i < bit_end.length; i++) dflt[i] = (byte) (i + 1);
-		} else {
-			int threads_per_end = dflt.length / fanout;
-			int ends_with_extra = dflt.length % fanout;
-			int cur_end = -1; // immediately increments
-			int left_in_end = 0;
-			for (int i = 0; i < dflt.length; i++) {
-				if (left_in_end == 0) {
-					++cur_end;
-					left_in_end = threads_per_end;
-					if (ends_with_extra > 0) {
-						++left_in_end;
-						--ends_with_extra;
-					}
-				}
-				dflt[i] = (byte) (1 + cur_end);
-				--left_in_end;
-			}
-		}
+		byte[] dflt = computeDistribution(fanout, bit_end.length, 1);
 
 		boolean changed = curNum != bit_end.length;
 		
@@ -304,5 +288,53 @@ class SplitterAttributes extends AbstractAttributeSet {
 		}
 		
 		if (changed) fireAttributeListChanged();
+	}
+	
+	static byte[] computeDistribution(int fanout, int bits, int order) {
+		byte[] ret = new byte[bits];
+		if (order >= 0) {
+			if (fanout >= bits) {
+				for (int i = 0; i < bits; i++) ret[i] = (byte) (i + 1);
+			} else {
+				int threads_per_end = bits / fanout;
+				int ends_with_extra = bits % fanout;
+				int cur_end = -1; // immediately increments
+				int left_in_end = 0;
+				for (int i = 0; i < bits; i++) {
+					if (left_in_end == 0) {
+						++cur_end;
+						left_in_end = threads_per_end;
+						if (ends_with_extra > 0) {
+							++left_in_end;
+							--ends_with_extra;
+						}
+					}
+					ret[i] = (byte) (1 + cur_end);
+					--left_in_end;
+				}
+			}
+		} else if (order < 0) {
+			if (fanout >= bits) {
+				for (int i = 0; i < bits; i++) ret[fanout - bits + i] = (byte) (i + 1);
+			} else {
+				int threads_per_end = bits / fanout;
+				int ends_with_extra = bits % fanout;
+				int cur_end = -1;
+				int left_in_end = 0;
+				for (int i = bits - 1; i >= 0; i--) {
+					if (left_in_end == 0) {
+						++cur_end;
+						left_in_end = threads_per_end;
+						if (ends_with_extra > 0) {
+							++left_in_end;
+							--ends_with_extra;
+						}
+					}
+					ret[i] = (byte) (1 + cur_end);
+					--left_in_end;
+				}
+			}
+		}
+		return ret;
 	}
 }

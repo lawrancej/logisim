@@ -3,14 +3,11 @@
 
 package com.cburch.logisim.circuit;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.swing.JPopupMenu;
 
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.CircuitWires;
-import com.cburch.logisim.circuit.Wire;
+import com.cburch.logisim.comp.ComponentEvent;
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.comp.ComponentUserEvent;
@@ -22,37 +19,26 @@ import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.proj.Project;
+import com.cburch.logisim.tools.MenuExtender;
 import com.cburch.logisim.tools.ToolTipMaker;
 import com.cburch.logisim.tools.WireRepair;
 import com.cburch.logisim.tools.WireRepairData;
-import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringUtil;
 
 public class Splitter extends ManagedComponent
-		implements WireRepair, ToolTipMaker {
-	private static final int SPINE_WIDTH = Wire.WIDTH + 2;
-	private static final int SPINE_DOT = Wire.WIDTH + 4;
-	
-	private class MyAttributeListener implements AttributeListener {
-		public void attributeListChanged(AttributeEvent e) { }
-		public void attributeValueChanged(AttributeEvent e) {
-			configureComponent();
-		}
-	}
-
+		implements WireRepair, ToolTipMaker, MenuExtender, AttributeListener {
 	// basic data
 	byte[] bit_thread; // how each bit maps to thread within end
 
 	// derived data
-	private MyAttributeListener myAttributeListener = new MyAttributeListener();
 	CircuitWires.SplitterData wire_data;
 
 	public Splitter(Location loc, AttributeSet attrs) {
 		super(loc, attrs, 3);
 		configureComponent();
-		attrs.addAttributeListener(myAttributeListener);
+		attrs.addAttributeListener(this);
 	}
 
 	//
@@ -86,9 +72,6 @@ public class Splitter extends ManagedComponent
 	}
 
 	private synchronized void configureComponent() {
-		clearManager();
-		recomputeBounds();
-
 		SplitterAttributes attrs = (SplitterAttributes) getAttributeSet();
 		SplitterParameters parms = attrs.getParameters();
 		int fanout = attrs.fanout;
@@ -123,8 +106,10 @@ public class Splitter extends ManagedComponent
 			x += dx;
 			y += dy;
 		}
-		setEnds(ends);
 		wire_data = new CircuitWires.SplitterData(fanout);
+		setEnds(ends);
+		recomputeBounds();
+		fireComponentInvalidated(new ComponentEvent(this));
 	}
 	
 	//
@@ -133,218 +118,20 @@ public class Splitter extends ManagedComponent
 	public void draw(ComponentDrawContext context) {
 		SplitterAttributes attrs = (SplitterAttributes) getAttributeSet();
 		if (attrs.appear == SplitterAttributes.APPEAR_LEGACY) {
-			drawLegacy(context, attrs);
+			SplitterPainter.drawLegacy(context, attrs, getLocation());
 		} else {
 			Location loc = getLocation();
-			drawLines(context, attrs, loc, this);
-			drawLabels(context, attrs, loc, this);
+			SplitterPainter.drawLines(context, attrs, loc);
+			SplitterPainter.drawLabels(context, attrs, loc);
 			context.drawPins(this);
 		}
-	}
-	
-	static void drawLines(ComponentDrawContext context,
-			SplitterAttributes attrs, Location origin, Splitter comp) {
-		boolean showState = comp != null && context.getShowState();
-		CircuitState state = showState ? context.getCircuitState() : null;
-		if (state == null) showState = false;
-
-		SplitterParameters parms = attrs.getParameters();
-		int x0 = origin.getX();
-		int y0 = origin.getY();
-		int x = x0 + parms.getEnd0X();
-		int y = y0 + parms.getEnd0Y();
-		int dx = parms.getEndToEndDeltaX();
-		int dy = parms.getEndToEndDeltaY();
-		int dxEndSpine = parms.getEndToSpineDeltaX();
-		int dyEndSpine = parms.getEndToSpineDeltaY();
-		
-		Graphics g = context.getGraphics();
-		Color oldColor = g.getColor();
-		GraphicsUtil.switchToWidth(g, Wire.WIDTH);
-		for (int i = 0, n = attrs.fanout; i < n; i++) {
-			if (showState) {
-				Value val = state.getValue(comp.getEndLocation(i + 1));
-				g.setColor(val.getColor());
-			}
-			g.drawLine(x, y, x + dxEndSpine, y + dyEndSpine);
-			x += dx;
-			y += dy;
-		}
-		GraphicsUtil.switchToWidth(g, SPINE_WIDTH);
-		g.setColor(oldColor);
-		int spine0x = x0 + parms.getSpine0X();
-		int spine0y = y0 + parms.getSpine0Y();
-		int spine1x = x0 + parms.getSpine1X();
-		int spine1y = y0 + parms.getSpine1Y();
-		if (spine0x == spine1x && spine0y == spine1y) { // centered
-			int fanout = attrs.fanout;
-			spine0x = x0 + parms.getEnd0X() + parms.getEndToSpineDeltaX();
-			spine0y = y0 + parms.getEnd0Y() + parms.getEndToSpineDeltaY();
-			spine1x = spine0x + (fanout - 1) * parms.getEndToEndDeltaX();
-			spine1y = spine0y + (fanout - 1) * parms.getEndToEndDeltaY();
-			if (parms.getEndToEndDeltaX() == 0) { // vertical spine
-				if (spine0y < spine1y) {
-					spine0y++;
-					spine1y--;
-				} else {
-					spine0y--;
-					spine1y++;
-				}
-				g.drawLine(x0 + parms.getSpine1X() / 4, y0, spine0x, y0);
-			} else {
-				if (spine0x < spine1x) {
-					spine0x++;
-					spine1x--;
-				} else {
-					spine0x--;
-					spine1x++;
-				}
-				g.drawLine(x0, y0 + parms.getSpine1Y() / 4, x0, spine0y);
-			}
-			if (fanout <= 1) { // spine is empty
-				int diam = SPINE_DOT;
-				g.fillOval(spine0x - diam / 2, spine0y - diam / 2, diam, diam);
-			} else {
-				g.drawLine(spine0x, spine0y, spine1x, spine1y);
-			}
-		} else {
-			int[] xSpine = { spine0x, spine1x, x0 + parms.getSpine1X() / 4 };
-			int[] ySpine = { spine0y, spine1y, y0 + parms.getSpine1Y() / 4 };
-			g.drawPolyline(xSpine, ySpine, 3);
-		}
-	}
-
-	static void drawLabels(ComponentDrawContext context,
-			SplitterAttributes attrs, Location origin, Splitter comp) {
-		// compute labels
-		String[] ends = new String[attrs.fanout + 1];
-		int curEnd = -1;
-		int cur0 = 0;
-		for (int i = 0, n = attrs.bit_end.length; i <= n; i++) {
-			int bit = i == n ? -1 : attrs.bit_end[i];
-			if (bit != curEnd) {
-				int cur1 = i - 1;
-				String toAdd;
-				if (curEnd <= 0) {
-					toAdd = null;
-				} else if (cur0 == cur1) {
-					toAdd = "" + cur0;
-				} else {
-					toAdd = cur0 + "-" + cur1;
-				}
-				if (toAdd != null) {
-					String old = ends[curEnd];
-					if (old == null) {
-						ends[curEnd] = toAdd;
-					} else {
-						ends[curEnd] = old + "," + toAdd;
-					}
-				}
-				curEnd = bit;
-				cur0 = i;
-			}
-		}
-
-		Graphics g = context.getGraphics().create();
-		Font font = g.getFont();
-		g.setFont(font.deriveFont(7.0f));
-		
-		SplitterParameters parms = attrs.getParameters();
-		int x = origin.getX() + parms.getEnd0X() + parms.getEndToSpineDeltaX();
-		int y = origin.getY() + parms.getEnd0Y() + parms.getEndToSpineDeltaY();
-		int dx = parms.getEndToEndDeltaX();
-		int dy = parms.getEndToEndDeltaY();
-		if (parms.getTextAngle() != 0) {
-			((Graphics2D) g).rotate(Math.PI / 2.0);
-			int t;
-			t = -x; x = y; y = t;
-			t = -dx; dx = dy; dy = t;
-		}
-		int halign = parms.getTextHorzAlign();
-		int valign = parms.getTextVertAlign();
-		x += (halign == GraphicsUtil.H_RIGHT ? -1 : 1) * (SPINE_WIDTH / 2 + 1);
-		y += valign == GraphicsUtil.V_TOP ? 0 : -3;
-		for (int i = 0, n = attrs.fanout; i < n; i++) {
-			String text = ends[i + 1];
-			if (text != null) {
-				GraphicsUtil.drawText(g, text, x, y, halign, valign);
-			}
-			x += dx;
-			y += dy;
-		}
-
-		g.dispose();
-	}
-	
-	private void drawLegacy(ComponentDrawContext context, SplitterAttributes attrs) {
-		Graphics g = context.getGraphics();
-		CircuitState state = context.getCircuitState();
-		Direction facing = attrs.facing;
-		int fanout = attrs.fanout;
-		
-		g.setColor(Color.BLACK);
-		Location s = getEndLocation(0);
-		if (facing == Direction.NORTH
-				|| facing == Direction.SOUTH) {
-			Location t = getEndLocation(1);
-			int mx = s.getX();
-			int my = (s.getY() + t.getY()) / 2;
-			GraphicsUtil.switchToWidth(g, Wire.WIDTH);
-			g.drawLine(mx, s.getY(), mx, my);
-			for (int i = 1; i <= fanout; i++) {
-				t = getEndLocation(i);
-				if (context.getShowState()) {
-					g.setColor(state.getValue(t).getColor());
-				}
-				int tx = t.getX();
-				g.drawLine(tx, t.getY(),
-						tx < mx ? tx + 10 : (tx > mx ? tx - 10 : tx), my);
-			}
-			if (fanout >= 3) {
-				GraphicsUtil.switchToWidth(g, SPINE_WIDTH);
-				g.setColor(Color.BLACK);
-				t = getEndLocation(1);
-				Location last = getEndLocation(fanout);
-				g.drawLine(t.getX() - 10, my, last.getX() + 10, my);
-			} else {
-				g.setColor(Color.BLACK);
-				g.fillOval(mx - SPINE_DOT / 2, my - SPINE_DOT / 2,
-						SPINE_DOT, SPINE_DOT);
-			}
-		} else {
-			Location t = getEndLocation(1);
-			int mx = (s.getX() + t.getX()) / 2;
-			int my = s.getY();
-			GraphicsUtil.switchToWidth(g, Wire.WIDTH);
-			g.drawLine(s.getX(), my, mx, my);
-			for (int i = 1; i <= fanout; i++) {
-				t = getEndLocation(i);
-				if (context.getShowState()) {
-					g.setColor(state.getValue(t).getColor());
-				}
-				int ty = t.getY();
-				g.drawLine(t.getX(), ty,
-						mx, ty < my ? ty + 10 : (ty > my ? ty - 10 : ty));
-			}
-			if (fanout >= 3) {
-				GraphicsUtil.switchToWidth(g, SPINE_WIDTH);
-				g.setColor(Color.BLACK);
-				t = getEndLocation(1);
-				Location last = getEndLocation(fanout);
-				g.drawLine(mx, t.getY() + 10, mx, last.getY() - 10);
-			} else {
-				g.setColor(Color.BLACK);
-				g.fillOval(mx - SPINE_DOT / 2, my - SPINE_DOT / 2,
-						SPINE_DOT, SPINE_DOT);
-			}
-		}
-		GraphicsUtil.switchToWidth(g, 1);
 	}
 	
 	@Override
 	public Object getFeature(Object key) {
 		if (key == WireRepair.class) return this;
 		if (key == ToolTipMaker.class) return this;
+		if (key == MenuExtender.class) return this;
 		else return super.getFeature(key);
 	}
 
@@ -405,4 +192,18 @@ public class Splitter extends ManagedComponent
 		}
 	}
 
+	public void configureMenu(JPopupMenu menu, Project proj) {
+		menu.addSeparator();
+		menu.add(new SplitterDistributeItem(proj, this, 1));
+		menu.add(new SplitterDistributeItem(proj, this, -1));
+	}
+
+	//
+	// AttributeListener methods
+	//
+	public void attributeListChanged(AttributeEvent e) { }
+	
+	public void attributeValueChanged(AttributeEvent e) {
+		configureComponent();
+	}
 }
