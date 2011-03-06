@@ -12,18 +12,18 @@ The Wiring library's splitter tool
 (<img src="../../../icons/splitter.gif">)
 allows you to accomplish this.</p>
 
-<p>For example, suppose we want to build a circuit that computes the bitwise
+<p>For example, suppose we want a circuit that computes the bitwise
 AND of the two nibbles of its eight-bit input (the upper four bits and
 the lower four bits). We will have an eight-bit value coming from the
 input pin, and we want to split that into two four-bit values. In the
 below circuit, we have used a splitter to accomplish this: The 8-bit input
-comes into the splitter (drawn as a narrow trapezoid), which divides the
+comes into the splitter, which divides the
 8 bits into two 4-bit values, which are then fed into the AND gate and from
 there to the output.</p>
 <center><img src="../../../img-guide/bundles-splitter-circ.png"></center>
-<p>In this example, the splitter happens to actually split an
+<p>In this example, the splitter <q>splits</q> an
 incoming value into multiple outgoing values. But splitters can
-also combine multiple values into a single value. In fact,
+also work the other way: It can <q>combine</q> multiple values into a single value. In fact,
 they are non-directional: They can send values one way at one time
 and another way later, and they can even do both at the same
 time, as in the below example where a value travels eastward through the two

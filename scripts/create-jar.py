@@ -30,7 +30,7 @@ if '\\home\\burch\\' in get_svn_dir():
 	home = svn_dir[:svn_dir.find('\\home\\burch\\') + 11]
 	bin_dir = build_path(home, 'logisim/TrunkSource/bin')
 	dest_dir = build_path(home, 'logisim/Scripts')
-	keep_temp = True
+	keep_temp = False
 
 usage = '''usage: create-jar ARGS
 arguments:  -bin DIR     compiled files are already present in DIR

@@ -10,9 +10,13 @@ Feature: The attribute table contains a header line describing which attributes 
 
 Feature: Added a "Close" item to the Window menu, which closes the current window. The "Close" item in the File menu continues to close the current project; its shortcut is now Control-Shift-W.
 
+Feature: Added 250%, 300%, 400% to the options for zooming.
+
 Design change: Removed option to disable the project toolbar.
 
 Bug fix: In moving a component whose output is connected to itself, it was possible for an exception to cause the program to hang.
+
+Bug fix: The "Second radix when wire poked" preference was ignored - the "First radix" was displayed twice when the wire was poked.
 
 Bug fix: Enabled the "-clearprops" command-line option for clearing all application proferences. (The previous version worked with "-clearprefs", but it was described as "-clearprops" in the "-help" text and in the documentation. Both now work.)
 
@@ -31,6 +35,8 @@ LIBRARIES
 Feature: Added a Wiring library containing transistor, transmission gate, power and ground components. Also, the splitter, pin, probe, tunnel, clock, pull resistor, and bit extender were moved into the Wiring library from the Base library, and constant was moved into the Wiring library from the Gates library.
 
 Feature: In the Wiring library, splitters can be configured to show which bits correspond to each end using the new Appearance attribute. It uses this new appearance by default.
+
+Feature: In the Wiring library, the pop-up menu associated with splitters includes menu items for distributing the bits in ascending or descending order.
 
 Feature: In the Gates library, the gates (except Controlled Buffer and Controlled Inverter) have a new Output Value attribute so that a gate can output a floating value when the result is true or when the result is false. This is useful for building a wired-or and wired-and connections.
 
@@ -60,4 +66,8 @@ Feature: The Combinational Analysis module supports apostrophes (as in "x'" for 
 
 Design change: The Combinational Analysis module's expression pane uses a larger font size than previously.
 
+Bug fix: Some instances of exceptions that would occur upon doing "Analyze Circuit" a second time were removed.
+
 Bug fix: In the Karnaugh maps drawn by the Combinational Analysis module, each implicant was indicated by a red rectangle, but they were meant to use varied colors.
+
+Bug fix: The "Set As Expression" button would sometimes not be disabled when pressed (particularly when the previous expression was the same except for spaces).
