@@ -6,6 +6,7 @@ package com.cburch.logisim.std.plexers;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.BitWidth;
@@ -27,14 +28,24 @@ public class Decoder extends InstanceFactory {
 		super("Decoder", Strings.getter("decoderComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.FACING, Plexers.ATTR_SELECT,
-				Plexers.ATTR_TRISTATE, Plexers.ATTR_DISABLED
+				Plexers.ATTR_TRISTATE, Plexers.ATTR_DISABLED, Plexers.ATTR_ENABLE
 			}, new Object[] {
 				Direction.EAST, Plexers.DEFAULT_SELECT,
-				Plexers.DEFAULT_TRISTATE, Plexers.DISABLED_FLOATING
+				Plexers.DEFAULT_TRISTATE, Plexers.DISABLED_FLOATING, Boolean.TRUE
 			});
 		setKeyConfigurator(new BitWidthConfigurator(Plexers.ATTR_SELECT, 1, 5, 0));
 		setIconName("decoder.gif");
 		setFacingAttribute(StdAttr.FACING);
+	}
+	
+	@Override
+	public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
+		if (attr == Plexers.ATTR_ENABLE) {
+			int newer = ver.compareTo(LogisimVersion.get(2, 6, 3, 220));
+			return Boolean.valueOf(newer >= 0);
+		} else {
+			return super.getDefaultAttributeValue(attr, ver);
+		}
 	}
 
 	@Override
@@ -72,7 +83,7 @@ public class Decoder extends InstanceFactory {
 		if (attr == StdAttr.FACING || attr == Plexers.ATTR_SELECT) {
 			instance.recomputeBounds();
 			updatePorts(instance);
-		} else if (attr == Plexers.ATTR_SELECT) {
+		} else if (attr == Plexers.ATTR_SELECT || attr == Plexers.ATTR_ENABLE) {
 			updatePorts(instance);
 		} else if (attr == Plexers.ATTR_TRISTATE || attr == Plexers.ATTR_DISABLED) {
 			instance.fireInvalidated();
@@ -82,8 +93,9 @@ public class Decoder extends InstanceFactory {
 	private void updatePorts(Instance instance) {
 		Direction facing = instance.getAttributeValue(StdAttr.FACING);
 		BitWidth select = instance.getAttributeValue(Plexers.ATTR_SELECT);
+		boolean enable = instance.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
 		int outputs = 1 << select.getWidth();
-		Port[] ps = new Port[outputs + 2];
+		Port[] ps = new Port[outputs + (enable ? 2 : 1)];
 		if (outputs == 2) {
 			Location end0;
 			Location end1;
@@ -124,12 +136,16 @@ public class Decoder extends InstanceFactory {
 		}
 		Location en = Location.create(0, 0).translate(facing, -10);
 		ps[outputs] = new Port(0, 0, Port.INPUT, select.getWidth());
-		ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
+		if (enable) {
+			ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
+		}
 		for (int i = 0; i < outputs; i++) {
 			ps[i].setToolTip(Strings.getter("decoderOutTip", "" + i));
 		}
 		ps[outputs].setToolTip(Strings.getter("decoderSelectTip"));
-		ps[outputs + 1].setToolTip(Strings.getter("decoderEnableTip"));
+		if (enable) {
+			ps[outputs + 1].setToolTip(Strings.getter("decoderEnableTip"));
+		}
 		instance.setPorts(ps);
 	}
 
@@ -139,6 +155,7 @@ public class Decoder extends InstanceFactory {
 		BitWidth data = BitWidth.ONE;
 		BitWidth select = state.getAttributeValue(Plexers.ATTR_SELECT);
 		Boolean threeState = state.getAttributeValue(Plexers.ATTR_TRISTATE);
+		boolean enable = state.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
 		int outputs = 1 << select.getWidth();
 		
 		// determine default output values
@@ -152,7 +169,7 @@ public class Decoder extends InstanceFactory {
 		// determine selected output value
 		int outIndex = -1; // the special output
 		Value out = null;
-		Value en = state.getPort(outputs + 1);
+		Value en = enable ? state.getPort(outputs + 1) : Value.TRUE;
 		if (en == Value.FALSE) {
 			Object opt = state.getAttributeValue(Plexers.ATTR_DISABLED);
 			Value base = opt == Plexers.DISABLED_ZERO ? Value.FALSE : Value.UNKNOWN;
@@ -191,6 +208,7 @@ public class Decoder extends InstanceFactory {
 		Bounds bds = painter.getBounds();
 		Direction facing = painter.getAttributeValue(StdAttr.FACING);
 		BitWidth select = painter.getAttributeValue(Plexers.ATTR_SELECT);
+		boolean enable = painter.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
 		int outputs = 1 << select.getWidth();
 
 		// draw stubs for select and enable ports
@@ -205,12 +223,14 @@ public class Decoder extends InstanceFactory {
 			Location pt = painter.getInstance().getPortLocation(outputs);
 			g.drawLine(pt.getX(), pt.getY(), pt.getX() + 2 * dx, pt.getY() + 2 * dy);
 		}
-		Location en = painter.getInstance().getPortLocation(outputs + 1);
-		int len = outputs == 2 ? 6 : 4;
-		if (painter.getShowState()) {
-			g.setColor(painter.getPort(outputs + 1).getColor());
+		if (enable) {
+			Location en = painter.getInstance().getPortLocation(outputs + 1);
+			int len = outputs == 2 ? 6 : 4;
+			if (painter.getShowState()) {
+				g.setColor(painter.getPort(outputs + 1).getColor());
+			}
+			g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
 		}
-		g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
 		GraphicsUtil.switchToWidth(g, 1);
 		
 		// draw a circle indicating where the select input is located

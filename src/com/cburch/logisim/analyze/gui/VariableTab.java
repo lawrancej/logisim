@@ -85,7 +85,9 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 				String name = field.getText().trim();
 				if (!name.equals("")) {
 					data.add(name);
-					list.setSelectedValue(name, true);
+					if (data.contains(name)) {
+						list.setSelectedValue(name, true);
+					}
 					field.setText("");
 					field.grabFocus();
 				}
@@ -246,15 +248,16 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 	}
 	
 	private void computeEnabled() {
-		String name = (String) list.getSelectedValue();
 		int index = list.getSelectedIndex();
-		remove.setEnabled(name != null);
-		moveUp.setEnabled(name != null && index > 0);
-		moveDown.setEnabled(name != null && index < data.size() - 1);
+		int max = list.getModel().getSize();
+		boolean selected = index >= 0 && index < max;
+		remove.setEnabled(selected);
+		moveUp.setEnabled(selected && index > 0);
+		moveDown.setEnabled(selected && index < max);
 
 		boolean ok = validateInput();
 		add.setEnabled(ok && data.size() < data.getMaximumSize());
-		rename.setEnabled(ok && name != null);
+		rename.setEnabled(ok && selected);
 	}
 	
 	private boolean validateInput() {

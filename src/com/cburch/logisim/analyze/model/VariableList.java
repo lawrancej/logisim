@@ -78,6 +78,10 @@ public class VariableList {
 		return data.get(index);
 	}
 	
+	public boolean contains(String value) {
+		return data.contains(value);
+	}
+	
 	public void setAll(List<String> values) {
 		if (values.size() > maxSize) {
 			throw new IllegalArgumentException("maximum size is " + maxSize);

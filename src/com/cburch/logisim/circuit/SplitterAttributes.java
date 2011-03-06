@@ -313,9 +313,9 @@ class SplitterAttributes extends AbstractAttributeSet {
 					--left_in_end;
 				}
 			}
-		} else if (order < 0) {
+		} else {
 			if (fanout >= bits) {
-				for (int i = 0; i < bits; i++) ret[fanout - bits + i] = (byte) (i + 1);
+				for (int i = 0; i < bits; i++) ret[i] = (byte) (fanout - i);
 			} else {
 				int threads_per_end = bits / fanout;
 				int ends_with_extra = bits % fanout;

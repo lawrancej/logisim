@@ -6,6 +6,7 @@ package com.cburch.logisim.std.plexers;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.BitWidth;
@@ -28,16 +29,26 @@ public class Demultiplexer extends InstanceFactory {
 		super("Demultiplexer", Strings.getter("demultiplexerComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.FACING, Plexers.ATTR_SELECT, StdAttr.WIDTH,
-				Plexers.ATTR_TRISTATE, Plexers.ATTR_DISABLED
+				Plexers.ATTR_TRISTATE, Plexers.ATTR_DISABLED, Plexers.ATTR_ENABLE
 			}, new Object[] {
 				Direction.EAST, Plexers.DEFAULT_SELECT, BitWidth.ONE,
-				Plexers.DEFAULT_TRISTATE, Plexers.DISABLED_FLOATING
+				Plexers.DEFAULT_TRISTATE, Plexers.DISABLED_FLOATING, Boolean.TRUE
 			});
 		setKeyConfigurator(JoinedConfigurator.create(
 				new BitWidthConfigurator(Plexers.ATTR_SELECT, 1, 5, 0),
 				new BitWidthConfigurator(StdAttr.WIDTH)));
 		setFacingAttribute(StdAttr.FACING);
 		setIconName("demultiplexer.gif");
+	}
+	
+	@Override
+	public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
+		if (attr == Plexers.ATTR_ENABLE) {
+			int newer = ver.compareTo(LogisimVersion.get(2, 6, 3, 220));
+			return Boolean.valueOf(newer >= 0);
+		} else {
+			return super.getDefaultAttributeValue(attr, ver);
+		}
 	}
 
 	@Override
@@ -72,7 +83,7 @@ public class Demultiplexer extends InstanceFactory {
 		if (attr == StdAttr.FACING || attr == Plexers.ATTR_SELECT) {
 			instance.recomputeBounds();
 			updatePorts(instance);
-		} else if (attr == StdAttr.WIDTH) {
+		} else if (attr == StdAttr.WIDTH || attr == Plexers.ATTR_ENABLE) {
 			updatePorts(instance);
 		} else if (attr == Plexers.ATTR_TRISTATE || attr == Plexers.ATTR_DISABLED) {
 			instance.fireInvalidated();
@@ -83,8 +94,9 @@ public class Demultiplexer extends InstanceFactory {
 		Direction facing = instance.getAttributeValue(StdAttr.FACING);
 		BitWidth data = instance.getAttributeValue(StdAttr.WIDTH);
 		BitWidth select = instance.getAttributeValue(Plexers.ATTR_SELECT);
+		boolean enable = instance.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
 		int outputs = 1 << select.getWidth();
-		Port[] ps = new Port[outputs + 3];
+		Port[] ps = new Port[outputs + (enable ? 3 : 2)];
 		Location sel;
 		if (outputs == 2) {
 			Location end0;
@@ -134,15 +146,19 @@ public class Demultiplexer extends InstanceFactory {
 		}
 		Location en = sel.translate(facing, -10);
 		ps[outputs] = new Port(sel.getX(), sel.getY(), Port.INPUT, select.getWidth());
-		ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
-		ps[outputs + 2] = new Port(0, 0, Port.INPUT, data.getWidth());
+		if (enable) {
+			ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
+		}
+		ps[ps.length - 1] = new Port(0, 0, Port.INPUT, data.getWidth());
 		
 		for (int i = 0; i < outputs; i++) {
 			ps[i].setToolTip(Strings.getter("demultiplexerOutTip", "" + i));
 		}
 		ps[outputs].setToolTip(Strings.getter("demultiplexerSelectTip"));
-		ps[outputs + 1].setToolTip(Strings.getter("demultiplexerEnableTip"));
-		ps[outputs + 2].setToolTip(Strings.getter("demultiplexerInTip"));
+		if (enable) {
+			ps[outputs + 1].setToolTip(Strings.getter("demultiplexerEnableTip"));
+		}
+		ps[ps.length - 1].setToolTip(Strings.getter("demultiplexerInTip"));
 
 		instance.setPorts(ps);
 	}
@@ -153,8 +169,9 @@ public class Demultiplexer extends InstanceFactory {
 		BitWidth data = state.getAttributeValue(StdAttr.WIDTH);
 		BitWidth select = state.getAttributeValue(Plexers.ATTR_SELECT);
 		Boolean threeState = state.getAttributeValue(Plexers.ATTR_TRISTATE);
+		boolean enable = state.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
 		int outputs = 1 << select.getWidth();
-		Value en = state.getPort(outputs + 1);
+		Value en = enable ? state.getPort(outputs + 1) : Value.TRUE;
 
 		// determine output values
 		Value others; // the default output
@@ -175,7 +192,7 @@ public class Demultiplexer extends InstanceFactory {
 			Value sel = state.getPort(outputs);
 			if (sel.isFullyDefined()) {
 				outIndex = sel.toIntValue();
-				out = state.getPort(outputs + 2);
+				out = state.getPort(outputs + (enable ? 2 : 1));
 			} else if (sel.isErrorValue()) {
 				others = Value.createError(data);
 			} else {
@@ -203,6 +220,7 @@ public class Demultiplexer extends InstanceFactory {
 		Bounds bds = painter.getBounds();
 		Direction facing = painter.getAttributeValue(StdAttr.FACING);
 		BitWidth select = painter.getAttributeValue(Plexers.ATTR_SELECT);
+		boolean enable = painter.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
 		int outputs = 1 << select.getWidth();
 
 		// draw select and enable inputs
@@ -217,12 +235,14 @@ public class Demultiplexer extends InstanceFactory {
 			}
 			g.drawLine(sel.getX(), sel.getY(), sel.getX() + 2 * dx, sel.getY() + 2 * dy);
 		}
-		Location en = painter.getInstance().getPortLocation(outputs + 1);
-		if (painter.getShowState()) {
-			g.setColor(painter.getPort(outputs + 1).getColor());
+		if (enable) {
+			Location en = painter.getInstance().getPortLocation(outputs + 1);
+			if (painter.getShowState()) {
+				g.setColor(painter.getPort(outputs + 1).getColor());
+			}
+			int len = outputs == 2 ? 6 : 4;
+			g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
 		}
-		int len = outputs == 2 ? 6 : 4;
-		g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
 		GraphicsUtil.switchToWidth(g, 1);
 		
 		// draw a circle indicating where the select input is located

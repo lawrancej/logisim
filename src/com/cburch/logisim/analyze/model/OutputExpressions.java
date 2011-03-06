@@ -60,25 +60,22 @@ public class OutputExpressions {
 		}
 		
 		void setExpression(Expression newExpr, String newExprString) {
-			boolean changed = newExpr == null ? expr != null
-					: newExpr != expr && !newExpr.equals(expr);
 			expr = newExpr;
 			exprString = newExprString;
-			if (changed) {
-				if (expr != minimalExpr) { // for efficiency to avoid recomputation
-					Entry[] values = computeColumn(model.getTruthTable(), expr);
-					int outputColumn = model.getOutputs().indexOf(output);
-					updatingTable = true;
-					try {
-						model.getTruthTable().setOutputColumn(outputColumn, values);
-					} finally {
-						updatingTable = false;
-					}
-				}
 
-				fireModelChanged(OutputExpressionsEvent.OUTPUT_EXPRESSION,
-						output, getExpression());
+			if (expr != minimalExpr) { // for efficiency to avoid recomputation
+				Entry[] values = computeColumn(model.getTruthTable(), expr);
+				int outputColumn = model.getOutputs().indexOf(output);
+				updatingTable = true;
+				try {
+					model.getTruthTable().setOutputColumn(outputColumn, values);
+				} finally {
+					updatingTable = false;
+				}
 			}
+
+			fireModelChanged(OutputExpressionsEvent.OUTPUT_EXPRESSION,
+					output, getExpression());
 		}
 
 		private void removeInput(String input) {

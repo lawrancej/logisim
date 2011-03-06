@@ -67,7 +67,7 @@ public class Frame extends LFrame implements LocaleListener {
 	public static final String VIEW_TOOLBOX = "toolbox";
 	public static final String VIEW_SIMULATION = "simulation";
 
-	private static final double[] ZOOM_OPTIONS = { 20, 50, 75, 100, 133, 150, 200 };
+	private static final double[] ZOOM_OPTIONS = { 20, 50, 75, 100, 133, 150, 200, 250, 300, 400 };
 	
 	class MyProjectListener
 			implements ProjectListener, LibraryListener, CircuitListener,
@@ -196,7 +196,7 @@ public class Frame extends LFrame implements LocaleListener {
 
 		layoutCanvas.getGridPainter().setZoomModel(layoutZoomModel);
 		layoutEditHandler = new LayoutEditHandler(this);
-		attrTableSelectionModel = new AttrTableSelectionModel(proj, layoutCanvas);
+		attrTableSelectionModel = new AttrTableSelectionModel(proj, this);
 
 		// set up menu bar and toolbar
 		menubar = new LogisimMenuBar(this, proj);
@@ -303,19 +303,29 @@ public class Frame extends LFrame implements LocaleListener {
 
 	public void viewComponentAttributes(Circuit circ, Component comp) {
 		if (comp == null) {
-			attrTable.setAttrTableModel(null);
-			layoutCanvas.setHaloedComponent(null, null);
+			setAttrTableModel(null);
 		} else {
-			attrTable.setAttrTableModel(new AttrTableComponentModel(proj,
-					circ, comp));
-			layoutCanvas.setHaloedComponent(circ, comp);
+			setAttrTableModel(new AttrTableComponentModel(proj, circ, comp));
 		}
-		layoutToolbarModel.setHaloedTool(null);
-		toolbox.setHaloedTool(null);
 	}
-
-	public AttrTable getAttributeTable() {
-		return attrTable;
+	
+	void setAttrTableModel(AttrTableModel value) {
+		attrTable.setAttrTableModel(value);
+		if (value instanceof AttrTableToolModel) {
+			Tool tool = ((AttrTableToolModel) value).getTool();
+			toolbox.setHaloedTool(tool);
+			layoutToolbarModel.setHaloedTool(tool);
+		} else {
+			toolbox.setHaloedTool(null);
+			layoutToolbarModel.setHaloedTool(null);
+		}
+		if (value instanceof AttrTableComponentModel) {
+			Circuit circ = ((AttrTableComponentModel) value).getCircuit();
+			Component comp = ((AttrTableComponentModel) value).getComponent();
+			layoutCanvas.setHaloedComponent(circ, comp);
+		} else {
+			layoutCanvas.setHaloedComponent(null, null);
+		}
 	}
 	
 	public void setExplorerView(String view) {
@@ -403,23 +413,15 @@ public class Frame extends LFrame implements LocaleListener {
 		if (newAttrs == null) {
 			Circuit circ = proj.getCurrentCircuit();
 			if (circ != null) {
-				attrTable.setAttrTableModel(new AttrTableCircuitModel(proj, circ));
+				setAttrTableModel(new AttrTableCircuitModel(proj, circ));
 			} else if (force) {
-				attrTable.setAttrTableModel(null);
+				setAttrTableModel(null);
 			}
 		} else if (newAttrs instanceof SelectionAttributes) {
-			attrTable.setAttrTableModel(attrTableSelectionModel);
+			setAttrTableModel(attrTableSelectionModel);
 		} else {
-			attrTable.setAttrTableModel(new AttrTableToolModel(proj, newTool));
+			setAttrTableModel(new AttrTableToolModel(proj, newTool));
 		}
-		if (newAttrs != null && newAttrs.getAttributes().size() > 0) {
-			layoutToolbarModel.setHaloedTool(newTool);
-			toolbox.setHaloedTool(newTool);
-		} else {
-			layoutToolbarModel.setHaloedTool(null);
-			toolbox.setHaloedTool(null);
-		}
-		layoutCanvas.setHaloedComponent(null, null);
 	}
 
 	public void localeChanged() {

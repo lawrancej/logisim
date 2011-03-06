@@ -52,7 +52,7 @@ public class PokeTool extends Tool {
 		public void draw(Graphics g) {
 			Value v = canvas.getCircuitState().getValue(wire.getEnd0());
 			RadixOption radix1 = RadixOption.decode(AppPreferences.POKE_WIRE_RADIX1.get());
-			RadixOption radix2 = RadixOption.decode(AppPreferences.POKE_WIRE_RADIX1.get());
+			RadixOption radix2 = RadixOption.decode(AppPreferences.POKE_WIRE_RADIX2.get());
 			if (radix1 == null) radix1 = RadixOption.RADIX_2;
 			String vStr = radix1.toString(v);
 			if (radix2 != null && v.getWidth() > 1) {

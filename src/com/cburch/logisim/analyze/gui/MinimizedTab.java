@@ -23,6 +23,7 @@ import com.cburch.logisim.analyze.model.AnalyzerModel;
 import com.cburch.logisim.analyze.model.OutputExpressions;
 import com.cburch.logisim.analyze.model.OutputExpressionsEvent;
 import com.cburch.logisim.analyze.model.OutputExpressionsListener;
+import com.cburch.logisim.analyze.model.VariableList;
 
 class MinimizedTab extends AnalyzerTab {
 	private static class FormatModel extends AbstractListModel
@@ -117,9 +118,11 @@ class MinimizedTab extends AnalyzerTab {
 	private JButton setAsExpr = new JButton();
 
 	private MyListener myListener = new MyListener();
+	private AnalyzerModel model;
 	private OutputExpressions outputExprs;
 	
 	public MinimizedTab(AnalyzerModel model) {
+		this.model = model;
 		this.outputExprs = model.getOutputExpressions();
 		outputExprs.addOutputExpressionsListener(myListener);
 		

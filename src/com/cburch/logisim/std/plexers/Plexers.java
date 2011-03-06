@@ -34,6 +34,9 @@ public class Plexers extends Library {
 	public static final Attribute<AttributeOption> ATTR_DISABLED
 		= Attributes.forOption("disabled", Strings.getter("plexerDisabledAttr"),
 				new AttributeOption[] { DISABLED_FLOATING, DISABLED_ZERO });
+	
+	public static final Attribute<Boolean> ATTR_ENABLE
+		= Attributes.forBoolean("enable", Strings.getter("plexerEnableAttr"));
 				
 
 	protected static final int DELAY = 3;

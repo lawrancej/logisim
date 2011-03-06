@@ -19,13 +19,13 @@ import com.cburch.logisim.tools.SetAttributeAction;
 class AttrTableSelectionModel extends AttributeSetTableModel
 		implements Selection.Listener {
 	private Project project;
-	private Canvas canvas;
+	private Frame frame;
 	
-	public AttrTableSelectionModel(Project project, Canvas canvas) {
-		super(canvas.getSelection().getAttributeSet());
+	public AttrTableSelectionModel(Project project, Frame frame) {
+		super(frame.getCanvas().getSelection().getAttributeSet());
 		this.project = project;
-		this.canvas = canvas;
-		canvas.getSelection().addListener(this);
+		this.frame = frame;
+		frame.getCanvas().getSelection().addListener(this);
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 		int totalCount = 0;
 		boolean variousFound = false;
 		
-		Selection selection = canvas.getSelection();
+		Selection selection = frame.getCanvas().getSelection();
 		for (Component comp : selection.getComponents()) {
 			ComponentFactory fact = comp.getFactory();
 			if (fact == factory) {
@@ -64,7 +64,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 		if (variousFound) {
 			return Strings.get("selectionVarious", "" + totalCount);
 		} else if (factoryCount == 0) {
-			String circName = canvas.getCircuit().getName();
+			String circName = frame.getCanvas().getCircuit().getName();
 			return Strings.get("circuitAttrTitle", circName);
 		} else if (factoryCount == 1) {
 			return Strings.get("selectionOne", factory.getDisplayName());
@@ -77,8 +77,8 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 	@Override
 	public void setValueRequested(Attribute<Object> attr, Object value)
 			throws AttrTableSetException {
-		Selection selection = canvas.getSelection();
-		Circuit circuit = canvas.getCircuit();
+		Selection selection = frame.getCanvas().getSelection();
+		Circuit circuit = frame.getCanvas().getCircuit();
 		if (selection.isEmpty() && circuit != null) {
 			AttrTableCircuitModel circuitModel = new AttrTableCircuitModel(project, circuit);
 			circuitModel.setValueRequested(attr, value);
@@ -98,5 +98,6 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 	// Selection.Listener methods
 	public void selectionChanged(Event event) {
 		fireTitleChanged();
+		frame.setAttrTableModel(this);
 	}
 }

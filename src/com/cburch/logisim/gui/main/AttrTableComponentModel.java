@@ -22,6 +22,14 @@ class AttrTableComponentModel extends AttributeSetTableModel {
 		this.circ = circ;
 		this.comp = comp;
 	}
+	
+	public Circuit getCircuit() {
+		return circ;
+	}
+	
+	public Component getComponent() {
+		return comp;
+	}
 
 	@Override
 	public String getTitle() {

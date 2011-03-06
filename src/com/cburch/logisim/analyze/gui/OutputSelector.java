@@ -132,7 +132,16 @@ class OutputSelector {
 	}
 	
 	public String getSelectedOutput() {
-		return (String) select.getSelectedItem();
+		String value = (String) select.getSelectedItem();
+		if (value != null && !source.contains(value)) {
+			if (source.isEmpty()) {
+				value = null;
+			} else {
+				value = source.get(0);
+			}
+			select.setSelectedItem(value);
+		}
+		return value;
 	}
 	
 	private void computePrototypeValue() {
