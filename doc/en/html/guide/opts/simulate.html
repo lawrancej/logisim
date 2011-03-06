@@ -42,11 +42,8 @@ component (excluding wires and splitters) has a delay between when it
 receives an input and when it emits an output. If this option is
 enabled, Logisim will occassionally (about once every 16
 component reactions) make a component take one click longer than
-normal.  This randomness is added specifically for handling latch
-circuit (as below): Without the random noise, the circuit oscillates,
-since the two gates will work in lockstep; but with random noise added,
-one gate will eventually outrun the other.</p>
-<center><img src="../../../img-guide/opts-latch.png"></center>
+normal.</p>
+
 <p>I recommend keeping this option off, as this technique does introduce rare
 errors with normal circuits.</p></li>
 
