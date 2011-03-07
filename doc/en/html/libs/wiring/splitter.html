@@ -69,16 +69,16 @@ and the arrow keys alter its <q>Facing</q> attribute.</p>
 <dl>
 
 <dt>Facing</dt>
-<dd>The location of the split ends relative to the combined end.</dd>
+<dd><p>The location of the split ends relative to the combined end.</p></dd>
 
 <dt>Fan Out</dt>
-<dd>The number of split ends.</dd>
+<dd><p>The number of split ends.</p></dd>
 
 <dt>Bit Width In</dt>
-<dd>The bit width of the combined end.</dd>
+<dd><p>The bit width of the combined end.</p></dd>
 
 <dt>Appearance</dt>
-<dd>Supports different ways of depicting the splitter in the circuit.
+<dd><p>Supports different ways of depicting the splitter in the circuit.
 The <q>Left-handed</q> option (the default) draws a spine going left from the
 combined end, with a labeled line coming from the spine for each split end.
 The <q>Right-handed</q> option is the same except the spine goes right (if you're
@@ -87,15 +87,24 @@ The <q>Centered</q> option centers the spine so it goes in roughly equal directi
 left and right.
 And the <q>Legacy</q> option draws diagonal lines to each split end, without labels;
 this option is primarily for compatibility with versions
-older than 2.7.0, when this was the only option for splitter appearance.</dd>
+older than 2.7.0, when this was the only option for splitter appearance.</p></dd>
 
 <dt>Bit <var>x</var></dt>
-<dd>The index of the split end to which bit <var>x</var> of the combined
+<dd><p>The index of the split end to which bit <var>x</var> of the combined
 end corresponds. The split ends are indexed starting from 0 at the top
 (for a splitter facing east or west) or from 0 at the left/west (for a
 splitter facing north or south). A bit can be specified to correspond to
 none of the split ends. There is no way for a bit to correspond to
-multiple split ends.</dd>
+multiple split ends.</p>
+
+<p>Sometimes you can avoid twiddling each individual Bit <var>x</var> attribute
+by bringing up the pop-up menu for a splitter (usually by right-clicking or
+control-clicking it). The pop-up menu includes options labeled Distribute Ascending
+and Distribute Descending. The Distribute Ascending option distributes the bits
+so that each split end receives the same number of bits, starting from end 0.
+(If the number of split ends doesn't divide exactly into the number of bits,
+then the bits are distributed as evenly as possible.)
+Distribute Descending does the same but starts from the highest-numbered end.</p></dd>
 
 </dl>
 

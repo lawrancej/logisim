@@ -1,3 +1,7 @@
+Bug fix: The Logging module's window title did not change when the file's name was changed.
+
+(Bug fix: The Window menu's Close item was not working.)
+
 GUI
 
 Feature: Added the option of switching the "explorer pane" between viewing the "toolbox" (the project's circuits and libraries that has appeared in the explorer pane in previous versions) and a simulation hierarchy.
@@ -19,6 +23,8 @@ Bug fix: In moving a component whose output is connected to itself, it was possi
 Bug fix: The "Second radix when wire poked" preference was ignored - the "First radix" was displayed twice when the wire was poked.
 
 Bug fix: Enabled the "-clearprops" command-line option for clearing all application proferences. (The previous version worked with "-clearprefs", but it was described as "-clearprops" in the "-help" text and in the documentation. Both now work.)
+
+Bug fix: The Logging module's window title did not change when the file's name was changed.
 
 
 CORE
