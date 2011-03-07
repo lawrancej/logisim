@@ -374,6 +374,7 @@ class XmlReader {
 			}
 			
 			repairForWiringLibrary(doc, root);
+			repairForLegacyLibrary(doc, root);
 		}
 	}
 	
@@ -490,6 +491,50 @@ class XmlReader {
 				if (newLib != null) {
 					elt.setAttribute("lib", newLib);
 				}
+			}
+		}
+	}
+	
+	private void repairForLegacyLibrary(Document doc, Element root) {
+		Element legacyElt = null;
+		String legacyLabel = null;
+		for (Element libElt : XmlIterator.forChildElements(root, "lib")) {
+			String desc = libElt.getAttribute("desc");
+			String label = libElt.getAttribute("name");
+			if (desc != null && desc.equals("#Legacy")) {
+				legacyElt = libElt;
+				legacyLabel = label;
+			}
+		}
+		
+		if (legacyElt != null) {
+			root.removeChild(legacyElt);
+			
+			ArrayList<Element> toRemove = new ArrayList<Element>();
+			findLibraryUses(toRemove, legacyLabel,
+					XmlIterator.forDescendantElements(root, "comp"));
+			boolean componentsRemoved = !toRemove.isEmpty();
+			findLibraryUses(toRemove, legacyLabel,
+					XmlIterator.forDescendantElements(root, "tool"));
+			for (Element elt : toRemove) {
+				elt.getParentNode().removeChild(elt);
+			}
+			if (componentsRemoved) {
+				String error = "Some components have been deleted;"
+					+ " the Legacy library is no longer supported.";
+				Element elt = doc.createElement("message");
+				elt.setAttribute("value", error);
+				root.appendChild(elt);
+			}
+		}
+	}
+	
+	private static void findLibraryUses(ArrayList<Element> dest, String label,
+			Iterable<Element> candidates) {
+		for (Element elt : candidates) {
+			String lib = elt.getAttribute("lib");
+			if (lib.equals(label)) {
+				dest.add(elt);
 			}
 		}
 	}
