@@ -224,6 +224,22 @@ the term &quot;modification&quot;.)  Each licensee is addressed as &quot;you&quo
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>(If seed is 0, this new seed should be different from the initial seed used previously.)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101759Z" changeid="lilovip">
+        <seg>(Если семя - 0, то новое семя будет отличаться от начального семени, использованного перед этим.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(If the number of split ends doesn't divide exactly into the number of bits, then the bits are distributed as evenly as possible.) Distribute Descending does the same but starts from the highest-numbered end.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110307T083040Z" changeid="lilovip">
+        <seg>(Если количество разъединённых концов не делит количество битов нацело, то биты распределяются как можно более равномерно). &quot;Расставить по убыванию&quot; делает то же самое, но начинает с конца с наибольшим номером.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>(If there were several pins on the box's north or south side, they would correspond to the same left-right order in the subcircuit.)</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T232148Z" changeid="lilovip">
@@ -338,8 +354,8 @@ the term &quot;modification&quot;.)  Each licensee is addressed as &quot;you&quo
       <tuv lang="EN">
         <seg>(Manufacturers vary as to how they map inputs to segments; the correspondence used here is based on Texas Instruments' TIL321.)</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100816T054900Z" changeid="lilovip">
-        <seg>(Производители по-разному подводят входы к сегментам; соответствие, использованное здесь, основано на дисплее TIL321 от Texas Instruments.)</seg>
+      <tuv lang="RU-RU" changedate="20101211T000201Z" changeid="lilovip">
+        <seg>(Производители по-разному подводят входы к сегментам; соответствие, использованное здесь, основано на индикаторе TIL321 от Texas Instruments.)</seg>
       </tuv>
     </tu>
     <tu>
@@ -672,6 +688,14 @@ your programs, too.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T193842Z" changeid="lilovip">
         <seg>(Провода игнорируются, если в выделении есть что-то кроме проводов.) Изменения значения атрибута влияют на все выбранные компоненты.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>(You can also click the far-right icon (&lt;i1&gt;) in the explorer pane's upper toolbar.) Below, we are editing the 2:1 multiplexer's appearance so that it is drawn with the usual trapezoid rather than a rectangle.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T210407Z" changeid="lilovip">
+        <seg>(Вы также можете щёлкнуть крайний справа значок (&lt;i1&gt;) в верхней панели инструментов панели проводника.) Ниже мы редактируем внешний вид мультиплексора 2:1 так, чтобы он отрисовывался в виде обычной трапеции вместо прямоугольника.</seg>
       </tuv>
     </tu>
     <tu>
@@ -1156,6 +1180,14 @@ public class CounterPoker extends InstancePoker {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T071357Z" changeid="lilovip">
         <seg>*Южный край, остальные контакты (выход, разрядность соответствует атрибуту Биты данных)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>-</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T210204Z" changeid="lilovip">
+        <seg>-</seg>
       </tuv>
     </tu>
     <tu>
@@ -4196,6 +4228,14 @@ halted due to halt pin</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>2.0.3 (in Base library, moved to Wiring in 2.7.0)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T103844Z" changeid="lilovip">
+        <seg>2.0.3 (в библиотеке Базовые, перемещён в библиотеку Проводка в 2.7.0)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>2.0.5</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -4244,6 +4284,14 @@ halted due to halt pin</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>2.5.0 (in Base library, moved to Wiring in 2.7.0)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T103639Z" changeid="lilovip">
+        <seg>2.5.0 (в библиотеке Базовые, перемещён в библиотеку Проводка в 2.7.0)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>2.6.0</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T204443Z" changeid="lilovip">
@@ -4256,6 +4304,14 @@ halted due to halt pin</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T180048Z" changeid="lilovip">
         <seg>2.6.1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>2.7.0</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T102059Z" changeid="lilovip">
+        <seg>2.7.0</seg>
       </tuv>
     </tu>
     <tu>
@@ -4355,8 +4411,8 @@ Copyright (C) перевод на русский язык,
       <tuv lang="EN">
         <seg>7-Segment Display</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>7-сегментный дисплей</seg>
+      <tuv lang="RU-RU" changedate="20101211T000125Z" changeid="lilovip">
+        <seg>7-сегментный индикатор</seg>
       </tuv>
     </tu>
     <tu>
@@ -6705,6 +6761,14 @@ Copyright (C) перевод на русский язык,
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>&lt;t0&gt;~&lt;/t0&gt; &lt;t1&gt;!&lt;/t1&gt; &lt;t2&gt;'&lt;/t2&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205104Z" changeid="lilovip">
+        <seg>&lt;t0&gt;~&lt;/t0&gt; &lt;t1&gt;!&lt;/t1&gt; &lt;t2&gt;'&lt;/t2&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>&lt;u6&gt;0&lt;/u6&gt;100</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T184352Z" changeid="lilovip">
@@ -7045,6 +7109,22 @@ Copyright (C) перевод на русский язык,
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T230749Z" changeid="lilovip">
         <seg>Такт - это основная единица измерения скорости тактовых генераторов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>A transistor has two inputs, called &lt;e0&gt;gate&lt;/e0&gt; and &lt;e1&gt;source&lt;/e1&gt;, and one output, called &lt;e2&gt;drain&lt;/e2&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T111528Z" changeid="lilovip">
+        <seg>Транзистор имеет два входа, называемые &lt;e0&gt;затвор&lt;/e0&gt; и &lt;e1&gt;исток&lt;/e1&gt;, и выход, называемый &lt;e2&gt;сток&lt;/e2&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>A transmission gate has three inputs, called &lt;e0&gt;source&lt;/e0&gt;, &lt;e1&gt;n-gate&lt;/e1&gt;, and &lt;e2&gt;p-gate&lt;/e2&gt;; and it has one output, called &lt;e3&gt;drain&lt;/e3&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T122031Z" changeid="lilovip">
+        <seg>У передаточного вентиля три входа, называемые &lt;e0&gt;исток&lt;/e0&gt;, &lt;e1&gt;n-затвор&lt;/e1&gt;, и &lt;e2&gt;p-затвор&lt;/e2&gt;; и один выход, называемый &lt;e3&gt;сток&lt;/e3&gt;.</seg>
       </tuv>
     </tu>
     <tu>
@@ -7598,6 +7678,14 @@ software.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>An N-type transistor behaves very similarly to a &lt;a0&gt;Controlled Buffer&lt;/a0&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T115901Z" changeid="lilovip">
+        <seg>Транзистор n-типа ведёт себя очень похоже на &lt;a0&gt;Управляемый буфер&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>An additional output of the priority encoder is 1 whenever the priority encoder is enabled and finds a 1 on one of the indexed inputs.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100823T142931Z" changeid="lilovip">
@@ -7686,6 +7774,14 @@ software.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>And the &lt;q3&gt;Legacy&lt;/q3&gt; option draws diagonal lines to each split end, without labels; this option is primarily for compatibility with versions older than 2.7.0, when this was the only option for splitter appearance.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110302T043718Z" changeid="lilovip">
+        <seg>Вариант &lt;q3&gt;Устаревший&lt;/q3&gt; отрисовывает диагональные линии к каждому разъединённому концу, без меток; этот вариант в основном для совместимости с версиями, более старыми, чем 2.7.0, когда это был единственный вариант внешнего вида разветвителя.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>And the &lt;q3&gt;low level&lt;/q3&gt; value indicates that it should update continuously when the clock input is 0.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -7698,6 +7794,14 @@ software.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T193555Z" changeid="lilovip">
         <seg>И последний параметр - это его</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>And the third way is to first ensure the Poke Tool is selected and then click the subcircuit you want to enter; a magnifying glass will appear over the subcircuit's center, and double-clicking the magnifying glass will enter the subcircuit's state.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T214652Z" changeid="lilovip">
+        <seg>И третий способ - убедиться, что выбран Инструмент Нажатие, и затем щёлкнуть на схеме, в которую вы хотите проникнуть; над её центром появится увеличительное стекло; двойной щелчок на увеличительном стекле позволит вам проникнуть в состояние подсхемы.</seg>
       </tuv>
     </tu>
     <tu>
@@ -7800,6 +7904,14 @@ void, and will automatically terminate your rights under this License.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T114510Z" changeid="lilovip">
         <seg>Все подсхемы также появятся в списке; их нельзя выбрать для записи, но подходящие компоненты внутри них - можно.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Appearance</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T214804Z" changeid="lilovip">
+        <seg>Внешний вид</seg>
       </tuv>
     </tu>
     <tu>
@@ -8310,6 +8422,14 @@ FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Base: Tools that are integral to using Logisim, though you probably won't need to dig into this library very often.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101008Z" changeid="lilovip">
+        <seg>Базовые: инструменты, которые являются неотъемлемой частью использования Logisim, хотя вы, вероятно, не будете заглядывать в эту библиотеку очень часто.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Base: Tools that are integral to using Logisim.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100803T221114Z" changeid="lilovip">
@@ -8478,6 +8598,22 @@ FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Beta 1 (in Base library, moved to Wiring in 2.7.0)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T103830Z" changeid="lilovip">
+        <seg>Beta 1 (в библиотеке Базовые, перемещён в библиотеку Проводка в 2.7.0)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Beta 1 (in Gates library, moved to Wiring in 2.7.0)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T103623Z" changeid="lilovip">
+        <seg>Beta 1 (в библиотеке Элементы, перемещён в библиотеку Проводка в 2.7.0)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Beta 1 for XOR/Odd/Even; 2.0 Beta 6 for XNOR</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -8506,6 +8642,14 @@ FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Beta 13</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Beta 13 (in Base library, moved to Wiring in 2.7.0)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T102038Z" changeid="lilovip">
+        <seg>Beta 13 (в библиотеке Базовые, перемещён в библиотеку Проводка в 2.7.0)</seg>
       </tuv>
     </tu>
     <tu>
@@ -8814,6 +8958,14 @@ FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>But if the input were 00000000 and the component is to find the lowest-order 1, then the south output would be 0 — and the output on the east edge would be 0 as well.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101209T211003Z" changeid="lilovip">
+        <seg>Но если на входе было бы 00000000 и компонент искал бы младшую 1, то на южном выходе был бы 0 - и на выходе на восточном крае был бы тоже 0.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>But if the input were 00000000 and the component is to find the lowest-order 1, then the south output would be 0 — and the output on the west edge would be 0 as well.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T192441Z" changeid="lilovip">
@@ -8882,6 +9034,14 @@ FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T215731Z" changeid="lilovip">
         <seg>Но разветвители также могут комбинировать несколько значений в одно значение.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>But splitters can also work the other way: It can &lt;q1&gt;combine&lt;/q1&gt; multiple values into a single value.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110306T143543Z" changeid="lilovip">
+        <seg>Но разветвители также могут работать по-другому: они могут &lt;q1&gt;объединять&lt;/q1&gt; несколько значений в одно значение.</seg>
       </tuv>
     </tu>
     <tu>
@@ -8995,6 +9155,14 @@ software--to make sure the software is free for all its users.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>By default, false is indicated by a low voltage (0) and true by a high voltage (1), but one or the other can be replaced by a high-impedance (&lt;q0&gt;floating&lt;/q0&gt;) value instead.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T103032Z" changeid="lilovip">
+        <seg>По умолчанию &quot;ложь&quot; обозначается напряжением низкого уровня (0), а &quot;истина&quot; - напряжением высокого уровня (1), но одно из них может быть заменено высокоимпедансным (&lt;q0&gt;плавающим&lt;/q0&gt;) значением.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>By default, right-clicking or control-clicking a component will bring up this pop-up menu; however, &lt;a0&gt;the Mouse tab&lt;/a0&gt; of the &lt;a1&gt;project options&lt;/a1&gt; allows a user to configure the mouse buttons to work differently.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -9087,6 +9255,22 @@ software--to make sure the software is free for all its users.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100816T044300Z" changeid="lilovip">
         <seg>Перенос: когда входы &lt;v0&gt;загрузка&lt;/v0&gt; и &lt;v1&gt;счёт&lt;/v1&gt; указывают регистру увеличиться, значение на этом выходе 1, если регистр имеет максимальное значение.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Changes the explorer pane to displaying a list of the project's circuits and the libraries that have been loaded.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205648Z" changeid="lilovip">
+        <seg>Изменяет панель проводника для отображения списка схем проекта и загруженных библиотек.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Changes the explorer pane to displaying the hierarchy of subcircuits in the current simulation.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205728Z" changeid="lilovip">
+        <seg>Изменяет панель проводника для отображения иерархии подсхем в текущем моделировании.</seg>
       </tuv>
     </tu>
     <tu>
@@ -9387,6 +9571,14 @@ software--to make sure the software is free for all its users.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Closes the current window.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T102317Z" changeid="lilovip">
+        <seg>Закрывает текущее окно.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Color</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -9581,8 +9773,8 @@ software--to make sure the software is free for all its users.</seg>
       <tuv lang="EN">
         <seg>Constant</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Постоянная</seg>
+      <tuv lang="RU-RU" changedate="20110307T204257Z" changeid="lilovip">
+        <seg>Константа</seg>
       </tuv>
     </tu>
     <tu>
@@ -10227,6 +10419,14 @@ software--to make sure the software is free for all its users.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Depending on the value found at &lt;e0&gt;gate&lt;/e0&gt;, the value at &lt;e1&gt;source&lt;/e1&gt; may be transmitted to &lt;e2&gt;drain&lt;/e2&gt;; or there may be no connection from &lt;e3&gt;source&lt;/e3&gt;, so &lt;e4&gt;drain&lt;/e4&gt; is left floating.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T114408Z" changeid="lilovip">
+        <seg>В зависимости от значения, поступающего на &lt;e0&gt;затвор&lt;/e0&gt;, значение с &lt;e1&gt;истока&lt;/e1&gt; может быть передано на &lt;e2&gt;сток&lt;/e2&gt;; или соединения с &lt;e3&gt;истоком&lt;/e3&gt; может не быть, тогда значение на &lt;e4&gt;стоке&lt;/e4&gt; остаётся плавающим.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Deriving from the example code in this section of the &lt;e0&gt;User's Guide&lt;/e0&gt; does not incur such restrictions; these examples are released under the MIT license.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T181828Z" changeid="lilovip">
@@ -10247,6 +10447,14 @@ software--to make sure the software is free for all its users.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Определяет, сколько контактов на западном крае будет иметь компонент.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Determines whether the transistor is P-type or N-type.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T121537Z" changeid="lilovip">
+        <seg>Определяет тип транзистора: p-тип или n-тип. </seg>
       </tuv>
     </tu>
     <tu>
@@ -10279,6 +10487,14 @@ software--to make sure the software is free for all its users.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Направление</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Disabled Output</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T205327Z" changeid="lilovip">
+        <seg>На отключенном выходе</seg>
       </tuv>
     </tu>
     <tu>
@@ -10391,6 +10607,14 @@ software--to make sure the software is free for all its users.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T203917Z" changeid="lilovip">
         <seg>Дважды щёлкните, нажмите клавишу Enter, или щёлкните на начальной вершине для завершения фигуры.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Double-clicking an element in this hierarchy will display what is happening inside that subcircuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T214023Z" changeid="lilovip">
+        <seg>Двойной щелчок на элементе в этой иерархии покажет, что происходит внутри этой подсхемы.</seg>
       </tuv>
     </tu>
     <tu>
@@ -10882,6 +11106,14 @@ these terms and conditions.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Emits a single value onto a wire.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T102123Z" changeid="lilovip">
+        <seg>Выдаёт на провод одиночное значение.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Emits the value specified in its Value attribute.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -10910,6 +11142,30 @@ these terms and conditions.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Включение: компонент включен, когда этот вход не подключен, или на нём 1; но когда на нём 0, тактовый вход игнорируется.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable: When 0, all outputs consist of all floating bits (or zeros), regardless of the select input.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T205118Z" changeid="lilovip">
+        <seg>Разрешить: когда 0, на всех выходах плавающие биты (или нули), независимо от значения на выбирающем входе.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable: When 0, all outputs consist of all floating bits, regardless of the data and select inputs.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T204730Z" changeid="lilovip">
+        <seg>Разрешить: когда 0, на всех выходах плавающие биты, независимо от данных и выбирающих входов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable: When 0, the multiplexer's output consists of all floating bits, regardless of the data and select inputs.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T210118Z" changeid="lilovip">
+        <seg>Разрешить: когда 0, на всех битах выхода мультиплексора плавающие значения, независимо от входа данных и выбирающего входа.</seg>
       </tuv>
     </tu>
     <tu>
@@ -11106,6 +11362,14 @@ these terms and conditions.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Farm-Fresh Web Icons, &lt;e0&gt;&lt;a1&gt;http://www.fatcow.com/free-icons&lt;/a1&gt;&lt;/e0&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T204901Z" changeid="lilovip">
+        <seg>Farm-Fresh Web Icons, &lt;e0&gt;&lt;a1&gt;http://www.fatcow.com/free-icons&lt;/a1&gt;&lt;/e0&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>File format</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100806T192810Z" changeid="lilovip">
@@ -11164,10 +11428,42 @@ patents.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>For P-type transistors, the transistor will transmit if the &lt;e1&gt;gate&lt;/e1&gt; value is 0; for N-type transistors, this will trigger the transistor if the &lt;e2&gt;gate&lt;/e2&gt; value is 1.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T120607Z" changeid="lilovip">
+        <seg>Для транзисторов p-типа транзистор будет передавать значение, если значение на &lt;e1&gt;затворе&lt;/e1&gt; - 0; для транзисторов n-типа это будет происходить, если на &lt;e2&gt;затворе&lt;/e2&gt; - 1.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>For ROM components, which have the memory contents as part of the attribute value, you can alternatively access the hex editor by clicking the corresponding attribute value.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T124306Z" changeid="lilovip">
         <seg>Для компонентов ПЗУ, содержимое памяти которых - часть значения атрибута, вы можете получить доступ к шестнадцатеричному редактору, нажав на соответствующее значение атрибута.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>For a ground element, indicated by an arrow of three shortening parallel lines, this value will be zero (or, if the Data Bits attribute is more than 1, an all-zero value).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T102343Z" changeid="lilovip">
+        <seg>Для элемента Земля, обозначаемого стрелкой, состоящей из трёх укорачивающихся параллельных линий, это значение будет нулём (или если значение атрибута Биты данных больше единицы, то значение, состоящее из всех нулей).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>For a power element, indicated by a triangle, this value will be one (or, if the Data Bits attribute is more than 1, an all-ones value).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T102242Z" changeid="lilovip">
+        <seg>Для элемента Питание, обозначаемого треугольником, это значение будет единицей (или если значение атрибута Биты данных больше единицы, то значение, состоящее из всех единиц).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>For all other values on &lt;e5&gt;p-gate&lt;/e5&gt; and &lt;e6&gt;n-gate&lt;/e6&gt;, the output is an error value.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125834Z" changeid="lilovip">
+        <seg>При всех других значениях на &lt;e5&gt;p-затворе&lt;/e5&gt; и &lt;e6&gt;n-затворе&lt;/e6&gt;, на выходе будет значение ошибки.</seg>
       </tuv>
     </tu>
     <tu>
@@ -11301,6 +11597,22 @@ control compilation and installation of the executable.</seg>
         <seg>For example, 11001011 rolled right twice is 11110010.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T035526Z" changeid="lilovip">
+        <seg>Например, 11001011 циклически сдвинутое вправо на два - это 11110010.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>For example, 11001011 rotated left twice is 00101111.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114900Z" changeid="lilovip">
+        <seg>Например, 11001011 циклически сдвинутое влево на два - это 00101111.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>For example, 11001011 rotated right twice is 11110010.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114911Z" changeid="lilovip">
         <seg>Например, 11001011 циклически сдвинутое вправо на два - это 11110010.</seg>
       </tuv>
     </tu>
@@ -11449,6 +11761,14 @@ you have.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T022034Z" changeid="lilovip">
         <seg>Например, если вы хотите создавать новые провода перетаскиванием мыши с зажатой Shift, то выберите Инструмент Проводка в проводнике (в библиотеке Базовые); дальше вам нужно щёлкнуть с клавишей Shift там, где написано &quot;Щёлкните здесь используя комбинацию, чтобы привязать Инструмент Проводка&quot;. Если это сочетание уже используется, то привязка будет заменена новым инструментом.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>For example, suppose we want a circuit that computes the bitwise AND of the two nibbles of its eight-bit input (the upper four bits and the lower four bits).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110306T143327Z" changeid="lilovip">
+        <seg>Например, предположим, что нам нужна схема, которая вычисляет побитовое И между двумя частями её восьмибитного входа (старшими четырьмя битами и младшими четырьмя битами).</seg>
       </tuv>
     </tu>
     <tu>
@@ -11715,6 +12035,14 @@ make exceptions for this.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Gate Location</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T121551Z" changeid="lilovip">
+        <seg>Положение затвора</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Gate Size</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -11923,6 +12251,14 @@ make exceptions for this.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Greek</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110307T203941Z" changeid="lilovip">
+        <seg>Греческий</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Group Signal: 1 if the component is enabled and at least one indexed input has a value of 1; otherwise this output is 0.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T212954Z" changeid="lilovip">
@@ -12013,8 +12349,8 @@ make exceptions for this.</seg>
       <tuv lang="EN">
         <seg>Hex Digit Display</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Шестнадцатеричный дисплей</seg>
+      <tuv lang="RU-RU" changedate="20101211T000132Z" changeid="lilovip">
+        <seg>Шестнадцатеричный индикатор</seg>
       </tuv>
     </tu>
     <tu>
@@ -12120,6 +12456,14 @@ itself accompanies the executable.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T003940Z" changeid="lilovip">
         <seg>Однако, в силу большого объёма информации, которую они могут хранить, они также - два из наиболее сложных компонентов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>However, designers sometimes prefer to use matched pairs of transistors due to electrical issues with draining voltage that is more complex than Logisim attempts to simulate.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T124457Z" changeid="lilovip">
+        <seg>Однако конструкторы иногда предпочитают использовать сочетающиеся пары транзисторов из-за относящихся к электротехнике вопросов, связанных с напряжением утечки, что является более сложным явлением, чем те, что Logisim пытается моделировать.</seg>
       </tuv>
     </tu>
     <tu>
@@ -12411,6 +12755,30 @@ sections when you distribute them as separate works.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>If &lt;e2&gt;p-gate&lt;/e2&gt; is 0 while &lt;e3&gt;n-gate&lt;/e3&gt; is 1, then the value found at &lt;e4&gt;source&lt;/e4&gt; is transmitted to &lt;e5&gt;drain&lt;/e5&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T124739Z" changeid="lilovip">
+        <seg>Если на &lt;e2&gt;p-затворе&lt;/e2&gt; 0, а на &lt;e3&gt;n-затворе&lt;/e3&gt; 1, то значение с &lt;e4&gt;истока&lt;/e4&gt; передаётся на &lt;e5&gt;сток&lt;/e5&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>If &lt;e3&gt;gate&lt;/e3&gt; is floating or an error value, then the output will be an error value.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T121428Z" changeid="lilovip">
+        <seg>Если на &lt;e3&gt;затворе&lt;/e3&gt; плавающее значение, или значение ошибки, то на выходе будет значение ошибки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>If &lt;e6&gt;p-gate&lt;/e6&gt; is 1 while &lt;e7&gt;p-gate&lt;/e7&gt; is 0, then the connection is broken, so the value at &lt;e8&gt;drain&lt;/e8&gt; is left floating.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125003Z" changeid="lilovip">
+        <seg>Если на &lt;e6&gt;p-затворе&lt;/e6&gt; 1, а на &lt;e7&gt;n-затворе&lt;/e7&gt; 0, то соединение разрывается, и значение на &lt;e8&gt;стоке&lt;/e8&gt; остаётся плавающим.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>If &lt;q0&gt;Zero&lt;/q0&gt; or &lt;q1&gt;One,&lt;/q1&gt; the additional bits are 0 or 1 accordingly.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T074328Z" changeid="lilovip">
@@ -12605,8 +12973,8 @@ sections when you distribute them as separate works.</seg>
       <tuv lang="EN">
         <seg>If any of the inputs are not 0/1 (either floating or error), then the display shows a dash ('-').</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100816T055400Z" changeid="lilovip">
-        <seg>Если значения на каких-либо входах - не 0/1 (плавающее значение или значение ошибки), то дисплей показывает тире ('-').</seg>
+      <tuv lang="RU-RU" changedate="20101211T000243Z" changeid="lilovip">
+        <seg>Если значения на каких-либо входах - не 0/1 (плавающее значение или значение ошибки), то индикатор показывает тире ('-').</seg>
       </tuv>
     </tu>
     <tu>
@@ -12712,6 +13080,14 @@ compelled to copy the source along with the object code.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>If it is configured at 0 (which is the default), then the seed is based on the current time; when instructed to reset through the &lt;v0&gt;reset&lt;/v0&gt; input, the component computes a new seed based on the new current time.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101554Z" changeid="lilovip">
+        <seg>Если выбран 0 (по умолчанию), то семя выбирается на основе текущего времени; когда значение сбрасывается с помощью входа &lt;v0&gt;сброс&lt;/v0&gt;, компонент вычисляет новое семя на основе нового текущего времени.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>If it is configured at 0 (which is the default), then the seed is based on the current time; when instructed to reset through the &lt;v0&gt;reset&lt;/v0&gt; input, the component starts with the same seed based on the past time.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -12788,6 +13164,22 @@ compelled to copy the source along with the object code.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100801T141643Z" changeid="lilovip">
         <seg>Если бы только все колледжи и университеты действовали сообща и так заботились об отличном преподавании, как эти учреждения!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>If the Data Bits attribute is more than 1, each &lt;e0&gt;gate&lt;/e0&gt; input is still a single bit, but the &lt;e1&gt;gate&lt;/e1&gt; values are applied simultaneously to each of the &lt;e2&gt;source&lt;/e2&gt; input's bits.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125321Z" changeid="lilovip">
+        <seg>Если значение атрибута Биты данных больше единицы, то каждый вход &lt;e0&gt;затвор&lt;/e0&gt; остаётся однобитным, но значения с &lt;e1&gt;затворов&lt;/e1&gt; применяются одновременно к каждому биту входа &lt;e2&gt;исток&lt;/e2&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>If the Data Bits attribute is more than 1, the &lt;e0&gt;gate&lt;/e0&gt; input is still a single bit, but its value is applied simultaneously to each of the &lt;e1&gt;source&lt;/e1&gt; input's bits.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T115806Z" changeid="lilovip">
+        <seg>Если значение атрибута Биты данных больше единицы, то вход &lt;e0&gt;затвор&lt;/e0&gt; остаётся однобитным, но значение на нём применяется одновременно к каждому биту входа &lt;e1&gt;исток&lt;/e1&gt;.</seg>
       </tuv>
     </tu>
     <tu>
@@ -12956,6 +13348,22 @@ countries not thus excluded.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>If the selection is overlapped by several objects, it is raised only to be above the lowest one; select the menu item repeatedly until it is in the order it should be.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101016T101701Z" changeid="lilovip">
+        <seg>Если выделение перекрывается несколькими объектами, то оно поднимается только выше самого нижнего из них; используйте этот пункт меню несколько раз подряд, пока объект не окажется в нужном месте.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>If the selection overlaps several objects, it is lowered only to be below the highest one; select the menu item repeatedly until it is in the order it should be.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101016T101752Z" changeid="lilovip">
+        <seg>Если выделение перекрывает несколько объектов, то оно опускается только ниже самого верхнего из них; используйте этот пункт меню несколько раз подряд, пока объект не окажется в нужном месте.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>If the software is modified by someone else and passed on, we
 want its recipients to know that what they have is not the original, so
 that any problems introduced by others will not reflect on the original
@@ -13004,8 +13412,8 @@ authors' reputations.</seg>
       <tuv lang="EN">
         <seg>If the value to be negated happens to be the least negative value, then its negation (which cannot be represented in two's-complement form), is still the least negative value.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100813T033017Z" changeid="lilovip">
-        <seg>Если значение для отрицания оказалось наименьшим по модулю отрицательным значением, то его отрицание (которое не может быть представлено в дополнительном коде) остаётся наименьшим по модулю отрицательным значением.</seg>
+      <tuv lang="RU-RU" changedate="20101209T211337Z" changeid="lilovip">
+        <seg>Если значение для отрицания оказалось наименьшим отрицательным значением, то его отрицание (которое не может быть представлено в дополнительном коде) остаётся наименьшим отрицательным значением.</seg>
       </tuv>
     </tu>
     <tu>
@@ -13126,6 +13534,14 @@ authors' reputations.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Когда равно 0 (по умолчанию), стартовое значение основано на времени старта текущего моделирования.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>If this is 0 (the default), then the starting value is based on the time that the random sequence began.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101943Z" changeid="lilovip">
+        <seg>Когда равно 0 (по умолчанию), стартовое значение основано на времени запуска псевдослучайной последовательности.</seg>
       </tuv>
     </tu>
     <tu>
@@ -13720,10 +14136,26 @@ the scope of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>In all other cases, &lt;e9&gt;drain&lt;/e9&gt; receives an error output.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125104Z" changeid="lilovip">
+        <seg>Во всех остальных случаях со &lt;e9&gt;сток&lt;/e9&gt; поступает значение ошибки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>In any case, if you are confident that the reporting is in error, you can configure the number of iterations completed before oscillation occurs via the &lt;a0&gt;Project Options&lt;/a0&gt; window's &lt;a1&gt;Simulation tab&lt;/a1&gt;.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T174948Z" changeid="lilovip">
         <seg>В любом случае, если вы уверены, что сообщение - ошибка, то вы можете настроить количество итераций, завершённых до появления возбуждения через &lt;a1&gt;вкладку Моделирование&lt;/a1&gt; окна &lt;a0&gt;Параметры проекта&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>In any case, once you enter the subcircuit, you'll see that the pins' values in the subcircuit match the values being sent through them from the containing circuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T214749Z" changeid="lilovip">
+        <seg>В любом случае, проникнув в состояние подсхемы, вы увидите, что значения на контактах подсхемы соответствуют значениям, посылаемым в неё содержащей её схемой.</seg>
       </tuv>
     </tu>
     <tu>
@@ -13788,6 +14220,14 @@ the scope of this License.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T231225Z" changeid="lilovip">
         <seg>На самом деле, инструменты Входной контакт и Выходной контакт на панели инструментов по умолчанию являются экземплярами инструмента Контакт библиотеки Базовые, но наборы атрибутов у них различны.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>In fact, the input pin and output pin tools in the default toolbar are both instances of the Wiring library's Pin tool, but the attribute sets are different.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101031Z" changeid="lilovip">
+        <seg>На самом деле, инструменты Входной контакт и Выходной контакт на панели инструментов по умолчанию являются экземплярами инструмента Контакт библиотеки Проводка, но наборы атрибутов у них различны.</seg>
       </tuv>
     </tu>
     <tu>
@@ -13955,6 +14395,14 @@ the limitation as if written in the body of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>In testing a large circuit, and for documenting a circuit's behavior, a log of past circuit behavior can be useful.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101016T101416Z" changeid="lilovip">
+        <seg>При тестировании больших схем и при документировании поведения схемы, может быть полезен журнал поведения схемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>In testing a large circuit, and for documenting a circuit's behavior, a log of past circuit behavior.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100806T194204Z" changeid="lilovip">
@@ -13979,10 +14427,26 @@ the limitation as if written in the body of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>In the below circuit, we have used a splitter to accomplish this: The 8-bit input comes into the splitter (drawn as a narrow trapezoid), which divides the 8 bits into two 4-bit values, which are then fed into the AND gate and from there to the output.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205519Z" changeid="lilovip">
+        <seg>На схеме ниже мы использовали для этого разветвитель: 8-битный вход подводится к разветвителю (отрисованному в виде узкой трапеции), который разделяет 8 битов на два 4-битных значения, которые затем подаются на элемент И, а с него - на выход.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>In the below circuit, we have used a splitter to accomplish this: The 8-bit input comes into the splitter (which resembles a bird's foot), which divides the 8 bits into two 4-bit values, which are then fed into the AND gate and from there to the output.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T050404Z" changeid="lilovip">
         <seg>На схеме ниже мы использовали для этого разветвитель: 8-битный вход подводится к разветвителю (похожему на птичью лапу), который разделяет 8 битов на два 4-битных значения, которые затем подаются на элемент И, а с него - на выход.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>In the below circuit, we have used a splitter to accomplish this: The 8-bit input comes into the splitter, which divides the 8 bits into two 4-bit values, which are then fed into the AND gate and from there to the output.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110306T143410Z" changeid="lilovip">
+        <seg>На схеме ниже мы использовали для этого разветвитель: 8-битный вход подводится к разветвителю, который разделяет 8 битов на два 4-битных значения, которые затем подаются на элемент И, а с него - на выход.</seg>
       </tuv>
     </tu>
     <tu>
@@ -14107,6 +14571,14 @@ the limitation as if written in the body of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>In this example, the splitter &lt;q0&gt;splits&lt;/q0&gt; an incoming value into multiple outgoing values.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110306T143450Z" changeid="lilovip">
+        <seg>В этом пример разветвитель &lt;q0&gt;разделяет&lt;/q0&gt; входящее значение на несколько исходящих значений.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>In this example, the splitter happens to actually split an incoming value into multiple outgoing values.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T215706Z" changeid="lilovip">
@@ -14163,6 +14635,14 @@ the limitation as if written in the body of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Include Enable?</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110306T143606Z" changeid="lilovip">
+        <seg>Разрешающий вход?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Indeed, a wire can carry values in both directions simultaneously: In the below example, a bit flows from the upper input at left through the center wire, then it circles back through the center wire, and then it circles forward again through the center wire before reaching the output at lower right.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -14175,6 +14655,22 @@ the limitation as if written in the body of this License.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Действительно, провод может передавать значения в обоих направлениях одновременно; центральный провод в примере ниже делает это.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Indeed, the same behavior can be achieved in Logisim by using just one transistor.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T123906Z" changeid="lilovip">
+        <seg>Фактически, то же поведение может быть достигнуто в Logisim с помощью всего одного транзистора.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Indicates how false and true results should be translated into output values.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T102733Z" changeid="lilovip">
+        <seg>Указывает, как результаты &quot;ложь&quot; и &quot;истина&quot; будут переведены в выходные значения.</seg>
       </tuv>
     </tu>
     <tu>
@@ -14315,6 +14811,14 @@ the limitation as if written in the body of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>It brings up the Options window with several tabs.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110306T213410Z" changeid="lilovip">
+        <seg>Это вызовет окно Параметры с несколькими вкладками.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>It brings up the Options window, which has four tabs.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T115309Z" changeid="lilovip">
@@ -14411,6 +14915,22 @@ the limitation as if written in the body of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>It is by Thanos Kakarountas, a faculty member at Technological Educational Institute of Ionian Islands in Greece.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T210044Z" changeid="lilovip">
+        <seg>Его выполнил Танос Какароунтас, преподаватель Технологического образовательного института Ионических островов в Греции.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>It is by Theldo Cruz Franqueira, a faculty member at Pontifícia Universidade Católica de Minas Gerais in Brazil.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101220T233134Z" changeid="lilovip">
+        <seg>Его выполнил Телдо Круз Франкуэйра, преподаватель Папского Католического Университета Минас-Жерайса в Бразилии.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>It is by Uwe Zimmermann, a faculty member at Uppsala University in Sweden.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20101002T141457Z" changeid="lilovip">
@@ -14451,10 +14971,26 @@ implemented by public license practices.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>It lowers the currently selected object(s) so that it is drawn (or they are drawn) below an object that the selection currently overlaps.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101016T101724Z" changeid="lilovip">
+        <seg>Он опускает выделенный в данный момент объект(ы) так, чтобы он оказался под объектом, перекрывающим выделение.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>It may also be hidden, or it can be placed &quot;down the middle&quot; - that is, to the left of the canvas but to the right of the explorer pane and attribute table.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T135305Z" changeid="lilovip">
         <seg>Она также может быть скрыта или расположена &quot;посередине вниз&quot; - то есть слева от холста, но справа от панели проводника и таблицы атрибутов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>It raises the currently selected object(s) so that it is drawn (or they are drawn) on top of an object that currently overlaps the selection.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101016T101635Z" changeid="lilovip">
+        <seg>Он поднимает выделенный в данный момент объект(ы) так, чтобы он оказался над объектом, перекрывающим выделение.</seg>
       </tuv>
     </tu>
     <tu>
@@ -15179,6 +15715,22 @@ implemented by public license practices.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Logisim supports two types of transistors, with slightly different behaviors described below; the P-type transistor is indicated by a circle connecting the &lt;e8&gt;gate&lt;/e8&gt; input to its plate, while the N-type transistor has no such circle.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T114059Z" changeid="lilovip">
+        <seg>Logisim поддерживает два типа транзисторов с немного различным поведениями, описанными ниже; транзистор p-типа обозначен кружком, соединяющим вход &lt;e8&gt;затвор&lt;/e8&gt; с его пластиной, а транзистор n-типа не имеет такого кружка.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Logisim supports two types of transistors, with slightly different behaviors described below; the P-type transistor is indicated by a circle connecting the &lt;e8&gt;gate&lt;/e8&gt; input to its plate, while the N-type transistor has no such plate.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T113615Z" changeid="lilovip">
+        <seg>Logisim поддерживает два типа транзисторов с немного различным поведениями, описанными ниже; the P-type transistor is indicated by a circle connecting the &lt;e8&gt;gate&lt;/e8&gt; input to its plate, while the N-type transistor has no such plate.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Logisim treats splitters specially when propagating values within a circuit: Whereas all other components have a computed delay for purposes of simulating their behavior, values propagate through splitters (as well as wires) instantaneously.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -15688,6 +16240,14 @@ impose that choice.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Множитель</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>N-type</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T114958Z" changeid="lilovip">
+        <seg>n-тип</seg>
       </tuv>
     </tu>
     <tu>
@@ -16476,6 +17036,14 @@ impose that choice.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>One of the five possible shift types as outlined above (Logical Left, Logical Right, Arithmetic Right, Rotate Left, Rotate Right).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114922Z" changeid="lilovip">
+        <seg>Один из пяти возможных типов сдвига, как описано выше (Логический левый, Логический правый, Арифметический правый, Циклический левый, Циклический правый).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>One of the two values to add.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T013857Z" changeid="lilovip">
@@ -16612,6 +17180,22 @@ impose that choice.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Options include zero and floating; in the latter case, the output is effectively disconnected from any other ports.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T210156Z" changeid="lilovip">
+        <seg>Существуют варианты &quot;ноль&quot; и &quot;плавающее&quot;; в последнем случае выход фактически отключен от всех других контактов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Options include zero and floating; in the latter case, the outputs are effectively disconnected from any other ports.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T205907Z" changeid="lilovip">
+        <seg>Существуют варианты &quot;ноль&quot; и &quot;плавающее&quot;; в последнем случае выходы фактически отключены от всех других контактов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Options...</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T204441Z" changeid="lilovip">
@@ -16624,6 +17208,14 @@ impose that choice.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100923T202209Z" changeid="lilovip">
         <seg>Или если вы выбрали Инструмент Нажатие, то вы можете щёлкнуть на схеме, и над её центром появится увеличительное стекло; двойной щелчок в том месте, где оно появилось, проникнет в состояние подсхемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Or in summarized form:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T115013Z" changeid="lilovip">
+        <seg>Или в краткой форме:</seg>
       </tuv>
     </tu>
     <tu>
@@ -16742,6 +17334,14 @@ of promoting the sharing and reuse of software generally.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Выходные биты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output Value</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T102605Z" changeid="lilovip">
+        <seg>Выходное значение</seg>
       </tuv>
     </tu>
     <tu>
@@ -16866,6 +17466,14 @@ of promoting the sharing and reuse of software generally.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>P-type</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T114929Z" changeid="lilovip">
+        <seg>p-тип</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Pablo Leal Ramos, who developed the Spanish translation for version 2.1.0 while studying at Hendrix as a foreign exchange student from Spain.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T173915Z" changeid="lilovip">
@@ -16950,6 +17558,14 @@ of promoting the sharing and reuse of software generally.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T160451Z" changeid="lilovip">
         <seg>Контакты (предполагается, что компонент направлен на восток, управляющий вход - по правую руку)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Pins (assuming component faces east, gate line top/left)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T120139Z" changeid="lilovip">
+        <seg>Контакты (предполагается, что компонент направлен на восток, положение затвора - сверху/справа)</seg>
       </tuv>
     </tu>
     <tu>
@@ -17050,6 +17666,14 @@ of promoting the sharing and reuse of software generally.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Power/Ground</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T100551Z" changeid="lilovip">
+        <seg>Питание/Земля</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Practitioners use three major techniques for summarizing the behavior of such circuits.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T101954Z" changeid="lilovip">
@@ -17062,6 +17686,14 @@ of promoting the sharing and reuse of software generally.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20101003T154914Z" changeid="lilovip">
         <seg>Преамбула</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Preferences</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205739Z" changeid="lilovip">
+        <seg>Настройки</seg>
       </tuv>
     </tu>
     <tu>
@@ -17214,6 +17846,14 @@ of promoting the sharing and reuse of software generally.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100801T143242Z" changeid="lilovip">
         <seg>Предоставляет диалоговое окно выбора шрифта, которое всплывает при выборе атрибутов шрифта (как в атрибуте Шрифт метки многих компонентов).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Provides the icons for controlling simulation that appear under the simulation tree.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205005Z" changeid="lilovip">
+        <seg>Предоставляет значки для управления моделированием, которые появляются в режиме дерева моделирования.</seg>
       </tuv>
     </tu>
     <tu>
@@ -17458,6 +18098,14 @@ of promoting the sharing and reuse of software generally.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Reset: When this is 1, the pseudorandom sequence asynchronously resets to the initial seed.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101620Z" changeid="lilovip">
+        <seg>Сброс: когда на этом входе 1, псевдослучайная последовательность асинхронно сбрасывается на начальное семя.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Resizes the current window to its preferred size.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T102726Z" changeid="lilovip">
@@ -17493,6 +18141,22 @@ of promoting the sharing and reuse of software generally.</seg>
         <seg>Roll Right: All bits in &lt;v0&gt;data&lt;/v0&gt; are shifted down &lt;v1&gt;dist&lt;/v1&gt; places, with the bottom &lt;v2&gt;dist&lt;/v2&gt; places wrapped around into the top.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100816T043656Z" changeid="lilovip">
+        <seg>Циклический правый: все биты в &lt;v0&gt;данные&lt;/v0&gt; сдвигаются вниз на &lt;v1&gt;дистанция&lt;/v1&gt; позиций, а нижние &lt;v2&gt;дистанция&lt;/v2&gt; позиций прокручиваются вверх.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rotate Left: All bits in &lt;v0&gt;data&lt;/v0&gt; are shifted up &lt;v1&gt;dist&lt;/v1&gt; places, with the top &lt;v2&gt;dist&lt;/v2&gt; places wrapped around into the bottom.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114848Z" changeid="lilovip">
+        <seg>Циклический левый: все биты в &lt;v0&gt;данные&lt;/v0&gt; сдвигаются вверх на &lt;v1&gt;дистанция&lt;/v1&gt; позиций, а верхние &lt;v2&gt;дистанция&lt;/v2&gt; позиций прокручиваются вниз.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rotate Right: All bits in &lt;v0&gt;data&lt;/v0&gt; are shifted down &lt;v1&gt;dist&lt;/v1&gt; places, with the bottom &lt;v2&gt;dist&lt;/v2&gt; places wrapped around into the top.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114908Z" changeid="lilovip">
         <seg>Циклический правый: все биты в &lt;v0&gt;данные&lt;/v0&gt; сдвигаются вниз на &lt;v1&gt;дистанция&lt;/v1&gt; позиций, а нижние &lt;v2&gt;дистанция&lt;/v2&gt; позиций прокручиваются вверх.</seg>
       </tuv>
     </tu>
@@ -18101,6 +18765,14 @@ REPAIR OR CORRECTION.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Shows the &lt;a0&gt;Application Preferences&lt;/a0&gt; window.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205757Z" changeid="lilovip">
+        <seg>Отображает окно &lt;a0&gt;настроек приложения&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Shows the current &lt;a0&gt;Combinational Analysis&lt;/a0&gt; window, without changing any of its contents.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T102819Z" changeid="lilovip">
@@ -18241,6 +18913,14 @@ REPAIR OR CORRECTION.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T031930Z" changeid="lilovip">
         <seg>Иногда он не сможет обнаружить перекрытие, если оно небольшое - скажем, менее 5% любого из объектов.)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Sometimes you can avoid twiddling each individual Bit &lt;v0&gt;x&lt;/v0&gt; attribute by bringing up the pop-up menu for a splitter (usually by right-clicking or control-clicking it).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110307T082226Z" changeid="lilovip">
+        <seg>Иногда вы можете избежать настройки каждого отдельного атрибута &quot;Бит &lt;v0&gt;x&lt;/v0&gt;&quot;, вызвав для разветвителя всплывающее меню (обычно с помощью щелчка правой кнопки мыши или щелчка левой кнопкой с зажатой клавишей Control).</seg>
       </tuv>
     </tu>
     <tu>
@@ -18389,10 +19069,58 @@ REPAIR OR CORRECTION.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>South edge, left side (input, bit width 1)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T204511Z" changeid="lilovip">
+        <seg>Южный край, левая сторона (вход, разрядность равна 1)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>South edge, left side (input, bit width matches Select Bits attribute)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T205927Z" changeid="lilovip">
+        <seg>Южный край, левая сторона (вход, разрядность соответствует атрибуту Выбирающие биты)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>South edge, left side indicated by gray circle (input, bit width matches Select Bits attribute)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T110625Z" changeid="lilovip">
+        <seg>Южный край, левая сторона, отмечен серым кружком (вход, разрядность соответствует атрибуту Выбирающие биты)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>South edge, leftmost pin (input, bit width 1)</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Южный край, левый контакт (вход, разрядность равна 1)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>South edge, right side (input, bit width 1)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T205950Z" changeid="lilovip">
+        <seg>Южный край, правая сторона (вход, разрядность равна 1)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>South edge, right side (input, bit width matches Select Bits attribute)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T205136Z" changeid="lilovip">
+        <seg>Южный край, правая сторона (вход, разрядность соответствует атрибуту Выбирающие биты)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>South edge, right side indicated by gray circle (input, bit width matches Select Bits attribute)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T110610Z" changeid="lilovip">
+        <seg>Южный край, правая сторона, отмечен серым кружком (вход, разрядность соответствует атрибуту Выбирающие биты)</seg>
       </tuv>
     </tu>
     <tu>
@@ -18457,6 +19185,22 @@ REPAIR OR CORRECTION.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100818T075719Z" changeid="lilovip">
         <seg>Определяет значение, на которое будет изменяться плавающее значение.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Specifies what each bit of the output should be when the component is disabled (i.e., when the enable pin is 0).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T210143Z" changeid="lilovip">
+        <seg>Определяет, каким должен быть каждый бит выхода, когда компонент выключен (то есть когда на контакте Разрешить - 0).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Specifies what each bit of the outputs should be when the component is disabled (i.e., when the enable pin is 0).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T205659Z" changeid="lilovip">
+        <seg>Определяет, каким должен быть каждый бит выходов, когда компонент выключен (то есть когда на контакте Разрешить - 0).</seg>
       </tuv>
     </tu>
     <tu>
@@ -18737,6 +19481,14 @@ address new problems or concerns.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Supports different ways of depicting the splitter in the circuit.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T214845Z" changeid="lilovip">
+        <seg>Позволяет изображать разветвитель на схеме разными способами.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Suppose we want to build a 2-to-1 multiplexer named &quot;2:1 MUX.&quot; After adding the circuit, Logisim will look like this.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T205937Z" changeid="lilovip">
@@ -18757,6 +19509,14 @@ address new problems or concerns.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T034104Z" changeid="lilovip">
         <seg>Переключает вас на режим редактирования плана расположения компонентов, который определяет, как схема ведёт себя.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Switches to allow you to edit the layout of components, which determines how the circuit works.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101016T101910Z" changeid="lilovip">
+        <seg>Переключает вас на режим редактирования чертежа расположения компонентов, который определяет, как работает схема.</seg>
       </tuv>
     </tu>
     <tu>
@@ -18956,6 +19716,22 @@ language.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The &lt;b0&gt;Greek&lt;/b0&gt; translation was introduced with Logisim 2.7.0 and remains current.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205818Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Греческий&lt;/b0&gt; перевод был представлен в Logisim 2.7.0 и остаётся актуальным.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &lt;b0&gt;Portuguese&lt;/b0&gt; translation was introduced with Logisim 2.6.2 and remains current.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101220T232825Z" changeid="lilovip">
+        <seg>&lt;b0&gt;Португальский&lt;/b0&gt; перевод был представлен в Logisim 2.6.2 и остаётся актуальным.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The &lt;b0&gt;Russian&lt;/b0&gt; translation was introduced with Logisim 2.4.0 and remains current.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20101002T141520Z" changeid="lilovip">
@@ -18996,10 +19772,74 @@ language.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The &lt;e5&gt;gate&lt;/e5&gt; input is drawn connected to a plate that is parallel to the plate connecting &lt;e6&gt;source&lt;/e6&gt; to &lt;e7&gt;drain&lt;/e7&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T113421Z" changeid="lilovip">
+        <seg>Вход &lt;e5&gt;затвор&lt;/e5&gt; изображён соединённым с пластиной, параллельной пластине, соединяющей &lt;e6&gt;исток&lt;/e6&gt; со &lt;e7&gt;стоком&lt;/e7&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &lt;e9&gt;p-gate&lt;/e9&gt; input's line has a circle, while the &lt;e10&gt;n-gate&lt;/e10&gt; input's line does not.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T123629Z" changeid="lilovip">
+        <seg>У линии входа &lt;e9&gt;p-затвор&lt;/e9&gt; есть кружок, а у линии входа &lt;e10&gt;n-затвор&lt;/e10&gt; его нет.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &lt;q0&gt;Left-handed&lt;/q0&gt; option (the default) draws a spine going left from the combined end, with a labeled line coming from the spine for each split end.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110302T043123Z" changeid="lilovip">
+        <seg>Вариант &lt;q0&gt;Леворукий&lt;/q0&gt; (по умолчанию) отрисовывает стержень, уходящий налево от объединённого конца, с маркированными линиями, идущими от стержня к каждому разъединённому концу.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &lt;q0&gt;Trapezoid&lt;/q0&gt; option (the default) includes a trapezoid inside which is a small label by each split end indicating which bits from the combined end are routed there.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T215112Z" changeid="lilovip">
+        <seg>Вариант &lt;q0&gt;Трапеция&lt;/q0&gt; (по умолчанию) включает трапецию, внутри которой маленькие метки рядом с каждым разъединённым концом показывают, какие биты с объединённого конца направлены туда.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &lt;q1&gt;Fat Trapezoid&lt;/q1&gt; option uses a wider trapezoid to facilitate longer labels.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T215223Z" changeid="lilovip">
+        <seg>Вариант &lt;q1&gt;Широкая трапеция&lt;/q1&gt; использует более широкую трапецию, это удобно для случаев с длинными метками.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &lt;q1&gt;Right-handed&lt;/q1&gt; option is the same except the spine goes right (if you're facing according to the Facing attribute).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110302T043303Z" changeid="lilovip">
+        <seg>Вариант &lt;q1&gt;Праворукий&lt;/q1&gt; - то же самое, за исключением того, что стержень уходит направо (если вы смотрите в направлении, соответствующем атрибуту Направление).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The &lt;q1&gt;falling edge&lt;/q1&gt; value indicates that it should update at the instant the clock falls from 1 to 0.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Значение &lt;q1&gt;Задний фронт&lt;/q1&gt; означает, что он должен обновляться, когда значение на тактовом входе меняется с 1 на 0.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &lt;q2&gt;Centered&lt;/q2&gt; option centers the spine so it goes in roughly equal directions left and right.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110302T043417Z" changeid="lilovip">
+        <seg>Вариант &lt;q2&gt;По центру&lt;/q2&gt; центрирует стержень так, что он примерно одинаково уходит направо и налево.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The &lt;q2&gt;Lines&lt;/q2&gt; option draws lines from the combined end to the split end, without any labels; this option is primarily for compatibility versions older than 2.7.0, at which time splitters were always drawn this way.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T215425Z" changeid="lilovip">
+        <seg>Вариант &lt;q2&gt;Линии&lt;/q2&gt; отрисовывает линии от объединённого конца до разъединённого конца без каких-либо меток; этот вариант в основном для совместимости с версиями, более старыми, чем 2.7.0, когда разветвитель всегда отрисовывался таким образом.</seg>
       </tuv>
     </tu>
     <tu>
@@ -19236,6 +20076,14 @@ language.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The Base library includes general-purpose tools.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101352Z" changeid="lilovip">
+        <seg>Библиотека Базовые содержит инструменты общего назначения.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The Base library's splitter tool (&lt;i0/&gt;) allows you to accomplish this.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100804T214206Z" changeid="lilovip">
@@ -19304,6 +20152,14 @@ language.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100820T131003Z" changeid="lilovip">
         <seg>Клавиши Delete и Backspace удаляют со схемы всё выделение.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Distribute Ascending option distributes the bits so that each split end receives the same number of bits, starting from end 0.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110307T082432Z" changeid="lilovip">
+        <seg>Вариант &quot;Расставить по возрастанию&quot; расставляет биты так, что каждый разъединённый конец принимает одинаковое количество битов, начиная с конца 0.</seg>
       </tuv>
     </tu>
     <tu>
@@ -19782,6 +20638,22 @@ of the General Public License from time to time.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The Wiring library includes components that relate primarily to wires and to basic electrical concepts.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T103814Z" changeid="lilovip">
+        <seg>Библиотека проводка включает в себя компоненты, которые относятся в основном к проводам и базовым понятиям электроники.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The Wiring library's splitter tool (&lt;i0&gt;) allows you to accomplish this.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101233Z" changeid="lilovip">
+        <seg>Инструмент Разветвитель из библиотеки Проводка (&lt;i0&gt;) позволяет вам решить эту задачу.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The XNOR gate will emit 1 only when there is &lt;e0&gt;not&lt;/e0&gt; exactly one 1 input, while the Even Parity gate will emit 1 if there are an even number of 1 inputs.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -19941,6 +20813,14 @@ Program (independent of having been made by running the Program).</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The behavior is summarized by the following tables.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T114920Z" changeid="lilovip">
+        <seg>Это поведение обобщено следующими таблицами.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The behavior when the counter attempts to increment beyond the maximum value or decrement beyond 0.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -20053,6 +20933,14 @@ Program (independent of having been made by running the Program).</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The bit width of the component's inputs.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101209T211041Z" changeid="lilovip">
+        <seg>Разрядность входа компонента.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The bit width of the component's output.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -20121,6 +21009,14 @@ Program (independent of having been made by running the Program).</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Разрядность значения, выдаваемого компонентом.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The bit width of the value placed onto the wire.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T103548Z" changeid="lilovip">
+        <seg>Разрядность значения, выдаваемого на провод.</seg>
       </tuv>
     </tu>
     <tu>
@@ -20383,8 +21279,8 @@ Program (independent of having been made by running the Program).</seg>
       <tuv lang="EN">
         <seg>The color with which to draw the display's background (transparent by default).</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100930T183413Z" changeid="lilovip">
-        <seg>Цвет, которым отрисовывается фон дисплея (по умолчанию прозрачный).</seg>
+      <tuv lang="RU-RU" changedate="20101211T000218Z" changeid="lilovip">
+        <seg>Цвет, которым отрисовывается фон индикатора (по умолчанию прозрачный).</seg>
       </tuv>
     </tu>
     <tu>
@@ -20445,6 +21341,14 @@ Program (independent of having been made by running the Program).</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The component constantly outputs the same value on this pin: for a ground component, the output is an all-zero value, and for a power component, the output is an all-one value.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T102655Z" changeid="lilovip">
+        <seg>Компонент постоянно выдаёт одно и тоже значение на свой контакт: для компонента Земля на выходе будет значение, состоящее из всех нулей, а для компонента Питание на выходе будет значение, состоящее из всех единиц.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The component determines how many 1 bits are in its input(s) and emits the total number of 1 bits on its output.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T204721Z" changeid="lilovip">
@@ -20473,6 +21377,14 @@ Program (independent of having been made by running the Program).</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Компонент имеет несколько входов на его западном крае, с первым, отмеченным &lt;q0&gt;0&lt;/q0&gt; и другими, отсчитываемыми оттуда.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The component has an enable input when this attribute is &lt;q0&gt;yes.&lt;/q0&gt; The attribute is primarily for supporting circuits built using older versions of Logisim that did not provide an enable input.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110306T143824Z" changeid="lilovip">
+        <seg>Компонент имеет разрешающий вход, когда значение этого атрибута &lt;q0&gt;да&lt;/q0&gt;. Этот атрибут нужен в основном для поддержки схем, построенных с использованием более старых версий Logisim, которые не предусматривали разрешающий вход.</seg>
       </tuv>
     </tu>
     <tu>
@@ -20565,6 +21477,46 @@ Program (independent of having been made by running the Program).</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The component's &lt;e0&gt;gate&lt;/e0&gt; input.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T120323Z" changeid="lilovip">
+        <seg>Вход &lt;e0&gt;затвор&lt;/e0&gt; компонента.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The component's &lt;e0&gt;n-gate&lt;/e0&gt; input.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125456Z" changeid="lilovip">
+        <seg>Вход &lt;e0&gt;n-затвор&lt;/e0&gt; компонента.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The component's &lt;e0&gt;p-gate&lt;/e0&gt; input.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125443Z" changeid="lilovip">
+        <seg>Вход &lt;e0&gt;p-затвор&lt;/e0&gt; компонента.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The component's &lt;e0&gt;source&lt;/e0&gt; input that will transmit to the output if triggered by the &lt;e1&gt;gate&lt;/e1&gt; input.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T120310Z" changeid="lilovip">
+        <seg>Вход &lt;e0&gt;исток&lt;/e0&gt; компонента, значение с которого будет передано на выход, если это инициировано входом &lt;e1&gt;затвор&lt;/e1&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The component's &lt;e0&gt;source&lt;/e0&gt; input that will transmit to the output if triggered by the &lt;e1&gt;p-gate&lt;/e1&gt; and &lt;e2&gt;n-gate&lt;/e2&gt; inputs.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125429Z" changeid="lilovip">
+        <seg>Вход &lt;e0&gt;исток&lt;/e0&gt; компонента, значение с которого будет передано на выход, если это инициировано входами &lt;e1&gt;p-затвор&lt;/e1&gt; и &lt;e2&gt;n-затвор&lt;/e2&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The component's control input.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -20593,6 +21545,22 @@ Program (independent of having been made by running the Program).</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Выход компонента, значение на котором будет плавающим, если на управляющем входе 0 или плавающее значение; значение ошибки, если на управляющем входе значение ошибки; или будет вычислено на основе значения западного входа, если на управляющем входе 1.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The component's output, which will match the &lt;e0&gt;source&lt;/e0&gt; input if &lt;e1&gt;p-gate&lt;/e1&gt; is 0 and &lt;e2&gt;n-gate&lt;/e2&gt; is 1, or it will be floating if &lt;e3&gt;p-gate&lt;/e3&gt; is 1 and &lt;e4&gt;n-gate&lt;/e4&gt; is 0.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125733Z" changeid="lilovip">
+        <seg>Выход компонента, значение на котором будет совпадать со значением на входе &lt;e0&gt;исток&lt;/e0&gt;, если на &lt;e1&gt;p-затворе&lt;/e1&gt; 0 и на &lt;e2&gt;n-затворе&lt;/e2&gt; 1, или будет плавающим, если на  &lt;e3&gt;p-затворе&lt;/e3&gt; 1 и на&lt;e4&gt;n-затворе&lt;/e4&gt; 0.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The component's output, which will match the &lt;e0&gt;source&lt;/e0&gt; input if indicated by the &lt;e1&gt;gate&lt;/e1&gt; input, or will be floating if the &lt;e2&gt;gate&lt;/e2&gt; input is the negation of what indicates negation.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T121351Z" changeid="lilovip">
+        <seg>Выход компонента, значение на котором будет совпадать со значением на входе &lt;e0&gt;исток&lt;/e0&gt;, если это определено входом &lt;e1&gt;затвор&lt;/e1&gt;, или будет плавающим, если на входе &lt;e2&gt;затвор&lt;/e2&gt; соответствующее значение.</seg>
       </tuv>
     </tu>
     <tu>
@@ -20773,10 +21741,26 @@ Program (independent of having been made by running the Program).</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The determination of transmitting or disconnecting depends on the type of transistor: A P-type transistor (indicated by a circle on the &lt;e5&gt;gate&lt;/e5&gt; line) transmits when &lt;e6&gt;gate&lt;/e6&gt; is 0, while an N-type transistor (which has no such circle) transmits when &lt;e7&gt;gate&lt;/e7&gt; is 1.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T114859Z" changeid="lilovip">
+        <seg>Решение о передаче или разъединении зависит от типа транзистора: транзистор p-типа (обозначенный кружком на линии &lt;e5&gt;затвора&lt;/e5&gt;) передаёт значение, когда на &lt;e6&gt;затворе&lt;/e6&gt; 0, а транзистор n-типа (без кружка) передаёт значение, когда на &lt;e7&gt;затворе&lt;/e7&gt; 1.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The dialog includes a table with five columns:</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T152222Z" changeid="lilovip">
         <seg>Диалог включает таблицу с пятью столбцами:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The direction in which the arrow will point from the location of its pin.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T103527Z" changeid="lilovip">
+        <seg>Направление, в котором указывает стрелка, выходящая из контакта компонента.</seg>
       </tuv>
     </tu>
     <tu>
@@ -20897,6 +21881,14 @@ Program (independent of having been made by running the Program).</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T130456Z" changeid="lilovip">
         <seg>Формат файла, используемый для файлов образов, намеренно сделан простым; это позволяет вам писать программы, такие как ассемблер, которые генерируют образы памяти, которые могут быть загружены в память.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The final tab displays a minimized expression corresponding to a column of the truth table.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205209Z" changeid="lilovip">
+        <seg>Последняя вкладка отображает минимизированное выражение, соответствующее столбцу таблицы истинности.</seg>
       </tuv>
     </tu>
     <tu>
@@ -21303,6 +22295,14 @@ freedom to share and change it.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The location of the gate input.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T121603Z" changeid="lilovip">
+        <seg>Положение входа затвор.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The location of the input pin relative to the component.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -21467,6 +22467,14 @@ freedom to share and change it.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T042241Z" changeid="lilovip">
         <seg>Уменьшаемое вычитания, то есть число, из которого вычитать.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The most straightforward is probably to view the simulation hierarchy by clicking the second icon in the explorer pane's upper toolbar (&lt;i0&gt;), or by selecting &quot;View Simulation Tree&quot; from the Project menu.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T213856Z" changeid="lilovip">
+        <seg>Проще всего, вероятно, просматривать иерархию моделирования, щёлкнув второй значок в верхней панели инструментов панели проводника (&lt;i0&gt;), или выбрав пункт &quot;Показать дерево моделирования&quot; из меню Проект.</seg>
       </tuv>
     </tu>
     <tu>
@@ -21751,6 +22759,14 @@ freedom to share and change it.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The only reason to prefer ground and power is that they are standard electronic symbols.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T102516Z" changeid="lilovip">
+        <seg>Единственная причина предпочитать компоненты Земля и Питание в том, что они являются стандартными символами в электронике.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The only supported control sequences are: backspace (ASCII 8), which deletes the last character in the final row, unless the final row is already empty; newline (ASCII 10), which moves the cursor to the beginning of the following line, scrolling if necessary; and form-feed (ASCII 12, typed as control-L), which clears the screen.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -21887,6 +22903,14 @@ freedom to share and change it.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The pop-up menu includes options labeled Distribute Ascending and Distribute Descending.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110307T082321Z" changeid="lilovip">
+        <seg>Всплывающее меню включает в себя варианты &quot;Расставить по возрастанию&quot; и &quot;Расставить по убыванию&quot;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The precise behavior of the Poke Tool varies depending on which component is clicked; this behavior is documented in the `Poke Tool Behavior' section of each individual component.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T211935Z" changeid="lilovip">
@@ -21917,6 +22941,14 @@ modification follow.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T193314Z" changeid="lilovip">
         <seg>Присутствие/отсутствие в выделении всех компонентов, находящихся в прямоугольнике, будет переключено.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The primary difference is that a transistor is meant for more basic circuit designs.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T120025Z" changeid="lilovip">
+        <seg>Основная разница в том, что транзистор предназначен для проектирования более элементарных схем.</seg>
       </tuv>
     </tu>
     <tu>
@@ -22081,6 +23113,14 @@ modification follow.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The same functionality can be achieved using the more versatile &lt;a0&gt;Constant&lt;/a0&gt; component.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T102432Z" changeid="lilovip">
+        <seg>Такая же функциональность может быть достигнута с помощью более гибкого компонента &lt;a0&gt;Константа&lt;/a0&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The second of the two values to be compared.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T020216Z" changeid="lilovip">
@@ -22093,6 +23133,14 @@ modification follow.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T193522Z" changeid="lilovip">
         <seg>Второй параметр - это</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The second way you can enter a subcircuit is to bring up its popup menu by right-clicking or control-clicking it, and then choosing the View option.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T214454Z" changeid="lilovip">
+        <seg>Второй способ проникнуть внутрь состояния подсхемы - вызвать всплывающее меню для подсхемы, щёлкнув правой кнопкой мыши или левой кнопкой с зажатой Control на подсхеме, и выбрав пункт &quot;Рассмотреть&quot;.</seg>
       </tuv>
     </tu>
     <tu>
@@ -22417,6 +23465,14 @@ modification follow.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The transmission gate is simply the combination of two complementary transistors.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T123830Z" changeid="lilovip">
+        <seg>Передаточный вентиль - это просто комбинация двух комплементарных транзисторов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The truth table for a NOT gate is the following.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -22429,6 +23485,14 @@ modification follow.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Таблица истинности для однобитного буфера следующая.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The two &lt;e6&gt;gate&lt;/e6&gt; inputs are drawn as lines connected to plates parallel to each of the plates connecting &lt;e7&gt;source&lt;/e7&gt; to &lt;e8&gt;drain&lt;/e8&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T123450Z" changeid="lilovip">
+        <seg>Два входа &lt;e6&gt;затвор&lt;/e6&gt; изображены как линии, соединённые с пластинами, параллельными каждой из пластин, соединяющих &lt;e7&gt;исток&lt;/e7&gt; со &lt;e8&gt;стоком&lt;/e8&gt;.</seg>
       </tuv>
     </tu>
     <tu>
@@ -22569,6 +23633,14 @@ modification follow.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The value of the Shared Label attribute will be drawn in the rectangle's center; the Shared Label Facing attribute customizes which direction the text is drawn, and of course the Shared Label Font attribute customizes the font used.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T210223Z" changeid="lilovip">
+        <seg>Значение атрибута Общая метка будет отображено в центре прямоугольника; атрибут Направление общей метки определяет, в каком направлении отрисовывается текст, и конечно, атрибут Шрифт общей метки определяет используемый шрифт.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The value of this attribute cannot be changed.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -22605,6 +23677,14 @@ modification follow.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Значение, выдаваемое компонентом, записанное в шестнадцатеричном виде.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The values at &lt;e0&gt;n-gate&lt;/e0&gt; and &lt;e1&gt;p-gate&lt;/e1&gt; are expected to be opposite to each other.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T124553Z" changeid="lilovip">
+        <seg>Ожидается, что значения на &lt;e0&gt;n-затворе&lt;/e0&gt; и &lt;e1&gt;p-затворе&lt;/e1&gt; противоположны друг другу.</seg>
       </tuv>
     </tu>
     <tu>
@@ -22669,6 +23749,22 @@ modification follow.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Их точное поведение зависит от триггера; приведенная выше таблица описывает его.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Theldo Cruz Franqueira, Ilia Lilov, Pablo Leal Ramos, and Uwe Zimmermann, who have contributed to translations packaged with Logisim.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101220T232737Z" changeid="lilovip">
+        <seg>Телдо Круз Франкуэйра, Илья Лилов, Пабло Лил Рамос, и Уве Зиммерманн, которые внесли свой вклад в переводы, поставляемые с Logisim.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Theldo Cruz Franqueira, Thanos Kakarountas, Ilia Lilov, Pablo Leal Ramos, and Uwe Zimmermann, who have contributed to translations packaged with Logisim.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T204832Z" changeid="lilovip">
+        <seg>Телдо Круз Франкуэйра, Танос Какароунтас, Илья Лилов, Пабло Лил Рамос, и Уве Зиммерманн, которые внесли свой вклад в переводы, поставляемые с Logisim.</seg>
       </tuv>
     </tu>
     <tu>
@@ -22914,6 +24010,14 @@ prohibited by law if you do not accept this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>These icons are released under the Creative Commons Attribution 3.0 License, and they cannot be redistributed under the terms of the GPL.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205047Z" changeid="lilovip">
+        <seg>Эти значки распространяются по лицензии Creative Commons Attribution 3.0 License, и они не могут распространяться в соответствии с условиями GPL.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>These inputs control how the flip-flop's value changes during the rising edge of the clock.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -23079,6 +24183,30 @@ under the terms of this General Public License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>This allows wired-or and wired-and connections, as illustrated below: At left, the buffers' Output Value attribute is floating/1 and the resistor pulls to 0, giving wired-or behavior; at right, the buffers' Output Value attribute is 0/floating and the resistor pulls to 1, giving wired-and behavior.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T201232Z" changeid="lilovip">
+        <seg>Это позволяет создавать соединения &quot;монтажное ИЛИ&quot; и &quot;монтажное И&quot;, как показано ниже: слева у буферов значение атрибута Выходное значение - &quot;плавающее/1&quot;, а направление согласования резистора - ноль, в итоге схема ведёт себя как монтажное ИЛИ; справа у буферов значение атрибута Выходное значение - &quot;0/плавающее&quot;, а направление согласования резистора - единица, в итоге схема ведёт себя как монтажное И.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This allows wired-or and wired-and connections, as illustrated below; at left, the wired-or is built using floating/1 output values on the gates and a pull-to-0 resistor, at right, the wired-and is built using 0/floating output values on the gates and a pull-to-1 resistor.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T110315Z" changeid="lilovip">
+        <seg>Это позволяет создавать соединения &quot;монтажное ИЛИ&quot; и &quot;монтажное И&quot;, как показано ниже; слева монтажное ИЛИ собрано с использованием выходных значений &quot;плавающее/1&quot; для элементов и согласующего резистора с направлением согласования &quot;ноль&quot;; слева монтажное И собрано с использованием выходных значений &quot;0/плавающее&quot; для элементов и согласующего резистора с направлением согласования &quot;единица&quot;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This allows wired-or and wired-and connections, as illustrated in the &lt;a1&gt;AND/OR/NAND/NOR Gate documentation&lt;/a1&gt;.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T110524Z" changeid="lilovip">
+        <seg>Это позволяет создавать соединения &quot;монтажное ИЛИ&quot; и &quot;монтажное И&quot;, как показано в &lt;a1&gt;статье документации Элементы И/ИЛИ/И-НЕ/ИЛИ-НЕ&lt;/a1&gt;.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>This already tells us that the circuit already computes a 0 when both inputs are 0.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T234904Z" changeid="lilovip">
@@ -23099,6 +24227,14 @@ under the terms of this General Public License.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Такое поведение необходимо, чтобы сохранить интуитивное поведение проводов в Logisim там, где провода никогда не перекрываются.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This behavior is summarized by the following table.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125123Z" changeid="lilovip">
+        <seg>Это поведение обобщено следующей таблицей.</seg>
       </tuv>
     </tu>
     <tu>
@@ -23321,8 +24457,8 @@ under the terms of this General Public License.</seg>
       <tuv lang="EN">
         <seg>This input is interpreted as an unsigned four-bit number, and the corresponding hexadecimal digit is displayed.</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Этот вход интерпретируется как беззнаковое четырёхбитное число, и соответствующая шестнадцатеричная цифра отображается на дисплее.</seg>
+      <tuv lang="RU-RU" changedate="20101211T000255Z" changeid="lilovip">
+        <seg>Этот вход интерпретируется как беззнаковое четырёхбитное число, и соответствующая шестнадцатеричная цифра отображается на индикаторе.</seg>
       </tuv>
     </tu>
     <tu>
@@ -23507,6 +24643,22 @@ under the terms of this General Public License.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T034230Z" changeid="lilovip">
         <seg>Это то, что программа делает сразу после запуска, и вы будете редактировать чертежи схем используются Logisim чаще всего, так что этот пункт меню обычно отключен.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This menu item is available only when editing a circuit's appearance.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101016T101539Z" changeid="lilovip">
+        <seg>Этот пункт меню доступен только при редактировании внешнего вида схемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This menu item is usually disabled since you will usually be editing the layout anyway.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101016T102101Z" changeid="lilovip">
+        <seg>Этот пункт меню обычно недоступен, поскольку как правило вы и так редактируете чертёж.</seg>
       </tuv>
     </tu>
     <tu>
@@ -23753,6 +24905,14 @@ be a consequence of the rest of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>This switches the explorer pane so that it shows the hierarchy of subcircuits being simulated.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T213937Z" changeid="lilovip">
+        <seg>Это переключает панель проводника таким образом, что она отображает иерархию моделируемой схемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>This tab allows configuration of Logisim according to regional preferences.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20101013T052343Z" changeid="lilovip">
@@ -23857,6 +25017,14 @@ be a consequence of the rest of this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>This will have an effect only if the circuit contains any clock devices (in the Wiring library).</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101313Z" changeid="lilovip">
+        <seg>Это будет иметь эффект только тогда, когда схема содержит тактовые генераторы (из библиотеки Проводка).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>This will not be a commitment: I will be happy to hear of your interest, and I will tell you whether I know of somebody who is working on it already, prepare a version for you to work with, and send you instructions.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T143013Z" changeid="lilovip">
@@ -23877,6 +25045,14 @@ be a consequence of the rest of this License.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T191445Z" changeid="lilovip">
         <seg>Это отобразит атрибуты схемы в таблице атрибутов, включая атрибуты Метка, Направление метки и Шрифт метки.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>This will show the circuit attributes in the attribute table, including the Shared Label, Shared Label Facing, and Shared Label Font attributes.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T210142Z" changeid="lilovip">
+        <seg>Это отобразит атрибуты схемы в таблице атрибутов, включая атрибуты Общая метка, Направление общей метки и Шрифт общей метки.</seg>
       </tuv>
     </tu>
     <tu>
@@ -24087,6 +25263,14 @@ collective works based on the Program.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>To enter the subcircuit's state, you can use any of three different techniques.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T210447Z" changeid="lilovip">
+        <seg>Для входа в состояние подсхемы вы можете использовать любой из трёх различных методов.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>To help identify which points in the overall circuit have changed, any points whose values change are indicated with a blue circle; if a subcircuit contains any points that have changed in it (or its subcircuits, recursively), then it will be drawn with a blue outline.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T213018Z" changeid="lilovip">
@@ -24253,10 +25437,26 @@ anyone to deny you these rights or to ask you to surrender the rights.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Transistor</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T100553Z" changeid="lilovip">
+        <seg>Транзистор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Translations of Logisim into other languages are welcome!</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20101002T141732Z" changeid="lilovip">
         <seg>Переводы Logisim на другие языки приветствуются!</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Transmission Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T100605Z" changeid="lilovip">
+        <seg>Передаточный вентиль</seg>
       </tuv>
     </tu>
     <tu>
@@ -24535,8 +25735,8 @@ anyone to deny you these rights or to ask you to surrender the rights.</seg>
       <tuv lang="EN">
         <seg>Using a seven-segment display, shows the hexadecimal digit corresponding to the four-bit input.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100816T055231Z" changeid="lilovip">
-        <seg>Используя семисегментный дисплей, показывает шестнадцатеричную цифру, соответствующую четырёхбитному входу.</seg>
+      <tuv lang="RU-RU" changedate="20101211T000231Z" changeid="lilovip">
+        <seg>Используя семисегментный индикатор, показывает шестнадцатеричную цифру, соответствующую четырёхбитному входу.</seg>
       </tuv>
     </tu>
     <tu>
@@ -24673,6 +25873,22 @@ anyone to deny you these rights or to ask you to surrender the rights.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Рассмотреть &lt;v0&gt;XXX&lt;/v0&gt;: сменить просматриваемый и редактируемый чертёж схемы на чертёж определённой подсхемы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View Simulation Tree</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205701Z" changeid="lilovip">
+        <seg>Показать дерево моделирования</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View Toolbox</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205607Z" changeid="lilovip">
+        <seg>Показать инструменты</seg>
       </tuv>
     </tu>
     <tu>
@@ -25205,6 +26421,22 @@ program proprietary.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>When diagrammed, the &lt;e3&gt;source&lt;/e3&gt; input and &lt;e4&gt;drain&lt;/e4&gt; output are drawn connected by a plate; Logisim draws an arrowhead to indicate the direction of flow from input to output.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T113208Z" changeid="lilovip">
+        <seg>На схемах вход &lt;e3&gt;исток&lt;/e3&gt; и выход &lt;e4&gt;сток&lt;/e4&gt; изображаются соединёнными пластиной; Logisim отрисовывает стрелку, указывающую направление потока от входа к выходу.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>When diagrammed, the &lt;e4&gt;source&lt;/e4&gt; input and &lt;e5&gt;drain&lt;/e5&gt; output are drawn connected by two plates; Logisim draws an arrowhead to indicate the direction of flow from input to output.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T122130Z" changeid="lilovip">
+        <seg>На схемах вход &lt;e4&gt;исток&lt;/e4&gt; и выход &lt;e5&gt;сток&lt;/e5&gt; изображаются соединёнными двумя пластинами; Logisim отрисовывает стрелку, указывающую направление потока от входа к выходу.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>When it is 1 or floating, a clock pulse will result in storing the data found on the west edge into memory (provided the &lt;v0&gt;sel&lt;/v0&gt; input is also 1 or floating).</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -25591,6 +26823,14 @@ price.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>When you paste wires from the clipboard, however, you may want them to appear in a different location, and the changing inherent in the merging process would be against your wishes.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101016T101517Z" changeid="lilovip">
+        <seg>Когда вы вставляете провода из буфера обмена, вам может понадобиться разместить их в другом месте, и изменения, сделанные процессом слияния, будут вопреки вашим желаниям.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>When you select Export Image..., Logisim displays a dialog box with four options.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T183901Z" changeid="lilovip">
@@ -25759,10 +26999,50 @@ price.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Wiring</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101951Z" changeid="lilovip">
+        <seg>Проводка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Wiring Library</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T103649Z" changeid="lilovip">
+        <seg>Библиотека Проводка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Wiring Tool</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100814T212127Z" changeid="lilovip">
         <seg>Инструмент Проводка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Wiring library</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T100540Z" changeid="lilovip">
+        <seg>Библиотека Проводка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Wiring library: Pin, Probe, and Clock components&lt;br0&gt;</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T101254Z" changeid="lilovip">
+        <seg>Библиотека Проводка: компоненты Контакт, Датчик и Тактовый генератор&lt;br0&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Wiring: Components that interact directly with wires.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T100630Z" changeid="lilovip">
+        <seg>Проводка: компоненты, которые взаимодействуют непосредственно с проводами.</seg>
       </tuv>
     </tu>
     <tu>
@@ -26194,6 +27474,14 @@ this License.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>You can select which output's minimized expression you want to view using the selector at top, and you can indicate whether you want to derive a sum-of-products expression or a product-of-sums expression using the selector below.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205418Z" changeid="lilovip">
+        <seg>Вы можете выбрать, для какого выхода вы хотите просматривать минимизированное выражение с помощью списка сверху, и можете указать, какое выражение вы хотите получить - сумму произведений или произведение сумм, с помощью списка снизу.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>You can select which output's minimized expression you want to view using the selector at top.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100801T150914Z" changeid="lilovip">
@@ -26418,6 +27706,14 @@ source code.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Z</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T114940Z" changeid="lilovip">
+        <seg>Z</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Zooming into a circuit is useful for live classroom demonstrations where the screen resolution is too small to view the circuit from the back of the classroom; zooming out can be useful for a orienting yourself to very large circuit.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T021146Z" changeid="lilovip">
@@ -26438,6 +27734,14 @@ source code.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100819T025432Z" changeid="lilovip">
         <seg>гарантии), и что пользователи могут повторно распространять программу при</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>a' (b + c)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T205115Z" changeid="lilovip">
+        <seg>a' (b + c)</seg>
       </tuv>
     </tu>
     <tu>
@@ -26572,6 +27876,14 @@ making modifications to it.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100819T025400Z" changeid="lilovip">
         <seg>объявление, содержащее соответствующее уведомление об авторских правах и</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>any</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T125137Z" changeid="lilovip">
+        <seg>любое</seg>
       </tuv>
     </tu>
     <tu>
@@ -27281,10 +28593,26 @@ making modifications to it.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>drain</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T115017Z" changeid="lilovip">
+        <seg>сток</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>edit.html</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>edit.html</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>el</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110307T203936Z" changeid="lilovip">
+        <seg>el</seg>
       </tuv>
     </tu>
     <tu>
@@ -27373,6 +28701,14 @@ making modifications to it.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100805T155725Z" changeid="lilovip">
         <seg>g.setColor(Color.RED);</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>gate</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T114937Z" changeid="lilovip">
+        <seg>затвор</seg>
       </tuv>
     </tu>
     <tu>
@@ -28081,6 +29417,14 @@ making modifications to it.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>n-gate</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T123639Z" changeid="lilovip">
+        <seg>n-затвор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>nand-select.png</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100819T063351Z" changeid="lilovip">
@@ -28294,6 +29638,14 @@ making modifications to it.</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>выход</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>p-gate</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T123634Z" changeid="lilovip">
+        <seg>p-затвор</seg>
       </tuv>
     </tu>
     <tu>
@@ -29250,6 +30602,14 @@ import com.cburch.logisim.tools.Tool;
       </tuv>
       <tuv lang="RU-RU" changedate="20100819T132241Z" changeid="lilovip">
         <seg>simulate.png</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>source</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T114950Z" changeid="lilovip">
+        <seg>исток</seg>
       </tuv>
     </tu>
     <tu>

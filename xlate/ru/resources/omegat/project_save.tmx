@@ -358,6 +358,22 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>0/1</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110211T025921Z" changeid="lilovip">
+        <seg>0/1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>0/floating</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110211T025930Z" changeid="lilovip">
+        <seg>0/плавающее</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>1</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -376,8 +392,8 @@
       <tuv lang="EN">
         <seg>7-Segment Display</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>7-сегментный дисплей</seg>
+      <tuv lang="RU-RU" changedate="20101211T000022Z" changeid="lilovip">
+        <seg>7-сегментный индикатор</seg>
       </tuv>
     </tu>
     <tu>
@@ -742,6 +758,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Appearance</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003259Z" changeid="lilovip">
+        <seg>Внешний вид</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Appearance Facing</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100922T171633Z" changeid="lilovip">
@@ -1006,6 +1030,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Borrow In: if 1, output is decreased by 1</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114445Z" changeid="lilovip">
+        <seg>Вход займа: если 1, то из выходного значения вычитается 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Borrow Out: 1 if the difference yields a negative value</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T190613Z" changeid="lilovip">
@@ -1026,6 +1058,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100816T064903Z" changeid="lilovip">
         <seg>По низу</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Bottom/Right</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T095259Z" changeid="lilovip">
+        <seg>Снизу/справа</seg>
       </tuv>
     </tu>
     <tu>
@@ -1056,7 +1096,7 @@
       <tuv lang="EN">
         <seg>Build Circuit</seg>
       </tuv>
-      <tuv lang="RU-RU">
+      <tuv lang="RU-RU" changedate="20110217T111841Z" changeid="lilovip">
         <seg>Построить схему</seg>
       </tuv>
     </tu>
@@ -1294,6 +1334,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Centered</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110302T042210Z" changeid="lilovip">
+        <seg>По центру</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Change %s</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -1462,6 +1510,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Circuit: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110216T035003Z" changeid="lilovip">
+        <seg>Схема: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Circuits cannot have identical names.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -1578,6 +1634,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Очистка: когда 1, асинхронно сбрасывает все в 0</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Clear: when 1, resets contents to 0 asynchronously</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114317Z" changeid="lilovip">
+        <seg>Очистка: когда 1, асинхронно сбрасывает содержимое в 0</seg>
       </tuv>
     </tu>
     <tu>
@@ -2326,6 +2390,30 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Disable clock ticks</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003800Z" changeid="lilovip">
+        <seg>Выключить такты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Disable signals propagating through circuits</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003519Z" changeid="lilovip">
+        <seg>Выключить распространение сигналов по схеме</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Disabled Output</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203759Z" changeid="lilovip">
+        <seg>На отключенном выходе</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Discard</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -2338,6 +2426,22 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T191914Z" changeid="lilovip">
         <seg>Дистанция: на сколько сдвигать входное значение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Distribute Ascending</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110302T191117Z" changeid="lilovip">
+        <seg>Расставить по возрастанию</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Distribute Descending</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110302T191124Z" changeid="lilovip">
+        <seg>Расставить по убыванию</seg>
       </tuv>
     </tu>
     <tu>
@@ -2622,10 +2726,26 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Enable clock ticks</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003753Z" changeid="lilovip">
+        <seg>Включить такты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Enable features that haven't yet been thoroughly tested</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Включить возможности, которые еще не были тщательно протестированы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable signals propagating through circuits</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003510Z" changeid="lilovip">
+        <seg>Включить распространение сигналов по схеме</seg>
       </tuv>
     </tu>
     <tu>
@@ -2642,6 +2762,38 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Включение: переходить к следующему в последовательности при срабатывании тактового входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable: when not 0, output is selected input</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203846Z" changeid="lilovip">
+        <seg>Разрешить: когда не 0, на выходе - значение с выбранного входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable: when not 0, output is the selected input</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114340Z" changeid="lilovip">
+        <seg>Разрешить: когда не 0, на выходе - значение с выбранного входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable: when not 0, selected output is 1</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203930Z" changeid="lilovip">
+        <seg>Разрешить: когда не 0, на выбранном выходе - 1</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Enable: when not 0, selected output is input</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203946Z" changeid="lilovip">
+        <seg>Разрешить: когда не 0, на выбранном выходе - значение со входа</seg>
       </tuv>
     </tu>
     <tu>
@@ -2894,6 +3046,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Fat Trapezoid</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003352Z" changeid="lilovip">
+        <seg>Широкая трапеция</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>File</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -3006,6 +3166,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Floating</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203807Z" changeid="lilovip">
+        <seg>Плавающее</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Font</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -3014,10 +3182,26 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Format:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T093513Z" changeid="lilovip">
+        <seg>Формат:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>GIF Files (*.gif)</seg>
       </tuv>
       <tuv lang="RU-RU">
         <seg>Файлы GIF (*.gif)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Gate Location</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T105828Z" changeid="lilovip">
+        <seg>Положение затвора</seg>
       </tuv>
     </tu>
     <tu>
@@ -3104,8 +3288,8 @@
       <tuv lang="EN">
         <seg>Grabber returned false:</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Граббер возвратил ложь:</seg>
+      <tuv lang="RU-RU" changedate="20110217T121552Z" changeid="lilovip">
+        <seg>Граббер возвратил &quot;ложь&quot;:</seg>
       </tuv>
     </tu>
     <tu>
@@ -3134,10 +3318,26 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Greek Translation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T004033Z" changeid="lilovip">
+        <seg>Греческий перевод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Green:</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100901T130554Z" changeid="lilovip">
         <seg>Зелёный:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Ground</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T095615Z" changeid="lilovip">
+        <seg>Земля</seg>
       </tuv>
     </tu>
     <tu>
@@ -3176,8 +3376,8 @@
       <tuv lang="EN">
         <seg>Hex Digit Display</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Шестнадцатеричный дисплей</seg>
+      <tuv lang="RU-RU" changedate="20101211T000027Z" changeid="lilovip">
+        <seg>Шестнадцатеричный индикатор</seg>
       </tuv>
     </tu>
     <tu>
@@ -3262,6 +3462,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>If you can spot what might cause this, please contact Carl Burch.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203630Z" changeid="lilovip">
+        <seg>Если вы можете определить, что к этому приводит, пожалуйста, свяжитесь с Карлом Берчем.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Ignore undefined inputs</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T154335Z" changeid="lilovip">
@@ -3298,6 +3506,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Файл образа содержит слишком много информации.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Include Enable?</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110306T142957Z" changeid="lilovip">
+        <seg>Разрешающий вход?</seg>
       </tuv>
     </tu>
     <tu>
@@ -3694,10 +3910,18 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Left-handed</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110302T042203Z" changeid="lilovip">
+        <seg>Леворукий</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Legacy</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Устаревшие</seg>
+      <tuv lang="RU-RU" changedate="20110302T043522Z" changeid="lilovip">
+        <seg>Устаревший</seg>
       </tuv>
     </tu>
     <tu>
@@ -3770,6 +3994,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Линия</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Lines</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003302Z" changeid="lilovip">
+        <seg>Линии</seg>
       </tuv>
     </tu>
     <tu>
@@ -4318,6 +4550,22 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Mysteriously, saving erases the file; restoration will be attempted.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203528Z" changeid="lilovip">
+        <seg>Сохранение по какой-то причине стирает файл; будет предпринята попытка восстановления.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>N-Type</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T095510Z" changeid="lilovip">
+        <seg>n-тип</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>NAND Gate</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -4774,6 +5022,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Output Value</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110211T025942Z" changeid="lilovip">
+        <seg>Выходное значение</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Output:</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -4802,6 +5058,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100816T081730Z" changeid="lilovip">
         <seg>Выход: текущее значение счётчика</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: how many input bits are 1</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114817Z" changeid="lilovip">
+        <seg>Выход: количество единиц среди входных битов</seg>
       </tuv>
     </tu>
     <tu>
@@ -4850,6 +5114,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T192042Z" changeid="lilovip">
         <seg>Выход: количество битов 1 на входах</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Output: the product of the inputs, plus the carry in</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114501Z" changeid="lilovip">
+        <seg>Выход: произведение входов плюс вход переноса</seg>
       </tuv>
     </tu>
     <tu>
@@ -4930,6 +5202,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100901T131106Z" changeid="lilovip">
         <seg>П</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>P-Type</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T095504Z" changeid="lilovip">
+        <seg>p-тип</seg>
       </tuv>
     </tu>
     <tu>
@@ -5024,8 +5304,8 @@
       <tuv lang="EN">
         <seg>Plain</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Простой</seg>
+      <tuv lang="RU-RU" changedate="20110217T121503Z" changeid="lilovip">
+        <seg>Обычный</seg>
       </tuv>
     </tu>
     <tu>
@@ -5090,6 +5370,22 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100912T042827Z" changeid="lilovip">
         <seg>Порт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Portuguese Translation</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20101220T233950Z" changeid="lilovip">
+        <seg>Португальский перевод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Power</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T095611Z" changeid="lilovip">
+        <seg>Питание</seg>
       </tuv>
     </tu>
     <tu>
@@ -5194,6 +5490,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Датчик</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Product of sums</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T093519Z" changeid="lilovip">
+        <seg>Произведение сумм</seg>
       </tuv>
     </tu>
     <tu>
@@ -5568,8 +5872,8 @@
       <tuv lang="EN">
         <seg>Revert Appearance</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100912T043212Z" changeid="lilovip">
-        <seg>Вернуть вшнешность</seg>
+      <tuv lang="RU-RU" changedate="20110216T035007Z" changeid="lilovip">
+        <seg>Вернуть внешность</seg>
       </tuv>
     </tu>
     <tu>
@@ -5614,6 +5918,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Right-handed</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110302T042234Z" changeid="lilovip">
+        <seg>Праворукий</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Rising Edge</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -5634,6 +5946,22 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Циклический правый</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rotate Left</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114627Z" changeid="lilovip">
+        <seg>Циклический левый</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Rotate Right</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110222T114657Z" changeid="lilovip">
+        <seg>Логический правый</seg>
       </tuv>
     </tu>
     <tu>
@@ -5926,6 +6254,38 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Selection: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110216T034926Z" changeid="lilovip">
+        <seg>Выделение: %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Selection: %s × %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110216T034930Z" changeid="lilovip">
+        <seg>Выделение: %s × %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Selection: Various items</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110216T034948Z" changeid="lilovip">
+        <seg>Выделение: различные элементы</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Selection: Various items × %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110217T202329Z" changeid="lilovip">
+        <seg>Выделение: Различные элементы × %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Separate load and store ports</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -5970,6 +6330,30 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T161218Z" changeid="lilovip">
         <seg>Фигурные</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shared Label</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203302Z" changeid="lilovip">
+        <seg>Общая метка</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shared Label Facing</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203309Z" changeid="lilovip">
+        <seg>Направление общей метки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Shared Label Font</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110127T203316Z" changeid="lilovip">
+        <seg>Шрифт общей метки</seg>
       </tuv>
     </tu>
     <tu>
@@ -6102,10 +6486,26 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Show project circuits and libraries in explorer pane</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003427Z" changeid="lilovip">
+        <seg>Показать схемы проекта и библиотеки в панели проводника</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Show project toolbar</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20101013T041542Z" changeid="lilovip">
         <seg>Показать панель инструментов проекта</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Show simulation hierarchy in explorer pane</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003450Z" changeid="lilovip">
+        <seg>Показать иерархию моделирования в панели проводника</seg>
       </tuv>
     </tu>
     <tu>
@@ -6238,6 +6638,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Step signal propagating through circuit once</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003733Z" changeid="lilovip">
+        <seg>Сделать один шаг распространения сигналов по схеме</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Store: if 1, store input to memory</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6298,6 +6706,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T190410Z" changeid="lilovip">
         <seg>Вычитаемое: число, которое отнимается от уменьшаемого</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Sum of products</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T093516Z" changeid="lilovip">
+        <seg>Сумма произведений</seg>
       </tuv>
     </tu>
     <tu>
@@ -6614,6 +7030,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Tick clocks once</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003816Z" changeid="lilovip">
+        <seg>Один такт</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Ticks Enabled</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6650,6 +7074,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Слишком много входов для таблицы.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Tool: %s</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110216T035014Z" changeid="lilovip">
+        <seg>Инструмент: %s</seg>
       </tuv>
     </tu>
     <tu>
@@ -6702,6 +7134,38 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Top/Left</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T095307Z" changeid="lilovip">
+        <seg>Сверху/слева</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Transistor</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T095309Z" changeid="lilovip">
+        <seg>Транзистор</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Transmission Gate</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T095525Z" changeid="lilovip">
+        <seg>Передаточный вентиль</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Trapezoid</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T003306Z" changeid="lilovip">
+        <seg>Трапеция</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Trigger</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6746,6 +7210,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Отменить %s</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Unexpected apostrophe (&quot;'&quot;)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T204522Z" changeid="lilovip">
+        <seg>Неожиданный апостроф (&quot;'&quot;)</seg>
       </tuv>
     </tu>
     <tu>
@@ -6966,6 +7438,22 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>View Simulation Tree</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T004026Z" changeid="lilovip">
+        <seg>Показать дерево моделирования</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>View Toolbox</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110226T004012Z" changeid="lilovip">
+        <seg>Показать инструменты</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>View and edit the set of input variables.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -7074,6 +7562,14 @@
       </tuv>
       <tuv lang="RU-RU">
         <seg>Провод</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Wiring</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110210T093524Z" changeid="lilovip">
+        <seg>Проводка</seg>
       </tuv>
     </tu>
     <tu>
@@ -7346,6 +7842,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T192111Z" changeid="lilovip">
         <seg>find</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>floating/1</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110211T025938Z" changeid="lilovip">
+        <seg>плавающее/1</seg>
       </tuv>
     </tu>
     <tu>
