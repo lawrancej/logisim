@@ -16,6 +16,7 @@ div.header {
 	padding-top: 100px;
 	padding-left: 14px;
 	width: 213px;
+	z-index: 1
 }
 
 div.headerimg {
@@ -27,6 +28,7 @@ div.headerimg {
 
 div.links {
 	padding-bottom: 1em;
+	z-index: 2
 }
 
 div.links p {

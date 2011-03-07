@@ -42,7 +42,7 @@ body_end = r'''
 </div>
 
 <div id="map">
-<a href="{rel}/../../../{lang}/index.html"><img src="{rel}/../../../{lang}/header.png"
+<a href="{langhome}/index.html"><img src="{langhome}/header.png"
     border="0" width="227" height="137"></a>
 <ul id="maptree" class="treeview">
 {map}
@@ -210,6 +210,11 @@ for locale in copy_doc.get_doc_locales(src_dir):
 		if slash >= 0:
 			rel_base = rel_base[:slash]
 		
+		if locale == 'en':
+			langhome = rel_base + '/../../..'
+		else:
+			langhome = rel_base + '/../../../' + locale
+
 		text = html_text
 		head_end_pos = text.find('</head>')
 		if head_end_pos >= 0:
@@ -219,12 +224,15 @@ for locale in copy_doc.get_doc_locales(src_dir):
 		body_start_match = re_body_start.search(text)
 		if body_start_match:
 			body_start_pos = body_start_match.end()
-			to_body = body_start.format(rel=rel_base, map=map, lang=locale)
+			
+			to_body = body_start.format(rel=rel_base, map=map, lang=locale,
+				langhome=langhome)
 			text = text[:body_start_pos] + '\n' + to_body + text[body_start_pos:]
 			
 		body_end_pos = text.find('</body>')
 		if body_end_pos >= 0:
-			to_body = body_end.format(rel=rel_base, map=map, lang=locale)
+			to_body = body_end.format(rel=rel_base, map=map, lang=locale,
+				langhome=langhome)
 			text = text[:body_end_pos] + to_body + '\n' + text[body_end_pos:]
 			
 		return text
