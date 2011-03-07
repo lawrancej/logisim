@@ -196,6 +196,7 @@ public class TruthTable {
 			String outputName = model.getOutputs().get(column);
 			Entry[] columnData = outputColumns.get(outputName);
 			if (columnData == null) return DEFAULT_ENTRY;
+			if (row < 0 || row >= columnData.length) return Entry.DONT_CARE;
 			return columnData[row];
 		}
 	}

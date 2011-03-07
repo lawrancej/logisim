@@ -82,6 +82,10 @@ public class VariableList {
 		return data.contains(value);
 	}
 	
+	public String[] toArray(String[] dest) {
+		return data.toArray(dest);
+	}
+	
 	public void setAll(List<String> values) {
 		if (values.size() > maxSize) {
 			throw new IllegalArgumentException("maximum size is " + maxSize);

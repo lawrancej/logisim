@@ -34,29 +34,39 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 	private static class VariableListModel extends AbstractListModel
 			implements VariableListListener {
 		private VariableList list;
+		private String[] listCopy;
 		
 		public VariableListModel(VariableList list) {
 			this.list = list;
+			updateCopy();
 			list.addVariableListListener(this);
 		}
 		
+		private void updateCopy() {
+			listCopy = list.toArray(new String[list.size()]);
+		}
+		
 		public int getSize() {
-			return list.size();
+			return listCopy.length;
 		}
 		
 		public Object getElementAt(int index) {
-			return list.get(index);
+			return index >= 0 && index < listCopy.length ? listCopy[index] : null;
 		}
 		
 		private void update() {
-			fireContentsChanged(this, 0, list.size());
+			String[] oldCopy = listCopy;
+			updateCopy();
+			fireContentsChanged(this, 0, oldCopy.length);
 		}
 		
 		public void listChanged(VariableListEvent event) {
+			String[] oldCopy = listCopy;
+			updateCopy();
 			int index;
 			switch (event.getType()) {
 			case VariableListEvent.ALL_REPLACED:
-				fireContentsChanged(this, 0, getSize());
+				fireContentsChanged(this, 0, oldCopy.length);
 				return;
 			case VariableListEvent.ADD:
 				index = list.indexOf(event.getVariable());
@@ -130,14 +140,14 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 		public void listChanged(VariableListEvent event) {
 			switch (event.getType()) {
 			case VariableListEvent.ALL_REPLACED:
-				list.setSelectedValue(null, false);
+				list.setSelectedIndices(new int[0]);
 				break;
 			case VariableListEvent.REMOVE:
 				if (event.getVariable().equals(list.getSelectedValue())) {
 					int index = ((Integer) event.getData()).intValue();
 					if (index >= data.size()) {
 						if (data.isEmpty()) {
-							list.setSelectedValue(null, false);
+							list.setSelectedIndices(new int[0]);
 						}
 						index = data.size() - 1;
 					}

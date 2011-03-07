@@ -147,7 +147,9 @@ public class AppPreferences {
 	public static final PrefMonitor<Double> WINDOW_MAIN_SPLIT
 		= create(new PrefMonitorDouble("windowMainSplit", 0.25));
 	public static final PrefMonitor<Double> WINDOW_LEFT_SPLIT
-	= create(new PrefMonitorDouble("windowLeftSplit", 0.5));
+		= create(new PrefMonitorDouble("windowLeftSplit", 0.5));
+	public static final PrefMonitor<String> DIALOG_DIRECTORY
+		= create(new PrefMonitorString("dialogDirectory", ""));
 	
 	//
 	// methods for accessing preferences

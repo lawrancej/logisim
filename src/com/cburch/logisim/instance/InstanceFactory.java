@@ -115,7 +115,7 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
 				}
 			}
 			if (i != null) {
-				i.paintIcon(context.getDestination(), g, x, y);
+				i.paintIcon(context.getDestination(), g, x + 2, y + 2);
 			} else {
 				super.paintIcon(context, x, y, attrs);
 			}

@@ -182,6 +182,13 @@ public class CircuitBuilder {
 		int subHeight = 0; // total height of sublayouts
 		for (int i = 0; i < sub.length; i++) {
 			sub[i] = layoutGatesSub(inputs.get(i));
+			if (sub.length % 2 == 0 && i == (sub.length + 1) / 2
+					&& sub[i - 1].height + sub[i].height == 0) {
+				// if there are an even number of inputs, then there is a
+				// 20-tall gap between the middle two inputs. Ensure the two
+				// middle inputs are at least 20 pixels apart.
+				subHeight += 10;
+			}
 			sub[i].y = subHeight;
 			subWidth = Math.max(subWidth, sub[i].width);
 			subHeight += sub[i].height + 10;

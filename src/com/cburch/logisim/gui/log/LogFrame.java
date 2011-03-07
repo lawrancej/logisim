@@ -21,6 +21,8 @@ import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.Simulator;
 import com.cburch.logisim.circuit.SimulatorEvent;
 import com.cburch.logisim.circuit.SimulatorListener;
+import com.cburch.logisim.file.LibraryEvent;
+import com.cburch.logisim.file.LibraryListener;
 import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.proj.Project;
@@ -35,10 +37,11 @@ public class LogFrame extends LFrame {
 	// TODO should automatically repaint icons when component attr change
 	// TODO ? moving a component using Select tool removes it from selection
 	private class WindowMenuManager extends WindowMenuItemManager
-			implements LocaleListener, ProjectListener {
+			implements LocaleListener, ProjectListener, LibraryListener {
 		WindowMenuManager() {
 			super(Strings.get("logFrameMenuItem"), false);
 			project.addProjectListener(this);
+			project.addLibraryListener(this);
 		}
 		
 		@Override
@@ -56,10 +59,16 @@ public class LogFrame extends LFrame {
 				localeChanged();
 			}
 		}
+		
+		public void libraryChanged(LibraryEvent event) {
+			if (event.getAction() == LibraryEvent.SET_NAME) {
+				localeChanged();
+			}
+		}
 	}
 
 	private class MyListener
-			implements ActionListener, ProjectListener,
+			implements ActionListener, ProjectListener, LibraryListener,
 				SimulatorListener, LocaleListener {
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
@@ -76,6 +85,13 @@ public class LogFrame extends LFrame {
 				setSimulator(event.getProject().getSimulator(),
 						event.getProject().getCircuitState());
 			} else if (action == ProjectEvent.ACTION_SET_FILE) {
+				setTitle(computeTitle(curModel, project));
+			}
+		}
+		
+		public void libraryChanged(LibraryEvent event) {
+			int action = event.getAction();
+			if (action == LibraryEvent.SET_NAME) {
 				setTitle(computeTitle(curModel, project));
 			}
 		}
@@ -115,6 +131,7 @@ public class LogFrame extends LFrame {
 		this.project = project;
 		this.windowManager = new WindowMenuManager();
 		project.addProjectListener(myListener);
+		project.addLibraryListener(myListener);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setJMenuBar(new LogisimMenuBar(this, project));
 		setSimulator(project.getSimulator(), project.getCircuitState());

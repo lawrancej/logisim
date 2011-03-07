@@ -34,6 +34,8 @@ public class WindowMenu extends JMenu {
 				doMinimize();
 			} else if (src == zoom) {
 				doZoom();
+			} else if (src == close) {
+				doClose();
 			} else if (src instanceof WindowMenuItem) {
 				WindowMenuItem choice = (WindowMenuItem) src;
 				if (choice.isSelected()) {
