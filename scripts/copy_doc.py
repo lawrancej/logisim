@@ -146,6 +146,10 @@ def copy_files(locale, src_dir, dst_dir, translate_html=None,
                     try:
                         with open(file_src, 'r', encoding='utf-8') as html_file:
                             html_text = html_file.read()
+                        if html_text.strip() == '':
+                        	file_src_en = build_path(en_src, base_rel, file)
+                        	with open(file_src_en, 'r', encoding='utf-8') as html_en_file:
+                        		html_text = html_en_file.read() 
                         html_text = img_re.sub(img_handler, html_text)
                         if translate_html is not None:
                             file_rel = file_rel.replace('\\', '/')

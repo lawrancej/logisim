@@ -108,7 +108,7 @@ for lang, lang_src in languages:
 		lang_dst = dst_path
 	else:
 		lang_dst = build_path(dst_path, lang)
-		if not os.path.exists(lang_dst):
+		if not os.path.exists(lang_dst) or os.path.getsize(lang_dst) == 0:
 			os.mkdir(lang_dst)
 	
 	# copy each file over
