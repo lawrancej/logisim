@@ -52,7 +52,9 @@ following tables.</p>
       <td align="center">0</td><td align="center">Z</td><td align="center">X</td></tr>
 <tr><th><em>source</em></th><th align="center">1</th>
       <td align="center">1</td><td align="center">Z</td><td align="center">X</td></tr>
-<tr><td></td><th align="center">X/Z</th>
+<tr><td></td><th align="center">Z</th>
+      <td align="center">Z</td><td align="center">Z</td><td align="center">Z</td></tr>
+<tr><td></td><th align="center">X</th>
       <td align="center">X</td><td align="center">Z</td><td align="center">X</td></tr>
 </tbody></table></td><td>&nbsp;&nbsp;&nbsp;</td><td><table><thead>
 <tr><td></td><th colspan="4" align="center"><b>N-type</b></th></tr>
@@ -64,7 +66,9 @@ following tables.</p>
       <td align="center">Z</td><td align="center">0</td><td align="center">X</td></tr>
 <tr><th><em>source</em></th><th align="center">1</th>
       <td align="center">Z</td><td align="center">1</td><td align="center">X</td></tr>
-<tr><td></td><th align="center">X/Z</th>
+<tr><td></td><th align="center">Z</th>
+      <td align="center">Z</td><td align="center">Z</td><td align="center">Z</td></tr>
+<tr><td></td><th align="center">X</th>
       <td align="center">Z</td><td align="center">X</td><td align="center">X</td></tr>
 </table></td></tr></table></center>
 
@@ -78,7 +82,7 @@ following tables.</p>
 <tr><th><em>gate</em></th><th><em>drain</em></th></tr>
 <tr><td align="center">0</td><td align="center"><em>source</em></td></tr>
 <tr><td align="center">1</td><td align="center">Z</td></tr>
-<tr><td align="center">X/Z</td><td align="center">X</td></tr>
+<tr><td align="center">X/Z</td><td align="center">X*</td></tr>
 </tbody></table></td><td>&nbsp;&nbsp;&nbsp;</td><td><table><thead>
 <tr><th colspan="2" align="center"><b>N-type</b></th></tr>
 <tr><td colspan="2" align="center"><img src="../../../img-libs/trans1.png"></td></tr>
@@ -86,8 +90,10 @@ following tables.</p>
 <tr><th><em>gate</em></th><th><em>drain</em></th></tr>
 <tr><td align="center">0</td><td align="center">Z</td></tr>
 <tr><td align="center">1</td><td align="center"><em>source</em></td></tr>
-<tr><td align="center">X/Z</td><td align="center">X</td></tr>
-</table></td></tr></table></center>
+<tr><td align="center">X/Z</td><td align="center">X*</td></tr>
+</table></td></tr></table>
+<p>* <em>If <em>source</em> is Z, <em>drain</em> is Z; otherwise <em>drain</em> is X.</p>
+</center>
 
 <p>If the Data Bits attribute is more than 1, the <em>gate</em> input is still
 a single bit, but its value is applied simultaneously to each of the
