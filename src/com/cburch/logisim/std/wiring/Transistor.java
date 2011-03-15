@@ -146,19 +146,21 @@ public class Transistor extends InstanceFactory {
 			? Value.FALSE : Value.TRUE;
 
 		if (!gate.isFullyDefined()) {
-			return Value.createError(width);
+			if (input.isFullyDefined()) {
+				return Value.createError(width);
+			} else {
+				Value[] v = input.getAll();
+				for (int i = 0; i < v.length; i++) {
+					if (v[i] != Value.UNKNOWN) {
+						v[i] = Value.ERROR;
+					}
+				}
+				return Value.create(v);
+			}
 		} else if (gate != desired) {
 			return Value.createUnknown(width);
-		} else if (input.isFullyDefined()) {
-			return input;
 		} else {
-			Value[] v = input.getAll();
-			for (int i = 0; i < v.length; i++) {
-				if (v[i] == Value.UNKNOWN) {
-					v[i] = Value.ERROR;
-				}
-			}
-			return Value.create(v);
+			return input;
 		}
 	}
 	

@@ -118,22 +118,24 @@ public class TransmissionGate extends InstanceFactory {
 		Value gate0 = state.getPort(GATE0);
 		Value gate1 = state.getPort(GATE1);
 
-		if (!gate0.isFullyDefined() || !gate1.isFullyDefined()) {
-			return Value.createError(width);
-		} else if (gate0 == gate1) {
-			return Value.createError(width);
-		} else if (gate0 == Value.TRUE) {
-			return Value.createUnknown(width);
-		} else if (input.isFullyDefined()) {
-			return input;
-		} else {
-			Value[] v = input.getAll();
-			for (int i = 0; i < v.length; i++) {
-				if (v[i] == Value.UNKNOWN) {
-					v[i] = Value.ERROR;
-				}
+		if (gate0.isFullyDefined() && gate1.isFullyDefined() && gate0 != gate1) {
+			if (gate0 == Value.TRUE) {
+				return Value.createUnknown(width);
+			} else {
+				return input;
 			}
-			return Value.create(v);
+		} else {
+			if (input.isFullyDefined()) {
+				return Value.createError(width);
+			} else {
+				Value[] v = input.getAll();
+				for (int i = 0; i < v.length; i++) {
+					if (v[i] != Value.UNKNOWN) {
+						v[i] = Value.ERROR;
+					}
+				}
+				return Value.create(v);
+			}
 		}
 	}
 

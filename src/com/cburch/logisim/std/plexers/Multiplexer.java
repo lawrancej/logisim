@@ -28,10 +28,10 @@ public class Multiplexer extends InstanceFactory {
 	public Multiplexer() {
 		super("Multiplexer", Strings.getter("multiplexerComponent"));
 		setAttributes(new Attribute[] {
-				StdAttr.FACING, Plexers.ATTR_SELECT, StdAttr.WIDTH,
+				StdAttr.FACING, Plexers.ATTR_SELECT_LOC, Plexers.ATTR_SELECT, StdAttr.WIDTH,
 				Plexers.ATTR_DISABLED, Plexers.ATTR_ENABLE
 			}, new Object[] {
-				Direction.EAST, Plexers.DEFAULT_SELECT, BitWidth.ONE,
+				Direction.EAST, Plexers.SELECT_BOTTOM_LEFT, Plexers.DEFAULT_SELECT, BitWidth.ONE,
 				Plexers.DISABLED_FLOATING, Boolean.TRUE
 			});
 		setKeyConfigurator(JoinedConfigurator.create(
@@ -79,7 +79,8 @@ public class Multiplexer extends InstanceFactory {
 
 	@Override
 	protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
-		if (attr == StdAttr.FACING || attr == Plexers.ATTR_SELECT) {
+		if (attr == StdAttr.FACING || attr == Plexers.ATTR_SELECT_LOC
+				|| attr == Plexers.ATTR_SELECT) {
 			instance.recomputeBounds();
 			updatePorts(instance);
 		} else if (attr == StdAttr.WIDTH || attr == Plexers.ATTR_ENABLE) {
@@ -91,9 +92,12 @@ public class Multiplexer extends InstanceFactory {
 
 	private void updatePorts(Instance instance) {
 		Direction dir = instance.getAttributeValue(StdAttr.FACING);
+		Object selectLoc = instance.getAttributeValue(Plexers.ATTR_SELECT_LOC);
 		BitWidth data = instance.getAttributeValue(StdAttr.WIDTH);
 		BitWidth select = instance.getAttributeValue(Plexers.ATTR_SELECT);
 		boolean enable = instance.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+		
+		int selMult = selectLoc == Plexers.SELECT_BOTTOM_LEFT ? 1 : -1;
 		int inputs = 1 << select.getWidth();
 		Port[] ps = new Port[inputs + (enable ? 3 : 2)];
 		Location sel;
@@ -103,19 +107,19 @@ public class Multiplexer extends InstanceFactory {
 			if (dir == Direction.WEST) {
 				end0 = Location.create(30, -10);
 				end1 = Location.create(30,  10);
-				sel = Location.create(20,  20);
+				sel = Location.create(20, selMult * 20);
 			} else if (dir == Direction.NORTH) {
 				end0 = Location.create(-10, 30);
 				end1 = Location.create( 10, 30);
-				sel = Location.create(-20, 20);
+				sel = Location.create(selMult * -20,  20);
 			} else if (dir == Direction.SOUTH) {
 				end0 = Location.create(-10, -30);
 				end1 = Location.create( 10, -30);
-				sel = Location.create(-20, -20);
+				sel = Location.create(selMult * -20, -20);
 			} else {
 				end0 = Location.create(-30, -10);
 				end1 = Location.create(-30,  10);
-				sel = Location.create(-20,  20);
+				sel = Location.create(-20, selMult * 20);
 			}
 			ps[0] = new Port(end0.getX(), end0.getY(), Port.INPUT,  data.getWidth());
 			ps[1] = new Port(end1.getX(), end1.getY(), Port.INPUT,  data.getWidth());
@@ -126,16 +130,16 @@ public class Multiplexer extends InstanceFactory {
 			int ddy = 10; 
 			if (dir == Direction.WEST) {
 				dx = 40; ddx = 0;
-				sel = Location.create(20, dy + 10 * inputs);
+				sel = Location.create(20, selMult * (dy + 10 * inputs));
 			} else if (dir == Direction.NORTH) {
 				dy = 40; ddy = 0;
-				sel = Location.create(dx, 20);
+				sel = Location.create(selMult * dx, 20);
 			} else if (dir == Direction.SOUTH) {
 				dy = -40; ddy = 0;
-				sel = Location.create(dx, -20);
+				sel = Location.create(selMult * dx, -20);
 			} else {
 				dx = -40; ddx = 0;
-				sel = Location.create(-20, dy + 10 * inputs);
+				sel = Location.create(-20, selMult * (dy + 10 * inputs));
 			}
 			for (int i = 0; i < inputs; i++) {
 				ps[i] = new Port(dx, dy, Port.INPUT, data.getWidth());
@@ -209,8 +213,10 @@ public class Multiplexer extends InstanceFactory {
 		// draw stubs for select/enable inputs that aren't on instance boundary
 		GraphicsUtil.switchToWidth(g, 3);
 		boolean vertical = facing != Direction.NORTH && facing != Direction.SOUTH;
-		int dx = vertical ? 0 : -1;
-		int dy = vertical ? 1 : 0;
+		Object selectLoc = painter.getAttributeValue(Plexers.ATTR_SELECT_LOC);
+		int selMult = selectLoc == Plexers.SELECT_BOTTOM_LEFT ? 1 : -1;
+		int dx = vertical ? 0 : -selMult;
+		int dy = vertical ? selMult : 0;
 		if (inputs == 2) { // draw select wire
 			Location pt = painter.getInstance().getPortLocation(inputs);
 			if (painter.getShowState()) {

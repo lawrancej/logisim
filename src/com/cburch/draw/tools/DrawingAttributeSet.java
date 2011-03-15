@@ -192,12 +192,12 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 			Attribute<?> attr = d.getAttributes().get(i);
 			@SuppressWarnings("unchecked")
 			Attribute<Object> a = (Attribute<Object>) attr;
-			if (this.containsAttribute(a)) {
-				Object value = this.getValue(a);
-				d.setValue(a, value);
-			} else if (attr == DrawAttr.FILL_COLOR
+			if (attr == DrawAttr.FILL_COLOR
 					&& this.containsAttribute(DrawAttr.TEXT_DEFAULT_FILL)) {
 				d.setValue(a, this.getValue(DrawAttr.TEXT_DEFAULT_FILL));
+			} else if (this.containsAttribute(a)) {
+				Object value = this.getValue(a);
+				d.setValue(a, value);
 			}
 		}
 		return drawable;

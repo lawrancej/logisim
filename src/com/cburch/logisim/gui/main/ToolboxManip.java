@@ -16,6 +16,7 @@ import com.cburch.logisim.file.LibraryEventSource;
 import com.cburch.logisim.file.LibraryListener;
 import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.file.LogisimFileActions;
+import com.cburch.logisim.gui.generic.AttrTableModel;
 import com.cburch.logisim.gui.menu.ProjectCircuitActions;
 import com.cburch.logisim.gui.menu.ProjectLibraryActions;
 import com.cburch.logisim.gui.menu.Popups;
@@ -122,6 +123,20 @@ class ToolboxManip implements ProjectExplorer.Listener {
 	public void selectionChanged(ProjectExplorer.Event event) {
 		Object selected = event.getTarget();
 		if (selected instanceof Tool) {
+			if (selected instanceof AddTool) {
+				AddTool addTool = (AddTool) selected;
+				ComponentFactory source = addTool.getFactory();
+				if (source instanceof SubcircuitFactory) {
+					SubcircuitFactory circFact = (SubcircuitFactory) source;
+					Circuit circ = circFact.getSubcircuit();
+					if (proj.getCurrentCircuit() == circ) {
+						AttrTableModel m = new AttrTableCircuitModel(proj, circ);
+						proj.getFrame().setAttrTableModel(m);
+						return;
+					}
+				}
+			}
+			
 			lastSelected = proj.getTool();
 			Tool tool = (Tool) selected;
 			proj.setTool(tool);
