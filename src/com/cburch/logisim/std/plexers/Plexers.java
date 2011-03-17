@@ -104,24 +104,26 @@ public class Plexers extends Library {
 		if (bds.contains(loc, 1)) {
 			int x = loc.getX();
 			int y = loc.getY();
-			if (facing == Direction.EAST || facing == Direction.WEST) {
-				if (y == bds.getY() + bds.getHeight()) {
-					int xMid = bds.getX() + bds.getWidth() / 2;
-					if (facing == Direction.EAST) {
-						return x < xMid + 10;
+			int x0 = bds.getX();
+			int x1 = x0 + bds.getWidth();
+			int y0 = bds.getY();
+			int y1 = y0 + bds.getHeight();
+			if (facing == Direction.NORTH || facing == Direction.SOUTH) {
+				if (x < x0 + 5 || x > x1 - 5) {
+					if (facing == Direction.SOUTH) {
+						return y < y0 + 5;
 					} else {
-						return x > xMid - 10;
+						return y > y1 - 5;
 					}
 				} else {
 					return true;
 				}
 			} else {
-				if (x == bds.getX()) {
-					int yMid = bds.getY() + bds.getHeight() / 2;
-					if (facing == Direction.SOUTH) {
-						return y < yMid + 10;
+				if (y < y0 + 5 || y > y1 - 5) {
+					if (facing == Direction.EAST) {
+						return x < x0 + 5;
 					} else {
-						return y > yMid - 10;
+						return x > x1 - 5;
 					}
 				} else {
 					return true;

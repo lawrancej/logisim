@@ -93,6 +93,7 @@ public class Simulator {
 					resetRequested = false;
 					if (propagator != null) propagator.reset();
 					firePropagationCompleted();
+					propagateRequested |= isRunning;
 				}
 				
 				if (propagateRequested || ticksRequested > 0 || stepsRequested > 0) {

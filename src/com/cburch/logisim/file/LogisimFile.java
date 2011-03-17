@@ -8,11 +8,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -401,18 +399,14 @@ public class LogisimFile extends Library implements LibraryEventSource {
 			loader.showError(StringUtil.format(
 				Strings.get("xmlFormatError"), e.toString()));
 			return null;
-
 		}
 	}
 
 	public static LogisimFile loadSub(InputStream in, Loader loader)
 			throws IOException, SAXException {
 		// fetch first line and then reset
-		in = new BufferedInputStream(in);
-		in.mark(512);
-		BufferedReader buf = new BufferedReader(new InputStreamReader(in));
-		String firstLine = buf.readLine();
-		in.reset();
+		BufferedInputStream inBuffered = new BufferedInputStream(in);
+		String firstLine = getFirstLine(inBuffered);
 
 		if (firstLine == null) {
 			throw new IOException("File is empty");
@@ -423,9 +417,24 @@ public class LogisimFile extends Library implements LibraryEventSource {
 		}
 
 		XmlReader xmlReader = new XmlReader(loader);
-		LogisimFile ret = xmlReader.readLibrary(in);
+		LogisimFile ret = xmlReader.readLibrary(inBuffered);
 		ret.loader = loader;
 		return ret;
 	}
 
+	private static String getFirstLine(BufferedInputStream in)
+			throws IOException {
+		byte[] first = new byte[512];
+		in.mark(first.length - 1);
+		in.read(first);
+		in.reset();
+		
+		int lineBreak = first.length;
+		for (int i = 0; i < lineBreak; i++) {
+			if (first[i] == '\n') {
+				lineBreak = i;
+			}
+		}
+		return new String(first, 0, lineBreak, "UTF-8");
+	}
 }
