@@ -114,6 +114,8 @@ public class AttrTable extends JPanel implements LocaleListener {
 		
 		void setAttrTableModel(AttrTableModel value) {
 			if (attrModel != value) {
+				TableCellEditor editor = table.getCellEditor();
+				if (editor != null) editor.cancelCellEditing();
 				attrModel.removeAttrTableModelListener(this);
 				attrModel = value;
 				attrModel.addAttrTableModelListener(this);

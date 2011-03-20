@@ -83,6 +83,7 @@ public class SelectionAttributes extends AbstractAttributeSet {
 			SelectionAttributes.this.selValues = values;
 			SelectionAttributes.this.attrsView
 				= Collections.unmodifiableList(Arrays.asList(attrs));
+			fireAttributeListChanged();
 		}
 
 		//

@@ -133,7 +133,7 @@ public class LogisimMenuBar extends JMenuBar {
 		simulate.setCurrentState(sim, state);
 	}
 
-	Project getProject() {
+	public Project getProject() {
 		return proj;
 	}
 	

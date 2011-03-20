@@ -60,25 +60,6 @@ public class LFrame extends JFrame implements WindowClosable {
 
 	public void requestClose() {
 		WindowEvent closing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-		processWindowEvent(closing);		
-		WindowEvent closed = new WindowEvent(this, WindowEvent.WINDOW_CLOSED);
-		processWindowEvent(closed);
+		processWindowEvent(closing);
 	}
-	
-	/*
-	protected void processWindowEvent(WindowEvent e) {
-		Ssystem.err.print("process " + e.getID() + " " + this.hashCode() + " ");
-		switch (e.getID()) {
-		case WindowEvent.WINDOW_CLOSING: Ssystem.err.println("closing"); break;
-		case WindowEvent.WINDOW_CLOSED: Ssystem.err.println("closed"); break;
-		case WindowEvent.WINDOW_DEACTIVATED: Ssystem.err.println("deactivated"); break;
-		case WindowEvent.WINDOW_ACTIVATED: Ssystem.err.println("activated"); break;
-		case WindowEvent.WINDOW_GAINED_FOCUS: Ssystem.err.println("gainedFocus"); break;
-		case WindowEvent.WINDOW_LOST_FOCUS: Ssystem.err.println("lostFocus"); break;
-		case WindowEvent.WINDOW_OPENED: Ssystem.err.println("opened"); break;
-		case WindowEvent.WINDOW_STATE_CHANGED: Ssystem.err.println("stateChanged"); break;
-		}
-		super.processWindowEvent(e);
-	}
-	*/
 }

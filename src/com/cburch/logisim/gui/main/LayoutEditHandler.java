@@ -10,6 +10,7 @@ import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.file.LibraryEvent;
 import com.cburch.logisim.file.LibraryListener;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
+import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
@@ -76,7 +77,10 @@ public class LayoutEditHandler extends EditHandler
 		Project proj = frame.getProject();
 		Selection sel = frame.getCanvas().getSelection();
 		selectSelectTool(proj);
-		proj.doAction(SelectionActions.paste(sel));
+		Action action = SelectionActions.pasteMaybe(proj, sel);
+		if (action != null) {
+			proj.doAction(action);
+		}
 	}
 	
 	@Override

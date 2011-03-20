@@ -3,9 +3,6 @@
 
 package com.cburch.draw.gui;
 
-import java.util.Collections;
-import java.util.List;
-
 import com.cburch.draw.tools.AbstractTool;
 import com.cburch.draw.tools.DrawingAttributeSet;
 import com.cburch.logisim.data.Attribute;
@@ -17,14 +14,14 @@ class AttrTableToolModel extends AttributeSetTableModel {
 	private AbstractTool currentTool;
 	
 	public AttrTableToolModel(DrawingAttributeSet defaults, AbstractTool tool) {
-		super(defaults.createSubset(getAttributes(tool)));
+		super(defaults.createSubset(tool));
 		this.defaults = defaults;
 		this.currentTool = tool;
 	}
 	
 	public void setTool(AbstractTool value) {
 		currentTool = value;
-		setAttributeSet(defaults.createSubset(getAttributes(value)));
+		setAttributeSet(defaults.createSubset(value));
 		fireTitleChanged();
 	}
 	
@@ -37,13 +34,5 @@ class AttrTableToolModel extends AttributeSetTableModel {
 	public void setValueRequested(Attribute<Object> attr, Object value)
 			throws AttrTableSetException {
 		defaults.setValue(attr, value);
-	}
-	
-	private static List<Attribute<?>> getAttributes(AbstractTool tool) {
-		if (tool == null) {
-			return Collections.emptyList();
-		} else {
-			return tool.getAttributes();
-		}
 	}
 }

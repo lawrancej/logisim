@@ -54,7 +54,11 @@ public class XmlCircuitReader extends CircuitTransaction {
 		Circuit dest = circData.circuit;
 		Map<Element, Component> knownComponents = circData.knownComponents;
 		if (knownComponents == null) knownComponents = Collections.emptyMap();
-		reader.initAttributeSet(circData.circuitElement, dest.getStaticAttributes(), null);
+		try {
+			reader.initAttributeSet(circData.circuitElement, dest.getStaticAttributes(), null);
+		} catch (XmlReaderException e) {
+			reader.addErrors(e, circData.circuit.getName() + ".static");
+		}
 
 		for (Element sub_elt : XmlIterator.forChildElements(elt)) {
 			String sub_elt_name = sub_elt.getTagName();
@@ -65,11 +69,15 @@ public class XmlCircuitReader extends CircuitTransaction {
 						comp = getComponent(sub_elt, reader);
 					}
 					mutator.add(dest, comp);
-				} catch (RuntimeException e) {
-					showError(e.getMessage());
+				} catch (XmlReaderException e) {
+					reader.addErrors(e, circData.circuit.getName() + "." + toComponentString(sub_elt));
 				}
 			} else if (sub_elt_name.equals("wire")) {
-				addWire(dest, mutator, sub_elt);
+				try {
+					addWire(dest, mutator, sub_elt);
+				} catch (XmlReaderException e) {
+					reader.addErrors(e, circData.circuit.getName() + "." + toWireString(sub_elt));
+				}
 			}
 		}
 		
@@ -79,59 +87,66 @@ public class XmlCircuitReader extends CircuitTransaction {
 			dest.getAppearance().setDefaultAppearance(false);
 		}
 	}
+	
+	private String toComponentString(Element elt) {
+		String name = elt.getAttribute("name");
+		String loc = elt.getAttribute("loc");
+		return name + "(" + loc + ")";
+	}
+	
+	private String toWireString(Element elt) {
+		String from = elt.getAttribute("from");
+		String to = elt.getAttribute("to");
+		return "w" + from + "-" + to;
+	}
 
-	void addWire(Circuit dest, CircuitMutator mutator, Element elt) {
+	void addWire(Circuit dest, CircuitMutator mutator, Element elt)
+			throws XmlReaderException {
 		Location pt0;
 		try {
 			String str = elt.getAttribute("from");
 			if (str == null || str.equals("")) {
-				showError(Strings.get("wireStartMissingError"));
+				throw new XmlReaderException(Strings.get("wireStartMissingError"));
 			}
 			pt0 = Location.parse(str);
 		} catch (NumberFormatException e) {
-			showError(Strings.get("wireStartInvalidError"));
-			return;
+			throw new XmlReaderException(Strings.get("wireStartInvalidError"));
 		}
 
 		Location pt1;
 		try {
 			String str = elt.getAttribute("to");
 			if (str == null || str.equals("")) {
-				showError(Strings.get("wireEndMissingError"));
+				throw new XmlReaderException(Strings.get("wireEndMissingError"));
 			}
 			pt1 = Location.parse(str);
 		} catch (NumberFormatException e) {
-			showError(Strings.get("wireEndInvalidError"));
-			return;
+			throw new XmlReaderException(Strings.get("wireEndInvalidError"));
 		}
 
 		mutator.add(dest, Wire.create(pt0, pt1));
 	}
 	
-	private void showError(String errorMessage) {
-		reader.showError(errorMessage);
-	}
-	
 	static Component getComponent(Element elt, XmlReader.ReadContext reader)
-			throws RuntimeException {
+			throws XmlReaderException {
 		// Determine the factory that creates this element
 		String name = elt.getAttribute("name");
 		if (name == null || name.equals("")) {
-			throw new RuntimeException(Strings.get("compNameMissingError"));
+			throw new XmlReaderException(Strings.get("compNameMissingError"));
 		}
 
 		String libName = elt.getAttribute("lib");
 		Library lib = reader.findLibrary(libName);
 		if (lib == null) {
-			throw new RuntimeException(Strings.get("compUnknownError", "no-lib"));
+			throw new XmlReaderException(Strings.get("compUnknownError", "no-lib"));
 		}
 
 		Tool tool = lib.getTool(name);
 		if (tool == null || !(tool instanceof AddTool)) {
 			if (libName == null || libName.equals("")) {
-				throw new RuntimeException(Strings.get("compUnknownError", name));
+				throw new XmlReaderException(Strings.get("compUnknownError", name));
 			} else {
-				throw new RuntimeException(Strings.get("compAbsentError", name, libName));
+				throw new XmlReaderException(Strings.get("compAbsentError", name, libName));
 			}
 		}
 		ComponentFactory source = ((AddTool) tool).getFactory();
@@ -143,13 +158,13 @@ public class XmlCircuitReader extends CircuitTransaction {
 
 		// Create component if location known
 		if (loc_str == null || loc_str.equals("")) {
-			throw new RuntimeException(Strings.get("compLocMissingError", source.getName()));
+			throw new XmlReaderException(Strings.get("compLocMissingError", source.getName()));
 		} else {
 			try {
 				Location loc = Location.parse(loc_str);
 				return source.createComponent(loc, attrs);
 			} catch (NumberFormatException e) {
-				throw new RuntimeException(Strings.get("compLocInvalidError",
+				throw new XmlReaderException(Strings.get("compLocInvalidError",
 					source.getName(), loc_str));
 			}
 		}

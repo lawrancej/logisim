@@ -5,17 +5,33 @@ package com.cburch.logisim.gui.main;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitMutation;
 import com.cburch.logisim.circuit.CircuitTransaction;
 import com.cburch.logisim.circuit.CircuitTransactionResult;
 import com.cburch.logisim.circuit.ReplacementMap;
+import com.cburch.logisim.circuit.SubcircuitFactory;
+import com.cburch.logisim.circuit.Wire;
 import com.cburch.logisim.comp.Component;
+import com.cburch.logisim.comp.ComponentFactory;
+import com.cburch.logisim.data.AttributeSet;
+import com.cburch.logisim.data.Location;
+import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.JoinedAction;
 import com.cburch.logisim.proj.Project;
+import com.cburch.logisim.tools.AddTool;
+import com.cburch.logisim.tools.Library;
+import com.cburch.logisim.tools.Tool;
 
 public class SelectionActions {
 	private SelectionActions() { }
@@ -64,8 +80,9 @@ public class SelectionActions {
 		return new Copy(sel);
 	}
 
-	public static Action paste(Selection sel) {
-		return new Paste(sel);
+	public static Action pasteMaybe(Project proj, Selection sel) {
+		HashMap<Component, Component> replacements = getReplacementMap(proj);
+		return new Paste(sel, replacements);
 	}
 	
 	public static Action translate(Selection sel, int dx, int dy, ReplacementMap repl) {
@@ -238,14 +255,136 @@ public class SelectionActions {
 			Clipboard.set(oldClip);
 		}
 	}
+	
+	private static HashMap<Component, Component> getReplacementMap(Project proj) {
+		HashMap<Component, Component> replMap;
+		replMap = new HashMap<Component, Component>();
+		
+		LogisimFile file = proj.getLogisimFile();
+		ArrayList<Library> libs = new ArrayList<Library>();
+		libs.add(file);
+		libs.addAll(file.getLibraries());
+		
+		ArrayList<String> dropped = null; 
+		Clipboard clip = Clipboard.get();
+		Collection<Component> comps = clip.getComponents();
+		HashMap<ComponentFactory, ComponentFactory> factoryReplacements;
+		factoryReplacements = new HashMap<ComponentFactory, ComponentFactory>();
+		for (Component comp : comps) {
+			if (comp instanceof Wire) continue;
+			
+			ComponentFactory compFactory = comp.getFactory();
+			ComponentFactory copyFactory = findComponentFactory(compFactory, libs, false);
+			if (factoryReplacements.containsKey(compFactory)) {
+				copyFactory = factoryReplacements.get(compFactory);
+			} else if (copyFactory == null) {
+				ComponentFactory candidate = findComponentFactory(compFactory, libs, true);
+				if (candidate == null) {
+					if (dropped == null) {
+						dropped = new ArrayList<String>();
+					}
+					dropped.add(compFactory.getDisplayName());
+				} else {
+					String msg = Strings.get("pasteCloneQuery",
+							compFactory.getName());
+					Object[] opts = { Strings.get("pasteCloneReplace"),
+							Strings.get("pasteCloneIgnore"),
+							Strings.get("pasteCloneCancel") };
+					int select = JOptionPane.showOptionDialog(proj.getFrame(),
+							msg, Strings.get("pasteCloneTitle"), 0,
+							JOptionPane.QUESTION_MESSAGE, null, opts, opts[0]);
+					if (select == 0) {
+						copyFactory = candidate;
+					} else if (select == 1) {
+						copyFactory = null;
+					} else {
+						return null;
+					}
+					factoryReplacements.put(compFactory, copyFactory);
+				}
+			}
+			
+			if (copyFactory == null) {
+				replMap.put(comp, null);
+			} else if (copyFactory != compFactory) {
+				Location copyLoc = comp.getLocation();
+				AttributeSet copyAttrs = (AttributeSet) comp.getAttributeSet().clone();
+				Component copy = copyFactory.createComponent(copyLoc, copyAttrs);
+				replMap.put(comp, copy);
+			}
+		}
+		
+		if (dropped != null) {
+			Collections.sort(dropped);
+			StringBuilder droppedStr = new StringBuilder();
+			droppedStr.append(Strings.get("pasteDropMessage"));
+			String curName = dropped.get(0);
+			int curCount = 1;
+			int lines = 1;
+			for (int i = 1; i <= dropped.size(); i++) {
+				String nextName = i == dropped.size() ? "" : dropped.get(i);
+				if (nextName.equals(curName)) {
+					curCount++;
+				} else {
+					lines++;
+					droppedStr.append("\n  ");
+					droppedStr.append(curName);
+					if (curCount > 1) {
+						droppedStr.append(" \u00d7 " + curCount);
+					}
+					
+					curName = nextName;
+					curCount = 1;
+				}
+			}
+
+			lines = Math.max(3, Math.min(7, lines));
+			JTextArea area = new JTextArea(lines, 60);
+			area.setEditable(false);
+			area.setText(droppedStr.toString());
+			area.setCaretPosition(0);
+			JScrollPane areaPane = new JScrollPane(area);
+			JOptionPane.showMessageDialog(proj.getFrame(), areaPane,
+					Strings.get("pasteDropTitle"),
+					JOptionPane.WARNING_MESSAGE);
+		}
+		
+		return replMap;
+	}
+	
+	private static ComponentFactory findComponentFactory(ComponentFactory factory,
+			ArrayList<Library> libs, boolean acceptNameMatch) {
+		String name = factory.getName();
+		for (Library lib : libs) {
+			for (Tool tool : lib.getTools()) {
+				if (tool instanceof AddTool) {
+					AddTool addTool = (AddTool) tool;
+					if (name.equals(addTool.getName())) {
+						ComponentFactory fact = addTool.getFactory(true);
+						if (acceptNameMatch) {
+							return fact;
+						} else if (fact == factory) {
+							return fact;
+						} else if (fact.getClass() == factory.getClass()
+								&& !(fact instanceof SubcircuitFactory)) {
+							return fact;
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
 
 	private static class Paste extends Action {
 		private Selection sel;
 		private CircuitTransaction xnReverse;
 		private SelectionSave after;
+		private HashMap<Component,Component> componentReplacements; 
 
-		Paste(Selection sel) {
+		Paste(Selection sel, HashMap<Component, Component> replacements) {
 			this.sel = sel;
+			this.componentReplacements = replacements;
 		}
 
 		@Override
@@ -258,15 +397,40 @@ public class SelectionActions {
 			Clipboard clip = Clipboard.get();
 			Circuit circuit = proj.getCurrentCircuit();
 			CircuitMutation xn = new CircuitMutation(circuit);
-			sel.pasteHelper(xn, clip.getComponents());
-			CircuitTransactionResult result = xn.execute();
-			xnReverse = result.getReverseTransaction();
-			after = SelectionSave.create(sel);
+			Collection<Component> comps = clip.getComponents();
+			Collection<Component> toAdd = computeAdditions(comps);
+			if (toAdd.size() > 0) {
+				sel.pasteHelper(xn, toAdd);
+				CircuitTransactionResult result = xn.execute();
+				xnReverse = result.getReverseTransaction();
+				after = SelectionSave.create(sel);
+			} else {
+				xnReverse = null;
+			}
 		}
-
+		
+		private Collection<Component> computeAdditions(Collection<Component> comps) {
+			HashMap<Component, Component> replMap = componentReplacements;
+			ArrayList<Component> toAdd = new ArrayList<Component>(comps.size());
+			for (Iterator<Component> it = comps.iterator(); it.hasNext(); ) {
+				Component comp = it.next();
+				if (replMap.containsKey(comp)) {
+					Component repl = replMap.get(comp);
+					if (repl != null) {
+						toAdd.add(repl);
+					}
+				} else {
+					toAdd.add(comp);
+				}
+			}
+			return toAdd;
+		}
+		
 		@Override
 		public void undo(Project proj) {
-			xnReverse.execute();
+			if (xnReverse != null) {
+				xnReverse.execute();
+			}
 		}
 	}
 

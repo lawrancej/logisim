@@ -113,7 +113,9 @@ public class ProjectActions {
 			displayException(baseProject.getFrame(), ex);
 			file = createEmptyFile(loader);
 		} catch (LoadFailedException ex) {
-			displayException(baseProject.getFrame(), ex);
+			if (!ex.isShown()) {
+				displayException(baseProject.getFrame(), ex);
+			}
 			file = createEmptyFile(loader);
 		} finally {
 			try { templReader.close(); } catch (IOException e) { }
@@ -221,11 +223,13 @@ public class ProjectActions {
 				proj.setLogisimFile(lib);
 			}
 		} catch (LoadFailedException ex) {
-			JOptionPane.showMessageDialog(parent,
-				StringUtil.format(Strings.get("fileOpenError"),
-					ex.toString()),
-				Strings.get("fileOpenErrorTitle"),
-				JOptionPane.ERROR_MESSAGE);
+			if (!ex.isShown()) {
+				JOptionPane.showMessageDialog(parent,
+					StringUtil.format(Strings.get("fileOpenError"),
+						ex.toString()),
+					Strings.get("fileOpenErrorTitle"),
+					JOptionPane.ERROR_MESSAGE);
+			}
 			return null;
 		}
 		

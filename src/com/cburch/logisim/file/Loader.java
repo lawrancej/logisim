@@ -4,6 +4,7 @@
 package com.cburch.logisim.file;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.File;
@@ -14,6 +15,8 @@ import java.util.Map;
 import java.util.Stack;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileFilter;
 
 import com.cburch.logisim.std.Builtin;
@@ -132,7 +135,7 @@ public class Loader implements LibraryLoader {
 			showMessages(ret);
 			return ret;
 		} catch (LoaderException e) {
-			throw new LoadFailedException(e.getMessage());
+			throw new LoadFailedException(e.getMessage(), e.isShown());
 		}
 	}
 	
@@ -194,6 +197,7 @@ public class Loader implements LibraryLoader {
 			LibraryManager.instance.fileSaved(this, dest, oldFile, file);
 		} catch (IOException e) {
 			if (backupCreated) recoverBackup(backup, dest);
+			if (dest.exists() && dest.length() == 0) dest.delete();
 			JOptionPane.showMessageDialog(parent,
 				StringUtil.format(Strings.get("fileSaveError"),
 					e.toString()),
@@ -206,6 +210,7 @@ public class Loader implements LibraryLoader {
 					fwrite.close();
 				} catch (IOException e) {
 					if (backupCreated) recoverBackup(backup, dest);
+					if (dest.exists() && dest.length() == 0) dest.delete();
 					JOptionPane.showMessageDialog(parent,
 						StringUtil.format(Strings.get("fileSaveCloseError"),
 							e.toString()),
@@ -342,31 +347,47 @@ public class Loader implements LibraryLoader {
 	}
 
 	public void showError(String description) {
-		try {
-			throw new RuntimeException();
-		} catch (Throwable t ) {
-			System.err.println(description); //OK
-			t.printStackTrace(System.err); //OK
-		}
-		
 		if (!filesOpening.empty()) {
 			File top = filesOpening.peek();
-			description = toProjectName(top) + ": " + description;
+			String init = toProjectName(top) + ":";
+			if (description.contains("\n")) {
+				description = init + "\n" + description;
+			} else {
+				description = init + " " + description;
+			}
 		}
-		JOptionPane.showMessageDialog(parent, description,
-				Strings.get("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
-		throw new LoaderException(description);
+		
+		if (description.contains("\n") || description.length() > 60) {
+			int lines = 1;
+			for (int pos = description.indexOf('\n'); pos >= 0;
+					pos = description.indexOf('\n', pos + 1)) {
+				lines++;
+			}
+			lines = Math.max(4, Math.min(lines, 7));
+
+			JTextArea textArea = new JTextArea(lines, 60);
+			textArea.setEditable(false);
+			textArea.setText(description);
+			textArea.setCaretPosition(0);
+			
+			JScrollPane scrollPane = new JScrollPane(textArea);		
+			scrollPane.setPreferredSize(new Dimension(350, 150));
+			JOptionPane.showMessageDialog(parent, scrollPane,
+					Strings.get("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(parent, description,
+					Strings.get("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void showMessages(LogisimFile source) {
 		if (source == null) return;
-		while (true) {
-			String message = source.getMessage();
-			if (message == null) break;
-
+		String message = source.getMessage();
+		while (message != null) {
 			JOptionPane.showMessageDialog(parent,
 				message, Strings.get("fileMessageTitle"),
 				JOptionPane.INFORMATION_MESSAGE);
+			message = source.getMessage();
 		}
 	}
 

@@ -52,9 +52,21 @@ class XmlReader {
 		LogisimFile file;
 		LogisimVersion sourceVersion;
 		HashMap<String,Library> libs = new HashMap<String,Library>();
+		private ArrayList<String> messages;
 
 		ReadContext(LogisimFile file) {
 			this.file = file;
+			this.messages = new ArrayList<String>();
+		}
+		
+		void addError(String message, String context) {
+			messages.add(message + " [" + context + "]");
+		}
+		
+		void addErrors(XmlReaderException exception, String context) {
+			for (String msg : exception.getMessages()) {
+				messages.add(msg + " [" + context + "]");
+			}
 		}
 
 		private void toLogisimFile(Element elt) {
@@ -77,13 +89,13 @@ class XmlReader {
 			for (Element circElt : XmlIterator.forChildElements(elt, "circuit")) {
 				String name = circElt.getAttribute("name");
 				if (name == null || name.equals("")) {
-					showError(Strings.get("circNameMissingError"));
+					addError(Strings.get("circNameMissingError"), "C??");
 				}
 				CircuitData circData = new CircuitData(circElt, new Circuit(name));
 				file.addCircuit(circData.circuit);
 				circData.knownComponents = loadKnownComponents(circElt);
 				for (Element appearElt : XmlIterator.forChildElements(circElt, "appear")) {
-					loadAppearance(appearElt, circData);
+					loadAppearance(appearElt, circData, name + ".appear");
 				}
 				circuitsData.add(circData);
 			}
@@ -94,7 +106,11 @@ class XmlReader {
 				if (name.equals("circuit") || name.equals("lib")) {
 					; // Nothing to do: Done earlier.
 				} else if (name.equals("options")) {
-					initAttributeSet(sub_elt, file.getOptions().getAttributeSet(), null);
+					try {
+						initAttributeSet(sub_elt, file.getOptions().getAttributeSet(), null);
+					} catch (XmlReaderException e) {
+						addErrors(e, "options");
+					}
 				} else if (name.equals("mappings")) {
 					initMouseMappings(sub_elt);
 				} else if (name.equals("toolbar")) {
@@ -137,7 +153,11 @@ class XmlReader {
 					String tool_str = sub_elt.getAttribute("name");
 					Tool tool = ret.getTool(tool_str);
 					if (tool != null) {
-						initAttributeSet(sub_elt, tool.getAttributeSet(), tool);
+						try {
+							initAttributeSet(sub_elt, tool.getAttributeSet(), tool);
+						} catch (XmlReaderException e) {
+							addErrors(e, "lib." + name + "." + tool_str);
+						}
 					}
 				}
 			}
@@ -150,12 +170,13 @@ class XmlReader {
 				try {
 					Component comp = XmlCircuitReader.getComponent(sub, this);
 					known.put(sub, comp);
-				} catch (RuntimeException e) { }
+				} catch (XmlReaderException e) { }
 			}
 			return known;
 		}
 		
-		private void loadAppearance(Element appearElt, CircuitData circData) {
+		private void loadAppearance(Element appearElt, CircuitData circData,
+				String context) {
 			Map<Location, Instance> pins = new HashMap<Location, Instance>();
 			for (Component comp : circData.knownComponents.values()) {
 				if (comp.getFactory() == Pin.FACTORY) {
@@ -169,12 +190,14 @@ class XmlReader {
 				try {
 					AbstractCanvasObject m = AppearanceSvgReader.createShape(sub, pins);
 					if (m == null) {
-						showError(Strings.get("fileAppearanceNotFound", sub.getTagName()));
+						addError(Strings.get("fileAppearanceNotFound", sub.getTagName()),
+								context + "." + sub.getTagName());
 					} else {
 						shapes.add(m);
 					}
 				} catch (RuntimeException e) {
-					showError(Strings.get("fileAppearanceError", sub.getTagName()));
+					addError(Strings.get("fileAppearanceError", sub.getTagName()),
+							context + "." + sub.getTagName());
 				}
 			}
 			if (!shapes.isEmpty()) {
@@ -189,8 +212,13 @@ class XmlReader {
 		private void initMouseMappings(Element elt) {
 			MouseMappings map = file.getOptions().getMouseMappings();
 			for (Element sub_elt : XmlIterator.forChildElements(elt, "tool")) {
-				Tool tool = toTool(sub_elt);
-				if (tool == null) continue;
+				Tool tool;
+				try {
+					tool = toTool(sub_elt);
+				} catch (XmlReaderException e) {
+					addErrors(e, "mapping");
+					continue;
+				}
 
 				String mods_str = sub_elt.getAttribute("map");
 				if (mods_str == null || mods_str.equals("")) {
@@ -207,7 +235,11 @@ class XmlReader {
 				}
 
 				tool = tool.cloneTool();
-				initAttributeSet(sub_elt, tool.getAttributeSet(), tool);
+				try {
+					initAttributeSet(sub_elt, tool.getAttributeSet(), tool);
+				} catch (XmlReaderException e) {
+					addErrors(e, "mapping." + tool.getName());
+				}
 
 				map.setToolFor(mods, tool);
 			}
@@ -219,29 +251,48 @@ class XmlReader {
 				if (sub_elt.getTagName().equals("sep")) {
 					toolbar.addSeparator();
 				} else if (sub_elt.getTagName().equals("tool")) {
-					Tool tool = toTool(sub_elt);
-					if (tool == null) continue;
-					tool = tool.cloneTool();
-					initAttributeSet(sub_elt, tool.getAttributeSet(), tool);
-					toolbar.addTool(tool);
+					Tool tool;
+					try {
+						tool = toTool(sub_elt);
+					} catch (XmlReaderException e) {
+						addErrors(e, "toolbar");
+						continue;
+					}
+					if (tool != null) {
+						tool = tool.cloneTool();
+						try {
+							initAttributeSet(sub_elt, tool.getAttributeSet(), tool);
+						} catch (XmlReaderException e) {
+							addErrors(e, "toolbar." + tool.getName());
+						}
+						toolbar.addTool(tool);
+					}
 				}
 			}
 		}
 
-		Tool toTool(Element elt) {
+		Tool toTool(Element elt) throws XmlReaderException {
 			Library lib = findLibrary(elt.getAttribute("lib"));
-			if (lib == null) return null;
-			String tool_name = elt.getAttribute("name");
-			if (tool_name == null || tool_name.equals("")) return null;
-			return lib.getTool(tool_name);
+			String name = elt.getAttribute("name");
+			if (name == null || name.equals("")) {
+				throw new XmlReaderException(Strings.get("toolNameMissing"));
+			}
+			Tool tool = lib.getTool(name);
+			if (tool == null) {
+				throw new XmlReaderException(Strings.get("toolNotFound"));
+			}
+			return tool;
 		}
 		
 		void initAttributeSet(Element parentElt, AttributeSet attrs,
-				AttributeDefaultProvider defaults) {
+				AttributeDefaultProvider defaults) throws XmlReaderException {
+			ArrayList<String> messages = null;
+			
 			HashMap<String,String> attrsDefined = new HashMap<String,String>();
 			for (Element attrElt : XmlIterator.forChildElements(parentElt, "a")) {
 				if (!attrElt.hasAttribute("name")) {
-					loader.showError(Strings.get("attrNameMissingError"));
+					if (messages == null) messages = new ArrayList<String>();
+					messages.add(Strings.get("attrNameMissingError"));
 				} else {
 					String attrName = attrElt.getAttribute("name");
 					String attrVal;
@@ -281,32 +332,30 @@ class XmlReader {
 						Object val = attr.parse(attrVal);
 						attrs.setValue(attr, val);
 					} catch (NumberFormatException e) {
-						loader.showError(StringUtil.format(
+						if (messages == null) messages = new ArrayList<String>();
+						messages.add(StringUtil.format(
 							Strings.get("attrValueInvalidError"),
 							attrVal, attrName));
-						continue;
 					}
 				}
 			}
+			if (messages != null) {
+				throw new XmlReaderException(messages);
+			}
 		}
 
-		Library findLibrary(String lib_name) {
+		Library findLibrary(String lib_name) throws XmlReaderException {
 			if (lib_name == null || lib_name.equals("")) {
 				return file;
 			}
 
 			Library ret = libs.get(lib_name);
 			if (ret == null) {
-				loader.showError(StringUtil.format(
+				throw new XmlReaderException(StringUtil.format(
 					Strings.get("libMissingError"), lib_name));
-				return null;
 			} else {
 				return ret;
 			}
-		}
-
-		void showError(String errorMessage) {
-			loader.showError(errorMessage);
 		}
 	}
 
@@ -325,6 +374,14 @@ class XmlReader {
 		context.toLogisimFile(elt);
 		if (file.getCircuitCount() == 0) {
 			file.addCircuit(new Circuit("main"));
+		}
+		if (context.messages.size() > 0) {
+			StringBuilder all = new StringBuilder();
+			for (String msg : context.messages) {
+				all.append(msg);
+				all.append("\n");
+			}
+			loader.showError(all.substring(0, all.length() - 1));
 		}
 		return file;
 	}

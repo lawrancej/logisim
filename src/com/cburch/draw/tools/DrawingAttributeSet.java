@@ -39,13 +39,28 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 	
 	private class Restriction extends AbstractAttributeSet
 			implements AttributeListener {
+		private AbstractTool tool;
 		private List<Attribute<?>> selectedAttrs;
 		private List<Attribute<?>> selectedView;
 		
-		Restriction(List<Attribute<?>> attrs) {
-			selectedAttrs = new ArrayList<Attribute<?>>(attrs);
-			selectedView = Collections.unmodifiableList(selectedAttrs);
-			DrawingAttributeSet.this.addAttributeListener(this);
+		Restriction(AbstractTool tool) {
+			this.tool = tool;
+			updateAttributes();
+		}
+		
+		private void updateAttributes() {
+			List<Attribute<?>> toolAttrs;
+			if (tool == null) {
+				toolAttrs = Collections.emptyList();
+			} else {
+				toolAttrs = tool.getAttributes();
+			}
+			if (!toolAttrs.equals(selectedAttrs)) {
+				selectedAttrs = new ArrayList<Attribute<?>>(toolAttrs);
+				selectedView = Collections.unmodifiableList(selectedAttrs);
+				DrawingAttributeSet.this.addAttributeListener(this);
+				fireAttributeListChanged();
+			}
 		}
 
 		@Override
@@ -66,6 +81,7 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 		@Override
 		public <V> void setValue(Attribute<V> attr, V value) {
 			DrawingAttributeSet.this.setValue(attr, value);
+			updateAttributes();
 		}
 
 		//
@@ -81,6 +97,7 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 				Attribute<Object> attr = (Attribute<Object>) e.getAttribute();
 				fireAttributeValueChanged(attr, e.getValue());
 			}
+			updateAttributes();
 		}
 	}
 
@@ -94,8 +111,8 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 		values = DEFAULTS_ALL;
 	}
 	
-	public AttributeSet createSubset(List<Attribute<?>> attrs) {
-		return new Restriction(attrs);
+	public AttributeSet createSubset(AbstractTool tool) {
+		return new Restriction(tool);
 	}
 	
 	public void addAttributeListener(AttributeListener l) {
