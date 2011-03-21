@@ -25,7 +25,10 @@ import com.cburch.draw.model.Handle;
 import com.cburch.draw.util.MatchingSet;
 import com.cburch.draw.util.ZOrder;
 import com.cburch.logisim.circuit.Circuit;
+import com.cburch.logisim.circuit.appear.AppearanceAnchor;
 import com.cburch.logisim.circuit.appear.AppearanceElement;
+import com.cburch.logisim.data.Direction;
+import com.cburch.logisim.data.Location;
 import com.cburch.logisim.gui.main.EditHandler;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.proj.Project;
@@ -123,9 +126,10 @@ public class AppearanceEditHandler extends EditHandler
 	
 	@Override
 	public void paste() {
-		List<CanvasObject> clip = Clipboard.get().getObjects();
-		List<CanvasObject> add = new ArrayList<CanvasObject>(clip.size());
-		for (CanvasObject o : clip) {
+		ClipboardContents clip = Clipboard.get();
+		Collection<CanvasObject> contents = clip.getElements();
+		List<CanvasObject> add = new ArrayList<CanvasObject>(contents.size());
+		for (CanvasObject o : contents) {
 			add.add(o.clone());
 		}
 		if (add.isEmpty()) return;
@@ -134,6 +138,7 @@ public class AppearanceEditHandler extends EditHandler
 		// pasted shapes doesn't match what's already in the model
 		Collection<CanvasObject> raw = canvas.getModel().getObjectsFromBottom(); 
 		MatchingSet<CanvasObject> cur = new MatchingSet<CanvasObject>(raw);
+		int dx = 0;
 		while (true) {
 			// if any shapes in "add" aren't in canvas, we are done
 			boolean allMatch = true;
@@ -149,10 +154,17 @@ public class AppearanceEditHandler extends EditHandler
 			for (CanvasObject o : add) {
 				o.translate(10, 10);
 			}
-		}	
+			dx += 10;
+		}
+		
+		Location anchorLocation = clip.getAnchorLocation();
+		if (anchorLocation != null && dx != 0) {
+			anchorLocation = anchorLocation.translate(dx, dx);
+		}
 			
 		canvas.getProject().doAction(new SelectionAction(canvas,
-				Strings.getter("pasteClipboardAction"), null, add, add));
+				Strings.getter("pasteClipboardAction"), null, add, add,
+				anchorLocation, clip.getAnchorFacing()));
 	}
 	
 	@Override
@@ -161,17 +173,25 @@ public class AppearanceEditHandler extends EditHandler
 		int n = sel.getSelected().size();
 		List<CanvasObject> select = new ArrayList<CanvasObject>(n);
 		List<CanvasObject> remove = new ArrayList<CanvasObject>(n);
+		Location anchorLocation = null;
+		Direction anchorFacing = null;
 		for (CanvasObject o : sel.getSelected()) {
 			if (o.canRemove()) {
 				remove.add(o);
 			} else {
 				select.add(o);
+				if (o instanceof AppearanceAnchor) {
+					AppearanceAnchor anchor = (AppearanceAnchor) o;
+					anchorLocation = anchor.getLocation();
+					anchorFacing = anchor.getFacing();
+				}
 			}
 		}
 		
 		if (!remove.isEmpty()) {
 			canvas.getProject().doAction(new SelectionAction(canvas,
-				Strings.getter("deleteSelectionAction"), remove, null, select));
+				Strings.getter("deleteSelectionAction"), remove, null, select,
+				anchorLocation, anchorFacing));
 		}
 	}
 	
@@ -194,7 +214,8 @@ public class AppearanceEditHandler extends EditHandler
 		
 		if (!clones.isEmpty()) {
 			canvas.getProject().doAction(new SelectionAction(canvas,
-				Strings.getter("duplicateSelectionAction"), null, clones, select));
+				Strings.getter("duplicateSelectionAction"), null, clones, select,
+				null, null));
 		}
 	}
 	

@@ -14,9 +14,14 @@ public class SmallSet<E> extends AbstractSet<E> {
 
 	private class ArrayIterator implements Iterator<E> {
 		int itVersion = version;
+		Object myValues;
 		int pos = 0; // position of next item to return
 		boolean hasNext = true;
 		boolean removeOk = false;
+		
+		private ArrayIterator() {
+			myValues = values;
+		}
 		
 		public boolean hasNext() {
 			return hasNext;
@@ -32,11 +37,11 @@ public class SmallSet<E> extends AbstractSet<E> {
 				hasNext = false;
 				removeOk = true;
 				@SuppressWarnings("unchecked")
-				E ret = (E) values;
+				E ret = (E) myValues;
 				return ret;
 			} else {
 				@SuppressWarnings("unchecked")
-				E ret = ((E[]) values)[pos];
+				E ret = ((E[]) myValues)[pos];
 				++pos;
 				hasNext = pos < size;
 				removeOk = true;
@@ -58,7 +63,8 @@ public class SmallSet<E> extends AbstractSet<E> {
 			} else {
 				Object[] vals = (Object[]) values;
 				if (size == 2) {
-					values = (pos == 2 ? vals[0] : vals[1]);
+					myValues = (pos == 2 ? vals[0] : vals[1]);
+					values = myValues;
 					size = 1;
 				} else {
 					for (int i = pos; i < size; i++) {
@@ -101,14 +107,16 @@ public class SmallSet<E> extends AbstractSet<E> {
 	
 	@Override
 	public Object[] toArray() {
-		if (size == 1) {
-			return new Object[] { this.values };
-		} else if (size <= HASH_POINT) {
-			Object[] ret = new Object[size];
-			System.arraycopy(this.values, 0, ret, 0, size);
+		Object vals = values;
+		int sz = size;
+		if (sz == 1) {
+			return new Object[] { vals };
+		} else if (sz <= HASH_POINT) {
+			Object[] ret = new Object[sz];
+			System.arraycopy(vals, 0, ret, 0, sz);
 			return ret;
 		} else {
-			HashSet<?> hash = (HashSet<?>) this.values;
+			HashSet<?> hash = (HashSet<?>) vals;
 			return hash.toArray();
 		}
 	}
@@ -140,15 +148,19 @@ public class SmallSet<E> extends AbstractSet<E> {
 	
 	@Override
 	public boolean add(E value) {
-		if (size < 2) {
-			Object vals = values;
-			if (size == 0) {
+		int oldSize = size;
+		Object oldValues = values;
+		int newVersion = version + 1;
+		
+		if (oldSize < 2) {
+			if (oldSize == 0) {
 				values = value;
 				size = 1;
-				++version;
+				version = newVersion;
 				return true;
 			} else {
-				if (vals.equals(value)) {
+				Object curValue = oldValues;
+				if (curValue.equals(value)) {
 					return false;
 				} else {
 					Object[] newValues = new Object[HASH_POINT];
@@ -156,35 +168,37 @@ public class SmallSet<E> extends AbstractSet<E> {
 					newValues[1] = value;
 					values = newValues;
 					size = 2;
-					++version;
+					version = newVersion;
 					return true;
 				}
 			}
-		} else if (size <= HASH_POINT) {
+		} else if (oldSize <= HASH_POINT) {
 			@SuppressWarnings("unchecked")
-			E[] vals = (E[]) values;
-			for (int i = 0; i < size; i++) {
-				if (vals[i].equals(value)) return false;
+			E[] vals = (E[]) oldValues;
+			for (int i = 0; i < oldSize; i++) {
+				Object val = vals[i];
+				boolean same = val == null ? value == null : val.equals(value);
+				if (same) return false;
 			}
-			if (size < HASH_POINT) {
-				vals[size] = value;
-				++size;
-				++version;
+			if (oldSize < HASH_POINT) {
+				vals[oldSize] = value;
+				size = oldSize + 1;
+				version = newVersion;
 				return true;
 			} else {
 				HashSet<E> newValues = new HashSet<E>();
-				for (int i = 0; i < size; i++) newValues.add(vals[i]);
+				for (int i = 0; i < oldSize; i++) newValues.add(vals[i]);
 				newValues.add(value);
 				values = newValues;
-				++size;
-				++version;
+				size = oldSize + 1;
+				version = newVersion;
 				return true;
 			}
 		} else {
 			@SuppressWarnings("unchecked")
-			HashSet<E> vals = (HashSet<E>) values;
+			HashSet<E> vals = (HashSet<E>) oldValues;
 			if (vals.add(value)) {
-				++version;
+				version = newVersion;
 				return true;
 			} else {
 				return false;

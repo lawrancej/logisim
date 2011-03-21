@@ -280,7 +280,13 @@ public class CircuitState implements InstanceData {
 	}
 
 	public void markComponentAsDirty(Component comp) {
-		dirtyComponents.add(comp);
+		try {
+			dirtyComponents.add(comp);
+		} catch (RuntimeException e) {
+			SmallSet<Component> set = new SmallSet<Component>();
+			set.add(comp);
+			dirtyComponents = set;
+		}
 	}
 
 	public void markComponentsDirty(Collection<Component> comps) {
@@ -320,10 +326,25 @@ public class CircuitState implements InstanceData {
 		if (!dirtyComponents.isEmpty()) {
 			// This seeming wasted copy is to avoid ConcurrentModifications
 			// if we used an iterator instead.
-			Component[] toProcess = dirtyComponents.toArray(new Component[0]);
+			Object[] toProcess;
+			RuntimeException firstException = null;
+			for (int tries = 4; true; tries--) {
+				try {
+					toProcess = dirtyComponents.toArray();
+					break;
+				} catch (RuntimeException e) {
+					if (firstException == null) firstException = e;
+					if (tries == 0) {
+						toProcess = new Object[0];
+						dirtyComponents = new SmallSet<Component>();
+						throw firstException;
+					}
+				}
+			}
 			dirtyComponents.clear();
-			for (Component comp : toProcess) {
-				if (comp != null) {
+			for (Object compObj : toProcess) {
+				if (compObj instanceof Component) {
+					Component comp = (Component) compObj;
 					comp.propagate(this);
 					if (comp.getFactory() instanceof Pin && parentState != null) {
 						// should be propagated in superstate

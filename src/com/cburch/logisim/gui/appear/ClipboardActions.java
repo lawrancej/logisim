@@ -4,12 +4,14 @@
 package com.cburch.logisim.gui.appear;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.util.ZOrder;
+import com.cburch.logisim.circuit.appear.AppearanceAnchor;
+import com.cburch.logisim.data.Direction;
+import com.cburch.logisim.data.Location;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 
@@ -26,26 +28,32 @@ public class ClipboardActions extends Action {
 	private boolean remove;
 	private AppearanceCanvas canvas;
 	private CanvasModel canvasModel;
-	private List<CanvasObject> oldClipboard;
+	private ClipboardContents oldClipboard;
 	private Map<CanvasObject, Integer> affected;
-	private List<CanvasObject> newClipboard;
+	private ClipboardContents newClipboard;
 
 	private ClipboardActions(boolean remove, AppearanceCanvas canvas) {
 		this.remove = remove;
 		this.canvas = canvas;
 		this.canvasModel = canvas.getModel();
 		
-		ArrayList<CanvasObject> newClip = new ArrayList<CanvasObject>();
+		ArrayList<CanvasObject> contents = new ArrayList<CanvasObject>();
+		Direction anchorFacing = null;
+		Location anchorLocation = null;
 		ArrayList<CanvasObject> aff = new ArrayList<CanvasObject>();
 		for (CanvasObject o : canvas.getSelection().getSelected()) {
 			if (o.canRemove()) {
 				aff.add(o);
-				newClip.add(o.clone());
+				contents.add(o.clone());
+			} else if (o instanceof AppearanceAnchor) {
+				AppearanceAnchor anch = (AppearanceAnchor) o;
+				anchorFacing = anch.getFacing();
+				anchorLocation = anch.getLocation();
 			}
 		}
-		newClip.trimToSize();
+		contents.trimToSize();
 		affected = ZOrder.getZIndex(aff, canvasModel);
-		newClipboard = newClip;
+		newClipboard = new ClipboardContents(contents, anchorLocation, anchorFacing);
 	}
 	
 	@Override
@@ -59,7 +67,7 @@ public class ClipboardActions extends Action {
 	
 	@Override
 	public void doIt(Project proj) {
-		oldClipboard = new ArrayList<CanvasObject>(Clipboard.get().getObjects());
+		oldClipboard = Clipboard.get();
 		Clipboard.set(newClipboard);
 		if (remove) {
 			canvasModel.removeObjects(affected.keySet());

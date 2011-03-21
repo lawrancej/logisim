@@ -308,9 +308,18 @@ class SelectionBase {
 			int dx, int dy) {
 		HashMap<Component,Component> ret = new HashMap<Component,Component>();
 		for (Component comp : components) {
-			Component copy = comp.getFactory().createComponent(
-					comp.getLocation().translate(dx, dy),
-					(AttributeSet) comp.getAttributeSet().clone());
+			Location oldLoc = comp.getLocation();
+			AttributeSet attrs = (AttributeSet) comp.getAttributeSet().clone();
+			int newX = oldLoc.getX() + dx;
+			int newY = oldLoc.getY() + dy;
+			Object snap = comp.getFactory().getFeature(ComponentFactory.SHOULD_SNAP, attrs);
+			if (snap == null || ((Boolean) snap).booleanValue()) {
+				newX = Canvas.snapXToGrid(newX);
+				newY = Canvas.snapYToGrid(newY);
+			}
+			Location newLoc = Location.create(newX, newY);
+			
+			Component copy = comp.getFactory().createComponent(newLoc, attrs);
 			ret.put(comp, copy);
 		}
 		return ret;

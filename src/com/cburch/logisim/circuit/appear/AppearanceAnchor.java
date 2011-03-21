@@ -20,8 +20,8 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.UnmodifiableList;
 
-class AppearanceAnchor extends AppearanceElement {
-	static final Attribute<Direction> FACING
+public class AppearanceAnchor extends AppearanceElement {
+	public static final Attribute<Direction> FACING
 		= Attributes.forDirection("facing", Strings.getter("appearanceFacingAttr"));
 	static final List<Attribute<?>> ATTRIBUTES
 		= UnmodifiableList.create(new Attribute<?>[] { FACING });

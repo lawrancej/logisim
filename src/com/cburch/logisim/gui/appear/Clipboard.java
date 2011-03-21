@@ -4,36 +4,28 @@
 package com.cburch.logisim.gui.appear;
 
 import java.beans.PropertyChangeListener;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
-import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.util.PropertyChangeWeakSupport;
-import com.cburch.logisim.util.UnmodifiableList;
 
 class Clipboard {
+	private Clipboard() { }
+	
 	public static final String contentsProperty = "appearance";
 	
-	private static Clipboard current
-		= new Clipboard(Collections.<CanvasObject>emptySet());
+	private static ClipboardContents current = ClipboardContents.EMPTY;
 	private static PropertyChangeWeakSupport propertySupport
 		= new PropertyChangeWeakSupport(Clipboard.class);
 	
 	public static boolean isEmpty() {
-		return current == null || current.objects.isEmpty();
+		return current == null || current.getElements().isEmpty();
 	}
 	
-	public static Clipboard get() {
+	public static ClipboardContents get() {
 		return current;
 	}
 	
-	public static void set(Collection<CanvasObject> value) {
-		set(new Clipboard(value));
-	}
-	
-	public static void set(Clipboard value) {
-		Clipboard old = current;
+	public static void set(ClipboardContents value) {
+		ClipboardContents old = current;
 		current = value;
 		propertySupport.firePropertyChange(contentsProperty, old, current);
 	}
@@ -52,20 +44,5 @@ class Clipboard {
 	}
 	public static void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
 		propertySupport.removePropertyChangeListener(propertyName, listener);
-	}
-
-	//
-	// instance variables and methods
-	//
-	private List<CanvasObject> objects;
-	
-	private Clipboard(Collection<CanvasObject> selected) {
-		CanvasObject[] sel = new CanvasObject[selected.size()];
-		sel = selected.toArray(sel);
-		objects = UnmodifiableList.create(sel);
-	}
-	
-	public List<CanvasObject> getObjects() {
-		return objects;
 	}
 }
