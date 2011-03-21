@@ -114,7 +114,7 @@ public class Implicant implements Comparable<Implicant> {
 		for (int i = cols - 1; i >= 0; i--) {
 			if ((unknowns & (1 << i)) == 0) {
 				Expression literal = Expressions.variable(source.getInputHeader(cols - 1 - i));
-				if ((values & (1 << i)) == 1) literal = Expressions.not(literal);
+				if ((values & (1 << i)) != 0) literal = Expressions.not(literal);
 				term = Expressions.or(term, literal);
 			}
 		}
