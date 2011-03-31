@@ -86,6 +86,14 @@ public class Bounds {
 	public int getHeight() {
 		return ht;
 	}
+	
+	public int getCenterX() {
+		return x + wid / 2;
+	}
+	
+	public int getCenterY() {
+		return y + ht / 2;
+	}
 
 	public Rectangle toRectangle() {
 		return new Rectangle(x, y, wid, ht);
