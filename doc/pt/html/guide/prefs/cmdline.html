@@ -39,15 +39,16 @@ java-jar <em> jarFileName <b> </b> </em> -plain -gates shaped -locale en
 <dd> <p> Serve para configura que tipo de portas será usado. 
 </p> </dd>
 
-<b> <em> <dt> <tt> locale LocaleIdentifier </b> </em> </tt> </dt>
+<dt> <tt>-locale <em> <b> LocaleIdentifier </b> </em> </tt> </dt>
 <dd> <p> Serve para configurar o idioma para o uso. Assim como este documento, os
 idiomas disponíveis são: </p>
 <center> <table>
-<tr> <td> <tt> de </tt> Alemão </td> </tr>
-<tr> <td> <tt> en </tt> Inglês </td> </tr>
-<tr> <td> <tt> es </tt> Espanhol </td> </tr>
-<tr> <td> <tt> pt </tt> Português (Brasil) </td> </tr>
-<tr> <td> <tt> ru </tt> Russo <td> </td> </tr>
+<tr><th><tt>de</tt></th><td>Alemão</td></tr>
+<tr><th><tt>en</tt></th><td>Inglês</td></tr>
+<tr><th><tt>el</tt></th><td>Grego</td></tr>
+<tr><th><tt>es</tt></th><td>Espanhol</td></tr>
+<tr><th><tt>pt</tt></th><td>Português (Brasil)</td></tr>
+<tr><th><tt>ru</tt></th><td>Russo</td></tr>
 </table> </center> </dd>
 
 <dt> <tt>-accents <em> [<b> yes </b> | <b> no </b>] </em> </tt> </dt>
@@ -59,6 +60,11 @@ serão substituídos por equivalentes adequados à linguagem;
 isso seria útil para as combinações Java/SO onde esses caracteres também
 não forem disponíveis.
 </p> </dd>
+
+<dt><tt>-clearprops</tt></dt>
+<dd><p>Limpar todas as preferências da aplicação ao iniciar, de modo que o 
+Logisim funcionará como se estivesse sendo executado pela primeira vez.
+</p></dd>
 
 <dt> <tt>-nosplash </tt> </dt>
 <dd> <p> Serve para ocultar a tela de apresentação inicial do Logisim. 

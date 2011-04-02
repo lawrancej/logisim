@@ -67,6 +67,9 @@ e as teclas com setas poderão alterar o seu atributo <q> Direção</q>.
 <dt> Direção </dt>
 <dd> A direção do componente (especificará qual dos lados terá as saídas). </dd>
 
+<dt> Posição da seleção</dt>
+<dd> Posições das linhas de seleção e de habilitação relativas ao componente.</dd>
+
 <dt> Bits Selecionados </dt>
 <dd> A largura em bits da entrada selecionada do componente na face sul.
 O número de saídas para o demultiplexador será 
@@ -86,6 +89,12 @@ componente estiver desabilitado (ou seja, quando o pino de habilitação estiver
 em 0). Opções incluem zero e flutuante; e neste caso, as saídas estarão 
 efetivamente desconectadas de quaisquer outras portas.
 </dd>
+
+<dt> Incluir Enable? </dt>
+<dd> O componente terá uma linha de habilitação (enable) quando este atributo
+for <q>"yes" (sim).</q>
+Esse atributo é oferecido para dar suporte a circuitos feitos em versões anteriores
+do Logisim que não possuírem essa entrada.</dd>
 
 </dl>
 
