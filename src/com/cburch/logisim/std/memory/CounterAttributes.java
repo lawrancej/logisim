@@ -69,17 +69,17 @@ class CounterAttributes extends AbstractAttributeSet {
 			}
 			fireAttributeValueChanged(StdAttr.WIDTH, newWidth);
 		} else if (attr == Counter.ATTR_MAX) {
-			int oldVal = ((Integer) value).intValue();
+			int oldVal = base.getValue(Counter.ATTR_MAX).intValue();
 			BitWidth width = base.getValue(StdAttr.WIDTH);
-			int newVal = oldVal & width.getMask();
+			int newVal = ((Integer) value).intValue() & width.getMask();
 			if (newVal != oldVal) {
 				@SuppressWarnings("unchecked")
 				V val = (V) Integer.valueOf(newVal);
 				value = val;
 			}
-			fireAttributeValueChanged(attr, value);
 		}
 		base.setValue(attr, value);
+		fireAttributeValueChanged(attr, value);
 		if (newMax != null) {
 			base.setValue(Counter.ATTR_MAX, newMax);
 			fireAttributeValueChanged(Counter.ATTR_MAX, newMax);

@@ -115,7 +115,9 @@ public class AttrTable extends JPanel implements LocaleListener {
 		void setAttrTableModel(AttrTableModel value) {
 			if (attrModel != value) {
 				TableCellEditor editor = table.getCellEditor();
-				if (editor != null) editor.cancelCellEditing();
+				if (editor != null) {
+					editor.cancelCellEditing();
+				}
 				attrModel.removeAttrTableModelListener(this);
 				attrModel = value;
 				attrModel.addAttrTableModelListener(this);
@@ -196,6 +198,10 @@ public class AttrTable extends JPanel implements LocaleListener {
 				attrModel.removeAttrTableModelListener(this);
 				return;
 			}
+			TableCellEditor ed = table.getCellEditor();
+			if (ed != null) {
+				ed.cancelCellEditing();
+			}
 			fireTableChanged();
 		}
 		
@@ -203,6 +209,12 @@ public class AttrTable extends JPanel implements LocaleListener {
 			if (e.getSource() != attrModel) {
 				attrModel.removeAttrTableModelListener(this);
 				return;
+			}
+			int row = e.getRowIndex();
+			TableCellEditor ed = table.getCellEditor();
+			if (row >= 0 && ed instanceof CellEditor
+					&& attrModel.getRow(row) == ((CellEditor) ed).currentRow) {
+				ed.cancelCellEditing();
 			}
 			fireTableChanged();
 		}

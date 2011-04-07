@@ -5,6 +5,7 @@ package com.cburch.draw.shapes;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Locale;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -183,6 +184,7 @@ class SvgCreator {
 	}
 	
 	private static String getOpacityString(Color color) {
-		return String.format("%5.3f", Double.valueOf(color.getAlpha() / 255.0));
+		double alpha = color.getAlpha() / 255.0;
+		return String.format(Locale.US, "%5.3f", Double.valueOf(alpha));
 	}
 }

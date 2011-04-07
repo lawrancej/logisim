@@ -242,7 +242,25 @@ public class SvgReader {
 		if (opacity == null || opacity.equals("")) {
 			a = 255;
 		} else {
-			a = (int) Math.round(Double.parseDouble(opacity) * 255);
+			double x;
+			try {
+				x = Double.parseDouble(opacity);
+			} catch (NumberFormatException e) {
+				// some localizations use commas for decimal points
+				int comma = opacity.lastIndexOf(',');
+				if (comma >= 0) {
+					try {
+						String repl = opacity.substring(0, comma) + "."
+							+ opacity.substring(comma + 1);
+						x = Double.parseDouble(repl);
+					} catch (Throwable t) {
+						throw e;
+					}
+				} else {
+					throw e;
+				}
+			}
+			a = (int) Math.round(x * 255);
 		}
 		return new Color(r, g, b, a);
 	}
