@@ -3,7 +3,7 @@
 <tmx version="1.1">
   <header
     creationtool="OmegaT"
-    creationtoolversion="2.1.9"
+    creationtoolversion="2.2.3_4"
     segtype="sentence"
     o-tmf="OmegaT TMX"
     adminlang="EN-US"
@@ -1062,6 +1062,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Bottom/Left</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110315T183436Z" changeid="lilovip">
+        <seg>Снизу/слева</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Bottom/Right</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20110210T095259Z" changeid="lilovip">
@@ -1822,6 +1830,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Components Not Pasted</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110320T192508Z" changeid="lilovip">
+        <seg>Компоненты не вставлены</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Computing Image...</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -2216,8 +2232,8 @@
       <tuv lang="EN">
         <seg>D Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>D триггер</seg>
+      <tuv lang="RU-RU" changedate="20110407T122104Z" changeid="lilovip">
+        <seg>D-триггер</seg>
       </tuv>
     </tu>
     <tu>
@@ -3470,6 +3486,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Ignore</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110320T192404Z" changeid="lilovip">
+        <seg>Игнорировать</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Ignore undefined inputs</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100809T154335Z" changeid="lilovip">
@@ -3728,8 +3752,8 @@
       <tuv lang="EN">
         <seg>J-K Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>J-K триггер</seg>
+      <tuv lang="RU-RU" changedate="20110407T122111Z" changeid="lilovip">
+        <seg>JK-триггер</seg>
       </tuv>
     </tu>
     <tu>
@@ -5798,6 +5822,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Replace</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110320T192402Z" changeid="lilovip">
+        <seg>Заменить</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Replace &quot;%s&quot;</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100824T140052Z" changeid="lilovip">
@@ -6008,8 +6040,8 @@
       <tuv lang="EN">
         <seg>S-R Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>S-R триггер</seg>
+      <tuv lang="RU-RU" changedate="20110407T122050Z" changeid="lilovip">
+        <seg>RS-триггер</seg>
       </tuv>
     </tu>
     <tu>
@@ -6146,6 +6178,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20100730T131356Z" changeid="lilovip">
         <seg>Выгрузить библиотеки</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Select Location</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110315T183416Z" changeid="lilovip">
+        <seg>Положение выбирающего входа</seg>
       </tuv>
     </tu>
     <tu>
@@ -6598,6 +6638,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Some clipboard components were not pasted because the project libraries do not support them:</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110320T192448Z" changeid="lilovip">
+        <seg>Некоторые компоненты из буфера обмена не были вставлены, поскольку библиотеки проекта не поддерживают их:</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>South</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -6744,8 +6792,8 @@
       <tuv lang="EN">
         <seg>T Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>T триггер</seg>
+      <tuv lang="RU-RU" changedate="20110407T122108Z" changeid="lilovip">
+        <seg>T-триггер</seg>
       </tuv>
     </tu>
     <tu>
@@ -6918,6 +6966,14 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>The clipboard includes &quot;%s.&quot; The project doesn't include it, but it has another of the same name.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110320T192359Z" changeid="lilovip">
+        <seg>Буфер обмена содержит &quot;%s.&quot; В проекте его нет, но есть другой с тем же именем.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>The directory could not be created.</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -7078,6 +7134,22 @@
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Tool name not provided</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110320T192234Z" changeid="lilovip">
+        <seg>Название инструмента не указано</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Tool not found in library</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110320T192240Z" changeid="lilovip">
+        <seg>Инструмент не найден в библиотеке</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Tool: %s</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20110216T035014Z" changeid="lilovip">
@@ -7138,6 +7210,14 @@
       </tuv>
       <tuv lang="RU-RU" changedate="20110210T095307Z" changeid="lilovip">
         <seg>Сверху/слева</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>Top/Right</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110315T183425Z" changeid="lilovip">
+        <seg>Сверху/справа</seg>
       </tuv>
     </tu>
     <tu>

@@ -3,7 +3,7 @@
 <tmx version="1.1">
   <header
     creationtool="OmegaT"
-    creationtoolversion="2.1.9"
+    creationtoolversion="2.2.3_4"
     segtype="sentence"
     o-tmf="OmegaT TMX"
     adminlang="EN-US"
@@ -296,8 +296,8 @@
       <tuv lang="EN">
         <seg>&lt;s0&gt;J-K Flip-Flop:&lt;/s0&gt; When the clock triggers, the value remembered by the flip-flop toggles if the &lt;v1&gt;J&lt;/v1&gt; and &lt;v2&gt;K&lt;/v2&gt; inputs are both 1 and the value remains the same if both are 0; if they are different, then the value becomes 1 if the &lt;v3&gt;J&lt;/v3&gt; (&lt;e4&gt;Jump&lt;/e4&gt;) input is 1 and 0 if the &lt;v5&gt;K&lt;/v5&gt; (&lt;e6&gt;Kill&lt;/e6&gt;) input is 1.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100818T091618Z" changeid="lilovip">
-        <seg>&lt;s0&gt;J-K триггер:&lt;/s0&gt; когда тактовый вход срабатывает, значение, хранящееся в триггере, меняется, если на входах &lt;v1&gt;J&lt;/v1&gt; и &lt;v2&gt;K&lt;/v2&gt; единица; остаётся прежним, если на них 0; если значения на них различны, то значение становится единицей, если на входе &lt;v3&gt;J&lt;/v3&gt; (&lt;e4&gt;Прыжок&lt;/e4&gt;) - 1; или нулём, если на входе &lt;v5&gt;K&lt;/v5&gt; (&lt;e6&gt;Забой&lt;/e6&gt;) - 1.</seg>
+      <tuv lang="RU-RU" changedate="20110407T152014Z" changeid="lilovip">
+        <seg>&lt;s0&gt;JK-триггер:&lt;/s0&gt; когда тактовый вход срабатывает, значение, хранящееся в триггере, меняется, если на входах &lt;v1&gt;J&lt;/v1&gt; и &lt;v2&gt;K&lt;/v2&gt; единица; остаётся прежним, если на них 0; если значения на них различны, то значение становится единицей, если на входе &lt;v3&gt;J&lt;/v3&gt; (&lt;e4&gt;Прыжок&lt;/e4&gt;) - 1; или нулём, если на входе &lt;v5&gt;K&lt;/v5&gt; (&lt;e6&gt;Забой&lt;/e6&gt;) - 1.</seg>
       </tuv>
     </tu>
     <tu>
@@ -1188,8 +1188,8 @@ make exceptions for this.</seg>
       <tuv lang="EN">
         <seg>Logisim supports two types of transistors, with slightly different behaviors described below; the P-type transistor is indicated by a circle connecting the &lt;e8&gt;gate&lt;/e8&gt; input to its plate, while the N-type transistor has no such circle.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20110210T114059Z" changeid="lilovip">
-        <seg>Logisim поддерживает два типа транзисторов с немного различным поведениями, описанными ниже; транзистор p-типа обозначен кружком, соединяющим вход &lt;e8&gt;затвор&lt;/e8&gt; с его пластиной, а транзистор n-типа не имеет такого кружка.</seg>
+      <tuv lang="RU-RU" changedate="20110307T205145Z" changeid="lilovip">
+        <seg>Logisim поддерживает два типа транзисторов с немного различными поведениями, описанными ниже; транзистор p-типа обозначен кружком, соединяющим вход &lt;e8&gt;затвор&lt;/e8&gt; с его пластиной, а транзистор n-типа не имеет такого кружка.</seg>
       </tuv>
     </tu>
     <tu>
@@ -3840,8 +3840,8 @@ covered by this License; they are outside its scope.</seg>
       <tuv lang="EN">
         <seg>&lt;s0&gt;S-R Flip-Flop:&lt;/s0&gt; When the clock triggers, the value remembered by the flip-flop remains unchanged if &lt;v1&gt;R&lt;/v1&gt; and &lt;v2&gt;S&lt;/v2&gt; are both 0, becomes 0 if the &lt;v3&gt;R&lt;/v3&gt; input (&lt;e4&gt;Reset&lt;/e4&gt;) is 1, and becomes 1 if the &lt;v5&gt;S&lt;/v5&gt; input (&lt;e6&gt;Set&lt;/e6&gt;) is 1.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100813T071717Z" changeid="lilovip">
-        <seg>&lt;s0&gt;S-R триггер:&lt;/s0&gt; когда тактовый вход срабатывает, значение, хранящееся в триггере, остаётся неизменным, если на входах &lt;v1&gt;R&lt;/v1&gt; и &lt;v2&gt;S&lt;/v2&gt; - 0; становится 0, если на входе &lt;v3&gt;R&lt;/v3&gt; (&lt;e4&gt;Сброс&lt;/e4&gt;) - 1, и становится 1, если на входе &lt;v5&gt;S&lt;/v5&gt; (&lt;e6&gt;Установка&lt;/e6&gt;) - 1.</seg>
+      <tuv lang="RU-RU" changedate="20110407T152028Z" changeid="lilovip">
+        <seg>&lt;s0&gt;RS-триггер:&lt;/s0&gt; когда тактовый вход срабатывает, значение, хранящееся в триггере, остаётся неизменным, если на входах &lt;v1&gt;R&lt;/v1&gt; и &lt;v2&gt;S&lt;/v2&gt; - 0; становится 0, если на входе &lt;v3&gt;R&lt;/v3&gt; (&lt;e4&gt;Сброс&lt;/e4&gt;) - 1, и становится 1, если на входе &lt;v5&gt;S&lt;/v5&gt; (&lt;e6&gt;Установка&lt;/e6&gt;) - 1.</seg>
       </tuv>
     </tu>
     <tu>
@@ -3984,8 +3984,8 @@ covered by this License; they are outside its scope.</seg>
       <tuv lang="EN">
         <seg>D/T/J-K/S-R Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>D/T/J-K/S-R триггеры</seg>
+      <tuv lang="RU-RU" changedate="20110407T122226Z" changeid="lilovip">
+        <seg>D/T/JK/RS триггеры</seg>
       </tuv>
     </tu>
     <tu>
@@ -4420,6 +4420,14 @@ be a consequence of the rest of this License.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100813T023507Z" changeid="lilovip">
         <seg>Это значение всегда будет между 0 и &lt;v0&gt;делитель&lt;/v0&gt;-1.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>The location of the select and enable lines relative to the component.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110315T183825Z" changeid="lilovip">
+        <seg>Положение выбирающего и разрешающего входов относительно компонента.</seg>
       </tuv>
     </tu>
     <tu>
@@ -5322,8 +5330,8 @@ these terms and conditions.</seg>
       <tuv lang="EN">
         <seg>The component's output, which will match the &lt;e0&gt;source&lt;/e0&gt; input if &lt;e1&gt;p-gate&lt;/e1&gt; is 0 and &lt;e2&gt;n-gate&lt;/e2&gt; is 1, or it will be floating if &lt;e3&gt;p-gate&lt;/e3&gt; is 1 and &lt;e4&gt;n-gate&lt;/e4&gt; is 0.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20110210T125733Z" changeid="lilovip">
-        <seg>Выход компонента, значение на котором будет совпадать со значением на входе &lt;e0&gt;исток&lt;/e0&gt;, если на &lt;e1&gt;p-затворе&lt;/e1&gt; 0 и на &lt;e2&gt;n-затворе&lt;/e2&gt; 1, или будет плавающим, если на  &lt;e3&gt;p-затворе&lt;/e3&gt; 1 и на&lt;e4&gt;n-затворе&lt;/e4&gt; 0.</seg>
+      <tuv lang="RU-RU" changedate="20110315T184604Z" changeid="lilovip">
+        <seg>Выход компонента, значение на котором будет совпадать со значением на входе &lt;e0&gt;исток&lt;/e0&gt;, если на &lt;e1&gt;p-затворе&lt;/e1&gt; 0 и на &lt;e2&gt;n-затворе&lt;/e2&gt; 1, или будет плавающим, если на  &lt;e3&gt;p-затворе&lt;/e3&gt; 1 и на &lt;e4&gt;n-затворе&lt;/e4&gt; 0.</seg>
       </tuv>
     </tu>
     <tu>
@@ -9027,8 +9035,8 @@ entire whole, and thus to each and every part regardless of who wrote it.</seg>
       <tuv lang="EN">
         <seg>J-K Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>J-K триггер</seg>
+      <tuv lang="RU-RU" changedate="20110407T151934Z" changeid="lilovip">
+        <seg>JK-триггер</seg>
       </tuv>
     </tu>
     <tu>
@@ -9091,8 +9099,8 @@ entire whole, and thus to each and every part regardless of who wrote it.</seg>
       <tuv lang="EN">
         <seg>Poking the 0 input to become 1 leads to an instantaneous 1 going into the D flip-flop, and thus the flip-flop's value will toggle every time the circuit input goes from 0 to 1.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100814T212718Z" changeid="lilovip">
-        <seg>Если вы нажмёте на вход чтобы изменить значение с 0 на 1, то на D триггер мгновенно придёт 1, и его значение будет переключаться каждый раз, когда значение на входе схемы меняется с 0 на 1.</seg>
+      <tuv lang="RU-RU" changedate="20110407T122249Z" changeid="lilovip">
+        <seg>Если вы нажмёте на вход чтобы изменить значение с 0 на 1, то на D-триггер мгновенно придёт 1, и его значение будет переключаться каждый раз, когда значение на входе схемы меняется с 0 на 1.</seg>
       </tuv>
     </tu>
     <tu>
@@ -9387,8 +9395,8 @@ entire whole, and thus to each and every part regardless of who wrote it.</seg>
       <tuv lang="EN">
         <seg>&lt;s0&gt;T Flip-Flop:&lt;/s0&gt; When the clock triggers, the value remembered by the flip-flop either toggles or remains the same depending on whether the &lt;v1&gt;T&lt;/v1&gt; input (&lt;e2&gt;Toggle&lt;/e2&gt;) is 1 or 0.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100813T071647Z" changeid="lilovip">
-        <seg>&lt;s0&gt;T триггер:&lt;/s0&gt; когда тактовый вход срабатывает, значение, хранящееся в триггере, меняется или остаётся прежним в зависимости от того, какое значение на входе &lt;v1&gt;T&lt;/v1&gt; (&lt;e2&gt;Переключение&lt;/e2&gt;): 1 или 0.</seg>
+      <tuv lang="RU-RU" changedate="20110407T152007Z" changeid="lilovip">
+        <seg>&lt;s0&gt;T-триггер:&lt;/s0&gt; когда тактовый вход срабатывает, значение, хранящееся в триггере, меняется или остаётся прежним в зависимости от того, какое значение на входе &lt;v1&gt;T&lt;/v1&gt; (&lt;e2&gt;Переключение&lt;/e2&gt;): 1 или 0.</seg>
       </tuv>
     </tu>
     <tu>
@@ -9529,6 +9537,14 @@ entire whole, and thus to each and every part regardless of who wrote it.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Pins (assuming component faces east, select is bottom/left)</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110315T183624Z" changeid="lilovip">
+        <seg>Контакты (предполагается, что компонент направлен на восток, положение выбирающего входа - снизу/слева)</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Logisim allows you to design and simulate digital circuits.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T230001Z" changeid="lilovip">
@@ -9547,8 +9563,8 @@ entire whole, and thus to each and every part regardless of who wrote it.</seg>
       <tuv lang="EN">
         <seg>&lt;s0&gt;D Flip-Flop:&lt;/s0&gt; When the clock triggers, the value remembered by the flip-flop becomes the value of the &lt;v1&gt;D&lt;/v1&gt; input (&lt;e2&gt;Data&lt;/e2&gt;) at that instant.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100813T071637Z" changeid="lilovip">
-        <seg>&lt;s0&gt;D триггер:&lt;/s0&gt; когда тактовый вход срабатывает, значение, хранящееся в триггере, мгновенно становится значением входа &lt;v1&gt;D&lt;/v1&gt; (&lt;e2&gt;Данные&lt;/e2&gt;).</seg>
+      <tuv lang="RU-RU" changedate="20110407T151958Z" changeid="lilovip">
+        <seg>&lt;s0&gt;D-триггер:&lt;/s0&gt; когда тактовый вход срабатывает, значение, хранящееся в триггере, мгновенно становится значением входа &lt;v1&gt;D&lt;/v1&gt; (&lt;e2&gt;Данные&lt;/e2&gt;).</seg>
       </tuv>
     </tu>
     <tu>
@@ -10119,8 +10135,8 @@ using it.</seg>
       <tuv lang="EN">
         <seg>D Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>D триггер</seg>
+      <tuv lang="RU-RU" changedate="20110407T151922Z" changeid="lilovip">
+        <seg>D-триггер</seg>
       </tuv>
     </tu>
     <tu>
@@ -11727,6 +11743,14 @@ collective works based on the Program.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>* &lt;e0&gt;If &lt;e1&gt;source&lt;/e1&gt; is Z, &lt;e2&gt;drain&lt;/e2&gt; is Z; otherwise &lt;e3&gt;drain&lt;/e3&gt; is X.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110315T184037Z" changeid="lilovip">
+        <seg>* &lt;e0&gt;Если на &lt;e1&gt;истоке&lt;/e1&gt; Z, то на &lt;e2&gt;стоке&lt;/e2&gt; Z; в противном случае на &lt;e3&gt;стоке&lt;/e3&gt; X.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>Contents</seg>
       </tuv>
       <tuv lang="RU-RU">
@@ -11849,8 +11873,8 @@ collective works based on the Program.</seg>
       <tuv lang="EN">
         <seg>The level-trigger options are unavailable for the T and J-K flip-flops, because a flip-flop behaves unpredictably when told to toggle for an indeterminate amount of time.</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>Варианты &quot;... уровень&quot; недоступны для T и J-K триггеров, так как триггер ведет себя непредсказуемо, если заставить его переключаться непрерывно на протяжении отрезка времени.</seg>
+      <tuv lang="RU-RU" changedate="20110407T152130Z" changeid="lilovip">
+        <seg>Варианты &quot;Высокий уровень&quot; и &quot;Низкий уровень&quot; недоступны для T и JK триггеров, так как триггер ведет себя непредсказуемо, если заставить его переключаться непрерывно на протяжении отрезка времени.</seg>
       </tuv>
     </tu>
     <tu>
@@ -12217,8 +12241,8 @@ itself accompanies the executable.</seg>
       <tuv lang="EN">
         <seg>&lt;a0&gt;D/T/J-K/S-R Flip-Flop&lt;/a0&gt; &lt;br1&gt;</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100902T155742Z" changeid="lilovip">
-        <seg>&lt;a0&gt;D/T/J-K/S-R триггеры&lt;/a0&gt; &lt;br1&gt;</seg>
+      <tuv lang="RU-RU" changedate="20110407T122330Z" changeid="lilovip">
+        <seg>&lt;a0&gt;D/T/JK/RS триггеры&lt;/a0&gt; &lt;br1&gt;</seg>
       </tuv>
     </tu>
     <tu>
@@ -15016,8 +15040,8 @@ These requirements apply to the modified work as a whole.</seg>
       <tuv lang="EN">
         <seg>T Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>T триггер</seg>
+      <tuv lang="RU-RU" changedate="20110407T151927Z" changeid="lilovip">
+        <seg>T-триггер</seg>
       </tuv>
     </tu>
     <tu>
@@ -15640,6 +15664,14 @@ language.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100902T145922Z" changeid="lilovip">
         <seg>&lt;a2&gt;Разветвители&lt;/a2&gt; &lt;br3&gt;</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>X*</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110315T183835Z" changeid="lilovip">
+        <seg>X*</seg>
       </tuv>
     </tu>
     <tu>
@@ -16767,8 +16799,8 @@ to ask for permission.</seg>
       <tuv lang="EN">
         <seg>Note that the latter two options are unavailable for T and J-K flip-flops.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100816T041918Z" changeid="lilovip">
-        <seg>Обратите внимание, что два последних варианта недоступны для T и J-K триггеров.</seg>
+      <tuv lang="RU-RU" changedate="20110407T152142Z" changeid="lilovip">
+        <seg>Обратите внимание, что два последних варианта недоступны для T и JK триггеров.</seg>
       </tuv>
     </tu>
     <tu>
@@ -16871,8 +16903,8 @@ to ask for permission.</seg>
       <tuv lang="EN">
         <seg>In particular, an R-S latch built using two NOR gates will oscillate without this randomness, as both gates will process their inputs in lockstep.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100811T170514Z" changeid="lilovip">
-        <seg>Например, R-S триггер, построенный с использованием двух элементов ИЛИ-НЕ, будет возбуждаться без этой случайности, так как оба элемента будут обрабатывать свои входы &quot;нога в ногу&quot;.</seg>
+      <tuv lang="RU-RU" changedate="20110407T122302Z" changeid="lilovip">
+        <seg>Например, SR-триггер, построенный с использованием двух элементов ИЛИ-НЕ, будет возбуждаться без этой случайности, так как оба элемента будут обрабатывать свои входы &quot;нога в ногу&quot;.</seg>
       </tuv>
     </tu>
     <tu>
@@ -17947,14 +17979,6 @@ patents.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>In all other cases, &lt;e9&gt;drain&lt;/e9&gt; receives an error output.</seg>
-      </tuv>
-      <tuv lang="RU-RU" changedate="20110210T125104Z" changeid="lilovip">
-        <seg>Во всех остальных случаях со &lt;e9&gt;сток&lt;/e9&gt; поступает значение ошибки.</seg>
-      </tuv>
-    </tu>
-    <tu>
-      <tuv lang="EN">
         <seg>Notice the five dots on the left side of the AND gate.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100811T231628Z" changeid="lilovip">
@@ -18123,7 +18147,7 @@ patents.</seg>
       <tuv lang="EN">
         <seg>Transmission Gate</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20110210T100605Z" changeid="lilovip">
+      <tuv lang="RU-RU" changedate="20110315T184918Z" changeid="lilovip">
         <seg>Передаточный вентиль</seg>
       </tuv>
     </tu>
@@ -19272,8 +19296,8 @@ public class Components extends Library {</seg>
       <tuv lang="EN">
         <seg>But the effect is observable when we use the AND gate's output as an input into the clock of a D flip-flop.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100815T022847Z" changeid="lilovip">
-        <seg>Но этот эффект можно наблюдать, если мы подадим выход элемента И на тактовый вход D триггера.</seg>
+      <tuv lang="RU-RU" changedate="20110407T122238Z" changeid="lilovip">
+        <seg>Но этот эффект можно наблюдать, если мы подадим выход элемента И на тактовый вход D-триггера.</seg>
       </tuv>
     </tu>
     <tu>
@@ -19346,6 +19370,14 @@ public class Components extends Library {</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100808T225904Z" changeid="lilovip">
         <seg>Такты включены</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
+        <seg>In all other cases, &lt;e9&gt;drain&lt;/e9&gt; receives an error output — unless &lt;e10&gt;source&lt;/e10&gt; is floating, in which case &lt;e11&gt;drain&lt;/e11&gt; is floating as well.</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110315T184250Z" changeid="lilovip">
+        <seg>Во всех остальных случаях на &lt;e9&gt;стоке&lt;/e9&gt; значение ошибки — если только на &lt;e10&gt;истоке&lt;/e10&gt; не плавающее значение, в таком случае - на &lt;e11&gt;стоке&lt;/e11&gt; тоже плавающее значение.</seg>
       </tuv>
     </tu>
     <tu>
@@ -20075,8 +20107,8 @@ sections when you distribute them as separate works.</seg>
       <tuv lang="EN">
         <seg>For P-type transistors, the transistor will transmit if the &lt;e1&gt;gate&lt;/e1&gt; value is 0; for N-type transistors, this will trigger the transistor if the &lt;e2&gt;gate&lt;/e2&gt; value is 1.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20110210T120607Z" changeid="lilovip">
-        <seg>Для транзисторов p-типа транзистор будет передавать значение, если значение на &lt;e1&gt;затворе&lt;/e1&gt; - 0; для транзисторов n-типа это будет происходить, если на &lt;e2&gt;затворе&lt;/e2&gt; - 1.</seg>
+      <tuv lang="RU-RU" changedate="20110315T184429Z" changeid="lilovip">
+        <seg>Для транзисторов p-типа транзистор будет передавать значение, если значение на &lt;e1&gt;затворе&lt;/e1&gt; - 0; для транзисторов n-типа это будет происходить, если на &lt;e2&gt;затворе&lt;/e2&gt; 1.</seg>
       </tuv>
     </tu>
     <tu>
@@ -21831,6 +21863,14 @@ modification follow.</seg>
     </tu>
     <tu>
       <tuv lang="EN">
+        <seg>Select Location</seg>
+      </tuv>
+      <tuv lang="RU-RU" changedate="20110315T183753Z" changeid="lilovip">
+        <seg>Положение выбирающего входа</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN">
         <seg>To distinguish the several connecting points for a splitter, we refer to the single connecting point one side as its &lt;e0&gt;combined end&lt;/e0&gt;, and we refer to the multiple connecting points on the other side as its &lt;e1&gt;split ends&lt;/e1&gt;.</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100815T200804Z" changeid="lilovip">
@@ -22074,8 +22114,8 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</seg>
       <tuv lang="EN">
         <seg>It is very idealized, so that a pair of NOR gates in an S-R latch configuration will toggle in lockstep infinitely, rather than the circuit eventually settle into a stable state.</seg>
       </tuv>
-      <tuv lang="RU-RU" changedate="20100811T203836Z" changeid="lilovip">
-        <seg>Он очень идеализирован, так что пара элементов ИЛИ-НЕ в схеме S-R триггера будет переключаться &quot;нога в ногу&quot; бесконечно, вместо того, чтобы схема со временем пришла к стабильному состоянию.</seg>
+      <tuv lang="RU-RU" changedate="20110407T122313Z" changeid="lilovip">
+        <seg>Он очень идеализирован, так что пара элементов ИЛИ-НЕ в схеме RS-триггера будет переключаться &quot;нога в ногу&quot; бесконечно, вместо того, чтобы схема со временем пришла к стабильному состоянию.</seg>
       </tuv>
     </tu>
     <tu>
@@ -23801,8 +23841,8 @@ above, provided that you also meet all of these conditions:</seg>
       <tuv lang="EN">
         <seg>S-R Flip-Flop</seg>
       </tuv>
-      <tuv lang="RU-RU">
-        <seg>S-R триггер</seg>
+      <tuv lang="RU-RU" changedate="20110407T151951Z" changeid="lilovip">
+        <seg>RS-триггер</seg>
       </tuv>
     </tu>
     <tu>
