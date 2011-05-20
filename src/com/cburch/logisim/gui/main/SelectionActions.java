@@ -35,7 +35,18 @@ import com.cburch.logisim.tools.Tool;
 
 public class SelectionActions {
 	private SelectionActions() { }
+
+	// anchors all floating elements, keeping elements in selection
+	public static Action anchorAll(Selection sel) {
+		int numAnchor = sel.getFloatingComponents().size();
+		if (numAnchor == 0) {
+			return null;
+		} else {
+			return new Anchor(sel, numAnchor);
+		}
+	}
 	
+	// clears the selection, anchoring all floating elements in selection
 	public static Action drop(Selection sel, Collection<Component> comps) {
 		HashSet<Component> floating = new HashSet<Component>(sel.getFloatingComponents());
 		HashSet<Component> anchored = new HashSet<Component>(sel.getAnchoredComponents());
@@ -49,13 +60,13 @@ public class SelectionActions {
 				toIgnore.add(comp);
 			}
 		}
-		int numDrop = toDrop.size() - toIgnore.size();
-		if (numDrop == 0) {
+		if (toDrop.size() == toIgnore.size()) {
 			for (Component comp : toIgnore) {
 				sel.remove(null, comp);
 			}
 			return null;
 		} else {
+			int numDrop = toDrop.size() - toIgnore.size();
 			return new Drop(sel, toDrop, numDrop);
 		}
 	}
@@ -117,6 +128,54 @@ public class SelectionActions {
 			for (Component comp : drops) {
 				sel.remove(xn, comp);
 			}
+			CircuitTransactionResult result = xn.execute();
+			xnReverse = result.getReverseTransaction();
+		}
+
+		@Override
+		public void undo(Project proj) {
+			xnReverse.execute();
+		}
+
+		@Override
+		public boolean shouldAppendTo(Action other) {
+			Action last;
+			if (other instanceof JoinedAction) last = ((JoinedAction) other).getLastAction();
+			else last = other;
+			
+			SelectionSave otherAfter = null;
+			if (last instanceof Paste) {
+				otherAfter = ((Paste) last).after;
+			} else if (last instanceof Duplicate) {
+				otherAfter = ((Duplicate) last).after;
+			}
+			return otherAfter != null && otherAfter.equals(this.before);
+		}
+	}
+	
+	private static class Anchor extends Action {
+		private Selection sel;
+		private int numAnchor;
+		private SelectionSave before;
+		private CircuitTransaction xnReverse;
+		
+		Anchor(Selection sel, int numAnchor) {
+			this.sel = sel;
+			this.before = SelectionSave.create(sel);
+			this.numAnchor = numAnchor;
+		}
+
+		@Override
+		public String getName() {
+			return numAnchor == 1 ? Strings.get("dropComponentAction")
+					: Strings.get("dropComponentsAction");
+		}
+
+		@Override
+		public void doIt(Project proj) {
+			Circuit circuit = proj.getCurrentCircuit();
+			CircuitMutation xn = new CircuitMutation(circuit);
+			sel.dropAll(xn);
 			CircuitTransactionResult result = xn.execute();
 			xnReverse = result.getReverseTransaction();
 		}

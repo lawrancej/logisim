@@ -42,6 +42,18 @@ public class Poly extends FillableCanvasObject {
 	}
 	
 	@Override
+	public Poly clone() {
+		Poly ret = (Poly) super.clone();
+		Handle[] hs = this.handles.clone();
+		for (int i = 0, n = hs.length; i < n; i++) {
+			Handle oldHandle = hs[i];
+			hs[i] = new Handle(ret, oldHandle.getX(), oldHandle.getY());
+		}
+		ret.handles = hs;
+		return ret;
+	}
+
+	@Override
 	public boolean matches(CanvasObject other) {
 		if (other instanceof Poly) {
 			Poly that = (Poly) other;

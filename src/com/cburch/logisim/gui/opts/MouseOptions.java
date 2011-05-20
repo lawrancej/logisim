@@ -32,9 +32,11 @@ import javax.swing.table.AbstractTableModel;
 import com.cburch.logisim.file.MouseMappings;
 import com.cburch.logisim.gui.generic.AttrTable;
 import com.cburch.logisim.gui.generic.AttrTableModel;
+import com.cburch.logisim.gui.generic.ProjectExplorer;
+import com.cburch.logisim.gui.generic.ProjectExplorerEvent;
+import com.cburch.logisim.gui.generic.ProjectExplorerListener;
+import com.cburch.logisim.gui.generic.ProjectExplorerToolNode;
 import com.cburch.logisim.gui.main.AttrTableToolModel;
-import com.cburch.logisim.gui.main.ProjectExplorer;
-import com.cburch.logisim.gui.main.ProjectExplorer.Event;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Tool;
@@ -85,7 +87,7 @@ class MouseOptions extends OptionsPanel {
 	
 	private class MyListener
 			implements ActionListener, MouseListener, ListSelectionListener,
-				MouseMappings.MouseMappingsListener, ProjectExplorer.Listener {
+				MouseMappings.MouseMappingsListener, ProjectExplorerListener {
 		//
 		// ActionListener method
 		//
@@ -148,19 +150,20 @@ class MouseOptions extends OptionsPanel {
 		//
 		// Explorer.Listener methods
 		//
-		public void selectionChanged(Event event) {
+		public void selectionChanged(ProjectExplorerEvent event) {
 			Object target = event.getTarget();
-			if (target instanceof Tool) {
-				setCurrentTool((Tool) event.getTarget());
+			if (target instanceof ProjectExplorerToolNode) {
+				Tool tool = ((ProjectExplorerToolNode) target).getValue();
+				setCurrentTool(tool);
 			} else {
 				setCurrentTool(null);
 			}
 		}
 
-		public void doubleClicked(Event event) { }
-		public void moveRequested(Event event, AddTool dragged, AddTool target) { }
-		public void deleteRequested(Event event) { }
-		public JPopupMenu menuRequested(Event event) { return null; }
+		public void doubleClicked(ProjectExplorerEvent event) { }
+		public void moveRequested(ProjectExplorerEvent event, AddTool dragged, AddTool target) { }
+		public void deleteRequested(ProjectExplorerEvent event) { }
+		public JPopupMenu menuRequested(ProjectExplorerEvent event) { return null; }
 	}
 
 	private class MappingsModel extends AbstractTableModel {

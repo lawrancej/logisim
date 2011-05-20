@@ -91,7 +91,9 @@ public class Frame extends LFrame implements LocaleListener {
 				if (attrTable == null) return; // for startup
 				Tool oldTool = (Tool) event.getOldData();
 				Tool newTool = (Tool) event.getData();
-				viewAttributes(oldTool, newTool, false);
+				if (getEditorView().equals(EDIT_LAYOUT)) {
+					viewAttributes(oldTool, newTool, false);
+				}
 			}
 		}
 

@@ -196,17 +196,17 @@ public class Pin extends InstanceFactory {
 		} else {
 			PinState state = getState(painter);
 			if (attrs.width.getWidth() <= 1) {
-				Value receiving = state.receiving;
-				g.setColor(receiving.getColor());
+				Value found = state.foundValue;
+				g.setColor(found.getColor());
 				g.fillOval(x + 4, y + 4, 13, 13);
 	
 				if (attrs.width.getWidth() == 1) {
 					g.setColor(Color.WHITE);
 					GraphicsUtil.drawCenteredText(g,
-						state.sending.toDisplayString(), x + 11, y + 9);
+						state.intendedValue.toDisplayString(), x + 11, y + 9);
 				}
 			} else {
-				Probe.paintValue(painter, state.sending);
+				Probe.paintValue(painter, state.intendedValue);
 			}
 		}
 	
@@ -233,6 +233,8 @@ public class Pin extends InstanceFactory {
 			instance.recomputeBounds();
 			PinAttributes attrs = (PinAttributes) instance.getAttributeSet();
 			Probe.configureLabel(instance, attrs.labelloc, attrs.facing);
+		} else if (attr == Pin.ATTR_TRISTATE || attr == Pin.ATTR_PULL) {
+			instance.fireInvalidated();
 		}
 	}
 	
@@ -251,33 +253,44 @@ public class Pin extends InstanceFactory {
 	@Override
 	public void propagate(InstanceState state) {
 		PinAttributes attrs = (PinAttributes) state.getAttributeSet();
-		Value val = state.getPort(0);
-	
 		PinState q = getState(state);
 		if (attrs.type == EndData.OUTPUT_ONLY) {
-			q.sending = val;
-			q.receiving = val;
+			Value found = state.getPort(0);
+			q.intendedValue = found;
+			q.foundValue = found;
 			state.setPort(0, Value.createUnknown(attrs.width), 1);
 		} else {
-			if (!val.isFullyDefined() && !attrs.threeState
-					&& state.isCircuitRoot()) {
-				q.sending = pull2(q.sending, attrs.width);
-				q.receiving = pull2(val, attrs.width);
-				state.setPort(0, q.sending, 1);
-			} else {
-				q.receiving = val;
-				if (!val.equals(q.sending)) { // ignore if no change
-					state.setPort(0, q.sending, 1);
+			Value found = state.getPort(0);
+			Value toSend = q.intendedValue;
+
+			Object pull = attrs.pull;
+			Value pullTo = null;
+			if (pull == PULL_DOWN) {
+				pullTo = Value.FALSE;
+			} else if (pull == PULL_UP) {
+				pullTo = Value.TRUE;
+			} else if (!attrs.threeState && !state.isCircuitRoot()) {
+				pullTo = Value.FALSE;
+			}
+			if (pullTo != null) {
+				toSend = pull2(toSend, attrs.width, pullTo);
+				if (state.isCircuitRoot()) {
+					q.intendedValue = toSend;
 				}
+			}
+			
+			q.foundValue = found;
+			if (!toSend.equals(found)) { // ignore if no change
+				state.setPort(0, toSend, 1);
 			}
 		}
 	}
 
-	private static Value pull2(Value mod, BitWidth expectedWidth) {
+	private static Value pull2(Value mod, BitWidth expectedWidth, Value pullTo) {
 		if (mod.getWidth() == expectedWidth.getWidth()) {
 			Value[] vs = mod.getAll();
 			for (int i = 0; i < vs.length; i++) {
-				if (vs[i] == Value.UNKNOWN) vs[i] = Value.FALSE;
+				if (vs[i] == Value.UNKNOWN) vs[i] = pullTo;
 			}
 			return Value.create(vs);
 		} else {
@@ -307,31 +320,34 @@ public class Pin extends InstanceFactory {
 	// state information methods
 	//
 	public Value getValue(InstanceState state) {
-		return getState(state).sending;
+		return getState(state).intendedValue;
 	}
 	
 	public void setValue(InstanceState state, Value value) {
 		PinAttributes attrs = (PinAttributes) state.getAttributeSet();
 		Object pull = attrs.pull;
-		if (pull != PULL_NONE && pull != null && !value.isFullyDefined()) {
-			Value[] bits = value.getAll();
-			if (pull == PULL_UP) {
-				for (int i = 0; i < bits.length; i++) {
-					if (bits[i] != Value.FALSE) bits[i] = Value.TRUE;
-				}
-			} else if (pull == PULL_DOWN) {
-				for (int i = 0; i < bits.length; i++) {
-					if (bits[i] != Value.TRUE) bits[i] = Value.FALSE;
-				}
-			}
-			value = Value.create(bits);
-		}
 		
 		PinState myState = getState(state);
 		if (value == Value.NIL) {
-			myState.sending = Value.createUnknown(attrs.width);
+			myState.intendedValue = Value.createUnknown(attrs.width);
 		} else {
-			myState.sending = value;
+			Value sendValue;
+			if (pull == PULL_NONE || pull == null || value.isFullyDefined()) {
+				sendValue = value;
+			} else {
+				Value[] bits = value.getAll();
+				if (pull == PULL_UP) {
+					for (int i = 0; i < bits.length; i++) {
+						if (bits[i] != Value.FALSE) bits[i] = Value.TRUE;
+					}
+				} else if (pull == PULL_DOWN) {
+					for (int i = 0; i < bits.length; i++) {
+						if (bits[i] != Value.TRUE) bits[i] = Value.FALSE;
+					}
+				}
+				sendValue = Value.create(bits);
+			}
+			myState.intendedValue = sendValue;
 		}
 	}
 	
@@ -349,23 +365,23 @@ public class Pin extends InstanceFactory {
 			ret = new PinState(val, val);
 			state.setData(ret);
 		}
-		if (ret.sending.getWidth() != width.getWidth()) {
-			ret.sending = ret.sending.extendWidth(width.getWidth(),
+		if (ret.intendedValue.getWidth() != width.getWidth()) {
+			ret.intendedValue = ret.intendedValue.extendWidth(width.getWidth(),
 					attrs.threeState ? Value.UNKNOWN : Value.FALSE);
 		}
-		if (ret.receiving.getWidth() != width.getWidth()) {
-			ret.receiving = ret.receiving.extendWidth(width.getWidth(), Value.UNKNOWN);
+		if (ret.foundValue.getWidth() != width.getWidth()) {
+			ret.foundValue = ret.foundValue.extendWidth(width.getWidth(), Value.UNKNOWN);
 		}
 		return ret;
 	}
 
 	private static class PinState implements InstanceData, Cloneable {
-		Value sending;
-		Value receiving;
+		Value intendedValue;
+		Value foundValue;
 		
 		public PinState(Value sending, Value receiving) {
-			this.sending = sending;
-			this.receiving = receiving;
+			this.intendedValue = sending;
+			this.foundValue = receiving;
 		}
 		
 		@Override
@@ -416,15 +432,15 @@ public class Pin extends InstanceFactory {
 			}
 	
 			PinState pinState = getState(state);
-			Value val = pinState.sending.get(bit);
+			Value val = pinState.intendedValue.get(bit);
 			if (val == Value.FALSE) {
 				val = Value.TRUE;
 			} else if (val == Value.TRUE) {
-				val = attrs.threeState ? Value.UNKNOWN : Value.FALSE;
+				val = attrs.threeState && attrs.pull == PULL_NONE ? Value.UNKNOWN : Value.FALSE;
 			} else {
 				val = Value.FALSE;
 			}
-			pinState.sending = pinState.sending.set(bit, val);
+			pinState.intendedValue = pinState.intendedValue.set(bit, val);
 			state.fireInvalidated();
 		}
 	
@@ -463,7 +479,7 @@ public class Pin extends InstanceFactory {
 		@Override
 		public Value getLogValue(InstanceState state, Object option) {
 			PinState s = getState(state);
-			return s.sending;
+			return s.intendedValue;
 		}
 	}
 }

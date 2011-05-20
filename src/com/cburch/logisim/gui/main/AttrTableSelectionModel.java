@@ -98,6 +98,8 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 	// Selection.Listener methods
 	public void selectionChanged(Event event) {
 		fireTitleChanged();
-		frame.setAttrTableModel(this);
+		if (frame.getEditorView().equals(Frame.EDIT_LAYOUT)) {
+			frame.setAttrTableModel(this);
+		}
 	}
 }

@@ -4,6 +4,7 @@
 package com.cburch.logisim.circuit;
 
 import java.awt.Graphics;
+import java.io.PrintStream;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,6 +32,8 @@ import com.cburch.logisim.util.CollectionUtil;
 import com.cburch.logisim.util.EventSourceWeakSupport;
 
 public class Circuit {
+	private static final PrintStream DEBUG_STREAM = null;
+	
 	private class EndChangedTransaction extends CircuitTransaction {
 		private Component comp;
 		private Map<Location,EndData> toRemove;
@@ -355,8 +358,21 @@ public class Circuit {
 	public void setName(String name) {
 		staticAttrs.setValue(CircuitAttributes.NAME_ATTR, name);
 	}
+	
+	private void showDebug(String message, Object parm) {
+		PrintStream dest = DEBUG_STREAM;
+		if (dest != null) {
+			dest.println("mutatorAdd"); //OK
+			try {
+				throw new Exception();
+			} catch (Exception e) {
+				e.printStackTrace(dest); //OK
+			}
+		}
+	}
 
 	void mutatorAdd(Component c) {
+		showDebug("mutatorAdd", c);
 		locker.checkForWritePermission("add");
 
 		if (c instanceof Wire) {
@@ -383,6 +399,7 @@ public class Circuit {
 	}
 
 	void mutatorRemove(Component c) {
+		showDebug("mutatorRemove", c);
 		locker.checkForWritePermission("remove");
 
 		if (c instanceof Wire) {

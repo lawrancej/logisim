@@ -70,7 +70,7 @@ import javax.swing.event.PopupMenuListener;
 
 public class Canvas extends JPanel
 		implements LocaleListener, CanvasPaneContents {
-	static final Color HALO_COLOR = new Color(192, 255, 255);
+	public static final Color HALO_COLOR = new Color(192, 255, 255);
 	
 	private static final int BOUNDS_BUFFER = 70;
 		// pixels shown in canvas beyond outermost boundaries

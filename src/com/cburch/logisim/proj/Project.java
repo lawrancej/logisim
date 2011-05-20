@@ -10,7 +10,6 @@ import javax.swing.JFileChooser;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitListener;
-import com.cburch.logisim.circuit.CircuitMutation;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.Simulator;
 import com.cburch.logisim.circuit.SubcircuitFactory;
@@ -335,20 +334,12 @@ public class Project {
 		if (old != null) old.deselect(canvas);
 		Selection selection = canvas.getSelection();
 		if (selection != null && !selection.isEmpty()) {
-			Circuit circuit = canvas.getCircuit();
-			CircuitMutation xn = new CircuitMutation(circuit);
-			if (value == null) {
-				Action act = SelectionActions.dropAll(selection);
-				if (act != null) {
-					doAction(act);
-				}
-			} else if (!getOptions().getMouseMappings().containsSelectTool()) {
-				Action act = SelectionActions.dropAll(selection);
+			if (value == null || !getOptions().getMouseMappings().containsSelectTool()) {
+				Action act = SelectionActions.anchorAll(selection);
 				if (act != null) {
 					doAction(act);
 				}
 			}
-			if (!xn.isEmpty()) doAction(xn.toAction(null));
 		}
 		startupScreen = false;
 		tool = value;

@@ -311,7 +311,7 @@ public class WiringTool extends Tool {
 		}
 
 		for (Component comp : canvas.getCircuit().getNonWires(cand)) {
-			if (comp.getBounds().contains(end)) {
+			if (comp.getBounds().contains(end, 2)) {
 				WireRepair repair = (WireRepair) comp.getFeature(WireRepair.class);
 				if (repair != null && repair.shouldRepairWire(new WireRepairData(w, cand))) {
 					w = Wire.create(w.getOtherEnd(end), cand);

@@ -77,7 +77,8 @@ class InstanceStateImpl implements InstanceState {
 	}
 	
 	public InstanceData getData() {
-		return (InstanceData) circuitState.getData(component);
+		InstanceData ret = (InstanceData) circuitState.getData(component);
+		return ret;
 	}
 	
 	public void setData(InstanceData value) {

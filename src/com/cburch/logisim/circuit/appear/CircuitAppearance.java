@@ -240,6 +240,23 @@ public class CircuitAppearance extends Drawing {
 		}
 	}
 	
+	public boolean contains(Location loc) {
+		Location query;
+		AppearanceAnchor anchor = findAnchor();
+		if (anchor == null) {
+			query = loc;
+		} else {
+			Location anchorLoc = anchor.getLocation();
+			query = loc.translate(anchorLoc.getX(), anchorLoc.getY());
+		}
+		for (CanvasObject o : getObjectsFromBottom()) {
+			if (!(o instanceof AppearanceElement) && o.contains(query, true)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public SortedMap<Location, Instance> getPortOffsets(Direction facing) {
 		Location anchor = null;
 		Direction defaultFacing = Direction.EAST;

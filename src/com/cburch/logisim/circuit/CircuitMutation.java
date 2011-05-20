@@ -41,7 +41,7 @@ public final class CircuitMutation extends CircuitTransaction {
 	}
 	
 	public void addAll(Collection<? extends Component> comps) {
-		changes.add(CircuitChange.addAll(primary, comps));
+		changes.add(CircuitChange.addAll(primary, new ArrayList<Component>(comps)));
 	}
 	
 	public void remove(Component comp) {
@@ -49,7 +49,7 @@ public final class CircuitMutation extends CircuitTransaction {
 	}
 	
 	public void removeAll(Collection<? extends Component> comps) {
-		changes.add(CircuitChange.removeAll(primary, comps));
+		changes.add(CircuitChange.removeAll(primary, new ArrayList<Component>(comps)));
 	}
 	
 	public void replace(Component oldComp, Component newComp) {
