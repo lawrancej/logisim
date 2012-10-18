@@ -9,7 +9,7 @@ import com.cburch.logisim.util.StringUtil;
 
 class Strings {
 	private static LocaleManager source
-		= new LocaleManager("resources/logisim", "proj");
+		= new LocaleManager("logisim", "proj");
 
 	public static String get(String key) {
 		return source.get(key);

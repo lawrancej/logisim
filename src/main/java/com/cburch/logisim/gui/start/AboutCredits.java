@@ -26,7 +26,7 @@ class AboutCredits extends JComponent {
 
 	/** Path to Hendrix College's logo - if you want your own logo included,
 	 * please add it separately rather than replacing this. */
-	private static final String HENDRIX_PATH = "resources/logisim/hendrix.png";
+	private static final String HENDRIX_PATH = "logisim/hendrix.png";
 	private static final int HENDRIX_WIDTH = 50;
 
 	private static class CreditsLine {

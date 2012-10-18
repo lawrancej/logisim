@@ -339,7 +339,7 @@ public class AppPreferences {
 	private static Template getPlainTemplate() {
 		if (plainTemplate == null) {
 			ClassLoader ld = Startup.class.getClassLoader();
-			InputStream in = ld.getResourceAsStream("resources/logisim/default.templ");
+			InputStream in = ld.getResourceAsStream("logisim/default.templ");
 			if (in == null) {
 				plainTemplate = getEmptyTemplate(); 
 			} else {

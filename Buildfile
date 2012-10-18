@@ -22,5 +22,5 @@ define 'logisim' do
     extractJars(DEPENDENCIES)
   }
   manifest['Main-Class'] = 'com.cburch.logisim.Main'
-  package(:jar).include _('target/resources'), :as=>'resources'
+  package(:jar)
 end

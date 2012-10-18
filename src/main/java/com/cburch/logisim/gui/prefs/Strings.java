@@ -12,7 +12,7 @@ import com.cburch.logisim.util.StringGetter;
 
 class Strings {
 	private static LocaleManager source
-		= new LocaleManager("resources/logisim", "prefs");
+		= new LocaleManager("logisim", "prefs");
 
 	public static String get(String key) {
 		return source.get(key);
