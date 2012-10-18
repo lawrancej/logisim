@@ -1,9 +1,9 @@
-repositories.remote << 'http://repo1.maven.org/maven2'
+repositories.remote << 'http://repo1.maven.org/maven2' << 'http://nexus.gephi.org/nexus/content/repositories/public'
 
 JAVAHELP = artifact('javax.help:javahelp:jar:2.0.05')
-MRJADAPTER = artifact('net.roydesign:mrjadapter:jar:1.1').from('libs/MRJAdapter.jar')
-COLORPICKER = artifact('com.bric:colorpicker:jar:NA').from('libs/colorpicker.jar')
-FONTCHOOSER = artifact('com.connectina:fontchooser:jar:NA').from('libs/fontchooser.jar')
+MRJADAPTER = download artifact('net.roydesign:mrjadapter:jar:1.1') => 'http://www.docjar.com/jar/MRJAdapter.jar'
+COLORPICKER = download artifact('com.bric:colorpicker:jar:1.0') => 'http://javagraphics.java.net/jars/ColorPicker.jar'
+FONTCHOOSER = artifact('com.connectina.swing:fontchooser:jar:1.0')
 DEPENDENCIES = [JAVAHELP, MRJADAPTER, COLORPICKER, FONTCHOOSER]
 
 # Extract all jars into target/classes, excluding META-INF/*
