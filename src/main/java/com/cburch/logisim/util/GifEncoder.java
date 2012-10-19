@@ -58,6 +58,7 @@ import javax.swing.ProgressMonitor;
  * </CENTER>
  * @version 0.90 21 Apr 1996
  * @author <A HREF="http://www.cs.brown.edu/people/amd/">Adam Doppelt</A> */
+@Deprecated // Java 1.5 and higher support Gif encoding.
 public class GifEncoder {
 	private static class BitFile {
 		OutputStream output_;
