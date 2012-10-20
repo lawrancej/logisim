@@ -28,7 +28,7 @@ public abstract class Attribute<V> {
 	}
 
 	public String getDisplayName() {
-		return disp.get();
+		return disp.toString();
 	}
 
 	public java.awt.Component getCellEditor(Window source, V value) {

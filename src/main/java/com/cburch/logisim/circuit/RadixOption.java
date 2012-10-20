@@ -51,7 +51,7 @@ public abstract class RadixOption extends AttributeOption {
 	
 	@Override
 	public String toDisplayString() {
-		return displayGetter.get();
+		return displayGetter.toString();
 	}
 	
 	@Override

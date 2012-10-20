@@ -19,7 +19,7 @@ public class CircuitAction extends Action {
 
 	@Override
 	public String getName() {
-		return name.get();
+		return name.toString();
 	}
 
 	@Override

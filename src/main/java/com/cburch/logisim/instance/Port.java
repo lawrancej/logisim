@@ -69,7 +69,7 @@ public class Port {
 	
 	public String getToolTip() {
 		StringGetter getter = toolTip;
-		return getter == null ? null : getter.get();
+		return getter == null ? null : getter.toString();
 	}
 	
 	public Attribute<BitWidth> getWidthAttribute() {

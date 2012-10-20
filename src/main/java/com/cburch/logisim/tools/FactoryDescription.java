@@ -74,7 +74,7 @@ public class FactoryDescription {
 	}
 	
 	public String getDisplayName() {
-		return displayName.get();
+		return displayName.toString();
 	}
 	
 	public boolean isFactoryLoaded() {
@@ -141,6 +141,6 @@ public class FactoryDescription {
 	
 	public String getToolTip() {
 		StringGetter getter = toolTip;
-		return getter == null ? null : getter.get();
+		return getter == null ? null : getter.toString();
 	}
 }

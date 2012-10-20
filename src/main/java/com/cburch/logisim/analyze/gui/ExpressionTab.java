@@ -182,7 +182,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 		revert.setText(Strings.get("exprRevertButton"));
 		enter.setText(Strings.get("exprEnterButton"));
 		if (errorMessage != null) {
-			error.setText(errorMessage.get());
+			error.setText(errorMessage.toString());
 		}
 	}
 	
@@ -207,7 +207,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 			error.setText(" ");
 		} else {
 			errorMessage = msg;
-			error.setText(msg.get());
+			error.setText(msg.toString());
 		}
 	}
 

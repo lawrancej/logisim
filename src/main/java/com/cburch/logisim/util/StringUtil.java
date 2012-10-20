@@ -54,23 +54,23 @@ public class StringUtil {
 	
 	public static StringGetter formatter(final StringGetter base, final String arg) {
 		return new StringGetter() {
-			public String get() {
-				return format(base.get(), arg);
+			public String toString() {
+				return format(base.toString(), arg);
 			}
 		};
 	}
 	
 	public static StringGetter formatter(final StringGetter base, final StringGetter arg) {
 		return new StringGetter() {
-			public String get() {
-				return format(base.get(), arg.get());
+			public String toString() {
+				return format(base.toString(), arg.toString());
 			}
 		};
 	}
 	
 	public static StringGetter constantGetter(final String value) {
 		return new StringGetter() {
-			public String get() {
+			public String toString() {
 				return value;
 			}
 		};

@@ -270,7 +270,7 @@ class ExportImage {
 
 		@Override
 		public String getDescription() {
-			return desc.get();
+			return desc.toString();
 		}
 	}
 

@@ -77,7 +77,7 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
 	
 	@Override
 	public String getDisplayName() {
-		return getDisplayGetter().get();
+		return getDisplayGetter().toString();
 	}
 	
 	@Override

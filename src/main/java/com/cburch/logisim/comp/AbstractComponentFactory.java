@@ -33,7 +33,7 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
 	public String toString() { return getName(); }
 
 	public abstract String getName();
-	public String getDisplayName() { return getDisplayGetter().get(); }
+	public String getDisplayName() { return getDisplayGetter().toString(); }
 	public StringGetter getDisplayGetter() { return StringUtil.constantGetter(getName()); }
 	public abstract Component createComponent(Location loc, AttributeSet attrs);
 	public abstract Bounds getOffsetBounds(AttributeSet attrs);

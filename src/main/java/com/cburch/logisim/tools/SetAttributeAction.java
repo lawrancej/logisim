@@ -49,7 +49,7 @@ public class SetAttributeAction extends Action {
 	
 	@Override
 	public String getName() {
-		return nameGetter.get();
+		return nameGetter.toString();
 	}
 	
 	@Override

@@ -18,7 +18,7 @@ class PrefOption {
 	
 	@Override
 	public String toString() {
-		return getter.get();
+		return getter.toString();
 	}
 	
 	public Object getValue() {

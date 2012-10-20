@@ -27,7 +27,7 @@ class PrefOptionList implements ActionListener, PropertyChangeListener {
 		this.pref = pref;
 		this.labelStr = labelStr;
 		
-		label = new JLabel(labelStr.get() + " ");
+		label = new JLabel(labelStr.toString() + " ");
 		combo = new JComboBox();
 		for (PrefOption opt : options) {
 			combo.addItem(opt);
@@ -54,7 +54,7 @@ class PrefOptionList implements ActionListener, PropertyChangeListener {
 	}
 	
 	void localeChanged() {
-		label.setText(labelStr.get() + " ");
+		label.setText(labelStr.toString() + " ");
 	}
 
 	public void actionPerformed(ActionEvent e) {

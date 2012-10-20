@@ -48,7 +48,7 @@ class SelectionAction extends Action {
 
 	@Override
 	public String getName() {
-		return displayName.get();
+		return displayName.toString();
 	}
 	
 	@Override

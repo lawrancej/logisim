@@ -434,7 +434,7 @@ public class Canvas extends JPanel
 			StringGetter message = errorMessage;
 			if (message != null) {
 				g.setColor(errorColor);
-				paintString(g, message.get());
+				paintString(g, message.toString());
 				return;
 			}
 			
