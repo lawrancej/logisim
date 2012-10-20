@@ -9,7 +9,6 @@ import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.GifEncoder;
 import com.cburch.logisim.util.StringGetter;
 
 import java.awt.Color;
@@ -341,7 +340,7 @@ class ExportImage {
 			}
 			try {
 				switch (filter.type) {
-				case FORMAT_GIF: GifEncoder.toFile(img, where, monitor); break;
+				case FORMAT_GIF: ImageIO.write(img, "GIF", where); break;
 				case FORMAT_PNG: ImageIO.write(img, "PNG", where); break;
 				case FORMAT_JPG: ImageIO.write(img, "JPEG", where); break;
 				}
