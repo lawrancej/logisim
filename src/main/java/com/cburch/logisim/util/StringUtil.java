@@ -6,10 +6,6 @@ package com.cburch.logisim.util;
 public class StringUtil {
 	private StringUtil() { }
 	
-	public static String capitalize(String a) {
-		return Character.toTitleCase(a.charAt(0)) + a.substring(1);
-	}
-
 	public static String format(String fmt, String a1) {
 		return format(fmt, a1, null, null);
 	}
