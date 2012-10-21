@@ -25,7 +25,6 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.std.wiring.Clock;
 import com.cburch.logisim.std.wiring.Pin;
-import com.cburch.logisim.util.ArraySet;
 import com.cburch.logisim.util.SmallSet;
 
 public class CircuitState implements InstanceData {
@@ -123,7 +122,7 @@ public class CircuitState implements InstanceData {
 
 	private CircuitState parentState = null; // parent in tree of CircuitStates
 	private Component parentComp = null; // subcircuit component containing this state
-	private ArraySet<CircuitState> substates = new ArraySet<CircuitState>();
+	private HashSet<CircuitState> substates = new HashSet<CircuitState>();
 
 	private CircuitWires.State wireData = null;
 	private HashMap<Component,Object> componentData = new HashMap<Component,Object>();
@@ -167,7 +166,7 @@ public class CircuitState implements InstanceData {
 		this.parentComp = src.parentComp;
 		this.parentState = src.parentState;
 		HashMap<CircuitState,CircuitState> substateData = new HashMap<CircuitState,CircuitState>();
-		this.substates = new ArraySet<CircuitState>();
+		this.substates = new HashSet<CircuitState>();
 		for (CircuitState oldSub : src.substates) {
 			CircuitState newSub = new CircuitState(src.proj, oldSub.circuit);
 			newSub.copyFrom(oldSub, base);
