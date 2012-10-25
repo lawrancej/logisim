@@ -1,5 +1,5 @@
 require 'buildr/java/commands'
-require 'rubygems'
+require 'rubygems' # Necessary for Ruby < 1.9
 require 'nokogiri' # Don't forget to do this first: gem install nokogiri
 
 repositories.remote << 'http://repo1.maven.org/maven2' << 'http://nexus.gephi.org/nexus/content/repositories/public'
