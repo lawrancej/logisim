@@ -42,7 +42,7 @@ public class Entry {
 	}
 	
 	public String getErrorMessage() {
-		return errorMessage == null ? null : errorMessage.get();
+		return errorMessage == null ? null : errorMessage.toString();
 	}
 	
 	@Override

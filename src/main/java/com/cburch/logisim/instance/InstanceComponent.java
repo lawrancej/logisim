@@ -273,7 +273,7 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
 			}
 		}
 		StringGetter defaultTip = factory.getDefaultToolTip();
-		return defaultTip == null ? null : defaultTip.get();
+		return defaultTip == null ? null : defaultTip.toString();
 	}
 
 	//

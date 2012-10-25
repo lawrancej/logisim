@@ -33,7 +33,7 @@ class SplitterDistributeItem extends JMenuItem implements ActionListener {
 			}
 		}
 		setEnabled(!same);
-		setText(toGetter().get());
+		setText(toGetter().toString());
 	}
 	
 	private StringGetter toGetter() {

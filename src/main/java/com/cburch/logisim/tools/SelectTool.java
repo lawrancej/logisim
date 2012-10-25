@@ -560,7 +560,7 @@ public class SelectTool extends Tool {
 		
 		public ComputingMessage(int dx, int dy) { this.dx = dx; this.dy = dy; }
 		
-		public String get() {
+		public String toString() {
 			return Strings.get("moveWorkingMsg");
 		}
 	}

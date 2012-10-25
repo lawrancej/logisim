@@ -24,7 +24,7 @@ class ComboOption {
 	
 	@Override
 	public String toString() {
-		if (getter != null) return getter.get();
+		if (getter != null) return getter.toString();
 		if (value instanceof AttributeOption) return ((AttributeOption) value).toDisplayString();
 		return "???";
 	}

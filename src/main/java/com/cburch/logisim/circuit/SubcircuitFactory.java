@@ -47,7 +47,7 @@ public class SubcircuitFactory extends InstanceFactory {
 			this.instance = instance;
 		}
 		
-		public String get() {
+		public String toString() {
 			return source.getName();
 		}
 

@@ -27,5 +27,5 @@ public class AttributeOption implements AttributeOptionInterface {
 	@Override
 	public String toString() { return name; }
 
-	public String toDisplayString() { return desc.get(); }
+	public String toDisplayString() { return desc.toString(); }
 }

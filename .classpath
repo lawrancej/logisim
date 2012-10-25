@@ -1,10 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry excluding="**/.svn/|**/CVS/" kind="src" path="src/main/java"/>
-  <classpathentry excluding="**/.svn/|**/CVS/" kind="src" output="target/resources" path="src/main/resources"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry kind="output" path="target/classes"/>
-  <classpathentry sourcepath="M2_REPO/javax/help/javahelp/2.0.05/javahelp-2.0.05-sources.jar" javadocpath="M2_REPO/javax/help/javahelp/2.0.05/javahelp-2.0.05-javadoc.jar" kind="var" path="M2_REPO/javax/help/javahelp/2.0.05/javahelp-2.0.05.jar"/>
-  <classpathentry sourcepath="M2_REPO/net/roydesign/mrjadapter/1.1/mrjadapter-1.1-sources.jar" javadocpath="M2_REPO/net/roydesign/mrjadapter/1.1/mrjadapter-1.1-javadoc.jar" kind="var" path="M2_REPO/net/roydesign/mrjadapter/1.1/mrjadapter-1.1.jar"/>
-  <classpathentry sourcepath="M2_REPO/com/bric/colorpicker/1.0/colorpicker-1.0-sources.jar" javadocpath="M2_REPO/com/bric/colorpicker/1.0/colorpicker-1.0-javadoc.jar" kind="var" path="M2_REPO/com/bric/colorpicker/1.0/colorpicker-1.0.jar"/>
-  <classpathentry sourcepath="M2_REPO/com/connectina/swing/fontchooser/1.0/fontchooser-1.0-sources.jar" javadocpath="M2_REPO/com/connectina/swing/fontchooser/1.0/fontchooser-1.0-javadoc.jar" kind="var" path="M2_REPO/com/connectina/swing/fontchooser/1.0/fontchooser-1.0.jar"/>
+	<classpathentry excluding="**/.svn/|**/CVS/" kind="src" path="src/main/java"/>
+	<classpathentry excluding="**/.svn/|**/CVS/" kind="src" output="target/resources" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry javadocpath="M2_REPO/javax/help/javahelp/2.0.05/javahelp-2.0.05-javadoc.jar" kind="var" path="M2_REPO/javax/help/javahelp/2.0.05/javahelp-2.0.05.jar" sourcepath="M2_REPO/javax/help/javahelp/2.0.05/javahelp-2.0.05-sources.jar"/>
+	<classpathentry javadocpath="M2_REPO/net/roydesign/mrjadapter/1.1/mrjadapter-1.1-javadoc.jar" kind="var" path="M2_REPO/net/roydesign/mrjadapter/1.1/mrjadapter-1.1.jar" sourcepath="M2_REPO/net/roydesign/mrjadapter/1.1/mrjadapter-1.1-sources.jar"/>
+	<classpathentry javadocpath="M2_REPO/com/bric/colorpicker/1.0/colorpicker-1.0-javadoc.jar" kind="var" path="M2_REPO/com/bric/colorpicker/1.0/colorpicker-1.0.jar" sourcepath="M2_REPO/com/bric/colorpicker/1.0/colorpicker-1.0-sources.jar"/>
+	<classpathentry javadocpath="M2_REPO/com/connectina/swing/fontchooser/1.0/fontchooser-1.0-javadoc.jar" kind="var" path="M2_REPO/com/connectina/swing/fontchooser/1.0/fontchooser-1.0.jar" sourcepath="M2_REPO/com/connectina/swing/fontchooser/1.0/fontchooser-1.0-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

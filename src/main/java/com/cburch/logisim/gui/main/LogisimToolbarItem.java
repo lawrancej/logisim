@@ -70,7 +70,7 @@ class LogisimToolbarItem implements ToolbarItem {
 	
 	public String getToolTip() {
 		if (toolTip != null) {
-			return toolTip.get();
+			return toolTip.toString();
 		} else {
 			return null;
 		}

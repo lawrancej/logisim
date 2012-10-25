@@ -24,9 +24,7 @@ public class Attributes {
 	private static class ConstantGetter implements StringGetter {
 		private String str;
 		public ConstantGetter(String str) { this.str = str; }
-		public String get() { return str; }
-		@Override
-		public String toString() { return get(); }
+		public String toString() { return str; }
 	}
 	private static StringGetter getter(String s) { return new ConstantGetter(s); } 
 	

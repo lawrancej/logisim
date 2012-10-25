@@ -19,7 +19,7 @@ class PrefBoolean extends JCheckBox
 	private StringGetter title;
 	
 	PrefBoolean(PrefMonitor<Boolean> pref, StringGetter title) {
-		super(title.get());
+		super(title.toString());
 		this.pref = pref;
 		this.title = title;
 		
@@ -29,7 +29,7 @@ class PrefBoolean extends JCheckBox
 	}
 	
 	void localeChanged() {
-		setText(title.get());
+		setText(title.toString());
 	}
 	
 	public void actionPerformed(ActionEvent e) {

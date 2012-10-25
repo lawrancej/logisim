@@ -11,7 +11,7 @@ public  class ParserException extends Exception {
 	private int length;
 	
 	public ParserException(StringGetter message, int start, int length) {
-		super(message.get());
+		super(message.toString());
 		this.message = message;
 		this.start = start;
 		this.length = length;
@@ -19,7 +19,7 @@ public  class ParserException extends Exception {
 	
 	@Override
 	public String getMessage() {
-		return message.get();
+		return message.toString();
 	}
 	
 	public StringGetter getMessageGetter() {

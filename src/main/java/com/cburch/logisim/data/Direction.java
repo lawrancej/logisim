@@ -47,7 +47,7 @@ public class Direction implements AttributeOptionInterface {
 	}
 
 	public String toDisplayString() {
-		return disp.get();
+		return disp.toString();
 	}
 	
 	public StringGetter getDisplayGetter() {
@@ -55,7 +55,7 @@ public class Direction implements AttributeOptionInterface {
 	}
 	
 	public String toVerticalDisplayString() {
-		return vert.get();
+		return vert.toString();
 	}
 
 	@Override

@@ -3,6 +3,7 @@
 
 package com.cburch.logisim.util;
 
+@Deprecated
 public interface StringGetter {
-	public String get();
+	public String toString();
 }

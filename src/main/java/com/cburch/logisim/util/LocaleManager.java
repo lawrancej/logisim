@@ -26,12 +26,9 @@ public class LocaleManager {
 			this.key = key;
 		}
 
-		public String get() {
+		public String toString() {
 			return source.get(key);
 		}
-		
-		@Override
-		public String toString() { return get(); }
 	}
 	
 	private static ArrayList<LocaleListener> listeners = new ArrayList<LocaleListener>();
