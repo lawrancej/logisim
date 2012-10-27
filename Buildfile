@@ -9,6 +9,15 @@ MRJADAPTER = download artifact('net.roydesign:mrjadapter:jar:1.1') => 'http://ww
 COLORPICKER = download artifact('com.bric:colorpicker:jar:1.0') => 'http://javagraphics.java.net/jars/ColorPicker.jar'
 FONTCHOOSER = artifact('com.connectina.swing:fontchooser:jar:1.0')
 
+# Create config.xml file and run launch4j
+def launch4j(pkg)
+    config = Nokogiri::XML(open("config.xml"))
+    config.xpath('//jar').each { |jar| jar.content = pkg }
+    config.xpath('//outfile').each { |out| out.content = pkg.to_s.gsub('jar','exe') }
+    open("target/config.xml",'w') { |f| config.write_xml_to f }
+    system "launch4jc target/config.xml"
+end
+
 def javahelp()
     puts "Processing Java Help..."
     doc_src = 'src/main/resources/doc'
@@ -19,9 +28,8 @@ def javahelp()
         # With the id=>text mapping from locale/html/contents.html, ...
         dict = {}
         doc = Nokogiri::HTML(open("#{doc_src}/#{locale}/html/contents.html"))
-        doc.xpath('//a').each do |a_tag|
-            dict[a_tag['id']] = a_tag.content
-        end
+        doc.xpath('//a').each { |a_tag| dict[a_tag['id']] = a_tag.content }
+
         # Rewrite support/base-contents.xml as locale/contents.xml.
         contents = Nokogiri::XML(open("#{doc_src}/support/base-contents.xml"))
         contents.xpath('//tocitem').each do |toc_item|
@@ -31,9 +39,7 @@ def javahelp()
 
         # Build JavaHelp Map:
         map = Nokogiri::XML(open("#{doc_src}/support/base-map.jhm"))
-        map.xpath('//mapID').each do |mapID|
-            mapID['url'] = "#{locale}/#{mapID['url']}"
-        end
+        map.xpath('//mapID').each { |mapID| mapID['url'] = "#{locale}/#{mapID['url']}" }
         open("#{doc_target}/map_#{locale}.jhm",'w') { |f| map.write_xml_to f }
 
         # Build HelpSet
@@ -59,4 +65,5 @@ define 'logisim' do
   }
   manifest['Main-Class'] = 'com.cburch.logisim.Main'
   package(:jar)
+  package(:jar).enhance { |pkg| pkg.enhance { |pkg| launch4j(pkg) }}
 end
