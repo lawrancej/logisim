@@ -23,6 +23,12 @@ package com.cburch.logisim;
 
 import com.cburch.logisim.gui.start.Startup;
 
+/**
+ * Main entry point into Logisim.
+ * 
+ * @version 2.7.2
+ * @author Carl Burch
+ */
 public class Main {
 	public static final LogisimVersion VERSION = LogisimVersion.get(2, 7, 2);
 	public static final String VERSION_NAME = VERSION.toString();
