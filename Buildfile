@@ -9,6 +9,15 @@ MRJADAPTER = download artifact('net.roydesign:mrjadapter:jar:1.1') => 'http://ww
 COLORPICKER = download artifact('com.bric:colorpicker:jar:1.0') => 'http://javagraphics.java.net/jars/ColorPicker.jar'
 FONTCHOOSER = artifact('com.connectina.swing:fontchooser:jar:1.0')
 
+# Create config.xml file and run launch4j
+def launch4j(pkg)
+    config = Nokogiri::XML(open("config.xml"))
+    config.xpath('//jar').each { |jar| jar.content = pkg }
+    config.xpath('//outfile').each { |out| out.content = pkg.to_s.gsub('jar','exe') }
+    open("target/config.xml",'w') { |f| config.write_xml_to f }
+    system "launch4jc target/config.xml"
+end
+
 def javahelp()
     puts "Processing Java Help..."
     doc_src = 'src/main/resources/doc'
@@ -59,4 +68,5 @@ define 'logisim' do
   }
   manifest['Main-Class'] = 'com.cburch.logisim.Main'
   package(:jar)
+  package(:jar).enhance { |pkg| pkg.enhance { |pkg| launch4j(pkg) }}
 end
