@@ -28,9 +28,8 @@ def javahelp()
         # With the id=>text mapping from locale/html/contents.html, ...
         dict = {}
         doc = Nokogiri::HTML(open("#{doc_src}/#{locale}/html/contents.html"))
-        doc.xpath('//a').each do |a_tag|
-            dict[a_tag['id']] = a_tag.content
-        end
+        doc.xpath('//a').each { |a_tag| dict[a_tag['id']] = a_tag.content }
+
         # Rewrite support/base-contents.xml as locale/contents.xml.
         contents = Nokogiri::XML(open("#{doc_src}/support/base-contents.xml"))
         contents.xpath('//tocitem').each do |toc_item|
@@ -40,9 +39,7 @@ def javahelp()
 
         # Build JavaHelp Map:
         map = Nokogiri::XML(open("#{doc_src}/support/base-map.jhm"))
-        map.xpath('//mapID').each do |mapID|
-            mapID['url'] = "#{locale}/#{mapID['url']}"
-        end
+        map.xpath('//mapID').each { |mapID| mapID['url'] = "#{locale}/#{mapID['url']}" }
         open("#{doc_target}/map_#{locale}.jhm",'w') { |f| map.write_xml_to f }
 
         # Build HelpSet
