@@ -37,12 +37,10 @@ public class LocaleManager {
 	private static Locale curLocale = null;
 
 	public static Locale getLocale() {
-		Locale ret = curLocale;
-		if (ret == null) {
-			ret = Locale.getDefault();
-			curLocale = ret;
+		if (curLocale == null) {
+			curLocale = Locale.getDefault();
 		}
-		return ret;
+		return curLocale;
 	}
 
 	public static void setLocale(Locale loc) {
