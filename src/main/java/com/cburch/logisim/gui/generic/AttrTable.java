@@ -40,6 +40,7 @@ import com.cburch.logisim.util.LocaleManager;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.LinkedList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class AttrTable extends JPanel implements LocaleListener {
 	private static final AttrTableModel NULL_ATTR_MODEL = new NullAttrModel();
@@ -66,12 +67,12 @@ public class AttrTable extends JPanel implements LocaleListener {
 		Object value;
 
 		public MyDialog(Dialog parent, JInputComponent input) {
-			super(parent, Strings.get("attributeDialogTitle"), true);
+			super(parent, _("attributeDialogTitle"), true);
 			configure(input);
 		}
 
 		public MyDialog(Frame parent, JInputComponent input) {
-			super(parent, Strings.get("attributeDialogTitle"), true);
+			super(parent, _("attributeDialogTitle"), true);
 			configure(input);
 		}
 
@@ -176,7 +177,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 					attrModel.getRow(rowIndex).setValue(value);
 				} catch (AttrTableSetException e) {
 					JOptionPane.showMessageDialog(parent, e.getMessage(),
-							Strings.get("attributeChangeInvalidTitle"),
+							_("attributeChangeInvalidTitle"),
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -322,7 +323,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 						row.setValue(retval);
 					} catch (AttrTableSetException e) {
 						JOptionPane.showMessageDialog(parent, e.getMessage(),
-								Strings.get("attributeChangeInvalidTitle"),
+								_("attributeChangeInvalidTitle"),
 								JOptionPane.WARNING_MESSAGE);
 					}
 					editor = new JLabel(row.getValue());

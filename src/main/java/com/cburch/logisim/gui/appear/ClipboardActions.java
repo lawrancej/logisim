@@ -14,6 +14,7 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ClipboardActions extends Action {
 	
@@ -59,9 +60,9 @@ public class ClipboardActions extends Action {
 	@Override
 	public String getName() {
 		if (remove) {
-			return Strings.get("cutSelectionAction");
+			return _("cutSelectionAction");
 		} else {
-			return Strings.get("copySelectionAction");
+			return _("copySelectionAction");
 		}
 	}
 	

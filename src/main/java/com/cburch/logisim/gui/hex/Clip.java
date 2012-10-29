@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import com.cburch.hex.Caret;
 import com.cburch.hex.HexEditor;
 import com.cburch.hex.HexModel;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class Clip implements ClipboardOwner {
 	private static final DataFlavor binaryFlavor = new DataFlavor(int[].class, "Binary data");
@@ -124,15 +125,15 @@ class Clip implements ClipboardOwner {
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(editor.getRootPane(),
 						e.getMessage(),
-						// Strings.get("hexPasteSupportedError"),
-						Strings.get("hexPasteErrorTitle"),
+						// _("hexPasteSupportedError"),
+						_("hexPasteErrorTitle"),
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 		} else {
 			JOptionPane.showMessageDialog(editor.getRootPane(),
-				Strings.get("hexPasteSupportedError"),
-				Strings.get("hexPasteErrorTitle"),
+				_("hexPasteSupportedError"),
+				_("hexPasteErrorTitle"),
 				JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -146,8 +147,8 @@ class Clip implements ClipboardOwner {
 				model.set(p0, data);
 			} else {
 				JOptionPane.showMessageDialog(editor.getRootPane(),
-						Strings.get("hexPasteEndError"),
-						Strings.get("hexPasteErrorTitle"),
+						_("hexPasteEndError"),
+						_("hexPasteErrorTitle"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
@@ -162,8 +163,8 @@ class Clip implements ClipboardOwner {
 				model.set(p0, data);
 			} else {
 				JOptionPane.showMessageDialog(editor.getRootPane(),
-						Strings.get("hexPasteSizeError"),
-						Strings.get("hexPasteErrorTitle"),
+						_("hexPasteSizeError"),
+						_("hexPasteErrorTitle"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}

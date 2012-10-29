@@ -41,7 +41,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.InputEventUtil;
-import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class MouseOptions extends OptionsPanel {
 	private class AddArea extends JPanel {
@@ -62,13 +62,12 @@ class MouseOptions extends OptionsPanel {
 			String label2;
 			if (curTool == null) {
 				g.setColor(Color.GRAY);
-				label1 = Strings.get("mouseMapNone");
+				label1 = _("mouseMapNone");
 				label2 = null;
 			} else {
 				g.setColor(Color.BLACK);
-				label1 = Strings.get("mouseMapText");
-				label2 = StringUtil.format(Strings.get("mouseMapText2"),
-						curTool.getDisplayName());
+				label1 = _("mouseMapText");
+				label2 = _("mouseMapText2", curTool.getDisplayName());
 			}
 			FontMetrics fm = g.getFontMetrics();
 			int x1 = (sz.width - fm.stringWidth(label1)) / 2;
@@ -285,17 +284,17 @@ class MouseOptions extends OptionsPanel {
 
 	@Override
 	public String getTitle() {
-		return Strings.get("mouseTitle");
+		return _("mouseTitle");
 	}
 
 	@Override
 	public String getHelpText() {
-		return Strings.get("mouseHelp");
+		return _("mouseHelp");
 	}
 	
 	@Override
 	public void localeChanged() {
-		remove.setText(Strings.get("mouseRemoveButton"));
+		remove.setText(_("mouseRemoveButton"));
 		addArea.repaint();
 	}
 

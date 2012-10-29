@@ -16,6 +16,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public abstract class JDialogOk extends JDialog {
 	private class MyListener extends WindowAdapter
@@ -40,8 +41,8 @@ public abstract class JDialogOk extends JDialog {
 	}
 
 	private JPanel contents = new JPanel(new BorderLayout());
-	protected JButton ok = new JButton(Strings.get("dlogOkButton"));
-	protected JButton cancel = new JButton(Strings.get("dlogCancelButton"));
+	protected JButton ok = new JButton(_("dlogOkButton"));
+	protected JButton cancel = new JButton(_("dlogCancelButton"));
 
 	public JDialogOk(Dialog parent, String title, boolean model) {
 		super(parent, title, true);

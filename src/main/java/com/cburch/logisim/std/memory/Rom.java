@@ -27,6 +27,7 @@ import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.proj.Project;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Rom extends Mem {
 	public static Attribute<MemContents> CONTENTS_ATTR = new ContentsAttribute();
@@ -36,7 +37,7 @@ public class Rom extends Mem {
 	private WeakHashMap<Instance,MemListener> memListeners;
 	
 	public Rom() {
-		super("ROM", Strings.getter("romComponent"), 0);
+		super("ROM", __("romComponent"), 0);
 		setIconName("rom.gif");
 		memListeners = new WeakHashMap<Instance,MemListener>();
 	}
@@ -122,7 +123,7 @@ public class Rom extends Mem {
 	
 	private static class ContentsAttribute extends Attribute<MemContents> {
 		public ContentsAttribute() {
-			super("contents", Strings.getter("romContentsAttr"));
+			super("contents", __("romContentsAttr"));
 		}
 
 		@Override
@@ -138,7 +139,7 @@ public class Rom extends Mem {
 
 		@Override
 		public String toDisplayString(MemContents value) {
-			return Strings.get("romContentsValue");
+			return _("romContentsValue");
 		}
 
 		@Override
@@ -183,7 +184,7 @@ public class Rom extends Mem {
 		MemContents contents;
 		
 		ContentsCell(Window source, MemContents contents) {
-			super(Strings.get("romContentsValue"));
+			super(_("romContentsValue"));
 			this.source = source;
 			this.contents = contents;
 			addMouseListener(this);

@@ -22,12 +22,13 @@ import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.IntegerConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ShiftRegister extends InstanceFactory {
 	static final Attribute<Integer> ATTR_LENGTH = Attributes.forIntegerRange("length",
-			Strings.getter("shiftRegLengthAttr"), 1, 32);
+			__("shiftRegLengthAttr"), 1, 32);
 	static final Attribute<Boolean> ATTR_LOAD = Attributes.forBoolean("parallel",
-			Strings.getter("shiftRegParallelAttr"));
+			__("shiftRegParallelAttr"));
 	
 	private static final int IN  = 0;
 	private static final int SH  = 1;
@@ -37,7 +38,7 @@ public class ShiftRegister extends InstanceFactory {
 	private static final int LD  = 5;
 
 	public ShiftRegister() {
-		super("Shift Register", Strings.getter("shiftRegisterComponent"));
+		super("Shift Register", __("shiftRegisterComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.WIDTH, ATTR_LENGTH, ATTR_LOAD, StdAttr.EDGE_TRIGGER,
 				StdAttr.LABEL, StdAttr.LABEL_FONT
@@ -90,7 +91,7 @@ public class ShiftRegister extends InstanceFactory {
 			int len = lenObj == null ? 8 : lenObj.intValue();
 			ps = new Port[6 + 2 * len];
 			ps[LD] = new Port(10, -20, Port.INPUT, 1);
-			ps[LD].setToolTip(Strings.getter("shiftRegLoadTip"));
+			ps[LD].setToolTip(__("shiftRegLoadTip"));
 			for (int i = 0; i < len; i++) {
 				ps[6 + 2 * i]     = new Port(20 + 10 * i, -20, Port.INPUT, width);
 				ps[6 + 2 * i + 1] = new Port(20 + 10 * i,  20, Port.OUTPUT, width);
@@ -103,11 +104,11 @@ public class ShiftRegister extends InstanceFactory {
 		ps[IN]  = new Port( 0,   0, Port.INPUT, width);
 		ps[CK]  = new Port( 0,  10, Port.INPUT, 1);
 		ps[CLR] = new Port(10,  20, Port.INPUT, 1);
-		ps[OUT].setToolTip(Strings.getter("shiftRegOutTip"));
-		ps[SH].setToolTip(Strings.getter("shiftRegShiftTip"));
-		ps[IN].setToolTip(Strings.getter("shiftRegInTip"));
-		ps[CK].setToolTip(Strings.getter("shiftRegClockTip"));
-		ps[CLR].setToolTip(Strings.getter("shiftRegClearTip"));
+		ps[OUT].setToolTip(__("shiftRegOutTip"));
+		ps[SH].setToolTip(__("shiftRegShiftTip"));
+		ps[IN].setToolTip(__("shiftRegInTip"));
+		ps[CK].setToolTip(__("shiftRegClockTip"));
+		ps[CLR].setToolTip(__("shiftRegClearTip"));
 		instance.setPorts(ps);
 
 		instance.setTextField(StdAttr.LABEL, StdAttr.LABEL_FONT,
@@ -199,10 +200,10 @@ public class ShiftRegister extends InstanceFactory {
 				Graphics g = painter.getGraphics();
 				Object label = painter.getAttributeValue(StdAttr.LABEL);
 				if (label == null || label.equals("")) {
-					String a = Strings.get("shiftRegisterLabel1");
+					String a = _("shiftRegisterLabel1");
 					GraphicsUtil.drawCenteredText(g, a, x, y + h / 4);
 				}
-				String b = Strings.get("shiftRegisterLabel2", "" + len,
+				String b = _("shiftRegisterLabel2", "" + len,
 						"" + wid);
 				GraphicsUtil.drawCenteredText(g, b, x, y + 3 * h / 4);
 			}

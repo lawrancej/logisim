@@ -20,6 +20,7 @@ import com.cburch.logisim.gui.hex.HexFrame;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.MenuExtender;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class MemMenu implements ActionListener, MenuExtender {
 	private Mem factory;
@@ -48,10 +49,10 @@ class MemMenu implements ActionListener, MenuExtender {
 		}
 
 		boolean enabled = circState != null;
-		edit = createItem(enabled, Strings.get("ramEditMenuItem"));
-		clear = createItem(enabled, Strings.get("ramClearMenuItem"));
-		load = createItem(enabled, Strings.get("ramLoadMenuItem"));
-		save = createItem(enabled, Strings.get("ramSaveMenuItem"));
+		edit = createItem(enabled, _("ramEditMenuItem"));
+		clear = createItem(enabled, _("ramClearMenuItem"));
+		load = createItem(enabled, _("ramLoadMenuItem"));
+		save = createItem(enabled, _("ramSaveMenuItem"));
 
 		menu.addSeparator();
 		menu.add(edit);
@@ -89,8 +90,8 @@ class MemMenu implements ActionListener, MenuExtender {
 		if (isAllZero) return;
 
 		int choice = JOptionPane.showConfirmDialog(frame,
-				Strings.get("ramConfirmClearMsg"),
-				Strings.get("ramConfirmClearTitle"),
+				_("ramConfirmClearMsg"),
+				_("ramConfirmClearTitle"),
 				JOptionPane.YES_NO_OPTION);
 		if (choice == JOptionPane.YES_OPTION) {
 			s.getContents().clear();
@@ -101,7 +102,7 @@ class MemMenu implements ActionListener, MenuExtender {
 		JFileChooser chooser = proj.createChooser();
 		File oldSelected = factory.getCurrentImage(instance);
 		if (oldSelected != null) chooser.setSelectedFile(oldSelected);
-		chooser.setDialogTitle(Strings.get("ramLoadDialogTitle"));
+		chooser.setDialogTitle(_("ramLoadDialogTitle"));
 		int choice = chooser.showOpenDialog(frame);
 		if (choice == JFileChooser.APPROVE_OPTION) {
 			File f = chooser.getSelectedFile();
@@ -109,7 +110,7 @@ class MemMenu implements ActionListener, MenuExtender {
 				factory.loadImage(circState.getInstanceState(instance), f);
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(frame, e.getMessage(),
-						Strings.get("ramLoadErrorTitle"), JOptionPane.ERROR_MESSAGE);
+						_("ramLoadErrorTitle"), JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -120,7 +121,7 @@ class MemMenu implements ActionListener, MenuExtender {
 		JFileChooser chooser = proj.createChooser();
 		File oldSelected = factory.getCurrentImage(instance);
 		if (oldSelected != null) chooser.setSelectedFile(oldSelected);
-		chooser.setDialogTitle(Strings.get("ramSaveDialogTitle"));
+		chooser.setDialogTitle(_("ramSaveDialogTitle"));
 		int choice = chooser.showSaveDialog(frame);
 		if (choice == JFileChooser.APPROVE_OPTION) {
 			File f = chooser.getSelectedFile();
@@ -129,7 +130,7 @@ class MemMenu implements ActionListener, MenuExtender {
 				factory.setCurrentImage(instance, f);
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(frame, e.getMessage(),
-					Strings.get("ramSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
+					_("ramSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

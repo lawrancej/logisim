@@ -14,12 +14,13 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.tools.WireRepairData;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class XorGate extends AbstractGate {
 	public static XorGate FACTORY = new XorGate();
 
 	private XorGate() {
-		super("XOR Gate", Strings.getter("xorGateComponent"), true);
+		super("XOR Gate", __("xorGateComponent"), true);
 		setAdditionalWidth(10);
 		setIconNames("xorGate.gif", "xorGateRect.gif", "dinXorGate.gif");
 		setPaintInputLines(true);

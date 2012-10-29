@@ -21,6 +21,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreePath;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class SelectionPanel extends LogPanel {
 	private class Listener extends MouseAdapter
@@ -172,21 +173,21 @@ class SelectionPanel extends LogPanel {
 
 	@Override
 	public String getTitle() {
-		return Strings.get("selectionTab");
+		return _("selectionTab");
 	}
 
 	@Override
 	public String getHelpText() {
-		return Strings.get("selectionHelp");
+		return _("selectionHelp");
 	}
 	
 	@Override
 	public void localeChanged() {
-		addTool.setText(Strings.get("selectionAdd"));
-		changeBase.setText(Strings.get("selectionChangeBase"));
-		moveUp.setText(Strings.get("selectionMoveUp"));
-		moveDown.setText(Strings.get("selectionMoveDown"));
-		remove.setText(Strings.get("selectionRemove"));
+		addTool.setText(_("selectionAdd"));
+		changeBase.setText(_("selectionChangeBase"));
+		moveUp.setText(_("selectionMoveUp"));
+		moveDown.setText(_("selectionMoveDown"));
+		remove.setText(_("selectionRemove"));
 		selector.localeChanged();
 		list.localeChanged();
 	}

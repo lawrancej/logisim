@@ -10,6 +10,7 @@ import com.cburch.logisim.gui.generic.AttrTableSetException;
 import com.cburch.logisim.gui.generic.AttributeSetTableModel;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.SetAttributeAction;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class AttrTableComponentModel extends AttributeSetTableModel {
 	Project proj;
@@ -40,11 +41,11 @@ class AttrTableComponentModel extends AttributeSetTableModel {
 	public void setValueRequested(Attribute<Object> attr, Object value)
 			throws AttrTableSetException {
 		if (!proj.getLogisimFile().contains(circ)) {
-			String msg = Strings.get("cannotModifyCircuitError");
+			String msg = _("cannotModifyCircuitError");
 			throw new AttrTableSetException(msg);
 		} else {
 			SetAttributeAction act = new SetAttributeAction(circ,
-					Strings.getter("changeAttributeAction"));
+					__("changeAttributeAction"));
 			act.set(comp, attr, value);
 			proj.doAction(act);
 		}

@@ -6,7 +6,7 @@ package com.cburch.logisim.std.gates;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class NegateAttribute extends Attribute<Boolean> {
 	private static Attribute<Boolean> BOOLEAN_ATTR = Attributes.forBoolean("negateDummy");
@@ -37,7 +37,7 @@ class NegateAttribute extends Attribute<Boolean> {
 	
 	@Override
 	public String getDisplayName() {
-		String ret = StringUtil.format(Strings.get("gateNegateAttr"), "" + (index + 1));
+		String ret = _("gateNegateAttr", "" + (index + 1));
 		if (side != null) {
 			ret += " (" + side.toVerticalDisplayString() + ")"; 
 		}

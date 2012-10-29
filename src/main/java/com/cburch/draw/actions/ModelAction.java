@@ -9,6 +9,7 @@ import java.util.Collections;
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.undo.Action;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public abstract class ModelAction extends Action {
 	private CanvasModel model;
@@ -44,7 +45,7 @@ public abstract class ModelAction extends Action {
 	
 	static String getShapesName(Collection<CanvasObject> coll) {
 		if (coll.size() != 1) {
-			return Strings.get("shapeMultiple");
+			return _("shapeMultiple");
 		} else {
 			CanvasObject shape = coll.iterator().next();
 			return shape.getDisplayName();

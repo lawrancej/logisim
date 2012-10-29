@@ -23,10 +23,11 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Multiplexer extends InstanceFactory {
 	public Multiplexer() {
-		super("Multiplexer", Strings.getter("multiplexerComponent"));
+		super("Multiplexer", __("multiplexerComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.FACING, Plexers.ATTR_SELECT_LOC, Plexers.ATTR_SELECT, StdAttr.WIDTH,
 				Plexers.ATTR_DISABLED, Plexers.ATTR_ENABLE
@@ -155,13 +156,13 @@ public class Multiplexer extends InstanceFactory {
 		ps[ps.length - 1] = new Port(0, 0, Port.OUTPUT, data.getWidth());
 
 		for (int i = 0; i < inputs; i++) {
-			ps[i].setToolTip(Strings.getter("multiplexerInTip", "" + i));
+			ps[i].setToolTip(__("multiplexerInTip", "" + i));
 		}
-		ps[inputs].setToolTip(Strings.getter("multiplexerSelectTip"));
+		ps[inputs].setToolTip(__("multiplexerSelectTip"));
 		if (enable) {
-			ps[inputs + 1].setToolTip(Strings.getter("multiplexerEnableTip"));
+			ps[inputs + 1].setToolTip(__("multiplexerEnableTip"));
 		}
-		ps[ps.length - 1].setToolTip(Strings.getter("multiplexerOutTip"));
+		ps[ps.length - 1].setToolTip(__("multiplexerOutTip"));
 
 		instance.setPorts(ps);
 	}

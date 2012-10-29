@@ -31,7 +31,7 @@ import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringGetter;
-import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 abstract class Mem extends InstanceFactory {
 	// Note: The code is meant to be able to handle up to 32-bit addresses, but it
@@ -42,9 +42,9 @@ abstract class Mem extends InstanceFactory {
 	// size. And second, I'd alter the MemContents class's PAGE_SIZE_BITS constant
 	// to 14 so that its "page table" isn't quite so big.
 	public static final Attribute<BitWidth> ADDR_ATTR = Attributes.forBitWidth(
-			"addrWidth", Strings.getter("ramAddrWidthAttr"), 2, 24);
+			"addrWidth", __("ramAddrWidthAttr"), 2, 24);
 	public static final Attribute<BitWidth> DATA_ATTR = Attributes.forBitWidth(
-			"dataWidth", Strings.getter("ramDataWidthAttr"));
+			"dataWidth", __("ramDataWidthAttr"));
 	
 	// port-related constants
 	static final int DATA = 0;
@@ -86,9 +86,9 @@ abstract class Mem extends InstanceFactory {
 		ps[DATA] = new Port(   0,  0, Port.INOUT, DATA_ATTR);
 		ps[ADDR] = new Port(-140,  0, Port.INPUT, ADDR_ATTR);
 		ps[CS]   = new Port( -90, 40, Port.INPUT, 1);
-		ps[DATA].setToolTip(Strings.getter("memDataTip"));
-		ps[ADDR].setToolTip(Strings.getter("memAddrTip"));
-		ps[CS].setToolTip(Strings.getter("memCSTip"));
+		ps[DATA].setToolTip(__("memDataTip"));
+		ps[ADDR].setToolTip(__("memAddrTip"));
+		ps[CS].setToolTip(__("memCSTip"));
 	}
 
 	@Override
@@ -110,31 +110,23 @@ abstract class Mem extends InstanceFactory {
 			String label;
 			if (this instanceof Rom) {
 				if (addrBits >= 30) {
-					label = StringUtil.format(Strings.get("romGigabyteLabel"), ""
-							+ (bytes >>> 30));
+					label = _("romGigabyteLabel", "" + (bytes >>> 30));
 				} else if (addrBits >= 20) {
-					label = StringUtil.format(Strings.get("romMegabyteLabel"), ""
-							+ (bytes >> 20));
+					label = _("romMegabyteLabel", "" + (bytes >> 20));
 				} else if (addrBits >= 10) {
-					label = StringUtil.format(Strings.get("romKilobyteLabel"), ""
-							+ (bytes >> 10));
+					label = _("romKilobyteLabel", "" + (bytes >> 10));
 				} else {
-					label = StringUtil.format(Strings.get("romByteLabel"), ""
-							+ bytes);
+					label = _("romByteLabel", "" + bytes);
 				}
 			} else {
 				if (addrBits >= 30) {
-					label = StringUtil.format(Strings.get("ramGigabyteLabel"), ""
-							+ (bytes >>> 30));
+					label = _("ramGigabyteLabel", "" + (bytes >>> 30));
 				} else if (addrBits >= 20) {
-					label = StringUtil.format(Strings.get("ramMegabyteLabel"), ""
-							+ (bytes >> 20));
+					label = _("ramMegabyteLabel", "" + (bytes >> 20));
 				} else if (addrBits >= 10) {
-					label = StringUtil.format(Strings.get("ramKilobyteLabel"), ""
-							+ (bytes >> 10));
+					label = _("ramKilobyteLabel", "" + (bytes >> 10));
 				} else {
-					label = StringUtil.format(Strings.get("ramByteLabel"), ""
-							+ bytes);
+					label = _("ramByteLabel", "" + bytes);
 				}
 			}
 			GraphicsUtil.drawCenteredText(g, label, bds.getX() + bds.getWidth()
@@ -142,10 +134,10 @@ abstract class Mem extends InstanceFactory {
 		}
 
 		// draw input and output ports
-		painter.drawPort(DATA, Strings.get("ramDataLabel"), Direction.WEST);
-		painter.drawPort(ADDR, Strings.get("ramAddrLabel"), Direction.EAST);
+		painter.drawPort(DATA, _("ramDataLabel"), Direction.WEST);
+		painter.drawPort(ADDR, _("ramAddrLabel"), Direction.EAST);
 		g.setColor(Color.GRAY);
-		painter.drawPort(CS, Strings.get("ramCSLabel"), Direction.SOUTH);
+		painter.drawPort(CS, _("ramCSLabel"), Direction.SOUTH);
 	}
 	
 	File getCurrentImage(Instance instance) {

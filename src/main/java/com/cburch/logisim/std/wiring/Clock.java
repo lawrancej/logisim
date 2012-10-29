@@ -29,14 +29,15 @@ import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Clock extends InstanceFactory {
 	public static final Attribute<Integer> ATTR_HIGH
-		= new DurationAttribute("highDuration", Strings.getter("clockHighAttr"),
+		= new DurationAttribute("highDuration", __("clockHighAttr"),
 				1, Integer.MAX_VALUE);
 
 	public static final Attribute<Integer> ATTR_LOW
-		= new DurationAttribute("lowDuration", Strings.getter("clockLowAttr"),
+		= new DurationAttribute("lowDuration", __("clockLowAttr"),
 				1, Integer.MAX_VALUE);
 	
 	public static final Clock FACTORY = new Clock();
@@ -93,7 +94,7 @@ public class Clock extends InstanceFactory {
 	}
 
 	public Clock() {
-		super("Clock", Strings.getter("clockComponent"));
+		super("Clock", __("clockComponent"));
 		setAttributes(new Attribute[] {
 					StdAttr.FACING, ATTR_HIGH, ATTR_LOW,
 					StdAttr.LABEL, Pin.ATTR_LABEL_LOC, StdAttr.LABEL_FONT

@@ -9,6 +9,7 @@ import java.util.Collections;
 
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelAddAction extends ModelAction {
 	private ArrayList<CanvasObject> added;
@@ -42,7 +43,7 @@ public class ModelAddAction extends ModelAction {
 
 	@Override
 	public String getName() {
-		return Strings.get("actionAdd", getShapesName(added));
+		return _("actionAdd", getShapesName(added));
 	}
 	
 	@Override

@@ -30,6 +30,7 @@ import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.Parser;
 import com.cburch.logisim.analyze.model.ParserException;
 import com.cburch.logisim.util.StringGetter;
+import static com.cburch.logisim.util.LocaleString._;
 
 class ExpressionTab extends AnalyzerTab implements TabInterface {
 	private class MyListener extends AbstractAction
@@ -178,9 +179,9 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 	void localeChanged() {
 		selector.localeChanged();
 		prettyView.localeChanged();
-		clear.setText(Strings.get("exprClearButton"));
-		revert.setText(Strings.get("exprRevertButton"));
-		enter.setText(Strings.get("exprEnterButton"));
+		clear.setText(_("exprClearButton"));
+		revert.setText(_("exprRevertButton"));
+		enter.setText(_("exprEnterButton"));
 		if (errorMessage != null) {
 			error.setText(errorMessage.toString());
 		}

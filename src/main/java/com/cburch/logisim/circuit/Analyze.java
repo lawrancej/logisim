@@ -27,6 +27,7 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.std.wiring.Pin;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Analyze {
 	private static final int MAX_ITERATIONS = 100;
@@ -82,12 +83,12 @@ public class Analyze {
 			
 			String defaultList;
 			if (Pin.FACTORY.isInputPin(pin)) {
-				defaultList = Strings.get("defaultInputLabels");
+				defaultList = _("defaultInputLabels");
 				if (defaultList.indexOf(",") < 0) {
 					defaultList = "a,b,c,d,e,f,g,h";
 				}
 			} else {
-				defaultList = Strings.get("defaultOutputLabels");
+				defaultList = _("defaultOutputLabels");
 				if (defaultList.indexOf(",") < 0) {
 					defaultList = "x,y,z,u,v,w,s,t";
 				}

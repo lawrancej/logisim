@@ -10,6 +10,7 @@ import com.cburch.draw.toolbar.ToolbarItem;
 import com.cburch.draw.toolbar.ToolbarSeparator;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class ExplorerToolbarModel extends AbstractToolbarModel
 		implements MenuListener.EnabledListener {
@@ -24,13 +25,13 @@ class ExplorerToolbarModel extends AbstractToolbarModel
 		this.frame = frame;
 		
 		itemToolbox = new LogisimToolbarItem(menu, "projtool.gif",
-				LogisimMenuBar.VIEW_TOOLBOX, Strings.getter("projectViewToolboxTip"));
+				LogisimMenuBar.VIEW_TOOLBOX, __("projectViewToolboxTip"));
 		itemSimulation = new LogisimToolbarItem(menu, "projsim.gif",
-				LogisimMenuBar.VIEW_SIMULATION, Strings.getter("projectViewSimulationTip"));
+				LogisimMenuBar.VIEW_SIMULATION, __("projectViewSimulationTip"));
 		itemLayout = new LogisimToolbarItem(menu, "projlayo.gif",
-				LogisimMenuBar.EDIT_LAYOUT, Strings.getter("projectEditLayoutTip"));
+				LogisimMenuBar.EDIT_LAYOUT, __("projectEditLayoutTip"));
 		itemAppearance = new LogisimToolbarItem(menu, "projapp.gif",
-				LogisimMenuBar.EDIT_APPEARANCE, Strings.getter("projectEditAppearanceTip"));
+				LogisimMenuBar.EDIT_APPEARANCE, __("projectEditAppearanceTip"));
 		
 		items = UnmodifiableList.create(new ToolbarItem[] {
 				itemToolbox,

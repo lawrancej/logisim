@@ -33,14 +33,15 @@ import com.cburch.logisim.tools.WireRepairData;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Transistor extends InstanceFactory {
 	static final AttributeOption TYPE_P
-		= new AttributeOption("p", Strings.getter("transistorTypeP"));
+		= new AttributeOption("p", __("transistorTypeP"));
 	static final AttributeOption TYPE_N
-		= new AttributeOption("n", Strings.getter("transistorTypeN"));
+		= new AttributeOption("n", __("transistorTypeN"));
 	static final Attribute<AttributeOption> ATTR_TYPE
-		= Attributes.forOption("type", Strings.getter("transistorTypeAttr"),
+		= Attributes.forOption("type", __("transistorTypeAttr"),
 				new AttributeOption[] { TYPE_P, TYPE_N });
 	
 	static final int OUTPUT = 0;
@@ -51,7 +52,7 @@ public class Transistor extends InstanceFactory {
 	private static final Icon ICON_P = Icons.getIcon("trans0.gif");
 
 	public Transistor() {
-		super("Transistor", Strings.getter("transistorComponent"));
+		super("Transistor", __("transistorComponent"));
 		setAttributes(
 				new Attribute[] { ATTR_TYPE, StdAttr.FACING,
 						Wiring.ATTR_GATE, StdAttr.WIDTH },

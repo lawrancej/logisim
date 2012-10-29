@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.util.StringGetter;
-import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class DurationAttribute extends Attribute<Integer> {
 	private int min;
@@ -24,22 +24,22 @@ public class DurationAttribute extends Attribute<Integer> {
 		try {
 			Integer ret = Integer.valueOf(value);
 			if (ret.intValue() < min) {
-				throw new NumberFormatException(StringUtil.format(Strings.get("durationSmallMessage"), "" + min));
+				throw new NumberFormatException(_("durationSmallMessage", "" + min));
 			} else if (ret.intValue() > max) {
-				throw new NumberFormatException(StringUtil.format(Strings.get("durationLargeMessage"), "" + max));
+				throw new NumberFormatException(_("durationLargeMessage", "" + max));
 			}
 			return ret;
 		} catch (NumberFormatException e) {
-			throw new NumberFormatException(Strings.get("freqInvalidMessage"));
+			throw new NumberFormatException(_("freqInvalidMessage"));
 		}
 	}
 
 	@Override
 	public String toDisplayString(Integer value) {
 		if (value.equals(Integer.valueOf(1))) {
-			return Strings.get("clockDurationOneValue");
+			return _("clockDurationOneValue");
 		} else {
-			return StringUtil.format(Strings.get("clockDurationValue"),
+			return _("clockDurationValue",
 					value.toString());
 		}
 	}

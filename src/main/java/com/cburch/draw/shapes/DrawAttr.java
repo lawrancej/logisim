@@ -12,43 +12,44 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class DrawAttr {
 	public static final Font DEFAULT_FONT
 		= new Font("SansSerif", Font.PLAIN, 12);
 
 	public static final AttributeOption ALIGN_LEFT
-		= new AttributeOption(Integer.valueOf(EditableLabel.LEFT), Strings.getter("alignStart"));
+		= new AttributeOption(Integer.valueOf(EditableLabel.LEFT), __("alignStart"));
 	public static final AttributeOption ALIGN_CENTER
-		= new AttributeOption(Integer.valueOf(EditableLabel.CENTER), Strings.getter("alignMiddle"));
+		= new AttributeOption(Integer.valueOf(EditableLabel.CENTER), __("alignMiddle"));
 	public static final AttributeOption ALIGN_RIGHT
-		= new AttributeOption(Integer.valueOf(EditableLabel.RIGHT), Strings.getter("alignEnd"));
+		= new AttributeOption(Integer.valueOf(EditableLabel.RIGHT), __("alignEnd"));
 
 	public static final AttributeOption PAINT_STROKE
-		= new AttributeOption("stroke", Strings.getter("paintStroke"));
+		= new AttributeOption("stroke", __("paintStroke"));
 	public static final AttributeOption PAINT_FILL
-		= new AttributeOption("fill", Strings.getter("paintFill"));
+		= new AttributeOption("fill", __("paintFill"));
 	public static final AttributeOption PAINT_STROKE_FILL
-		= new AttributeOption("both", Strings.getter("paintBoth"));
+		= new AttributeOption("both", __("paintBoth"));
 
 	public static final Attribute<Font> FONT
-		= Attributes.forFont("font", Strings.getter("attrFont"));
+		= Attributes.forFont("font", __("attrFont"));
 	public static final Attribute<AttributeOption> ALIGNMENT
-		= Attributes.forOption("align", Strings.getter("attrAlign"),
+		= Attributes.forOption("align", __("attrAlign"),
 			new AttributeOption[] { ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT });
 	public static final Attribute<AttributeOption> PAINT_TYPE
-		= Attributes.forOption("paintType", Strings.getter("attrPaint"),
+		= Attributes.forOption("paintType", __("attrPaint"),
 			new AttributeOption[] { PAINT_STROKE, PAINT_FILL, PAINT_STROKE_FILL });
 	public static final Attribute<Integer> STROKE_WIDTH
-		= Attributes.forIntegerRange("stroke-width", Strings.getter("attrStrokeWidth"), 1, 8);
+		= Attributes.forIntegerRange("stroke-width", __("attrStrokeWidth"), 1, 8);
 	public static final Attribute<Color> STROKE_COLOR
-		= Attributes.forColor("stroke", Strings.getter("attrStroke"));
+		= Attributes.forColor("stroke", __("attrStroke"));
 	public static final Attribute<Color> FILL_COLOR
-		= Attributes.forColor("fill", Strings.getter("attrFill"));
+		= Attributes.forColor("fill", __("attrFill"));
 	public static final Attribute<Color> TEXT_DEFAULT_FILL
-		= Attributes.forColor("fill", Strings.getter("attrFill"));
+		= Attributes.forColor("fill", __("attrFill"));
 	public static final Attribute<Integer> CORNER_RADIUS
-		= Attributes.forIntegerRange("rx", Strings.getter("attrRx"), 1, 1000);
+		= Attributes.forIntegerRange("rx", __("attrRx"), 1, 1000);
 
 	public static final List<Attribute<?>> ATTRS_TEXT // for text
 		= createAttributes(new Attribute[] { FONT, ALIGNMENT, FILL_COLOR });

@@ -16,6 +16,7 @@ import javax.swing.AbstractSpinnerModel;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ZoomControl extends JPanel {
 	private class SpinnerModel extends AbstractSpinnerModel
@@ -85,7 +86,7 @@ public class ZoomControl extends JPanel {
 		
 		@Override
 		public String getToolTipText(MouseEvent e) {
-			return Strings.get("zoomShowGrid");
+			return _("zoomShowGrid");
 		}
 
 		private void update() {

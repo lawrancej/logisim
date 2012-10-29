@@ -4,11 +4,12 @@
 package com.cburch.logisim.std.memory;
 
 import com.cburch.logisim.data.Value;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class SRFlipFlop extends AbstractFlipFlop {
 	public SRFlipFlop() {
 		super("S-R Flip-Flop", "srFlipFlop.gif",
-				Strings.getter("srFlipFlopComponent"), 2, true);
+				__("srFlipFlopComponent"), 2, true);
 	}
 
 	@Override

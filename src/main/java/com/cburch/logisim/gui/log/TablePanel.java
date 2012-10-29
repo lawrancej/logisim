@@ -17,6 +17,7 @@ import javax.swing.event.ChangeListener;
 
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class TablePanel extends LogPanel {
 	private static final Font HEAD_FONT = new Font("Serif", Font.BOLD, 14);
@@ -126,12 +127,12 @@ class TablePanel extends LogPanel {
 	
 	@Override
 	public String getTitle() {
-		return Strings.get("tableTab");
+		return _("tableTab");
 	}
 	
 	@Override
 	public String getHelpText() {
-		return Strings.get("tableHelp");
+		return _("tableHelp");
 	}
 	
 	@Override
@@ -174,7 +175,7 @@ class TablePanel extends LogPanel {
 		int columns = sel.size();
 		if (columns == 0) {
 			g.setFont(BODY_FONT);
-			GraphicsUtil.drawCenteredText(g, Strings.get("tableEmptyMessage"), sz.width / 2, sz.height / 2);
+			GraphicsUtil.drawCenteredText(g, _("tableEmptyMessage"), sz.width / 2, sz.height / 2);
 			return;
 		}
 		

@@ -22,10 +22,11 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Random extends InstanceFactory {
 	private static final Attribute<Integer> ATTR_SEED
-		= Attributes.forInteger("seed", Strings.getter("randomSeedAttr"));
+		= Attributes.forInteger("seed", __("randomSeedAttr"));
 	
 	private static final int OUT = 0;
 	private static final int CK  = 1;
@@ -33,7 +34,7 @@ public class Random extends InstanceFactory {
 	private static final int RST = 3;
 
 	public Random() {
-		super("Random", Strings.getter("randomComponent"));
+		super("Random", __("randomComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.WIDTH, ATTR_SEED, StdAttr.EDGE_TRIGGER,
 				StdAttr.LABEL, StdAttr.LABEL_FONT
@@ -52,10 +53,10 @@ public class Random extends InstanceFactory {
 		ps[CK]  = new Port(-30, -10, Port.INPUT, 1);
 		ps[NXT] = new Port(-30,  10, Port.INPUT, 1);
 		ps[RST] = new Port(-20,  20, Port.INPUT, 1);
-		ps[OUT].setToolTip(Strings.getter("randomQTip"));
-		ps[CK].setToolTip(Strings.getter("randomClockTip"));
-		ps[NXT].setToolTip(Strings.getter("randomNextTip"));
-		ps[RST].setToolTip(Strings.getter("randomResetTip"));
+		ps[OUT].setToolTip(__("randomQTip"));
+		ps[CK].setToolTip(__("randomClockTip"));
+		ps[NXT].setToolTip(__("randomNextTip"));
+		ps[RST].setToolTip(__("randomResetTip"));
 		setPorts(ps);
 	}
 	

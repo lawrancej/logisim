@@ -19,6 +19,7 @@ import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Multiplier extends InstanceFactory {
 	static final int PER_DELAY = 1;
@@ -30,7 +31,7 @@ public class Multiplier extends InstanceFactory {
 	private static final int C_OUT = 4;
 
 	public Multiplier() {
-		super("Multiplier", Strings.getter("multiplierComponent"));
+		super("Multiplier", __("multiplierComponent"));
 		setAttributes(new Attribute[] { StdAttr.WIDTH },
 				new Object[] { BitWidth.create(8) });
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
@@ -43,11 +44,11 @@ public class Multiplier extends InstanceFactory {
 		ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
 		ps[C_IN]  = new Port(-20, -20, Port.INPUT,  StdAttr.WIDTH);
 		ps[C_OUT] = new Port(-20,  20, Port.OUTPUT, StdAttr.WIDTH);
-		ps[IN0].setToolTip(Strings.getter("multiplierInputTip"));
-		ps[IN1].setToolTip(Strings.getter("multiplierInputTip"));
-		ps[OUT].setToolTip(Strings.getter("multiplierOutputTip"));
-		ps[C_IN].setToolTip(Strings.getter("multiplierCarryInTip"));
-		ps[C_OUT].setToolTip(Strings.getter("multiplierCarryOutTip"));
+		ps[IN0].setToolTip(__("multiplierInputTip"));
+		ps[IN1].setToolTip(__("multiplierInputTip"));
+		ps[OUT].setToolTip(__("multiplierOutputTip"));
+		ps[C_IN].setToolTip(__("multiplierCarryInTip"));
+		ps[C_OUT].setToolTip(__("multiplierCarryOutTip"));
 		setPorts(ps);
 	}
 

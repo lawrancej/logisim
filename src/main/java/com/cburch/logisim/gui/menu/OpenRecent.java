@@ -19,6 +19,7 @@ import javax.swing.JMenuItem;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class OpenRecent extends JMenu implements PropertyChangeListener {
 	private static final int MAX_ITEM_LENGTH = 50;
@@ -73,7 +74,7 @@ class OpenRecent extends JMenu implements PropertyChangeListener {
 	
 	private static String getFileText(File file) {
 		if (file == null) {
-			return Strings.get("fileOpenRecentNoChoices");
+			return _("fileOpenRecentNoChoices");
 		} else {
 			String ret;
 			try {
@@ -95,10 +96,10 @@ class OpenRecent extends JMenu implements PropertyChangeListener {
 	}
 	
 	void localeChanged() {
-		setText(Strings.get("fileOpenRecentItem"));
+		setText(_("fileOpenRecentItem"));
 		for (RecentItem item : recentItems) {
 			if (item.file == null) {
-				item.setText(Strings.get("fileOpenRecentNoChoices"));
+				item.setText(_("fileOpenRecentNoChoices"));
 			}
 		}
 	}

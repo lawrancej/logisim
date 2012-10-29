@@ -31,7 +31,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
-import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ProjectCircuitActions {
 	private ProjectCircuitActions() { }
@@ -47,7 +47,7 @@ public class ProjectCircuitActions {
 
 	private static String promptForCircuitName(JFrame frame,
 			Library lib, String initialValue) {
-		JLabel label = new JLabel(Strings.get("circuitNamePrompt"));
+		JLabel label = new JLabel(_("circuitNamePrompt"));
 		final JTextField field = new JTextField(15);
 		field.setText(initialValue);
 		JLabel error = new JLabel(" ");
@@ -68,7 +68,7 @@ public class ProjectCircuitActions {
 		JOptionPane pane = new JOptionPane(panel, JOptionPane.QUESTION_MESSAGE,
 				JOptionPane.OK_CANCEL_OPTION);
 		pane.setInitialValue(field);
-		JDialog dlog = pane.createDialog(frame, Strings.get("circuitNameDialogTitle"));
+		JDialog dlog = pane.createDialog(frame, _("circuitNameDialogTitle"));
 		dlog.addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent arg0) {
 				field.requestFocus();
@@ -90,12 +90,12 @@ public class ProjectCircuitActions {
 
 			String name = field.getText().trim();
 			if (name.equals("")) {
-				error.setText(Strings.get("circuitNameMissingError"));
+				error.setText(_("circuitNameMissingError"));
 			} else {
 				if (lib.getTool(name) == null) {
 					return name;
 				} else {
-					error.setText(Strings.get("circuitNameDuplicateError"));
+					error.setText(_("circuitNameDuplicateError"));
 				}
 			}
 		}
@@ -120,13 +120,13 @@ public class ProjectCircuitActions {
 	public static void doRemoveCircuit(Project proj, Circuit circuit) {
 		if (proj.getLogisimFile().getTools().size() == 1) {
 			JOptionPane.showMessageDialog(proj.getFrame(),
-					Strings.get("circuitRemoveLastError"),
-					Strings.get("circuitRemoveErrorTitle"),
+					_("circuitRemoveLastError"),
+					_("circuitRemoveErrorTitle"),
 					JOptionPane.ERROR_MESSAGE);
 		} else if (!proj.getDependencies().canRemove(circuit)) {
 			JOptionPane.showMessageDialog(proj.getFrame(),
-				Strings.get("circuitRemoveUsedError"),
-				Strings.get("circuitRemoveErrorTitle"),
+				_("circuitRemoveUsedError"),
+				_("circuitRemoveErrorTitle"),
 				JOptionPane.ERROR_MESSAGE);
 		} else {
 			proj.doAction(LogisimFileActions.removeCircuit(circuit));
@@ -147,21 +147,19 @@ public class ProjectCircuitActions {
 			}
 			if (pin.getAttributeValue(StdAttr.WIDTH).getWidth() > 1) {
 				if (isInput) {
-					analyzeError(proj, Strings.get("analyzeMultibitInputError"));
+					analyzeError(proj, _("analyzeMultibitInputError"));
 				} else {
-					analyzeError(proj, Strings.get("analyzeMultibitOutputError"));
+					analyzeError(proj, _("analyzeMultibitOutputError"));
 				}
 				return;
 			}
 		}
 		if (inputNames.size() > AnalyzerModel.MAX_INPUTS) {
-			analyzeError(proj, StringUtil.format(Strings.get("analyzeTooManyInputsError"),
-					"" + AnalyzerModel.MAX_INPUTS));
+			analyzeError(proj, _("analyzeTooManyInputsError","" + AnalyzerModel.MAX_INPUTS));
 			return;
 		}
 		if (outputNames.size() > AnalyzerModel.MAX_OUTPUTS) {
-			analyzeError(proj, StringUtil.format(Strings.get("analyzeTooManyOutputsError"),
-					"" + AnalyzerModel.MAX_OUTPUTS));
+			analyzeError(proj, _("analyzeTooManyOutputsError","" + AnalyzerModel.MAX_OUTPUTS));
 			return;
 		}
 		
@@ -196,7 +194,7 @@ public class ProjectCircuitActions {
 			return;
 		} catch (AnalyzeException ex) {
 			JOptionPane.showMessageDialog(proj.getFrame(), ex.getMessage(),
-					Strings.get("analyzeNoExpressionTitle"),
+					_("analyzeNoExpressionTitle"),
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 		
@@ -207,7 +205,7 @@ public class ProjectCircuitActions {
 		
 	private static void analyzeError(Project proj, String message) {
 		JOptionPane.showMessageDialog(proj.getFrame(), message,
-			Strings.get("analyzeErrorTitle"),
+			_("analyzeErrorTitle"),
 			JOptionPane.ERROR_MESSAGE);
 		return;
 	}

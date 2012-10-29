@@ -13,12 +13,13 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.tools.WireRepairData;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class NorGate extends AbstractGate {
 	public static NorGate FACTORY = new NorGate();
 
 	private NorGate() {
-		super("NOR Gate", Strings.getter("norGateComponent"));
+		super("NOR Gate", __("norGateComponent"));
 		setNegateOutput(true);
 		setRectangularLabel(OrGate.FACTORY.getRectangularLabel(null));
 		setIconNames("norGate.gif", "norGateRect.gif", "dinNorGate.gif");

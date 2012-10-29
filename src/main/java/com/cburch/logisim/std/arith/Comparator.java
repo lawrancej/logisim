@@ -17,14 +17,15 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Comparator extends InstanceFactory {
 	private static final AttributeOption SIGNED_OPTION
-		= new AttributeOption("twosComplement", "twosComplement", Strings.getter("twosComplementOption"));
+		= new AttributeOption("twosComplement", "twosComplement", __("twosComplementOption"));
 	private static final AttributeOption UNSIGNED_OPTION
-		= new AttributeOption("unsigned", "unsigned", Strings.getter("unsignedOption"));
+		= new AttributeOption("unsigned", "unsigned", __("unsignedOption"));
 	private static final Attribute<AttributeOption> MODE_ATTRIBUTE
-		= Attributes.forOption("mode", Strings.getter("comparatorType"),
+		= Attributes.forOption("mode", __("comparatorType"),
 				new AttributeOption[] { SIGNED_OPTION, UNSIGNED_OPTION });
 	
 	private static final int IN0   = 0;
@@ -34,7 +35,7 @@ public class Comparator extends InstanceFactory {
 	private static final int LT    = 4;
 
 	public Comparator() {
-		super("Comparator", Strings.getter("comparatorComponent"));
+		super("Comparator", __("comparatorComponent"));
 		setAttributes(new Attribute[] { StdAttr.WIDTH, MODE_ATTRIBUTE },
 				new Object[] { BitWidth.create(8), SIGNED_OPTION });
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
@@ -47,11 +48,11 @@ public class Comparator extends InstanceFactory {
 		ps[GT]  = new Port(  0, -10, Port.OUTPUT, 1);
 		ps[EQ]  = new Port(  0,   0, Port.OUTPUT, 1);
 		ps[LT]  = new Port(  0,  10, Port.OUTPUT, 1);
-		ps[IN0].setToolTip(Strings.getter("comparatorInputATip"));
-		ps[IN1].setToolTip(Strings.getter("comparatorInputBTip"));
-		ps[GT].setToolTip(Strings.getter("comparatorGreaterTip"));
-		ps[EQ].setToolTip(Strings.getter("comparatorEqualTip"));
-		ps[LT].setToolTip(Strings.getter("comparatorLessTip"));
+		ps[IN0].setToolTip(__("comparatorInputATip"));
+		ps[IN1].setToolTip(__("comparatorInputBTip"));
+		ps[GT].setToolTip(__("comparatorGreaterTip"));
+		ps[EQ].setToolTip(__("comparatorEqualTip"));
+		ps[LT].setToolTip(__("comparatorLessTip"));
 		setPorts(ps);
 	}
 

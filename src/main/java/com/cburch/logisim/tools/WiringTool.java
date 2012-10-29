@@ -27,6 +27,7 @@ import com.cburch.logisim.util.StringGetter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class WiringTool extends Tool {
 	private static Cursor cursor
@@ -84,12 +85,12 @@ public class WiringTool extends Tool {
 
 	@Override
 	public String getDisplayName() {
-		return Strings.get("wiringTool");
+		return _("wiringTool");
 	}
 
 	@Override
 	public String getDescription() {
-		return Strings.get("wiringToolDesc");
+		return _("wiringToolDesc");
 	}
 	
 	private boolean computeMove(int newX, int newY) {
@@ -188,7 +189,7 @@ public class WiringTool extends Tool {
 	public void mousePressed(Canvas canvas, Graphics g, MouseEvent e) {
 		if (!canvas.getProject().getLogisimFile().contains(canvas.getCircuit())) {
 			exists = false;
-			canvas.setErrorMessage(Strings.getter("cannotModifyError"));
+			canvas.setErrorMessage(__("cannotModifyError"));
 			return;
 		}
 
@@ -289,8 +290,8 @@ public class WiringTool extends Tool {
 				CircuitMutation mutation = new CircuitMutation(canvas.getCircuit());
 				mutation.addAll(ws);
 				StringGetter desc;
-				if (ws.size() == 1) desc = Strings.getter("addWireAction");
-				else desc = Strings.getter("addWiresAction");
+				if (ws.size() == 1) desc = __("addWireAction");
+				else desc = __("addWiresAction");
 				Action act = mutation.toAction(desc);
 				canvas.getProject().doAction(act);
 				lastAction = act;
@@ -363,11 +364,11 @@ public class WiringTool extends Tool {
 			Wire result = getShortenResult(shorten, drag0, drag1);
 			if (result == null) {
 				xn.remove(shorten);
-				actName = Strings.getter("removeComponentAction", 
+				actName = __("removeComponentAction", 
 						shorten.getFactory().getDisplayGetter());
 			} else {
 				xn.replace(shorten, result);
-				actName = Strings.getter("shortenWireAction");
+				actName = __("shortenWireAction");
 			}
 			canvas.getProject().doAction(xn.toAction(actName));
 			return true;

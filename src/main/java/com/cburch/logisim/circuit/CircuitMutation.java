@@ -14,6 +14,7 @@ import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.util.StringGetter;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public final class CircuitMutation extends CircuitTransaction {
 	private Circuit primary;
@@ -77,7 +78,7 @@ public final class CircuitMutation extends CircuitTransaction {
 	}
 	
 	public Action toAction(StringGetter name) {
-		if (name == null) name = Strings.getter("unknownChangeAction");
+		if (name == null) name = __("unknownChangeAction");
 		return new CircuitAction(name, this);
 	}
 

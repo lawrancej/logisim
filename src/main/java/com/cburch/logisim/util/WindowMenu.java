@@ -17,15 +17,16 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class WindowMenu extends JMenu {
 	private class MyListener implements LocaleListener, ActionListener {
 		public void localeChanged() {
-			WindowMenu.this.setText(Strings.get("windowMenu"));
-			minimize.setText(Strings.get("windowMinimizeItem"));
-			close.setText(Strings.get("windowCloseItem"));
+			WindowMenu.this.setText(_("windowMenu"));
+			minimize.setText(_("windowMinimizeItem"));
+			close.setText(_("windowCloseItem"));
 			zoom.setText(MacCompatibility.isQuitAutomaticallyPresent() ?
-					Strings.get("windowZoomItemMac") : Strings.get("windowZoomItem"));
+					_("windowZoomItemMac") : _("windowZoomItem"));
 		}
 
 		public void actionPerformed(ActionEvent e) {

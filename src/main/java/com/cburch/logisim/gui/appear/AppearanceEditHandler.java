@@ -32,6 +32,7 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.gui.main.EditHandler;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.proj.Project;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class AppearanceEditHandler extends EditHandler
 		implements SelectionListener, PropertyChangeListener, CanvasModelListener {
@@ -163,7 +164,7 @@ public class AppearanceEditHandler extends EditHandler
 		}
 			
 		canvas.getProject().doAction(new SelectionAction(canvas,
-				Strings.getter("pasteClipboardAction"), null, add, add,
+				__("pasteClipboardAction"), null, add, add,
 				anchorLocation, clip.getAnchorFacing()));
 	}
 	
@@ -190,7 +191,7 @@ public class AppearanceEditHandler extends EditHandler
 		
 		if (!remove.isEmpty()) {
 			canvas.getProject().doAction(new SelectionAction(canvas,
-				Strings.getter("deleteSelectionAction"), remove, null, select,
+				__("deleteSelectionAction"), remove, null, select,
 				anchorLocation, anchorFacing));
 		}
 	}
@@ -214,7 +215,7 @@ public class AppearanceEditHandler extends EditHandler
 		
 		if (!clones.isEmpty()) {
 			canvas.getProject().doAction(new SelectionAction(canvas,
-				Strings.getter("duplicateSelectionAction"), null, clones, select,
+				__("duplicateSelectionAction"), null, clones, select,
 				null, null));
 		}
 	}

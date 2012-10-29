@@ -57,8 +57,8 @@ import com.cburch.logisim.util.HorizontalSplitPane;
 import com.cburch.logisim.util.JFileChoosers;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
-import com.cburch.logisim.util.StringUtil;
 import com.cburch.logisim.util.VerticalSplitPane;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Frame extends LFrame implements LocaleListener {
 	public static final String EDITOR_VIEW = "editorView";
@@ -138,7 +138,7 @@ public class Frame extends LFrame implements LocaleListener {
 	class MyWindowListener extends WindowAdapter {
 		@Override
 		public void windowClosing(WindowEvent e) {
-			if (confirmClose(Strings.get("confirmCloseTitle"))) {
+			if (confirmClose(_("confirmCloseTitle"))) {
 				layoutCanvas.closeCanvas();
 				Frame.this.dispose();
 			}
@@ -380,10 +380,9 @@ public class Frame extends LFrame implements LocaleListener {
 		Circuit circuit = proj.getCurrentCircuit();
 		String name = proj.getLogisimFile().getName();
 		if (circuit != null) {
-			s = StringUtil.format(Strings.get("titleCircFileKnown"),
-				circuit.getName(), name);
+			s = _("titleCircFileKnown", circuit.getName(), name);
 		} else {
-			s = StringUtil.format(Strings.get("titleFileKnown"), name);
+			s = _("titleFileKnown", name);
 		}
 		this.setTitle(s);
 		myProjectListener.enableSave();
@@ -460,17 +459,16 @@ public class Frame extends LFrame implements LocaleListener {
 	}
 	
 	public boolean confirmClose() {
-		return confirmClose(Strings.get("confirmCloseTitle"));
+		return confirmClose(_("confirmCloseTitle"));
 	}
 	
 	// returns true if user is OK with proceeding
 	public boolean confirmClose(String title) {
-		String message = StringUtil.format(Strings.get("confirmDiscardMessage"),
-				proj.getLogisimFile().getName());
+		String message = _("confirmDiscardMessage", proj.getLogisimFile().getName());
 		
 		if (!proj.isFileDirty()) return true;
 		toFront();
-		String[] options = { Strings.get("saveOption"), Strings.get("discardOption"), Strings.get("cancelOption") };
+		String[] options = { _("saveOption"), _("discardOption"), _("cancelOption") };
 		int result = JOptionPane.showOptionDialog(this,
 				message, title, 0, JOptionPane.QUESTION_MESSAGE, null,
 				options, options[0]);

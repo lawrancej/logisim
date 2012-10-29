@@ -24,6 +24,7 @@ import com.cburch.logisim.gui.generic.ProjectExplorerToolNode;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.TableLayout;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class ToolbarOptions extends OptionsPanel {
 	private class Listener
@@ -156,21 +157,21 @@ class ToolbarOptions extends OptionsPanel {
 
 	@Override
 	public String getTitle() {
-		return Strings.get("toolbarTitle");
+		return _("toolbarTitle");
 	}
 
 	@Override
 	public String getHelpText() {
-		return Strings.get("toolbarHelp");
+		return _("toolbarHelp");
 	}
 	
 	@Override
 	public void localeChanged() {
-		addTool.setText(Strings.get("toolbarAddTool"));
-		addSeparator.setText(Strings.get("toolbarAddSeparator"));
-		moveUp.setText(Strings.get("toolbarMoveUp"));
-		moveDown.setText(Strings.get("toolbarMoveDown"));
-		remove.setText(Strings.get("toolbarRemove"));
+		addTool.setText(_("toolbarAddTool"));
+		addSeparator.setText(_("toolbarAddSeparator"));
+		moveUp.setText(_("toolbarMoveUp"));
+		moveDown.setText(_("toolbarMoveDown"));
+		remove.setText(_("toolbarRemove"));
 		list.localeChanged();
 	}
 }

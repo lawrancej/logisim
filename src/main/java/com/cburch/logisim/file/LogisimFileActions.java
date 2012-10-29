@@ -14,6 +14,7 @@ import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
+import static com.cburch.logisim.util.LocaleString.*;
 
 
 public class LogisimFileActions {
@@ -64,7 +65,7 @@ public class LogisimFileActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("addCircuitAction");
+			return _("addCircuitAction");
 		}
 
 		@Override
@@ -88,7 +89,7 @@ public class LogisimFileActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("removeCircuitAction");
+			return _("removeCircuitAction");
 		}
 
 		@Override
@@ -115,7 +116,7 @@ public class LogisimFileActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("moveCircuitAction");
+			return _("moveCircuitAction");
 		}
 
 		@Override
@@ -153,9 +154,9 @@ public class LogisimFileActions {
 		@Override
 		public String getName() {
 			if (libs.length == 1) {
-				return Strings.get("loadLibraryAction");
+				return _("loadLibraryAction");
 			} else {
-				return Strings.get("loadLibrariesAction");
+				return _("loadLibrariesAction");
 			}
 		}
 
@@ -184,9 +185,9 @@ public class LogisimFileActions {
 		@Override
 		public String getName() {
 			if (libs.length == 1) {
-				return Strings.get("unloadLibraryAction");
+				return _("unloadLibraryAction");
 			} else {
-				return Strings.get("unloadLibrariesAction");
+				return _("unloadLibrariesAction");
 			}
 		}
 
@@ -215,7 +216,7 @@ public class LogisimFileActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("setMainCircuitAction");
+			return _("setMainCircuitAction");
 		}
 
 		@Override
@@ -254,7 +255,7 @@ public class LogisimFileActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("revertDefaultsAction");
+			return _("revertDefaultsAction");
 		}
 
 		@Override

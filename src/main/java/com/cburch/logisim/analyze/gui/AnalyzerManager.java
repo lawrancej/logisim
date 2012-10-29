@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenuItemManager;
+import static com.cburch.logisim.util.LocaleString._;
 
 public class AnalyzerManager extends WindowMenuItemManager
 		implements LocaleListener {
@@ -28,7 +29,7 @@ public class AnalyzerManager extends WindowMenuItemManager
 	private static AnalyzerManager analysisManager = null;
 
 	private AnalyzerManager() {
-		super(Strings.get("analyzerWindowTitle"), true);
+		super(_("analyzerWindowTitle"), true);
 		LocaleManager.addLocaleListener(this);
 	}
 	
@@ -42,6 +43,6 @@ public class AnalyzerManager extends WindowMenuItemManager
 	}
 
 	public void localeChanged() {
-		setText(Strings.get("analyzerWindowTitle"));
+		setText(_("analyzerWindowTitle"));
 	}
 }

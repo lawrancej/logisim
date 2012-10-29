@@ -9,6 +9,7 @@ import java.util.List;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Gates extends Library {
 	private List<Tool> tools = null;
@@ -34,7 +35,7 @@ public class Gates extends Library {
 	public String getName() { return "Gates"; }
 
 	@Override
-	public String getDisplayName() { return Strings.get("gatesLibrary"); }
+	public String getDisplayName() { return _("gatesLibrary"); }
 
 	@Override
 	public List<Tool> getTools() {

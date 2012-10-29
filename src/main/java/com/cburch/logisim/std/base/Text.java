@@ -20,37 +20,38 @@ import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Text extends InstanceFactory {
 	public static Attribute<String> ATTR_TEXT = Attributes.forString("text",
-			Strings.getter("textTextAttr"));
+			__("textTextAttr"));
 	public static Attribute<Font> ATTR_FONT = Attributes.forFont("font",
-		Strings.getter("textFontAttr"));
+		__("textFontAttr"));
 	public static Attribute<AttributeOption> ATTR_HALIGN = Attributes.forOption("halign",
-		Strings.getter("textHorzAlignAttr"), new AttributeOption[] {
+		__("textHorzAlignAttr"), new AttributeOption[] {
 			new AttributeOption(Integer.valueOf(TextField.H_LEFT),
-				"left", Strings.getter("textHorzAlignLeftOpt")),
+				"left", __("textHorzAlignLeftOpt")),
 			new AttributeOption(Integer.valueOf(TextField.H_RIGHT),
-				"right", Strings.getter("textHorzAlignRightOpt")),
+				"right", __("textHorzAlignRightOpt")),
 			new AttributeOption(Integer.valueOf(TextField.H_CENTER),
-				"center", Strings.getter("textHorzAlignCenterOpt")),
+				"center", __("textHorzAlignCenterOpt")),
 		});
 	public static Attribute<AttributeOption> ATTR_VALIGN = Attributes.forOption("valign",
-		Strings.getter("textVertAlignAttr"), new AttributeOption[] {
+		__("textVertAlignAttr"), new AttributeOption[] {
 			new AttributeOption(Integer.valueOf(TextField.V_TOP),
-				"top", Strings.getter("textVertAlignTopOpt")),
+				"top", __("textVertAlignTopOpt")),
 			new AttributeOption(Integer.valueOf(TextField.V_BASELINE),
-				"base", Strings.getter("textVertAlignBaseOpt")),
+				"base", __("textVertAlignBaseOpt")),
 			new AttributeOption(Integer.valueOf(TextField.V_BOTTOM),
-				"bottom", Strings.getter("textVertAlignBottomOpt")),
+				"bottom", __("textVertAlignBottomOpt")),
 			new AttributeOption(Integer.valueOf(TextField.H_CENTER),
-				"center", Strings.getter("textVertAlignCenterOpt")),
+				"center", __("textVertAlignCenterOpt")),
 		});
 
 	public static final Text FACTORY = new Text();
 
 	private Text() {
-		super("Text", Strings.getter("textComponent"));
+		super("Text", __("textComponent"));
 		setIconName("text.gif");
 		setShouldSnap(false);
 	}

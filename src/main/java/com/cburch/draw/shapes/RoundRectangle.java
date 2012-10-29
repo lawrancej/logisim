@@ -14,6 +14,7 @@ import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class RoundRectangle extends Rectangular {
 	private int radius;
@@ -40,7 +41,7 @@ public class RoundRectangle extends Rectangular {
 	
 	@Override
 	public String getDisplayName() {
-		return Strings.get("shapeRoundRect");
+		return _("shapeRoundRect");
 	}
 	
 	@Override

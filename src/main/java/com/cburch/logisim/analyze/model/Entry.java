@@ -4,13 +4,14 @@
 package com.cburch.logisim.analyze.model;
 
 import com.cburch.logisim.util.StringGetter;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Entry {
 	public static final Entry ZERO = new Entry("0");
 	public static final Entry ONE = new Entry("1");
 	public static final Entry DONT_CARE = new Entry("x");
-	public static final Entry BUS_ERROR = new Entry(Strings.getter("busError"));
-	public static final Entry OSCILLATE_ERROR = new Entry(Strings.getter("oscillateError"));
+	public static final Entry BUS_ERROR = new Entry(__("busError"));
+	public static final Entry OSCILLATE_ERROR = new Entry(__("oscillateError"));
 	
 	public static Entry parse(String description) {
 		if (ZERO.description.equals(description)) return ZERO;

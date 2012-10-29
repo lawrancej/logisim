@@ -31,14 +31,15 @@ import com.cburch.logisim.tools.WireRepairData;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class ControlledBuffer extends InstanceFactory {
 	private static final AttributeOption RIGHT_HANDED
-		= new AttributeOption("right", Strings.getter("controlledRightHanded"));
+		= new AttributeOption("right", __("controlledRightHanded"));
 	private static final AttributeOption LEFT_HANDED
-		= new AttributeOption("left", Strings.getter("controlledLeftHanded"));
+		= new AttributeOption("left", __("controlledLeftHanded"));
 	private static final Attribute<AttributeOption> ATTR_CONTROL
-		= Attributes.forOption("control", Strings.getter("controlledControlOption"),
+		= Attributes.forOption("control", __("controlledControlOption"),
 				new AttributeOption[] { RIGHT_HANDED, LEFT_HANDED });
 			
 	public static ComponentFactory FACTORY_BUFFER = new ControlledBuffer(false);
@@ -51,8 +52,8 @@ class ControlledBuffer extends InstanceFactory {
 
 	private ControlledBuffer(boolean isInverter) {
 		super(isInverter ? "Controlled Inverter" : "Controlled Buffer",
-			isInverter ? Strings.getter("controlledInverterComponent")
-					: Strings.getter("controlledBufferComponent"));
+			isInverter ? __("controlledInverterComponent")
+					: __("controlledBufferComponent"));
 		this.isInverter = isInverter;
 		if (isInverter) {
 			setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH,

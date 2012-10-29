@@ -27,14 +27,15 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class PullResistor extends InstanceFactory {
 	public static final Attribute<AttributeOption> ATTR_PULL_TYPE
-		= Attributes.forOption("pull", Strings.getter("pullTypeAttr"),
+		= Attributes.forOption("pull", __("pullTypeAttr"),
 				new AttributeOption[] {
-					new AttributeOption(Value.FALSE, "0", Strings.getter("pullZeroType")),
-					new AttributeOption(Value.TRUE,  "1", Strings.getter("pullOneType")),
-					new AttributeOption(Value.ERROR, "X", Strings.getter("pullErrorType"))
+					new AttributeOption(Value.FALSE, "0", __("pullZeroType")),
+					new AttributeOption(Value.TRUE,  "1", __("pullOneType")),
+					new AttributeOption(Value.ERROR, "X", __("pullErrorType"))
 			});
 
 	public static final PullResistor FACTORY = new PullResistor();
@@ -43,7 +44,7 @@ public class PullResistor extends InstanceFactory {
 	private static final Icon ICON_RECTANGULAR = Icons.getIcon("pullrect.gif");
 
 	public PullResistor() {
-		super("Pull Resistor", Strings.getter("pullComponent"));
+		super("Pull Resistor", __("pullComponent"));
 		setAttributes(new Attribute[] { StdAttr.FACING, ATTR_PULL_TYPE },
 				new Object[] { Direction.SOUTH, ATTR_PULL_TYPE.parse("0") });
 		setFacingAttribute(StdAttr.FACING);

@@ -19,6 +19,7 @@ import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Adder extends InstanceFactory {
 	static final int PER_DELAY = 1;
@@ -30,7 +31,7 @@ public class Adder extends InstanceFactory {
 	private static final int C_OUT = 4;
 	
 	public Adder() {
-		super("Adder", Strings.getter("adderComponent"));
+		super("Adder", __("adderComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.WIDTH
 			}, new Object[] {
@@ -46,11 +47,11 @@ public class Adder extends InstanceFactory {
 		ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
 		ps[C_IN]  = new Port(-20, -20, Port.INPUT,  1);
 		ps[C_OUT] = new Port(-20,  20, Port.INPUT,  1);
-		ps[IN0].setToolTip(Strings.getter("adderInputTip"));
-		ps[IN1].setToolTip(Strings.getter("adderInputTip"));
-		ps[OUT].setToolTip(Strings.getter("adderOutputTip"));
-		ps[C_IN].setToolTip(Strings.getter("adderCarryInTip"));
-		ps[C_OUT].setToolTip(Strings.getter("adderCarryOutTip"));
+		ps[IN0].setToolTip(__("adderInputTip"));
+		ps[IN1].setToolTip(__("adderInputTip"));
+		ps[OUT].setToolTip(__("adderOutputTip"));
+		ps[C_IN].setToolTip(__("adderCarryInTip"));
+		ps[C_OUT].setToolTip(__("adderCarryOutTip"));
 		setPorts(ps);
 	}
 

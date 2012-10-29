@@ -25,14 +25,14 @@ import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
-import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 import com.cburch.logisim.util.WindowMenuItemManager;
 
 public class OptionsFrame extends LFrame {
 	private class WindowMenuManager extends WindowMenuItemManager
 			implements LocaleListener {
 		WindowMenuManager() {
-			super(Strings.get("optionsFrameMenuItem"), false);
+			super(_("optionsFrameMenuItem"), false);
 		}
 		
 		@Override
@@ -42,7 +42,7 @@ public class OptionsFrame extends LFrame {
 		
 		public void localeChanged() {
 			String title = project.getLogisimFile().getDisplayName();
-			setText(StringUtil.format(Strings.get("optionsFrameMenuItem"), title));
+			setText(_("optionsFrameMenuItem", title));
 		}
 	}
 
@@ -73,8 +73,8 @@ public class OptionsFrame extends LFrame {
 				tabbedPane.setToolTipTextAt(i, panels[i].getToolTipText());
 				panels[i].localeChanged();
 			}
-			revert.setText(Strings.get("revertButton"));
-			close.setText(Strings.get("closeButton"));
+			revert.setText(_("revertButton"));
+			close.setText(_("closeButton"));
 			windowManager.localeChanged();
 		}
 	}
@@ -149,6 +149,6 @@ public class OptionsFrame extends LFrame {
 	
 	private static String computeTitle(LogisimFile file) {
 		String name = file == null ? "???" : file.getName();
-		return StringUtil.format(Strings.get("optionsFrameTitle"), name);
+		return _("optionsFrameTitle", name);
 	}
 }

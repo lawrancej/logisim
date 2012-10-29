@@ -10,6 +10,7 @@ import java.util.HashSet;
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.undo.Action;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelTranslateAction extends ModelAction {
 	private HashSet<CanvasObject> moved;
@@ -31,7 +32,7 @@ public class ModelTranslateAction extends ModelAction {
 
 	@Override
 	public String getName() {
-		return Strings.get("actionTranslate", getShapesName(moved));
+		return _("actionTranslate", getShapesName(moved));
 	}
 	
 	@Override

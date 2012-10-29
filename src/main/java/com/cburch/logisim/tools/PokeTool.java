@@ -28,6 +28,7 @@ import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.Icons;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class PokeTool extends Tool {
 	private static final Icon toolIcon = Icons.getIcon("poke.gif");
@@ -112,7 +113,7 @@ public class PokeTool extends Tool {
 
 	@Override
 	public String getDisplayName() {
-		return Strings.get("pokeTool");
+		return _("pokeTool");
 	}
 	
 	private void removeCaret(boolean normal) {
@@ -139,7 +140,7 @@ public class PokeTool extends Tool {
 
 	@Override
 	public String getDescription() {
-		return Strings.get("pokeToolDesc");
+		return _("pokeToolDesc");
 	}
 
 	@Override

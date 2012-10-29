@@ -24,6 +24,7 @@ import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringGetter;
+import static com.cburch.logisim.util.LocaleString.*;
 
 abstract class AbstractFlipFlop extends InstanceFactory {
 	private static final int STD_PORTS = 6;
@@ -60,12 +61,12 @@ abstract class AbstractFlipFlop extends InstanceFactory {
 		ps[numInputs + 3] = new Port(-10, 30, Port.INPUT,  1);
 		ps[numInputs + 4] = new Port(-30, 30, Port.INPUT,  1);
 		ps[numInputs + 5] = new Port(-20, 30, Port.INPUT,  1);
-		ps[numInputs].setToolTip(Strings.getter("flipFlopClockTip"));
-		ps[numInputs + 1].setToolTip(Strings.getter("flipFlopQTip"));
-		ps[numInputs + 2].setToolTip(Strings.getter("flipFlopNotQTip"));
-		ps[numInputs + 3].setToolTip(Strings.getter("flipFlopResetTip"));
-		ps[numInputs + 4].setToolTip(Strings.getter("flipFlopPresetTip"));
-		ps[numInputs + 5].setToolTip(Strings.getter("flipFlopEnableTip"));
+		ps[numInputs].setToolTip(__("flipFlopClockTip"));
+		ps[numInputs + 1].setToolTip(__("flipFlopQTip"));
+		ps[numInputs + 2].setToolTip(__("flipFlopNotQTip"));
+		ps[numInputs + 3].setToolTip(__("flipFlopResetTip"));
+		ps[numInputs + 4].setToolTip(__("flipFlopPresetTip"));
+		ps[numInputs + 5].setToolTip(__("flipFlopEnableTip"));
 		setPorts(ps);
 	}
 
@@ -150,7 +151,7 @@ abstract class AbstractFlipFlop extends InstanceFactory {
 		g.setColor(Color.GRAY);
 		painter.drawPort(n + 3, "0", Direction.SOUTH);
 		painter.drawPort(n + 4, "1", Direction.SOUTH);
-		painter.drawPort(n + 5, Strings.get("memEnableLabel"), Direction.SOUTH);
+		painter.drawPort(n + 5, _("memEnableLabel"), Direction.SOUTH);
 		g.setColor(Color.BLACK);
 		for (int i = 0; i < n; i++) {
 			painter.drawPort(i, getInputName(i), Direction.EAST);

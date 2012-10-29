@@ -13,6 +13,7 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public abstract class AttributeSetTableModel
 		implements AttrTableModel, AttributeListener {
@@ -61,11 +62,11 @@ public abstract class AttributeSetTableModel
 				}
 				setValueRequested(attr, value);
 			} catch (ClassCastException e) {
-				String msg = Strings.get("attributeChangeInvalidError")
+				String msg = _("attributeChangeInvalidError")
 					+ ": " + e;
 				throw new AttrTableSetException(msg);
 			} catch (NumberFormatException e) {
-				String msg = Strings.get("attributeChangeInvalidError");
+				String msg = _("attributeChangeInvalidError");
 				String emsg = e.getMessage();
 				if (emsg != null && emsg.length() > 0) msg += ": " + emsg;
 				msg += ".";

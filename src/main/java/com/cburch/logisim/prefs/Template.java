@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Template {
 	public static Template createEmpty() {
-		String circName = Strings.get("newCircuitName");
+		String circName = _("newCircuitName");
 		StringBuilder buf = new StringBuilder();
 		buf.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		buf.append("<project version=\"1.0\">");

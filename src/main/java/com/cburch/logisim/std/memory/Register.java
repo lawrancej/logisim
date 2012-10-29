@@ -20,6 +20,7 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Register extends InstanceFactory {
 	private static final int DELAY = 8;
@@ -30,7 +31,7 @@ public class Register extends InstanceFactory {
 	private static final int EN  = 4;
 
 	public Register() {
-		super("Register", Strings.getter("registerComponent"));
+		super("Register", __("registerComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.WIDTH, StdAttr.TRIGGER,
 				StdAttr.LABEL, StdAttr.LABEL_FONT
@@ -50,11 +51,11 @@ public class Register extends InstanceFactory {
 		ps[CK]  = new Port(-20, 20, Port.INPUT, 1);
 		ps[CLR] = new Port(-10, 20, Port.INPUT, 1);
 		ps[EN]  = new Port(-30, 10, Port.INPUT, 1);
-		ps[OUT].setToolTip(Strings.getter("registerQTip"));
-		ps[IN].setToolTip(Strings.getter("registerDTip"));
-		ps[CK].setToolTip(Strings.getter("registerClkTip"));
-		ps[CLR].setToolTip(Strings.getter("registerClrTip"));
-		ps[EN].setToolTip(Strings.getter("registerEnableTip"));
+		ps[OUT].setToolTip(__("registerQTip"));
+		ps[IN].setToolTip(__("registerDTip"));
+		ps[CK].setToolTip(__("registerClkTip"));
+		ps[CLR].setToolTip(__("registerClrTip"));
+		ps[EN].setToolTip(__("registerEnableTip"));
 		setPorts(ps);
 	}
 	
@@ -110,8 +111,8 @@ public class Register extends InstanceFactory {
 				b = str.substring(split);
 			}
 		} else {
-			a = Strings.get("registerLabel");
-			b = Strings.get("registerWidthLabel", "" + widthVal.getWidth());
+			a = _("registerLabel");
+			b = _("registerWidthLabel", "" + widthVal.getWidth());
 		}
 
 		// draw boundary, label
@@ -128,7 +129,7 @@ public class Register extends InstanceFactory {
 		}
 		g.setColor(Color.GRAY);
 		painter.drawPort(CLR, "0", Direction.SOUTH);
-		painter.drawPort(EN, Strings.get("memEnableLabel"), Direction.EAST);
+		painter.drawPort(EN, _("memEnableLabel"), Direction.EAST);
 		g.setColor(Color.BLACK);
 		painter.drawClock(CK, Direction.NORTH);
 

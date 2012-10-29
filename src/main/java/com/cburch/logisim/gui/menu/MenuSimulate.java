@@ -27,6 +27,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.StringUtil;
 
 import java.util.ArrayList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuSimulate extends Menu {
 	private class TickFrequencyChoice extends JRadioButtonMenuItem
@@ -51,7 +52,7 @@ class MenuSimulate extends Menu {
 				} else {
 					hzStr = "" + f;
 				}
-				setText(StringUtil.format(Strings.get("simulateTickFreqItem"), hzStr));
+				setText(_("simulateTickFreqItem", hzStr));
 			} else {
 				String kHzStr;
 				double kf = Math.round(f / 100) / 10.0;
@@ -60,7 +61,7 @@ class MenuSimulate extends Menu {
 				} else {
 					kHzStr = "" + kf;
 				}
-				setText(StringUtil.format(Strings.get("simulateTickKFreqItem"), kHzStr));
+				setText(_("simulateTickKFreqItem", kHzStr));
 			}
 		}
 	}
@@ -246,19 +247,19 @@ class MenuSimulate extends Menu {
 	}
 
 	public void localeChanged() {
-		this.setText(Strings.get("simulateMenu"));
-		run.setText(Strings.get("simulateRunItem"));
-		reset.setText(Strings.get("simulateResetItem"));
-		step.setText(Strings.get("simulateStepItem"));
-		tickOnce.setText(Strings.get("simulateTickOnceItem"));
-		ticksEnabled.setText(Strings.get("simulateTickItem"));
-		tickFreq.setText(Strings.get("simulateTickFreqMenu"));
+		this.setText(_("simulateMenu"));
+		run.setText(_("simulateRunItem"));
+		reset.setText(_("simulateResetItem"));
+		step.setText(_("simulateStepItem"));
+		tickOnce.setText(_("simulateTickOnceItem"));
+		ticksEnabled.setText(_("simulateTickItem"));
+		tickFreq.setText(_("simulateTickFreqMenu"));
 		for (int i = 0; i < tickFreqs.length; i++) {
 			tickFreqs[i].localeChanged();
 		}
-		downStateMenu.setText(Strings.get("simulateDownStateMenu"));
-		upStateMenu.setText(Strings.get("simulateUpStateMenu"));
-		log.setText(Strings.get("simulateLogItem"));
+		downStateMenu.setText(_("simulateDownStateMenu"));
+		upStateMenu.setText(_("simulateUpStateMenu"));
+		log.setText(_("simulateLogItem"));
 	}
 	
 	public void setCurrentState(Simulator sim, CircuitState value) {

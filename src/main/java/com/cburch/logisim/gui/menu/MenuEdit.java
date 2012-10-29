@@ -15,6 +15,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
 import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuEdit extends Menu {
 	private class MyListener implements ProjectListener, ActionListener {
@@ -22,11 +23,10 @@ class MenuEdit extends Menu {
 			Project proj = menubar.getProject();
 			Action last = proj == null ? null : proj.getLastAction();
 			if (last == null) {
-				undo.setText(Strings.get("editCantUndoItem"));
+				undo.setText(_("editCantUndoItem"));
 				undo.setEnabled(false);
 			} else {
-				undo.setText(StringUtil.format(Strings.get("editUndoItem"),
-					last.getName()));
+				undo.setText(_("editUndoItem", last.getName()));
 				undo.setEnabled(true);
 			}
 		}
@@ -124,20 +124,20 @@ class MenuEdit extends Menu {
 	}
 
 	public void localeChanged() {
-		this.setText(Strings.get("editMenu"));
+		this.setText(_("editMenu"));
 		myListener.projectChanged(null);
-		cut.setText(Strings.get("editCutItem"));
-		copy.setText(Strings.get("editCopyItem"));
-		paste.setText(Strings.get("editPasteItem"));
-		delete.setText(Strings.get("editClearItem"));
-		dup.setText(Strings.get("editDuplicateItem"));
-		selall.setText(Strings.get("editSelectAllItem"));
-		raise.setText(Strings.get("editRaiseItem"));
-		lower.setText(Strings.get("editLowerItem"));
-		raiseTop.setText(Strings.get("editRaiseTopItem"));
-		lowerBottom.setText(Strings.get("editLowerBottomItem"));
-		addCtrl.setText(Strings.get("editAddControlItem"));
-		remCtrl.setText(Strings.get("editRemoveControlItem"));
+		cut.setText(_("editCutItem"));
+		copy.setText(_("editCopyItem"));
+		paste.setText(_("editPasteItem"));
+		delete.setText(_("editClearItem"));
+		dup.setText(_("editDuplicateItem"));
+		selall.setText(_("editSelectAllItem"));
+		raise.setText(_("editRaiseItem"));
+		lower.setText(_("editLowerItem"));
+		raiseTop.setText(_("editRaiseTopItem"));
+		lowerBottom.setText(_("editLowerBottomItem"));
+		addCtrl.setText(_("editAddControlItem"));
+		remCtrl.setText(_("editRemoveControlItem"));
 	}
 	
 	@Override

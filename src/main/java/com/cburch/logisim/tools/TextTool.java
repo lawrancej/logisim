@@ -21,6 +21,7 @@ import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.std.base.Text;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class TextTool extends Tool {
 	private class MyListener
@@ -55,7 +56,7 @@ public class TextTool extends Tool {
 				if (!isEmpty) {
 					CircuitMutation xn = new CircuitMutation(caretCircuit);
 					xn.add(caretComponent);
-					a = xn.toAction(Strings.getter("addComponentAction",
+					a = xn.toAction(__("addComponentAction",
 							Text.FACTORY.getDisplayGetter()));
 				} else {
 					a = null; // don't add the blank text field
@@ -64,7 +65,7 @@ public class TextTool extends Tool {
 				if (isEmpty && caretComponent.getFactory() instanceof Text) {
 					CircuitMutation xn = new CircuitMutation(caretCircuit);
 					xn.add(caretComponent);
-					a = xn.toAction(Strings.getter("removeComponentAction",
+					a = xn.toAction(__("removeComponentAction",
 							Text.FACTORY.getDisplayGetter()));
 				} else {
 					Object obj = caretComponent.getFeature(TextEditable.class);
@@ -135,12 +136,12 @@ public class TextTool extends Tool {
 
 	@Override
 	public String getDisplayName() {
-		return Strings.get("textTool");
+		return _("textTool");
 	}
 
 	@Override
 	public String getDescription() {
-		return Strings.get("textToolDesc");
+		return _("textToolDesc");
 	}
 
 	@Override
@@ -173,7 +174,7 @@ public class TextTool extends Tool {
 
 		if (!proj.getLogisimFile().contains(circ)) {
 			if (caret != null) caret.cancelEditing();
-			canvas.setErrorMessage(Strings.getter("cannotModifyError"));
+			canvas.setErrorMessage(__("cannotModifyError"));
 			return;
 		}
 

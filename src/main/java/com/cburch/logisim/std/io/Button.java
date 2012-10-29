@@ -24,12 +24,13 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Button extends InstanceFactory {
 	private static final int DEPTH = 3;
 
 	public Button() {
-		super("Button", Strings.getter("buttonComponent"));
+		super("Button", __("buttonComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.FACING, Io.ATTR_COLOR,
 				StdAttr.LABEL, Io.ATTR_LABEL_LOC,

@@ -23,8 +23,8 @@ import com.cburch.logisim.std.Builtin;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.util.JFileChoosers;
 import com.cburch.logisim.util.MacCompatibility;
-import com.cburch.logisim.util.StringUtil;
 import com.cburch.logisim.util.ZipClassLoader;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Loader implements LibraryLoader {
 	public static final String LOGISIM_EXTENSION = ".circ";
@@ -40,7 +40,7 @@ public class Loader implements LibraryLoader {
 
 		@Override
 		public String getDescription() {
-			return Strings.get("logisimFileFilter");
+			return _("logisimFileFilter");
 		}
 	}
 
@@ -53,7 +53,7 @@ public class Loader implements LibraryLoader {
 
 		@Override
 		public String getDescription() {
-			return Strings.get("jarFileFilter");
+			return _("jarFileFilter");
 		}
 	}
 	
@@ -174,8 +174,8 @@ public class Loader implements LibraryLoader {
 		Library reference = LibraryManager.instance.findReference(file, dest);
 		if (reference != null) {
 			JOptionPane.showMessageDialog(parent,
-					StringUtil.format(Strings.get("fileCircularError"), reference.getDisplayName()),
-					Strings.get("fileSaveErrorTitle"),
+					_("fileCircularError", reference.getDisplayName()),
+					_("fileSaveErrorTitle"),
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -199,9 +199,9 @@ public class Loader implements LibraryLoader {
 			if (backupCreated) recoverBackup(backup, dest);
 			if (dest.exists() && dest.length() == 0) dest.delete();
 			JOptionPane.showMessageDialog(parent,
-				StringUtil.format(Strings.get("fileSaveError"),
+				_("fileSaveError",
 					e.toString()),
-				Strings.get("fileSaveErrorTitle"),
+				_("fileSaveErrorTitle"),
 				JOptionPane.ERROR_MESSAGE);
 			return false;
 		} finally {
@@ -212,9 +212,9 @@ public class Loader implements LibraryLoader {
 					if (backupCreated) recoverBackup(backup, dest);
 					if (dest.exists() && dest.length() == 0) dest.delete();
 					JOptionPane.showMessageDialog(parent,
-						StringUtil.format(Strings.get("fileSaveCloseError"),
+						_("fileSaveCloseError",
 							e.toString()),
-						Strings.get("fileSaveErrorTitle"),
+						_("fileSaveErrorTitle"),
 						JOptionPane.ERROR_MESSAGE);
 					return false;
 				}
@@ -228,8 +228,8 @@ public class Loader implements LibraryLoader {
 				dest.delete();
 			}
 			JOptionPane.showMessageDialog(parent,
-					Strings.get("fileSaveZeroError"),
-					Strings.get("fileSaveErrorTitle"),
+					_("fileSaveZeroError"),
+					_("fileSaveErrorTitle"),
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -268,7 +268,7 @@ public class Loader implements LibraryLoader {
 		File actual = getSubstitution(request);
 		for (File fileOpening : filesOpening) {
 			if (fileOpening.equals(actual)) {
-				throw new LoadFailedException(StringUtil.format(Strings.get("logisimCircularError"),
+				throw new LoadFailedException(_("logisimCircularError",
 						toProjectName(actual)));
 			}
 		}
@@ -278,7 +278,7 @@ public class Loader implements LibraryLoader {
 		try {
 			ret = LogisimFile.load(actual, this);
 		} catch (IOException e) {
-			throw new LoadFailedException(StringUtil.format(Strings.get("logisimLoadError"),
+			throw new LoadFailedException(_("logisimLoadError",
 					toProjectName(actual), e.toString()));
 		} finally {
 			filesOpening.pop();
@@ -319,10 +319,10 @@ public class Loader implements LibraryLoader {
 		try {
 			retClass = loader.loadClass(className);
 		} catch (ClassNotFoundException e) {
-			throw new LoadFailedException(StringUtil.format(Strings.get("jarClassNotFoundError"), className));
+			throw new LoadFailedException(_("jarClassNotFoundError", className));
 		}
 		if (!(Library.class.isAssignableFrom(retClass))) {
-			throw new LoadFailedException(StringUtil.format(Strings.get("jarClassNotLibraryError"), className));
+			throw new LoadFailedException(_("jarClassNotLibraryError", className));
 		}
 		
 		// instantiate library
@@ -330,7 +330,7 @@ public class Loader implements LibraryLoader {
 		try {
 			ret = (Library) retClass.newInstance();
 		} catch (Exception e) {
-			throw new LoadFailedException(StringUtil.format(Strings.get("jarLibraryNotCreatedError"), className));
+			throw new LoadFailedException(_("jarLibraryNotCreatedError", className));
 		}
 		return ret;
 	}
@@ -373,10 +373,10 @@ public class Loader implements LibraryLoader {
 			JScrollPane scrollPane = new JScrollPane(textArea);		
 			scrollPane.setPreferredSize(new Dimension(350, 150));
 			JOptionPane.showMessageDialog(parent, scrollPane,
-					Strings.get("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
+					_("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(parent, description,
-					Strings.get("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
+					_("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -385,7 +385,7 @@ public class Loader implements LibraryLoader {
 		String message = source.getMessage();
 		while (message != null) {
 			JOptionPane.showMessageDialog(parent,
-				message, Strings.get("fileMessageTitle"),
+				message, _("fileMessageTitle"),
 				JOptionPane.INFORMATION_MESSAGE);
 			message = source.getMessage();
 		}
@@ -404,14 +404,14 @@ public class Loader implements LibraryLoader {
 		while (!file.canRead()) {
 			// It doesn't exist. Figure it out from the user.
 			JOptionPane.showMessageDialog(parent,
-				StringUtil.format(Strings.get("fileLibraryMissingError"),
+				_("fileLibraryMissingError",
 					file.getName()));
 			JFileChooser chooser = createChooser();
 			chooser.setFileFilter(filter);
-			chooser.setDialogTitle(StringUtil.format(Strings.get("fileLibraryMissingTitle"), file.getName()));
-			int action = chooser.showDialog(parent, Strings.get("fileLibraryMissingButton"));
+			chooser.setDialogTitle(_("fileLibraryMissingTitle", file.getName()));
+			int action = chooser.showDialog(parent, _("fileLibraryMissingButton"));
 			if (action != JFileChooser.APPROVE_OPTION) {
-				throw new LoaderException(Strings.get("fileLoadCanceledError"));
+				throw new LoaderException(_("fileLoadCanceledError"));
 			}
 			file = chooser.getSelectedFile();
 		}

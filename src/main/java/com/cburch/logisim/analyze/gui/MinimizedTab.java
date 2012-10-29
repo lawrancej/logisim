@@ -24,6 +24,7 @@ import com.cburch.logisim.analyze.model.OutputExpressions;
 import com.cburch.logisim.analyze.model.OutputExpressionsEvent;
 import com.cburch.logisim.analyze.model.OutputExpressionsListener;
 import com.cburch.logisim.analyze.model.VariableList;
+import static com.cburch.logisim.util.LocaleString._;
 
 class MinimizedTab extends AnalyzerTab {
 	private static class FormatModel extends AbstractListModel
@@ -45,8 +46,8 @@ class MinimizedTab extends AnalyzerTab {
 		}
 		
 		void localeChanged() {
-			choices[0] = Strings.get("minimizedSumOfProducts");
-			choices[1] = Strings.get("minimizedProductOfSums");
+			choices[0] = _("minimizedSumOfProducts");
+			choices[1] = _("minimizedProductOfSums");
 			fireContentsChanged(this, 0, choices.length);
 		}
 		
@@ -188,8 +189,8 @@ class MinimizedTab extends AnalyzerTab {
 		selector.localeChanged();
 		karnaughMap.localeChanged();
 		minimizedExpr.localeChanged();
-		setAsExpr.setText(Strings.get("minimizedSetButton"));
-		formatLabel.setText(Strings.get("minimizedFormat"));
+		setAsExpr.setText(_("minimizedSetButton"));
+		formatLabel.setText(_("minimizedFormat"));
 		((FormatModel) formatChoice.getModel()).localeChanged();
 	}
 

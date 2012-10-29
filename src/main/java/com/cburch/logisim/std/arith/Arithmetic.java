@@ -8,26 +8,27 @@ import java.util.List;
 import com.cburch.logisim.tools.FactoryDescription;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Arithmetic extends Library {
 	private static FactoryDescription[] DESCRIPTIONS = {
-		new FactoryDescription("Adder", Strings.getter("adderComponent"),
+		new FactoryDescription("Adder", __("adderComponent"),
 				"adder.gif", "Adder"),
-		new FactoryDescription("Subtractor", Strings.getter("subtractorComponent"),
+		new FactoryDescription("Subtractor", __("subtractorComponent"),
 				"subtractor.gif", "Subtractor"),
-		new FactoryDescription("Multiplier", Strings.getter("multiplierComponent"),
+		new FactoryDescription("Multiplier", __("multiplierComponent"),
 				"multiplier.gif", "Multiplier"),
-		new FactoryDescription("Divider", Strings.getter("dividerComponent"),
+		new FactoryDescription("Divider", __("dividerComponent"),
 				"divider.gif", "Divider"),
-		new FactoryDescription("Negator", Strings.getter("negatorComponent"),
+		new FactoryDescription("Negator", __("negatorComponent"),
 				"negator.gif", "Negator"),
-		new FactoryDescription("Comparator", Strings.getter("comparatorComponent"),
+		new FactoryDescription("Comparator", __("comparatorComponent"),
 				"comparator.gif", "Comparator"),
-		new FactoryDescription("Shifter", Strings.getter("shifterComponent"),
+		new FactoryDescription("Shifter", __("shifterComponent"),
 				"shifter.gif", "Shifter"),
-		new FactoryDescription("BitAdder", Strings.getter("bitAdderComponent"),
+		new FactoryDescription("BitAdder", __("bitAdderComponent"),
 				"bitadder.gif", "BitAdder"),
-		new FactoryDescription("BitFinder", Strings.getter("bitFinderComponent"),
+		new FactoryDescription("BitFinder", __("bitFinderComponent"),
 				"bitfindr.gif", "BitFinder"),
 	};
 	
@@ -39,7 +40,7 @@ public class Arithmetic extends Library {
 	public String getName() { return "Arithmetic"; }
 
 	@Override
-	public String getDisplayName() { return Strings.get("arithmeticLibrary"); }
+	public String getDisplayName() { return _("arithmeticLibrary"); }
 
 	@Override
 	public List<Tool> getTools() {

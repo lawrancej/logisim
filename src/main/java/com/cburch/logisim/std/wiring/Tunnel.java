@@ -21,6 +21,7 @@ import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Tunnel extends InstanceFactory {
 	public static final Tunnel FACTORY = new Tunnel();
@@ -32,7 +33,7 @@ public class Tunnel extends InstanceFactory {
 	static final int ARROW_MAX_WIDTH = 20;
 
 	public Tunnel() {
-		super("Tunnel", Strings.getter("tunnelComponent"));
+		super("Tunnel", __("tunnelComponent"));
 		setIconName("tunnel.gif");
 		setFacingAttribute(StdAttr.FACING);
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));

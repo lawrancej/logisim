@@ -15,6 +15,7 @@ import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.EditTool;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.tools.WiringTool;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Base extends Library {
 	private List<Tool> tools = null;
@@ -38,7 +39,7 @@ public class Base extends Library {
 	public String getName() { return "Base"; }
 
 	@Override
-	public String getDisplayName() { return Strings.get("baseLibrary"); }
+	public String getDisplayName() { return _("baseLibrary"); }
 
 	@Override
 	public List<Tool> getTools() {

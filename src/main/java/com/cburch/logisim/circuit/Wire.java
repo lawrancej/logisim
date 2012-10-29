@@ -25,6 +25,7 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.tools.CustomHandles;
 import com.cburch.logisim.util.Cache;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public final class Wire implements Component, AttributeSet, CustomHandles,
 		Iterable<Location> {
@@ -32,14 +33,14 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 	public static final int WIDTH = 3;
 
 	public static final AttributeOption VALUE_HORZ
-		= new AttributeOption("horz", Strings.getter("wireDirectionHorzOption"));
+		= new AttributeOption("horz", __("wireDirectionHorzOption"));
 	public static final AttributeOption VALUE_VERT
-		= new AttributeOption("vert", Strings.getter("wireDirectionVertOption"));
+		= new AttributeOption("vert", __("wireDirectionVertOption"));
 	public static final Attribute<AttributeOption> dir_attr
-		= Attributes.forOption("direction", Strings.getter("wireDirectionAttr"),
+		= Attributes.forOption("direction", __("wireDirectionAttr"),
 			new AttributeOption[] { VALUE_HORZ, VALUE_VERT });
 	public static final Attribute<Integer> len_attr
-		= Attributes.forInteger("length", Strings.getter("wireLengthAttr"));
+		= Attributes.forInteger("length", __("wireLengthAttr"));
 
 	private static final List<Attribute<?>> ATTRIBUTES
 		= Arrays.asList(new Attribute<?>[] { dir_attr, len_attr });

@@ -9,6 +9,7 @@ import java.util.Collections;
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.shapes.Text;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelEditTextAction extends ModelAction {
 	private Text text;
@@ -29,7 +30,7 @@ public class ModelEditTextAction extends ModelAction {
 
 	@Override
 	public String getName() {
-		return Strings.get("actionEditText");
+		return _("actionEditText");
 	}
 	
 	@Override

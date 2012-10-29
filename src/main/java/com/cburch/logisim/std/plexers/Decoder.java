@@ -22,10 +22,11 @@ import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Decoder extends InstanceFactory {
 	public Decoder() {
-		super("Decoder", Strings.getter("decoderComponent"));
+		super("Decoder", __("decoderComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.FACING, Plexers.ATTR_SELECT_LOC, Plexers.ATTR_SELECT,
 				Plexers.ATTR_TRISTATE, Plexers.ATTR_DISABLED, Plexers.ATTR_ENABLE
@@ -152,11 +153,11 @@ public class Decoder extends InstanceFactory {
 			ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
 		}
 		for (int i = 0; i < outputs; i++) {
-			ps[i].setToolTip(Strings.getter("decoderOutTip", "" + i));
+			ps[i].setToolTip(__("decoderOutTip", "" + i));
 		}
-		ps[outputs].setToolTip(Strings.getter("decoderSelectTip"));
+		ps[outputs].setToolTip(__("decoderSelectTip"));
 		if (enable) {
-			ps[outputs + 1].setToolTip(Strings.getter("decoderEnableTip"));
+			ps[outputs + 1].setToolTip(__("decoderEnableTip"));
 		}
 		instance.setPorts(ps);
 	}

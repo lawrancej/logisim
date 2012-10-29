@@ -22,13 +22,14 @@ import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.IntegerConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class BitAdder extends InstanceFactory {
 	static final Attribute<Integer> NUM_INPUTS
-		= Attributes.forIntegerRange("inputs", Strings.getter("gateInputsAttr"), 1, 32);
+		= Attributes.forIntegerRange("inputs", __("gateInputsAttr"), 1, 32);
 	
 	public BitAdder() {
-		super("BitAdder", Strings.getter("bitAdderComponent"));
+		super("BitAdder", __("bitAdderComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.WIDTH, NUM_INPUTS
 			}, new Object[] {
@@ -80,10 +81,10 @@ public class BitAdder extends InstanceFactory {
 
 		Port[] ps = new Port[inputs + 1];
 		ps[0] = new Port(0, 0, Port.OUTPUT, BitWidth.create(outWidth));
-		ps[0].setToolTip(Strings.getter("bitAdderOutputManyTip"));
+		ps[0].setToolTip(__("bitAdderOutputManyTip"));
 		for (int i = 0; i < inputs; i++) {
 			ps[i + 1] = new Port(-40, y + i * dy, Port.INPUT, inWidth);
-			ps[i + 1].setToolTip(Strings.getter("bitAdderInputTip"));
+			ps[i + 1].setToolTip(__("bitAdderInputTip"));
 		}
 		instance.setPorts(ps);
 	}

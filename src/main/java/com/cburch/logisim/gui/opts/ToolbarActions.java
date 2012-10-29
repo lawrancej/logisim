@@ -7,6 +7,7 @@ import com.cburch.logisim.file.ToolbarData;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class ToolbarActions {
 	private ToolbarActions() { }
@@ -45,7 +46,7 @@ class ToolbarActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("toolbarAddAction");
+			return _("toolbarAddAction");
 		}
 
 		@Override
@@ -72,7 +73,7 @@ class ToolbarActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("toolbarRemoveAction");
+			return _("toolbarRemoveAction");
 		}
 
 		@Override
@@ -103,7 +104,7 @@ class ToolbarActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("toolbarMoveAction");
+			return _("toolbarMoveAction");
 		}
 
 		@Override
@@ -151,7 +152,7 @@ class ToolbarActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("toolbarInsertSepAction");
+			return _("toolbarInsertSepAction");
 		}
 
 		@Override
@@ -176,7 +177,7 @@ class ToolbarActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("toolbarRemoveSepAction");
+			return _("toolbarRemoveSepAction");
 		}
 
 		@Override

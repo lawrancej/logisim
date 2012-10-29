@@ -21,39 +21,40 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.std.wiring.DurationAttribute;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 // TODO repropagate when rows/cols change
 
 public class DotMatrix extends InstanceFactory {
 	static final AttributeOption INPUT_SELECT
-		= new AttributeOption("select", Strings.getter("ioInputSelect"));
+		= new AttributeOption("select", __("ioInputSelect"));
 	static final AttributeOption INPUT_COLUMN
-		= new AttributeOption("column", Strings.getter("ioInputColumn"));
+		= new AttributeOption("column", __("ioInputColumn"));
 	static final AttributeOption INPUT_ROW
-		= new AttributeOption("row", Strings.getter("ioInputRow"));
+		= new AttributeOption("row", __("ioInputRow"));
 
 	static final AttributeOption SHAPE_CIRCLE
-		= new AttributeOption("circle", Strings.getter("ioShapeCircle"));
+		= new AttributeOption("circle", __("ioShapeCircle"));
 	static final AttributeOption SHAPE_SQUARE
-		= new AttributeOption("square", Strings.getter("ioShapeSquare"));
+		= new AttributeOption("square", __("ioShapeSquare"));
 	
 	static final Attribute<AttributeOption> ATTR_INPUT_TYPE
-		= Attributes.forOption("inputtype", Strings.getter("ioMatrixInput"),
+		= Attributes.forOption("inputtype", __("ioMatrixInput"),
 			new AttributeOption[] { INPUT_COLUMN, INPUT_ROW, INPUT_SELECT });
 	static final Attribute<Integer> ATTR_MATRIX_COLS
 		= Attributes.forIntegerRange("matrixcols",
-				Strings.getter("ioMatrixCols"), 1, Value.MAX_WIDTH);
+				__("ioMatrixCols"), 1, Value.MAX_WIDTH);
 	static final Attribute<Integer> ATTR_MATRIX_ROWS
 		= Attributes.forIntegerRange("matrixrows",
-				Strings.getter("ioMatrixRows"), 1, Value.MAX_WIDTH);
+				__("ioMatrixRows"), 1, Value.MAX_WIDTH);
 	static final Attribute<AttributeOption> ATTR_DOT_SHAPE
-		= Attributes.forOption("dotshape", Strings.getter("ioMatrixShape"),
+		= Attributes.forOption("dotshape", __("ioMatrixShape"),
 			new AttributeOption[] { SHAPE_CIRCLE, SHAPE_SQUARE });
 	static final Attribute<Integer> ATTR_PERSIST = new DurationAttribute("persist",
-			Strings.getter("ioMatrixPersistenceAttr"), 0, Integer.MAX_VALUE);
+			__("ioMatrixPersistenceAttr"), 0, Integer.MAX_VALUE);
 
 	public DotMatrix() {
-		super("DotMatrix", Strings.getter("dotMatrixComponent"));
+		super("DotMatrix", __("dotMatrixComponent"));
 		setAttributes(new Attribute<?>[] {
 				ATTR_INPUT_TYPE, ATTR_MATRIX_COLS, ATTR_MATRIX_ROWS,
 				Io.ATTR_ON_COLOR, Io.ATTR_OFF_COLOR,

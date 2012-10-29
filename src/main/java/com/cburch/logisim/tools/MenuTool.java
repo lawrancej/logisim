@@ -24,6 +24,7 @@ import com.cburch.logisim.gui.main.SelectionActions;
 import com.cburch.logisim.proj.Project;
 
 import java.util.Collection;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class MenuTool extends Tool {
 	private class MenuComponent extends JPopupMenu
@@ -31,8 +32,8 @@ public class MenuTool extends Tool {
 		Project proj;
 		Circuit circ;
 		Component comp;
-		JMenuItem del = new JMenuItem(Strings.get("compDeleteItem"));
-		JMenuItem attrs = new JMenuItem(Strings.get("compShowAttrItem"));
+		JMenuItem del = new JMenuItem(_("compDeleteItem"));
+		JMenuItem attrs = new JMenuItem(_("compShowAttrItem"));
 
 		MenuComponent(Project proj, Circuit circ, Component comp) {
 			this.proj = proj;
@@ -51,7 +52,7 @@ public class MenuTool extends Tool {
 				Circuit circ = proj.getCurrentCircuit();
 				CircuitMutation xn = new CircuitMutation(circ);
 				xn.remove(comp);
-				proj.doAction(xn.toAction(Strings.getter("removeComponentAction", comp.getFactory().getDisplayGetter())));
+				proj.doAction(xn.toAction(__("removeComponentAction", comp.getFactory().getDisplayGetter())));
 			} else if (src == attrs) {
 				proj.getFrame().viewComponentAttributes(circ, comp);
 			}
@@ -61,9 +62,9 @@ public class MenuTool extends Tool {
 	private class MenuSelection extends JPopupMenu
 			implements ActionListener {
 		Project proj;
-		JMenuItem del = new JMenuItem(Strings.get("selDeleteItem"));
-		JMenuItem cut = new JMenuItem(Strings.get("selCutItem"));
-		JMenuItem copy = new JMenuItem(Strings.get("selCopyItem"));
+		JMenuItem del = new JMenuItem(_("selDeleteItem"));
+		JMenuItem cut = new JMenuItem(_("selCutItem"));
+		JMenuItem copy = new JMenuItem(_("selCopyItem"));
 
 		MenuSelection(Project proj) {
 			this.proj = proj;
@@ -108,10 +109,10 @@ public class MenuTool extends Tool {
 	public String getName() { return "Menu Tool"; }
 
 	@Override
-	public String getDisplayName() { return Strings.get("menuTool"); }
+	public String getDisplayName() { return _("menuTool"); }
 
 	@Override
-	public String getDescription() { return Strings.get("menuToolDesc"); }
+	public String getDescription() { return _("menuToolDesc"); }
 
 	@Override
 	public void mousePressed(Canvas canvas, Graphics g, MouseEvent e) {

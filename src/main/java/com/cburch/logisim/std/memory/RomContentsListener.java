@@ -7,6 +7,7 @@ import com.cburch.hex.HexModel;
 import com.cburch.hex.HexModelListener;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class RomContentsListener implements HexModelListener {
 	private static class Change extends Action {
@@ -28,7 +29,7 @@ class RomContentsListener implements HexModelListener {
 
 		@Override
 		public String getName() {
-			return Strings.get("romChangeAction");
+			return _("romChangeAction");
 		}
 
 		@Override

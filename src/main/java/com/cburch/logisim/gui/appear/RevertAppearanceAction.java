@@ -10,6 +10,7 @@ import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.appear.CircuitAppearance;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class RevertAppearanceAction extends Action {
 	private Circuit circuit;
@@ -22,7 +23,7 @@ public class RevertAppearanceAction extends Action {
 	
 	@Override
 	public String getName() {
-		return Strings.get("revertAppearanceAction");
+		return _("revertAppearanceAction");
 	}
 
 	@Override

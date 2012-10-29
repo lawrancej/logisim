@@ -18,6 +18,7 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Poly extends FillableCanvasObject {
 	private boolean closed;
@@ -86,9 +87,9 @@ public class Poly extends FillableCanvasObject {
 	@Override
 	public String getDisplayName() {
 		if (closed) {
-			return Strings.get("shapePolygon");
+			return _("shapePolygon");
 		} else {
-			return Strings.get("shapePolyline");
+			return _("shapePolyline");
 		}
 	}
 	

@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.util.JFileChoosers;
-import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class FilePanel extends LogPanel {
 	private class Listener implements ActionListener, ModelListener {
@@ -43,11 +43,11 @@ class FilePanel extends LogPanel {
 		
 		private void computeEnableItems(Model model) {
 			if (model.isFileEnabled()) {
-				enableLabel.setText(Strings.get("fileEnabled"));
-				enableButton.setText(Strings.get("fileDisableButton"));
+				enableLabel.setText(_("fileEnabled"));
+				enableButton.setText(_("fileDisableButton"));
 			} else {
-				enableLabel.setText(Strings.get("fileDisabled"));
-				enableButton.setText(Strings.get("fileEnableButton"));
+				enableLabel.setText(_("fileDisabled"));
+				enableButton.setText(_("fileEnableButton"));
 			}
 		}
 
@@ -61,20 +61,20 @@ class FilePanel extends LogPanel {
 				File file = chooser.getSelectedFile();
 				if (file.exists() && (!file.canWrite() || file.isDirectory())) {
 					JOptionPane.showMessageDialog(getLogFrame(),
-						StringUtil.format(Strings.get("fileCannotWriteMessage"), file.getName()),
-						Strings.get("fileCannotWriteTitle"),
+						_("fileCannotWriteMessage", file.getName()),
+						_("fileCannotWriteTitle"),
 						JOptionPane.OK_OPTION);
 					return;
 				}
 				if (file.exists() && file.length() > 0) {
 					String[] options = {
-							Strings.get("fileOverwriteOption"),
-							Strings.get("fileAppendOption"),
-							Strings.get("fileCancelOption"),
+							_("fileOverwriteOption"),
+							_("fileAppendOption"),
+							_("fileCancelOption"),
 					};
 					int option = JOptionPane.showOptionDialog(getLogFrame(),
-						StringUtil.format(Strings.get("fileExistsMessage"), file.getName()),
-						Strings.get("fileExistsTitle"),
+						_("fileExistsMessage", file.getName()),
+						_("fileExistsTitle"),
 						0, JOptionPane.QUESTION_MESSAGE, null,
 						options, options[0]);
 					if (option == 0) {
@@ -149,20 +149,20 @@ class FilePanel extends LogPanel {
 
 	@Override
 	public String getTitle() {
-		return Strings.get("fileTab");
+		return _("fileTab");
 	}
 
 	@Override
 	public String getHelpText() {
-		return Strings.get("fileHelp");
+		return _("fileHelp");
 	}
 
 	@Override
 	public void localeChanged() {
 		listener.computeEnableItems(getModel());
-		fileLabel.setText(Strings.get("fileLabel") + " ");
-		selectButton.setText(Strings.get("fileSelectButton"));
-		headerCheckBox.setText(Strings.get("fileHeaderCheck"));
+		fileLabel.setText(_("fileLabel") + " ");
+		selectButton.setText(_("fileSelectButton"));
+		headerCheckBox.setText(_("fileHeaderCheck"));
 	}
 
 	@Override

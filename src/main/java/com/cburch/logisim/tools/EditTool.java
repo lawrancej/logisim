@@ -33,6 +33,8 @@ import com.cburch.logisim.gui.main.SelectionActions;
 import com.cburch.logisim.gui.main.Selection.Event;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
+
 
 public class EditTool extends Tool {
 	private static final int CACHE_MAX_SIZE = 32;
@@ -98,12 +100,12 @@ public class EditTool extends Tool {
 	
 	@Override
 	public String getDisplayName() {
-		return Strings.get("editTool");
+		return _("editTool");
 	}
 	
 	@Override
 	public String getDescription() {
-		return Strings.get("editToolDesc");
+		return _("editToolDesc");
 	}
 
 	@Override
@@ -403,7 +405,7 @@ public class EditTool extends Tool {
 			final Circuit circuit = canvas.getCircuit();
 			final Selection sel = canvas.getSelection();
 			SetAttributeAction act = new SetAttributeAction(circuit,
-					Strings.getter("selectionRefaceAction"));
+					__("selectionRefaceAction"));
 			for (Component comp : sel.getComponents()) {
 				if (!(comp instanceof Wire)) {
 					Attribute<Direction> attr = getFacingAttribute(comp);

@@ -18,6 +18,7 @@ import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.file.Options;
 import com.cburch.logisim.util.TableLayout;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class SimulateOptions extends OptionsPanel {
 	private class MyListener implements ActionListener, AttributeListener {
@@ -126,18 +127,18 @@ class SimulateOptions extends OptionsPanel {
 
 	@Override
 	public String getTitle() {
-		return Strings.get("simulateTitle");
+		return _("simulateTitle");
 	}
 
 	@Override
 	public String getHelpText() {
-		return Strings.get("simulateHelp");
+		return _("simulateHelp");
 	}
 	
 	@Override
 	public void localeChanged() {
-		simLimitLabel.setText(Strings.get("simulateLimit"));
-		gateUndefinedLabel.setText(Strings.get("gateUndefined"));
-		simRandomness.setText(Strings.get("simulateRandomness"));
+		simLimitLabel.setText(_("simulateLimit"));
+		gateUndefinedLabel.setText(_("gateUndefined"));
+		simRandomness.setText(_("simulateRandomness"));
 	}
 }

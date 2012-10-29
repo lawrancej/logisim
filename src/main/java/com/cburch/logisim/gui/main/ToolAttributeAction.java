@@ -13,6 +13,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.tools.key.KeyConfigurationEvent;
 import com.cburch.logisim.tools.key.KeyConfigurationResult;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ToolAttributeAction extends Action {
 	public static Action create(Tool tool, Attribute<?> attr, Object value) {
@@ -36,7 +37,7 @@ public class ToolAttributeAction extends Action {
 	
 	@Override
 	public String getName() {
-		return Strings.get("changeToolAttrAction");
+		return _("changeToolAttrAction");
 	}
 
 	@Override

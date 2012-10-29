@@ -13,12 +13,13 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.tools.WireRepairData;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class OrGate extends AbstractGate {
 	public static OrGate FACTORY = new OrGate();
 
 	private OrGate() {
-		super("OR Gate", Strings.getter("orGateComponent"));
+		super("OR Gate", __("orGateComponent"));
 		setRectangularLabel("\u2265" + "1");
 		setIconNames("orGate.gif", "orGateRect.gif", "dinOrGate.gif");
 		setPaintInputLines(true);

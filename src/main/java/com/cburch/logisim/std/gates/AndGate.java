@@ -11,12 +11,13 @@ import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class AndGate extends AbstractGate {
 	public static AndGate FACTORY = new AndGate();
 
 	private AndGate() {
-		super("AND Gate", Strings.getter("andGateComponent"));
+		super("AND Gate", __("andGateComponent"));
 		setRectangularLabel("&");
 		setIconNames("andGate.gif", "andGateRect.gif", "dinAndGate.gif");
 	}

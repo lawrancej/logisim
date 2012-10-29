@@ -14,6 +14,7 @@ import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Rectangle extends Rectangular {
 	public Rectangle(int x, int y, int w, int h) {
@@ -41,7 +42,7 @@ public class Rectangle extends Rectangular {
 
 	@Override
 	public String getDisplayName() {
-		return Strings.get("shapeRect");
+		return _("shapeRect");
 	}
 	
 	@Override

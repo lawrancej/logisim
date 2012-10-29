@@ -7,6 +7,7 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.gui.generic.AttributeSetTableModel;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class AttrTableToolModel extends AttributeSetTableModel {
 	Project proj;
@@ -20,7 +21,7 @@ public class AttrTableToolModel extends AttributeSetTableModel {
 	
 	@Override
 	public String getTitle() {
-		return Strings.get("toolAttrTitle", tool.getDisplayName());
+		return _("toolAttrTitle", tool.getDisplayName());
 	}
 	
 	public Tool getTool() {

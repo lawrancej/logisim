@@ -21,6 +21,7 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Tty extends InstanceFactory {
 	private static final int CLR = 0;
@@ -37,13 +38,13 @@ public class Tty extends InstanceFactory {
 
 	private static final Attribute<Integer> ATTR_COLUMNS
 		= Attributes.forIntegerRange("cols",
-			Strings.getter("ttyColsAttr"), 1, 120);
+			__("ttyColsAttr"), 1, 120);
 	private static final Attribute<Integer> ATTR_ROWS
 		= Attributes.forIntegerRange("rows",
-			Strings.getter("ttyRowsAttr"), 1, 48);
+			__("ttyRowsAttr"), 1, 48);
 
 	public Tty() {
-		super("TTY", Strings.getter("ttyComponent"));
+		super("TTY", __("ttyComponent"));
 		setAttributes(new Attribute[] {
 				ATTR_ROWS, ATTR_COLUMNS, StdAttr.EDGE_TRIGGER,
 				Io.ATTR_COLOR, Io.ATTR_BACKGROUND
@@ -58,10 +59,10 @@ public class Tty extends InstanceFactory {
 		ps[CK]  = new Port( 0,   0, Port.INPUT, 1);
 		ps[WE]  = new Port(10,  10, Port.INPUT, 1);
 		ps[IN]  = new Port( 0, -10, Port.INPUT, 7);
-		ps[CLR].setToolTip(Strings.getter("ttyClearTip"));
-		ps[CK].setToolTip(Strings.getter("ttyClockTip"));
-		ps[WE].setToolTip(Strings.getter("ttyEnableTip"));
-		ps[IN].setToolTip(Strings.getter("ttyInputTip"));
+		ps[CLR].setToolTip(__("ttyClearTip"));
+		ps[CK].setToolTip(__("ttyClockTip"));
+		ps[WE].setToolTip(__("ttyEnableTip"));
+		ps[IN].setToolTip(__("ttyInputTip"));
 		setPorts(ps);
 	}
 	
@@ -172,11 +173,11 @@ public class Tty extends InstanceFactory {
 				y += ROW_HEIGHT;
 			}
 		} else {
-			String str = Strings.get("ttyDesc", "" + rows, "" + cols);
+			String str = _("ttyDesc", "" + rows, "" + cols);
 			FontMetrics fm = g.getFontMetrics();
 			int strWidth = fm.stringWidth(str);
 			if (strWidth + BORDER > bds.getWidth()) {
-				str = Strings.get("ttyDescShort");
+				str = _("ttyDescShort");
 				strWidth = fm.stringWidth(str);
 			}
 			int x = bds.getX() + (bds.getWidth() - strWidth) / 2;

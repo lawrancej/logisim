@@ -4,20 +4,21 @@
 package com.cburch.logisim.data;
 
 import com.cburch.logisim.util.StringGetter;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Direction implements AttributeOptionInterface {
 	public static final Direction EAST
-		= new Direction("east", Strings.getter("directionEastOption"),
-				Strings.getter("directionEastVertical"), 0);
+		= new Direction("east", __("directionEastOption"),
+				__("directionEastVertical"), 0);
 	public static final Direction WEST
-		= new Direction("west", Strings.getter("directionWestOption"),
-				Strings.getter("directionWestVertical"), 1);
+		= new Direction("west", __("directionWestOption"),
+				__("directionWestVertical"), 1);
 	public static final Direction NORTH
-		= new Direction("north", Strings.getter("directionNorthOption"),
-				Strings.getter("directionNorthVertical"), 2);
+		= new Direction("north", __("directionNorthOption"),
+				__("directionNorthVertical"), 2);
 	public static final Direction SOUTH
-		= new Direction("south", Strings.getter("directionSouthOption"),
-				Strings.getter("directionSouthVertical"), 3);
+		= new Direction("south", __("directionSouthOption"),
+				__("directionSouthVertical"), 3);
 	public static final Direction[] cardinals
 		= { NORTH, EAST, SOUTH, WEST };
 

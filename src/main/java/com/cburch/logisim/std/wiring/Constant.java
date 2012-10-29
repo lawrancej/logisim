@@ -30,10 +30,11 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Constant extends InstanceFactory {
 	public static final Attribute<Integer> ATTR_VALUE
-		= Attributes.forHexInteger("value", Strings.getter("constantValueAttr"));
+		= Attributes.forHexInteger("value", __("constantValueAttr"));
 
 	public static InstanceFactory FACTORY = new Constant();
 
@@ -106,7 +107,7 @@ public class Constant extends InstanceFactory {
 	}
 	
 	public Constant() {
-		super("Constant", Strings.getter("constantComponent"));
+		super("Constant", __("constantComponent"));
 		setFacingAttribute(StdAttr.FACING);
 		setKeyConfigurator(JoinedConfigurator.create(
 				new ConstantConfigurator(),

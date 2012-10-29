@@ -19,6 +19,7 @@ import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Divider extends InstanceFactory {
 	static final int PER_DELAY = 1;
@@ -30,7 +31,7 @@ public class Divider extends InstanceFactory {
 	private static final int REM   = 4;
 
 	public Divider() {
-		super("Divider", Strings.getter("dividerComponent"));
+		super("Divider", __("dividerComponent"));
 		setAttributes(new Attribute[] { StdAttr.WIDTH },
 				new Object[] { BitWidth.create(8) });
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
@@ -43,11 +44,11 @@ public class Divider extends InstanceFactory {
 		ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
 		ps[UPPER] = new Port(-20, -20, Port.INPUT,  StdAttr.WIDTH);
 		ps[REM]   = new Port(-20,  20, Port.OUTPUT, StdAttr.WIDTH);
-		ps[IN0].setToolTip(Strings.getter("dividerDividendLowerTip"));
-		ps[IN1].setToolTip(Strings.getter("dividerDivisorTip"));
-		ps[OUT].setToolTip(Strings.getter("dividerOutputTip"));
-		ps[UPPER].setToolTip(Strings.getter("dividerDividendUpperTip"));
-		ps[REM].setToolTip(Strings.getter("dividerRemainderTip"));
+		ps[IN0].setToolTip(__("dividerDividendLowerTip"));
+		ps[IN1].setToolTip(__("dividerDivisorTip"));
+		ps[OUT].setToolTip(__("dividerOutputTip"));
+		ps[UPPER].setToolTip(__("dividerDividendUpperTip"));
+		ps[REM].setToolTip(__("dividerRemainderTip"));
 		setPorts(ps);
 	}
 
@@ -77,8 +78,8 @@ public class Divider extends InstanceFactory {
 		painter.drawPort(IN0);
 		painter.drawPort(IN1);
 		painter.drawPort(OUT);
-		painter.drawPort(UPPER, Strings.get("dividerUpperInput"),  Direction.NORTH);
-		painter.drawPort(REM, Strings.get("dividerRemainderOutput"), Direction.SOUTH);
+		painter.drawPort(UPPER, _("dividerUpperInput"),  Direction.NORTH);
+		painter.drawPort(REM, _("dividerRemainderOutput"), Direction.SOUTH);
 
 		Location loc = painter.getLocation();
 		int x = loc.getX();

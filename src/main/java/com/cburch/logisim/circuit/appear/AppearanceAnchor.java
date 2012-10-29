@@ -19,10 +19,11 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class AppearanceAnchor extends AppearanceElement {
 	public static final Attribute<Direction> FACING
-		= Attributes.forDirection("facing", Strings.getter("appearanceFacingAttr"));
+		= Attributes.forDirection("facing", __("appearanceFacingAttr"));
 	static final List<Attribute<?>> ATTRIBUTES
 		= UnmodifiableList.create(new Attribute<?>[] { FACING });
 	
@@ -54,7 +55,7 @@ public class AppearanceAnchor extends AppearanceElement {
 
 	@Override
 	public String getDisplayName() {
-		return Strings.get("circuitAnchor");
+		return _("circuitAnchor");
 	}
 	
 	@Override

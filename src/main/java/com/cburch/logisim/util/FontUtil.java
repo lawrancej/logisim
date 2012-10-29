@@ -4,6 +4,7 @@
 package com.cburch.logisim.util;
 
 import java.awt.Font;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class FontUtil {
 	public static String toStyleStandardString(int style) {
@@ -24,13 +25,13 @@ public class FontUtil {
 	public static String toStyleDisplayString(int style) {
 		switch (style) {
 		case Font.PLAIN:
-			return Strings.get("fontPlainStyle");
+			return _("fontPlainStyle");
 		case Font.ITALIC:
-			return Strings.get("fontItalicStyle");
+			return _("fontItalicStyle");
 		case Font.BOLD:
-			return Strings.get("fontBoldStyle");
+			return _("fontBoldStyle");
 		case Font.BOLD | Font.ITALIC:
-			return Strings.get("fontBoldItalicStyle");
+			return _("fontBoldItalicStyle");
 		default:
 			return "??";
 		}

@@ -8,19 +8,20 @@ import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.AttributeSets;
 import com.cburch.logisim.data.Attributes;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Options {
 	public static final AttributeOption GATE_UNDEFINED_IGNORE
-	= new AttributeOption("ignore", Strings.getter("gateUndefinedIgnore"));
+	= new AttributeOption("ignore", __("gateUndefinedIgnore"));
 	public static final AttributeOption GATE_UNDEFINED_ERROR
-		= new AttributeOption("error", Strings.getter("gateUndefinedError"));
+		= new AttributeOption("error", __("gateUndefinedError"));
 		
 	public static final Attribute<Integer> sim_limit_attr
-		= Attributes.forInteger("simlimit", Strings.getter("simLimitOption"));
+		= Attributes.forInteger("simlimit", __("simLimitOption"));
 	public static final Attribute<Integer> sim_rand_attr
-		= Attributes.forInteger("simrand", Strings.getter("simRandomOption"));
+		= Attributes.forInteger("simrand", __("simRandomOption"));
 	public static final Attribute<AttributeOption> ATTR_GATE_UNDEFINED
-		= Attributes.forOption("gateUndefined", Strings.getter("gateUndefinedOption"),
+		= Attributes.forOption("gateUndefined", __("gateUndefinedOption"),
 				new AttributeOption[] { GATE_UNDEFINED_IGNORE, GATE_UNDEFINED_ERROR });
 	
 	public static final Integer sim_rand_dflt = Integer.valueOf(32);

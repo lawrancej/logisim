@@ -17,6 +17,7 @@ import com.cburch.logisim.util.FontUtil;
 import com.cburch.logisim.util.JInputComponent;
 import com.cburch.logisim.util.StringGetter;
 import com.connectina.swing.fontchooser.JFontChooser;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Attributes {
 	private Attributes() { }
@@ -280,8 +281,8 @@ public class Attributes {
 
 		@Override
 		public String toDisplayString(Boolean value) {
-			if (value.booleanValue()) return Strings.get("booleanTrueOption");
-			else return Strings.get("booleanFalseOption");
+			if (value.booleanValue()) return _("booleanTrueOption");
+			else return _("booleanFalseOption");
 		}
 
 		@Override

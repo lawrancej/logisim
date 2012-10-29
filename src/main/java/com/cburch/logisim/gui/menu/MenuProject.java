@@ -11,6 +11,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import com.cburch.logisim.proj.Project;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuProject extends Menu {
 	private class MyListener
@@ -111,25 +112,25 @@ class MenuProject extends Menu {
 	}
 	
 	public void localeChanged() {
-		setText(Strings.get("projectMenu"));
-		addCircuit.setText(Strings.get("projectAddCircuitItem"));
-		loadLibrary.setText(Strings.get("projectLoadLibraryItem"));
-		loadBuiltin.setText(Strings.get("projectLoadBuiltinItem"));
-		loadLogisim.setText(Strings.get("projectLoadLogisimItem"));
-		loadJar.setText(Strings.get("projectLoadJarItem"));
-		unload.setText(Strings.get("projectUnloadLibrariesItem"));
-		moveUp.setText(Strings.get("projectMoveCircuitUpItem"));
-		moveDown.setText(Strings.get("projectMoveCircuitDownItem"));
-		setAsMain.setText(Strings.get("projectSetAsMainItem"));
-		remove.setText(Strings.get("projectRemoveCircuitItem"));
-		revertAppearance.setText(Strings.get("projectRevertAppearanceItem"));
-		layout.setText(Strings.get("projectEditCircuitLayoutItem"));
-		appearance.setText(Strings.get("projectEditCircuitAppearanceItem"));
-		viewToolbox.setText(Strings.get("projectViewToolboxItem"));
-		viewSimulation.setText(Strings.get("projectViewSimulationItem"));
-		analyze.setText(Strings.get("projectAnalyzeCircuitItem"));
-		stats.setText(Strings.get("projectGetCircuitStatisticsItem"));
-		options.setText(Strings.get("projectOptionsItem"));
+		setText(_("projectMenu"));
+		addCircuit.setText(_("projectAddCircuitItem"));
+		loadLibrary.setText(_("projectLoadLibraryItem"));
+		loadBuiltin.setText(_("projectLoadBuiltinItem"));
+		loadLogisim.setText(_("projectLoadLogisimItem"));
+		loadJar.setText(_("projectLoadJarItem"));
+		unload.setText(_("projectUnloadLibrariesItem"));
+		moveUp.setText(_("projectMoveCircuitUpItem"));
+		moveDown.setText(_("projectMoveCircuitDownItem"));
+		setAsMain.setText(_("projectSetAsMainItem"));
+		remove.setText(_("projectRemoveCircuitItem"));
+		revertAppearance.setText(_("projectRevertAppearanceItem"));
+		layout.setText(_("projectEditCircuitLayoutItem"));
+		appearance.setText(_("projectEditCircuitAppearanceItem"));
+		viewToolbox.setText(_("projectViewToolboxItem"));
+		viewSimulation.setText(_("projectViewSimulationItem"));
+		analyze.setText(_("projectAnalyzeCircuitItem"));
+		stats.setText(_("projectGetCircuitStatisticsItem"));
+		options.setText(_("projectOptionsItem"));
 	}
 	
 	@Override

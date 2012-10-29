@@ -41,6 +41,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class ExportImage {
 	private static final int SLIDER_DIVISIONS = 6;
@@ -59,14 +60,14 @@ class ExportImage {
 		CircuitJList list = new CircuitJList(proj, true);
 		if (list.getModel().getSize() == 0) {
 			JOptionPane.showMessageDialog(proj.getFrame(),
-					Strings.get("exportEmptyCircuitsMessage"),
-					Strings.get("exportEmptyCircuitsTitle"),
+					_("exportEmptyCircuitsMessage"),
+					_("exportEmptyCircuitsTitle"),
 					JOptionPane.YES_NO_OPTION);
 			return;
 		}
 		OptionsPanel options = new OptionsPanel(list);
 		int action = JOptionPane.showConfirmDialog(frame,
-				options, Strings.get("exportImageSelect"),
+				options, _("exportImageSelect"),
 				JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE);
 		if (action != JOptionPane.OK_OPTION) return;
@@ -79,15 +80,15 @@ class ExportImage {
 		int fmt = options.getImageFormat();
 		switch (options.getImageFormat()) {
 		case FORMAT_GIF:
-			filter = new ImageFileFilter(fmt, Strings.getter("exportGifFilter"),
+			filter = new ImageFileFilter(fmt, __("exportGifFilter"),
 				new String[] { "gif" });
 			break;
 		case FORMAT_PNG:
-			filter = new ImageFileFilter(fmt, Strings.getter("exportPngFilter"),
+			filter = new ImageFileFilter(fmt, __("exportPngFilter"),
 				new String[] { "png" });
 			break;
 		case FORMAT_JPG:
-			filter = new ImageFileFilter(fmt, Strings.getter("exportJpgFilter"),
+			filter = new ImageFileFilter(fmt, __("exportJpgFilter"),
 				new String[] { "jpg", "jpeg", "jpe", "jfi", "jfif", "jfi" });
 			break;
 		default:
@@ -100,12 +101,12 @@ class ExportImage {
 		JFileChooser chooser = loader.createChooser();
 		if (circuits.size() > 1) {
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			chooser.setDialogTitle(Strings.get("exportImageDirectorySelect"));
+			chooser.setDialogTitle(_("exportImageDirectorySelect"));
 		} else {
 			chooser.setFileFilter(filter);
-			chooser.setDialogTitle(Strings.get("exportImageFileSelect"));
+			chooser.setDialogTitle(_("exportImageFileSelect"));
 		}
-		int returnVal = chooser.showDialog(frame, Strings.get("exportImageButton"));
+		int returnVal = chooser.showDialog(frame, _("exportImageButton"));
 		if (returnVal != JFileChooser.APPROVE_OPTION) return;
 
 		// Determine whether destination is valid
@@ -114,8 +115,8 @@ class ExportImage {
 		if (dest.exists()) {
 			if (!dest.isDirectory()) {
 				int confirm = JOptionPane.showConfirmDialog(proj.getFrame(),
-					Strings.get("confirmOverwriteMessage"),
-					Strings.get("confirmOverwriteTitle"),
+					_("confirmOverwriteMessage"),
+					_("confirmOverwriteTitle"),
 					JOptionPane.YES_NO_OPTION);
 				if (confirm != JOptionPane.YES_OPTION) return;
 			}
@@ -124,8 +125,8 @@ class ExportImage {
 				boolean created = dest.mkdir();
 				if (!created) {
 					JOptionPane.showMessageDialog(proj.getFrame(),
-							Strings.get("exportNewDirectoryErrorMessage"),
-							Strings.get("exportNewDirectoryErrorTitle"),
+							_("exportNewDirectoryErrorMessage"),
+							_("exportNewDirectoryErrorTitle"),
 							JOptionPane.YES_NO_OPTION);
 					return;
 				}
@@ -134,7 +135,7 @@ class ExportImage {
 
 		// Create the progress monitor
 		ProgressMonitor monitor = new ProgressMonitor(frame,
-				Strings.get("exportImageProgress"),
+				_("exportImageProgress"),
 				null,
 				0, 10000);
 		monitor.setMillisToDecideToPopup(100);
@@ -197,13 +198,13 @@ class ExportImage {
 			gbc.anchor = GridBagConstraints.NORTHWEST;
 			gbc.insets = new Insets(5, 0, 5, 0);
 			gbc.fill = GridBagConstraints.NONE;
-			addGb(new JLabel(Strings.get("labelCircuits") + " "));
+			addGb(new JLabel(_("labelCircuits") + " "));
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			addGb(new JScrollPane(list));
 			gbc.fill = GridBagConstraints.NONE;
 			
 			gbc.gridy++;
-			addGb(new JLabel(Strings.get("labelImageFormat") + " "));
+			addGb(new JLabel(_("labelImageFormat") + " "));
 			Box formatsPanel = new Box(BoxLayout.Y_AXIS);
 			formatsPanel.add(formatPng);
 			formatsPanel.add(formatGif);
@@ -211,12 +212,12 @@ class ExportImage {
 			addGb(formatsPanel);
 			
 			gbc.gridy++;
-			addGb(new JLabel(Strings.get("labelScale") + " "));
+			addGb(new JLabel(_("labelScale") + " "));
 			addGb(slider);
 			addGb(curScale);
 			
 			gbc.gridy++;
-			addGb(new JLabel(Strings.get("labelPrinterView") + " "));
+			addGb(new JLabel(_("labelPrinterView") + " "));
 			addGb(printerView);
 		}
 		
@@ -320,7 +321,7 @@ class ExportImage {
 				((Graphics2D) g).translate(-bds.getX(), -bds.getY());
 			} else {
 				JOptionPane.showMessageDialog(frame,
-						Strings.get("couldNotCreateImage"));
+						_("couldNotCreateImage"));
 				monitor.close();
 			}
 
@@ -346,7 +347,7 @@ class ExportImage {
 				}
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(frame,
-						Strings.get("couldNotCreateFile"));
+						_("couldNotCreateFile"));
 				monitor.close();
 				return;
 			}

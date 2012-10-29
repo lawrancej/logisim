@@ -15,6 +15,7 @@ import com.cburch.logisim.analyze.model.AnalyzerModel;
 import com.cburch.logisim.analyze.model.VariableList;
 import com.cburch.logisim.analyze.model.VariableListEvent;
 import com.cburch.logisim.analyze.model.VariableListListener;
+import static com.cburch.logisim.util.LocaleString._;
 
 class OutputSelector {
 	private class Model extends AbstractListModel
@@ -120,7 +121,7 @@ class OutputSelector {
 	}
 	
 	void localeChanged() {
-		label.setText(Strings.get("outputSelectLabel"));
+		label.setText(_("outputSelectLabel"));
 	}
 	
 	public void addItemListener(ItemListener l) {

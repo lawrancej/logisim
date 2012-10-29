@@ -9,7 +9,7 @@ import com.cburch.logisim.file.MouseMappings;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
-import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class OptionsActions {
 	private OptionsActions() { }
@@ -49,8 +49,7 @@ class OptionsActions {
 
 		@Override
 		public String getName() {
-			return StringUtil.format(Strings.get("setOptionAction"),
-				attr.getDisplayName());
+			return _("setOptionAction", attr.getDisplayName());
 		}
 
 		@Override
@@ -79,7 +78,7 @@ class OptionsActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("addMouseMappingAction");
+			return _("addMouseMappingAction");
 		}
 
 		@Override
@@ -106,7 +105,7 @@ class OptionsActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("removeMouseMappingAction");
+			return _("removeMouseMappingAction");
 		}
 
 		@Override

@@ -14,12 +14,13 @@ import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class OddParityGate extends AbstractGate {
 	public static OddParityGate FACTORY = new OddParityGate();
 
 	private OddParityGate() {
-		super("Odd Parity", Strings.getter("oddParityComponent"));
+		super("Odd Parity", __("oddParityComponent"));
 		setRectangularLabel("2k+1");
 		setIconNames("parityOddGate.gif");
 	}

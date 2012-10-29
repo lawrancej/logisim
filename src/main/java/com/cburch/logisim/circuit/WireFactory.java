@@ -14,6 +14,7 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringGetter;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class WireFactory extends AbstractComponentFactory {
 	public static final WireFactory instance = new WireFactory();
@@ -25,7 +26,7 @@ class WireFactory extends AbstractComponentFactory {
 
 	@Override
 	public StringGetter getDisplayGetter() {
-		return Strings.getter("wireComponent");
+		return __("wireComponent");
 	}
 
 	@Override

@@ -33,16 +33,15 @@ import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class NotGate extends InstanceFactory {
 	public static final AttributeOption SIZE_NARROW
-		= new AttributeOption(Integer.valueOf(20),
-			Strings.getter("gateSizeNarrowOpt"));
+		= new AttributeOption(Integer.valueOf(20), __("gateSizeNarrowOpt"));
 	public static final AttributeOption SIZE_WIDE
-		= new AttributeOption(Integer.valueOf(30),
-			Strings.getter("gateSizeWideOpt"));
+		= new AttributeOption(Integer.valueOf(30), __("gateSizeWideOpt"));
 	public static final Attribute<AttributeOption> ATTR_SIZE
-		= Attributes.forOption("size", Strings.getter("gateSizeAttr"),
+		= Attributes.forOption("size", __("gateSizeAttr"),
 			new AttributeOption[] { SIZE_NARROW, SIZE_WIDE });
 
 	private static final String RECT_LABEL = "1";
@@ -53,7 +52,7 @@ class NotGate extends InstanceFactory {
 	public static InstanceFactory FACTORY = new NotGate();
 
 	private NotGate() {
-		super("NOT Gate", Strings.getter("notGateComponent"));
+		super("NOT Gate", __("notGateComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.FACING, StdAttr.WIDTH, ATTR_SIZE,
 				GateAttributes.ATTR_OUTPUT,

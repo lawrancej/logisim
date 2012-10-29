@@ -9,6 +9,7 @@ import com.cburch.draw.toolbar.AbstractToolbarModel;
 import com.cburch.draw.toolbar.ToolbarItem;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class ToolboxToolbarModel extends AbstractToolbarModel
 		implements MenuListener.EnabledListener {
@@ -20,13 +21,13 @@ class ToolboxToolbarModel extends AbstractToolbarModel
 	
 	public ToolboxToolbarModel(MenuListener menu) {
 		itemAdd = new LogisimToolbarItem(menu, "projadd.gif", LogisimMenuBar.ADD_CIRCUIT,
-				Strings.getter("projectAddCircuitTip"));
+				__("projectAddCircuitTip"));
 		itemUp = new LogisimToolbarItem(menu, "projup.gif", LogisimMenuBar.MOVE_CIRCUIT_UP,
-				Strings.getter("projectMoveCircuitUpTip"));
+				__("projectMoveCircuitUpTip"));
 		itemDown = new LogisimToolbarItem(menu, "projdown.gif", LogisimMenuBar.MOVE_CIRCUIT_DOWN,
-				Strings.getter("projectMoveCircuitDownTip"));
+				__("projectMoveCircuitDownTip"));
 		itemDelete = new LogisimToolbarItem(menu, "projdel.gif", LogisimMenuBar.REMOVE_CIRCUIT,
-				Strings.getter("projectRemoveCircuitTip"));
+				__("projectRemoveCircuitTip"));
 		
 		items = UnmodifiableList.create(new ToolbarItem[] {
 				itemAdd,

@@ -9,6 +9,7 @@ import java.util.Collections;
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelInsertHandleAction extends ModelAction {
 	private Handle desired;
@@ -25,7 +26,7 @@ public class ModelInsertHandleAction extends ModelAction {
 
 	@Override
 	public String getName() {
-		return Strings.get("actionInsertHandle");
+		return _("actionInsertHandle");
 	}
 	
 	@Override

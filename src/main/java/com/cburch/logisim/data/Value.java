@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.util.Arrays;
 
 import com.cburch.logisim.util.Cache;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Value {
 	public static final Value FALSE   = new Value(1, 0, 0, 0);
@@ -283,8 +284,8 @@ public class Value {
 	
 	public String toDecimalString(boolean signed) {
 		if (width == 0) return "-";
-		if (isErrorValue()) return Strings.get("valueError");
-		if (!isFullyDefined()) return Strings.get("valueUnknown");
+		if (isErrorValue()) return _("valueError");
+		if (!isFullyDefined()) return _("valueUnknown");
 		
 		int value = toIntValue();
 		if (signed) {
@@ -304,8 +305,8 @@ public class Value {
 		case 16: return toHexString();
 		default:
 			if (width == 0) return "-";
-			if (isErrorValue()) return Strings.get("valueError");
-			if (!isFullyDefined()) return Strings.get("valueUnknown");
+			if (isErrorValue()) return _("valueError");
+			if (!isFullyDefined()) return _("valueUnknown");
 			return Integer.toString(toIntValue(), radix);
 		}
 	}
@@ -314,8 +315,8 @@ public class Value {
 		switch (width) {
 		case 0: return "-";
 		case 1:
-			if (error != 0)        return Strings.get("valueErrorSymbol");
-			else if (unknown != 0) return Strings.get("valueUnknownSymbol");
+			if (error != 0)        return _("valueErrorSymbol");
+			else if (unknown != 0) return _("valueUnknownSymbol");
 			else if (value != 0)   return "1";
 			else                  return "0";
 		default:

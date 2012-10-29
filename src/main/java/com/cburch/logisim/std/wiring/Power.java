@@ -26,10 +26,11 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Power extends InstanceFactory {
 	public Power() {
-		super("Power", Strings.getter("powerComponent"));
+		super("Power", __("powerComponent"));
 		setIconName("power.gif");
 		setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH },
 				new Object[] { Direction.NORTH, BitWidth.ONE });

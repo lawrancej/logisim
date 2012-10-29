@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public abstract class EditPopup extends JPopupMenu {
 	private class Listener implements ActionListener {
@@ -39,19 +40,19 @@ public abstract class EditPopup extends JPopupMenu {
 	
 	protected void initialize() {
 		boolean x = false;
-		x |= add(LogisimMenuBar.CUT, Strings.get("editCutItem"));
-		x |= add(LogisimMenuBar.COPY, Strings.get("editCopyItem"));
+		x |= add(LogisimMenuBar.CUT, _("editCutItem"));
+		x |= add(LogisimMenuBar.COPY, _("editCopyItem"));
 		if (x) { addSeparator(); x = false; }
-		x |= add(LogisimMenuBar.DELETE, Strings.get("editClearItem"));
-		x |= add(LogisimMenuBar.DUPLICATE, Strings.get("editDuplicateItem"));
+		x |= add(LogisimMenuBar.DELETE, _("editClearItem"));
+		x |= add(LogisimMenuBar.DUPLICATE, _("editDuplicateItem"));
 		if (x) { addSeparator(); x = false; }
-		x |= add(LogisimMenuBar.RAISE, Strings.get("editRaiseItem"));
-		x |= add(LogisimMenuBar.LOWER, Strings.get("editLowerItem"));
-		x |= add(LogisimMenuBar.RAISE_TOP, Strings.get("editRaiseTopItem"));
-		x |= add(LogisimMenuBar.LOWER_BOTTOM, Strings.get("editLowerBottomItem"));
+		x |= add(LogisimMenuBar.RAISE, _("editRaiseItem"));
+		x |= add(LogisimMenuBar.LOWER, _("editLowerItem"));
+		x |= add(LogisimMenuBar.RAISE_TOP, _("editRaiseTopItem"));
+		x |= add(LogisimMenuBar.LOWER_BOTTOM, _("editLowerBottomItem"));
 		if (x) { addSeparator(); x = false; }
-		x |= add(LogisimMenuBar.ADD_CONTROL, Strings.get("editAddControlItem"));
-		x |= add(LogisimMenuBar.REMOVE_CONTROL, Strings.get("editRemoveControlItem"));
+		x |= add(LogisimMenuBar.ADD_CONTROL, _("editAddControlItem"));
+		x |= add(LogisimMenuBar.REMOVE_CONTROL, _("editRemoveControlItem"));
 		if (!x && getComponentCount() > 0) { remove(getComponentCount() - 1); }
 	}
 	

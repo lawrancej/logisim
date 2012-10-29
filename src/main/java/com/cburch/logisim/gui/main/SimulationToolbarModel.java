@@ -14,6 +14,7 @@ import com.cburch.logisim.circuit.Simulator;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class SimulationToolbarModel extends AbstractToolbarModel
 		implements ChangeListener {
@@ -28,13 +29,13 @@ class SimulationToolbarModel extends AbstractToolbarModel
 		this.project = project;
 		
 		simEnable = new LogisimToolbarItem(menu, "simplay.png", LogisimMenuBar.SIMULATE_ENABLE,
-				Strings.getter("simulateEnableStepsTip"));
+				__("simulateEnableStepsTip"));
 		simStep = new LogisimToolbarItem(menu, "simstep.png", LogisimMenuBar.SIMULATE_STEP,
-				Strings.getter("simulateStepTip"));
+				__("simulateStepTip"));
 		tickEnable = new LogisimToolbarItem(menu, "simtplay.png", LogisimMenuBar.TICK_ENABLE,
-				Strings.getter("simulateEnableTicksTip"));
+				__("simulateEnableTicksTip"));
 		tickStep = new LogisimToolbarItem(menu, "simtstep.png", LogisimMenuBar.TICK_STEP,
-				Strings.getter("simulateTickTip"));
+				__("simulateTickTip"));
 		
 		items = UnmodifiableList.create(new ToolbarItem[] {
 				simEnable,
@@ -72,11 +73,11 @@ class SimulationToolbarModel extends AbstractToolbarModel
 		boolean running = sim != null && sim.isRunning();
 		boolean ticking = sim != null && sim.isTicking();
 		simEnable.setIcon(running ? "simstop.png" : "simplay.png");
-		simEnable.setToolTip(running ? Strings.getter("simulateDisableStepsTip")
-				: Strings.getter("simulateEnableStepsTip"));
+		simEnable.setToolTip(running ? __("simulateDisableStepsTip")
+				: __("simulateEnableStepsTip"));
 		tickEnable.setIcon(ticking ? "simtstop.png" : "simtplay.png");
-		tickEnable.setToolTip(ticking ? Strings.getter("simulateDisableTicksTip")
-				: Strings.getter("simulateEnableTicksTip"));
+		tickEnable.setToolTip(ticking ? __("simulateDisableTicksTip")
+				: __("simulateEnableTicksTip"));
 		fireToolbarAppearanceChanged();
 	}
 }

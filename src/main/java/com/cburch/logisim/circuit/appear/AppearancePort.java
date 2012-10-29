@@ -18,6 +18,7 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class AppearancePort extends AppearanceElement {
 	private static final int INPUT_RADIUS = 4;
@@ -49,7 +50,7 @@ public class AppearancePort extends AppearanceElement {
 
 	@Override
 	public String getDisplayName() {
-		return Strings.get("circuitPort");
+		return _("circuitPort");
 	}
 	
 	@Override

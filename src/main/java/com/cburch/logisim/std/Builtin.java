@@ -16,6 +16,7 @@ import com.cburch.logisim.std.plexers.Plexers;
 import com.cburch.logisim.std.wiring.Wiring;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Builtin extends Library {
 	private List<Library> libraries = null;
@@ -36,7 +37,7 @@ public class Builtin extends Library {
 	public String getName() { return "Builtin"; }
 
 	@Override
-	public String getDisplayName() { return Strings.get("builtinLibrary"); }
+	public String getDisplayName() { return _("builtinLibrary"); }
 
 	@Override
 	public List<Tool> getTools() { return Collections.emptyList(); }

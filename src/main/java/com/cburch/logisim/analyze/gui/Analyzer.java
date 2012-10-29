@@ -26,6 +26,7 @@ import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
+import static com.cburch.logisim.util.LocaleString._;
 
 public class Analyzer extends LFrame {
 	// used by circuit analysis to select the relevant tab automatically.
@@ -37,18 +38,18 @@ public class Analyzer extends LFrame {
 	
 	private class MyListener implements LocaleListener {
 		public void localeChanged() {
-			Analyzer.this.setTitle(Strings.get("analyzerWindowTitle"));
-			tabbedPane.setTitleAt(INPUTS_TAB, Strings.get("inputsTab"));
-			tabbedPane.setTitleAt(OUTPUTS_TAB, Strings.get("outputsTab"));
-			tabbedPane.setTitleAt(TABLE_TAB, Strings.get("tableTab"));
-			tabbedPane.setTitleAt(EXPRESSION_TAB, Strings.get("expressionTab"));
-			tabbedPane.setTitleAt(MINIMIZED_TAB, Strings.get("minimizedTab"));
-			tabbedPane.setToolTipTextAt(INPUTS_TAB, Strings.get("inputsTabTip"));
-			tabbedPane.setToolTipTextAt(OUTPUTS_TAB, Strings.get("outputsTabTip"));
-			tabbedPane.setToolTipTextAt(TABLE_TAB, Strings.get("tableTabTip"));
-			tabbedPane.setToolTipTextAt(EXPRESSION_TAB, Strings.get("expressionTabTip"));
-			tabbedPane.setToolTipTextAt(MINIMIZED_TAB, Strings.get("minimizedTabTip"));
-			buildCircuit.setText(Strings.get("buildCircuitButton"));
+			Analyzer.this.setTitle(_("analyzerWindowTitle"));
+			tabbedPane.setTitleAt(INPUTS_TAB, _("inputsTab"));
+			tabbedPane.setTitleAt(OUTPUTS_TAB, _("outputsTab"));
+			tabbedPane.setTitleAt(TABLE_TAB, _("tableTab"));
+			tabbedPane.setTitleAt(EXPRESSION_TAB, _("expressionTab"));
+			tabbedPane.setTitleAt(MINIMIZED_TAB, _("minimizedTab"));
+			tabbedPane.setToolTipTextAt(INPUTS_TAB, _("inputsTabTip"));
+			tabbedPane.setToolTipTextAt(OUTPUTS_TAB, _("outputsTabTip"));
+			tabbedPane.setToolTipTextAt(TABLE_TAB, _("tableTabTip"));
+			tabbedPane.setToolTipTextAt(EXPRESSION_TAB, _("expressionTabTip"));
+			tabbedPane.setToolTipTextAt(MINIMIZED_TAB, _("minimizedTabTip"));
+			buildCircuit.setText(_("buildCircuitButton"));
 			inputsPanel.localeChanged();
 			outputsPanel.localeChanged();
 			truthTablePanel.localeChanged();

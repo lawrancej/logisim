@@ -32,6 +32,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class SelectionActions {
 	private SelectionActions() { }
@@ -117,8 +118,8 @@ public class SelectionActions {
 
 		@Override
 		public String getName() {
-			return numDrops == 1 ? Strings.get("dropComponentAction")
-					: Strings.get("dropComponentsAction");
+			return numDrops == 1 ? _("dropComponentAction")
+					: _("dropComponentsAction");
 		}
 
 		@Override
@@ -167,8 +168,8 @@ public class SelectionActions {
 
 		@Override
 		public String getName() {
-			return numAnchor == 1 ? Strings.get("dropComponentAction")
-					: Strings.get("dropComponentsAction");
+			return numAnchor == 1 ? _("dropComponentAction")
+					: _("dropComponentsAction");
 		}
 
 		@Override
@@ -211,7 +212,7 @@ public class SelectionActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("deleteSelectionAction");
+			return _("deleteSelectionAction");
 		}
 
 		@Override
@@ -240,7 +241,7 @@ public class SelectionActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("duplicateSelectionAction");
+			return _("duplicateSelectionAction");
 		}
 
 		@Override
@@ -271,7 +272,7 @@ public class SelectionActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("cutSelectionAction");
+			return _("cutSelectionAction");
 		}
 
 		@Override
@@ -300,7 +301,7 @@ public class SelectionActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("copySelectionAction");
+			return _("copySelectionAction");
 		}
 
 		@Override
@@ -344,13 +345,13 @@ public class SelectionActions {
 					}
 					dropped.add(compFactory.getDisplayName());
 				} else {
-					String msg = Strings.get("pasteCloneQuery",
+					String msg = _("pasteCloneQuery",
 							compFactory.getName());
-					Object[] opts = { Strings.get("pasteCloneReplace"),
-							Strings.get("pasteCloneIgnore"),
-							Strings.get("pasteCloneCancel") };
+					Object[] opts = { _("pasteCloneReplace"),
+							_("pasteCloneIgnore"),
+							_("pasteCloneCancel") };
 					int select = JOptionPane.showOptionDialog(proj.getFrame(),
-							msg, Strings.get("pasteCloneTitle"), 0,
+							msg, _("pasteCloneTitle"), 0,
 							JOptionPane.QUESTION_MESSAGE, null, opts, opts[0]);
 					if (select == 0) {
 						copyFactory = candidate;
@@ -376,7 +377,7 @@ public class SelectionActions {
 		if (dropped != null) {
 			Collections.sort(dropped);
 			StringBuilder droppedStr = new StringBuilder();
-			droppedStr.append(Strings.get("pasteDropMessage"));
+			droppedStr.append(_("pasteDropMessage"));
 			String curName = dropped.get(0);
 			int curCount = 1;
 			int lines = 1;
@@ -404,7 +405,7 @@ public class SelectionActions {
 			area.setCaretPosition(0);
 			JScrollPane areaPane = new JScrollPane(area);
 			JOptionPane.showMessageDialog(proj.getFrame(), areaPane,
-					Strings.get("pasteDropTitle"),
+					_("pasteDropTitle"),
 					JOptionPane.WARNING_MESSAGE);
 		}
 		
@@ -448,7 +449,7 @@ public class SelectionActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("pasteClipboardAction");
+			return _("pasteClipboardAction");
 		}
 
 		@Override
@@ -511,7 +512,7 @@ public class SelectionActions {
 
 		@Override
 		public String getName() {
-			return Strings.get("moveSelectionAction");
+			return _("moveSelectionAction");
 		}
 
 		@Override

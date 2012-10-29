@@ -26,6 +26,7 @@ import com.cburch.logisim.tools.ToolTipMaker;
 import com.cburch.logisim.tools.WireRepair;
 import com.cburch.logisim.tools.WireRepairData;
 import com.cburch.logisim.util.StringUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Splitter extends ManagedComponent
 		implements WireRepair, ToolTipMaker, MenuExtender, AttributeListener {
@@ -149,7 +150,7 @@ public class Splitter extends ManagedComponent
 		}
 		
 		if (end == 0) {
-			return Strings.get("splitterCombinedTip");
+			return _("splitterCombinedTip");
 		} else if (end > 0){
 			int bits = 0;
 			StringBuilder buf = new StringBuilder();
@@ -174,9 +175,9 @@ public class Splitter extends ManagedComponent
 			if (inString) appendBuf(buf, beginString, bit_end.length - 1);
 			String base;
 			switch (bits) {
-			case 0:  base = Strings.get("splitterSplit0Tip"); break;
-			case 1:  base = Strings.get("splitterSplit1Tip"); break;
-			default: base = Strings.get("splitterSplitManyTip"); break;
+			case 0:  base = _("splitterSplit0Tip"); break;
+			case 1:  base = _("splitterSplit1Tip"); break;
+			default: base = _("splitterSplitManyTip"); break;
 			}
 			return StringUtil.format(base, buf.toString());
 		} else {

@@ -11,12 +11,13 @@ import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class NandGate extends AbstractGate {
 	public static NandGate FACTORY = new NandGate();
 
 	private NandGate() {
-		super("NAND Gate", Strings.getter("nandGateComponent"));
+		super("NAND Gate", __("nandGateComponent"));
 		setNegateOutput(true);
 		setRectangularLabel(AndGate.FACTORY.getRectangularLabel(null));
 		setIconNames("nandGate.gif", "nandGateRect.gif", "dinNandGate.gif");

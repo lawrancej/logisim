@@ -23,10 +23,11 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Demultiplexer extends InstanceFactory {
 	public Demultiplexer() {
-		super("Demultiplexer", Strings.getter("demultiplexerComponent"));
+		super("Demultiplexer", __("demultiplexerComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.FACING, Plexers.ATTR_SELECT_LOC, Plexers.ATTR_SELECT, StdAttr.WIDTH,
 				Plexers.ATTR_TRISTATE, Plexers.ATTR_DISABLED, Plexers.ATTR_ENABLE
@@ -155,13 +156,13 @@ public class Demultiplexer extends InstanceFactory {
 		ps[ps.length - 1] = new Port(0, 0, Port.INPUT, data.getWidth());
 		
 		for (int i = 0; i < outputs; i++) {
-			ps[i].setToolTip(Strings.getter("demultiplexerOutTip", "" + i));
+			ps[i].setToolTip(__("demultiplexerOutTip", "" + i));
 		}
-		ps[outputs].setToolTip(Strings.getter("demultiplexerSelectTip"));
+		ps[outputs].setToolTip(__("demultiplexerSelectTip"));
 		if (enable) {
-			ps[outputs + 1].setToolTip(Strings.getter("demultiplexerEnableTip"));
+			ps[outputs + 1].setToolTip(__("demultiplexerEnableTip"));
 		}
-		ps[ps.length - 1].setToolTip(Strings.getter("demultiplexerInTip"));
+		ps[ps.length - 1].setToolTip(__("demultiplexerInTip"));
 
 		instance.setPorts(ps);
 	}

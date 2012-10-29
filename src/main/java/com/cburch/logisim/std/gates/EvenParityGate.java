@@ -8,12 +8,13 @@ import com.cburch.logisim.analyze.model.Expressions;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class EvenParityGate extends AbstractGate {
 	public static EvenParityGate FACTORY = new EvenParityGate();
 
 	private EvenParityGate() {
-		super("Even Parity", Strings.getter("evenParityComponent"));
+		super("Even Parity", __("evenParityComponent"));
 		setRectangularLabel("2k");
 		setIconNames("parityEvenGate.gif");
 	}

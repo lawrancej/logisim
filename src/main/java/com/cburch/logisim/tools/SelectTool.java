@@ -46,6 +46,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class SelectTool extends Tool {
 	private static final Cursor selectCursor
@@ -118,12 +119,12 @@ public class SelectTool extends Tool {
 
 	@Override
 	public String getDisplayName() {
-		return Strings.get("selectTool");
+		return _("selectTool");
 	}
 
 	@Override
 	public String getDescription() {
-		return Strings.get("selectToolDesc");
+		return _("selectToolDesc");
 	}
 	
 	@Override
@@ -341,9 +342,9 @@ public class SelectTool extends Tool {
 			int dy = curDy;
 			if (dx != 0 || dy != 0) {
 				if (!proj.getLogisimFile().contains(canvas.getCircuit())) {
-					canvas.setErrorMessage(Strings.getter("cannotModifyError"));
+					canvas.setErrorMessage(__("cannotModifyError"));
 				} else if (proj.getSelection().hasConflictWhenMoved(dx, dy)) {
-					canvas.setErrorMessage(Strings.getter("exclusiveError"));
+					canvas.setErrorMessage(__("exclusiveError"));
 				} else {
 					boolean connect = shouldConnect(canvas, e.getModifiersEx());
 					drawConnections = false;
@@ -456,7 +457,7 @@ public class SelectTool extends Tool {
 			}
 			if (!results.isEmpty()) {
 				SetAttributeAction act = new SetAttributeAction(canvas.getCircuit(),
-						Strings.getter("changeComponentAttributesAction"));
+						__("changeComponentAttributesAction"));
 				for (KeyConfigurationResult result : results) {
 					Component comp = (Component) result.getEvent().getData();
 					Map<Attribute<?>,Object> newValues = result.getAttributeValues();
@@ -561,7 +562,7 @@ public class SelectTool extends Tool {
 		public ComputingMessage(int dx, int dy) { this.dx = dx; this.dy = dy; }
 		
 		public String toString() {
-			return Strings.get("moveWorkingMsg");
+			return _("moveWorkingMsg");
 		}
 	}
 }

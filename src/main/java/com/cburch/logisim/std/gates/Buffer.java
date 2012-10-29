@@ -27,12 +27,13 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class Buffer extends InstanceFactory {
 	public static InstanceFactory FACTORY = new Buffer();
 
 	private Buffer() {
-		super("Buffer", Strings.getter("bufferComponent"));
+		super("Buffer", __("bufferComponent"));
 		setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH,
 					GateAttributes.ATTR_OUTPUT, StdAttr.LABEL, StdAttr.LABEL_FONT },
 				new Object[] { Direction.EAST, BitWidth.ONE,

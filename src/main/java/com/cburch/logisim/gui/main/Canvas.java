@@ -67,6 +67,7 @@ import javax.swing.JViewport;
 import javax.swing.event.MouseInputListener;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Canvas extends JPanel
 		implements LocaleListener, CanvasPaneContents {
@@ -440,13 +441,13 @@ public class Canvas extends JPanel
 			
 			if (proj.getSimulator().isOscillating()) {
 				g.setColor(DEFAULT_ERROR_COLOR);
-				paintString(g, Strings.get("canvasOscillationError"));
+				paintString(g, _("canvasOscillationError"));
 				return;
 			}
 			
 			if (proj.getSimulator().isExceptionEncountered()) {
 				g.setColor(DEFAULT_ERROR_COLOR);
-				paintString(g, Strings.get("canvasExceptionError"));
+				paintString(g, _("canvasExceptionError"));
 				return;
 			}
 
@@ -731,7 +732,7 @@ public class Canvas extends JPanel
 					(int) (viewableBase.height / zoom));
 		}
 
-		viewport.setWidthMessage(Strings.get("canvasWidthError")
+		viewport.setWidthMessage(_("canvasWidthError")
 				+ (exceptions.size() == 1 ? "" : " (" + exceptions.size() + ")"));
 		for (WidthIncompatibilityData ex : exceptions) {
 			// See whether any of the points are on the canvas.

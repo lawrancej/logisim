@@ -11,6 +11,7 @@ import com.cburch.draw.model.AttributeMapKey;
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Attribute;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelChangeAttributeAction extends ModelAction {
 	private Map<AttributeMapKey, Object> oldValues;
@@ -51,9 +52,9 @@ public class ModelChangeAttributeAction extends ModelAction {
 			attr = a;
 		}
 		if (a == null) {
-			return Strings.get("actionChangeAttributes");
+			return _("actionChangeAttributes");
 		} else {
-			return Strings.get("actionChangeAttribute", a.getDisplayName());
+			return _("actionChangeAttribute", a.getDisplayName());
 		}
 	}
 	

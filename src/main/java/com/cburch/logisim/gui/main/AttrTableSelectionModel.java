@@ -15,6 +15,7 @@ import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.gui.main.Selection.Event;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.SetAttributeAction;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class AttrTableSelectionModel extends AttributeSetTableModel
 		implements Selection.Listener {
@@ -62,14 +63,14 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 		}
 
 		if (variousFound) {
-			return Strings.get("selectionVarious", "" + totalCount);
+			return _("selectionVarious", "" + totalCount);
 		} else if (factoryCount == 0) {
 			String circName = frame.getCanvas().getCircuit().getName();
-			return Strings.get("circuitAttrTitle", circName);
+			return _("circuitAttrTitle", circName);
 		} else if (factoryCount == 1) {
-			return Strings.get("selectionOne", factory.getDisplayName());
+			return _("selectionOne", factory.getDisplayName());
 		} else {
-			return Strings.get("selectionMultiple", factory.getDisplayName(),
+			return _("selectionMultiple", factory.getDisplayName(),
 					"" + factoryCount);
 		}
 	}
@@ -84,7 +85,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 			circuitModel.setValueRequested(attr, value);
 		} else {
 			SetAttributeAction act = new SetAttributeAction(circuit,
-					Strings.getter("selectionAttributeAction"));
+					__("selectionAttributeAction"));
 			for (Component comp : selection.getComponents()) {
 				if (!(comp instanceof Wire)) {
 					act.set(comp, attr, value);

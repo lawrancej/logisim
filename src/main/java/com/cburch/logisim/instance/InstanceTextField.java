@@ -24,6 +24,7 @@ import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.tools.Caret;
 import com.cburch.logisim.tools.SetAttributeAction;
 import com.cburch.logisim.tools.TextEditable;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class InstanceTextField implements AttributeListener, TextFieldListener,
 		TextEditable {
@@ -125,7 +126,7 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
 	public Action getCommitAction(Circuit circuit, String oldText,
 			String newText) {
 		SetAttributeAction act = new SetAttributeAction(circuit,
-				Strings.getter("changeLabelAction"));
+				__("changeLabelAction"));
 		act.set(comp, labelAttr, newText);
 		return act;
 	}

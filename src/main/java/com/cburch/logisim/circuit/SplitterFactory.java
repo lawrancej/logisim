@@ -10,7 +10,6 @@ import java.awt.event.InputEvent;
 import javax.swing.Icon;
 
 import com.cburch.logisim.LogisimVersion;
-import com.cburch.logisim.circuit.Strings;
 import com.cburch.logisim.comp.AbstractComponentFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentDrawContext;
@@ -26,6 +25,7 @@ import com.cburch.logisim.tools.key.KeyConfigurator;
 import com.cburch.logisim.tools.key.ParallelConfigurator;
 import com.cburch.logisim.util.Icons;
 import com.cburch.logisim.util.StringGetter;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class SplitterFactory extends AbstractComponentFactory {
 	public static final SplitterFactory instance = new SplitterFactory();
@@ -39,7 +39,7 @@ public class SplitterFactory extends AbstractComponentFactory {
 
 	@Override
 	public StringGetter getDisplayGetter() {
-		return Strings.getter("splitterComponent");
+		return __("splitterComponent");
 	}
 
 	@Override

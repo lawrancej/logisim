@@ -9,30 +9,30 @@ import com.cburch.logisim.tools.FactoryDescription;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 
+import static com.cburch.logisim.util.LocaleString.*;
+
 public class Memory extends Library {
 	protected static final int DELAY = 5;
 	
 	private static FactoryDescription[] DESCRIPTIONS = {
-		new FactoryDescription("D Flip-Flop", Strings.getter("dFlipFlopComponent"),
+		new FactoryDescription("D Flip-Flop", __("dFlipFlopComponent"),
 				"dFlipFlop.gif", "DFlipFlop"),
-		new FactoryDescription("T Flip-Flop", Strings.getter("tFlipFlopComponent"),
+		new FactoryDescription("T Flip-Flop", __("tFlipFlopComponent"),
 				"tFlipFlop.gif", "TFlipFlop"),
-		new FactoryDescription("J-K Flip-Flop", Strings.getter("jkFlipFlopComponent"),
+		new FactoryDescription("J-K Flip-Flop", __("jkFlipFlopComponent"),
 				"jkFlipFlop.gif", "JKFlipFlop"),
-		new FactoryDescription("S-R Flip-Flop", Strings.getter("srFlipFlopComponent"),
+		new FactoryDescription("S-R Flip-Flop", __("srFlipFlopComponent"),
 				"srFlipFlop.gif", "SRFlipFlop"),
-		new FactoryDescription("Register", Strings.getter("registerComponent"),
+		new FactoryDescription("Register", __("registerComponent"),
 				"register.gif", "Register"),
-		new FactoryDescription("Counter", Strings.getter("counterComponent"),
+		new FactoryDescription("Counter", __("counterComponent"),
 				"counter.gif", "Counter"),
-		new FactoryDescription("Shift Register", Strings.getter("shiftRegisterComponent"),
+		new FactoryDescription("Shift Register", __("shiftRegisterComponent"),
 				"shiftreg.gif", "ShiftRegister"),
-		new FactoryDescription("Random", Strings.getter("randomComponent"),
+		new FactoryDescription("Random", __("randomComponent"),
 				"random.gif", "Random"),
-		new FactoryDescription("RAM", Strings.getter("ramComponent"),
-				"ram.gif", "Ram"),
-		new FactoryDescription("ROM", Strings.getter("romComponent"),
-				"rom.gif", "Rom"),
+		new FactoryDescription("RAM", __("ramComponent"), "ram.gif", "Ram"),
+		new FactoryDescription("ROM", __("romComponent"), "rom.gif", "Rom"),
 	};
 	
 	private List<Tool> tools = null;
@@ -43,7 +43,7 @@ public class Memory extends Library {
 	public String getName() { return "Memory"; }
 
 	@Override
-	public String getDisplayName() { return Strings.get("memoryLibrary"); }
+	public String getDisplayName() { return _("memoryLibrary"); }
 
 	@Override
 	public List<Tool> getTools() {

@@ -10,6 +10,7 @@ import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
 import com.cburch.draw.model.HandleGesture;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelMoveHandleAction extends ModelAction {
 	private HandleGesture gesture;
@@ -31,7 +32,7 @@ public class ModelMoveHandleAction extends ModelAction {
 
 	@Override
 	public String getName() {
-		return Strings.get("actionMoveHandle");
+		return _("actionMoveHandle");
 	}
 	
 	@Override

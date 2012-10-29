@@ -13,6 +13,7 @@ import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.ReorderRequest;
 import com.cburch.draw.util.ZOrder;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelReorderAction extends ModelAction {
 	public static ModelReorderAction createRaise(CanvasModel model,
@@ -180,11 +181,11 @@ public class ModelReorderAction extends ModelAction {
 	@Override
 	public String getName() {
 		if (type < 0) {
-			return Strings.get("actionRaise", getShapesName(objects));
+			return _("actionRaise", getShapesName(objects));
 		} else if (type > 0) {
-			return Strings.get("actionLower", getShapesName(objects));
+			return _("actionLower", getShapesName(objects));
 		} else {
-			return Strings.get("actionReorder", getShapesName(objects));
+			return _("actionReorder", getShapesName(objects));
 		}
 	}
 	

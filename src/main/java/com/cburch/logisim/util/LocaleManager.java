@@ -12,6 +12,8 @@ import java.util.StringTokenizer;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 
+import org.apache.commons.collections.EnumerationUtils;
+
 public class LocaleManager {
 	// static members
 	private static final String SETTINGS_NAME = "settings";
@@ -169,6 +171,11 @@ public class LocaleManager {
 	private void loadLocale(Locale loc) {
 		String bundleName = dir_name + "/" + loc.getLanguage() + "/" + file_start;
 		locale = ResourceBundle.getBundle(bundleName, loc);
+	}
+
+	@SuppressWarnings("unchecked")
+	public Iterable<String> getKeys() {
+		return EnumerationUtils.toList(locale.getKeys());
 	}
 
 	public String get(String key) {

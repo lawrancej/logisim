@@ -18,6 +18,7 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.gui.generic.AttrTableSetException;
 import com.cburch.logisim.gui.generic.AttributeSetTableModel;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class AttrTableSelectionModel extends AttributeSetTableModel
 		implements SelectionListener {
@@ -52,11 +53,11 @@ class AttrTableSelectionModel extends AttributeSetTableModel
 		if (firstObject == null) {
 			return null;
 		} else if (commonClass == null) {
-			return Strings.get("selectionVarious", "" + totalCount);
+			return _("selectionVarious", "" + totalCount);
 		} else if (commonCount == 1) {
-			return Strings.get("selectionOne", firstObject.getDisplayName());
+			return _("selectionOne", firstObject.getDisplayName());
 		} else {
-			return Strings.get("selectionMultiple", firstObject.getDisplayName(),
+			return _("selectionMultiple", firstObject.getDisplayName(),
 					"" + commonCount);
 		}
 	}

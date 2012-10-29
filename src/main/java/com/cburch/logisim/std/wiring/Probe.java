@@ -23,6 +23,7 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Probe extends InstanceFactory {
 	public static final Probe FACTORY = new Probe();
@@ -56,7 +57,7 @@ public class Probe extends InstanceFactory {
 	}
 
 	public Probe() {
-		super("Probe", Strings.getter("probeComponent"));
+		super("Probe", __("probeComponent"));
 		setIconName("probe.gif");
 		setFacingAttribute(StdAttr.FACING);
 		setInstanceLogger(ProbeLogger.class);

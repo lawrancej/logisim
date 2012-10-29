@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import com.cburch.hex.HexModel;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class HexFile {
 	private HexFile() { }
@@ -96,7 +97,7 @@ public class HexFile {
 						leftValue = Long.parseLong(tok.substring(star + 1), 16);
 					}
 				} catch (NumberFormatException e) {
-					throw new IOException(Strings.get("hexNumberFormatError"));
+					throw new IOException(_("hexNumberFormatError"));
 				}
 				
 				int n = (int) Math.min(data.length - pos, leftCount);
@@ -140,7 +141,7 @@ public class HexFile {
 				if (cur != start + 1) out.write((cur - start) + "*");
 				out.write(Integer.toHexString(val));
 			} catch (IOException e) {
-				throw new IOException(Strings.get("hexFileWriteError"));
+				throw new IOException(_("hexFileWriteError"));
 			}
 			tokens++;
 		}
@@ -153,7 +154,7 @@ public class HexFile {
 		while (reader.hasNext()) {
 			int[] values = reader.next();
 			if (offs + values.length - 1 > dst.getLastOffset()) {
-				throw new IOException(Strings.get("hexFileSizeError"));
+				throw new IOException(_("hexFileSizeError"));
 			}
 			dst.set(offs, values);
 			offs += values.length;
@@ -188,12 +189,12 @@ public class HexFile {
 		try {
 			in = new BufferedReader(new FileReader(src));
 		} catch (IOException e) {
-			throw new IOException(Strings.get("hexFileOpenError"));
+			throw new IOException(_("hexFileOpenError"));
 		}
 		try {
 			String header = in.readLine();
 			if (!header.equals(RAW_IMAGE_HEADER)) {
-				throw new IOException(Strings.get("hexHeaderFormatError"));
+				throw new IOException(_("hexHeaderFormatError"));
 			}
 			open(dst, in);
 			try {
@@ -201,7 +202,7 @@ public class HexFile {
 				in = null;
 				oldIn.close();
 			} catch (IOException e) {
-				throw new IOException(Strings.get("hexFileReadError"));
+				throw new IOException(_("hexFileReadError"));
 			}
 		} finally {
 			try {
@@ -215,20 +216,20 @@ public class HexFile {
 		try {
 			out = new FileWriter(dst);
 		} catch (IOException e) {
-			throw new IOException(Strings.get("hexFileOpenError"));
+			throw new IOException(_("hexFileOpenError"));
 		}
 		try {
 			try {
 				out.write(RAW_IMAGE_HEADER + "\n");
 			} catch (IOException e) {
-				throw new IOException(Strings.get("hexFileWriteError"));
+				throw new IOException(_("hexFileWriteError"));
 			}
 			save(out, src);
 		} finally {
 			try {
 				out.close();
 			} catch (IOException e) {
-				throw new IOException(Strings.get("hexFileWriteError"));
+				throw new IOException(_("hexFileWriteError"));
 			}
 		}
 	}

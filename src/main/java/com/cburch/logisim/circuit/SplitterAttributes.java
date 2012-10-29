@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.cburch.logisim.circuit.Strings;
 import com.cburch.logisim.data.AbstractAttributeSet;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeOption;
@@ -15,26 +14,27 @@ import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.instance.StdAttr;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class SplitterAttributes extends AbstractAttributeSet {
 	public static final AttributeOption APPEAR_LEGACY
-		= new AttributeOption("legacy", Strings.getter("splitterAppearanceLegacy"));
+		= new AttributeOption("legacy", __("splitterAppearanceLegacy"));
 	public static final AttributeOption APPEAR_LEFT
-		= new AttributeOption("left", Strings.getter("splitterAppearanceLeft"));
+		= new AttributeOption("left", __("splitterAppearanceLeft"));
 	public static final AttributeOption APPEAR_RIGHT
-		= new AttributeOption("right", Strings.getter("splitterAppearanceRight"));
+		= new AttributeOption("right", __("splitterAppearanceRight"));
 	public static final AttributeOption APPEAR_CENTER
-		= new AttributeOption("center", Strings.getter("splitterAppearanceCenter"));
+		= new AttributeOption("center", __("splitterAppearanceCenter"));
 	
 	public static final Attribute<AttributeOption> ATTR_APPEARANCE
-		= Attributes.forOption("appear", Strings.getter("splitterAppearanceAttr"),
+		= Attributes.forOption("appear", __("splitterAppearanceAttr"),
 				new AttributeOption[] { APPEAR_LEFT, APPEAR_RIGHT, APPEAR_CENTER,
 					APPEAR_LEGACY});
 	
 	public static final Attribute<BitWidth> ATTR_WIDTH
-		= Attributes.forBitWidth("incoming", Strings.getter("splitterBitWidthAttr"));
+		= Attributes.forBitWidth("incoming", __("splitterBitWidthAttr"));
 	public static final Attribute<Integer> ATTR_FANOUT
-		= Attributes.forIntegerRange("fanout", Strings.getter("splitterFanOutAttr"), 1, 32);
+		= Attributes.forIntegerRange("fanout", __("splitterFanOutAttr"), 1, 32);
 
 	private static final List<Attribute<?>> INIT_ATTRIBUTES
 		= Arrays.asList(new Attribute<?>[] {
@@ -57,7 +57,7 @@ class SplitterAttributes extends AbstractAttributeSet {
 		@Override
 		public String toString() {
 			if (value < 0) {
-				return Strings.get("splitterBitNone");
+				return _("splitterBitNone");
 			} else {
 				String ret = "" + value;
 				Direction noteDir;
@@ -81,7 +81,7 @@ class SplitterAttributes extends AbstractAttributeSet {
 		BitOutOption[] options;
 
 		private BitOutAttribute(int which, BitOutOption[] options) {
-			super("bit" + which, Strings.getter("splitterBitAttr", "" + which));
+			super("bit" + which, __("splitterBitAttr", "" + which));
 			this.which = which;
 			this.options = options;
 		}

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.ExpressionVisitor;
+import static com.cburch.logisim.util.LocaleString._;
 
 class ExpressionView extends JPanel {
 	private static final int BADNESS_IDENT_BREAK = 10000;
@@ -223,7 +224,7 @@ class ExpressionView extends JPanel {
 				lineY = new int[] { MINIMUM_HEIGHT };
 			} else {
 				if (exprData.text.length() == 0) {
-					lineText = new String[] { Strings.get("expressionEmpty") };
+					lineText = new String[] { _("expressionEmpty") };
 					lineNots = new ArrayList<ArrayList<NotData>>();
 					lineNots.add(new ArrayList<NotData>());
 				} else {

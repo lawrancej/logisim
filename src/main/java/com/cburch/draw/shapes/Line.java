@@ -19,6 +19,7 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Line extends AbstractCanvasObject {
 	static final int ON_LINE_THRESH = 2;
@@ -80,7 +81,7 @@ public class Line extends AbstractCanvasObject {
 	
 	@Override
 	public String getDisplayName() {
-		return Strings.get("shapeLine");
+		return _("shapeLine");
 	}
 
 	@Override

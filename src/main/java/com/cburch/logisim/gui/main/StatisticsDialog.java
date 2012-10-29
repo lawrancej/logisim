@@ -25,6 +25,7 @@ import com.cburch.logisim.file.FileStatistics;
 import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.util.TableSorter;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class StatisticsDialog extends JDialog implements ActionListener {
 	public static void show(JFrame parent, LogisimFile file, Circuit circuit) {
@@ -57,11 +58,11 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 		@Override
 		public String getColumnName(int column) {
 			switch (column) {
-			case 0: return Strings.get("statsComponentColumn");
-			case 1: return Strings.get("statsLibraryColumn");
-			case 2: return Strings.get("statsSimpleCountColumn");
-			case 3: return Strings.get("statsUniqueCountColumn");
-			case 4: return Strings.get("statsRecursiveCountColumn");
+			case 0: return _("statsComponentColumn");
+			case 1: return _("statsLibraryColumn");
+			case 2: return _("statsSimpleCountColumn");
+			case 3: return _("statsUniqueCountColumn");
+			case 4: return _("statsRecursiveCountColumn");
 			default: return "??"; // should never happen
 			}
 		}
@@ -79,9 +80,9 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 				if (row < countsLen) {
 					return count.getFactory().getDisplayName();
 				} else if (row == countsLen) {
-					return Strings.get("statsTotalWithout");
+					return _("statsTotalWithout");
 				} else {
-					return Strings.get("statsTotalWith");
+					return _("statsTotalWith");
 				}
 			case 1: 
 				if (row < countsLen) {
@@ -142,17 +143,17 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 			StatisticsTableModel model) {
 		super(parent, true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setTitle(Strings.get("statsDialogTitle", circuitName));
+		setTitle(_("statsDialogTitle", circuitName));
 		
 		JTable table = new StatisticsTable();
 		TableSorter mySorter = new TableSorter(model, table.getTableHeader());
 		Comparator<String> comp = new CompareString("",
-				Strings.get("statsTotalWithout"), Strings.get("statsTotalWith"));
+				_("statsTotalWithout"), _("statsTotalWith"));
 		mySorter.setColumnComparator(String.class, comp);
 		table.setModel(mySorter);
 		JScrollPane tablePane = new JScrollPane(table);
 		
-		JButton button = new JButton(Strings.get("statsCloseButton"));
+		JButton button = new JButton(_("statsCloseButton"));
 		button.addActionListener(this);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(button);

@@ -17,6 +17,7 @@ import com.cburch.logisim.gui.prefs.PreferencesFrame;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.util.MacCompatibility;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuFile extends Menu implements ActionListener {
 	private LogisimMenuBar menubar;
@@ -90,17 +91,17 @@ class MenuFile extends Menu implements ActionListener {
 	}
 
 	public void localeChanged() {
-		this.setText(Strings.get("fileMenu"));
-		newi.setText(Strings.get("fileNewItem"));
-		open.setText(Strings.get("fileOpenItem"));
+		this.setText(_("fileMenu"));
+		newi.setText(_("fileNewItem"));
+		open.setText(_("fileOpenItem"));
 		openRecent.localeChanged();
-		close.setText(Strings.get("fileCloseItem"));
-		save.setText(Strings.get("fileSaveItem"));
-		saveAs.setText(Strings.get("fileSaveAsItem"));
-		exportImage.setText(Strings.get("fileExportImageItem"));
-		print.setText(Strings.get("filePrintItem"));
-		prefs.setText(Strings.get("filePreferencesItem"));
-		quit.setText(Strings.get("fileQuitItem"));
+		close.setText(_("fileCloseItem"));
+		save.setText(_("fileSaveItem"));
+		saveAs.setText(_("fileSaveAsItem"));
+		exportImage.setText(_("fileExportImageItem"));
+		print.setText(_("filePrintItem"));
+		prefs.setText(_("filePreferencesItem"));
+		quit.setText(_("fileQuitItem"));
 	}
 
 	@Override

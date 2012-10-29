@@ -17,47 +17,48 @@ import com.cburch.logisim.tools.FactoryDescription;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Plexers extends Library {
 	public static final Attribute<BitWidth> ATTR_SELECT
-		= Attributes.forBitWidth("select", Strings.getter("plexerSelectBitsAttr"), 1, 5);
+		= Attributes.forBitWidth("select", __("plexerSelectBitsAttr"), 1, 5);
 	public static final Object DEFAULT_SELECT = BitWidth.create(1);
 
 	public static final Attribute<Boolean> ATTR_TRISTATE
-		= Attributes.forBoolean("tristate", Strings.getter("plexerThreeStateAttr"));
+		= Attributes.forBoolean("tristate", __("plexerThreeStateAttr"));
 	public static final Object DEFAULT_TRISTATE = Boolean.FALSE;
 	
 	public static final AttributeOption DISABLED_FLOATING
-		= new AttributeOption("Z", Strings.getter("plexerDisabledFloating"));
+		= new AttributeOption("Z", __("plexerDisabledFloating"));
 	public static final AttributeOption DISABLED_ZERO
-		= new AttributeOption("0", Strings.getter("plexerDisabledZero"));
+		= new AttributeOption("0", __("plexerDisabledZero"));
 	public static final Attribute<AttributeOption> ATTR_DISABLED
-		= Attributes.forOption("disabled", Strings.getter("plexerDisabledAttr"),
+		= Attributes.forOption("disabled", __("plexerDisabledAttr"),
 				new AttributeOption[] { DISABLED_FLOATING, DISABLED_ZERO });
 	
 	public static final Attribute<Boolean> ATTR_ENABLE
-		= Attributes.forBoolean("enable", Strings.getter("plexerEnableAttr"));
+		= Attributes.forBoolean("enable", __("plexerEnableAttr"));
 
 	static final AttributeOption SELECT_BOTTOM_LEFT
-		= new AttributeOption("bl", Strings.getter("plexerSelectBottomLeftOption"));
+		= new AttributeOption("bl", __("plexerSelectBottomLeftOption"));
 	static final AttributeOption SELECT_TOP_RIGHT
-		= new AttributeOption("tr", Strings.getter("plexerSelectTopRightOption"));
+		= new AttributeOption("tr", __("plexerSelectTopRightOption"));
 	static final Attribute<AttributeOption> ATTR_SELECT_LOC = Attributes.forOption("selloc",
-			Strings.getter("plexerSelectLocAttr"),
+			__("plexerSelectLocAttr"),
 			new AttributeOption[] { SELECT_BOTTOM_LEFT, SELECT_TOP_RIGHT });
 
 	protected static final int DELAY = 3;
 	
 	private static FactoryDescription[] DESCRIPTIONS = {
-		new FactoryDescription("Multiplexer", Strings.getter("multiplexerComponent"),
+		new FactoryDescription("Multiplexer", __("multiplexerComponent"),
 				"multiplexer.gif", "Multiplexer"),
-		new FactoryDescription("Demultiplexer", Strings.getter("demultiplexerComponent"),
+		new FactoryDescription("Demultiplexer", __("demultiplexerComponent"),
 				"demultiplexer.gif", "Demultiplexer"),
-		new FactoryDescription("Decoder", Strings.getter("decoderComponent"),
+		new FactoryDescription("Decoder", __("decoderComponent"),
 				"decoder.gif", "Decoder"),
-		new FactoryDescription("Priority Encoder", Strings.getter("priorityEncoderComponent"),
+		new FactoryDescription("Priority Encoder", __("priorityEncoderComponent"),
 				"priencod.gif", "PriorityEncoder"),
-		new FactoryDescription("BitSelector", Strings.getter("bitSelectorComponent"),
+		new FactoryDescription("BitSelector", __("bitSelectorComponent"),
 				"bitSelector.gif", "BitSelector"),
 	};
 
@@ -69,7 +70,7 @@ public class Plexers extends Library {
 	public String getName() { return "Plexers"; }
 
 	@Override
-	public String getDisplayName() { return Strings.get("plexerLibrary"); }
+	public String getDisplayName() { return _("plexerLibrary"); }
 
 	@Override
 	public List<Tool> getTools() {

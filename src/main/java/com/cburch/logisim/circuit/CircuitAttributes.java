@@ -19,22 +19,23 @@ import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.StdAttr;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class CircuitAttributes extends AbstractAttributeSet {
 	public static final Attribute<String> NAME_ATTR
-		= Attributes.forString("circuit", Strings.getter("circuitName"));
+		= Attributes.forString("circuit", __("circuitName"));
 	
 	public static final Attribute<Direction> LABEL_LOCATION_ATTR
-		= Attributes.forDirection("labelloc", Strings.getter("circuitLabelLocAttr"));
+		= Attributes.forDirection("labelloc", __("circuitLabelLocAttr"));
 
 	public static final Attribute<String> CIRCUIT_LABEL_ATTR
-		= Attributes.forString("clabel", Strings.getter("circuitLabelAttr"));
+		= Attributes.forString("clabel", __("circuitLabelAttr"));
 	
 	public static final Attribute<Direction> CIRCUIT_LABEL_FACING_ATTR
-		= Attributes.forDirection("clabelup", Strings.getter("circuitLabelDirAttr"));
+		= Attributes.forDirection("clabelup", __("circuitLabelDirAttr"));
 	
 	public static final Attribute<Font> CIRCUIT_LABEL_FONT_ATTR
-		= Attributes.forFont("clabelfont", Strings.getter("circuitLabelFontAttr"));
+		= Attributes.forFont("clabelfont", __("circuitLabelFontAttr"));
 	
 	private static final Attribute<?>[] STATIC_ATTRS = {
 		NAME_ATTR, CIRCUIT_LABEL_ATTR, CIRCUIT_LABEL_FACING_ATTR, CIRCUIT_LABEL_FONT_ATTR,

@@ -28,6 +28,7 @@ import com.cburch.logisim.tools.WireRepair;
 import com.cburch.logisim.tools.WireRepairData;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class TransmissionGate extends InstanceFactory {
 	static final int OUTPUT = 0;
@@ -36,7 +37,7 @@ public class TransmissionGate extends InstanceFactory {
 	static final int GATE1 = 3;
 
 	public TransmissionGate() {
-		super("Transmission Gate", Strings.getter("transmissionGateComponent"));
+		super("Transmission Gate", __("transmissionGateComponent"));
 		setIconName("transmis.gif");
 		setAttributes(new Attribute[] { StdAttr.FACING, Wiring.ATTR_GATE, StdAttr.WIDTH },
 				new Object[] { Direction.EAST, Wiring.GATE_TOP_LEFT, BitWidth.ONE });

@@ -21,13 +21,14 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Joystick extends InstanceFactory {
 	static final Attribute<BitWidth> ATTR_WIDTH = Attributes.forBitWidth("bits",
-			Strings.getter("ioBitWidthAttr"), 2, 5);
+			__("ioBitWidthAttr"), 2, 5);
 
 	public Joystick() {
-		super("Joystick", Strings.getter("joystickComponent"));
+		super("Joystick", __("joystickComponent"));
 		setAttributes(new Attribute[] { ATTR_WIDTH, Io.ATTR_COLOR },
 				new Object[] { BitWidth.create(4), Color.RED });
 		setKeyConfigurator(new BitWidthConfigurator(ATTR_WIDTH, 2, 5));

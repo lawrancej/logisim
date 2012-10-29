@@ -30,12 +30,13 @@ import com.cburch.logisim.util.JFileChoosers;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenuItemManager;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class HexFrame extends LFrame {
 	private class WindowMenuManager extends WindowMenuItemManager
 			implements LocaleListener {
 		WindowMenuManager() {
-			super(Strings.get("hexFrameMenuItem"), false);
+			super(_("hexFrameMenuItem"), false);
 			LocaleManager.addLocaleListener(this);
 		}
 		
@@ -45,7 +46,7 @@ public class HexFrame extends LFrame {
 		}
 		
 		public void localeChanged() {
-			setText(Strings.get("hexFrameMenuItem"));
+			setText(_("hexFrameMenuItem"));
 		}
 	}
 
@@ -57,7 +58,7 @@ public class HexFrame extends LFrame {
 			Object src = event.getSource();
 			if (src == open) {
 				JFileChooser chooser = JFileChoosers.createSelected(lastFile);
-				chooser.setDialogTitle(Strings.get("openButton"));
+				chooser.setDialogTitle(_("openButton"));
 				int choice = chooser.showOpenDialog(HexFrame.this);
 				if (choice == JFileChooser.APPROVE_OPTION) {
 					File f = chooser.getSelectedFile();
@@ -66,12 +67,12 @@ public class HexFrame extends LFrame {
 						lastFile = f;
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
-								Strings.get("hexOpenErrorTitle"), JOptionPane.ERROR_MESSAGE);
+								_("hexOpenErrorTitle"), JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			} else if (src == save) {
 				JFileChooser chooser = JFileChoosers.createSelected(lastFile);
-				chooser.setDialogTitle(Strings.get("saveButton"));
+				chooser.setDialogTitle(_("saveButton"));
 				int choice = chooser.showSaveDialog(HexFrame.this);
 				if (choice == JFileChooser.APPROVE_OPTION) {
 					File f = chooser.getSelectedFile();
@@ -80,7 +81,7 @@ public class HexFrame extends LFrame {
 						lastFile = f;
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
-							Strings.get("hexSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
+							_("hexSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			} else if (src == close) {
@@ -91,10 +92,10 @@ public class HexFrame extends LFrame {
 		}
 		
 		public void localeChanged() {
-			setTitle(Strings.get("hexFrameTitle"));
-			open.setText(Strings.get("openButton"));
-			save.setText(Strings.get("saveButton"));
-			close.setText(Strings.get("closeButton"));
+			setTitle(_("hexFrameTitle"));
+			open.setText(_("openButton"));
+			save.setText(_("saveButton"));
+			close.setText(_("closeButton"));
 		}
 	}
 	

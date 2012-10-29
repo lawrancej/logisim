@@ -20,6 +20,7 @@ import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class PriorityEncoder extends InstanceFactory {
 	private static final int OUT = 0;
@@ -28,7 +29,7 @@ public class PriorityEncoder extends InstanceFactory {
 	private static final int GS = 3;
 	
 	public PriorityEncoder() {
-		super("Priority Encoder", Strings.getter("priorityEncoderComponent"));
+		super("Priority Encoder", __("priorityEncoderComponent"));
 		setAttributes(new Attribute[] {
 				StdAttr.FACING, Plexers.ATTR_SELECT, Plexers.ATTR_DISABLED
 			}, new Object[] {
@@ -103,12 +104,12 @@ public class PriorityEncoder extends InstanceFactory {
 		}
 
 		for (int i = 0; i < n; i++) {
-			ps[i].setToolTip(Strings.getter("priorityEncoderInTip", "" + i));
+			ps[i].setToolTip(__("priorityEncoderInTip", "" + i));
 		}
-		ps[n + OUT].setToolTip(Strings.getter("priorityEncoderOutTip"));
-		ps[n + EN_IN].setToolTip(Strings.getter("priorityEncoderEnableInTip"));
-		ps[n + EN_OUT].setToolTip(Strings.getter("priorityEncoderEnableOutTip"));
-		ps[n + GS].setToolTip(Strings.getter("priorityEncoderGroupSignalTip"));
+		ps[n + OUT].setToolTip(__("priorityEncoderOutTip"));
+		ps[n + EN_IN].setToolTip(__("priorityEncoderEnableInTip"));
+		ps[n + EN_OUT].setToolTip(__("priorityEncoderEnableOutTip"));
+		ps[n + GS].setToolTip(__("priorityEncoderGroupSignalTip"));
 
 		instance.setPorts(ps);
 	}

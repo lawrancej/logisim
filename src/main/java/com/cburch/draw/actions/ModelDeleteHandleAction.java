@@ -9,6 +9,7 @@ import java.util.Collections;
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelDeleteHandleAction extends ModelAction {
 	private Handle handle;
@@ -26,7 +27,7 @@ public class ModelDeleteHandleAction extends ModelAction {
 
 	@Override
 	public String getName() {
-		return Strings.get("actionDeleteHandle");
+		return _("actionDeleteHandle");
 	}
 	
 	@Override

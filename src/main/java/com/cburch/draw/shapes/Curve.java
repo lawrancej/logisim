@@ -18,6 +18,7 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class Curve extends FillableCanvasObject {
 	private Location p0;
@@ -76,7 +77,7 @@ public class Curve extends FillableCanvasObject {
 	
 	@Override
 	public String getDisplayName() {
-		return Strings.get("shapeCurve");
+		return _("shapeCurve");
 	}
 
 	@Override

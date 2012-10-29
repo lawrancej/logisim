@@ -10,6 +10,7 @@ import com.cburch.draw.toolbar.ToolbarItem;
 import com.cburch.draw.toolbar.ToolbarSeparator;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.util.UnmodifiableList;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class ProjectToolbarModel extends AbstractToolbarModel
 		implements MenuListener.EnabledListener {
@@ -26,17 +27,17 @@ class ProjectToolbarModel extends AbstractToolbarModel
 		this.frame = frame;
 		
 		itemAdd = new LogisimToolbarItem(menu, "projadd.gif", LogisimMenuBar.ADD_CIRCUIT,
-				Strings.getter("projectAddCircuitTip"));
+				__("projectAddCircuitTip"));
 		itemUp = new LogisimToolbarItem(menu, "projup.gif", LogisimMenuBar.MOVE_CIRCUIT_UP,
-				Strings.getter("projectMoveCircuitUpTip"));
+				__("projectMoveCircuitUpTip"));
 		itemDown = new LogisimToolbarItem(menu, "projdown.gif", LogisimMenuBar.MOVE_CIRCUIT_DOWN,
-				Strings.getter("projectMoveCircuitDownTip"));
+				__("projectMoveCircuitDownTip"));
 		itemDelete = new LogisimToolbarItem(menu, "projdel.gif", LogisimMenuBar.REMOVE_CIRCUIT,
-				Strings.getter("projectRemoveCircuitTip"));
+				__("projectRemoveCircuitTip"));
 		itemLayout = new LogisimToolbarItem(menu, "projlayo.gif", LogisimMenuBar.EDIT_LAYOUT,
-				Strings.getter("projectEditLayoutTip"));
+				__("projectEditLayoutTip"));
 		itemAppearance = new LogisimToolbarItem(menu, "projapp.gif", LogisimMenuBar.EDIT_APPEARANCE,
-				Strings.getter("projectEditAppearanceTip"));
+				__("projectEditAppearanceTip"));
 		
 		items = UnmodifiableList.create(new ToolbarItem[] {
 				itemAdd,

@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuHelp extends JMenu implements ActionListener {
 	private LogisimMenuBar menubar;
@@ -48,14 +49,14 @@ class MenuHelp extends JMenu implements ActionListener {
 	}
 
 	public void localeChanged() {
-		this.setText(Strings.get("helpMenu"));
+		this.setText(_("helpMenu"));
 		if (helpFrame != null) {
-			helpFrame.setTitle(Strings.get("helpWindowTitle"));
+			helpFrame.setTitle(_("helpWindowTitle"));
 		}
-		tutorial.setText(Strings.get("helpTutorialItem"));
-		guide.setText(Strings.get("helpGuideItem"));
-		library.setText(Strings.get("helpLibraryItem"));
-		about.setText(Strings.get("helpAboutItem"));
+		tutorial.setText(_("helpTutorialItem"));
+		guide.setText(_("helpGuideItem"));
+		library.setText(_("helpLibraryItem"));
+		about.setText(_("helpAboutItem"));
 		if (helpFrame != null) {
 			helpFrame.setLocale(Locale.getDefault());
 			loadBroker();
@@ -76,7 +77,7 @@ class MenuHelp extends JMenu implements ActionListener {
 	}
 	
 	private void loadBroker() {
-		String helpUrl = Strings.get("helpsetUrl");
+		String helpUrl = _("helpsetUrl");
 		if (helpUrl == null) helpUrl = "doc/doc_en.hs";
 		if (helpSet == null || helpFrame == null || !helpUrl.equals(helpSetUrl)) {
 			ClassLoader loader = MenuHelp.class.getClassLoader();
@@ -85,7 +86,7 @@ class MenuHelp extends JMenu implements ActionListener {
 				if (hsURL == null) {
 					disableHelp();
 					JOptionPane.showMessageDialog(menubar.getParentWindow(),
-							Strings.get("helpNotFoundError"));
+							_("helpNotFoundError"));
 					return;
 				}
 				helpSetUrl = helpUrl;
@@ -93,7 +94,7 @@ class MenuHelp extends JMenu implements ActionListener {
 				helpComponent = new JHelp(helpSet);
 				if (helpFrame == null) {
 					helpFrame = new LFrame();
-					helpFrame.setTitle(Strings.get("helpWindowTitle"));
+					helpFrame.setTitle(_("helpWindowTitle"));
 					helpFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 					helpFrame.getContentPane().add(helpComponent);
 					helpFrame.pack();
@@ -106,7 +107,7 @@ class MenuHelp extends JMenu implements ActionListener {
 				disableHelp();
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(menubar.getParentWindow(),
-						Strings.get("helpUnavailableError"));
+						_("helpUnavailableError"));
 				return;
 			}
 		}
@@ -122,7 +123,7 @@ class MenuHelp extends JMenu implements ActionListener {
 			disableHelp();
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(menubar.getParentWindow(),
-					Strings.get("helpDisplayError"));
+					_("helpDisplayError"));
 		}
 	}
 
