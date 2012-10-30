@@ -3,10 +3,11 @@
 
 package com.cburch.logisim.circuit;
 
+import java.util.concurrent.CopyOnWriteArraySet;
+
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
-import com.cburch.logisim.util.SmallSet;
 
 class WireBundle {
 	private BitWidth width = BitWidth.UNKNOWN;
@@ -14,7 +15,7 @@ class WireBundle {
 	private WireBundle parent;
 	private Location widthDeterminant = null;
 	WireThread[] threads = null;
-	SmallSet<Location> points = new SmallSet<Location>(); // points bundle hits
+	CopyOnWriteArraySet<Location> points = new CopyOnWriteArraySet<Location>(); // points bundle hits
 	private WidthIncompatibilityData incompatibilityData = null;
 
 	WireBundle() {

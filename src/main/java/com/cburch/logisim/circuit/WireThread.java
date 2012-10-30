@@ -3,18 +3,18 @@
 
 package com.cburch.logisim.circuit;
 
-import com.cburch.logisim.util.SmallSet;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 class WireThread {
 	private WireThread parent;
-	private SmallSet<CircuitWires.ThreadBundle> bundles
-		= new SmallSet<CircuitWires.ThreadBundle>();
+	private CopyOnWriteArraySet<CircuitWires.ThreadBundle> bundles
+		= new CopyOnWriteArraySet<CircuitWires.ThreadBundle>();
 
 	WireThread() {
 		parent = this;
 	}
 
-	SmallSet<CircuitWires.ThreadBundle> getBundles() {
+	CopyOnWriteArraySet<CircuitWires.ThreadBundle> getBundles() {
 		return bundles;
 	}
 
