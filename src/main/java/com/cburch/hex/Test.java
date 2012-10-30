@@ -9,6 +9,12 @@ import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
+/**
+ * Tests Hex editor.
+ * 
+ * @author Carl Burch
+ *
+ */
 public class Test {
 	private static class Model implements HexModel {
 		private ArrayList<HexModelListener> listeners
