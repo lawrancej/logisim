@@ -1,0 +1,19 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sourceforge.collections</groupId>
+  <artifactId>collections-generic</artifactId>
+  <version>4.01</version>
+  <packaging>jar</packaging>
+  <name>larvalabs collections</name>
+  <url>http://collections.sourceforge.net</url>
+  <licenses>
+    <license>
+      <name>Apache License V2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>http://collections.svn.sourceforge.net/viewvc/collections/</url>
+  </scm>
+</project>
