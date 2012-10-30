@@ -3,55 +3,17 @@
 
 package com.cburch.logisim.util;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 public class StringUtil {
-	private StringUtil() { }
-	
-	public static String format(String fmt, String a1) {
-		return format(fmt, a1, null, null);
+	public static String format(String fmt, String... args) {
+		StringWriter out = new StringWriter();
+		out.flush();
+		PrintWriter p = new PrintWriter(out);
+		p.format(fmt, (Object[])args);
+		return out.toString();
 	}
-
-	public static String format(String fmt, String a1, String a2) {
-		return format(fmt, a1, a2, null);
-	}
-
-	public static String format(String fmt, String a1, String a2,
-			String a3) {
-		StringBuilder ret = new StringBuilder();
-		if (a1 == null) a1 = "(null)";
-		if (a2 == null) a2 = "(null)";
-		if (a3 == null) a3 = "(null)";
-		int arg = 0;
-		int pos = 0;
-		int next = fmt.indexOf('%');
-		while (next >= 0) {
-			ret.append(fmt.substring(pos, next));
-			char c = fmt.charAt(next + 1);
-			if (c == 's') {
-				pos = next + 2;
-				switch (arg) {
-				case 0:     ret.append(a1); break;
-				case 1:     ret.append(a2); break;
-				default:    ret.append(a3);
-				}
-				++arg;
-			} else if (c == '$') {
-				switch (fmt.charAt(next + 2)) {
-				case '1':   ret.append(a1); pos = next + 3; break;
-				case '2':   ret.append(a2); pos = next + 3; break;
-				case '3':   ret.append(a3); pos = next + 3; break;
-				default:    ret.append("%$"); pos = next + 2;
-				}
-			} else if (c == '%') {
-				ret.append('%'); pos = next + 2;
-			} else {
-				ret.append('%'); pos = next + 1;
-			}
-			next = fmt.indexOf('%', pos);
-		}
-		ret.append(fmt.substring(pos));
-		return ret.toString();
-	}
-	
 	public static StringGetter formatter(final StringGetter base, final String arg) {
 		return new StringGetter() {
 			public String toString() {
