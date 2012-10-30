@@ -24,7 +24,6 @@ import com.cburch.logisim.circuit.SimulatorEvent;
 import com.cburch.logisim.circuit.SimulatorListener;
 import com.cburch.logisim.gui.log.LogFrame;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.StringUtil;
 
 import java.util.ArrayList;
 import static com.cburch.logisim.util.LocaleString.*;

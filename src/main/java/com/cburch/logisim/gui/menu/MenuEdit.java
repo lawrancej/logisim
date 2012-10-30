@@ -14,7 +14,6 @@ import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
-import com.cburch.logisim.util.StringUtil;
 import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuEdit extends Menu {
