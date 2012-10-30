@@ -32,11 +32,8 @@ public class LocaleString {
 	public static String _(String s) {
 		return getInstance().sourceMap.get(s).get(s);
 	}
-	public static String _(String key, String arg) {
+	public static String _(String key, String... arg) {
 		return StringUtil.format(_(key), arg);
-	}
-	public static String _(String key, String arg0, String arg1) {
-		return StringUtil.format(_(key), arg0, arg1);
 	}
 	public static StringGetter __(String s) {
 		return getInstance().sourceMap.get(s).getter(s);
