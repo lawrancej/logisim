@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 
-import org.apache.commons.collections.EnumerationUtils;
+import org.apache.commons.collections15.EnumerationUtils;
 
 public class LocaleManager {
 	// static members
@@ -171,7 +171,6 @@ public class LocaleManager {
 		locale = ResourceBundle.getBundle(bundleName, loc);
 	}
 
-	@SuppressWarnings("unchecked")
 	public Iterable<String> getKeys() {
 		return EnumerationUtils.toList(locale.getKeys());
 	}
