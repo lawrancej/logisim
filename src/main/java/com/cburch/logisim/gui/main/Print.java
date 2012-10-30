@@ -33,6 +33,7 @@ import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.proj.Project;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Print {
@@ -234,24 +235,9 @@ public class Print {
 	
 	private static String format(String header, int index, int max,
 			String circName) {
-		int mark = header.indexOf('%');
-		if (mark < 0) return header;
-		StringBuilder ret = new StringBuilder();
-		int start = 0;
-		for (; mark >= 0 && mark + 1 < header.length();
-		start = mark + 2, mark = header.indexOf('%', start)) {
-			ret.append(header.substring(start, mark));
-			switch (header.charAt(mark + 1)) {
-			case 'n': ret.append(circName); break;
-			case 'p': ret.append("" + index); break;
-			case 'P': ret.append("" + max); break;
-			case '%': ret.append("%"); break;
-			default:  ret.append("%" + header.charAt(mark + 1));
-			}
-		}
-		if (start < header.length()) {
-			ret.append(header.substring(start));
-		}
-		return ret.toString();
+		header = header.replace("%n", "%1$s");
+		header = header.replace("%p", "%2$d");
+		header = header.replace("%P", "%3$d");
+		return String.format(header, circName, index, max);
 	}
 }

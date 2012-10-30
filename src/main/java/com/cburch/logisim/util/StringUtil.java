@@ -4,13 +4,10 @@
 package com.cburch.logisim.util;
 
 public class StringUtil {
-	public static String format(String fmt, String... args) {
-		return String.format(fmt,(Object[])args);
-	}
 	public static StringGetter formatter(final StringGetter base, final String arg) {
 		return new StringGetter() {
 			public String toString() {
-				return format(base.toString(), arg);
+				return String.format(base.toString(), arg);
 			}
 		};
 	}
@@ -18,7 +15,7 @@ public class StringUtil {
 	public static StringGetter formatter(final StringGetter base, final StringGetter arg) {
 		return new StringGetter() {
 			public String toString() {
-				return format(base.toString(), arg.toString());
+				return String.format(base.toString(), arg.toString());
 			}
 		};
 	}

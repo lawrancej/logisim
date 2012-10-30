@@ -36,7 +36,6 @@ import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.InputEventUtil;
-import com.cburch.logisim.util.StringUtil;
 
 class XmlWriter {
 	static void write(LogisimFile file, OutputStream out, LibraryLoader loader)
@@ -170,7 +169,7 @@ class XmlWriter {
 		Library lib = findLibrary(tool);
 		String lib_name;
 		if (lib == null) {
-			loader.showError(StringUtil.format("tool `%s' not found",
+			loader.showError(String.format("tool `%s' not found",
 				tool.getDisplayName()));
 			return null;
 		} else if (lib == file) {

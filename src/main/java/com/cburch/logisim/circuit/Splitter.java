@@ -25,7 +25,6 @@ import com.cburch.logisim.tools.MenuExtender;
 import com.cburch.logisim.tools.ToolTipMaker;
 import com.cburch.logisim.tools.WireRepair;
 import com.cburch.logisim.tools.WireRepairData;
-import com.cburch.logisim.util.StringUtil;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Splitter extends ManagedComponent
@@ -175,11 +174,11 @@ public class Splitter extends ManagedComponent
 			if (inString) appendBuf(buf, beginString, bit_end.length - 1);
 			String base;
 			switch (bits) {
-			case 0:  base = _("splitterSplit0Tip"); break;
-			case 1:  base = _("splitterSplit1Tip"); break;
-			default: base = _("splitterSplitManyTip"); break;
+			case 0:  base = "splitterSplit0Tip"; break;
+			case 1:  base = "splitterSplit1Tip"; break;
+			default: base = "splitterSplitManyTip"; break;
 			}
-			return StringUtil.format(base, buf.toString());
+			return _(base, buf.toString());
 		} else {
 			return null;
 		}

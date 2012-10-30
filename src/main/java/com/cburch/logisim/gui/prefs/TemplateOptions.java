@@ -29,7 +29,6 @@ import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.prefs.Template;
 import com.cburch.logisim.util.JFileChoosers;
-import com.cburch.logisim.util.StringUtil;
 
 class TemplateOptions extends OptionsPanel {
 	private class MyListener implements ActionListener, PropertyChangeListener {
@@ -55,7 +54,7 @@ class TemplateOptions extends OptionsPanel {
 					} catch (LoaderException ex) {
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(getPreferencesFrame(),
-								StringUtil.format(Strings.get("templateErrorMessage"), ex.toString()),
+								String.format(Strings.get("templateErrorMessage"), ex.toString()),
 								Strings.get("templateErrorTitle"),
 								JOptionPane.ERROR_MESSAGE);
 					} finally {

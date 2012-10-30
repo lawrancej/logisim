@@ -28,7 +28,6 @@ import com.cburch.logisim.std.io.Tty;
 import com.cburch.logisim.std.memory.Ram;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.tools.Library;
-import com.cburch.logisim.util.StringUtil;
 
 public class TtyInterface {
 	public static final int FORMAT_TABLE = 1;
@@ -306,7 +305,7 @@ public class TtyInterface {
 		else precision = 0.0000001;
 		hertz = (int) (hertz / precision) * precision;
 		String hertzStr = hertz == (int) hertz ? "" + (int) hertz : "" + hertz;
-		System.out.println(StringUtil.format(Strings.get("ttySpeedMsg"), //OK
+		System.out.println(String.format(Strings.get("ttySpeedMsg"), //OK
 				hertzStr, "" + tickCount, "" + elapse));
 	}
 

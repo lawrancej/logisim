@@ -25,7 +25,6 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.MacCompatibility;
-import com.cburch.logisim.util.StringUtil;
 
 public class Startup {
 	private static Startup startupTemp = null;
@@ -367,10 +366,10 @@ public class Startup {
 				if (i >= args.length) printUsage();
 				ret.templFile = new File(args[i]);
 				if (!ret.templFile.exists()) {
-					System.err.println(StringUtil.format( //OK
+					System.err.println(String.format( //OK
 							Strings.get("templateMissingError"), args[i]));
 				} else if (!ret.templFile.canRead()) {
-					System.err.println(StringUtil.format( //OK
+					System.err.println(String.format( //OK
 							Strings.get("templateCannotReadError"), args[i]));
 				}
 			} else if (arg.equals("-nosplash")) {
@@ -396,7 +395,7 @@ public class Startup {
 	}
 
 	private static void printUsage() {
-		System.err.println(StringUtil.format(Strings.get("argUsage"), Startup.class.getName())); //OK
+		System.err.println(String.format(Strings.get("argUsage"), Startup.class.getName())); //OK
 		System.err.println(); //OK
 		System.err.println(Strings.get("argOptionHeader")); //OK
 		System.err.println("   " + Strings.get("argAccentsOption")); //OK

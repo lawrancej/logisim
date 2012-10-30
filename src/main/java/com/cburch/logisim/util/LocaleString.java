@@ -33,7 +33,7 @@ public class LocaleString {
 		return getInstance().sourceMap.get(s).get(s);
 	}
 	public static String _(String key, String... arg) {
-		return StringUtil.format(_(key), arg);
+		return String.format(_(key), (Object[])arg);
 	}
 	public static StringGetter __(String s) {
 		return getInstance().sourceMap.get(s).getter(s);
