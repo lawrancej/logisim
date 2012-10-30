@@ -3,16 +3,9 @@
 
 package com.cburch.logisim.util;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
 public class StringUtil {
 	public static String format(String fmt, String... args) {
-		StringWriter out = new StringWriter();
-		out.flush();
-		PrintWriter p = new PrintWriter(out);
-		p.format(fmt, (Object[])args);
-		return out.toString();
+		return String.format(fmt,(Object[])args);
 	}
 	public static StringGetter formatter(final StringGetter base, final String arg) {
 		return new StringGetter() {
