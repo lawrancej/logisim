@@ -32,7 +32,6 @@ import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.EventSourceWeakSupport;
-import com.cburch.logisim.util.ListUtil;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class LogisimFile extends Library implements LibraryEventSource {
@@ -116,11 +115,6 @@ public class LogisimFile extends Library implements LibraryEventSource {
 	@Override
 	public List<Library> getLibraries() {
 		return libraries;
-	}
-
-	@Override
-	public List<?> getElements() {
-		return ListUtil.joinImmutableLists(tools, libraries);
 	}
 
 	public Circuit getCircuit(String name) {
@@ -318,6 +312,10 @@ public class LogisimFile extends Library implements LibraryEventSource {
 			reader.connect(writer);
 		} catch (IOException e) {
 			newloader.showError(_("fileDuplicateError", e.toString()));
+			try {
+				reader.close();
+			} catch (IOException e1) {
+			}
 			return null;
 		}
 		new WritingThread(writer, this).start();
