@@ -12,14 +12,6 @@ public class StringUtil {
 		};
 	}
 	
-	public static StringGetter formatter(final StringGetter base, final StringGetter arg) {
-		return new StringGetter() {
-			public String toString() {
-				return String.format(base.toString(), arg.toString());
-			}
-		};
-	}
-	
 	public static StringGetter constantGetter(final String value) {
 		return new StringGetter() {
 			public String toString() {

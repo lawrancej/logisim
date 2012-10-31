@@ -205,10 +205,6 @@ public class LocaleManager {
 		return StringUtil.formatter(getter(key), arg);
 	}
 	
-	public StringGetter getter(String key, StringGetter arg) {
-		return StringUtil.formatter(getter(key), arg);
-	}
-
 	public Locale[] getLocaleOptions() {
 		String locs = null;
 		try {
