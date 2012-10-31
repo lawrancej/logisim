@@ -29,6 +29,7 @@ import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.prefs.Template;
 import com.cburch.logisim.util.JFileChoosers;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class TemplateOptions extends OptionsPanel {
 	private class MyListener implements ActionListener, PropertyChangeListener {
@@ -36,8 +37,8 @@ class TemplateOptions extends OptionsPanel {
 			Object src = event.getSource();
 			if (src == templateButton) {
 				JFileChooser chooser = JFileChoosers.create();
-				chooser.setDialogTitle(Strings.get("selectDialogTitle"));
-				chooser.setApproveButtonText(Strings.get("selectDialogButton"));
+				chooser.setDialogTitle(_("selectDialogTitle"));
+				chooser.setApproveButtonText(_("selectDialogButton"));
 				int action = chooser.showOpenDialog(getPreferencesFrame());
 				if (action == JFileChooser.APPROVE_OPTION) {
 					File file = chooser.getSelectedFile();
@@ -54,8 +55,8 @@ class TemplateOptions extends OptionsPanel {
 					} catch (LoaderException ex) {
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(getPreferencesFrame(),
-								String.format(Strings.get("templateErrorMessage"), ex.toString()),
-								Strings.get("templateErrorTitle"),
+								String.format(_("templateErrorMessage"), ex.toString()),
+								_("templateErrorTitle"),
 								JOptionPane.ERROR_MESSAGE);
 					} finally {
 						try {
@@ -160,19 +161,19 @@ class TemplateOptions extends OptionsPanel {
 
 	@Override
 	public String getTitle() {
-		return Strings.get("templateTitle");
+		return _("templateTitle");
 	}
 
 	@Override
 	public String getHelpText() {
-		return Strings.get("templateHelp");
+		return _("templateHelp");
 	}
 	
 	@Override
 	public void localeChanged() {
-		plain.setText(Strings.get("templatePlainOption"));
-		empty.setText(Strings.get("templateEmptyOption"));
-		custom.setText(Strings.get("templateCustomOption"));
-		templateButton.setText(Strings.get("templateSelectButton"));
+		plain.setText(_("templatePlainOption"));
+		empty.setText(_("templateEmptyOption"));
+		custom.setText(_("templateCustomOption"));
+		templateButton.setText(_("templateSelectButton"));
 	}
 }

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import com.cburch.logisim.circuit.RadixOption;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.TableLayout;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class LayoutOptions extends OptionsPanel {
 	private PrefBoolean[] checks;
@@ -20,15 +21,15 @@ class LayoutOptions extends OptionsPanel {
 		
 		checks = new PrefBoolean[] {
 				new PrefBoolean(AppPreferences.PRINTER_VIEW,
-						Strings.getter("layoutPrinterView")),
+						__("layoutPrinterView")),
 				new PrefBoolean(AppPreferences.ATTRIBUTE_HALO,
-						Strings.getter("layoutAttributeHalo")),
+						__("layoutAttributeHalo")),
 				new PrefBoolean(AppPreferences.COMPONENT_TIPS,
-						Strings.getter("layoutShowTips")),
+						__("layoutShowTips")),
 				new PrefBoolean(AppPreferences.MOVE_KEEP_CONNECT,
-						Strings.getter("layoutMoveKeepConnect")),
+						__("layoutMoveKeepConnect")),
 				new PrefBoolean(AppPreferences.ADD_SHOW_GHOSTS,
-						Strings.getter("layoutAddShowGhosts")),
+						__("layoutAddShowGhosts")),
 			};
 
 		for (int i = 0; i < 2; i++) {
@@ -39,19 +40,19 @@ class LayoutOptions extends OptionsPanel {
 			}
 			if (i == 0) {
 				radix1 = new PrefOptionList(AppPreferences.POKE_WIRE_RADIX1,
-						Strings.getter("layoutRadix1"), items);
+						__("layoutRadix1"), items);
 			} else {
 				radix2 = new PrefOptionList(AppPreferences.POKE_WIRE_RADIX2,
-						Strings.getter("layoutRadix2"), items);
+						__("layoutRadix2"), items);
 			}
 		}
 		afterAdd = new PrefOptionList(AppPreferences.ADD_AFTER,
-				Strings.getter("layoutAddAfter"),
+				__("layoutAddAfter"),
 				new PrefOption[] {
 					new PrefOption(AppPreferences.ADD_AFTER_UNCHANGED,
-							Strings.getter("layoutAddAfterUnchanged")),
+							__("layoutAddAfterUnchanged")),
 					new PrefOption(AppPreferences.ADD_AFTER_EDIT,
-							Strings.getter("layoutAddAfterEdit")) });
+							__("layoutAddAfterEdit")) });
 		
 		JPanel panel = new JPanel(new TableLayout(2));
 		panel.add(afterAdd.getJLabel());
@@ -70,12 +71,12 @@ class LayoutOptions extends OptionsPanel {
 
 	@Override
 	public String getTitle() {
-		return Strings.get("layoutTitle");
+		return _("layoutTitle");
 	}
 
 	@Override
 	public String getHelpText() {
-		return Strings.get("layoutHelp");
+		return _("layoutHelp");
 	}
 	
 	@Override

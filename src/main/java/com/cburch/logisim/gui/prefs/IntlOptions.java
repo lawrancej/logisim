@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.LocaleManager;
+import static com.cburch.logisim.util.LocaleString.*;
 
 class IntlOptions extends OptionsPanel {
 	private static class RestrictedLabel extends JLabel {
@@ -31,17 +32,17 @@ class IntlOptions extends OptionsPanel {
 	public IntlOptions(PreferencesFrame window) {
 		super(window);
 		
-		locale = Strings.createLocaleSelector();
+		locale = createLocaleSelector();
 		replAccents = new PrefBoolean(AppPreferences.ACCENTS_REPLACE,
-				Strings.getter("intlReplaceAccents"));
+				__("intlReplaceAccents"));
 		gateShape = new PrefOptionList(AppPreferences.GATE_SHAPE,
-				Strings.getter("intlGateShape"), new PrefOption[] {
+				__("intlGateShape"), new PrefOption[] {
 					new PrefOption(AppPreferences.SHAPE_SHAPED,
-							Strings.getter("shapeShaped")),
+							__("shapeShaped")),
 					new PrefOption(AppPreferences.SHAPE_RECTANGULAR,
-							Strings.getter("shapeRectangular")),
+							__("shapeRectangular")),
 					new PrefOption(AppPreferences.SHAPE_DIN40700,
-							Strings.getter("shapeDIN40700")) });
+							__("shapeDIN40700")) });
 		
 		Box localePanel = new Box(BoxLayout.X_AXIS);
 		localePanel.add(Box.createGlue());
@@ -66,18 +67,18 @@ class IntlOptions extends OptionsPanel {
 	
 	@Override
 	public String getTitle() {
-		return Strings.get("intlTitle");
+		return _("intlTitle");
 	}
 
 	@Override
 	public String getHelpText() {
-		return Strings.get("intlHelp");
+		return _("intlHelp");
 	}
 	
 	@Override
 	public void localeChanged() {
 		gateShape.localeChanged();
-		localeLabel.setText(Strings.get("intlLocale") + " ");
+		localeLabel.setText(_("intlLocale") + " ");
 		replAccents.localeChanged();
 		replAccents.setEnabled(LocaleManager.canReplaceAccents());
 	}

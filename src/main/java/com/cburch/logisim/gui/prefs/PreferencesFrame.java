@@ -20,6 +20,7 @@ import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenuItemManager;
+import static com.cburch.logisim.util.LocaleString.*;
 
 public class PreferencesFrame extends LFrame {
 	private static WindowMenuManager MENU_MANAGER = null;
@@ -33,7 +34,7 @@ public class PreferencesFrame extends LFrame {
 		private PreferencesFrame window = null;
 
 		WindowMenuManager() {
-			super(Strings.get("preferencesFrameMenuItem"), true);
+			super(_("preferencesFrameMenuItem"), true);
 			LocaleManager.addLocaleListener(this);
 		}
 		
@@ -49,7 +50,7 @@ public class PreferencesFrame extends LFrame {
 		}
 		
 		public void localeChanged() {
-			setText(Strings.get("preferencesFrameMenuItem"));
+			setText(_("preferencesFrameMenuItem"));
 		}
 	}
 
@@ -65,13 +66,13 @@ public class PreferencesFrame extends LFrame {
 		}
 		
 		public void localeChanged() {
-			setTitle(Strings.get("preferencesFrameTitle"));
+			setTitle(_("preferencesFrameTitle"));
 			for (int i = 0; i < panels.length; i++) {
 				tabbedPane.setTitleAt(i, panels[i].getTitle());
 				tabbedPane.setToolTipTextAt(i, panels[i].getToolTipText());
 				panels[i].localeChanged();
 			}
-			close.setText(Strings.get("closeButton"));
+			close.setText(_("closeButton"));
 		}
 	}
 	

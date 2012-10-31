@@ -3,10 +3,11 @@ package com.cburch.logisim.util;
 import java.util.HashMap;
 import java.util.Locale;
 
+import javax.swing.JComponent;
+
 /**
- * Given a string, return the locale specific translation,
- * regardless of section.
- * Replaces Strings.get, Strings.getter.
+ * Given a string, return the locale-specific translation.
+ * This class is analogous to GNU gettext.
  * 
  * @author Joey Lawrance
  *
@@ -35,8 +36,13 @@ public class LocaleString {
 		}
 		return self;
 	}
+	// This shouldn't belong here
 	public static Locale[] getLocaleOptions() {
 		return getUtilLocaleManager().getLocaleOptions();
+	}
+	// This shouldn't belong here
+	public static JComponent createLocaleSelector() {
+		return getUtilLocaleManager().createLocaleSelector();
 	}
 	public static String _(String s) {
 		return getInstance().sourceMap.get(s).get(s);
