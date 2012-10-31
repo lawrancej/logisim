@@ -28,6 +28,7 @@ import com.cburch.logisim.std.io.Tty;
 import com.cburch.logisim.std.memory.Ram;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.tools.Library;
+import static com.cburch.logisim.util.LocaleString._;
 
 public class TtyInterface {
 	public static final int FORMAT_TABLE = 1;
@@ -57,7 +58,7 @@ public class TtyInterface {
 		try {
 			file = loader.openLogisimFile(fileToOpen, args.getSubstitutions());
 		} catch (LoadFailedException e) {
-			System.err.println(Strings.get("ttyLoadError", fileToOpen.getName())); //OK
+			System.err.println(_("ttyLoadError", fileToOpen.getName())); //OK
 			System.exit(-1);
 			return;
 		}
@@ -95,11 +96,11 @@ public class TtyInterface {
 			try {
 				boolean loaded = loadRam(circState, args.getLoadFile());
 				if (!loaded) {
-					System.err.println(Strings.get("loadNoRamError")); //OK
+					System.err.println(_("loadNoRamError")); //OK
 					System.exit(-1);
 				}
 			} catch (IOException e) {
-				System.err.println(Strings.get("loadIoError") + ": " + e.toString()); //OK
+				System.err.println(_("loadIoError") + ": " + e.toString()); //OK
 				System.exit(-1);
 			}
 		}
@@ -131,11 +132,11 @@ public class TtyInterface {
 		System.out.printf(fmt + "%s\n", //OK
 				Integer.valueOf(totalWithout.getUniqueCount()),
 				Integer.valueOf(totalWithout.getRecursiveCount()),
-				Strings.get("statsTotalWithout"));
+				_("statsTotalWithout"));
 		System.out.printf(fmt + "%s\n", //OK
 				Integer.valueOf(total.getUniqueCount()),
 				Integer.valueOf(total.getRecursiveCount()),
-				Strings.get("statsTotalWith"));
+				_("statsTotalWith"));
 	}
 	
 	private static int countDigits(int num) {
@@ -203,7 +204,7 @@ public class TtyInterface {
 			keyboardStates = new ArrayList<InstanceState>();
 			boolean ttyFound = prepareForTty(circState, keyboardStates);
 			if (!ttyFound) {
-				System.err.println(Strings.get("ttyNoTtyError")); //OK
+				System.err.println(_("ttyNoTtyError")); //OK
 				System.exit(-1);
 			}
 			if (keyboardStates.isEmpty()) {
@@ -260,9 +261,9 @@ public class TtyInterface {
 		if (showTty) ensureLineTerminated();
 		if (showHalt || retCode != 0) {
 			if (retCode == 0) {
-				System.out.println(Strings.get("ttyHaltReasonPin")); //OK
+				System.out.println(_("ttyHaltReasonPin")); //OK
 			} else if (retCode == 1) {
-				System.out.println(Strings.get("ttyHaltReasonOscillation")); //OK
+				System.out.println(_("ttyHaltReasonOscillation")); //OK
 			}
 		}
 		if (showSpeed) {
@@ -305,8 +306,7 @@ public class TtyInterface {
 		else precision = 0.0000001;
 		hertz = (int) (hertz / precision) * precision;
 		String hertzStr = hertz == (int) hertz ? "" + (int) hertz : "" + hertz;
-		System.out.println(String.format(Strings.get("ttySpeedMsg"), //OK
-				hertzStr, "" + tickCount, "" + elapse));
+		System.out.println(_("ttySpeedMsg", hertzStr, "" + tickCount, "" + elapse));
 	}
 
 	// It's possible to avoid using the separate thread using System.in.available(),

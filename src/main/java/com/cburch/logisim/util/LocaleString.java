@@ -1,6 +1,7 @@
 package com.cburch.logisim.util;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * Given a string, return the locale specific translation,
@@ -25,7 +26,7 @@ public class LocaleString {
 			if (section.equals("util")) util = manager;
 		}
 	}
-	public static LocaleManager getUtilLocaleManager() {
+	protected static LocaleManager getUtilLocaleManager() {
 		return getInstance().util;
 	}
 	private static LocaleString getInstance() {
@@ -33,6 +34,9 @@ public class LocaleString {
 			self = new LocaleString();
 		}
 		return self;
+	}
+	public static Locale[] getLocaleOptions() {
+		return getUtilLocaleManager().getLocaleOptions();
 	}
 	public static String _(String s) {
 		return getInstance().sourceMap.get(s).get(s);
