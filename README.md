@@ -42,5 +42,5 @@ If you don't want to install Maven for Eclipse (plugin) you may be able to get b
 3. Click Configure Variables...
 4. Click New...
 
-    Name: M2_HOME
-    Path: C:\Users\yourName\.m2\repository
+        Name: M2_HOME
+        Path: C:\Users\yourName\.m2\repository
