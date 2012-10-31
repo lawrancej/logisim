@@ -5,8 +5,10 @@ package com.cburch.logisim.circuit.appear;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.collections15.list.UnmodifiableList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -18,14 +20,13 @@ import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.util.UnmodifiableList;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class AppearanceAnchor extends AppearanceElement {
 	public static final Attribute<Direction> FACING
 		= Attributes.forDirection("facing", __("appearanceFacingAttr"));
 	static final List<Attribute<?>> ATTRIBUTES
-		= UnmodifiableList.create(new Attribute<?>[] { FACING });
+		= UnmodifiableList.decorate(Arrays.asList(new Attribute<?>[] { FACING }));
 	
 	private static final int RADIUS = 3;
 	private static final int INDICATOR_LENGTH = 8;
@@ -139,7 +140,7 @@ public class AppearanceAnchor extends AppearanceElement {
 	public List<Handle> getHandles(HandleGesture gesture) {
 		Location c = getLocation();
 		Location end = c.translate(facing, RADIUS + INDICATOR_LENGTH);
-		return UnmodifiableList.create(new Handle[] { new Handle(this, c),
-				new Handle(this, end) });
+		return UnmodifiableList.decorate(Arrays.asList(new Handle[] { new Handle(this, c),
+				new Handle(this, end) }));
 	}
 }

@@ -4,14 +4,16 @@
 package com.cburch.draw.shapes;
 
 import java.awt.Graphics;
+import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.collections15.list.UnmodifiableList;
 
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
 import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.util.UnmodifiableList;
 
 abstract class Rectangular extends FillableCanvasObject {
 	private Bounds bounds; // excluding the stroke's width
@@ -70,7 +72,7 @@ abstract class Rectangular extends FillableCanvasObject {
 	
 	@Override
 	public List<Handle> getHandles(HandleGesture gesture) {
-		return UnmodifiableList.create(getHandleArray(gesture));
+		return UnmodifiableList.decorate(Arrays.asList(getHandleArray(gesture)));
 	}
 		
 	private Handle[] getHandleArray(HandleGesture gesture) {

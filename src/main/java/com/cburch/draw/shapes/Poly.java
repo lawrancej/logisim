@@ -5,9 +5,11 @@ package com.cburch.draw.shapes;
 
 import java.awt.Graphics;
 import java.awt.geom.GeneralPath;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.collections15.list.UnmodifiableList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -17,7 +19,6 @@ import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.util.UnmodifiableList;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Poly extends FillableCanvasObject {
@@ -193,7 +194,7 @@ public class Poly extends FillableCanvasObject {
 	public List<Handle> getHandles(HandleGesture gesture) {
 		Handle[] hs = handles;
 		if (gesture == null) {
-			return UnmodifiableList.create(hs);
+			return UnmodifiableList.decorate(Arrays.asList(hs));
 		} else {
 			Handle g = gesture.getHandle();
 			Handle[] ret = new Handle[hs.length];
@@ -230,7 +231,7 @@ public class Poly extends FillableCanvasObject {
 					ret[i] = h;
 				}
 			}
-			return UnmodifiableList.create(ret);
+			return UnmodifiableList.decorate(Arrays.asList(ret));
 		}
 	}
 	

@@ -5,10 +5,13 @@ package com.cburch.logisim.instance;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import javax.swing.Icon;
+
+import org.apache.commons.collections15.list.UnmodifiableList;
 
 import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.circuit.CircuitState;
@@ -27,7 +30,6 @@ import com.cburch.logisim.tools.key.KeyConfigurator;
 import com.cburch.logisim.util.Icons;
 import com.cburch.logisim.util.StringGetter;
 import com.cburch.logisim.util.StringUtil;
-import com.cburch.logisim.util.UnmodifiableList;
 
 /**
  * Represents a category of components that appear in a circuit. This class
@@ -200,7 +202,7 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
 
 	
 	public void setPorts(Port[] ports) {
-		portList = new UnmodifiableList<Port>(ports);
+		portList = UnmodifiableList.decorate(Arrays.asList(ports));
 	}
 	
 	public void setPorts(List<Port> ports) {

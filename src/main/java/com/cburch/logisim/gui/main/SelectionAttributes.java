@@ -3,6 +3,7 @@
 
 package com.cburch.logisim.gui.main;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,6 +12,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.apache.commons.collections15.list.UnmodifiableList;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.Wire;
@@ -21,7 +24,6 @@ import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.UnmodifiableList;
 
 class SelectionAttributes extends AbstractAttributeSet {
 	private static final Attribute<?>[] EMPTY_ATTRIBUTES = new Attribute<?>[0];
@@ -125,7 +127,7 @@ class SelectionAttributes extends AbstractAttributeSet {
 			}
 			if (newSel != oldSel) this.selected = newSel;
 			this.attrs = newAttrs;
-			this.attrsView = new UnmodifiableList<Attribute<?>>(newAttrs);
+			this.attrsView = UnmodifiableList.decorate(Arrays.asList(newAttrs));
 			this.values = newValues;
 			this.readOnly = newReadOnly;
 			

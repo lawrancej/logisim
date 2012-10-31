@@ -12,7 +12,6 @@ import com.cburch.logisim.data.AttributeEvent;
 import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.util.EventSourceWeakSupport;
-import com.cburch.logisim.util.UnmodifiableList;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -22,14 +21,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import org.apache.commons.collections15.list.UnmodifiableList;
+
 public class DrawingAttributeSet implements AttributeSet, Cloneable {
 	static final List<Attribute<?>> ATTRS_ALL
-		= UnmodifiableList.create(new Attribute<?>[] {
+		= UnmodifiableList.decorate(Arrays.asList(new Attribute<?>[] {
 				DrawAttr.FONT, DrawAttr.ALIGNMENT,
 				DrawAttr.PAINT_TYPE,
 				DrawAttr.STROKE_WIDTH, DrawAttr.STROKE_COLOR,
 				DrawAttr.FILL_COLOR, DrawAttr.TEXT_DEFAULT_FILL,
-				DrawAttr.CORNER_RADIUS });
+				DrawAttr.CORNER_RADIUS }));
 	static final List<Object> DEFAULTS_ALL
 		= Arrays.asList(new Object[] {
 				DrawAttr.DEFAULT_FONT, DrawAttr.ALIGN_CENTER,

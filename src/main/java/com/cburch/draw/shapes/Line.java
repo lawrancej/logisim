@@ -5,9 +5,11 @@ package com.cburch.draw.shapes;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.collections15.list.UnmodifiableList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -18,7 +20,6 @@ import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.util.UnmodifiableList;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Line extends AbstractCanvasObject {
@@ -152,8 +153,8 @@ public class Line extends AbstractCanvasObject {
 	@Override
 	public List<Handle> getHandles(HandleGesture gesture) {
 		if (gesture == null) {
-			return UnmodifiableList.create(new Handle[] {
-					new Handle(this, x0, y0), new Handle(this, x1, y1) });
+			return UnmodifiableList.decorate(Arrays.asList(new Handle[] {
+					new Handle(this, x0, y0), new Handle(this, x1, y1) }));
 		} else {
 			Handle h = gesture.getHandle();
 			int dx = gesture.getDeltaX();
@@ -163,7 +164,7 @@ public class Line extends AbstractCanvasObject {
 					? Location.create(x0 + dx, y0 + dy) : Location.create(x0, y0));
 			ret[1] = new Handle(this, h.isAt(x1, y1)
 					? Location.create(x1 + dx, y1 + dy) : Location.create(x1, y1));
-			return UnmodifiableList.create(ret);
+			return UnmodifiableList.decorate(Arrays.asList(ret));
 		}
 	}
 	

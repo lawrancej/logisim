@@ -6,8 +6,10 @@ package com.cburch.draw.shapes;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.QuadCurve2D;
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.collections15.list.UnmodifiableList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -17,7 +19,6 @@ import com.cburch.draw.model.HandleGesture;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.util.UnmodifiableList;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Curve extends FillableCanvasObject {
@@ -132,13 +133,9 @@ public class Curve extends FillableCanvasObject {
 		bounds = bounds.translate(dx, dy);
 	}
 	
-	public List<Handle> getHandles() {
-		return UnmodifiableList.create(getHandleArray(null));
-	}
-	
 	@Override
 	public List<Handle> getHandles(HandleGesture gesture) {
-		return UnmodifiableList.create(getHandleArray(gesture));
+		return UnmodifiableList.decorate(Arrays.asList(getHandleArray(gesture)));
 	}
 	
 	private Handle[] getHandleArray(HandleGesture gesture) {

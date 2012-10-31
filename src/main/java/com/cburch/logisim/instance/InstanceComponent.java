@@ -6,9 +6,12 @@ package com.cburch.logisim.instance;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+
+import org.apache.commons.collections15.list.UnmodifiableList;
 
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.comp.Component;
@@ -29,7 +32,6 @@ import com.cburch.logisim.tools.TextEditable;
 import com.cburch.logisim.tools.ToolTipMaker;
 import com.cburch.logisim.util.EventSourceWeakSupport;
 import com.cburch.logisim.util.StringGetter;
-import com.cburch.logisim.util.UnmodifiableList;
 
 class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
 	private EventSourceWeakSupport<ComponentListener> listeners;
@@ -116,7 +118,7 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
 		}
 		if (es != esOld) {
 			endArray = es;
-			endList = new UnmodifiableList<EndData>(es);
+			endList = UnmodifiableList.decorate(Arrays.asList(es));
 		}
 		widthAttrs = wattrs;
 		hasToolTips = toolTipFound;
@@ -309,8 +311,7 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
 	}
 	
 	void setPorts(Port[] ports) {
-		Port[] portsCopy = ports.clone();
-		portList = new UnmodifiableList<Port>(portsCopy);
+		portList = UnmodifiableList.decorate(Arrays.asList(ports.clone()));
 		computeEnds();
 	}
 	

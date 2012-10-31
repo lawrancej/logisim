@@ -5,13 +5,15 @@ package com.cburch.draw.shapes;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.collections15.list.UnmodifiableList;
 
 import com.cburch.draw.util.EditableLabel;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.Attributes;
-import com.cburch.logisim.util.UnmodifiableList;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class DrawAttr {
@@ -80,7 +82,7 @@ public class DrawAttr {
 				STROKE_WIDTH, STROKE_COLOR, FILL_COLOR, CORNER_RADIUS });
 	
 	private static List<Attribute<?>> createAttributes(Attribute<?>[] values) {
-		return UnmodifiableList.create(values);
+		return UnmodifiableList.decorate(Arrays.asList(values));
 	}
 	
 	public static List<Attribute<?>> getFillAttributes(AttributeOption paint) {

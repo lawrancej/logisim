@@ -6,17 +6,18 @@ package com.cburch.draw.shapes;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.collections15.list.UnmodifiableList;
 import org.w3c.dom.Element;
 
 import com.cburch.draw.model.AbstractCanvasObject;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.util.UnmodifiableList;
 
 public class SvgReader {
 	private SvgReader() { }
@@ -161,7 +162,7 @@ public class SvgReader {
 			int y = Integer.parseInt(toks[2 * i + 1]);
 			ret[i] = Location.create(x, y);
 		}
-		return UnmodifiableList.create(ret);
+		return UnmodifiableList.decorate(Arrays.asList(ret));
 	}
 	
 	private static AbstractCanvasObject createPath(Element elt) {

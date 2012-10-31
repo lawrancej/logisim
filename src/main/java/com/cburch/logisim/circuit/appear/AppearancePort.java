@@ -5,8 +5,10 @@ package com.cburch.logisim.circuit.appear;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.collections15.list.UnmodifiableList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -17,7 +19,6 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.std.wiring.Pin;
-import com.cburch.logisim.util.UnmodifiableList;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class AppearancePort extends AppearanceElement {
@@ -100,11 +101,11 @@ public class AppearancePort extends AppearanceElement {
 		Location loc = getLocation();
 		
 		int r = isInput() ? INPUT_RADIUS : OUTPUT_RADIUS;
-		return UnmodifiableList.create(new Handle[] {
+		return UnmodifiableList.decorate(Arrays.asList(new Handle[] {
 				new Handle(this, loc.translate(-r, -r)),
 				new Handle(this, loc.translate(r, -r)),
 				new Handle(this, loc.translate(r, r)),
-				new Handle(this, loc.translate(-r, r)) });
+				new Handle(this, loc.translate(-r, r)) }));
 	}
 
 	@Override

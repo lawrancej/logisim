@@ -9,9 +9,12 @@ import java.awt.Graphics;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.Icon;
+
+import org.apache.commons.collections15.list.UnmodifiableList;
 
 import com.cburch.draw.actions.ModelAddAction;
 import com.cburch.draw.canvas.Canvas;
@@ -23,7 +26,6 @@ import com.cburch.draw.shapes.Poly;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.UnmodifiableList;
 
 public class LineTool extends AbstractTool {
 	private DrawingAttributeSet attrs;
@@ -93,7 +95,7 @@ public class LineTool extends AbstractTool {
 				active = false;
 				CanvasModel model = canvas.getModel();
 				Location[] ends = { start, end };
-				List<Location> locs = UnmodifiableList.create(ends);
+				List<Location> locs = UnmodifiableList.decorate(Arrays.asList(ends));
 				add = attrs.applyTo(new Poly(false, locs));
 				add.setValue(DrawAttr.PAINT_TYPE, DrawAttr.PAINT_STROKE);
 				canvas.doAction(new ModelAddAction(model, add));
