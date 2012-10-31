@@ -7,6 +7,8 @@ import java.util.AbstractList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.collections15.iterators.IteratorChain;
+
 public class ListUtil {
 	private static class JoinedList<E> extends AbstractList<E> {
 		List<? extends E> a;
@@ -30,8 +32,7 @@ public class ListUtil {
 
 		@Override
 		public Iterator<E> iterator() {
-			return IteratorUtil.createJoinedIterator(a.iterator(),
-				b.iterator());
+			return new IteratorChain<E>(a.iterator(), b.iterator());
 		}
 				
 	}

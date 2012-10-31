@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import org.apache.commons.collections15.iterators.IteratorChain;
+
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.comp.EndData;
@@ -29,7 +31,6 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.std.wiring.PullResistor;
 import com.cburch.logisim.std.wiring.Tunnel;
 import com.cburch.logisim.util.GraphicsUtil;
-import com.cburch.logisim.util.IteratorUtil;
 
 class CircuitWires {
 	static class SplitterData {
@@ -195,8 +196,8 @@ class CircuitWires {
 	}
 
 	Iterator<? extends Component> getComponents() {
-		return IteratorUtil.createJoinedIterator(splitters.iterator(),
-			wires.iterator());
+		return new IteratorChain<Component>(splitters.iterator(),
+				wires.iterator());
 	}
 
 	Set<Wire> getWires() {
