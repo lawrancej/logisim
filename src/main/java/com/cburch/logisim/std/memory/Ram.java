@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeEvent;
@@ -79,8 +81,8 @@ public class Ram extends Mem {
 	void configurePorts(Instance instance) {
 		Object bus = instance.getAttributeValue(ATTR_BUS);
 		if (bus == null) bus = BUS_COMBINED;
-		boolean asynch = bus == null ? false : bus.equals(BUS_ASYNCH);
-		boolean separate = bus == null ? false : bus.equals(BUS_SEPARATE);
+		boolean asynch = ObjectUtils.equals(bus, BUS_ASYNCH);
+		boolean separate = ObjectUtils.equals(bus, BUS_SEPARATE);
 
 		int portCount = MEM_INPUTS;
 		if (asynch) portCount += 2;
@@ -157,8 +159,8 @@ public class Ram extends Mem {
 		RamState myState = (RamState) getState(state);
 		BitWidth dataBits = state.getAttributeValue(DATA_ATTR);
 		Object busVal = state.getAttributeValue(ATTR_BUS);
-		boolean asynch = busVal == null ? false : busVal.equals(BUS_ASYNCH);
-		boolean separate = busVal == null ? false : busVal.equals(BUS_SEPARATE);
+		boolean asynch = ObjectUtils.equals(busVal, BUS_ASYNCH);
+		boolean separate = ObjectUtils.equals(busVal, BUS_SEPARATE);
 
 		Value addrValue = state.getPort(ADDR);
 		boolean chipSelect = state.getPort(CS) != Value.FALSE;
@@ -209,8 +211,8 @@ public class Ram extends Mem {
 	public void paintInstance(InstancePainter painter) {
 		super.paintInstance(painter);
 		Object busVal = painter.getAttributeValue(ATTR_BUS);
-		boolean asynch = busVal == null ? false : busVal.equals(BUS_ASYNCH);
-		boolean separate = busVal == null ? false : busVal.equals(BUS_SEPARATE);
+		boolean asynch = ObjectUtils.equals(busVal, BUS_ASYNCH);
+		boolean separate = ObjectUtils.equals(busVal, BUS_SEPARATE);
 		
 		if (!asynch) painter.drawClock(CLK, Direction.NORTH);
 		painter.drawPort(OE, _("ramOELabel"), Direction.SOUTH);
