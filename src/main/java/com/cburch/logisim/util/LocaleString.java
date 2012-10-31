@@ -15,13 +15,18 @@ public class LocaleString {
 	private String[] sections = ("analyze circuit data draw file gui hex " +
 			"log menu opts prefs proj start std tools util").split(" ");
 	private HashMap<String,LocaleManager> sourceMap = new HashMap<String,LocaleManager>();
+	private LocaleManager util;
 	private LocaleString() {
 		for (String section : sections) {
 			LocaleManager manager = new LocaleManager("logisim", section);
 			for (String key : manager.getKeys()) {
 				sourceMap.put(key, manager);
 			}
+			if (section.equals("util")) util = manager;
 		}
+	}
+	public static LocaleManager getUtilLocaleManager() {
+		return getInstance().util;
 	}
 	private static LocaleString getInstance() {
 		if (self == null) {

@@ -48,7 +48,7 @@ public class LocaleManager {
 	public static void setLocale(Locale loc) {
 		Locale cur = getLocale();
 		if (!loc.equals(cur)) {
-			Locale[] opts = Strings.getLocaleManager().getLocaleOptions();
+			Locale[] opts = LocaleString.getUtilLocaleManager().getLocaleOptions();
 			Locale select = null;
 			Locale backup = null;
 			String locLang = loc.getLanguage();
@@ -93,7 +93,7 @@ public class LocaleManager {
 		HashMap<Character,String> ret = null;
 		String val;
 		try {
-			val = Strings.source.locale.getString("accentReplacements");
+			val = LocaleString.getUtilLocaleManager().locale.getString("accentReplacements");
 		} catch (MissingResourceException e) {
 			return null;
 		}
