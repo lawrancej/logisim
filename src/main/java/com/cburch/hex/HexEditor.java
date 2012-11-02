@@ -14,6 +14,12 @@ import javax.swing.JComponent;
 import javax.swing.Scrollable;
 import javax.swing.SwingConstants;
 
+/**
+ * HexEditor is a GUI component for editing Hex values.
+ * 
+ * @author Carl Burch
+ *
+ */
 public class HexEditor extends JComponent implements Scrollable {
 	private class Listener implements HexModelListener {
 		public void metainfoChanged(HexModel source) {
