@@ -14,8 +14,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import com.cburch.logisim.util.MacCompatibility;
-
 public class CanvasPane extends JScrollPane {
 	private class Listener implements ComponentListener, PropertyChangeListener {
 
@@ -59,10 +57,8 @@ public class CanvasPane extends JScrollPane {
 		this.contents = contents;
 		this.listener = new Listener();
 		this.zoomModel = null;
-		if (MacCompatibility.mrjVersion >= 0.0) {
-			setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-			setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		}
+		setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 		addComponentListener(listener);
 		contents.setCanvasPane(this);

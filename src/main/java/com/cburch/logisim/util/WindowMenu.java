@@ -25,8 +25,7 @@ public class WindowMenu extends JMenu {
 			WindowMenu.this.setText(_("windowMenu"));
 			minimize.setText(_("windowMinimizeItem"));
 			close.setText(_("windowCloseItem"));
-			zoom.setText(MacCompatibility.isQuitAutomaticallyPresent() ?
-					_("windowZoomItemMac") : _("windowZoomItem"));
+			zoom.setText(_("windowZoomItem"));
 		}
 
 		public void actionPerformed(ActionEvent e) {

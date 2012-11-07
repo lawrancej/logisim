@@ -16,7 +16,6 @@ import com.cburch.logisim.gui.opts.OptionsFrame;
 import com.cburch.logisim.gui.prefs.PreferencesFrame;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
-import com.cburch.logisim.util.MacCompatibility;
 import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuFile extends Menu implements ActionListener {
@@ -63,14 +62,10 @@ class MenuFile extends Menu implements ActionListener {
 		addSeparator();
 		add(exportImage);
 		add(print);
-		if (!MacCompatibility.isPreferencesAutomaticallyPresent()) {
-			addSeparator();
-			add(prefs);
-		}
-		if (!MacCompatibility.isQuitAutomaticallyPresent()) {
-			addSeparator();
-			add(quit);
-		}
+		addSeparator();
+		add(prefs);
+		addSeparator();
+		add(quit);
 
 		Project proj = menubar.getProject();
 		newi.addActionListener(this);

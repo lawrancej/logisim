@@ -24,7 +24,6 @@ import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.util.LocaleManager;
-import com.cburch.logisim.util.MacCompatibility;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Startup {
@@ -52,23 +51,6 @@ public class Startup {
 			toPrint.getFrame().dispose();
 		} else {
 			filesToPrint.add(file);
-		}
-	}
-	
-	private static void registerHandler() {
-		try {
-			Class<?> needed1 = Class.forName("com.apple.eawt.Application");
-			if (needed1 == null) return;
-			Class<?> needed2 = Class.forName("com.apple.eawt.ApplicationAdapter");
-			if (needed2 == null) return;
-			MacOsAdapter.register();
-			MacOsAdapter.addListeners(true);
-		} catch (ClassNotFoundException e) {
-			return;
-		} catch (Throwable t) {
-			try {
-				MacOsAdapter.addListeners(false);
-			} catch (Throwable t2) { }
 		}
 	}
 	
@@ -153,14 +135,10 @@ public class Startup {
 		// interface initialization
 		if (showSplash) monitor.setProgress(SplashScreen.GUI_INIT);
 		WindowManagers.initialize();
-		if (MacCompatibility.isSwingUsingScreenMenuBar()) {
-			MacCompatibility.setFramelessJMenuBar(new LogisimMenuBar(null, null));
-		} else {
-			new LogisimMenuBar(null, null);
-			// most of the time occupied here will be in loading menus, which
-			// will occur eventually anyway; we might as well do it when the
-			// monitor says we are
-		}
+		new LogisimMenuBar(null, null);
+		// most of the time occupied here will be in loading menus, which
+		// will occur eventually anyway; we might as well do it when the
+		// monitor says we are
 
 		// if user has double-clicked a file to open, we'll
 		// use that as the file to open now.
@@ -246,9 +224,6 @@ public class Startup {
 		
 		Startup ret = new Startup(isTty);
 		startupTemp = ret;
-		if (!isTty) {
-			registerHandler();
-		}
 		
 		if (isClearPreferences) {
 			AppPreferences.clear();

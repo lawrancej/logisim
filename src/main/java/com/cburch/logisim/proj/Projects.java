@@ -17,7 +17,6 @@ import java.util.WeakHashMap;
 
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.gui.main.Frame;
-import com.cburch.logisim.util.MacCompatibility;
 import com.cburch.logisim.util.PropertyChangeWeakSupport;
 
 public class Projects {
@@ -59,7 +58,7 @@ public class Projects {
 			if (frame == proj.getFrame()) {
 				projectRemoved(proj, frame, this);
 			}
-			if (openProjects.isEmpty() && !MacCompatibility.isSwingUsingScreenMenuBar()) {
+			if (openProjects.isEmpty()) {
 				ProjectActions.doQuit();
 			}
 		}

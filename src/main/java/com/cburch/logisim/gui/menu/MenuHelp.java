@@ -5,7 +5,6 @@ package com.cburch.logisim.gui.menu;
 
 import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.start.About;
-import com.cburch.logisim.util.MacCompatibility;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,10 +41,8 @@ class MenuHelp extends JMenu implements ActionListener {
 		add(tutorial);
 		add(guide);
 		add(library);
-		if (!MacCompatibility.isAboutAutomaticallyPresent()) {
-			addSeparator();
-			add(about);
-		}
+		addSeparator();
+		add(about);
 	}
 
 	public void localeChanged() {

@@ -22,7 +22,6 @@ import javax.swing.filechooser.FileFilter;
 import com.cburch.logisim.std.Builtin;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.util.JFileChoosers;
-import com.cburch.logisim.util.MacCompatibility;
 import com.cburch.logisim.util.ZipClassLoader;
 import static com.cburch.logisim.util.LocaleString.*;
 
@@ -185,9 +184,6 @@ public class Loader implements LibraryLoader {
 		
 		FileOutputStream fwrite = null;
 		try {
-			try {
-				MacCompatibility.setFileCreatorAndType(dest, "LGSM", "circ");
-			} catch (IOException e) { }
 			fwrite = new FileOutputStream(dest);
 			file.write(fwrite, this);
 			file.setName(toProjectName(dest));
