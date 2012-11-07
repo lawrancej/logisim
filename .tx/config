@@ -1,0 +1,99 @@
+[main]
+host = https://www.transifex.com
+
+[logisim.analyze]
+file_filter = src\main\resources\logisim\<lang>\analyze.properties
+source_file = src\main\resources\logisim\en\analyze.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.circuit]
+file_filter = src\main\resources\logisim\<lang>\circuit.properties
+source_file = src\main\resources\logisim\en\circuit.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.data]
+file_filter = src\main\resources\logisim\<lang>\data.properties
+source_file = src\main\resources\logisim\en\data.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.draw]
+file_filter = src\main\resources\logisim\<lang>\draw.properties
+source_file = src\main\resources\logisim\en\draw.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.file]
+file_filter = src\main\resources\logisim\<lang>\file.properties
+source_file = src\main\resources\logisim\en\file.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.gui]
+file_filter = src\main\resources\logisim\<lang>\gui.properties
+source_file = src\main\resources\logisim\en\gui.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.hex]
+file_filter = src\main\resources\logisim\<lang>\hex.properties
+source_file = src\main\resources\logisim\en\hex.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.log]
+file_filter = src\main\resources\logisim\<lang>\log.properties
+source_file = src\main\resources\logisim\en\log.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.menu]
+file_filter = src\main\resources\logisim\<lang>\menu.properties
+source_file = src\main\resources\logisim\en\menu.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.opts]
+file_filter = src\main\resources\logisim\<lang>\opts.properties
+source_file = src\main\resources\logisim\en\opts.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.prefs]
+file_filter = src\main\resources\logisim\<lang>\prefs.properties
+source_file = src\main\resources\logisim\en\prefs.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.proj]
+file_filter = src\main\resources\logisim\<lang>\proj.properties
+source_file = src\main\resources\logisim\en\proj.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.start]
+file_filter = src\main\resources\logisim\<lang>\start.properties
+source_file = src\main\resources\logisim\en\start.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.std]
+file_filter = src\main\resources\logisim\<lang>\std.properties
+source_file = src\main\resources\logisim\en\std.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.tools]
+file_filter = src\main\resources\logisim\<lang>\tools.properties
+source_file = src\main\resources\logisim\en\tools.properties
+source_lang = en
+type = PROPERTIES
+
+[logisim.util]
+file_filter = src\main\resources\logisim\<lang>\util.properties
+source_file = src\main\resources\logisim\en\util.properties
+source_lang = en
+type = PROPERTIES
+
