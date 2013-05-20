@@ -33,7 +33,7 @@ But first, you must type in the following:
 Then, inside Eclipse, import the project as usual.
 
 ## Troubleshooting Eclipse
-If you see errors in Eclipse, then install the M2E: Maven Integration for Eclipse plugin.
+If you see errors in Eclipse, then install the [M2E: Maven Integration for Eclipse](http://eclipse.org/m2e/download/) plugin.
 
 If you don't want to install Maven for Eclipse (plugin) you may be able to get by without it:
 
