@@ -38,7 +38,6 @@ import com.cburch.logisim.tools.move.MoveGesture;
 import com.cburch.logisim.tools.move.MoveRequestListener;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -309,7 +308,7 @@ public class SelectTool extends Tool {
 			if (dx != 0 || dy != 0) {
 				boolean queued = gesture.enqueueRequest(dx, dy);
 				if (queued) {
-					canvas.setErrorMessage(new ComputingMessage(dx, dy), COLOR_COMPUTING);
+					canvas.setErrorMessage(new ComputingMessage(dx, dy).toString(), COLOR_COMPUTING);
 					// maybe CPU scheduled led the request to be satisfied
 					// just before the "if(queued)" statement. In any case, it
 					// doesn't hurt to check to ensure the message belongs.
@@ -355,7 +354,7 @@ public class SelectTool extends Tool {
 							gesture = new MoveGesture(new MoveRequestHandler(canvas),
 									canvas.getCircuit(), canvas.getSelection().getAnchoredComponents());
 						}
-						canvas.setErrorMessage(new ComputingMessage(dx, dy), COLOR_COMPUTING);
+						canvas.setErrorMessage(new ComputingMessage(dx, dy).toString(), COLOR_COMPUTING);
 						MoveResult result = gesture.forceRequest(dx, dy);
 						clearCanvasMessage(canvas, dx, dy);
 						repl = result.getReplacementMap();
@@ -555,7 +554,7 @@ public class SelectTool extends Tool {
 		}
 	}
 	
-	private static class ComputingMessage implements StringGetter {
+	private static class ComputingMessage {
 		private int dx;
 		private int dy;
 		

@@ -56,7 +56,6 @@ import com.cburch.logisim.tools.ToolTipMaker;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
-import com.cburch.logisim.util.StringGetter;
 
 import java.util.List;
 import java.util.Set;
@@ -359,7 +358,7 @@ public class Canvas extends JPanel
 	}
 
 	private class MyViewport extends JViewport {
-		StringGetter errorMessage = null;
+		String errorMessage = null;
 		Color errorColor = DEFAULT_ERROR_COLOR;
 		String widthMessage = null;
 		boolean isNorth = false;
@@ -373,7 +372,7 @@ public class Canvas extends JPanel
 
 		MyViewport() { }
 
-		void setErrorMessage(StringGetter msg, Color color) {
+		void setErrorMessage(String msg, Color color) {
 			if (errorMessage != msg) {
 				errorMessage = msg;
 				errorColor = color == null ? DEFAULT_ERROR_COLOR : color;
@@ -432,7 +431,7 @@ public class Canvas extends JPanel
 					getHeight() - 10);
 			*/
 			
-			StringGetter message = errorMessage;
+			String message = errorMessage;
 			if (message != null) {
 				g.setColor(errorColor);
 				paintString(g, message.toString());
@@ -572,15 +571,15 @@ public class Canvas extends JPanel
 		else        super.repaint();
 	}
 	
-	public StringGetter getErrorMessage() {
+	public String getErrorMessage() {
 		return viewport.errorMessage;
 	}
 	
-	public void setErrorMessage(StringGetter message) {
+	public void setErrorMessage(String message) {
 		viewport.setErrorMessage(message, null);
 	}
 	
-	public void setErrorMessage(StringGetter message, Color color) {
+	public void setErrorMessage(String message, Color color) {
 		viewport.setErrorMessage(message, color);
 	}
 

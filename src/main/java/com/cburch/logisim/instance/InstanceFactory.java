@@ -28,7 +28,6 @@ import com.cburch.logisim.gui.log.Loggable;
 import com.cburch.logisim.tools.Pokable;
 import com.cburch.logisim.tools.key.KeyConfigurator;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
 import com.cburch.logisim.util.StringUtil;
 
 /**
@@ -39,8 +38,8 @@ import com.cburch.logisim.util.StringUtil;
  */
 public abstract class InstanceFactory extends AbstractComponentFactory {
 	private String name;
-	private StringGetter displayName;
-	private StringGetter defaultToolTip;
+	private String displayName;
+	private String defaultToolTip;
 	private String iconName;
 	private Icon icon;
 	private Attribute<?>[] attrs;
@@ -58,7 +57,7 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
 		this(name, StringUtil.constantGetter(name));
 	}
 	
-	public InstanceFactory(String name, StringGetter displayName) {
+	public InstanceFactory(String name, String displayName) {
 		this.name = name;
 		this.displayName = displayName;
 		this.iconName = null;
@@ -83,7 +82,7 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
 	}
 	
 	@Override
-	public StringGetter getDisplayGetter() {
+	public String getDisplayGetter() {
 		return displayName;
 	}
 	
@@ -213,11 +212,11 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
 		return portList;
 	}
 
-	public void setDefaultToolTip(StringGetter value) {
+	public void setDefaultToolTip(String value) {
 		defaultToolTip = value;
 	}
 	
-	public StringGetter getDefaultToolTip() {
+	public String getDefaultToolTip() {
 		return defaultToolTip;
 	}
 	

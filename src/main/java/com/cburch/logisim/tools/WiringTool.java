@@ -22,8 +22,6 @@ import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
@@ -289,7 +287,7 @@ public class WiringTool extends Tool {
 			if (ws.size() > 0) {
 				CircuitMutation mutation = new CircuitMutation(canvas.getCircuit());
 				mutation.addAll(ws);
-				StringGetter desc;
+				String desc;
 				if (ws.size() == 1) desc = __("addWireAction");
 				else desc = __("addWiresAction");
 				Action act = mutation.toAction(desc);
@@ -360,7 +358,7 @@ public class WiringTool extends Tool {
 			return false;
 		} else {
 			CircuitMutation xn = new CircuitMutation(canvas.getCircuit());
-			StringGetter actName;
+			String actName;
 			Wire result = getShortenResult(shorten, drag0, drag1);
 			if (result == null) {
 				xn.remove(shorten);

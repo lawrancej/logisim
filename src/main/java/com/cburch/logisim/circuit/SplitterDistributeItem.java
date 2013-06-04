@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 class SplitterDistributeItem extends JMenuItem implements ActionListener {
@@ -33,11 +32,11 @@ class SplitterDistributeItem extends JMenuItem implements ActionListener {
 				same = false;
 			}
 		}
-		setEnabled(!same);
-		setText(toGetter().toString());
+		setEnabled(!same);   
+		setText(toGetter());
 	}
 	
-	private StringGetter toGetter() {
+	private String toGetter(){
 		if (order > 0) {
 			return __("splitterDistributeAscending");
 		} else {

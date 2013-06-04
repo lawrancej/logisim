@@ -29,7 +29,6 @@ import com.cburch.logisim.analyze.model.OutputExpressionsListener;
 import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.Parser;
 import com.cburch.logisim.analyze.model.ParserException;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString._;
 
 class ExpressionTab extends AnalyzerTab implements TabInterface {
@@ -125,7 +124,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 	private MyListener myListener = new MyListener();
 	private AnalyzerModel model;
 	private int curExprStringLength = 0;
-	private StringGetter errorMessage;
+	private String errorMessage;
 	
 	public ExpressionTab(AnalyzerModel model) {
 		this.model = model;
@@ -202,7 +201,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 		return selector.getSelectedOutput();
 	}
 	
-	private void setError(StringGetter msg) {
+	private void setError(String msg) {
 		if (msg == null) {
 			errorMessage = null;
 			error.setText(" ");

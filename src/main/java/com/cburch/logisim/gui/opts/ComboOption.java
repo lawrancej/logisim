@@ -6,13 +6,12 @@ package com.cburch.logisim.gui.opts;
 import javax.swing.JComboBox;
 
 import com.cburch.logisim.data.AttributeOption;
-import com.cburch.logisim.util.StringGetter;
 
 class ComboOption {
 	private Object value;
-	private StringGetter getter;
+	private String getter;
 	
-	ComboOption(String value, StringGetter getter) {
+	ComboOption(String value, String getter) {
 		this.value = value;
 		this.getter = getter;
 	}
@@ -24,7 +23,7 @@ class ComboOption {
 	
 	@Override
 	public String toString() {
-		if (getter != null) return getter.toString();
+		if (getter != null) return getter;
 		if (value instanceof AttributeOption) return ((AttributeOption) value).toDisplayString();
 		return "???";
 	}

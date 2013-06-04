@@ -19,7 +19,7 @@ public class LocaleManager {
 	private static final String SETTINGS_NAME = "settings";
 	private static ArrayList<LocaleManager> managers = new ArrayList<LocaleManager>();
 	
-	private static class LocaleGetter implements StringGetter {
+	private static class LocaleGetter {
 		private LocaleManager source;
 		private String key;
 
@@ -196,13 +196,8 @@ public class LocaleManager {
 		if (repl != null) ret = replaceAccents(ret, repl);
 		return ret;
 	}
-
-	public StringGetter getter(String key) {
-		return new LocaleGetter(this, key);
-	}
-	
-	public StringGetter getter(String key, String arg) {
-		return StringUtil.formatter(getter(key), arg);
+	public String getter(String key, String arg) {
+		return StringUtil.formatter(key, arg);
 	}
 	
 	public Locale[] getLocaleOptions() {

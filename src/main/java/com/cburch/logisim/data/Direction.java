@@ -3,7 +3,6 @@
 
 package com.cburch.logisim.data;
 
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Direction implements AttributeOptionInterface {
@@ -31,11 +30,11 @@ public class Direction implements AttributeOptionInterface {
 	}
 
 	private String name;
-	private StringGetter disp;
-	private StringGetter vert;
+	private String disp;
+	private String vert;
 	private int id;
 
-	private Direction(String name, StringGetter disp, StringGetter vert, int id) {
+	private Direction(String name, String disp, String vert, int id) {
 		this.name = name;
 		this.disp = disp;
 		this.vert = vert;
@@ -51,7 +50,7 @@ public class Direction implements AttributeOptionInterface {
 		return disp.toString();
 	}
 	
-	public StringGetter getDisplayGetter() {
+	public String getDisplayGetter() {
 		return disp;
 	}
 	

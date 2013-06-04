@@ -4,8 +4,6 @@
 package com.cburch.logisim.analyze.model;
 
 import java.util.ArrayList;
-
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Parser {
@@ -121,7 +119,7 @@ public class Parser {
 			this.text = text;
 		}
 		
-		ParserException error(StringGetter message) {
+		ParserException error(String message) {
 			return new ParserException(message, offset, length);
 		}
 	}

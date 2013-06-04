@@ -7,22 +7,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import com.cburch.logisim.prefs.PrefMonitor;
-import com.cburch.logisim.util.StringGetter;
 
 class PrefOptionList implements ActionListener, PropertyChangeListener {
 	private PrefMonitor<String> pref;
-	private StringGetter labelStr;
+	private String labelStr;
 	
 	private JLabel label;
 	private JComboBox combo;
 	
-	public PrefOptionList(PrefMonitor<String> pref, StringGetter labelStr,
+	public PrefOptionList(PrefMonitor<String> pref, String labelStr,
 			PrefOption[] options) {
 		this.pref = pref;
 		this.labelStr = labelStr;

@@ -3,15 +3,15 @@
 
 package com.cburch.logisim.analyze.model;
 
-import com.cburch.logisim.util.StringGetter;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Entry {
-	public static final Entry ZERO = new Entry("0");
-	public static final Entry ONE = new Entry("1");
-	public static final Entry DONT_CARE = new Entry("x");
-	public static final Entry BUS_ERROR = new Entry(__("busError"));
-	public static final Entry OSCILLATE_ERROR = new Entry(__("oscillateError"));
+	public static final Entry ZERO = new Entry("0",null);
+	public static final Entry ONE = new Entry("1",null);
+	public static final Entry DONT_CARE = new Entry("x",null);
+	public static final Entry BUS_ERROR = new Entry(null,__("busError"));
+	public static final Entry OSCILLATE_ERROR = new Entry(null,__("oscillateError"));
 	
 	public static Entry parse(String description) {
 		if (ZERO.description.equals(description)) return ZERO;
@@ -22,16 +22,19 @@ public class Entry {
 	}
 	
 	private String description;
-	private StringGetter errorMessage;
+	private String errorMessage;
 	
-	private Entry(String description) {
-		this.description = description;
-		this.errorMessage = null;
-	}
-	
-	private Entry(StringGetter errorMessage) {
-		this.description = "!!";
-		this.errorMessage = errorMessage;
+	private Entry(String description, String errorMessage) {
+		if (description == null){
+			this.description = "!!";
+		} else{
+			this.description = description;
+		}
+		if (errorMessage == null){
+			this.errorMessage = null;
+			} else {
+			this.errorMessage = errorMessage;
+		}
 	}
 	
 	public String getDescription() {

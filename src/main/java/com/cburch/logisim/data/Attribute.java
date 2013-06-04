@@ -4,16 +4,13 @@
 package com.cburch.logisim.data;
 
 import java.awt.Window;
-
 import javax.swing.JTextField;
-
-import com.cburch.logisim.util.StringGetter;
 
 public abstract class Attribute<V> {
 	private String name;
-	private StringGetter disp;
+	private String disp;
 
-	public Attribute(String name, StringGetter disp) {
+	public Attribute(String name, String disp) {
 		this.name = name;
 		this.disp = disp;
 	}

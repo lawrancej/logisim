@@ -6,14 +6,13 @@ package com.cburch.logisim.std.wiring;
 import javax.swing.JTextField;
 
 import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class DurationAttribute extends Attribute<Integer> {
 	private int min;
 	private int max;
 	
-	public DurationAttribute(String name, StringGetter disp, int min, int max) {
+	public DurationAttribute(String name, String disp, int min, int max) {
 		super(name, disp);
 		this.min = min;
 		this.max = max;

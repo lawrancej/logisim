@@ -8,7 +8,7 @@ import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Value;
-import com.cburch.logisim.util.StringGetter;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public abstract class RadixOption extends AttributeOption {
@@ -34,15 +34,15 @@ public abstract class RadixOption extends AttributeOption {
 	}
 	
 	private String saveName;
-	private StringGetter displayGetter;
+	private String displayGetter;
 
-	private RadixOption(String saveName, StringGetter displayGetter) {
+	private RadixOption(String saveName, String displayGetter) {
 		super(saveName, displayGetter);
 		this.saveName = saveName;
 		this.displayGetter = displayGetter;
 	}
 	
-	public StringGetter getDisplayGetter() {
+	public String getDisplayGetter() {
 		return displayGetter;
 	}
 	

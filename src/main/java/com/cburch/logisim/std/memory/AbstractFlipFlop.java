@@ -23,7 +23,6 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 abstract class AbstractFlipFlop extends InstanceFactory {
@@ -31,7 +30,7 @@ abstract class AbstractFlipFlop extends InstanceFactory {
 	
 	private Attribute<AttributeOption> triggerAttribute;
 	
-	protected AbstractFlipFlop(String name, String iconName, StringGetter desc,
+	protected AbstractFlipFlop(String name, String iconName, String desc,
 			int numInputs, boolean allowLevelTriggers) {
 		super(name, desc);
 		setIconName(iconName);

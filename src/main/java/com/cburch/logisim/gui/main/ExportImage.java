@@ -9,7 +9,6 @@ import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.StringGetter;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -248,9 +247,9 @@ class ExportImage {
 	private static class ImageFileFilter extends FileFilter {
 		private int type;
 		private String[] extensions;
-		private StringGetter desc;
+		private String desc;
 		
-		private ImageFileFilter(int type, StringGetter desc, String[] exts) {
+		private ImageFileFilter(int type, String desc, String[] exts) {
 			this.type = type;
 			this.desc = desc;
 			extensions = new String[exts.length];

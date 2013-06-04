@@ -3,14 +3,12 @@
 
 package com.cburch.logisim.analyze.model;
 
-import com.cburch.logisim.util.StringGetter;
-
 public  class ParserException extends Exception {
-	private StringGetter message;
+	private String message;
 	private int start;
 	private int length;
 	
-	public ParserException(StringGetter message, int start, int length) {
+	public ParserException(String message, int start, int length) {
 		super(message.toString());
 		this.message = message;
 		this.start = start;
@@ -22,7 +20,7 @@ public  class ParserException extends Exception {
 		return message.toString();
 	}
 	
-	public StringGetter getMessageGetter() {
+	public String getMessageGetter() {
 		return message;
 	}
 	

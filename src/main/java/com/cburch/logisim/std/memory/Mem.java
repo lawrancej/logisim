@@ -30,7 +30,6 @@ import com.cburch.logisim.tools.MenuExtender;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 abstract class Mem extends InstanceFactory {
@@ -57,7 +56,7 @@ abstract class Mem extends InstanceFactory {
 
 	private WeakHashMap<Instance,File> currentInstanceFiles;
 
-	Mem(String name, StringGetter desc, int extraPorts) {
+	Mem(String name, String desc, int extraPorts) {
 		super(name, desc);
 		currentInstanceFiles = new WeakHashMap<Instance,File>();
 		setInstancePoker(MemPoker.class);

@@ -50,13 +50,10 @@ public class LocaleString {
 	public static String _(String key, String... arg) {
 		return String.format(_(key), (Object[])arg);
 	}
-	public static StringGetter __(String s) {
-		return getInstance().sourceMap.get(s).getter(s);
+	public static String __(String s) {
+		return getInstance().sourceMap.get(s).toString();
 	}
-	public static StringGetter __(String key, String arg) {
+	public static String __(String key, String arg) {
 		return getInstance().sourceMap.get(key).getter(key, arg);
-	}
-	public static StringGetter __(String key, StringGetter arg) {
-		return __(key, arg.toString());
 	}
 }

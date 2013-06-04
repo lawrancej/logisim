@@ -17,7 +17,6 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
 import com.cburch.logisim.util.StringUtil;
 
 public abstract class AbstractComponentFactory implements ComponentFactory {
@@ -34,7 +33,7 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
 
 	public abstract String getName();
 	public String getDisplayName() { return getDisplayGetter().toString(); }
-	public StringGetter getDisplayGetter() { return StringUtil.constantGetter(getName()); }
+	public String getDisplayGetter() { return StringUtil.constantGetter(getName()); }
 	public abstract Component createComponent(Location loc, AttributeSet attrs);
 	public abstract Bounds getOffsetBounds(AttributeSet attrs);
 
