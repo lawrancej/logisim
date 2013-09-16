@@ -2,3 +2,7 @@ target
 reports
 build
 .gradle
+.project
+.classpath
+.settings
+bin
