@@ -1,0 +1,14 @@
+apply plugin: 'java'
+version = '2.7.2-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+	maven {
+		url 'http://nexus.gephi.org/nexus/content/repositories/public'
+	}
+}
+
+dependencies {
+	compile 'javax.help:javahelp:2.0.05', 'com.connectina.swing:fontchooser:1.0', 'org.apache.commons:commons-lang3:3.1', 'net.sourceforge.collections:collections-generic:4.01', fileTree(dir: 'libs', include: '*.jar')
+	testCompile 'junit:junit:4.11'
+}
