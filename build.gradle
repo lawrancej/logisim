@@ -1,6 +1,33 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
-version = '2.7.2-SNAPSHOT'
+apply plugin: 'application'
+apply plugin: 'launch4j'
+
+mainClassName = "com.cburch.logisim.Main"
+version = '2.7.2'
+description = 'Logisim: Logic Simulator'
+jar {
+	manifest {
+		attributes 'Main-Class': "com.cburch.logisim.Main"
+	}
+}
+
+launch4j {
+	mainClassName = "com.cburch.logisim.Main" // launch4j should know this from the application plugin, right?
+	jar = "lib/"+project.name+"-"+project.version+".jar"
+}
+
+buildscript {
+	repositories {
+		ivy {
+			artifactPattern 'http://gradle-launch4j.googlecode.com/files/[module]-[revision].[ext]'
+		}
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'edu.sc.seis:gradle-launch4j:1.0.5', 'net.sourceforge.nekohtml:nekohtml:1.9.18', 'javax.help:javahelp:2.0.05'
+	}
+}
 
 repositories {
 	mavenCentral()

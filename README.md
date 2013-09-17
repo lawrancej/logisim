@@ -1,46 +1,14 @@
 # README
 
-## Prerequisites
-The build script (Buildfile) requires:
+Logisim is a circuit simulator, [available here](http://ozark.hendrix.edu/~burch/logisim/).
 
-* Ruby 1.8+
-* Apache Buildr
-* Nokogiri
-* launch4j
+## Getting started for developers
+Logisim developers: Logisim uses the [Gradle build system](http://www.gradle.org), so set that up first before attempting to develop Logisim. Ensure that the gradle executable is in the system path. To build the executable for Windows, you must install [launch4j](http://launch4j.sourceforge.net/) and ensure it is on the system path.
 
-To install Ruby and Buildr, see: <http://buildr.apache.org/installing.html>
-After installing Ruby, install Nokogiri:
+The build script recognizes the following commands:
 
-    gem install nokogiri
+	gradle build     # Build application jar
+	gradle eclipse   # Build Eclipse configuration
+	gradle createExe # Build logisim executable
+	gradle run       # Run logisim from gradle
 
-To install launch4j, run the installer for launch4j: <http://launch4j.sourceforge.net/>
-Also, add launch4j to the PATH environment variable.
-
-## Building Logisim using Apache Buildr
-To build logisim, just type:
-
-    buildr clean package
-
-The generated jar (and executable) will be in the `target` folder.
-
-## Building Logisim using Eclipse
-If you do not wish to download and install Buildr, you can use Eclipse instead.
-But first, you must type in the following:
-
-    mkdir -p ~/.m2/repository/
-    cp -r libs/* ~/.m2/repository/
-
-Then, inside Eclipse, import the project as usual.
-
-## Troubleshooting Eclipse
-If you see errors in Eclipse, then install the [M2E: Maven Integration for Eclipse](http://eclipse.org/m2e/download/) plugin.
-
-If you don't want to install Maven for Eclipse (plugin) you may be able to get by without it:
-
-1. Right click on logisim (the project) -> Build Path -> Configure Build Path...
-2. Click on Add Variable...
-3. Click Configure Variables...
-4. Click New...
-
-        Name: M2_HOME
-        Path: C:\Users\yourName\.m2\repository
