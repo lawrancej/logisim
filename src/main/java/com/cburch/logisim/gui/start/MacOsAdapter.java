@@ -50,20 +50,6 @@ class MacOsAdapter { //MAC extends ApplicationAdapter {
 		MRJAdapter.addAboutListener(myListener);
 	}
 	
-	/* MAC
-	public void handleOpenFile(com.apple.eawt.ApplicationEvent event) {
-		Startup.doOpen(new File(event.getFilename()));
-	}
-	
-	public void handlePrintFile(com.apple.eawt.ApplicationEvent event) {
-		Startup.doPrint(new File(event.getFilename()));
-	}
-	
-	public void handlePreferences(com.apple.eawt.ApplicationEvent event) {
-		PreferencesFrame.showPreferences();
-	}
-	*/
-	
 	public static void register() {
 		//MAC Application.getApplication().addApplicationListener(new MacOsAdapter());
 	}

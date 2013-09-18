@@ -1,0 +1,78 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'launch4j'
+
+mainClassName = "com.cburch.logisim.Main"
+version = '2.7.2'
+description = 'Logisim: Logic Simulator'
+
+launch4j {
+	mainClassName = project.mainClassName // launch4j should know this from the application plugin, right?
+	jar = "lib/"+project.name+"-"+project.version+".jar"
+}
+
+buildscript {
+	repositories {
+		ivy {
+			artifactPattern 'http://gradle-launch4j.googlecode.com/files/[module]-[revision].[ext]'
+		}
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'edu.sc.seis:gradle-launch4j:1.0.5', 'net.sourceforge.nekohtml:nekohtml:1.9.18', 'javax.help:javahelp:2.0.05'
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven {
+		url 'http://nexus.gephi.org/nexus/content/repositories/public'
+	}
+}
+
+dependencies {
+	compile 'javax.help:javahelp:2.0.05', 'com.connectina.swing:fontchooser:1.0', 'org.apache.commons:commons-lang3:3.1', 'net.sourceforge.collections:collections-generic:4.01', fileTree(dir: 'libs', include: '*.jar')
+	testCompile 'junit:junit:4.11'
+}
+
+processResources << {
+	println "Processing Java Help..."
+	def parser = new org.cyberneko.html.parsers.SAXParser()
+	def doc_src = 'src/main/resources/doc'
+	def doc_target = 'build/resources/main/doc'
+
+	file(doc_src).listFiles().each { locale ->
+		if (locale.name.length() == 2) { // Locale names are two characters long
+	        // Build contents.xml with the id=>text mapping from locale/html/contents.html
+			def dict = [:]
+			def doc = new XmlParser(parser).parse("${doc_src}/${locale.name}/html/contents.html")
+			doc.'**'.A.each { dict[it.@id] = it.text() }
+
+			// Rewrite support/base-contents.xml as locale/contents.xml.
+			def contents = new XmlParser().parse("${doc_src}/support/base-contents.xml")
+			contents.'**'.'tocitem'.each {
+				it.@text = (dict.containsKey(it.@target)) ? dict[it.@target] : it.@target
+			}
+			new XmlNodePrinter(new File("${doc_target}/${locale.name}/contents.xml").newPrintWriter("UTF-8")).print(contents)
+
+			// Build JavaHelp map
+			def map = new XmlParser().parse("${doc_src}/support/base-map.jhm")
+			map.'**'.'mapID'.each {	it.@url = "${locale.name}/${it.@url}" }
+			new XmlNodePrinter(new PrintWriter(new FileWriter("${doc_target}/map_${locale.name}.jhm"))).print(map)
+
+			// Build HelpSet
+			def hs = new File("${doc_src}/support/base-doc.hs")
+			def out = new PrintWriter(new FileWriter("${doc_target}/doc_${locale.name}.hs"))
+			hs.eachLine { out.println(it.replace("{lang}", locale.name)) }
+			out.close()
+
+			// JavaHelp index
+			javaexec {
+				main = 'com.sun.java.help.search.Indexer'
+				classpath = sourceSets.main.compileClasspath
+				args '-c', 'jhindexer.cfg', '-db', "${doc_target}/search_lookup_${locale.name}", '-locale', locale.name, "${doc_target}/${locale.name}/html/guide", "${doc_target}/${locale.name}/html/libs"
+			}
+		}
+	}
+}
