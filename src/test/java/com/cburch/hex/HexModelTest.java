@@ -3,6 +3,11 @@
 
 package com.cburch.hex;
 
+import static org.junit.Assert.*;
+import org.junit.Test;
+import org.approvaltests.Approvals;
+import org.approvaltests.reporters.UseReporter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -15,7 +20,7 @@ import javax.swing.JScrollPane;
  * @author Carl Burch
  *
  */
-public class Test {
+public class HexModelTest {
 	private static class Model implements HexModel {
 		private ArrayList<HexModelListener> listeners
 			= new ArrayList<HexModelListener>();
@@ -71,8 +76,8 @@ public class Test {
 			}
 		}
 	}
-	
-	public static void main(String[] args) {
+	@Test
+	public void testEditorUI() throws Exception {
 		JFrame frame = new JFrame();
 		HexModel model = new Model();
 		HexEditor editor = new HexEditor(model);
@@ -80,5 +85,6 @@ public class Test {
 		frame.getContentPane().add(new JScrollPane(editor));
 		frame.pack();
 		frame.setVisible(true);
+		Approvals.approve(editor);
 	}
 }
