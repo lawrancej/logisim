@@ -11,4 +11,5 @@ The build script recognizes the following commands:
 	gradle eclipse   # Build Eclipse configuration
 	gradle createExe # Build logisim executable
 	gradle run       # Run logisim from gradle
+	gradle javadoc   # Generate Javadoc
 
