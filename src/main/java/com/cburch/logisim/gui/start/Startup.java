@@ -220,7 +220,11 @@ public class Startup {
 			AppPreferences.setTemplateType(AppPreferences.TEMPLATE_PLAIN);
 		}
 	}
-	
+	/**
+	 * Parses the command-line arguments to com.cburch.logisim.Main
+	 * @param args
+	 * @return A Startup object
+	 */
 	public static Startup parseArgs(String[] args) {
 		// see whether we'll be using any graphics
 		boolean isTty = false;
