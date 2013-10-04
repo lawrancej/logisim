@@ -6,14 +6,43 @@ package com.cburch.logisim;
 public class LogisimVersion {
 	private static final int FINAL_REVISION = Integer.MAX_VALUE / 4;
 	
+	/**
+	 * creates a new LogisimVersion object without a revision number
+	 * called in:
+	 * com.cburch.logisim.Main
+	 * com.cburch.logisim.file.XmlReader
+	 * @param major
+	 * @param minor
+	 * @param release
+	 * @return
+	 */
 	public static LogisimVersion get(int major, int minor, int release) {
 		return get(major, minor, release, FINAL_REVISION);
 	}
 
+	/**
+	 * creates a new LogisimVersion object with a revision number
+	 * called in:
+	 * com.cburch.logisim.circuit.SplitterFactory
+	 * com.cburch.logisim.std.plexers.Decoder
+	 * com.cburch.logisim.std.plexers.Demultiplexer
+	 * com.cburch.logisim.std.plexers.Multiplexer
+	 * @param major
+	 * @param minor
+	 * @param release
+	 * @param revision
+	 * @return
+	 */
 	public static LogisimVersion get(int major, int minor, int release, int revision) {
 		return new LogisimVersion(major, minor, release, revision);
 	}
 	
+	/**
+	 * breaks up a single string containing the version number into several integers.
+	 * uses "\\." as delimiter.
+	 * @param versionString
+	 * @return
+	 */
 	public static LogisimVersion parse(String versionString) {
 		String[] parts = versionString.split("\\.");
 		int major = 0;
@@ -35,6 +64,13 @@ public class LogisimVersion {
 	private int revision;
 	private String repr;
 	
+	/**
+	 * setter for variables that make up the logisim version number
+	 * @param major
+	 * @param minor
+	 * @param release
+	 * @param revision
+	 */
 	private LogisimVersion(int major, int minor, int release, int revision) {
 		this.major = major;
 		this.minor = minor;
@@ -51,6 +87,9 @@ public class LogisimVersion {
 		return ret;
 	}
 	
+	/**
+	 * checks if 2 objects of LogisimVersion are the same
+	 */
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof LogisimVersion) {
