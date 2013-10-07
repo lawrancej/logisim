@@ -2,18 +2,43 @@
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
 package com.cburch.logisim;
-
+/**
+ * handles everything involving Logisim's version number
+ * @author steinmetzr
+ *
+ */
 public class LogisimVersion {
 	private static final int FINAL_REVISION = Integer.MAX_VALUE / 4;
 	
+	/**
+	 * creates a new LogisimVersion object without a revision number
+	 * @param major
+	 * @param minor
+	 * @param release
+	 * @return a LogisimVersion object
+	 */
 	public static LogisimVersion get(int major, int minor, int release) {
 		return get(major, minor, release, FINAL_REVISION);
 	}
 
+	/**
+	 * creates a new LogisimVersion object with a revision number
+	 * @param major
+	 * @param minor
+	 * @param release
+	 * @param revision
+	 * @return a LogisimVersion object
+	 */
 	public static LogisimVersion get(int major, int minor, int release, int revision) {
 		return new LogisimVersion(major, minor, release, revision);
 	}
 	
+	/**
+	 * breaks up a single string containing the version number into several integers.
+	 * uses "\\." as delimiter.
+	 * @param versionString
+	 * @return a LogisimVersion object
+	 */
 	public static LogisimVersion parse(String versionString) {
 		String[] parts = versionString.split("\\.");
 		int major = 0;
@@ -35,6 +60,13 @@ public class LogisimVersion {
 	private int revision;
 	private String repr;
 	
+	/**
+	 * setter for variables that make up the Logisim version number
+	 * @param major
+	 * @param minor
+	 * @param release
+	 * @param revision
+	 */
 	private LogisimVersion(int major, int minor, int release, int revision) {
 		this.major = major;
 		this.minor = minor;
@@ -43,6 +75,10 @@ public class LogisimVersion {
 		this.repr = null;
 	}
 	
+	/**
+	 * converts version number into a hashCode
+	 * @return ret
+	 */
 	@Override
 	public int hashCode() {
 		int ret = major * 31 + minor;
@@ -51,6 +87,11 @@ public class LogisimVersion {
 		return ret;
 	}
 	
+	/**
+	 * checks if 2 objects of class LogisimVersion are the same
+	 * @param other
+	 * @return boolean value
+	 */
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof LogisimVersion) {
@@ -62,6 +103,11 @@ public class LogisimVersion {
 		}
 	}
 	
+	/**
+	 * determines the order of 2 objects of class LogisimVersion by version number
+	 * @param other
+	 * @return a number not equal to 0 if objects are different or 0 if they are the same
+	 */
 	public int compareTo(LogisimVersion other) {
 		int ret = this.major - other.major;
 		if (ret != 0) {
@@ -81,6 +127,10 @@ public class LogisimVersion {
 		}
 	}
 	
+	/**
+	 * converts version number into a string
+	 * @return ret
+	 */
 	@Override
 	public String toString() {
 		String ret = repr;
