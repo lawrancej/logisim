@@ -3,15 +3,15 @@
 
 package com.cburch.logisim;
 /**
- * handles everything involving Logisim's version number
- * @author steinmetzr
+ * Handles everything involving Logisim's version number
+ * @author Carl Burch, Ryan Steinmetz
  *
  */
-public class LogisimVersion {
+public class LogisimVersion implements Comparable<LogisimVersion> {
 	private static final int FINAL_REVISION = Integer.MAX_VALUE / 4;
 	
 	/**
-	 * creates a new LogisimVersion object without a revision number
+	 * Creates a new LogisimVersion object without a revision number
 	 * @param major
 	 * @param minor
 	 * @param release
@@ -22,7 +22,7 @@ public class LogisimVersion {
 	}
 
 	/**
-	 * creates a new LogisimVersion object with a revision number
+	 * Creates a new LogisimVersion object with a revision number
 	 * @param major
 	 * @param minor
 	 * @param release
@@ -34,8 +34,8 @@ public class LogisimVersion {
 	}
 	
 	/**
-	 * breaks up a single string containing the version number into several integers.
-	 * uses "\\." as delimiter.
+	 * Breaks up a single string containing the version number into several integers.
+	 * Uses "." as delimiter.
 	 * @param versionString
 	 * @return a LogisimVersion object
 	 */
@@ -61,7 +61,7 @@ public class LogisimVersion {
 	private String repr;
 	
 	/**
-	 * setter for variables that make up the Logisim version number
+	 * Logisim version number constructor. Versions have the form: major.minor.release.revision
 	 * @param major
 	 * @param minor
 	 * @param release
@@ -75,23 +75,6 @@ public class LogisimVersion {
 		this.repr = null;
 	}
 	
-	/**
-	 * converts version number into a hashCode
-	 * @return ret
-	 */
-	@Override
-	public int hashCode() {
-		int ret = major * 31 + minor;
-		ret = ret * 31 + release;
-		ret = ret * 31 + revision;
-		return ret;
-	}
-	
-	/**
-	 * checks if 2 objects of class LogisimVersion are the same
-	 * @param other
-	 * @return boolean value
-	 */
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof LogisimVersion) {
@@ -103,28 +86,15 @@ public class LogisimVersion {
 		}
 	}
 	
-	/**
-	 * determines the order of 2 objects of class LogisimVersion by version number
-	 * @param other
-	 * @return a number not equal to 0 if objects are different or 0 if they are the same
-	 */
+	@Override
 	public int compareTo(LogisimVersion other) {
 		int ret = this.major - other.major;
-		if (ret != 0) {
-			return ret;
-		} else {
-			ret = this.minor - other.minor;
-			if (ret != 0) {
-				return ret;
-			} else {
-				ret = this.release - other.release;
-				if (ret != 0) {
-					return ret;
-				} else {
-					return this.revision - other.revision;
-				}
-			}
-		}
+		if (ret != 0) return ret;
+		ret = this.minor - other.minor;
+		if (ret != 0) return ret;
+		ret = this.release - other.release;
+		if (ret != 0) return ret;
+		return this.revision - other.revision;
 	}
 	
 	/**
