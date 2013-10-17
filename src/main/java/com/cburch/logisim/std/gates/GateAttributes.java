@@ -54,8 +54,8 @@ class GateAttributes extends AbstractAttributeSet {
 
 	Direction facing = Direction.EAST;
 	BitWidth width = BitWidth.ONE;
-	AttributeOption size = SIZE_MEDIUM;
-	int inputs = 5;
+	AttributeOption size = SIZE_NARROW;
+	int inputs = 2;
 	int negated = 0;
 	AttributeOption out = OUTPUT_01;
 	AttributeOption xorBehave;
