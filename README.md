@@ -1,46 +1,38 @@
 # README
 
-## Prerequisites
-The build script (Buildfile) requires:
+Logisim is a circuit simulator, [originally available here](http://ozark.hendrix.edu/~burch/logisim/).
 
-* Ruby 1.8+
-* Apache Buildr
-* Nokogiri
-* launch4j
+## Why this fork of Logisim?
+Carl Burch, the original author of Logisim, abandoned development in 2011 and moved on to a similar successor project, [Toves](http://www.toves.org/) in 2013, because Logisim's code base is in need of a major overhaul. Rather than start from scratch ([something you should never do](http://www.joelonsoftware.com/articles/fog0000000069.html)), this fork of Logisim picks up where Dr. Burch left off to improve Logisim incrementally.
 
-To install Ruby and Buildr, see: <http://buildr.apache.org/installing.html>
-After installing Ruby, install Nokogiri:
+## What's wrong with Logisim?
+Logisim's code itself has numerous smells. Here's an incomplete list of these:
 
-    gem install nokogiri
+* No test suite!
+* Undocumented packages, classes, methods
+* Duplicated and dead code
+* No coherent organization (it should be MVC)
+* High coupling, low cohesion (it would benefit from IoC).
+* Unnecessarily reimplements functionality found in standard or third party libraries (e.g., it has it's own Toolbar classes)
+* Code to draw components is too low-level
 
-To install launch4j, run the installer for launch4j: <http://launch4j.sourceforge.net/>
-Also, add launch4j to the PATH environment variable.
+Logisim's user interface has numerous gotchas that need to be addressed. Here's some of the more important issues:
 
-## Building Logisim using Apache Buildr
-To build logisim, just type:
+* The file format is not merge-friendly, making it impossible for students to collaborate on circuits.
+* Unreasonable defaults
+* Limited interaction styles
+* Single (graphical) view of circuit
 
-    buildr clean package
+## What's right with Logisim?
+It is arguably the best free tool for teaching circuit design, which is why its development must continue.
 
-The generated jar (and executable) will be in the `target` folder.
+## Getting started for developers
+Logisim developers: Logisim uses the [Gradle build system](http://www.gradle.org), so set that up first before attempting to develop Logisim. Ensure that the gradle executable is in the system path. To build the executable for Windows, you must install [launch4j](http://launch4j.sourceforge.net/) and ensure it is on the system path.
 
-## Building Logisim using Eclipse
-If you do not wish to download and install Buildr, you can use Eclipse instead.
-But first, you must type in the following:
+The build script recognizes the following commands:
 
-    mkdir -p ~/.m2/repository/
-    cp -r libs/* ~/.m2/repository/
+	gradle build     # Build application jar
+	gradle eclipse   # Build Eclipse configuration
+	gradle createExe # Build logisim executable
+	gradle run       # Run logisim from gradle
 
-Then, inside Eclipse, import the project as usual.
-
-## Troubleshooting Eclipse
-If you see errors in Eclipse, then install the M2E: Maven Integration for Eclipse plugin.
-
-If you don't want to install Maven for Eclipse (plugin) you may be able to get by without it:
-
-1. Right click on logisim (the project) -> Build Path -> Configure Build Path...
-2. Click on Add Variable...
-3. Click Configure Variables...
-4. Click New...
-
-        Name: M2_HOME
-        Path: C:\Users\yourName\.m2\repository

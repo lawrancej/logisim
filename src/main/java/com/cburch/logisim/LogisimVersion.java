@@ -2,18 +2,43 @@
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
 package com.cburch.logisim;
-
-public class LogisimVersion {
+/**
+ * Handles everything involving Logisim's version number
+ * @author Carl Burch, Ryan Steinmetz
+ *
+ */
+public class LogisimVersion implements Comparable<LogisimVersion> {
 	private static final int FINAL_REVISION = Integer.MAX_VALUE / 4;
 	
+	/**
+	 * Creates a new LogisimVersion object without a revision number
+	 * @param major
+	 * @param minor
+	 * @param release
+	 * @return a LogisimVersion object
+	 */
 	public static LogisimVersion get(int major, int minor, int release) {
 		return get(major, minor, release, FINAL_REVISION);
 	}
 
+	/**
+	 * Creates a new LogisimVersion object with a revision number
+	 * @param major
+	 * @param minor
+	 * @param release
+	 * @param revision
+	 * @return a LogisimVersion object
+	 */
 	public static LogisimVersion get(int major, int minor, int release, int revision) {
 		return new LogisimVersion(major, minor, release, revision);
 	}
 	
+	/**
+	 * Breaks up a single string containing the version number into several integers.
+	 * Uses "." as delimiter.
+	 * @param versionString
+	 * @return a LogisimVersion object
+	 */
 	public static LogisimVersion parse(String versionString) {
 		String[] parts = versionString.split("\\.");
 		int major = 0;
@@ -35,20 +60,19 @@ public class LogisimVersion {
 	private int revision;
 	private String repr;
 	
+	/**
+	 * Logisim version number constructor. Versions have the form: major.minor.release.revision
+	 * @param major
+	 * @param minor
+	 * @param release
+	 * @param revision
+	 */
 	private LogisimVersion(int major, int minor, int release, int revision) {
 		this.major = major;
 		this.minor = minor;
 		this.release = release;
 		this.revision = revision;
 		this.repr = null;
-	}
-	
-	@Override
-	public int hashCode() {
-		int ret = major * 31 + minor;
-		ret = ret * 31 + release;
-		ret = ret * 31 + revision;
-		return ret;
 	}
 	
 	@Override
@@ -62,25 +86,21 @@ public class LogisimVersion {
 		}
 	}
 	
+	@Override
 	public int compareTo(LogisimVersion other) {
 		int ret = this.major - other.major;
-		if (ret != 0) {
-			return ret;
-		} else {
-			ret = this.minor - other.minor;
-			if (ret != 0) {
-				return ret;
-			} else {
-				ret = this.release - other.release;
-				if (ret != 0) {
-					return ret;
-				} else {
-					return this.revision - other.revision;
-				}
-			}
-		}
+		if (ret != 0) return ret;
+		ret = this.minor - other.minor;
+		if (ret != 0) return ret;
+		ret = this.release - other.release;
+		if (ret != 0) return ret;
+		return this.revision - other.revision;
 	}
 	
+	/**
+	 * converts version number into a string
+	 * @return ret
+	 */
 	@Override
 	public String toString() {
 		String ret = repr;
