@@ -12,6 +12,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class SplitterDistributeItem extends JMenuItem implements ActionListener {
 	private Project proj;
 	private Splitter splitter;

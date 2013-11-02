@@ -18,6 +18,7 @@ import static com.cburch.logisim.util.LocaleString._;
 
 import javax.swing.JComponent;
 
+@SuppressWarnings("serial")
 class AboutCredits extends JComponent {
 	/** Time to spend freezing the credits before after after scrolling */
 	private static final int MILLIS_FREEZE = 1000;

@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 
 import com.cburch.logisim.prefs.AppPreferences;
 
+@SuppressWarnings("serial")
 public class JFileChoosers {
 	/* A user reported that JFileChooser's constructor sometimes resulted in
 	 * IOExceptions when Logisim is installed under a system administrator

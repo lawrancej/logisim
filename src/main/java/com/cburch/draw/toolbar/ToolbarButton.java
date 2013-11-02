@@ -13,6 +13,7 @@ import javax.swing.JComponent;
 
 import com.cburch.logisim.util.GraphicsUtil;
 
+@SuppressWarnings("serial")
 class ToolbarButton extends JComponent implements MouseListener {
 	private static final int BORDER = 2;
 	

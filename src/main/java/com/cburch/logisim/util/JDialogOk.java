@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public abstract class JDialogOk extends JDialog {
 	private class MyListener extends WindowAdapter
 			implements ActionListener {

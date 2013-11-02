@@ -5,8 +5,11 @@ package com.cburch.logisim.circuit;
 
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class AnalyzeException extends Exception {
+
 	public static class Circular extends AnalyzeException {
+
 		public Circular() {
 			super(_("analyzeCircularError"));
 		}

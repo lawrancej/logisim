@@ -11,6 +11,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
 
+@SuppressWarnings("serial")
 class ProjectExplorerModel extends DefaultTreeModel implements ProjectListener {
 	static abstract class Node<T> extends DefaultMutableTreeNode {
 		ProjectExplorerModel model;

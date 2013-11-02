@@ -19,6 +19,7 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class WindowMenu extends JMenu {
 	private class MyListener implements LocaleListener, ActionListener {
 		public void localeChanged() {

@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JRadioButtonMenuItem;
 
+@SuppressWarnings("serial")
 class WindowMenuItem extends JRadioButtonMenuItem {
 	private WindowMenuItemManager manager;
 	

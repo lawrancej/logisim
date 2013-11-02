@@ -20,6 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class MenuHelp extends JMenu implements ActionListener {
 	private LogisimMenuBar menubar;
 	private JMenuItem tutorial = new JMenuItem();

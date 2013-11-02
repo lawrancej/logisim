@@ -20,6 +20,7 @@ import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenu;
 
+@SuppressWarnings("serial")
 public class LogisimMenuBar extends JMenuBar {
 	public static final LogisimMenuItem PRINT = new LogisimMenuItem("Print");
 	public static final LogisimMenuItem EXPORT_IMAGE = new LogisimMenuItem("ExportImage");

@@ -24,6 +24,7 @@ import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class Popups {
 	private static class ProjectPopup extends JPopupMenu
 			implements ActionListener {
@@ -92,7 +93,6 @@ public class Popups {
 	private static class CircuitPopup extends JPopupMenu
 			implements ActionListener {
 		Project proj;
-		Tool tool;
 		Circuit circuit;
 		JMenuItem analyze = new JMenuItem(_("projectAnalyzeCircuitItem"));
 		JMenuItem stats = new JMenuItem(_("projectGetCircuitStatisticsItem"));
@@ -104,7 +104,6 @@ public class Popups {
 		CircuitPopup(Project proj, Tool tool, Circuit circuit) {
 			super(_("circuitMenu"));
 			this.proj = proj;
-			this.tool = tool;
 			this.circuit = circuit;
 
 			add(editLayout); editLayout.addActionListener(this);

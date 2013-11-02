@@ -33,6 +33,7 @@ import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenuItemManager;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class LogFrame extends LFrame {
 	// TODO should automatically repaint icons when component attr change
 	// TODO ? moving a component using Select tool removes it from selection

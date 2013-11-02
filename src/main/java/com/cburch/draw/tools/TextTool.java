@@ -32,6 +32,7 @@ import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.Icons;
 
+@SuppressWarnings("serial")
 public class TextTool extends AbstractTool {
 	private class FieldListener extends AbstractAction implements AttributeListener {
 		public void actionPerformed(ActionEvent e) {
@@ -53,6 +54,7 @@ public class TextTool extends AbstractTool {
 	}
 	
 	private class CancelListener extends AbstractAction {
+
 		public void actionPerformed(ActionEvent e) {
 			cancelText(curCanvas);
 		}

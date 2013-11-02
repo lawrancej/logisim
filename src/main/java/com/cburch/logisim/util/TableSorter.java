@@ -70,6 +70,8 @@ import java.lang.reflect.InvocationTargetException;
  * @version 2.1 04/29/06
  */
 
+//FIXME: used Glazed Lists instead
+@SuppressWarnings("serial")
 public class TableSorter extends AbstractTableModel {
 	protected TableModel tableModel;
 

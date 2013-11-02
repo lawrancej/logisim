@@ -178,6 +178,7 @@ public class Rom extends Mem {
 		}
 	}
 		
+	@SuppressWarnings("serial")
 	private static class ContentsCell extends JLabel
 			implements MouseListener {
 		Window source;

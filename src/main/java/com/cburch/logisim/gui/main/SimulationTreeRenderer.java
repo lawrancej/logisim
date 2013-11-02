@@ -16,6 +16,7 @@ import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.gui.generic.ProjectExplorer;
 
+@SuppressWarnings("serial")
 public class SimulationTreeRenderer extends DefaultTreeCellRenderer {
 	private static class RendererIcon implements Icon {
 		private ComponentFactory factory;

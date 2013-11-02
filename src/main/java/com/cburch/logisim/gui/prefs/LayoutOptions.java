@@ -10,6 +10,7 @@ import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.TableLayout;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class LayoutOptions extends OptionsPanel {
 	private PrefBoolean[] checks;
 	private PrefOptionList afterAdd;

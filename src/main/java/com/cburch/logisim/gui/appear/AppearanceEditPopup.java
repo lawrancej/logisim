@@ -11,6 +11,7 @@ import com.cburch.logisim.gui.menu.EditPopup;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.gui.menu.LogisimMenuItem;
 
+@SuppressWarnings("serial")
 public class AppearanceEditPopup extends EditPopup implements EditHandler.Listener {
 	private AppearanceCanvas canvas;
 	private EditHandler handler;

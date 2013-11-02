@@ -69,8 +69,10 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class Canvas extends JPanel
 		implements LocaleListener, CanvasPaneContents {
+
 	public static final Color HALO_COLOR = new Color(192, 255, 255);
 	
 	private static final int BOUNDS_BUFFER = 70;

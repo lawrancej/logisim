@@ -14,6 +14,7 @@ import com.cburch.logisim.file.LibraryEvent;
 import com.cburch.logisim.file.LibraryListener;
 import com.cburch.logisim.tools.Library;
 
+@SuppressWarnings("serial")
 public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Library>
 		implements LibraryListener {
 	private LogisimFile file;

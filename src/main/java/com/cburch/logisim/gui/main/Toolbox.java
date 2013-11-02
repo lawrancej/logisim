@@ -13,6 +13,7 @@ import com.cburch.logisim.gui.generic.ProjectExplorer;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
 
+@SuppressWarnings("serial")
 class Toolbox extends JPanel {
 	private ProjectExplorer toolbox;
 	

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import com.cburch.logisim.prefs.AppPreferences;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class ExperimentalOptions extends OptionsPanel {
 	private JLabel accelRestart = new JLabel();
 	private PrefOptionList accel;

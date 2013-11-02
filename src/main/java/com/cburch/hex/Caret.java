@@ -27,6 +27,7 @@ import javax.swing.KeyStroke;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+@SuppressWarnings("serial")
 public class Caret {
 	private static Color SELECT_COLOR = new Color(192, 192, 255);
 	

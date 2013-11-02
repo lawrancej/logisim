@@ -5,6 +5,7 @@ package com.cburch.logisim.gui.menu;
 
 import javax.swing.JMenu;
 
+@SuppressWarnings("serial")
 abstract class Menu extends JMenu {
 	abstract void computeEnabled();
 }

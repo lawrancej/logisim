@@ -29,6 +29,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.std.wiring.Pin;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class Analyze {
 	private static final int MAX_ITERATIONS = 100;
 	

@@ -23,6 +23,7 @@ import com.cburch.logisim.Main;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.util.GraphicsUtil;
 
+@SuppressWarnings("serial")
 public class About {
 	static final int IMAGE_BORDER = 10;
 	static final int IMAGE_WIDTH = 380;

@@ -12,6 +12,7 @@ import javax.swing.ListSelectionModel;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Value;
 
+@SuppressWarnings("serial")
 class SelectionList extends JList {
 	private class Model extends AbstractListModel
 			implements ModelListener {

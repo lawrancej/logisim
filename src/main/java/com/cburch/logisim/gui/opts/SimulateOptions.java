@@ -20,6 +20,7 @@ import com.cburch.logisim.file.Options;
 import com.cburch.logisim.util.TableLayout;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class SimulateOptions extends OptionsPanel {
 	private class MyListener implements ActionListener, AttributeListener {
 		public void actionPerformed(ActionEvent event) {

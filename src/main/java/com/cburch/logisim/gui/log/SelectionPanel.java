@@ -23,6 +23,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreePath;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class SelectionPanel extends LogPanel {
 	private class Listener extends MouseAdapter
 			implements ActionListener, TreeSelectionListener,

@@ -5,6 +5,7 @@ package com.cburch.draw.undo;
 
 import java.util.EventObject;
 
+@SuppressWarnings("serial")
 public class UndoLogEvent extends EventObject {
 	public static final int ACTION_DONE = 0;
 	public static final int ACTION_UNDONE = 1;

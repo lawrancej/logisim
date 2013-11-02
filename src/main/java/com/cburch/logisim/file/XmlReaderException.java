@@ -6,6 +6,7 @@ package com.cburch.logisim.file;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings("serial")
 class XmlReaderException extends Exception {
 	private List<String> messages;
 	

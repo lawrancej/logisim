@@ -13,6 +13,7 @@ import javax.swing.JMenuItem;
 import com.cburch.logisim.proj.Project;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class MenuProject extends Menu {
 	private class MyListener
 			implements ActionListener {

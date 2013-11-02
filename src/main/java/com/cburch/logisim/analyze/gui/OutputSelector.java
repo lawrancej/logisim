@@ -17,9 +17,10 @@ import com.cburch.logisim.analyze.model.VariableListEvent;
 import com.cburch.logisim.analyze.model.VariableListListener;
 import static com.cburch.logisim.util.LocaleString._;
 
+@SuppressWarnings("serial")
 class OutputSelector {
-	private class Model extends AbstractListModel
-			implements ComboBoxModel, VariableListListener {
+	private class Model extends AbstractListModel<String>
+			implements ComboBoxModel<String>, VariableListListener {
 		private Object selected;
 
 		public void setSelectedItem(Object value) {
@@ -34,7 +35,7 @@ class OutputSelector {
 			return source.size();
 		}
 
-		public Object getElementAt(int index) {
+		public String getElementAt(int index) {
 			return source.get(index);
 		}
 
@@ -94,7 +95,7 @@ class OutputSelector {
 
 	private VariableList source;
 	private JLabel label = new JLabel();
-	private JComboBox select = new JComboBox();
+	private JComboBox<String> select = new JComboBox<String>();
 	private String prototypeValue = null;
 	
 	public OutputSelector(AnalyzerModel model) {
@@ -116,7 +117,7 @@ class OutputSelector {
 		return label;
 	}
 	
-	public JComboBox getComboBox() {
+	public JComboBox<String> getComboBox() {
 		return select;
 	}
 	

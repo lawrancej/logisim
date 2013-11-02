@@ -3,6 +3,7 @@
 
 package com.cburch.logisim.file;
 
+@SuppressWarnings("serial")
 public class LoadFailedException extends Exception {
 	private boolean shown;
 	

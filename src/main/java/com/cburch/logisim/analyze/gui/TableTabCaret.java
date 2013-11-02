@@ -27,6 +27,7 @@ import com.cburch.logisim.analyze.model.TruthTableEvent;
 import com.cburch.logisim.analyze.model.TruthTableListener;
 import com.cburch.logisim.util.GraphicsUtil;
 
+@SuppressWarnings("serial")
 class TableTabCaret {
 	private static Color SELECT_COLOR = new Color(192, 192, 255);
 

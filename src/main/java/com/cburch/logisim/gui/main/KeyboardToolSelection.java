@@ -15,6 +15,7 @@ import com.cburch.draw.toolbar.Toolbar;
 import com.cburch.draw.toolbar.ToolbarItem;
 import com.cburch.draw.toolbar.ToolbarModel;
 
+@SuppressWarnings("serial")
 public class KeyboardToolSelection extends AbstractAction {
 	public static void register(Toolbar toolbar) {
 		ActionMap amap = toolbar.getActionMap();

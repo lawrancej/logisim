@@ -30,6 +30,7 @@ import com.cburch.logisim.analyze.model.VariableListEvent;
 import com.cburch.logisim.analyze.model.VariableListListener;
 import static com.cburch.logisim.util.LocaleString._;
 
+@SuppressWarnings("serial")
 class VariableTab extends AnalyzerTab implements TabInterface {
 	private static class VariableListModel extends AbstractListModel
 			implements VariableListListener {
@@ -135,31 +136,6 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 
 		public void valueChanged(ListSelectionEvent event) {
 			computeEnabled();
-		}
-		
-		public void listChanged(VariableListEvent event) {
-			switch (event.getType()) {
-			case VariableListEvent.ALL_REPLACED:
-				list.setSelectedIndices(new int[0]);
-				break;
-			case VariableListEvent.REMOVE:
-				if (event.getVariable().equals(list.getSelectedValue())) {
-					int index = ((Integer) event.getData()).intValue();
-					if (index >= data.size()) {
-						if (data.isEmpty()) {
-							list.setSelectedIndices(new int[0]);
-						}
-						index = data.size() - 1;
-					}
-					list.setSelectedValue(data.get(index), true);
-				}
-				break;
-			case VariableListEvent.ADD:
-			case VariableListEvent.MOVE:
-			case VariableListEvent.REPLACE:
-				break;
-			}
-			list.validate();
 		}
 	}
 	

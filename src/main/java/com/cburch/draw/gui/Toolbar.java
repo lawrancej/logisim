@@ -19,6 +19,7 @@ import com.cburch.draw.tools.AbstractTool;
 import com.cburch.draw.tools.DrawingAttributeSet;
 import com.cburch.logisim.util.GraphicsUtil;
 
+@SuppressWarnings("serial")
 class Toolbar extends JComponent {
 	private static int ICON_WIDTH = 16;
 	private static int ICON_HEIGHT = 16;

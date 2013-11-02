@@ -35,6 +35,7 @@ import com.cburch.logisim.gui.generic.CanvasPaneContents;
 import com.cburch.logisim.gui.generic.GridPainter;
 import com.cburch.logisim.proj.Project;
 
+@SuppressWarnings("serial")
 public class AppearanceCanvas extends Canvas
 		implements CanvasPaneContents, ActionDispatcher {
 	private static final int BOUNDS_BUFFER = 70;

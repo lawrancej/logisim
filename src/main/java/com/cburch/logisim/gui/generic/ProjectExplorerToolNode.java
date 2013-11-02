@@ -10,6 +10,7 @@ import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Tool;
 
+@SuppressWarnings("serial")
 public class ProjectExplorerToolNode extends ProjectExplorerModel.Node<Tool>
 		implements CircuitListener {
 	private Circuit circuit;

@@ -60,6 +60,7 @@ import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.VerticalSplitPane;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class Frame extends LFrame implements LocaleListener {
 	public static final String EDITOR_VIEW = "editorView";
 	public static final String EXPLORER_VIEW = "explorerView";

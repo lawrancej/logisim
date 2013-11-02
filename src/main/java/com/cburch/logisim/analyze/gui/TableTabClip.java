@@ -18,6 +18,7 @@ import com.cburch.logisim.analyze.model.Entry;
 import com.cburch.logisim.analyze.model.TruthTable;
 import static com.cburch.logisim.util.LocaleString._;
 
+@SuppressWarnings("serial")
 class TableTabClip implements ClipboardOwner {
 	private static final DataFlavor binaryFlavor = new DataFlavor(Data.class, "Binary data");
 	

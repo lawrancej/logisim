@@ -29,7 +29,9 @@ import com.cburch.logisim.proj.Projects;
 import com.cburch.logisim.std.gates.CircuitBuilder;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class BuildCircuitButton extends JButton {
+
 	private static class ProjectItem {
 		Project project;
 		

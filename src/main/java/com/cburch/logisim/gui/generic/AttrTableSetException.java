@@ -3,7 +3,9 @@
 
 package com.cburch.logisim.gui.generic;
 
+@SuppressWarnings("serial")
 public class AttrTableSetException extends Exception {
+
 	public AttrTableSetException(String msg) {
 		super(msg);
 	}

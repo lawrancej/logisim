@@ -24,6 +24,7 @@ import com.cburch.logisim.circuit.SubcircuitFactory;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.instance.StdAttr;
 
+@SuppressWarnings("serial")
 class ComponentSelector extends JTree {
 	private static class CompareByName implements Comparator<Object> {
 		public int compare(Object a, Object b) {

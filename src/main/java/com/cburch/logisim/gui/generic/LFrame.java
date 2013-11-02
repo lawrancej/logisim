@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 
 import com.cburch.logisim.util.WindowClosable;
 
+@SuppressWarnings("serial")
 public class LFrame extends JFrame implements WindowClosable {
 	private static final String PATH = "logisim/img/logisim-icon-";
 	private static final int[] SIZES = { 16, 20, 24, 48, 64, 128 };

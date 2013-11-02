@@ -19,6 +19,7 @@ import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.util.MacCompatibility;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class MenuFile extends Menu implements ActionListener {
 	private LogisimMenuBar menubar;
 	private JMenuItem newi = new JMenuItem();

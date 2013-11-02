@@ -3,6 +3,7 @@
 
 package com.cburch.logisim.circuit;
 
+@SuppressWarnings("serial")
 public class CircuitException extends RuntimeException {
 	public CircuitException(String msg) {
 		super(msg);
