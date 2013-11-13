@@ -8,7 +8,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class DFlipFlop extends AbstractFlipFlop {
 	public DFlipFlop() {
-		super("D Flip-Flop", "dFlipFlop.gif",
+		super("D Flip-Flop", "dFlipFlop.svg",
 				__("dFlipFlopComponent"), 1, true);
 	}
 

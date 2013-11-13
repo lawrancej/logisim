@@ -22,7 +22,7 @@ class XorGate extends AbstractGate {
 	private XorGate() {
 		super("XOR Gate", __("xorGateComponent"), true);
 		setAdditionalWidth(10);
-		setIconNames("xorGate.gif", "xorGateRect.gif", "dinXorGate.gif");
+		setIconNames("xorGate.svg", "xorGateRect.svg", "dinXorGate.svg");
 		setPaintInputLines(true);
 	}
 

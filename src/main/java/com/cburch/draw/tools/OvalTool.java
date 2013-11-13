@@ -23,7 +23,7 @@ public class OvalTool extends RectangularTool {
 	
 	@Override
 	public Icon getIcon() {
-		return Icons.getIcon("drawoval.gif");
+		return Icons.getIcon("drawoval.svg");
 	}
 	
 	@Override

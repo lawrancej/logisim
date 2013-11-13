@@ -42,7 +42,7 @@ public class LineTool extends AbstractTool {
 	
 	@Override
 	public Icon getIcon() {
-		return Icons.getIcon("drawline.gif");
+		return Icons.getIcon("drawline.svg");
 	}
 
 	@Override

@@ -22,13 +22,13 @@ class ToolboxToolbarModel extends AbstractToolbarModel
 	private List<ToolbarItem> items;
 	
 	public ToolboxToolbarModel(MenuListener menu) {
-		itemAdd = new LogisimToolbarItem(menu, "projadd.gif", LogisimMenuBar.ADD_CIRCUIT,
+		itemAdd = new LogisimToolbarItem(menu, "projadd.svg", LogisimMenuBar.ADD_CIRCUIT,
 				__("projectAddCircuitTip"));
-		itemUp = new LogisimToolbarItem(menu, "projup.gif", LogisimMenuBar.MOVE_CIRCUIT_UP,
+		itemUp = new LogisimToolbarItem(menu, "projup.svg", LogisimMenuBar.MOVE_CIRCUIT_UP,
 				__("projectMoveCircuitUpTip"));
-		itemDown = new LogisimToolbarItem(menu, "projdown.gif", LogisimMenuBar.MOVE_CIRCUIT_DOWN,
+		itemDown = new LogisimToolbarItem(menu, "projdown.svg", LogisimMenuBar.MOVE_CIRCUIT_DOWN,
 				__("projectMoveCircuitDownTip"));
-		itemDelete = new LogisimToolbarItem(menu, "projdel.gif", LogisimMenuBar.REMOVE_CIRCUIT,
+		itemDelete = new LogisimToolbarItem(menu, "projdel.svg", LogisimMenuBar.REMOVE_CIRCUIT,
 				__("projectRemoveCircuitTip"));
 		
 		items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {

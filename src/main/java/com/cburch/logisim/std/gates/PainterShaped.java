@@ -92,8 +92,8 @@ public class PainterShaped {
 			GraphicsUtil.drawCenteredArc(g, -70, -50, 85, -90, 53);
 			GraphicsUtil.drawCenteredArc(g, -70,  50, 85, 90, -53);
 		}
-		paintShield(g, -width, 0, width, height);
-		*/
+		paintShield(g, -width, 0, width, height);*/
+		
 		
 		GeneralPath path;
 		if (width < 40) {
@@ -136,7 +136,7 @@ public class PainterShaped {
 	
 	static void paintXor(InstancePainter painter, int width, int height) {
 		Graphics g = painter.getGraphics();
-		paintOr(painter, width - 10, width - 10);
+		//paintOr(painter, width - 10, width - 10);
 		paintShield(g, -10, width - 10, height);
 	}
 

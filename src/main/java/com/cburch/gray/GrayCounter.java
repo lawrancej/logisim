@@ -46,7 +46,7 @@ class GrayCounter extends InstanceFactory {
 		// These next two lines set it up so that the explorer window shows a
 		// customized icon representing the component type. This should be a
 		// 16x16 image.
-		URL url = getClass().getClassLoader().getResource("com/cburch/gray/counter.gif");
+		URL url = getClass().getClassLoader().getResource("com/cburch/gray/counter.svg");
 		if (url != null) setIcon(new ImageIcon(url));
 	}
 	

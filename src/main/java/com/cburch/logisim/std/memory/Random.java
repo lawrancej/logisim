@@ -45,7 +45,7 @@ public class Random extends InstanceFactory {
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
 
 		setOffsetBounds(Bounds.create(-30, -20, 30, 40));
-		setIconName("random.gif");
+		setIconName("random.svg");
 		setInstanceLogger(Logger.class);
 		
 		Port[] ps = new Port[4];

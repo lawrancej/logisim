@@ -35,7 +35,7 @@ public class Decoder extends InstanceFactory {
 				Plexers.DEFAULT_TRISTATE, Plexers.DISABLED_FLOATING, Boolean.TRUE
 			});
 		setKeyConfigurator(new BitWidthConfigurator(Plexers.ATTR_SELECT, 1, 5, 0));
-		setIconName("decoder.gif");
+		setIconName("decoder.svg");
 		setFacingAttribute(StdAttr.FACING);
 	}
 	

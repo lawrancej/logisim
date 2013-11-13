@@ -26,13 +26,13 @@ class ExplorerToolbarModel extends AbstractToolbarModel
 	public ExplorerToolbarModel(Frame frame, MenuListener menu) {
 		this.frame = frame;
 		
-		itemToolbox = new LogisimToolbarItem(menu, "projtool.gif",
+		itemToolbox = new LogisimToolbarItem(menu, "projtool.svg",
 				LogisimMenuBar.VIEW_TOOLBOX, __("projectViewToolboxTip"));
-		itemSimulation = new LogisimToolbarItem(menu, "projsim.gif",
+		itemSimulation = new LogisimToolbarItem(menu, "projsim.svg",
 				LogisimMenuBar.VIEW_SIMULATION, __("projectViewSimulationTip"));
-		itemLayout = new LogisimToolbarItem(menu, "projlayo.gif",
+		itemLayout = new LogisimToolbarItem(menu, "projlayo.svg",
 				LogisimMenuBar.EDIT_LAYOUT, __("projectEditLayoutTip"));
-		itemAppearance = new LogisimToolbarItem(menu, "projapp.gif",
+		itemAppearance = new LogisimToolbarItem(menu, "projapp.svg",
 				LogisimMenuBar.EDIT_APPEARANCE, __("projectEditAppearanceTip"));
 		
 		items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {

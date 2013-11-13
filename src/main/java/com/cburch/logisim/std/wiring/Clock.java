@@ -42,7 +42,7 @@ public class Clock extends InstanceFactory {
 	
 	public static final Clock FACTORY = new Clock();
 
-	private static final Icon toolIcon = Icons.getIcon("clock.gif");
+	private static final Icon toolIcon = Icons.getIcon("clock.svg");
 	
 	private static class ClockState implements InstanceData, Cloneable {
 		Value sending = Value.FALSE;

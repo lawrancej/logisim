@@ -47,7 +47,7 @@ public class CurveTool extends AbstractTool {
 	
 	@Override
 	public Icon getIcon() {
-		return Icons.getIcon("drawcurv.gif");
+		return Icons.getIcon("drawcurv.svg");
 	}
 
 	@Override

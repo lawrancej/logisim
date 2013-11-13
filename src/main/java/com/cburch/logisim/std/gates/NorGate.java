@@ -22,7 +22,7 @@ class NorGate extends AbstractGate {
 		super("NOR Gate", __("norGateComponent"));
 		setNegateOutput(true);
 		setRectangularLabel(OrGate.FACTORY.getRectangularLabel(null));
-		setIconNames("norGate.gif", "norGateRect.gif", "dinNorGate.gif");
+		setIconNames("norGate.svg", "norGateRect.svg", "dinNorGate.svg");
 		setPaintInputLines(true);
 	}
 
@@ -37,7 +37,7 @@ class NorGate extends AbstractGate {
 
 	@Override
 	protected void paintShape(InstancePainter painter, int width, int height) {
-		PainterShaped.paintOr(painter, width, height);
+		//PainterShaped.paintOr(painter, width, height);
 	}
 
 	@Override

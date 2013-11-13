@@ -40,7 +40,7 @@ public class Comparator extends InstanceFactory {
 				new Object[] { BitWidth.create(8), SIGNED_OPTION });
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
 		setOffsetBounds(Bounds.create(-40, -20, 40, 40));
-		setIconName("comparator.gif");
+		setIconName("comparator.svg");
 		
 		Port[] ps = new Port[5];
 		ps[IN0] = new Port(-40, -10, Port.INPUT,  StdAttr.WIDTH);

@@ -52,7 +52,7 @@ public class Text extends InstanceFactory {
 
 	private Text() {
 		super("Text", __("textComponent"));
-		setIconName("text.gif");
+		setIconName("text.svg");
 		setShouldSnap(false);
 	}
 	

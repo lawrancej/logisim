@@ -31,7 +31,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class Power extends InstanceFactory {
 	public Power() {
 		super("Power", __("powerComponent"));
-		setIconName("power.gif");
+		setIconName("power.svg");
 		setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH },
 				new Object[] { Direction.NORTH, BitWidth.ONE });
 		setFacingAttribute(StdAttr.FACING);

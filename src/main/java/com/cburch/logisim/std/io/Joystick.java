@@ -33,7 +33,7 @@ public class Joystick extends InstanceFactory {
 				new Object[] { BitWidth.create(4), Color.RED });
 		setKeyConfigurator(new BitWidthConfigurator(ATTR_WIDTH, 2, 5));
 		setOffsetBounds(Bounds.create(-30, -10, 30, 30));
-		setIconName("joystick.gif");
+		setIconName("joystick.svg");
 		setPorts(new Port[] {
 				new Port(0, 0, Port.OUTPUT, ATTR_WIDTH),
 				new Port(0, 10, Port.OUTPUT, ATTR_WIDTH),

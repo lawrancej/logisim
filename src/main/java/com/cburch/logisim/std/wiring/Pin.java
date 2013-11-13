@@ -62,8 +62,8 @@ public class Pin extends InstanceFactory {
 	
 	public static final Pin FACTORY = new Pin();
 
-	private static final Icon ICON_IN = Icons.getIcon("pinInput.gif");
-	private static final Icon ICON_OUT = Icons.getIcon("pinOutput.gif");
+	private static final Icon ICON_IN = Icons.getIcon("pinInput.svg");
+	private static final Icon ICON_OUT = Icons.getIcon("pinOutput.svg");
 	private static final Font ICON_WIDTH_FONT = new Font("SansSerif", Font.BOLD, 9);
 	private static final Color ICON_WIDTH_COLOR = Value.WIDTH_ERROR_COLOR.darker();
 

@@ -23,7 +23,7 @@ public class RoundRectangleTool extends RectangularTool {
 	
 	@Override
 	public Icon getIcon() {
-		return Icons.getIcon("drawrrct.gif");
+		return Icons.getIcon("drawrrct.svg");
 	}
 	
 	@Override

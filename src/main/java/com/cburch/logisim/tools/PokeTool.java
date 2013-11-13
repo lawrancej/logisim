@@ -31,7 +31,7 @@ import com.cburch.logisim.util.Icons;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class PokeTool extends Tool {
-	private static final Icon toolIcon = Icons.getIcon("poke.gif");
+	private static final Icon toolIcon = Icons.getIcon("poke.svg");
 	private static final Color caretColor = new Color(255, 255, 150);
 
 	private static class WireCaret extends AbstractCaret {

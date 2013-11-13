@@ -20,7 +20,7 @@ class NandGate extends AbstractGate {
 		super("NAND Gate", __("nandGateComponent"));
 		setNegateOutput(true);
 		setRectangularLabel(AndGate.FACTORY.getRectangularLabel(null));
-		setIconNames("nandGate.gif", "nandGateRect.gif", "dinNandGate.gif");
+		setIconNames("nandGate.svg", "nandGateRect.svg", "dinNandGate.svg");
 	}
 
 	@Override

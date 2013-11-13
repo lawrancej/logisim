@@ -8,8 +8,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
+import com.cburch.draw.tools.SVGIcon;
 import com.cburch.logisim.data.Direction;
 
 public class Icons {
@@ -17,10 +17,8 @@ public class Icons {
 
 	private Icons() { }
 
-	public static Icon getIcon(String name) {
-		java.net.URL url = Icons.class.getClassLoader().getResource(path + "/" + name);
-		if (url == null) return null;
-		return new ImageIcon(url);
+	public static SVGIcon getIcon(String name) {
+		return new SVGIcon(name);
 	}
 
 	public static void paintRotated(Graphics g, int x, int y, Direction dir, Icon icon, Component dest) {

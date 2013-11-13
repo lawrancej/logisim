@@ -30,7 +30,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class SplitterFactory extends AbstractComponentFactory {
 	public static final SplitterFactory instance = new SplitterFactory();
 
-	private static final Icon toolIcon = Icons.getIcon("splitter.gif");
+	private static final Icon toolIcon = Icons.getIcon("splitter.svg");
 
 	private SplitterFactory() { }
 
