@@ -45,12 +45,14 @@ public class SVGIcon implements Icon {
 	
 	@Override
 	public int getIconHeight() {
-		return (int)svgIcon.getPrimitiveBounds().getHeight();
+		//return (int)svgIcon.getPrimitiveBounds().getHeight();
+		return 16;
 	}
 
 	@Override
 	public int getIconWidth() {
-		return (int)svgIcon.getPrimitiveBounds().getWidth();
+		//return (int)svgIcon.getPrimitiveBounds().getWidth();
+		return 16;
 	}
 
 	private void paintSvgIcon(Graphics2D g, int x, int y, double scaleX, double scaleY) {
