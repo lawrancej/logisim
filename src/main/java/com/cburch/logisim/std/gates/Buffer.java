@@ -38,7 +38,7 @@ class Buffer extends InstanceFactory {
 					GateAttributes.ATTR_OUTPUT, StdAttr.LABEL, StdAttr.LABEL_FONT },
 				new Object[] { Direction.EAST, BitWidth.ONE,
 					GateAttributes.OUTPUT_01, "", StdAttr.DEFAULT_LABEL_FONT });
-		setIcon(Icons.getIcon("bufferGate.gif"));
+		setIcon(Icons.getIcon("bufferGate.svg"));
 		setFacingAttribute(StdAttr.FACING);
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
 		setPorts(new Port[] {

@@ -28,7 +28,7 @@ public class HexDigit extends InstanceFactory {
 				new Port(10, 0, Port.INPUT, 1)
 			});
 		setOffsetBounds(Bounds.create(-15, -60, 40, 60));
-		setIconName("hexdig.gif");
+		setIconName("hexdig.svg");
 	}
 
 	@Override

@@ -35,22 +35,6 @@ public class About {
 	static final int IMAGE_HEIGHT = 284;
 	protected static JSVGCanvas svgCanvas =new JSVGCanvas();
 	
-	private static class MyPanel extends JPanel{
-
-		public MyPanel() {
-			setLayout(null);
-			int prefWidth = IMAGE_WIDTH + 2 * IMAGE_BORDER;
-			int prefHeight = IMAGE_HEIGHT + 2 * IMAGE_BORDER;
-			setPreferredSize(new Dimension(prefWidth, prefHeight));
-			setBackground(Color.WHITE);
-		}
-
-		@Override
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-		}
-	}
-	
 	public static JComponent createComponents() {
 		final JPanel panel = new JPanel(new BorderLayout());
 		panel.add("Center", svgCanvas);

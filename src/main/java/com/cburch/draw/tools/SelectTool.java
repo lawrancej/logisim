@@ -63,7 +63,7 @@ public class SelectTool extends AbstractTool {
 	
 	@Override
 	public Icon getIcon() {
-		return Icons.getIcon("select.gif");
+		return Icons.getIcon("select.svg");
 	}
 
 	@Override

@@ -16,23 +16,23 @@ public class Memory extends Library {
 	
 	private static FactoryDescription[] DESCRIPTIONS = {
 		new FactoryDescription("D Flip-Flop", __("dFlipFlopComponent"),
-				"dFlipFlop.gif", "DFlipFlop"),
+				"dFlipFlop.svg", "DFlipFlop"),
 		new FactoryDescription("T Flip-Flop", __("tFlipFlopComponent"),
-				"tFlipFlop.gif", "TFlipFlop"),
+				"tFlipFlop.svg", "TFlipFlop"),
 		new FactoryDescription("J-K Flip-Flop", __("jkFlipFlopComponent"),
-				"jkFlipFlop.gif", "JKFlipFlop"),
+				"jkFlipFlop.svg", "JKFlipFlop"),
 		new FactoryDescription("S-R Flip-Flop", __("srFlipFlopComponent"),
-				"srFlipFlop.gif", "SRFlipFlop"),
+				"srFlipFlop.svg", "SRFlipFlop"),
 		new FactoryDescription("Register", __("registerComponent"),
-				"register.gif", "Register"),
+				"register.svg", "Register"),
 		new FactoryDescription("Counter", __("counterComponent"),
-				"counter.gif", "Counter"),
+				"counter.svg", "Counter"),
 		new FactoryDescription("Shift Register", __("shiftRegisterComponent"),
-				"shiftreg.gif", "ShiftRegister"),
+				"shiftreg.svg", "ShiftRegister"),
 		new FactoryDescription("Random", __("randomComponent"),
-				"random.gif", "Random"),
-		new FactoryDescription("RAM", __("ramComponent"), "ram.gif", "Ram"),
-		new FactoryDescription("ROM", __("romComponent"), "rom.gif", "Rom"),
+				"random.svg", "Random"),
+		new FactoryDescription("RAM", __("ramComponent"), "ram.svg", "Ram"),
+		new FactoryDescription("ROM", __("romComponent"), "rom.svg", "Rom"),
 	};
 	
 	private List<Tool> tools = null;

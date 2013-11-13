@@ -32,7 +32,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class WiringTool extends Tool {
 	private static Cursor cursor
 		= Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
-	private static final Icon toolIcon = Icons.getIcon("wiring.gif");
+	private static final Icon toolIcon = Icons.getIcon("wiring.svg");
 	
 	private static final int HORIZONTAL = 1;
 	private static final int VERTICAL = 2;

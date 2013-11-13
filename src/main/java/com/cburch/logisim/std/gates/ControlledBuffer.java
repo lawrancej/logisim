@@ -45,8 +45,8 @@ class ControlledBuffer extends InstanceFactory {
 	public static ComponentFactory FACTORY_BUFFER = new ControlledBuffer(false);
 	public static ComponentFactory FACTORY_INVERTER = new ControlledBuffer(true);
 	
-	private static final Icon ICON_BUFFER = Icons.getIcon("controlledBuffer.gif");
-	private static final Icon ICON_INVERTER = Icons.getIcon("controlledInverter.gif");
+	private static final Icon ICON_BUFFER = Icons.getIcon("controlledBuffer.svg");
+	private static final Icon ICON_INVERTER = Icons.getIcon("controlledInverter.svg");
 
 	private boolean isInverter;
 

@@ -48,7 +48,7 @@ public class Keyboard extends InstanceFactory {
 		setAttributes(new Attribute[] { ATTR_BUFFER, StdAttr.EDGE_TRIGGER },
 				new Object[] { Integer.valueOf(32), StdAttr.TRIG_RISING });
 		setOffsetBounds(Bounds.create(0, -15, WIDTH, HEIGHT));
-		setIconName("keyboard.gif");
+		setIconName("keyboard.svg");
 		setInstancePoker(Poker.class);
 		
 		Port[] ps = new Port[5];

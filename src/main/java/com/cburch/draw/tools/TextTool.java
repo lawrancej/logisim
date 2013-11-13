@@ -85,7 +85,7 @@ public class TextTool extends AbstractTool {
 	
 	@Override
 	public Icon getIcon() {
-		return Icons.getIcon("text.gif");
+		return Icons.getIcon("text.svg");
 	}
 
 	@Override

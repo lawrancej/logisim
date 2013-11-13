@@ -23,7 +23,7 @@ class XnorGate extends AbstractGate {
 		super("XNOR Gate", __("xnorGateComponent"), true);
 		setNegateOutput(true);
 		setAdditionalWidth(10);
-		setIconNames("xnorGate.gif", "xnorGateRect.gif", "dinXnorGate.gif");
+		setIconNames("xnorGate.svg", "xnorGateRect.svg", "dinXnorGate.svg");
 		setPaintInputLines(true);
 	}
 

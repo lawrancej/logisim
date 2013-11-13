@@ -8,7 +8,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class TFlipFlop extends AbstractFlipFlop {
 	public TFlipFlop() {
-		super("T Flip-Flop", "tFlipFlop.gif",
+		super("T Flip-Flop", "tFlipFlop.svg",
 				__("tFlipFlopComponent"), 1, false);
 	}
 

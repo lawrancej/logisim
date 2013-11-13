@@ -16,7 +16,7 @@ class EvenParityGate extends AbstractGate {
 	private EvenParityGate() {
 		super("Even Parity", __("evenParityComponent"));
 		setRectangularLabel("2k");
-		setIconNames("parityEvenGate.gif");
+		setIconNames("parityEvenGate.svg");
 	}
 
 	@Override

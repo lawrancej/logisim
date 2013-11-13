@@ -61,7 +61,7 @@ public class Ram extends Mem {
 
 	public Ram() {
 		super("RAM", __("ramComponent"), 3);
-		setIconName("ram.gif");
+		setIconName("ram.svg");
 		setInstanceLogger(Logger.class);
 	}
 	

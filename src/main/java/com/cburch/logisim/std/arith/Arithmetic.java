@@ -13,23 +13,23 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class Arithmetic extends Library {
 	private static FactoryDescription[] DESCRIPTIONS = {
 		new FactoryDescription("Adder", __("adderComponent"),
-				"adder.gif", "Adder"),
+				"adder.svg", "Adder"),
 		new FactoryDescription("Subtractor", __("subtractorComponent"),
-				"subtractor.gif", "Subtractor"),
+				"subtractor.svg", "Subtractor"),
 		new FactoryDescription("Multiplier", __("multiplierComponent"),
-				"multiplier.gif", "Multiplier"),
+				"multiplier.svg", "Multiplier"),
 		new FactoryDescription("Divider", __("dividerComponent"),
-				"divider.gif", "Divider"),
+				"divider.svg", "Divider"),
 		new FactoryDescription("Negator", __("negatorComponent"),
-				"negator.gif", "Negator"),
+				"negator.svg", "Negator"),
 		new FactoryDescription("Comparator", __("comparatorComponent"),
-				"comparator.gif", "Comparator"),
+				"comparator.svg", "Comparator"),
 		new FactoryDescription("Shifter", __("shifterComponent"),
-				"shifter.gif", "Shifter"),
+				"shifter.svg", "Shifter"),
 		new FactoryDescription("BitAdder", __("bitAdderComponent"),
-				"bitadder.gif", "BitAdder"),
+				"bitadder.svg", "BitAdder"),
 		new FactoryDescription("BitFinder", __("bitFinderComponent"),
-				"bitfindr.gif", "BitFinder"),
+				"bitfindr.svg", "BitFinder"),
 	};
 	
 	private List<Tool> tools = null;

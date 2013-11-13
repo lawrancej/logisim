@@ -11,6 +11,8 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JComponent;
 
+import org.apache.batik.swing.JSVGCanvas;
+
 import com.cburch.logisim.util.GraphicsUtil;
 
 class ToolbarButton extends JComponent implements MouseListener {
@@ -58,7 +60,7 @@ class ToolbarButton extends JComponent implements MouseListener {
 
 		Graphics g2 = g.create();
 		g2.translate(BORDER, BORDER);
-		item.paintIcon(ToolbarButton.this, g2);
+		item.paintIcon(this, g2);
 		g2.dispose();
 
 		// draw selection indicator

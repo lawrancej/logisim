@@ -40,7 +40,7 @@ public class BitSelector extends InstanceFactory {
 				new BitWidthConfigurator(GROUP_ATTR, 1, Value.MAX_WIDTH, 0),
 				new BitWidthConfigurator(StdAttr.WIDTH)));
 
-		setIconName("bitSelector.gif");
+		setIconName("bitSelector.svg");
 		setFacingAttribute(StdAttr.FACING);
 	}
 	

@@ -48,8 +48,8 @@ public class Transistor extends InstanceFactory {
 	static final int INPUT = 1;
 	static final int GATE = 2;
 	
-	private static final Icon ICON_N = Icons.getIcon("trans1.gif");
-	private static final Icon ICON_P = Icons.getIcon("trans0.gif");
+	private static final Icon ICON_N = Icons.getIcon("trans1.svg");
+	private static final Icon ICON_P = Icons.getIcon("trans0.svg");
 
 	public Transistor() {
 		super("Transistor", __("transistorComponent"));

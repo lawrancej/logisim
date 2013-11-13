@@ -3,10 +3,12 @@
 
 package com.cburch.logisim.gui.main;
 
+import static com.cburch.logisim.util.LocaleString._;
+
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -16,6 +18,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
+import java.util.Set;
+
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JViewport;
+import javax.swing.event.MouseInputListener;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitEvent;
@@ -57,17 +68,6 @@ import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.StringGetter;
-
-import java.util.List;
-import java.util.Set;
-
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JViewport;
-import javax.swing.event.MouseInputListener;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
-import static com.cburch.logisim.util.LocaleString.*;
 
 public class Canvas extends JPanel
 		implements LocaleListener, CanvasPaneContents {
