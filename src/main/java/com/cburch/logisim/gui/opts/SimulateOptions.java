@@ -61,9 +61,9 @@ class SimulateOptions extends OptionsPanel {
 
 		private void loadSimLimit(Integer val) {
 			int value = val.intValue();
-			ComboBoxModel model = simLimit.getModel();
+			ComboBoxModel<Integer> model = simLimit.getModel();
 			for (int i = 0; i < model.getSize(); i++) {
-				Integer opt = (Integer) model.getElementAt(i);
+				Integer opt = model.getElementAt(i);
 				if (opt.intValue() == value) {
 					simLimit.setSelectedItem(opt);
 				}
@@ -82,7 +82,7 @@ class SimulateOptions extends OptionsPanel {
 	private MyListener myListener = new MyListener();
 
 	private JLabel simLimitLabel = new JLabel();
-	private JComboBox simLimit = new JComboBox(new Integer[] {
+	private JComboBox<Integer> simLimit = new JComboBox<Integer>(new Integer[] {
 			Integer.valueOf(200),
 			Integer.valueOf(500),
 			Integer.valueOf(1000),
@@ -94,7 +94,7 @@ class SimulateOptions extends OptionsPanel {
 	});
 	private JCheckBox simRandomness = new JCheckBox();
 	private JLabel gateUndefinedLabel = new JLabel();
-	private JComboBox gateUndefined = new JComboBox(new Object[] {
+	private JComboBox<ComboOption> gateUndefined = new JComboBox<ComboOption>(new ComboOption[] {
 			new ComboOption(Options.GATE_UNDEFINED_IGNORE),
 			new ComboOption(Options.GATE_UNDEFINED_ERROR)
 		});

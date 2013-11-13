@@ -14,9 +14,9 @@ import javax.swing.event.ListSelectionListener;
 import com.cburch.logisim.prefs.AppPreferences;
 
 @SuppressWarnings("serial")
-class LocaleSelector extends JList
+class LocaleSelector extends JList<LocaleSelector.LocaleOption>
 			implements LocaleListener, ListSelectionListener {
-	private static class LocaleOption implements Runnable {
+	static class LocaleOption implements Runnable {
 		private Locale locale;
 		private String text;
 		
@@ -51,7 +51,7 @@ class LocaleSelector extends JList
 	
 	LocaleSelector(Locale[] locales) {
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		DefaultListModel model = new DefaultListModel();
+		DefaultListModel<LocaleOption> model = new DefaultListModel<LocaleOption>();
 		items = new LocaleOption[locales.length];
 		for (int i = 0; i < locales.length; i++) {
 			items[i] = new LocaleOption(locales[i]);

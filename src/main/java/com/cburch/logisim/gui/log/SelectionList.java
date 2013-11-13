@@ -13,14 +13,14 @@ import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Value;
 
 @SuppressWarnings("serial")
-class SelectionList extends JList {
-	private class Model extends AbstractListModel
+class SelectionList extends JList<SelectionItem> {
+	private class Model extends AbstractListModel<SelectionItem>
 			implements ModelListener {
 		public int getSize() {
 			return selection == null ? 0 : selection.size();
 		}
 
-		public Object getElementAt(int index) {
+		public SelectionItem getElementAt(int index) {
 			return selection.get(index);
 		}
 
@@ -35,7 +35,7 @@ class SelectionList extends JList {
 	
 	private class MyCellRenderer extends DefaultListCellRenderer {
 		@Override
-		public java.awt.Component getListCellRendererComponent(JList list,
+		public java.awt.Component getListCellRendererComponent(JList<?> list,
 				Object value, int index, boolean isSelected, boolean hasFocus) {
 			java.awt.Component ret = super.getListCellRendererComponent(list,
 				value, index, isSelected, hasFocus);
