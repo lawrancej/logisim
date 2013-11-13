@@ -23,12 +23,11 @@ import com.cburch.logisim.util.GraphicsUtil;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Text extends InstanceFactory {
-	public static Attribute<String> ATTR_TEXT = Attributes.forString("text",
-			__("textTextAttr"));
-	public static Attribute<Font> ATTR_FONT = Attributes.forFont("font",
-		__("textFontAttr"));
-	public static Attribute<AttributeOption> ATTR_HALIGN = Attributes.forOption("halign",
-		__("textHorzAlignAttr"), new AttributeOption[] {
+	public static Attribute<String> ATTR_TEXT = Attributes.forString("text",__("textTextAttr"));
+	public static Attribute<Font> ATTR_FONT = Attributes.forFont("font",__("textFontAttr"));
+	public static Attribute<AttributeOption> ATTR_HALIGN = Attributes.forOption("halign",__("textHorzAlignAttr"),
+			new AttributeOption[] 
+		{
 			new AttributeOption(Integer.valueOf(TextField.H_LEFT),
 				"left", __("textHorzAlignLeftOpt")),
 			new AttributeOption(Integer.valueOf(TextField.H_RIGHT),
