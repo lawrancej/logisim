@@ -21,8 +21,10 @@ import org.w3c.dom.svg.SVGDocument;
 
 public class SVGIcon implements Icon {
 
-	String path;
-	GraphicsNode svgIcon = null;
+	private String path;
+	private GraphicsNode svgIcon = null;
+	private final int HEIGHT = 16;
+	private final int WIDTH = 16;
 	
 	public SVGIcon(String path) {
 		try {
@@ -46,13 +48,13 @@ public class SVGIcon implements Icon {
 	@Override
 	public int getIconHeight() {
 		//return (int)svgIcon.getPrimitiveBounds().getHeight();
-		return 16;
+		return HEIGHT;
 	}
 
 	@Override
 	public int getIconWidth() {
 		//return (int)svgIcon.getPrimitiveBounds().getWidth();
-		return 16;
+		return WIDTH;
 	}
 
 	private void paintSvgIcon(Graphics2D g, int x, int y, double scaleX, double scaleY) {
