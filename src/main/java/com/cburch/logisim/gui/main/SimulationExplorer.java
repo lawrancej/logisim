@@ -46,6 +46,7 @@ class SimulationExplorer extends JPanel
 	//
 	// ProjectListener methods
 	//
+	@Override
 	public void projectChanged(ProjectEvent event) {
 		int action = event.getAction();
 		if (action == ProjectEvent.ACTION_SET_STATE) {
@@ -69,12 +70,16 @@ class SimulationExplorer extends JPanel
 	//
 	// MouseListener methods
 	//
+	@Override
 	public void mouseEntered(MouseEvent e) { }
+	@Override
 	public void mouseExited(MouseEvent e) { }
+	@Override
 	public void mousePressed(MouseEvent e) {
 		requestFocus();
 		checkForPopup(e);
 	}
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		checkForPopup(e);
 	}
@@ -83,6 +88,7 @@ class SimulationExplorer extends JPanel
 			; // do nothing
 		}
 	}
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
 			TreePath path = tree.getPathForLocation(e.getX(), e.getY());

@@ -22,7 +22,9 @@ public class AbstractCaret implements Caret {
 	}
 
 	// listener methods
+	@Override
 	public void addCaretListener(CaretListener e) { listeners.add(e); }
+	@Override
 	public void removeCaretListener(CaretListener e) { listeners.remove(e); }
 	protected List<CaretListener> getCaretListeners() { return listenersView; }
 
@@ -30,20 +32,32 @@ public class AbstractCaret implements Caret {
 	public void setBounds(Bounds value) { bds = value; }
 
 	// query/Graphics methods
+	@Override
 	public String getText() { return ""; }
+	@Override
 	public Bounds getBounds(Graphics g) { return bds; }
+	@Override
 	public void draw(Graphics g) { }
 
 	// finishing
+	@Override
 	public void commitText(String text) { }
+	@Override
 	public void cancelEditing() { }
+	@Override
 	public void stopEditing() { }
 
 	// events to handle
+	@Override
 	public void mousePressed(MouseEvent e) { }
+	@Override
 	public void mouseDragged(MouseEvent e) { }
+	@Override
 	public void mouseReleased(MouseEvent e) { }
+	@Override
 	public void keyPressed(KeyEvent e) { }
+	@Override
 	public void keyReleased(KeyEvent e) { }
+	@Override
 	public void keyTyped(KeyEvent e) { }
 }

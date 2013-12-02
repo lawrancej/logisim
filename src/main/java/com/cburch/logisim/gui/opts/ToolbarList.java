@@ -31,16 +31,19 @@ class ToolbarList extends JList {
 			this.tool = tool;
 		}
 
+		@Override
 		public void paintIcon(Component comp, Graphics g, int x, int y) {
 			Graphics gNew = g.create();
 			tool.paintIcon(new ComponentDrawContext(comp, null, null, g, gNew), x + 2, y + 2);
 			gNew.dispose();
 		}
 
+		@Override
 		public int getIconWidth() {
 			return 20;
 		}
 
+		@Override
 		public int getIconHeight() {
 			return 20;
 		}
@@ -75,23 +78,29 @@ class ToolbarList extends JList {
 	
 	private class Model extends AbstractListModel
 			implements ToolbarListener, AttributeListener, PropertyChangeListener {
+		@Override
 		public int getSize() {
 			return base.size();
 		}
 
+		@Override
 		public Object getElementAt(int index) {
 			return base.get(index);
 		}
 
+		@Override
 		public void toolbarChanged() {
 			fireContentsChanged(this, 0, getSize());
 		}
 
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			repaint();
 		}
 		
+		@Override
 		public void propertyChange(PropertyChangeEvent event) {
 			if (AppPreferences.GATE_SHAPE.isSource(event)) {
 				repaint();

@@ -26,10 +26,12 @@ public abstract class AttributeSetTableModel
 			this.attr = objAttr;
 		}
 		
+		@Override
 		public String getLabel() {
 			return attr.getDisplayName();
 		}
 		
+		@Override
 		public String getValue() {
 			Object value = attrs.getValue(attr);
 			if (value == null) {
@@ -43,15 +45,18 @@ public abstract class AttributeSetTableModel
 			}
 		}
 		
+		@Override
 		public boolean isValueEditable() {
 			return !attrs.isReadOnly(attr);
 		}
 		
+		@Override
 		public Component getEditor(Window parent) {
 			Object value = attrs.getValue(attr);
 			return attr.getCellEditor(parent, value);
 		}
 		
+		@Override
 		public void setValue(Object value) throws AttrTableSetException {
 			Attribute<Object> attr = this.attr;
 			if (attr == null || value == null) return;
@@ -94,6 +99,7 @@ public abstract class AttributeSetTableModel
 		}
 	}
 	
+	@Override
 	public abstract String getTitle();
 	
 	public AttributeSet getAttributeSet() {
@@ -113,6 +119,7 @@ public abstract class AttributeSetTableModel
 		}
 	}
 
+	@Override
 	public void addAttrTableModelListener(AttrTableModelListener listener) {
 		if (listeners.isEmpty() && attrs != null) {
 			attrs.addAttributeListener(this);
@@ -120,6 +127,7 @@ public abstract class AttributeSetTableModel
 		listeners.add(listener);
 	}
 
+	@Override
 	public void removeAttrTableModelListener(AttrTableModelListener listener) {
 		listeners.remove(listener);
 		if (listeners.isEmpty() && attrs != null) {
@@ -148,10 +156,12 @@ public abstract class AttributeSetTableModel
 		}
 	}
 
+	@Override
 	public int getRowCount() {
 		return rows.size();
 	}
 
+	@Override
 	public AttrTableModelRow getRow(int rowIndex) {
 		return rows.get(rowIndex);
 	}
@@ -162,6 +172,7 @@ public abstract class AttributeSetTableModel
 	//
 	// AttributeListener methods
 	//
+	@Override
 	public void attributeListChanged(AttributeEvent e) {
 		// if anything has changed, don't do anything
 		int index = 0;
@@ -197,6 +208,7 @@ public abstract class AttributeSetTableModel
 		fireStructureChanged();
 	}
 
+	@Override
 	public void attributeValueChanged(AttributeEvent e) {
 		Attribute<?> attr = e.getAttribute();
 		AttrTableModelRow row = rowMap.get(attr);

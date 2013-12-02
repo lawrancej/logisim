@@ -58,6 +58,7 @@ public abstract class NumericConfigurator<V> implements KeyConfigurator, Cloneab
 	
 	protected abstract V createValue(int value);
 	
+	@Override
 	public KeyConfigurationResult keyEventReceived(KeyConfigurationEvent event) {
 		if (event.getType() == KeyConfigurationEvent.KEY_TYPED) {
 			KeyEvent e = event.getKeyEvent();

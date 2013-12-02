@@ -34,6 +34,7 @@ class OpenRecent extends JMenu implements PropertyChangeListener {
 			addActionListener(this);
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Project proj = menubar.getProject();
 			Component par = proj == null ? null : proj.getFrame().getCanvas();
@@ -104,6 +105,7 @@ class OpenRecent extends JMenu implements PropertyChangeListener {
 		}
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		if (event.getPropertyName().equals(AppPreferences.RECENT_PROJECTS)) {
 			renewItems();

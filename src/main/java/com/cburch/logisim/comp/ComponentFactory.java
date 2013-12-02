@@ -30,7 +30,9 @@ public interface ComponentFactory extends AttributeDefaultProvider {
 	public Component createComponent(Location loc, AttributeSet attrs);
 	public Bounds getOffsetBounds(AttributeSet attrs);
 	public AttributeSet createAttributeSet();
+	@Override
 	public boolean isAllDefaultValues(AttributeSet attrs, LogisimVersion ver);
+	@Override
 	public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver);
 	public void drawGhost(ComponentDrawContext context, Color color,
 			int x, int y, AttributeSet attrs);

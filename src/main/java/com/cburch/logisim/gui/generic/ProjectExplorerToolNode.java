@@ -35,6 +35,7 @@ public class ProjectExplorerToolNode extends ProjectExplorerModel.Node<Tool>
 		}
 	}
 
+	@Override
 	public void circuitChanged(CircuitEvent event) {
 		int act = event.getAction();
 		if (act == CircuitEvent.ACTION_SET_NAME) {

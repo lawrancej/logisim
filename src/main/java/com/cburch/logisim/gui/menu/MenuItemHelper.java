@@ -56,6 +56,7 @@ class MenuItemHelper implements ActionListener {
 		}
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (!listeners.isEmpty()) {
 			ActionEvent e = new ActionEvent(menuItem, event.getID(),

@@ -16,6 +16,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 class MenuProject extends Menu {
 	private class MyListener
 			implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			Project proj = menubar.getProject();

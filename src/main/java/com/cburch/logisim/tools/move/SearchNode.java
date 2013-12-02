@@ -157,6 +157,7 @@ class SearchNode implements Comparable<SearchNode> {
 		return ((loc.hashCode() * 31) + dirHash) * 31 + dest.hashCode();
 	}
 	
+	@Override
 	public int compareTo(SearchNode o) {
 		int ret = this.heur - o.heur;
 		

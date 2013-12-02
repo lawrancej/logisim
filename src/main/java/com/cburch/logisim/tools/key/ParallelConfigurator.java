@@ -39,6 +39,7 @@ public class ParallelConfigurator implements KeyConfigurator, Cloneable {
 		return ret;
 	}
 	
+	@Override
 	public KeyConfigurationResult keyEventReceived(KeyConfigurationEvent event) {
 		KeyConfigurator[] hs = handlers;
 		if (event.isConsumed()) {

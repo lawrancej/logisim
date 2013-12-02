@@ -25,14 +25,17 @@ public class Implicant implements Comparable<Implicant> {
 			this.source = source;
 		}
 		
+		@Override
 		public Iterator<Implicant> iterator() {
 			return this;
 		}
 		
+		@Override
 		public boolean hasNext() {
 			return currentMask >= 0;
 		}
 		
+		@Override
 		public Implicant next() {
 			int ret = currentMask | source.values;
 			int diffs = currentMask ^ source.unknowns;
@@ -45,6 +48,7 @@ public class Implicant implements Comparable<Implicant> {
 			return new Implicant(0, ret);
 		}
 		
+		@Override
 		public void remove() { }
 	}
 	
@@ -63,6 +67,7 @@ public class Implicant implements Comparable<Implicant> {
 		return this.unknowns == o.unknowns && this.values == o.values;
 	}
 	
+	@Override
 	public int compareTo(Implicant o) {
 		if (this.values < o.values) return -1;
 		if (this.values > o.values) return  1;

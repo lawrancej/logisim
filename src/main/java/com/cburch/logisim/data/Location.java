@@ -89,6 +89,7 @@ public class Location implements Comparable<Location> {
 		return hashCode;
 	}
 
+	@Override
 	public int compareTo(Location other) {
 		if (this.x != other.x) return this.x - other.x;
 		else                  return this.y - other.y;

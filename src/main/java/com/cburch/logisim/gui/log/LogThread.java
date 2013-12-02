@@ -63,16 +63,19 @@ class LogThread extends Thread implements ModelListener {
 		}
 	}
 
+	@Override
 	public void selectionChanged(ModelEvent event) {
 		headerDirty = true;
 	}
 
+	@Override
 	public void entryAdded(ModelEvent event, Value[] values) {
 		synchronized(lock) {
 			if (isFileEnabled()) addEntry(values);
 		}
 	}
 
+	@Override
 	public void filePropertyChanged(ModelEvent event) {
 		synchronized(lock) {
 			if (isFileEnabled()) {

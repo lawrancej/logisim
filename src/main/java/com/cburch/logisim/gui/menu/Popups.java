@@ -46,6 +46,7 @@ public class Popups {
 			add(load);
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			if (src == add) {
@@ -78,6 +79,7 @@ public class Popups {
 			reload.setEnabled(is_top && lib instanceof LoadedLibrary);
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			if (src == unload) {
@@ -129,6 +131,7 @@ public class Popups {
 					&& proj.getDependencies().canRemove(circuit));
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object source = e.getSource();
 			if (source == editLayout) {

@@ -37,10 +37,12 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 			this.tool = tool;
 		}
 		
+		@Override
 		public boolean isSelectable() {
 			return true;
 		}
 		
+		@Override
 		public void paintIcon(Component destination, Graphics g) {
 			// draw halo
 			if (tool == haloedTool && AppPreferences.ATTRIBUTE_HALO.getBoolean()) {
@@ -57,6 +59,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 			g_copy.dispose();
 		}
 		
+		@Override
 		public String getToolTip() {
 			String ret = tool.getDescription();
 			int index = 1;
@@ -73,6 +76,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 			return ret;
 		}
 		
+		@Override
 		public Dimension getDimension(Object orientation) {
 			return new Dimension(24, 24);
 		}
@@ -83,6 +87,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 		//
 		// ProjectListener methods
 		//
+		@Override
 		public void projectChanged(ProjectEvent e) {
 			int act = e.getAction();
 			if (act == ProjectEvent.ACTION_SET_TOOL) {
@@ -107,6 +112,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 		//
 		// ToolbarListener methods
 		//
+		@Override
 		public void toolbarChanged() {
 			buildContents();
 		}
@@ -114,7 +120,9 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 		//
 		// AttributeListener methods
 		//
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			fireToolbarAppearanceChanged();
 		}
@@ -122,6 +130,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
 		//
 		// PropertyChangeListener method
 		//
+		@Override
 		public void propertyChange(PropertyChangeEvent event) {
 			if (AppPreferences.GATE_SHAPE.isSource(event)) {
 				fireToolbarAppearanceChanged();

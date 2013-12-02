@@ -25,6 +25,7 @@ public class Attributes {
 	private static class ConstantGetter implements StringGetter {
 		private String str;
 		public ConstantGetter(String str) { this.str = str; }
+		@Override
 		public String toString() { return str; }
 	}
 	private static StringGetter getter(String s) { return new ConstantGetter(s); } 
@@ -387,10 +388,12 @@ public class Attributes {
 			super(initial);
 		}
 
+		@Override
 		public Object getValue() {
 			return getSelectedFont();
 		}
 
+		@Override
 		public void setValue(Object value) {
 			setSelectedFont((Font) value);
 		}
@@ -450,10 +453,12 @@ public class Attributes {
 			setOpacityVisible(true);
 		}
 
+		@Override
 		public Object getValue() {
 			return getColor();
 		}
 
+		@Override
 		public void setValue(Object value) {
 			setColor((Color) value);
 		}

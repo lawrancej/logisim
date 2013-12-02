@@ -96,6 +96,7 @@ public class TransmissionGate extends InstanceFactory {
 	public Object getInstanceFeature(final Instance instance, Object key) {
 		if (key == WireRepair.class) {
 			return new WireRepair() {
+				@Override
 				public boolean shouldRepairWire(WireRepairData data) {
 					return true;
 				}

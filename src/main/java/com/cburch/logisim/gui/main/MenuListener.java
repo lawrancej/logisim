@@ -39,6 +39,7 @@ class MenuListener {
 			menubar.addActionListener(LogisimMenuBar.PRINT, this);
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			Project proj = frame.getProject();
@@ -75,6 +76,7 @@ class MenuListener {
 			if (handler != null) handler.computeEnabled();
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			EditHandler h = handler;
@@ -105,6 +107,7 @@ class MenuListener {
 			}
 		}
 
+		@Override
 		public void enableChanged(EditHandler handler, LogisimMenuItem action,
 				boolean value) {
 			if (handler == this.handler) {
@@ -147,10 +150,12 @@ class MenuListener {
 			computeEnabled();
 		}
 
+		@Override
 		public void modelChanged(CanvasModelEvent event) {
 			computeRevertEnabled();
 		}
 
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			int action = event.getAction();
 			if (action == ProjectEvent.ACTION_SET_CURRENT) {
@@ -168,10 +173,12 @@ class MenuListener {
 			}
 		}
 		
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			computeEnabled();
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			Project proj = frame.getProject();
@@ -262,6 +269,7 @@ class MenuListener {
 			}
 		}
 
+		@Override
 		public void propertyChange(PropertyChangeEvent e) {
 			computeEnabled();
 		}
@@ -275,6 +283,7 @@ class MenuListener {
 			menubar.setCircuitState(proj.getSimulator(), proj.getCircuitState());
 		}
 		
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			if (event.getAction() == ProjectEvent.ACTION_SET_STATE) {
 				menubar.setCircuitState(frame.getProject().getSimulator(),
@@ -282,6 +291,7 @@ class MenuListener {
 			}
 		}
 
+		@Override
 		public void stateChangeRequested(Simulator sim, CircuitState state) {
 			if (state != null) frame.getProject().setCircuitState(state);
 		}

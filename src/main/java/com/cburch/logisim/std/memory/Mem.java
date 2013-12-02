@@ -166,8 +166,10 @@ abstract class Mem extends InstanceFactory {
 		
 		MemListener(Instance instance) { this.instance = instance; }
 		
+		@Override
 		public void metainfoChanged(HexModel source) { }
 
+		@Override
 		public void bytesChanged(HexModel source, long start,
 				long numBytes, int[] values) {
 			instance.fireInvalidated();

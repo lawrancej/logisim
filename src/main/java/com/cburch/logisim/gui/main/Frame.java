@@ -73,6 +73,7 @@ public class Frame extends LFrame implements LocaleListener {
 	class MyProjectListener
 			implements ProjectListener, LibraryListener, CircuitListener,
 				PropertyChangeListener, ChangeListener {
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			int action = event.getAction();
 
@@ -97,6 +98,7 @@ public class Frame extends LFrame implements LocaleListener {
 			}
 		}
 
+		@Override
 		public void libraryChanged(LibraryEvent e) {
 			if (e.getAction() == LibraryEvent.SET_NAME) {
 				computeTitle();
@@ -105,6 +107,7 @@ public class Frame extends LFrame implements LocaleListener {
 			}
 		}
 
+		@Override
 		public void circuitChanged(CircuitEvent event) {
 			if (event.getAction() == CircuitEvent.ACTION_SET_NAME) {
 				computeTitle();
@@ -119,12 +122,14 @@ public class Frame extends LFrame implements LocaleListener {
 
 		public void attributeListChanged(AttributeEvent e) { }
 
+		@Override
 		public void propertyChange(PropertyChangeEvent event) {
 			if (AppPreferences.TOOLBAR_PLACEMENT.isSource(event)) {
 				placeToolbar();
 			}
 		}
 		
+		@Override
 		public void stateChanged(ChangeEvent event) {
 			Object source = event.getSource();
 			if (source == explorerPane) {
@@ -426,6 +431,7 @@ public class Frame extends LFrame implements LocaleListener {
 		}
 	}
 
+	@Override
 	public void localeChanged() {
 		computeTitle();
 	}
@@ -439,7 +445,7 @@ public class Frame extends LFrame implements LocaleListener {
 			AppPreferences.APPEARANCE_SHOW_GRID.setBoolean(aZoom.getShowGrid());
 			AppPreferences.APPEARANCE_ZOOM.set(Double.valueOf(aZoom.getZoomFactor()));
 		}
-		int state = getExtendedState() & ~JFrame.ICONIFIED;
+		int state = getExtendedState() & ~java.awt.Frame.ICONIFIED;
 		AppPreferences.WINDOW_STATE.set(Integer.valueOf(state));
 		Dimension dim = getSize();
 		AppPreferences.WINDOW_WIDTH.set(Integer.valueOf(dim.width));

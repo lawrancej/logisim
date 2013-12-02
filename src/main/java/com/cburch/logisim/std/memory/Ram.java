@@ -278,8 +278,10 @@ public class Ram extends Mem {
 			return clockState.updateClock(newClock, trigger);
 		}
 
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
 
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			AttributeSet attrs = e.getSource();
 			BitWidth addrBits = attrs.getValue(Mem.ADDR_ATTR);

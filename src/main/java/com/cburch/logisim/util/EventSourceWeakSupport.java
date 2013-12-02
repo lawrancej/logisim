@@ -37,6 +37,7 @@ public class EventSourceWeakSupport<L> implements Iterable<L> {
 		return true;
 	}
 	
+	@Override
 	public Iterator<L> iterator() {
 		// copy elements into another list in case any event handlers
 		// want to add a listener

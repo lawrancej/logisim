@@ -27,6 +27,7 @@ public class DirectionConfigurator implements KeyConfigurator, Cloneable {
 		}
 	}
 	
+	@Override
 	public KeyConfigurationResult keyEventReceived(KeyConfigurationEvent event) {
 		if (event.getType() == KeyConfigurationEvent.KEY_PRESSED) {
 			KeyEvent e = event.getKeyEvent();

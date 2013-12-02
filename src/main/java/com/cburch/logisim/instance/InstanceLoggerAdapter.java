@@ -31,6 +31,7 @@ class InstanceLoggerAdapter implements Loggable {
 		if (msg != null) System.err.println("  (" + msg + ")"); //OK
 	}
 
+	@Override
 	public Object[] getLogOptions(CircuitState circState) {
 		if (logger != null) {
 			updateState(circState);
@@ -40,6 +41,7 @@ class InstanceLoggerAdapter implements Loggable {
 		}
 	}
 
+	@Override
 	public String getLogName(Object option) {
 		if (logger != null) {
 			return logger.getLogName(state, option);
@@ -48,6 +50,7 @@ class InstanceLoggerAdapter implements Loggable {
 		}
 	}
 
+	@Override
 	public Value getLogValue(CircuitState circuitState, Object option) {
 		if (logger != null) {
 			updateState(circuitState);

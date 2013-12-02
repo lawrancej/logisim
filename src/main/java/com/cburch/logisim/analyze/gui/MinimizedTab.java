@@ -23,7 +23,6 @@ import com.cburch.logisim.analyze.model.AnalyzerModel;
 import com.cburch.logisim.analyze.model.OutputExpressions;
 import com.cburch.logisim.analyze.model.OutputExpressionsEvent;
 import com.cburch.logisim.analyze.model.OutputExpressionsListener;
-import com.cburch.logisim.analyze.model.VariableList;
 import static com.cburch.logisim.util.LocaleString._;
 
 class MinimizedTab extends AnalyzerTab {
@@ -58,18 +57,22 @@ class MinimizedTab extends AnalyzerTab {
 			}
 		}
 	
+		@Override
 		public int getSize() {
 			return choices.length;
 		}
 		
+		@Override
 		public Object getElementAt(int index) {
 			return choices[index];
 		}
 		
+		@Override
 		public Object getSelectedItem() {
 			return choices[selected];
 		}
 		
+		@Override
 		public void setSelectedItem(Object value) {
 			for (int i = 0; i < choices.length; i++) {
 				if (choices[i].equals(value)) {
@@ -81,6 +84,7 @@ class MinimizedTab extends AnalyzerTab {
 	
 	private class MyListener
 			implements OutputExpressionsListener, ActionListener, ItemListener {
+		@Override
 		public void expressionChanged(OutputExpressionsEvent event) {
 			String output = getCurrentVariable();
 			if (event.getType() == OutputExpressionsEvent.OUTPUT_MINIMAL
@@ -93,6 +97,7 @@ class MinimizedTab extends AnalyzerTab {
 			formatChoice.setSelectedIndex(FormatModel.getFormatIndex(format));
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			String output = getCurrentVariable();
 			int format = outputExprs.getMinimizedFormat(output);
@@ -100,6 +105,7 @@ class MinimizedTab extends AnalyzerTab {
 			outputExprs.setExpression(output, outputExprs.getMinimalExpression(output));
 		}
 
+		@Override
 		public void itemStateChanged(ItemEvent event) {
 			if (event.getSource() == formatChoice) {
 				String output = getCurrentVariable();

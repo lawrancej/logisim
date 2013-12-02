@@ -43,6 +43,7 @@ public class Analyze {
 	 */
 	public static SortedMap<Instance, String> getPinLabels(Circuit circuit) {
 		Comparator<Instance> locOrder = new Comparator<Instance>() {
+			@Override
 			public int compare(Instance ac, Instance bc) {
 				Location a = ac.getLocation();
 				Location b = bc.getLocation();

@@ -38,6 +38,7 @@ class LocaleSelector extends JList
 			}
 		}
 		
+		@Override
 		public void run() {
 			if (!LocaleManager.getLocale().equals(locale)) {
 				LocaleManager.setLocale(locale);
@@ -63,6 +64,7 @@ class LocaleSelector extends JList
 		addListSelectionListener(this);
 	}
 	
+	@Override
 	public void localeChanged() {
 		Locale current = LocaleManager.getLocale();
 		LocaleOption sel = null;
@@ -75,6 +77,7 @@ class LocaleSelector extends JList
 		}
 	}
 
+	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		LocaleOption opt = (LocaleOption) getSelectedValue();
 		if (opt != null) {

@@ -53,6 +53,7 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
 		}
 	}
 
+	@Override
 	public void selectionChanged(SelectionEvent e) {
 		int act = e.getAction();
 		if (act == SelectionEvent.ACTION_ADDED) {
@@ -130,25 +131,31 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
 		curPopupTime = System.currentTimeMillis();
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e) { }
 
+	@Override
 	public void mouseEntered(MouseEvent e) {
 		hideCurrentPopup();
 	}
 
+	@Override
 	public void mouseExited(MouseEvent e) {
 		long sincePopup = System.currentTimeMillis() - curPopupTime;
 		if (sincePopup > 50) hideCurrentPopup();
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		long sincePopup = System.currentTimeMillis() - curPopupTime;
 		if (sincePopup > 50) hideCurrentPopup();
 		dragStart = Location.create(e.getX(), e.getY());
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) { }
 
+	@Override
 	public void mouseDragged(MouseEvent e) {
 		Location start = dragStart;
 		if (start != null && start.manhattanDistanceTo(e.getX(), e.getY()) > 4) {
@@ -156,6 +163,7 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
 		}
 	}
 
+	@Override
 	public void mouseMoved(MouseEvent arg0) { }
 	
 

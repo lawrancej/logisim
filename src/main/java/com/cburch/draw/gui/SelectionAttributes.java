@@ -28,6 +28,7 @@ public class SelectionAttributes extends AbstractAttributeSet {
 		//
 		// SelectionListener
 		//
+		@Override
 		public void selectionChanged(SelectionEvent ex) {
 			Map<AttributeSet, CanvasObject> oldSel = selected;
 			Map<AttributeSet, CanvasObject> newSel = new HashMap<AttributeSet, CanvasObject>();
@@ -89,11 +90,13 @@ public class SelectionAttributes extends AbstractAttributeSet {
 		//
 		// AttributeSet listener
 		//
+		@Override
 		public void attributeListChanged(AttributeEvent e) {
 			// show selection attributes
 			computeAttributeList(selected.keySet());
 		}
 
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			if (selected.containsKey(e.getSource())) {
 				@SuppressWarnings("unchecked")

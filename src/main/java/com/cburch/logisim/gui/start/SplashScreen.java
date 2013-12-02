@@ -89,6 +89,7 @@ public class SplashScreen extends JWindow implements ActionListener {
 		final Marker marker = markers == null ? null : markers[markerId];
 		if (marker != null) {
 			SwingUtilities.invokeLater(new Runnable() {
+				@Override
 				public void run() {
 					progress.setString(marker.message);
 					progress.setValue(marker.count);
@@ -129,6 +130,7 @@ public class SplashScreen extends JWindow implements ActionListener {
 		markers = null;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if (src == cancel) {

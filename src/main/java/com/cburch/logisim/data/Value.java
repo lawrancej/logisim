@@ -294,7 +294,7 @@ public class Value {
 			}
 			return "" + value;
 		} else {
-			return "" + ((long) value & 0xFFFFFFFFL);
+			return "" + (value & 0xFFFFFFFFL);
 		}
 	}
 	

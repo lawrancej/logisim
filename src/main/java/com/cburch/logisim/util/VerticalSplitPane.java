@@ -16,9 +16,12 @@ import javax.swing.JPanel;
 
 public class VerticalSplitPane extends JPanel {
 	private class MyLayout implements LayoutManager {
+		@Override
 		public void addLayoutComponent(String name, Component comp) { }
+		@Override
 		public void removeLayoutComponent(Component comp) { }
 
+		@Override
 		public Dimension preferredLayoutSize(Container parent) {
 			if (fraction <= 0.0) return comp1.getPreferredSize();
 			if (fraction >= 1.0) return comp0.getPreferredSize();
@@ -29,6 +32,7 @@ public class VerticalSplitPane extends JPanel {
 					in.top + Math.max(d0.height, d1.height) + in.bottom);
 		}
 
+		@Override
 		public Dimension minimumLayoutSize(Container parent) {
 			if (fraction <= 0.0) return comp1.getMinimumSize();
 			if (fraction >= 1.0) return comp0.getMinimumSize();
@@ -39,6 +43,7 @@ public class VerticalSplitPane extends JPanel {
 					in.top + Math.max(d0.height, d1.height) + in.bottom);
 		}
 
+		@Override
 		public void layoutContainer(Container parent) {
 			Insets in = parent.getInsets();
 			int maxWidth = parent.getWidth() - (in.left + in.right);

@@ -4,6 +4,7 @@
 package com.cburch.draw.canvas;
 
 import java.awt.Cursor;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -44,10 +45,12 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
 		}
 	}
 
+	@Override
 	public void mouseMoved(MouseEvent e) {
 		if (tool != null) tool.mouseMoved(canvas, e);
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		canvas.requestFocus();
 		if (e.isPopupTrigger()) {
@@ -57,6 +60,7 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
 		}
 	}
 
+	@Override
 	public void mouseDragged(MouseEvent e) {
 		if (isButton1(e)) {
 			if (tool != null) tool.mouseDragged(canvas, e);
@@ -65,6 +69,7 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
 		}
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (e.isPopupTrigger()) {
 			if (tool != null) tool.cancelMousePress(canvas);
@@ -74,35 +79,42 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
 		}
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e) { }
 
+	@Override
 	public void mouseEntered(MouseEvent e) {
 		if (tool != null) tool.mouseEntered(canvas, e);
 	}
 
+	@Override
 	public void mouseExited(MouseEvent e) {
 		if (tool != null) tool.mouseExited(canvas, e);
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e) {
 		if (tool != null) tool.keyPressed(canvas, e);
 	}
 
+	@Override
 	public void keyReleased(KeyEvent e) {
 		if (tool != null) tool.keyReleased(canvas, e);
 	}
 
+	@Override
 	public void keyTyped(KeyEvent e) {
 		if (tool != null) tool.keyTyped(canvas, e);
 	}
 
+	@Override
 	public void modelChanged(CanvasModelEvent event) {
 		canvas.getSelection().modelChanged(event);
 		canvas.repaint();
 	}
 	
 	private boolean isButton1(MouseEvent e) {
-		return (e.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) != 0;
+		return (e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0;
 	}
 	
 	private void handlePopupTrigger(MouseEvent e) {

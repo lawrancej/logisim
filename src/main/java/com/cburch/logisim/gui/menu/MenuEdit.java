@@ -5,6 +5,7 @@ package com.cburch.logisim.gui.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JMenuItem;
@@ -18,6 +19,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuEdit extends Menu {
 	private class MyListener implements ProjectListener, ActionListener {
+		@Override
 		public void projectChanged(ProjectEvent e) {
 			Project proj = menubar.getProject();
 			Action last = proj == null ? null : proj.getLastAction();
@@ -30,6 +32,7 @@ class MenuEdit extends Menu {
 			}
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			Project proj = menubar.getProject();
@@ -78,9 +81,9 @@ class MenuEdit extends Menu {
 		lower.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_DOWN, menuMask));
 		raiseTop.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_UP, menuMask | KeyEvent.SHIFT_DOWN_MASK));
+				KeyEvent.VK_UP, menuMask | InputEvent.SHIFT_DOWN_MASK));
 		lowerBottom.setAccelerator(KeyStroke.getKeyStroke(
-				KeyEvent.VK_DOWN, menuMask | KeyEvent.SHIFT_DOWN_MASK));
+				KeyEvent.VK_DOWN, menuMask | InputEvent.SHIFT_DOWN_MASK));
 
 		add(undo);
 		addSeparator();

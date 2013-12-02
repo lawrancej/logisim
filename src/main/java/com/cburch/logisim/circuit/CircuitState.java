@@ -29,6 +29,7 @@ import com.cburch.logisim.std.wiring.Pin;
 
 public class CircuitState implements InstanceData {
 	private class MyCircuitListener implements CircuitListener {
+		@Override
 		public void circuitChanged(CircuitEvent event) {
 			int action = event.getAction();
 			if (action == CircuitEvent.ACTION_ADD) {

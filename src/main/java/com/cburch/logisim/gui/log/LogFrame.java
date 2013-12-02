@@ -49,17 +49,20 @@ public class LogFrame extends LFrame {
 			return LogFrame.this;
 		}
 		
+		@Override
 		public void localeChanged() {
 			String title = project.getLogisimFile().getDisplayName();
 			setText(_("logFrameMenuItem", title));
 		}
 
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			if (event.getAction() == ProjectEvent.ACTION_SET_FILE) {
 				localeChanged();
 			}
 		}
 		
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			if (event.getAction() == LibraryEvent.SET_NAME) {
 				localeChanged();
@@ -70,6 +73,7 @@ public class LogFrame extends LFrame {
 	private class MyListener
 			implements ActionListener, ProjectListener, LibraryListener,
 				SimulatorListener, LocaleListener {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if (src == close) {
@@ -79,6 +83,7 @@ public class LogFrame extends LFrame {
 			}
 		}
 		
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			int action = event.getAction();
 			if (action == ProjectEvent.ACTION_SET_STATE) {
@@ -89,6 +94,7 @@ public class LogFrame extends LFrame {
 			}
 		}
 		
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			int action = event.getAction();
 			if (action == LibraryEvent.SET_NAME) {
@@ -96,6 +102,7 @@ public class LogFrame extends LFrame {
 			}
 		}
 		
+		@Override
 		public void localeChanged() {
 			setTitle(computeTitle(curModel, project));
 			for (int i = 0; i < panels.length; i++) {
@@ -107,12 +114,15 @@ public class LogFrame extends LFrame {
 			windowManager.localeChanged();
 		}
 
+		@Override
 		public void propagationCompleted(SimulatorEvent e) {
 			curModel.propagationCompleted();
 		}
 
+		@Override
 		public void tickCompleted(SimulatorEvent e) { }
 
+		@Override
 		public void simulatorStateChanged(SimulatorEvent e) { }
 	}
 	

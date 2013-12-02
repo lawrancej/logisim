@@ -64,16 +64,19 @@ public class XmlIterator<E extends Node> implements Iterable<E>, Iterator<E>, Cl
 		}
 	}
 
+	@Override
 	public Iterator<E> iterator() {
 		XmlIterator<E> ret = this.clone();
 		ret.index = 0;
 		return ret;
 	}
 
+	@Override
 	public boolean hasNext() {
 		return list != null && index < list.getLength();
 	}
 
+	@Override
 	public E next() {
 		Node ret = list.item(index);
 		if (ret == null) {
@@ -86,6 +89,7 @@ public class XmlIterator<E extends Node> implements Iterable<E>, Iterator<E>, Cl
 		}
 	}
 
+	@Override
 	public void remove() {
 		throw new UnsupportedOperationException("XmlChildIterator.remove");
 	}

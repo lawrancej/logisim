@@ -190,6 +190,7 @@ public class Rom extends Mem {
 			addMouseListener(this);
 		}
 
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			if (contents == null) return;
 			Project proj = source instanceof Frame ? ((Frame) source).getProject() : null;
@@ -198,12 +199,16 @@ public class Rom extends Mem {
 			frame.toFront();
 		}
 
+		@Override
 		public void mousePressed(MouseEvent e) { }
 
+		@Override
 		public void mouseReleased(MouseEvent e) { }
 
+		@Override
 		public void mouseEntered(MouseEvent e) { }
 
+		@Override
 		public void mouseExited(MouseEvent e) { }
 	}
 }

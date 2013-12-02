@@ -119,6 +119,7 @@ class RecentProjects implements PreferenceChangeListener {
 		}
 	}
 
+	@Override
 	public void preferenceChange(PreferenceChangeEvent event) {
 		Preferences prefs = event.getNode();
 		String prop = event.getKey();

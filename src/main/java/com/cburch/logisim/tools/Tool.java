@@ -31,9 +31,11 @@ public abstract class Tool implements AttributeDefaultProvider {
 	public boolean sharesSource(Tool other) { return this == other; }
 	public AttributeSet getAttributeSet() { return null; }
 	public AttributeSet getAttributeSet(Canvas canvas) { return getAttributeSet(); }
+	@Override
 	public boolean isAllDefaultValues(AttributeSet attrs, LogisimVersion ver) {
 		return false;
 	}
+	@Override
 	public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
 		return null;
 	}

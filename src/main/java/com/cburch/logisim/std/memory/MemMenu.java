@@ -38,6 +38,7 @@ class MemMenu implements ActionListener, MenuExtender {
 		this.instance = instance;
 	}
 		
+	@Override
 	public void configureMenu(JPopupMenu menu, Project proj) {
 		this.proj = proj;
 		this.frame = proj.getFrame();
@@ -68,6 +69,7 @@ class MemMenu implements ActionListener, MenuExtender {
 		return ret;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent evt) {
 		Object src = evt.getSource();
 		if (src == edit) doEdit();

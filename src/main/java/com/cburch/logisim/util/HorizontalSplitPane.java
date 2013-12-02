@@ -43,8 +43,10 @@ public class HorizontalSplitPane extends JPanel {
 			}
 		}
 		
+		@Override
 		public void mouseClicked(MouseEvent e) { }
 		
+		@Override
 		public void mousePressed(MouseEvent e) {
 			if (!dragging) {
 				curValue = getDragValue(e);
@@ -53,6 +55,7 @@ public class HorizontalSplitPane extends JPanel {
 			}
 		}
 		
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			if (dragging) {
 				dragging = false;
@@ -62,10 +65,13 @@ public class HorizontalSplitPane extends JPanel {
 			}
 		}
 		
+		@Override
 		public void mouseEntered(MouseEvent e) { }
 		
+		@Override
 		public void mouseExited(MouseEvent e) { }
 		
+		@Override
 		public void mouseDragged(MouseEvent e) {
 			if (dragging) {
 				int newValue = getDragValue(e);
@@ -73,14 +79,18 @@ public class HorizontalSplitPane extends JPanel {
 			}
 		}
 		
+		@Override
 		public void mouseMoved(MouseEvent e) { }
 	}
 
 	
 	private class MyLayout implements LayoutManager {
+		@Override
 		public void addLayoutComponent(String name, Component comp) { }
+		@Override
 		public void removeLayoutComponent(Component comp) { }
 
+		@Override
 		public Dimension preferredLayoutSize(Container parent) {
 			if (fraction <= 0.0) return comp1.getPreferredSize();
 			if (fraction >= 1.0) return comp0.getPreferredSize();
@@ -91,6 +101,7 @@ public class HorizontalSplitPane extends JPanel {
 					in.top + d0.height + d1.height + in.bottom);
 		}
 
+		@Override
 		public Dimension minimumLayoutSize(Container parent) {
 			if (fraction <= 0.0) return comp1.getMinimumSize();
 			if (fraction >= 1.0) return comp0.getMinimumSize();
@@ -101,6 +112,7 @@ public class HorizontalSplitPane extends JPanel {
 					in.top + d0.height + d1.height + in.bottom);
 		}
 
+		@Override
 		public void layoutContainer(Container parent) {
 			Insets in = parent.getInsets();
 			int maxWidth = parent.getWidth() - (in.left + in.right);

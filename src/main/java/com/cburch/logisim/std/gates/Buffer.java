@@ -96,6 +96,7 @@ class Buffer extends InstanceFactory {
 	public Object getInstanceFeature(final Instance instance, Object key) {
 		if (key == ExpressionComputer.class) {
 			return new ExpressionComputer() {
+				@Override
 				public void computeExpression(Map<Location,Expression> expressionMap) {
 					Expression e = expressionMap.get(instance.getPortLocation(1));
 					if (e != null) {

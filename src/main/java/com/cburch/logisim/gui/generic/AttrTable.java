@@ -46,11 +46,16 @@ public class AttrTable extends JPanel implements LocaleListener {
 	private static final AttrTableModel NULL_ATTR_MODEL = new NullAttrModel();
 	
 	private static class NullAttrModel implements AttrTableModel {
+		@Override
 		public void addAttrTableModelListener(AttrTableModelListener listener) { }
+		@Override
 		public void removeAttrTableModelListener(AttrTableModelListener listener) { }
 		
+		@Override
 		public String getTitle() { return null; }
+		@Override
 		public int getRowCount() { return 0; }
+		@Override
 		public AttrTableModelRow getRow(int rowIndex) { return null; }
 	}
 	
@@ -126,10 +131,12 @@ public class AttrTable extends JPanel implements LocaleListener {
 			}
 		}
 
+		@Override
 		public void addTableModelListener(TableModelListener l) {
 			listeners.add(l);
 		}
 
+		@Override
 		public void removeTableModelListener(TableModelListener l) {
 			listeners.remove(l);
 		}
@@ -141,23 +148,28 @@ public class AttrTable extends JPanel implements LocaleListener {
 			}
 		}
 
+		@Override
 		public int getColumnCount() {
 			return 2;
 		}
 
+		@Override
 		public String getColumnName(int columnIndex) {
 			if (columnIndex == 0) return "Attribute";
 			else                  return "Value";
 		}
 
+		@Override
 		public Class<?> getColumnClass(int columnIndex) {
 			return String.class;
 		}
 
+		@Override
 		public int getRowCount() {
 			return attrModel.getRowCount();
 		}
 
+		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			if (columnIndex == 0) {
 				return attrModel.getRow(rowIndex).getLabel();
@@ -166,10 +178,12 @@ public class AttrTable extends JPanel implements LocaleListener {
 			}
 		}
 
+		@Override
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
 			return columnIndex > 0 && attrModel.getRow(rowIndex).isValueEditable();
 		}
 
+		@Override
 		public void setValueAt(Object value, int rowIndex,
 				int columnIndex) {
 			if (columnIndex > 0) {
@@ -186,6 +200,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 		//
 		// AttrTableModelListener methods
 		//
+		@Override
 		public void attrTitleChanged(AttrTableModelEvent e) {
 			if (e.getSource() != attrModel) {
 				attrModel.removeAttrTableModelListener(this);
@@ -194,6 +209,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 			updateTitle();
 		}
 		
+		@Override
 		public void attrStructureChanged(AttrTableModelEvent e) {
 			if (e.getSource() != attrModel) {
 				attrModel.removeAttrTableModelListener(this);
@@ -206,6 +222,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 			fireTableChanged();
 		}
 		
+		@Override
 		public void attrValueChanged(AttrTableModelEvent e) {
 			if (e.getSource() != attrModel) {
 				attrModel.removeAttrTableModelListener(this);
@@ -230,12 +247,14 @@ public class AttrTable extends JPanel implements LocaleListener {
 		//
 		// TableCellListener management
 		//
+		@Override
 		public void addCellEditorListener(CellEditorListener l) {
 			// Adds a listener to the list that's notified when the
 			// editor stops, or cancels editing. 
 			listeners.add(l);
 		}
 
+		@Override
 		public void removeCellEditorListener(CellEditorListener l) {
 			// Removes a listener from the list that's notified 
 			listeners.remove(l);
@@ -258,12 +277,14 @@ public class AttrTable extends JPanel implements LocaleListener {
 		//
 		// other TableCellEditor methods
 		//
+		@Override
 		public void cancelCellEditing() {
 			// Tells the editor to cancel editing and not accept any
 			// partially edited value. 
 			fireEditingCanceled();
 		}
 
+		@Override
 		public boolean stopCellEditing() {
 			// Tells the editor to stop editing and accept any partially
 			// edited value as the value of the editor. 
@@ -271,6 +292,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 			return true;
 		}
 
+		@Override
 		public Object getCellEditorValue() {
 			// Returns the value contained in the editor. 
 			Component comp = currentEditor;
@@ -283,17 +305,20 @@ public class AttrTable extends JPanel implements LocaleListener {
 			}
 		}
 
+		@Override
 		public boolean isCellEditable(EventObject anEvent) {
 			// Asks the editor if it can start editing using anEvent. 
 			return true;
 		}
 
+		@Override
 		public boolean shouldSelectCell(EventObject anEvent) {
 			// Returns true if the editing cell should be selected,
 			// false otherwise. 
 			return true;
 		}
 
+		@Override
 		public Component getTableCellEditorComponent(JTable table, Object value,
 				boolean isSelected, int rowIndex, int columnIndex) {
 			AttrTableModel attrModel = tableModel.attrModel;
@@ -339,6 +364,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 		//
 		// FocusListener methods
 		//
+		@Override
 		public void focusLost(FocusEvent e) {
 			Object dst = e.getOppositeComponent();
 			if (dst instanceof Component) {
@@ -356,11 +382,13 @@ public class AttrTable extends JPanel implements LocaleListener {
 			}
 		}
 
+		@Override
 		public void focusGained(FocusEvent e) { }
 
 		//
 		// ActionListener methods
 		//
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			stopCellEditing();
 		}
@@ -426,6 +454,7 @@ public class AttrTable extends JPanel implements LocaleListener {
 		return tableModel.attrModel;
 	}
 
+	@Override
 	public void localeChanged() {
 		updateTitle();
 		tableModel.fireTableChanged();

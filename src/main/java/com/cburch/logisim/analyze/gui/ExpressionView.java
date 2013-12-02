@@ -31,6 +31,7 @@ class ExpressionView extends JPanel {
 	private static final int MINIMUM_HEIGHT = 25;
 	
 	private class MyListener implements ComponentListener {
+		@Override
 		public void componentResized(ComponentEvent arg0) {
 			int width = getWidth();
 			if (renderData != null && Math.abs(renderData.width - width) > 2) {
@@ -43,8 +44,11 @@ class ExpressionView extends JPanel {
 			}
 		}
 
+		@Override
 		public void componentMoved(ComponentEvent arg0) { }
+		@Override
 		public void componentShown(ComponentEvent arg0) { }
+		@Override
 		public void componentHidden(ComponentEvent arg0) { }
 	}
 	
@@ -105,8 +109,11 @@ class ExpressionView extends JPanel {
 		private void computeText(Expression expr) {
 			final StringBuilder text = new StringBuilder();
 			expr.visit(new ExpressionVisitor<Object>() {
+				@Override
 				public Object visitAnd(Expression a, Expression b) { return binary(a, b, Expression.AND_LEVEL, " "); }
+				@Override
 				public Object visitOr(Expression a, Expression b) { return binary(a, b, Expression.OR_LEVEL, " + "); }
+				@Override
 				public Object visitXor(Expression a, Expression b) { return binary(a, b, Expression.XOR_LEVEL, " ^ "); }
 	
 				private Object binary(Expression a, Expression b, int level, String op) {
@@ -124,6 +131,7 @@ class ExpressionView extends JPanel {
 					return null;
 				}
 				
+				@Override
 				public Object visitNot(Expression a) {
 					NotData notData = new NotData();
 					notData.startIndex = text.length();
@@ -133,11 +141,13 @@ class ExpressionView extends JPanel {
 					return null;
 				}
 				
+				@Override
 				public Object visitVariable(String name) {
 					text.append(name);
 					return null;
 				}
 				
+				@Override
 				public Object visitConstant(int value) {
 					text.append("" + Integer.toString(value, 16));
 					return null;

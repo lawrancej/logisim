@@ -32,11 +32,13 @@ class MemContents implements Cloneable, HexModel {
 	//
 	// HexModel methods
 	//
+	@Override
 	public void addHexModelListener(HexModelListener l) {
 		if (listeners == null) listeners = new EventSourceWeakSupport<HexModelListener>();
 		listeners.add(l);
 	}
 
+	@Override
 	public void removeHexModelListener(HexModelListener l) {
 		if (listeners == null) return;
 		listeners.add(l);
@@ -85,6 +87,7 @@ class MemContents implements Cloneable, HexModel {
 	public int getLogLength() { return addrBits; }
 	public int getWidth() { return width; }
 	
+	@Override
 	public int get(long addr) {
 		int page = (int) (addr >>> PAGE_SIZE_BITS);
 		int offs = (int) (addr & PAGE_MASK);
@@ -104,6 +107,7 @@ class MemContents implements Cloneable, HexModel {
 		return true;
 	}
 	
+	@Override
 	public void set(long addr, int value) {
 		int page = (int) (addr >>> PAGE_SIZE_BITS);
 		int offs = (int) (addr & PAGE_MASK);
@@ -118,6 +122,7 @@ class MemContents implements Cloneable, HexModel {
 		}
 	}
 
+	@Override
 	public void set(long start, int[] values) {
 		if (values.length == 0) return;
 		
@@ -192,6 +197,7 @@ class MemContents implements Cloneable, HexModel {
 		}
 	}
 	
+	@Override
 	public void fill(long start, long len, int value) {
 		if (len == 0) return;
 		
@@ -320,14 +326,17 @@ class MemContents implements Cloneable, HexModel {
 		fireMetainfoChanged();
 	}
 
+	@Override
 	public long getFirstOffset() {
 		return 0;
 	}
 
+	@Override
 	public long getLastOffset() {
 		return (1L << addrBits) - 1;
 	}
 
+	@Override
 	public int getValueWidth() {
 		return width;
 	}

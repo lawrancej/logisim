@@ -32,10 +32,12 @@ class PrefBoolean extends JCheckBox
 		setText(title.toString());
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		pref.setBoolean(this.isSelected());
 	}
 	
+	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		if (pref.isSource(event)) {
 			setSelected(pref.getBoolean());

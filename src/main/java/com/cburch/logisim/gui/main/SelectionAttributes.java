@@ -30,16 +30,19 @@ class SelectionAttributes extends AbstractAttributeSet {
 	private static final Object[] EMPTY_VALUES = new Object[0];
 	
 	private class Listener implements Selection.Listener, AttributeListener {
+		@Override
 		public void selectionChanged(Selection.Event e) {
 			updateList(true);
 		}
 
+		@Override
 		public void attributeListChanged(AttributeEvent e) {
 			if (listening) {
 				updateList(false);
 			}
 		}
 
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			if (listening) {
 				updateList(false);

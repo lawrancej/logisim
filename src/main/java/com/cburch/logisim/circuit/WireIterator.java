@@ -39,10 +39,12 @@ class WireIterator implements Iterator<Location> {
 		}
 	}
 	
+	@Override
 	public boolean hasNext() {
 		return !destReturned;
 	}
 	
+	@Override
 	public Location next() {
 		Location ret = Location.create(curX, curY);
 		destReturned |= curX == destX && curY == destY;
@@ -51,6 +53,7 @@ class WireIterator implements Iterator<Location> {
 		return ret;
 	}
 	
+	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
 	}

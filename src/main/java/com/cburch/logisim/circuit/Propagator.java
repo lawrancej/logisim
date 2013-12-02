@@ -38,6 +38,7 @@ public class Propagator {
 			this.val = val;
 		}
 		
+		@Override
 		public int compareTo(SetData o) {
 			// Yes, these subtractions may overflow. This is intentional, as it
 			// avoids potential wraparound problems as the counters increment.
@@ -91,8 +92,10 @@ public class Propagator {
 			prop = new WeakReference<Propagator>(propagator);
 		}
 		
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
 
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			Propagator p = prop.get();
 			if (p == null) {

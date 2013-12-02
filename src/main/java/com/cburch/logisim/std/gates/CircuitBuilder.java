@@ -497,6 +497,7 @@ public class CircuitBuilder {
 	}
 	
 	private static class CompareYs implements Comparator<Location> {
+		@Override
 		public int compare(Location a, Location b) {
 			return a.getY() - b.getY();
 		}

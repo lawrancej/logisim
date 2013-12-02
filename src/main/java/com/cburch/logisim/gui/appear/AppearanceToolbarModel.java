@@ -81,6 +81,7 @@ class AppearanceToolbarModel extends AbstractToolbarModel
 		}
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent e) {
 		String prop = e.getPropertyName();
 		if (Canvas.TOOL_PROPERTY.equals(prop)) {

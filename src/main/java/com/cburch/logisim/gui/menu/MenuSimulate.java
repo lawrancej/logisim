@@ -38,6 +38,7 @@ class MenuSimulate extends Menu {
 			addActionListener(this);
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (currentSim != null) currentSim.setTickFrequency(freq);
 		}
@@ -83,12 +84,14 @@ class MenuSimulate extends Menu {
 			circuit.removeCircuitListener(this);
 		}
 
+		@Override
 		public void circuitChanged(CircuitEvent event) {
 			if (event.getAction() == CircuitEvent.ACTION_SET_NAME) {
 				this.setText(circuitState.getCircuit().getName());
 			}
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			menubar.fireStateChanged(currentSim, circuitState);
 		}
@@ -96,6 +99,7 @@ class MenuSimulate extends Menu {
 
 	private class MyListener implements ActionListener, SimulatorListener,
 			ChangeListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			Project proj = menubar.getProject();
@@ -119,8 +123,11 @@ class MenuSimulate extends Menu {
 			}
 		}
 
+		@Override
 		public void propagationCompleted(SimulatorEvent e) { }
+		@Override
 		public void tickCompleted(SimulatorEvent e) { }
+		@Override
 		public void simulatorStateChanged(SimulatorEvent e) {
 			Simulator sim = e.getSource();
 			if (sim != currentSim) return;
@@ -134,6 +141,7 @@ class MenuSimulate extends Menu {
 			}
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			step.setEnabled(run.isEnabled() && !run.isSelected());
 		}

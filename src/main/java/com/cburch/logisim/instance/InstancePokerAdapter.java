@@ -41,6 +41,7 @@ class InstancePokerAdapter extends AbstractCaret implements Pokable {
 		if (msg != null) System.err.println("  (" + msg + ")"); //OK
 	}
 
+	@Override
 	public Caret getPokeCaret(ComponentUserEvent event) {
 		if (poker == null) {
 			return null;

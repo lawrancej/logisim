@@ -37,6 +37,7 @@ class SelectionPanel extends LogPanel {
 			}
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if (src == addTool) {
@@ -72,10 +73,12 @@ class SelectionPanel extends LogPanel {
 			}
 		}
 
+		@Override
 		public void valueChanged(TreeSelectionEvent event) {
 			computeEnabled();
 		}
 
+		@Override
 		public void valueChanged(ListSelectionEvent event) {
 			computeEnabled();
 		}

@@ -201,14 +201,17 @@ abstract class CircuitDetermination {
 	
 	private static class Determine
 			implements ExpressionVisitor<CircuitDetermination> {
+		@Override
 		public CircuitDetermination visitAnd(Expression a, Expression b) {
 			return binary(a.visit(this), b.visit(this), AndGate.FACTORY);
 		}
 
+		@Override
 		public CircuitDetermination visitOr(Expression a, Expression b) {
 			return binary(a.visit(this), b.visit(this), OrGate.FACTORY);
 		}
 
+		@Override
 		public CircuitDetermination visitXor(Expression a, Expression b) {
 			return binary(a.visit(this), b.visit(this), XorGate.FACTORY);
 		}
@@ -244,6 +247,7 @@ abstract class CircuitDetermination {
 			return ret;
 		}
 
+		@Override
 		public CircuitDetermination visitNot(Expression aBase) {
 			CircuitDetermination aret = aBase.visit(this);
 			if (aret instanceof Gate) {
@@ -265,10 +269,12 @@ abstract class CircuitDetermination {
 			return ret;
 		}
 
+		@Override
 		public CircuitDetermination visitVariable(String name) {
 			return new Input(name);
 		}
 
+		@Override
 		public CircuitDetermination visitConstant(int value) {
 			return new Value(value);
 		}           

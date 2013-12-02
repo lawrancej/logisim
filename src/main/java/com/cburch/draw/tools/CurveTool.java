@@ -140,9 +140,9 @@ public class CurveTool extends AbstractTool {
 		lastMouseX = mx;
 		lastMouseY = my;
 		
-		boolean shiftDown = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0;
-		boolean ctrlDown = (mods & MouseEvent.CTRL_DOWN_MASK) != 0;
-		boolean altDown = (mods & MouseEvent.ALT_DOWN_MASK) != 0;
+		boolean shiftDown = (mods & InputEvent.SHIFT_DOWN_MASK) != 0;
+		boolean ctrlDown = (mods & InputEvent.CTRL_DOWN_MASK) != 0;
+		boolean altDown = (mods & InputEvent.ALT_DOWN_MASK) != 0;
 		Curve ret = null;
 		switch (state) {
 		case ENDPOINT_DRAG:

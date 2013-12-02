@@ -156,6 +156,7 @@ public class AppPreferences {
 	//
 	private static class MyListener implements PreferenceChangeListener,
 			LocaleListener {
+		@Override
 		public void preferenceChange(PreferenceChangeEvent event) {
 			Preferences prefs = event.getNode();
 			String prop = event.getKey();
@@ -184,6 +185,7 @@ public class AppPreferences {
 			}
 		}
 		
+		@Override
 		public void localeChanged() {
 			Locale loc = LocaleManager.getLocale();
 			String lang = loc.getLanguage();

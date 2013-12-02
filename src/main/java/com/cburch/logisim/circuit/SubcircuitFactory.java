@@ -48,10 +48,12 @@ public class SubcircuitFactory extends InstanceFactory {
 			this.instance = instance;
 		}
 		
+		@Override
 		public String toString() {
 			return source.getName();
 		}
 
+		@Override
 		public void configureMenu(JPopupMenu menu, Project proj) {
 			this.proj = proj;
 			String name = instance.getFactory().getDisplayName();
@@ -61,6 +63,7 @@ public class SubcircuitFactory extends InstanceFactory {
 			menu.add(item);
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			CircuitState superState = proj.getCircuitState();
 			if (superState == null) return;

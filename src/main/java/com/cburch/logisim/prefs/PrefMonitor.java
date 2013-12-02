@@ -17,5 +17,6 @@ public interface PrefMonitor<E> extends PreferenceChangeListener {
 	public void set(E value);
 	public boolean getBoolean();
 	public void setBoolean(boolean value);
+	@Override
 	public void preferenceChange(PreferenceChangeEvent e);
 }

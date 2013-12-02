@@ -115,6 +115,7 @@ public class Splitter extends ManagedComponent
 	//
 	// user interface methods
 	//
+	@Override
 	public void draw(ComponentDrawContext context) {
 		SplitterAttributes attrs = (SplitterAttributes) getAttributeSet();
 		if (attrs.appear == SplitterAttributes.APPEAR_LEGACY) {
@@ -135,10 +136,12 @@ public class Splitter extends ManagedComponent
 		else return super.getFeature(key);
 	}
 
+	@Override
 	public boolean shouldRepairWire(WireRepairData data) {
 		return true;
 	}
 	
+	@Override
 	public String getToolTip(ComponentUserEvent e) {
 		int end = -1;
 		for (int i = getEnds().size() - 1; i >= 0; i--) {
@@ -192,6 +195,7 @@ public class Splitter extends ManagedComponent
 		}
 	}
 
+	@Override
 	public void configureMenu(JPopupMenu menu, Project proj) {
 		menu.addSeparator();
 		menu.add(new SplitterDistributeItem(proj, this, 1));
@@ -201,8 +205,10 @@ public class Splitter extends ManagedComponent
 	//
 	// AttributeListener methods
 	//
+	@Override
 	public void attributeListChanged(AttributeEvent e) { }
 	
+	@Override
 	public void attributeValueChanged(AttributeEvent e) {
 		configureComponent();
 	}

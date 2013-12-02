@@ -40,22 +40,27 @@ class TextFieldCaret implements Caret, TextFieldListener {
 		moveCaret(x, y);
 	}
 
+	@Override
 	public void addCaretListener(CaretListener l) {
 		listeners.add(l);
 	}
 
+	@Override
 	public void removeCaretListener(CaretListener l) {
 		listeners.remove(l);
 	}
 
+	@Override
 	public String getText() { return curText; }
 
+	@Override
 	public void commitText(String text) {
 		curText = text;
 		pos = curText.length();
 		field.setText(text);
 	}
 
+	@Override
 	public void draw(Graphics g) {
 		if (field.getFont() != null) g.setFont(field.getFont());
 
@@ -93,6 +98,7 @@ class TextFieldCaret implements Caret, TextFieldListener {
 		g.drawLine(x, y, x, y - ascent);
 	}
 
+	@Override
 	public Bounds getBounds(Graphics g) {
 		int x = field.getX();
 		int y = field.getY();
@@ -120,6 +126,7 @@ class TextFieldCaret implements Caret, TextFieldListener {
 				.expand(3);
 	}
 
+	@Override
 	public void cancelEditing() {
 		CaretEvent e = new CaretEvent(this, oldText, oldText);
 		curText = oldText;
@@ -130,6 +137,7 @@ class TextFieldCaret implements Caret, TextFieldListener {
 		field.removeTextFieldListener(this);
 	}
 
+	@Override
 	public void stopEditing() {
 		CaretEvent e = new CaretEvent(this, oldText, curText);
 		field.setText(curText);
@@ -139,20 +147,24 @@ class TextFieldCaret implements Caret, TextFieldListener {
 		field.removeTextFieldListener(this);
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		//TODO: enhance label editing
 		moveCaret(e.getX(), e.getY());
 	}
 
+	@Override
 	public void mouseDragged(MouseEvent e) {
 		//TODO: enhance label editing
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		//TODO: enhance label editing
 		moveCaret(e.getX(), e.getY());
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e) {
 		int ign = InputEvent.ALT_MASK | InputEvent.CTRL_MASK
 			| InputEvent.META_MASK;
@@ -207,8 +219,10 @@ class TextFieldCaret implements Caret, TextFieldListener {
 		}
 	}
 
+	@Override
 	public void keyReleased(KeyEvent e) { }
 
+	@Override
 	public void keyTyped(KeyEvent e) {
 		int ign = InputEvent.ALT_MASK | InputEvent.CTRL_MASK
 			| InputEvent.META_MASK;
@@ -245,6 +259,7 @@ class TextFieldCaret implements Caret, TextFieldListener {
 		pos = curText.length();
 	}
 	
+	@Override
 	public void textChanged(TextFieldEvent e) {
 		curText = field.getText();
 		oldText = curText;

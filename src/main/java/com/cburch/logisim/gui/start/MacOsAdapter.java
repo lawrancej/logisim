@@ -18,6 +18,7 @@ import com.cburch.logisim.proj.ProjectActions;
 class MacOsAdapter { //MAC extends ApplicationAdapter {
 	
 	private static class MyListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			ApplicationEvent event2 = (ApplicationEvent) event;
 			int type = event2.getType();

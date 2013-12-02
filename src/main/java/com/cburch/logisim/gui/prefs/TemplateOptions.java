@@ -33,6 +33,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 class TemplateOptions extends OptionsPanel {
 	private class MyListener implements ActionListener, PropertyChangeListener {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if (src == templateButton) {
@@ -77,6 +78,7 @@ class TemplateOptions extends OptionsPanel {
 			computeEnabled();
 		}
 
+		@Override
 		public void propertyChange(PropertyChangeEvent event) {
 			String prop = event.getPropertyName();
 			if (prop.equals(AppPreferences.TEMPLATE_TYPE)) {

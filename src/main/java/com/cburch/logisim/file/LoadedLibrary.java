@@ -25,6 +25,7 @@ import com.cburch.logisim.util.EventSourceWeakSupport;
 
 public class LoadedLibrary extends Library implements LibraryEventSource {
 	private class MyListener implements LibraryListener {
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			fireLibraryEvent(event);
 		}
@@ -47,10 +48,12 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
 		}
 	}
 	
+	@Override
 	public void addLibraryListener(LibraryListener l) {
 		listeners.add(l);
 	}
 	
+	@Override
 	public void removeLibraryListener(LibraryListener l) {
 		listeners.remove(l);
 	}

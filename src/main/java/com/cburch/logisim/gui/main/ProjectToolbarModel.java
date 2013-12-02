@@ -81,6 +81,7 @@ class ProjectToolbarModel extends AbstractToolbarModel
 	//
 	// EnabledListener methods
 	//
+	@Override
 	public void menuEnableChanged(MenuListener source) {
 		fireToolbarAppearanceChanged();
 	}

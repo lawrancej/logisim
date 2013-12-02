@@ -73,6 +73,7 @@ public class BitWidth implements Comparable<BitWidth> {
 		return this.width == other.width;
 	}
 
+	@Override
 	public int compareTo(BitWidth other) {
 		return this.width - other.width;
 	}

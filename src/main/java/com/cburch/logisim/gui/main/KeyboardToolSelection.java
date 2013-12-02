@@ -38,6 +38,7 @@ public class KeyboardToolSelection extends AbstractAction {
 		this.index = index;
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent event) {
 		ToolbarModel model = toolbar.getToolbarModel();
 		int i = -1;

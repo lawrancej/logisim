@@ -45,6 +45,7 @@ class SplitterDistributeItem extends JMenuItem implements ActionListener {
 		}
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		SplitterAttributes attrs = (SplitterAttributes) splitter.getAttributeSet();
 		byte[] actual = attrs.bit_end;

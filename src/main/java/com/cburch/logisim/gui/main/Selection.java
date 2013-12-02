@@ -44,6 +44,7 @@ public class Selection extends SelectionBase {
 			savedSelections = new WeakHashMap<Action,SelectionSave>();
 		}
 		
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			int type = event.getAction();
 			if (type == ProjectEvent.ACTION_START) {
@@ -84,6 +85,7 @@ public class Selection extends SelectionBase {
 			}
 		}
 		
+		@Override
 		public void circuitChanged(CircuitEvent event) {
 			if (event.getAction() == CircuitEvent.TRANSACTION_DONE) {
 				Circuit circuit = event.getCircuit();

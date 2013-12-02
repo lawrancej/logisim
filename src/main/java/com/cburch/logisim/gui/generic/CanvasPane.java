@@ -12,6 +12,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 import com.cburch.logisim.util.MacCompatibility;
@@ -22,14 +23,19 @@ public class CanvasPane extends JScrollPane {
 		//
 		// ComponentListener methods
 		//
+		@Override
 		public void componentResized(ComponentEvent e) {
 			contents.recomputeSize();
 		}
 
+		@Override
 		public void componentMoved(ComponentEvent e) { }
+		@Override
 		public void componentShown(ComponentEvent e) { }
+		@Override
 		public void componentHidden(ComponentEvent e) { }
 
+		@Override
 		public void propertyChange(PropertyChangeEvent e) {
 			String prop = e.getPropertyName();
 			if (prop.equals(ZoomModel.ZOOM)) {
@@ -60,8 +66,8 @@ public class CanvasPane extends JScrollPane {
 		this.listener = new Listener();
 		this.zoomModel = null;
 		if (MacCompatibility.mrjVersion >= 0.0) {
-			setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-			setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		}
 
 		addComponentListener(listener);

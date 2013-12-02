@@ -97,7 +97,7 @@ public class Multiplier extends InstanceFactory {
 		if (c_in == Value.NIL || c_in.isUnknown()) c_in = Value.createKnown(width, 0);
 		if (a.isFullyDefined() && b.isFullyDefined() && c_in.isFullyDefined()) {
 			long sum = (long) a.toIntValue() * (long) b.toIntValue()
-				+ (long) c_in.toIntValue();
+				+ c_in.toIntValue();
 			return new Value[] { Value.createKnown(width, (int) sum),
 				Value.createKnown(width, (int) (sum >> w)) };
 		} else {

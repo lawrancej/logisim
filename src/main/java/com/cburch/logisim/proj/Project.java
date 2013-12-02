@@ -44,10 +44,12 @@ public class Project {
 	}
 
 	private class MyListener implements Selection.Listener, LibraryListener {
+		@Override
 		public void selectionChanged(Selection.Event e) {
 			fireEvent(ProjectEvent.ACTION_SELECTION, e.getSource());
 		}
 		
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			int action = event.getAction();
 			if (action == LibraryEvent.REMOVE_LIBRARY) {

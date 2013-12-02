@@ -176,13 +176,13 @@ public class PolyTool extends AbstractTool {
 			int index = locations.size() - 1;
 			Location last = locations.get(index);
 			Location newLast;
-			if ((mods & MouseEvent.SHIFT_DOWN_MASK) != 0 && index > 0) {
+			if ((mods & InputEvent.SHIFT_DOWN_MASK) != 0 && index > 0) {
 				Location nextLast = locations.get(index - 1);
 				newLast = LineUtil.snapTo8Cardinals(nextLast, mx, my);
 			} else {
 				newLast = Location.create(mx, my);
 			}
-			if ((mods & MouseEvent.CTRL_DOWN_MASK) != 0) {
+			if ((mods & InputEvent.CTRL_DOWN_MASK) != 0) {
 				int lastX = newLast.getX();
 				int lastY = newLast.getY();
 				lastX = canvas.snapX(lastX);

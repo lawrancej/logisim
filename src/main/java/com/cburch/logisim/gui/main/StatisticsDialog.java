@@ -42,10 +42,12 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 			this.stats = stats;
 		}
 
+		@Override
 		public int getColumnCount() {
 			return 5;
 		}
 
+		@Override
 		public int getRowCount() {
 			return stats.getCounts().size() + 2;
 		}
@@ -67,6 +69,7 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 			}
 		}
 		
+		@Override
 		public Object getValueAt(int row, int column) {
 			List<FileStatistics.Count> counts = stats.getCounts();
 			int countsLen = counts.size();
@@ -106,6 +109,7 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 			this.fixedAtBottom = fixedAtBottom;
 		}
 		
+		@Override
 		public int compare(String a, String b) {
 			for (int i = fixedAtBottom.length - 1; i >= 0; i--) {
 				String s = fixedAtBottom[i];
@@ -172,6 +176,7 @@ public class StatisticsDialog extends JDialog implements ActionListener {
 		}
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.dispose();
 	}

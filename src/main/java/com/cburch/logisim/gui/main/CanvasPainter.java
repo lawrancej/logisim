@@ -87,6 +87,7 @@ class CanvasPainter implements PropertyChangeListener {
 			(int) Math.round(a), (int) Math.round(b));
 	}
 	
+	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		if (AppPreferences.PRINTER_VIEW.isSource(event)
 				|| AppPreferences.ATTRIBUTE_HALO.isSource(event)) {

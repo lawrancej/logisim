@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -45,6 +46,7 @@ public class HexFrame extends LFrame {
 			return HexFrame.this;
 		}
 		
+		@Override
 		public void localeChanged() {
 			setText(_("hexFrameMenuItem"));
 		}
@@ -54,6 +56,7 @@ public class HexFrame extends LFrame {
 			implements ActionListener, LocaleListener {
 		private File lastFile = null;
 		
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if (src == open) {
@@ -91,6 +94,7 @@ public class HexFrame extends LFrame {
 			}
 		}
 		
+		@Override
 		public void localeChanged() {
 			setTitle(_("hexFrameTitle"));
 			open.setText(_("openButton"));
@@ -116,6 +120,7 @@ public class HexFrame extends LFrame {
 			enableItems(menubar);
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			if (src == LogisimMenuBar.CUT) {
@@ -142,6 +147,7 @@ public class HexFrame extends LFrame {
 			menubar.setEnabled(LogisimMenuBar.SELECT_ALL, true);
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			enableItems((LogisimMenuBar) getJMenuBar());
 		}
@@ -175,8 +181,8 @@ public class HexFrame extends LFrame {
 		
 		Dimension pref = editor.getPreferredSize();
 		JScrollPane scroll = new JScrollPane(editor,
-				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		pref.height = Math.min(pref.height, pref.width * 3 / 2);
 		scroll.setPreferredSize(pref);
 		scroll.getViewport().setBackground(editor.getBackground());

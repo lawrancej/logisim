@@ -12,6 +12,7 @@ public class UndoLogDispatcher implements ActionDispatcher {
 		this.log = log;
 	}
 	
+	@Override
 	public void doAction(Action action) {
 		log.doAction(action);
 	}

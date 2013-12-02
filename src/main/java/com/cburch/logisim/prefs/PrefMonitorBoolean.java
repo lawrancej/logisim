@@ -19,6 +19,7 @@ class PrefMonitorBoolean extends AbstractPrefMonitor<Boolean> {
 		prefs.addPreferenceChangeListener(this);
 	}
 	
+	@Override
 	public Boolean get() {
 		return Boolean.valueOf(value);
 	}
@@ -28,6 +29,7 @@ class PrefMonitorBoolean extends AbstractPrefMonitor<Boolean> {
 		return value;
 	}
 	
+	@Override
 	public void set(Boolean newValue) {
 		boolean newVal = newValue.booleanValue();
 		if (value != newVal) {
@@ -35,6 +37,7 @@ class PrefMonitorBoolean extends AbstractPrefMonitor<Boolean> {
 		}
 	}
 
+	@Override
 	public void preferenceChange(PreferenceChangeEvent event) {
 		Preferences prefs = event.getNode();
 		String prop = event.getKey();

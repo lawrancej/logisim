@@ -6,6 +6,7 @@ package com.cburch.logisim.util;
 public class StringUtil {
 	public static StringGetter formatter(final StringGetter base, final String arg) {
 		return new StringGetter() {
+			@Override
 			public String toString() {
 				return String.format(base.toString(), arg);
 			}
@@ -14,6 +15,7 @@ public class StringUtil {
 	
 	public static StringGetter constantGetter(final String value) {
 		return new StringGetter() {
+			@Override
 			public String toString() {
 				return value;
 			}

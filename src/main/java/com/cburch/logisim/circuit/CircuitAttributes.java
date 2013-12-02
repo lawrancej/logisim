@@ -56,8 +56,10 @@ public class CircuitAttributes extends AbstractAttributeSet {
 		
 		private StaticListener(Circuit s) { source = s; }
 		
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
 
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			if (e.getAttribute() == NAME_ATTR) {
 				source.fireEvent(CircuitEvent.ACTION_SET_NAME, e.getValue());
@@ -66,14 +68,17 @@ public class CircuitAttributes extends AbstractAttributeSet {
 	}
 	
 	private class MyListener implements AttributeListener, CircuitAppearanceListener {
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
 
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			@SuppressWarnings("unchecked")
 			Attribute<Object> a = (Attribute<Object>) e.getAttribute();
 			fireAttributeValueChanged(a, e.getValue());
 		}
 		
+		@Override
 		public void circuitAppearanceChanged(CircuitAppearanceEvent e) {
 			SubcircuitFactory factory;
 			factory = (SubcircuitFactory) subcircInstance.getFactory();

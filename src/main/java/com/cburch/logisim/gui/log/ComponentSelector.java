@@ -26,6 +26,7 @@ import com.cburch.logisim.instance.StdAttr;
 
 class ComponentSelector extends JTree {
 	private static class CompareByName implements Comparator<Object> {
+		@Override
 		public int compare(Object a, Object b) {
 			return a.toString().compareToIgnoreCase(b.toString());
 		}
@@ -63,34 +64,42 @@ class ComponentSelector extends JTree {
 			return ret;
 		}
 
+		@Override
 		public TreeNode getChildAt(int index) {
 			return children.get(index);
 		}
 
+		@Override
 		public int getChildCount() {
 			return children.size();
 		}
 
+		@Override
 		public TreeNode getParent() {
 			return parent;
 		}
 
+		@Override
 		public int getIndex(TreeNode node) {
 			return children.indexOf(node);
 		}
 
+		@Override
 		public boolean getAllowsChildren() {
 			return true;
 		}
 
+		@Override
 		public boolean isLeaf() {
 			return false;
 		}
 
+		@Override
 		public Enumeration<TreeNode> children() {
 			return Collections.enumeration(children);
 		}
 
+		@Override
 		public void circuitChanged(CircuitEvent event) {
 			int action = event.getAction();
 			DefaultTreeModel model = (DefaultTreeModel) getModel();
@@ -166,6 +175,7 @@ class ComponentSelector extends JTree {
 			}
 		}
 		
+		@Override
 		public int compare(Component a, Component b) {
 			if (a != b) {
 				String aName = a.getFactory().getDisplayName();
@@ -209,18 +219,22 @@ class ComponentSelector extends JTree {
 			return comp.getFactory().getDisplayName() + " " + comp.getLocation();
 		}
 
+		@Override
 		public TreeNode getChildAt(int index) {
 			return opts[index];
 		}
 
+		@Override
 		public int getChildCount() {
 			return opts == null ? 0 : opts.length;
 		}
 
+		@Override
 		public TreeNode getParent() {
 			return parent;
 		}
 
+		@Override
 		public int getIndex(TreeNode n) {
 			for (int i = 0; i < opts.length; i++) {
 				if (opts[i] == n) return i;
@@ -228,14 +242,17 @@ class ComponentSelector extends JTree {
 			return -1;
 		}
 
+		@Override
 		public boolean getAllowsChildren() {
 			return false;
 		}
 
+		@Override
 		public boolean isLeaf() {
 			return opts == null || opts.length == 0;
 		}
 
+		@Override
 		public Enumeration<OptionNode> children() {
 			return Collections.enumeration(Arrays.asList(opts));
 		}
@@ -255,30 +272,37 @@ class ComponentSelector extends JTree {
 			return option.toString();
 		}
 
+		@Override
 		public TreeNode getChildAt(int arg0) {
 			return null;
 		}
 
+		@Override
 		public int getChildCount() {
 			return 0;
 		}
 
+		@Override
 		public TreeNode getParent() {
 			return parent;
 		}
 
+		@Override
 		public int getIndex(TreeNode n) {
 			return -1;
 		}
 
+		@Override
 		public boolean getAllowsChildren() {
 			return false;
 		}
 
+		@Override
 		public boolean isLeaf() {
 			return true;
 		}
 
+		@Override
 		public Enumeration<?> children() {
 			return Collections.enumeration(Collections.emptySet());
 		}

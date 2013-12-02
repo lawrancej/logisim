@@ -46,6 +46,7 @@ public class MenuTool extends Tool {
 			add(attrs); attrs.addActionListener(this);
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			if (src == del) {
@@ -76,6 +77,7 @@ public class MenuTool extends Tool {
 			add(copy); copy.addActionListener(this);
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			Selection sel = proj.getSelection();

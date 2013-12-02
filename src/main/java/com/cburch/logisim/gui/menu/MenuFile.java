@@ -110,6 +110,7 @@ class MenuFile extends Menu implements ActionListener {
 		menubar.fireEnableChanged();
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		Project proj = menubar.getProject();

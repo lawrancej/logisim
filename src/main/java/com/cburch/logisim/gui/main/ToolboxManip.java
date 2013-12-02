@@ -37,6 +37,7 @@ class ToolboxManip implements ProjectExplorerListener {
 			implements ProjectListener, LibraryListener, AttributeListener {
 		private LogisimFile curFile = null;
 		
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			int action = event.getAction();
 			if (action == ProjectEvent.ACTION_SET_FILE) {
@@ -62,6 +63,7 @@ class ToolboxManip implements ProjectExplorerListener {
 			}
 		}
 
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			int action = event.getAction();
 			if (action == LibraryEvent.ADD_LIBRARY) {
@@ -105,8 +107,10 @@ class ToolboxManip implements ProjectExplorerListener {
 		}
 
 
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
 
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			explorer.repaint();
 		}
@@ -125,6 +129,7 @@ class ToolboxManip implements ProjectExplorerListener {
 		myListener.setFile(null, proj.getLogisimFile());
 	}
 
+	@Override
 	public void selectionChanged(ProjectExplorerEvent event) {
 		Object selected = event.getTarget();
 		if (selected instanceof ProjectExplorerToolNode) {
@@ -149,6 +154,7 @@ class ToolboxManip implements ProjectExplorerListener {
 		}
 	}
 
+	@Override
 	public void doubleClicked(ProjectExplorerEvent event) {
 		Object clicked = event.getTarget();
 		if (clicked instanceof ProjectExplorerToolNode) {
@@ -166,6 +172,7 @@ class ToolboxManip implements ProjectExplorerListener {
 		}
 	}
 	
+	@Override
 	public void moveRequested(ProjectExplorerEvent event, AddTool dragged, AddTool target) {
 		LogisimFile file = proj.getLogisimFile();
 		int draggedIndex = file.getTools().indexOf(dragged);
@@ -174,6 +181,7 @@ class ToolboxManip implements ProjectExplorerListener {
 		proj.doAction(LogisimFileActions.moveCircuit(dragged, targetIndex));
 	}
 	
+	@Override
 	public void deleteRequested(ProjectExplorerEvent event) {
 		Object request = event.getTarget();
 		if (request instanceof ProjectExplorerLibraryNode) {
@@ -191,6 +199,7 @@ class ToolboxManip implements ProjectExplorerListener {
 		}
 	}
 
+	@Override
 	public JPopupMenu menuRequested(ProjectExplorerEvent event) {
 		Object clicked = event.getTarget();
 		if (clicked instanceof ProjectExplorerToolNode) {

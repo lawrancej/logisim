@@ -15,20 +15,25 @@ import com.cburch.logisim.data.Value;
 class SelectionList extends JList {
 	private class Model extends AbstractListModel
 			implements ModelListener {
+		@Override
 		public int getSize() {
 			return selection == null ? 0 : selection.size();
 		}
 
+		@Override
 		public Object getElementAt(int index) {
 			return selection.get(index);
 		}
 
+		@Override
 		public void selectionChanged(ModelEvent event) {
 			fireContentsChanged(this, 0, getSize());
 		}
 		
+		@Override
 		public void entryAdded(ModelEvent event, Value[] values) { }
 		
+		@Override
 		public void filePropertyChanged(ModelEvent event) { }
 	}
 	

@@ -6,5 +6,6 @@ package com.cburch.logisim.instance;
 import com.cburch.logisim.comp.ComponentState;
 
 public interface InstanceData extends ComponentState {
+	@Override
 	public Object clone();
 }

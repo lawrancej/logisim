@@ -63,14 +63,17 @@ public class ProjectExplorer extends JTree implements LocaleListener {
 			}
 		}
 
+		@Override
 		public int getIconHeight() {
 			return 20;
 		}
 
+		@Override
 		public int getIconWidth() {
 			return 20;
 		}
 
+		@Override
 		public void paintIcon(java.awt.Component c, Graphics g,
 				int x, int y) {
 			// draw halo if appropriate
@@ -186,6 +189,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
 	}
 	
 	private class DeleteAction extends AbstractAction {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			TreePath path = getSelectionPath();
 			if (listener != null && path != null && path.getPathCount() == 2) {
@@ -201,12 +205,16 @@ public class ProjectExplorer extends JTree implements LocaleListener {
 		//
 		// MouseListener methods
 		//
+		@Override
 		public void mouseEntered(MouseEvent e) { }
+		@Override
 		public void mouseExited(MouseEvent e) { }
+		@Override
 		public void mousePressed(MouseEvent e) {
 			ProjectExplorer.this.requestFocus();
 			checkForPopup(e);
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			checkForPopup(e);
 		}
@@ -221,6 +229,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
 				}
 			}
 		}
+		@Override
 		public void mouseClicked(MouseEvent e) {
 			if (e.getClickCount() == 2) {
 				TreePath path = getPathForLocation(e.getX(), e.getY());
@@ -233,6 +242,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
 		//
 		// TreeSelectionListener methods
 		//
+		@Override
 		public void valueChanged(TreeSelectionEvent e) {
 			TreePath path = e.getNewLeadSelectionPath();
 			if (listener != null) {
@@ -243,6 +253,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
 		//
 		// project/library file/circuit listener methods
 		//
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			int act = event.getAction();
 			if (act == ProjectEvent.ACTION_SET_TOOL) {
@@ -258,6 +269,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
 		//
 		// PropertyChangeListener methods
 		//
+		@Override
 		public void propertyChange(PropertyChangeEvent event) {
 			if (AppPreferences.GATE_SHAPE.isSource(event)) {
 				repaint();
@@ -318,6 +330,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
 		repaint();
 	}
 
+	@Override
 	public void localeChanged() {
 		// repaint() would work, except that names that get longer will be
 		// abbreviated with an ellipsis, even when they fit into the window.

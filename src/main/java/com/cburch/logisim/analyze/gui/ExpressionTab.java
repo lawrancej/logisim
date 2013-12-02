@@ -38,6 +38,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 				OutputExpressionsListener, ItemListener {
 		boolean edited = false;
 		
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if (src == clear) {
@@ -64,6 +65,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 			}
 		}
 
+		@Override
 		public void insertUpdate(DocumentEvent event) {
 			String curText = field.getText();
 			edited = curText.length() != curExprStringLength
@@ -74,13 +76,16 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 			revert.setEnabled(enable);
 			enter.setEnabled(enable);
 		}
+		@Override
 		public void removeUpdate(DocumentEvent event) {
 			insertUpdate(event);
 		}
+		@Override
 		public void changedUpdate(DocumentEvent event) {
 			insertUpdate(event);
 		}
 
+		@Override
 		public void expressionChanged(OutputExpressionsEvent event) {
 			if (event.getType() == OutputExpressionsEvent.OUTPUT_EXPRESSION) {
 				String output = event.getVariable();
@@ -91,6 +96,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 			}
 		}
 
+		@Override
 		public void itemStateChanged(ItemEvent event) {
 			updateTab();
 		}
@@ -212,21 +218,25 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
 		}
 	}
 
+	@Override
 	public void copy() {
 		field.requestFocus();
 		field.copy();
 	}
 
+	@Override
 	public void paste() {
 		field.requestFocus();
 		field.paste();
 	}
 
+	@Override
 	public void delete() {
 		field.requestFocus();
 		field.replaceSelection("");
 	}
 
+	@Override
 	public void selectAll() {
 		field.requestFocus();
 		field.selectAll();

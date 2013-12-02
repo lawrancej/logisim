@@ -14,6 +14,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public abstract class EditPopup extends JPopupMenu {
 	private class Listener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object source = e.getSource();
 			for (Map.Entry<LogisimMenuItem, JMenuItem> entry : items.entrySet()) {

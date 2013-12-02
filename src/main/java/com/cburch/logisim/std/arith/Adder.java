@@ -100,9 +100,9 @@ public class Adder extends InstanceFactory {
 		if (a.isFullyDefined() && b.isFullyDefined() && c_in.isFullyDefined()) {
 			if (w >= 32) {
 				long mask = (1L << w) - 1;
-				long ax = (long) a.toIntValue() & mask;
-				long bx = (long) b.toIntValue() & mask;
-				long cx = (long) c_in.toIntValue() & mask;
+				long ax = a.toIntValue() & mask;
+				long bx = b.toIntValue() & mask;
+				long cx = c_in.toIntValue() & mask;
 				long sum = ax + bx + cx;
 				return new Value[] { Value.createKnown(width, (int) sum),
 					((sum >> w) & 1) == 0 ? Value.FALSE : Value.TRUE };

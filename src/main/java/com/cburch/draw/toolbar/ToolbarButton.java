@@ -11,8 +11,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JComponent;
 
-import org.apache.batik.swing.JSVGCanvas;
-
 import com.cburch.logisim.util.GraphicsUtil;
 
 class ToolbarButton extends JComponent implements MouseListener {
@@ -78,12 +76,14 @@ class ToolbarButton extends JComponent implements MouseListener {
 		return item.getToolTip();
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		if (item != null && item.isSelectable()) {
 			toolbar.setPressed(this);
 		}
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (toolbar.getPressed() == this) {
 			toolbar.getToolbarModel().itemSelected(item);
@@ -91,10 +91,13 @@ class ToolbarButton extends JComponent implements MouseListener {
 		}
 	}
 	
+	@Override
 	public void mouseClicked(MouseEvent e) { }
 	
+	@Override
 	public void mouseEntered(MouseEvent e) { }
 	
+	@Override
 	public void mouseExited(MouseEvent e) {
 		toolbar.setPressed(null);
 	}

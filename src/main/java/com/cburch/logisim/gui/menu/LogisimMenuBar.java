@@ -55,6 +55,7 @@ public class LogisimMenuBar extends JMenuBar {
 	public static final LogisimMenuItem TICK_STEP = new LogisimMenuItem("TickStep");
 
 	private class MyListener implements LocaleListener {
+		@Override
 		public void localeChanged() {
 			file.localeChanged();
 			edit.localeChanged();

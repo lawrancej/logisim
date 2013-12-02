@@ -97,10 +97,12 @@ public class SimulationTreeModel implements TreeModel {
 		return null;
 	}
 
+	@Override
 	public void addTreeModelListener(TreeModelListener l) {
 		listeners.add(l);
 	}
 
+	@Override
 	public void removeTreeModelListener(TreeModelListener l) {
 		listeners.remove(l);
 	}
@@ -132,10 +134,12 @@ public class SimulationTreeModel implements TreeModel {
 		return new TreePath(path.toArray());
 	}
 
+	@Override
 	public Object getRoot() {
 		return root;
 	}
 
+	@Override
 	public int getChildCount(Object parent) {
 		if (parent instanceof TreeNode) {
 			return ((TreeNode) parent).getChildCount();
@@ -144,6 +148,7 @@ public class SimulationTreeModel implements TreeModel {
 		}
 	}
 
+	@Override
 	public Object getChild(Object parent, int index) {
 		if (parent instanceof TreeNode) {
 			return ((TreeNode) parent).getChildAt(index);
@@ -152,6 +157,7 @@ public class SimulationTreeModel implements TreeModel {
 		}
 	}
 
+	@Override
 	public int getIndexOfChild(Object parent, Object child) {
 		if (parent instanceof TreeNode && child instanceof TreeNode) {
 			return ((TreeNode) parent).getIndex((TreeNode) child);
@@ -160,6 +166,7 @@ public class SimulationTreeModel implements TreeModel {
 		}
 	}
 
+	@Override
 	public boolean isLeaf(Object node) {
 		if (node instanceof TreeNode) {
 			return ((TreeNode) node).getChildCount() == 0;
@@ -168,6 +175,7 @@ public class SimulationTreeModel implements TreeModel {
 		}
 	}
 
+	@Override
 	public void valueForPathChanged(TreePath path, Object newValue) {
 		throw new UnsupportedOperationException();
 	}

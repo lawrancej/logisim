@@ -49,6 +49,7 @@ public class PreferencesFrame extends LFrame {
 			return window;
 		}
 		
+		@Override
 		public void localeChanged() {
 			setText(_("preferencesFrameMenuItem"));
 		}
@@ -56,6 +57,7 @@ public class PreferencesFrame extends LFrame {
 
 	private class MyListener
 			implements ActionListener, LocaleListener {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if (src == close) {
@@ -65,6 +67,7 @@ public class PreferencesFrame extends LFrame {
 			}
 		}
 		
+		@Override
 		public void localeChanged() {
 			setTitle(_("preferencesFrameTitle"));
 			for (int i = 0; i < panels.length; i++) {

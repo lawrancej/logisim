@@ -114,6 +114,7 @@ class BuildCircuitButton extends JButton {
 	}
 	
 	private class MyListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Project dest = null;
 			String name = null;

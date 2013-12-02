@@ -109,22 +109,28 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 	// Component methods
 	//
 	// (Wire never issues ComponentEvents, so we don't need to track listeners)
+	@Override
 	public void addComponentListener(ComponentListener e) { }
+	@Override
 	public void removeComponentListener(ComponentListener e) { }
 
+	@Override
 	public ComponentFactory getFactory() {
 		return WireFactory.instance;
 	}
 
+	@Override
 	public AttributeSet getAttributeSet() {
 		return this;
 	}
 
 	// location/extent methods
+	@Override
 	public Location getLocation() {
 		return e0;
 	}
 
+	@Override
 	public Bounds getBounds() {
 		int x0 = e0.getX();
 		int y0 = e0.getY();
@@ -132,10 +138,12 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 			e1.getX() - x0 + 5, e1.getY() - y0 + 5);
 	}
 
+	@Override
 	public Bounds getBounds(Graphics g) {
 		return getBounds();
 	}
 
+	@Override
 	public boolean contains(Location q) {
 		int qx = q.getX();
 		int qy = q.getY();
@@ -150,6 +158,7 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 		}
 	}
 
+	@Override
 	public boolean contains(Location pt, Graphics g) {
 		return contains(pt);
 	}
@@ -157,20 +166,24 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 	//
 	// propagation methods
 	//
+	@Override
 	public List<EndData> getEnds() {
 		return new EndList();
 	}
 
+	@Override
 	public EndData getEnd(int index) {
 		Location loc = getEndLocation(index);
 		return new EndData(loc, BitWidth.UNKNOWN,
 				EndData.INPUT_OUTPUT);
 	}
 
+	@Override
 	public boolean endsAt(Location pt) {
 		return e0.equals(pt) || e1.equals(pt);
 	}
 
+	@Override
 	public void propagate(CircuitState state) {
 		// Normally this is handled by CircuitWires, and so it won't get
 		// called. The exception is when a wire is added or removed
@@ -181,6 +194,7 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 	//
 	// user interface methods
 	//
+	@Override
 	public void expose(ComponentDrawContext context) {
 		java.awt.Component dest = context.getDestination();
 		int x0 = e0.getX();
@@ -189,6 +203,7 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 				e1.getX() - x0 + 10, e1.getY() - y0 + 10);
 	}
 
+	@Override
 	public void draw(ComponentDrawContext context) {
 		CircuitState state = context.getCircuitState();
 		Graphics g = context.getGraphics();
@@ -199,6 +214,7 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 			e1.getX(), e1.getY());
 	}
 	
+	@Override
 	public Object getFeature(Object key) {
 		if (key == CustomHandles.class) return this;
 		return null;
@@ -213,24 +229,33 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 	//
 	@Override
 	public Object clone() { return this; }
+	@Override
 	public void addAttributeListener(AttributeListener l) { }
+	@Override
 	public void removeAttributeListener(AttributeListener l) { }
+	@Override
 	public List<Attribute<?>> getAttributes() { return ATTRIBUTES; }
+	@Override
 	public boolean containsAttribute(Attribute<?> attr) { return ATTRIBUTES.contains(attr); }
+	@Override
 	public Attribute<?> getAttribute(String name) {
 		for (Attribute<?> attr : ATTRIBUTES) {
 			if (name.equals(attr.getName())) return attr;
 		}
 		return null;
 	}
+	@Override
 	public boolean isReadOnly(Attribute<?> attr) { return true; }
+	@Override
 	public void setReadOnly(Attribute<?> attr, boolean value) {
 		throw new UnsupportedOperationException();
 	}
+	@Override
 	public boolean isToSave(Attribute<?> attr) {
 		return false;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public <V> V getValue(Attribute<V> attr) {
 		if (attr == dir_attr) {
@@ -242,6 +267,7 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 		}
 	}
 
+	@Override
 	public <V> void setValue(Attribute<V> attr, V value) {
 		throw new IllegalArgumentException("read only attribute");
 	}
@@ -294,10 +320,12 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 		return this.is_x_equal == other.is_x_equal;
 	}
 	
+	@Override
 	public Iterator<Location> iterator() {
 		return new WireIterator(e0, e1);
 	}
 	
+	@Override
 	public void drawHandles(ComponentDrawContext context) {
 		context.drawHandle(e0);
 		context.drawHandle(e1);

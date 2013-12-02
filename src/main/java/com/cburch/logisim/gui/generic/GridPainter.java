@@ -24,6 +24,7 @@ public class GridPainter {
 	private static final Color GRID_ZOOMED_OUT_COLOR = new Color(210, 210, 210);
 	
 	private class Listener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(PropertyChangeEvent event) {
 			String prop = event.getPropertyName();
 			Object val = event.getNewValue();

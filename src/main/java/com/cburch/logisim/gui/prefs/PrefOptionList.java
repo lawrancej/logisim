@@ -57,11 +57,13 @@ class PrefOptionList implements ActionListener, PropertyChangeListener {
 		label.setText(labelStr.toString() + " ");
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		PrefOption x = (PrefOption) combo.getSelectedItem();
 		pref.set((String) x.getValue());
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		if (pref.isSource(event)) {
 			selectOption(pref.get());

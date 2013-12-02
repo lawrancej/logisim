@@ -28,10 +28,12 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 	private static final int HEADER_SEP = 4;
 	
 	private class MyListener implements TruthTableListener {
+		@Override
 		public void cellsChanged(TruthTableEvent event) {
 			repaint();
 		}
 
+		@Override
 		public void structureChanged(TruthTableEvent event) {
 			computePreferredSize();
 		}
@@ -57,6 +59,7 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 		clip = new TableTabClip(this);
 	}
 
+	@Override
 	public TruthTable getTruthTable() {
 		return table;
 	}
@@ -86,6 +89,7 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 		return inputs + outputs;
 	}
 	
+	@Override
 	public int getOutputColumn(MouseEvent event) {
 		int inputs = table.getInputColumnCount();
 		if (inputs == 0) inputs = 1;
@@ -93,6 +97,7 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 		return ret >= inputs ? ret - inputs : -1;
 	}
 	
+	@Override
 	public int getRow(MouseEvent event) {
 		int y = event.getY() - (getHeight() - tableHeight) / 2;
 		if (y < cellHeight + HEADER_SEP) return -1;
@@ -101,6 +106,7 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 		return ret >= 0 ? ret < rows ? ret : rows : -1;
 	}
 	
+	@Override
 	public void setEntryProvisional(int y, int x, Entry value) {
 		provisionalY = y;
 		provisionalX = x;
@@ -299,16 +305,19 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 		};
 	}
 
+	@Override
 	public void copy() {
 		requestFocus();
 		clip.copy();
 	}
 
+	@Override
 	public void paste() {
 		requestFocus();
 		clip.paste();
 	}
 
+	@Override
 	public void delete() {
 		requestFocus();
 		int r0 = caret.getCursorRow();
@@ -328,6 +337,7 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 		}
 	}
 
+	@Override
 	public void selectAll() {
 		caret.selectAll();
 	}

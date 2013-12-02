@@ -26,14 +26,17 @@ public class SimulationTreeRenderer extends DefaultTreeCellRenderer {
 			this.isCurrentView = isCurrentView;
 		}
 
+		@Override
 		public int getIconHeight() {
 			return 20;
 		}
 
+		@Override
 		public int getIconWidth() {
 			return 20;
 		}
 
+		@Override
 		public void paintIcon(Component c, Graphics g, int x, int y) {
 			ComponentDrawContext context = new ComponentDrawContext(c,
 					null, null, g, g);

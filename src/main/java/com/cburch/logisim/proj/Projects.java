@@ -43,7 +43,7 @@ public class Projects {
 		@Override
 		public void windowClosing(WindowEvent event) {
 			Frame frame = (Frame) event.getSource();
-			if ((frame.getExtendedState() & Frame.ICONIFIED) == 0) {
+			if ((frame.getExtendedState() & java.awt.Frame.ICONIFIED) == 0) {
 				mostRecentFrame = frame;
 				try {
 					frameLocations.put(frame, frame.getLocationOnScreen());
@@ -91,7 +91,7 @@ public class Projects {
 			for (Project proj : openProjects) {
 				Frame frame = proj.getFrame();
 				if (ret == null) ret = frame;
-				if (ret.isVisible() && (ret.getExtendedState() & Frame.ICONIFIED) != 0) {
+				if (ret.isVisible() && (ret.getExtendedState() & java.awt.Frame.ICONIFIED) != 0) {
 					backup = ret;
 				}
 			}

@@ -21,10 +21,12 @@ class PrefMonitorStringOpts extends AbstractPrefMonitor<String> {
 		prefs.addPreferenceChangeListener(this);
 	}
 	
+	@Override
 	public String get() {
 		return value;
 	}
 	
+	@Override
 	public void set(String newValue) {
 		String oldValue = value;
 		if (!isSame(oldValue, newValue)) {
@@ -32,6 +34,7 @@ class PrefMonitorStringOpts extends AbstractPrefMonitor<String> {
 		}
 	}
 
+	@Override
 	public void preferenceChange(PreferenceChangeEvent event) {
 		Preferences prefs = event.getNode();
 		String prop = event.getKey();

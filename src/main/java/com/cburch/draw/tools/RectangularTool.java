@@ -6,6 +6,7 @@ package com.cburch.draw.tools;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -117,7 +118,7 @@ abstract class RectangularTool extends AbstractTool {
 				return Bounds.EMPTY_BOUNDS;
 			}
 
-			boolean ctrlDown = (mods & MouseEvent.CTRL_DOWN_MASK) != 0;
+			boolean ctrlDown = (mods & InputEvent.CTRL_DOWN_MASK) != 0;
 			if (ctrlDown) {
 				x0 = canvas.snapX(x0);
 				y0 = canvas.snapY(y0);
@@ -125,8 +126,8 @@ abstract class RectangularTool extends AbstractTool {
 				y1 = canvas.snapY(y1);
 			}
 			
-			boolean altDown = (mods & MouseEvent.ALT_DOWN_MASK) != 0;
-			boolean shiftDown = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0;
+			boolean altDown = (mods & InputEvent.ALT_DOWN_MASK) != 0;
+			boolean shiftDown = (mods & InputEvent.SHIFT_DOWN_MASK) != 0;
 			if (altDown) {
 				if (shiftDown) {
 					int r = Math.min(Math.abs(x0 - x1), Math.abs(y0 - y1));

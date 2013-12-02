@@ -52,6 +52,7 @@ class TableTabCaret {
 		InputMap imap = table.getInputMap();
 		ActionMap amap = table.getActionMap();
 		AbstractAction nullAction = new AbstractAction() {
+			@Override
 			public void actionPerformed(ActionEvent e) { }
 		};
 		String nullKey = "null";
@@ -172,8 +173,10 @@ class TableTabCaret {
 	private class Listener implements MouseListener, MouseMotionListener,
 			KeyListener, FocusListener, TruthTableListener {
 	
+		@Override
 		public void mouseClicked(MouseEvent e) { }
 	
+		@Override
 		public void mousePressed(MouseEvent e) {
 			table.requestFocus();
 			int row = table.getRow(e);
@@ -181,22 +184,28 @@ class TableTabCaret {
 			setCursor(row, col, (e.getModifiers() & InputEvent.SHIFT_MASK) != 0);
 		}
 	
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			mouseDragged(e);
 		}
 	
+		@Override
 		public void mouseEntered(MouseEvent e) { }
 	
+		@Override
 		public void mouseExited(MouseEvent e) { }
 	
+		@Override
 		public void mouseDragged(MouseEvent e) {
 			int row = table.getRow(e);
 			int col = table.getColumn(e);
 			setCursor(row, col, true);
 		}
 	
+		@Override
 		public void mouseMoved(MouseEvent e) { }
 		
+		@Override
 		public void keyTyped(KeyEvent e) {
 			int mask = e.getModifiers();
 			if ((mask & ~InputEvent.SHIFT_MASK) != 0) return;
@@ -250,6 +259,7 @@ class TableTabCaret {
 			}
 		}
 	
+		@Override
 		public void keyPressed(KeyEvent e) {
 			if (cursorRow < 0) return;
 			TruthTable model = table.getTruthTable();
@@ -284,18 +294,23 @@ class TableTabCaret {
 			}
 		}
 	
+		@Override
 		public void keyReleased(KeyEvent e) { }
 	
+		@Override
 		public void focusGained(FocusEvent e) {
 			if (cursorRow >= 0) expose(cursorRow, cursorCol);
 		}
 	
+		@Override
 		public void focusLost(FocusEvent e) {
 			if (cursorRow >= 0) expose(cursorRow, cursorCol);
 		}
 
+		@Override
 		public void cellsChanged(TruthTableEvent event) { }
 
+		@Override
 		public void structureChanged(TruthTableEvent event) {
 			TruthTable model = event.getSource();
 			int inputs = model.getInputColumnCount();

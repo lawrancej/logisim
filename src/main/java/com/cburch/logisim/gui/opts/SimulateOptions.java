@@ -22,6 +22,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 class SimulateOptions extends OptionsPanel {
 	private class MyListener implements ActionListener, AttributeListener {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object source = event.getSource();
 			if (source == simLimit) {
@@ -47,7 +48,9 @@ class SimulateOptions extends OptionsPanel {
 			}
 		}
 		
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			Attribute<?> attr = e.getAttribute();
 			Object val = e.getValue();

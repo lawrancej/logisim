@@ -39,6 +39,7 @@ public class InstancePainter implements InstanceState {
 		this.attrs = attrs;
 	}
 	
+	@Override
 	public InstanceFactory getFactory() {
 		return comp == null ? factory : (InstanceFactory) comp.getFactory();
 	}
@@ -78,10 +79,12 @@ public class InstancePainter implements InstanceState {
 		return context.getGateShape();
 	}
 	
+	@Override
 	public boolean isCircuitRoot() {
 		return !context.getCircuitState().isSubstate();
 	}
 	
+	@Override
 	public long getTickCount() {
 		return context.getCircuitState().getPropagator().getTickCount();
 	}
@@ -89,10 +92,12 @@ public class InstancePainter implements InstanceState {
 	//
 	// methods related to the circuit state
 	//
+	@Override
 	public Project getProject() {
 		return context.getCircuitState().getProject();
 	}
 	
+	@Override
 	public Value getPort(int portIndex) {
 		InstanceComponent c = comp;
 		CircuitState s = context.getCircuitState();
@@ -103,10 +108,12 @@ public class InstancePainter implements InstanceState {
 		}
 	}
 	
+	@Override
 	public void setPort(int portIndex, Value value, int delay) {
 		throw new UnsupportedOperationException("setValue on InstancePainter");
 	}
 	
+	@Override
 	public InstanceData getData() {
 		CircuitState circState = context.getCircuitState();
 		if (circState == null || comp == null) {
@@ -116,6 +123,7 @@ public class InstancePainter implements InstanceState {
 		}
 	}
 	
+	@Override
 	public void setData(InstanceData value) {
 		CircuitState circState = context.getCircuitState();
 		if (circState == null || comp == null) {
@@ -128,6 +136,7 @@ public class InstancePainter implements InstanceState {
 	//
 	// methods related to the instance
 	//
+	@Override
 	public Instance getInstance() {
 		InstanceComponent c = comp;
 		return c == null ? null : c.getInstance();
@@ -138,6 +147,7 @@ public class InstancePainter implements InstanceState {
 		return c == null ? Location.create(0, 0) : c.getLocation();
 	}
 	
+	@Override
 	public boolean isPortConnected(int index) {
 		Circuit circ = context.getCircuit();
 		Location loc = comp.getEnd(index).getLocation();
@@ -159,17 +169,20 @@ public class InstancePainter implements InstanceState {
 		return c == null ? factory.getOffsetBounds(attrs) : c.getBounds();
 	}
 	
+	@Override
 	public AttributeSet getAttributeSet() {
 		InstanceComponent c = comp;
 		return c == null ? attrs : c.getAttributeSet();
 	}
 	
+	@Override
 	public <E> E getAttributeValue(Attribute<E> attr) {
 		InstanceComponent c = comp;
 		AttributeSet as = c == null ? attrs : c.getAttributeSet();
 		return as.getValue(attr);
 	}
 	
+	@Override
 	public void fireInvalidated() {
 		comp.fireInvalidated();
 	}

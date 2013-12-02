@@ -40,6 +40,7 @@ public class ProjectActions {
 			this.isStartupScreen = isStartup;
 		}
 		
+		@Override
 		public void run() {
 			Frame frame = createFrame(null, proj);
 			frame.setVisible(true);

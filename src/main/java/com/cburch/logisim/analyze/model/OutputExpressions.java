@@ -163,6 +163,7 @@ public class OutputExpressions {
 	}
 	
 	private class MyListener implements VariableListListener, TruthTableListener {
+		@Override
 		public void listChanged(VariableListEvent event) {
 			if (event.getSource() == model.getInputs()) inputsChanged(event);
 			else outputsChanged(event);
@@ -214,11 +215,13 @@ public class OutputExpressions {
 			}
 		}
 
+		@Override
 		public void cellsChanged(TruthTableEvent event) {
 			String output = model.getOutputs().get(event.getColumn());
 			invalidate(output, false);
 		}
 
+		@Override
 		public void structureChanged(TruthTableEvent event) {
 		}
 	}

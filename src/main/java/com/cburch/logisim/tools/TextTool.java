@@ -26,6 +26,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class TextTool extends Tool {
 	private class MyListener
 			implements CaretListener, CircuitListener {
+		@Override
 		public void editingCanceled(CaretEvent e) {
 			if (e.getCaret() != caret) {
 				e.getCaret().removeCaretListener(this);
@@ -40,6 +41,7 @@ public class TextTool extends Tool {
 			caret = null;
 		}
 		
+		@Override
 		public void editingStopped(CaretEvent e) {
 			if (e.getCaret() != caret) {
 				e.getCaret().removeCaretListener(this);
@@ -86,6 +88,7 @@ public class TextTool extends Tool {
 			if (a != null) proj.doAction(a);
 		}
 
+		@Override
 		public void circuitChanged(CircuitEvent event) {
 			if (event.getCircuit() != caretCircuit) {
 				event.getCircuit().removeCircuitListener(this);

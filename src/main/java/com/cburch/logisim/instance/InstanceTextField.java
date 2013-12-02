@@ -104,8 +104,10 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
 		}
 	}
 	
+	@Override
 	public void attributeListChanged(AttributeEvent e) { }
 	
+	@Override
 	public void attributeValueChanged(AttributeEvent e) {
 		Attribute<?> attr = e.getAttribute();
 		if (attr == labelAttr) {
@@ -115,6 +117,7 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
 		}
 	}
 
+	@Override
 	public void textChanged(TextFieldEvent e) {
 		String prev = e.getOldText();
 		String next = e.getText();
@@ -123,6 +126,7 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
 		}
 	}
 	
+	@Override
 	public Action getCommitAction(Circuit circuit, String oldText,
 			String newText) {
 		SetAttributeAction act = new SetAttributeAction(circuit,
@@ -131,6 +135,7 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
 		return act;
 	}
 
+	@Override
 	public Caret getTextCaret(ComponentUserEvent event) {
 		canvas = event.getCanvas();
 		Graphics g = canvas.getGraphics();

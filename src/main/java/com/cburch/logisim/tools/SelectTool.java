@@ -73,12 +73,14 @@ public class SelectTool extends Tool {
 			this.canvas = canvas;
 		}
 		
+		@Override
 		public void requestSatisfied(MoveGesture gesture, int dx, int dy) {
 			clearCanvasMessage(canvas, dx, dy);
 		}
 	}
 	
 	private class Listener implements Selection.Listener {
+		@Override
 		public void selectionChanged(Event event) {
 			keyHandlers = null;
 		}
@@ -323,7 +325,7 @@ public class SelectTool extends Tool {
 	}
 
 	private boolean shouldConnect(Canvas canvas, int modsEx) {
-		boolean shiftReleased = (modsEx & MouseEvent.SHIFT_DOWN_MASK) == 0;
+		boolean shiftReleased = (modsEx & InputEvent.SHIFT_DOWN_MASK) == 0;
 		boolean dflt = AppPreferences.MOVE_KEEP_CONNECT.getBoolean();
 		if (shiftReleased) {
 			return dflt;
@@ -561,6 +563,7 @@ public class SelectTool extends Tool {
 		
 		public ComputingMessage(int dx, int dy) { this.dx = dx; this.dy = dy; }
 		
+		@Override
 		public String toString() {
 			return _("moveWorkingMsg");
 		}

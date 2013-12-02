@@ -36,10 +36,12 @@ public abstract class ManagedComponent extends AbstractComponent {
 	@Override
 	public abstract ComponentFactory getFactory();
 
+	@Override
 	public void addComponentListener(ComponentListener l) {
 		listeners.add(l);
 	}
 
+	@Override
 	public void removeComponentListener(ComponentListener l) {
 		listeners.remove(l);
 	}
@@ -75,6 +77,7 @@ public abstract class ManagedComponent extends AbstractComponent {
 		return loc;
 	}
 
+	@Override
 	public AttributeSet getAttributeSet() {
 		return attrs;
 	}
@@ -181,6 +184,7 @@ public abstract class ManagedComponent extends AbstractComponent {
 	//
 	// user interface methods
 	//
+	@Override
 	public void expose(ComponentDrawContext context) {
 		Bounds bounds = getBounds();
 		java.awt.Component dest = context.getDestination();
@@ -190,6 +194,7 @@ public abstract class ManagedComponent extends AbstractComponent {
 		}
 	}
 	
+	@Override
 	public Object getFeature(Object key) {
 		return null;
 	}

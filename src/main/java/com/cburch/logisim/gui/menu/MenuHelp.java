@@ -18,6 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuHelp extends JMenu implements ActionListener {
@@ -63,6 +65,7 @@ class MenuHelp extends JMenu implements ActionListener {
 		}
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if (src == guide) {
@@ -95,7 +98,7 @@ class MenuHelp extends JMenu implements ActionListener {
 				if (helpFrame == null) {
 					helpFrame = new LFrame();
 					helpFrame.setTitle(_("helpWindowTitle"));
-					helpFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+					helpFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 					helpFrame.getContentPane().add(helpComponent);
 					helpFrame.pack();
 				} else {

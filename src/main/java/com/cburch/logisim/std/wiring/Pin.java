@@ -6,6 +6,7 @@ package com.cburch.logisim.std.wiring;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -72,7 +73,7 @@ public class Pin extends InstanceFactory {
 		setFacingAttribute(StdAttr.FACING);
 		setKeyConfigurator(JoinedConfigurator.create(
 			new BitWidthConfigurator(StdAttr.WIDTH),
-			new DirectionConfigurator(ATTR_LABEL_LOC, KeyEvent.ALT_DOWN_MASK)));
+			new DirectionConfigurator(ATTR_LABEL_LOC, InputEvent.ALT_DOWN_MASK)));
 		setInstanceLogger(PinLogger.class);
 		setInstancePoker(PinPoker.class);
 	}

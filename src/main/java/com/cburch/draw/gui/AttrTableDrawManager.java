@@ -35,6 +35,7 @@ public class AttrTableDrawManager implements PropertyChangeListener {
 	//
 	// PropertyChangeListener method
 	//
+	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		String prop = evt.getPropertyName();
 		if (prop.equals(Canvas.TOOL_PROPERTY)) {

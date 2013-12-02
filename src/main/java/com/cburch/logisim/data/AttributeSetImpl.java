@@ -35,16 +35,19 @@ public class AttributeSetImpl extends AbstractAttributeSet {
 
 		AttrIterator(Node n) { this.n = n; }
 
+		@Override
 		public boolean hasNext() {
 			return n != null;
 		}
 
+		@Override
 		public Attribute<?> next() {
 			Node ret = n;
 			n = n.next;
 			return ret.attr;
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}

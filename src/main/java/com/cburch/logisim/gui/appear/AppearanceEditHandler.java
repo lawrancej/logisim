@@ -278,10 +278,12 @@ public class AppearanceEditHandler extends EditHandler
 	}
 
 
+	@Override
 	public void selectionChanged(SelectionEvent e) {
 		computeEnabled();
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent e) {
 		String prop = e.getPropertyName();
 		if (prop.equals(Canvas.MODEL_PROPERTY)) {
@@ -296,6 +298,7 @@ public class AppearanceEditHandler extends EditHandler
 		}
 	}
 
+	@Override
 	public void modelChanged(CanvasModelEvent event) {
 		computeEnabled();
 	}

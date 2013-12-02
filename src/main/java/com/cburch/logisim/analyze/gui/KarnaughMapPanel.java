@@ -47,6 +47,7 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
 	
 	private class MyListener
 			implements OutputExpressionsListener, TruthTableListener {
+		@Override
 		public void expressionChanged(OutputExpressionsEvent event) {
 			if (event.getType() == OutputExpressionsEvent.OUTPUT_MINIMAL
 					&& event.getVariable().equals(output)) {
@@ -54,10 +55,12 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
 			}
 		}
 		
+		@Override
 		public void cellsChanged(TruthTableEvent event) {
 			repaint();
 		}
 
+		@Override
 		public void structureChanged(TruthTableEvent event) {
 			computePreferredSize();
 		}
@@ -90,10 +93,12 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
 		else repaint();
 	}
 	
+	@Override
 	public TruthTable getTruthTable() {
 		return model.getTruthTable();
 	}
 	
+	@Override
 	public int getRow(MouseEvent event) {
 		TruthTable table = model.getTruthTable();
 		int inputs = table.getInputColumnCount();
@@ -111,10 +116,12 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
 		return getTableRow(row, col, rows, cols); 
 	}
 	
+	@Override
 	public int getOutputColumn(MouseEvent event) {
 		return model.getOutputs().indexOf(output);
 	}
 	
+	@Override
 	public void setEntryProvisional(int y, int x, Entry value) {
 		provisionalY = y;
 		provisionalX = x;

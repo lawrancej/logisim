@@ -33,6 +33,7 @@ class DefaultAppearance {
 			this.byX = byX;
 		}
 		
+		@Override
 		public int compare(Instance a, Instance b) {
 			Location aloc = a.getLocation();
 			Location bloc = b.getLocation();

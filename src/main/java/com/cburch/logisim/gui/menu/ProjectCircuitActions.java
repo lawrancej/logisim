@@ -70,10 +70,12 @@ public class ProjectCircuitActions {
 		pane.setInitialValue(field);
 		JDialog dlog = pane.createDialog(frame, _("circuitNameDialogTitle"));
 		dlog.addWindowFocusListener(new WindowFocusListener() {
+			@Override
 			public void windowGainedFocus(WindowEvent arg0) {
 				field.requestFocus();
 			}
 
+			@Override
 			public void windowLostFocus(WindowEvent arg0) { }
 		});
 		

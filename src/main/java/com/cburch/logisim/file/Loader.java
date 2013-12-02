@@ -338,14 +338,17 @@ public class Loader implements LibraryLoader {
 	//
 	// Library methods
 	//
+	@Override
 	public Library loadLibrary(String desc) {
 		return LibraryManager.instance.loadLibrary(this, desc);
 	}
 
+	@Override
 	public String getDescriptor(Library lib) {
 		return LibraryManager.instance.getDescriptor(this, lib);
 	}
 
+	@Override
 	public void showError(String description) {
 		if (!filesOpening.empty()) {
 			File top = filesOpening.peek();

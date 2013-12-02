@@ -30,12 +30,16 @@ class Toolbar extends JComponent {
 		private int toolX;
 		private int toolY;
 
+		@Override
 		public void mouseClicked(MouseEvent e) { }
 
+		@Override
 		public void mouseEntered(MouseEvent e) { }
 
+		@Override
 		public void mouseExited(MouseEvent e) { }
 
+		@Override
 		public void mousePressed(MouseEvent e) {
 			int mx = e.getX();
 			int my = e.getY();
@@ -59,6 +63,7 @@ class Toolbar extends JComponent {
 			}
 		}
 
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			mouseDragged(e);
 			if (inTool) {
@@ -69,6 +74,7 @@ class Toolbar extends JComponent {
 			inTool = false;
 		}
 
+		@Override
 		public void mouseDragged(MouseEvent e) {
 			int mx = e.getX();
 			int my = e.getY();
@@ -85,6 +91,7 @@ class Toolbar extends JComponent {
 			}
 		}
 
+		@Override
 		public void mouseMoved(MouseEvent e) { }
 		
 	}

@@ -46,10 +46,12 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 			listCopy = list.toArray(new String[list.size()]);
 		}
 		
+		@Override
 		public int getSize() {
 			return listCopy.length;
 		}
 		
+		@Override
 		public Object getElementAt(int index) {
 			return index >= 0 && index < listCopy.length ? listCopy[index] : null;
 		}
@@ -60,6 +62,7 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 			fireContentsChanged(this, 0, oldCopy.length);
 		}
 		
+		@Override
 		public void listChanged(VariableListEvent event) {
 			String[] oldCopy = listCopy;
 			updateCopy();
@@ -89,6 +92,7 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 	
 	private class MyListener
 			implements ActionListener, DocumentListener, ListSelectionListener {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if ((src == add || src == field) && add.isEnabled()) {
@@ -127,12 +131,16 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 			}
 		}
 		
+		@Override
 		public void insertUpdate(DocumentEvent event) {
 			computeEnabled();
 		}
+		@Override
 		public void removeUpdate(DocumentEvent event) { insertUpdate(event); }
+		@Override
 		public void changedUpdate(DocumentEvent event) { insertUpdate(event); }
 
+		@Override
 		public void valueChanged(ListSelectionEvent event) {
 			computeEnabled();
 		}
@@ -308,21 +316,25 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 		return ok;
 	}
 
+	@Override
 	public void copy() {
 		field.requestFocus();
 		field.copy();
 	}
 
+	@Override
 	public void paste() {
 		field.requestFocus();
 		field.paste();
 	}
 
+	@Override
 	public void delete() {
 		field.requestFocus();
 		field.replaceSelection("");
 	}
 
+	@Override
 	public void selectAll() {
 		field.requestFocus();
 		field.selectAll();

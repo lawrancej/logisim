@@ -15,11 +15,18 @@ public abstract class SimulationTreeNode implements TreeNode {
 		return false;
 	}
 
+	@Override
 	public abstract Enumeration<?> children();
+	@Override
 	public abstract boolean getAllowsChildren();
+	@Override
 	public abstract TreeNode getChildAt(int childIndex);
+	@Override
 	public abstract int getChildCount();
+	@Override
 	public abstract int getIndex(TreeNode node);
+	@Override
 	public abstract TreeNode getParent();
+	@Override
 	public abstract boolean isLeaf();
 }

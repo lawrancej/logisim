@@ -76,6 +76,7 @@ class ExplorerToolbarModel extends AbstractToolbarModel
 	//
 	// EnabledListener methods
 	//
+	@Override
 	public void menuEnableChanged(MenuListener source) {
 		fireToolbarAppearanceChanged();
 	}

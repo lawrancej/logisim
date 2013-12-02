@@ -47,6 +47,7 @@ public class Direction implements AttributeOptionInterface {
 		return name;
 	}
 
+	@Override
 	public String toDisplayString() {
 		return disp.toString();
 	}
@@ -105,6 +106,7 @@ public class Direction implements AttributeOptionInterface {
 	}
 
 	// for AttributeOptionInterface
+	@Override
 	public Object getValue() {
 		return this;
 	}

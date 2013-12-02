@@ -15,10 +15,12 @@ public class ToolbarSeparator implements ToolbarItem {
 		this.size = size;
 	}
 	
+	@Override
 	public boolean isSelectable() {
 		return false;
 	}
 	
+	@Override
 	public void paintIcon(Component destination, Graphics g) {
 		Dimension dim = destination.getSize();
 		g.setColor(Color.GRAY);
@@ -40,10 +42,12 @@ public class ToolbarSeparator implements ToolbarItem {
 		g.fillRect(x, y, w, h);
 	}
 	
+	@Override
 	public String getToolTip() {
 		return null;
 	}
 	
+	@Override
 	public Dimension getDimension(Object orientation) {
 		return new Dimension(size, size);
 	}

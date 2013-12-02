@@ -51,9 +51,11 @@ public class AddTool extends Tool {
 		= Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
 
 	private class MyAttributeListener implements AttributeListener {
+		@Override
 		public void attributeListChanged(AttributeEvent e) {
 			bounds = null;
 		}
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			bounds = null;
 		}

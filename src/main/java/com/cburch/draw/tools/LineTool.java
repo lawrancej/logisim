@@ -120,7 +120,7 @@ public class LineTool extends AbstractTool {
 	
 	private void updateMouse(Canvas canvas, int mx, int my, int mods) {
 		if (active) {
-			boolean shift = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0;
+			boolean shift = (mods & InputEvent.SHIFT_DOWN_MASK) != 0;
 			Location newEnd;
 			if (shift) {
 				newEnd = LineUtil.snapTo8Cardinals(mouseStart, mx, my);

@@ -26,6 +26,7 @@ public class AppearanceEditPopup extends EditPopup implements EditHandler.Listen
 		initialize();
 	}
 	
+	@Override
 	public void enableChanged(EditHandler handler, LogisimMenuItem action,
 			boolean value) {
 		enabled.put(action, Boolean.valueOf(value));

@@ -97,8 +97,8 @@ public class Divider extends InstanceFactory {
 		if (upper == Value.NIL || upper.isUnknown()) upper = Value.createKnown(width, 0);
 		if (a.isFullyDefined() && b.isFullyDefined() && upper.isFullyDefined()) {
 			long num = ((long) upper.toIntValue() << w)
-				| ((long) a.toIntValue() & 0xFFFFFFFFL);
-			long den = (long) b.toIntValue() & 0xFFFFFFFFL;
+				| (a.toIntValue() & 0xFFFFFFFFL);
+			long den = b.toIntValue() & 0xFFFFFFFFL;
 			if (den == 0) den = 1;
 			long result = num / den;
 			long rem = num % den;

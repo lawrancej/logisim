@@ -97,6 +97,7 @@ public class Constant extends InstanceFactory {
 			this.instance = instance;
 		}
 		
+		@Override
 		public void computeExpression(Map<Location,Expression> expressionMap) {
 			AttributeSet attrs = instance.getAttributeSet();
 			int intValue = attrs.getValue(ATTR_VALUE).intValue();

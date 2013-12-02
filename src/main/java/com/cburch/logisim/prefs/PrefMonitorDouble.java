@@ -19,10 +19,12 @@ class PrefMonitorDouble extends AbstractPrefMonitor<Double> {
 		prefs.addPreferenceChangeListener(this);
 	}
 	
+	@Override
 	public Double get() {
 		return Double.valueOf(value);
 	}
 	
+	@Override
 	public void set(Double newValue) {
 		double newVal = newValue.doubleValue();
 		if (value != newVal) {
@@ -30,6 +32,7 @@ class PrefMonitorDouble extends AbstractPrefMonitor<Double> {
 		}
 	}
 
+	@Override
 	public void preferenceChange(PreferenceChangeEvent event) {
 		Preferences prefs = event.getNode();
 		String prop = event.getKey();

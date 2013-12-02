@@ -480,6 +480,7 @@ abstract class AbstractGate extends InstanceFactory {
 	protected Object getInstanceFeature(final Instance instance, Object key) {
 		if (key == WireRepair.class) {
 			return new WireRepair() {
+				@Override
 				public boolean shouldRepairWire(WireRepairData data) {
 					return AbstractGate.this.shouldRepairWire(instance, data);
 				}
@@ -487,6 +488,7 @@ abstract class AbstractGate extends InstanceFactory {
 		}
 		if (key == ExpressionComputer.class) {
 			return new ExpressionComputer() {
+				@Override
 				public void computeExpression(Map<Location,Expression> expressionMap) {
 					GateAttributes attrs = (GateAttributes) instance.getAttributeSet();
 					int inputCount = attrs.inputs;

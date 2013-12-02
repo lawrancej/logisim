@@ -24,12 +24,16 @@ import com.cburch.logisim.std.wiring.Pin;
 public class CircuitPins {
 	private class MyComponentListener
 			implements ComponentListener, AttributeListener {
+		@Override
 		public void endChanged(ComponentEvent e) {
 			appearanceManager.updatePorts();
 		}
+		@Override
 		public void componentInvalidated(ComponentEvent e) { }
 
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			Attribute<?> attr = e.getAttribute();
 			if (attr == StdAttr.FACING || attr == StdAttr.LABEL

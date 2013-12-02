@@ -42,6 +42,7 @@ public class WindowManagers {
 		= new LinkedHashMap<Project,ProjectManager>();
 	
 	private static class MyListener implements PropertyChangeListener {
+		@Override
 		public void propertyChange(PropertyChangeEvent event) {
 			computeListeners();
 		}
@@ -64,12 +65,14 @@ public class WindowManagers {
 			return proj.getFrame();
 		}
 		
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			if (event.getAction() == ProjectEvent.ACTION_SET_FILE) {
 				setText(proj.getLogisimFile().getName());
 			}
 		}
 
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			if (event.getAction() == LibraryEvent.SET_NAME) {
 				setText((String) event.getData());

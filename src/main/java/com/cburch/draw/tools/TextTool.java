@@ -34,10 +34,12 @@ import com.cburch.logisim.util.Icons;
 
 public class TextTool extends AbstractTool {
 	private class FieldListener extends AbstractAction implements AttributeListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			commitText(curCanvas);
 		}
 
+		@Override
 		public void attributeListChanged(AttributeEvent e) {
 			Text cur = curText;
 			if (cur != null) {
@@ -47,12 +49,14 @@ public class TextTool extends AbstractTool {
 			}
 		}
 
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			attributeListChanged(e);
 		}
 	}
 	
 	private class CancelListener extends AbstractAction {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			cancelText(curCanvas);
 		}

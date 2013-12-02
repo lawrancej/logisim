@@ -155,6 +155,7 @@ public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Librar
 		}
 	}
 
+	@Override
 	public void libraryChanged(LibraryEvent event) {
 		switch (event.getAction()) {
 		case LibraryEvent.DIRTY_STATE:

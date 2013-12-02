@@ -37,6 +37,7 @@ public class Analyzer extends LFrame {
 	public static final int MINIMIZED_TAB = 4;
 	
 	private class MyListener implements LocaleListener {
+		@Override
 		public void localeChanged() {
 			Analyzer.this.setTitle(_("analyzerWindowTitle"));
 			tabbedPane.setTitleAt(INPUTS_TAB, _("inputsTab"));
@@ -70,6 +71,7 @@ public class Analyzer extends LFrame {
 			enableItems(menubar);
 		}
 		
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			Component c = tabbedPane.getSelectedComponent();
@@ -105,6 +107,7 @@ public class Analyzer extends LFrame {
 			menubar.setEnabled(LogisimMenuBar.SELECT_ALL, support);
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			enableItems((LogisimMenuBar) getJMenuBar());
 			
@@ -180,13 +183,17 @@ public class Analyzer extends LFrame {
 			pane.setVerticalScrollBar(((TableTab) comp).getVerticalScrollBar());
 		}
 		pane.addComponentListener(new ComponentListener() {
+			@Override
 			public void componentResized(ComponentEvent event) {
 				int width = pane.getViewport().getWidth();
 				comp.setSize(new Dimension(width, comp.getHeight()));
 			}
 
+			@Override
 			public void componentMoved(ComponentEvent arg0) { }
+			@Override
 			public void componentShown(ComponentEvent arg0) { }
+			@Override
 			public void componentHidden(ComponentEvent arg0) { }
 		});
 		tabbedPane.insertTab("Untitled", null, pane, null, index);

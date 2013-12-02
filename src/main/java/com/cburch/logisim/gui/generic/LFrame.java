@@ -58,6 +58,7 @@ public class LFrame extends JFrame implements WindowClosable {
 		LFrame.attachIcon(this);
 	}
 
+	@Override
 	public void requestClose() {
 		WindowEvent closing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
 		processWindowEvent(closing);

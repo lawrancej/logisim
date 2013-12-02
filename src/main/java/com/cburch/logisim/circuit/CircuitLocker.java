@@ -50,6 +50,7 @@ class CircuitLocker {
 	}
 	
 	private static class CircuitComparator implements Comparator<Circuit> {
+		@Override
 		public int compare(Circuit a, Circuit b) {
 			int an = a.getLocker().serialNumber;
 			int bn = b.getLocker().serialNumber;

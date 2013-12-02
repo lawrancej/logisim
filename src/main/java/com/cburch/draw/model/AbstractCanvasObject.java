@@ -32,51 +32,68 @@ public abstract class AbstractCanvasObject
 		listeners = new EventSourceWeakSupport<AttributeListener>();
 	}
 	
+	@Override
 	public AttributeSet getAttributeSet() {
 		return this;
 	}
 	
+	@Override
 	public abstract String getDisplayName();
 	public abstract Element toSvgElement(Document doc);
+	@Override
 	public abstract boolean matches(CanvasObject other);
+	@Override
 	public abstract int matchesHashCode();
 
+	@Override
 	public abstract Bounds getBounds();
+	@Override
 	public abstract boolean contains(Location loc, boolean assumeFilled);
+	@Override
 	public abstract void translate(int dx, int dy);
+	@Override
 	public abstract List<Handle> getHandles(HandleGesture gesture);
 	protected abstract void updateValue(Attribute<?> attr, Object value);
 
+	@Override
 	public abstract void paint(Graphics g, HandleGesture gesture);
 	
+	@Override
 	public boolean canRemove() {
 		return true;
 	}
 	
+	@Override
 	public boolean canMoveHandle(Handle handle) {
 		return false;
 	}
 	
+	@Override
 	public Handle canInsertHandle(Location desired) {
 		return null;
 	}
 	
+	@Override
 	public Handle canDeleteHandle(Location loc) {
 		return null;
 	}
 	
+	@Override
 	public Handle moveHandle(HandleGesture gesture) {
 		throw new UnsupportedOperationException("moveHandle");
 	}
 	
+	@Override
 	public void insertHandle(Handle desired, Handle previous) {
 		throw new UnsupportedOperationException("insertHandle");
 	}
 	
+	@Override
 	public Handle deleteHandle(Handle handle) {
 		throw new UnsupportedOperationException("deleteHandle");
 	}
 	
+	@Override
 	public boolean overlaps(CanvasObject other) {
 		Bounds a = this.getBounds();
 		Bounds b = other.getBounds();
@@ -118,13 +135,17 @@ public abstract class AbstractCanvasObject
 	}
 
 	// methods required by AttributeSet interface
+	@Override
 	public abstract List<Attribute<?>> getAttributes();
+	@Override
 	public abstract <V> V getValue(Attribute<V> attr);
 
+	@Override
 	public void addAttributeListener(AttributeListener l) {
 		listeners.add(l);
 	}
 
+	@Override
 	public void removeAttributeListener(AttributeListener l) {
 		listeners.remove(l);
 	}
@@ -140,10 +161,12 @@ public abstract class AbstractCanvasObject
 		}
 	}
 
+	@Override
 	public boolean containsAttribute(Attribute<?> attr) {
 		return getAttributes().contains(attr);
 	}
 	
+	@Override
 	public Attribute<?> getAttribute(String name) {
 		for (Attribute<?> attr : getAttributes()) {
 			if (attr.getName().equals(name)) return attr;
@@ -151,18 +174,22 @@ public abstract class AbstractCanvasObject
 		return null;
 	}
 
+	@Override
 	public boolean isReadOnly(Attribute<?> attr) {
 		return false;
 	}
 	
+	@Override
 	public void setReadOnly(Attribute<?> attr, boolean value) {
 		throw new UnsupportedOperationException("setReadOnly");
 	}
 	
+	@Override
 	public boolean isToSave(Attribute<?> attr) {
 		return true;
 	}
 
+	@Override
 	public final <V> void setValue(Attribute<V> attr, V value) {
 		Object old = getValue(attr);
 		boolean same = old == null ? value == null : old.equals(value);

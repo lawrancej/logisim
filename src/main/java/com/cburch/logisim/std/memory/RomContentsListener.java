@@ -102,11 +102,13 @@ class RomContentsListener implements HexModelListener {
 		enabled = value;
 	}
 	
+	@Override
 	public void metainfoChanged(HexModel source) {
 		// ignore - this can only come from an already-registered
 		// action
 	}
 	
+	@Override
 	public void bytesChanged(HexModel source, long start,
 			long numBytes, int[] oldValues) {
 		if (enabled && proj != null && oldValues != null) {

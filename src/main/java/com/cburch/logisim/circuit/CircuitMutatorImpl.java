@@ -24,6 +24,7 @@ class CircuitMutatorImpl implements CircuitMutator {
 		modified = new HashSet<Circuit>();
 	}
 	
+	@Override
 	public void clear(Circuit circuit) {
 		HashSet<Component> comps = new HashSet<Component>(circuit.getNonWires());
 		comps.addAll(circuit.getWires());
@@ -37,6 +38,7 @@ class CircuitMutatorImpl implements CircuitMutator {
 		circuit.mutatorClear();
 	}
 	
+	@Override
 	public void add(Circuit circuit, Component comp) {
 		modified.add(circuit);
 		log.add(CircuitChange.add(circuit, comp));
@@ -48,6 +50,7 @@ class CircuitMutatorImpl implements CircuitMutator {
 		circuit.mutatorAdd(comp);
 	}
 	
+	@Override
 	public void remove(Circuit circuit, Component comp) {
 		if (circuit.contains(comp)) {
 			modified.add(circuit);
@@ -61,10 +64,12 @@ class CircuitMutatorImpl implements CircuitMutator {
 		}
 	}
 	
+	@Override
 	public void replace(Circuit circuit, Component prev, Component next) {
 		replace(circuit, new ReplacementMap(prev, next));
 	}
 	
+	@Override
 	public void replace(Circuit circuit, ReplacementMap repl) {
 		if (!repl.isEmpty()) {
 			modified.add(circuit);
@@ -82,6 +87,7 @@ class CircuitMutatorImpl implements CircuitMutator {
 		}
 	}
 	
+	@Override
 	public void set(Circuit circuit, Component comp, Attribute<?> attr,
 			Object newValue) {
 		if (circuit.contains(comp)) {
@@ -95,6 +101,7 @@ class CircuitMutatorImpl implements CircuitMutator {
 		}
 	}
 	
+	@Override
 	public void setForCircuit(Circuit circuit, Attribute<?> attr,
 			Object newValue) {
 		@SuppressWarnings("unchecked")

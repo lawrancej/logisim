@@ -14,10 +14,12 @@ public class Toolbar extends JPanel {
 	public static final Object HORIZONTAL = new Object();
 	
 	private class MyListener implements ToolbarModelListener {
+		@Override
 		public void toolbarAppearanceChanged(ToolbarModelEvent event) {
 			repaint();
 		}
 
+		@Override
 		public void toolbarContentsChanged(ToolbarModelEvent event) {
 			computeContents();
 		}

@@ -41,6 +41,7 @@ public class TableLayout implements LayoutManager2 {
 		rowWeight[rowIndex] = weight;
 	}
 
+	@Override
 	public void addLayoutComponent(String name, Component comp) {
 		while (curRow >= contents.size()) {
 			contents.add(new Component[colCount]);
@@ -55,6 +56,7 @@ public class TableLayout implements LayoutManager2 {
 		prefs = null;
 	}
 
+	@Override
 	public void addLayoutComponent(Component comp, Object constraints) {
 		if (constraints instanceof TableConstraints) {
 			TableConstraints con = (TableConstraints) constraints;
@@ -64,6 +66,7 @@ public class TableLayout implements LayoutManager2 {
 		addLayoutComponent("", comp);
 	}
 
+	@Override
 	public void removeLayoutComponent(Component comp) {
 		for (int i = 0, n = contents.size(); i < n; i++) {
 			Component[] row = contents.get(i);
@@ -77,6 +80,7 @@ public class TableLayout implements LayoutManager2 {
 		prefs = null;
 	}
 
+	@Override
 	public Dimension preferredLayoutSize(Container parent) {
 		if (prefs == null) {
 			int[] prefCol = new int[colCount];
@@ -106,22 +110,27 @@ public class TableLayout implements LayoutManager2 {
 		return new Dimension(prefs);
 	}
 
+	@Override
 	public Dimension minimumLayoutSize(Container parent) {
 		return preferredLayoutSize(parent);
 	}
 
+	@Override
 	public Dimension maximumLayoutSize(Container parent) {
 		return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
 	}
 
+	@Override
 	public float getLayoutAlignmentX(Container parent) {
 		return 0.5f;
 	}
 
+	@Override
 	public float getLayoutAlignmentY(Container parent) {
 		return 0.5f;
 	}
 
+	@Override
 	public void layoutContainer(Container parent) {
 		Dimension pref = preferredLayoutSize(parent);
 		int[] prefRow = this.prefRow;
@@ -168,6 +177,7 @@ public class TableLayout implements LayoutManager2 {
 		
 	}
 
+	@Override
 	public void invalidateLayout(Container parent) {
 		prefs = null;
 	}

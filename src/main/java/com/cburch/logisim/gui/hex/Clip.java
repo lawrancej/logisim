@@ -28,14 +28,17 @@ class Clip implements ClipboardOwner {
 			this.data = data;
 		}
 
+		@Override
 		public DataFlavor[] getTransferDataFlavors() {
 			return new DataFlavor[] { binaryFlavor, DataFlavor.stringFlavor };
 		}
 
+		@Override
 		public boolean isDataFlavorSupported(DataFlavor flavor) {
 			return flavor == binaryFlavor || flavor == DataFlavor.stringFlavor;
 		}
 
+		@Override
 		public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
 			if (flavor == binaryFlavor) {
 				return data;
@@ -170,6 +173,7 @@ class Clip implements ClipboardOwner {
 		}
 	}
 	
+	@Override
 	public void lostOwnership(Clipboard clip, Transferable transfer) { }
 
 }

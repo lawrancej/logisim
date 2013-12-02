@@ -21,6 +21,7 @@ class ProjectsDirty {
 			this.proj = proj;
 		}
 		
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			if (event.getAction() == LibraryEvent.DIRTY_STATE) {
 				LogisimFile lib = proj.getLogisimFile();
@@ -31,6 +32,7 @@ class ProjectsDirty {
 	}
 	
 	private static class ProjectListListener implements PropertyChangeListener {
+		@Override
 		public synchronized void propertyChange(PropertyChangeEvent event) {
 			for (DirtyListener l : listeners) {
 				l.proj.removeLibraryListener(l);

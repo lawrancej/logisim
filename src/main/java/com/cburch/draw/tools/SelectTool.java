@@ -101,7 +101,7 @@ public class SelectTool extends AbstractTool {
 		beforePressHandle = canvas.getSelection().getSelectedHandle();
 		int mx = e.getX();
 		int my = e.getY();
-		boolean shift = (e.getModifiersEx() & MouseEvent.SHIFT_DOWN_MASK) != 0;
+		boolean shift = (e.getModifiersEx() & InputEvent.SHIFT_DOWN_MASK) != 0;
 		dragStart = Location.create(mx, my);
 		dragEffective = false;
 		dragEnd = dragStart;
@@ -321,7 +321,7 @@ public class SelectTool extends AbstractTool {
 	private void setMouse(Canvas canvas, int mx, int my, int mods) {
 		lastMouseX = mx;
 		lastMouseY = my;
-		boolean shift = (mods & MouseEvent.SHIFT_DOWN_MASK) != 0;
+		boolean shift = (mods & InputEvent.SHIFT_DOWN_MASK) != 0;
 		boolean ctrl = (mods & InputEvent.CTRL_DOWN_MASK) != 0;
 		Location newEnd = Location.create(mx, my);
 		dragEnd = newEnd;

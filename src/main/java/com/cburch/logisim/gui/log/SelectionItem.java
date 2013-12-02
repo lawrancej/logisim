@@ -120,14 +120,17 @@ class SelectionItem implements AttributeListener, CircuitListener {
 		return log == null ? Value.NIL : log.getLogValue(cur, option);
 	}
 
+	@Override
 	public void attributeListChanged(AttributeEvent e) { }
 
+	@Override
 	public void attributeValueChanged(AttributeEvent e) {
 		if (computeDescriptors()) {
 			model.fireSelectionChanged(new ModelEvent());
 		}
 	}
 
+	@Override
 	public void circuitChanged(CircuitEvent event) {
 		int action = event.getAction();
 		if (action == CircuitEvent.ACTION_CLEAR

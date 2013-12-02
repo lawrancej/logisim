@@ -70,6 +70,7 @@ public class Circuit {
 	}
 
 	private class MyComponentListener implements ComponentListener {
+		@Override
 		public void endChanged(ComponentEvent e) {
 			locker.checkForWritePermission("ends changed");
 			Component comp = e.getSource();
@@ -99,6 +100,7 @@ public class Circuit {
 			return map;
 		}
 		
+		@Override
 		public void componentInvalidated(ComponentEvent e) {
 			fireEvent(CircuitEvent.ACTION_INVALIDATE, e.getSource());
 		}

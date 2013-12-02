@@ -40,6 +40,7 @@ public class OptionsFrame extends LFrame {
 			return OptionsFrame.this;
 		}
 		
+		@Override
 		public void localeChanged() {
 			String title = project.getLogisimFile().getDisplayName();
 			setText(_("optionsFrameMenuItem", title));
@@ -48,6 +49,7 @@ public class OptionsFrame extends LFrame {
 
 	private class MyListener
 			implements ActionListener, LibraryListener, LocaleListener {
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if (src == revert) {
@@ -59,6 +61,7 @@ public class OptionsFrame extends LFrame {
 			}
 		}
 
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			if (event.getAction() == LibraryEvent.SET_NAME) {
 				setTitle(computeTitle(file));
@@ -66,6 +69,7 @@ public class OptionsFrame extends LFrame {
 			}
 		}
 		
+		@Override
 		public void localeChanged() {
 			setTitle(computeTitle(file));
 			for (int i = 0; i < panels.length; i++) {

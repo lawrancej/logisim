@@ -15,6 +15,7 @@ class TruthTableMouseListener implements MouseListener {
 	private Entry oldValue;
 	private Entry newValue;
 	
+	@Override
 	public void mousePressed(MouseEvent event) {
 		TruthTablePanel source = (TruthTablePanel) event.getSource();
 		TruthTable model = source.getTruthTable();
@@ -29,6 +30,7 @@ class TruthTableMouseListener implements MouseListener {
 		else                           newValue = Entry.ZERO;
 		source.setEntryProvisional(cellY, cellX, newValue);
 	}
+	@Override
 	public void mouseReleased(MouseEvent event) {
 		TruthTablePanel source = (TruthTablePanel) event.getSource();
 		TruthTable model = source.getTruthTable();
@@ -47,7 +49,10 @@ class TruthTableMouseListener implements MouseListener {
 		cellY = -1;
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e) { }
+	@Override
 	public void mouseEntered(MouseEvent e) { }
+	@Override
 	public void mouseExited(MouseEvent e) { }
 }

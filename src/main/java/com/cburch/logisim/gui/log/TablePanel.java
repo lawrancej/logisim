@@ -26,10 +26,12 @@ class TablePanel extends LogPanel {
 	private static final int HEADER_SEP = 4;
 	
 	private class MyListener implements ModelListener {
+		@Override
 		public void selectionChanged(ModelEvent event) {
 			computeRowCount();
 		}
 
+		@Override
 		public void entryAdded(ModelEvent event, Value[] values) {
 			int oldCount = rowCount; 
 			computeRowCount();
@@ -44,6 +46,7 @@ class TablePanel extends LogPanel {
 			}
 		}
 		
+		@Override
 		public void filePropertyChanged(ModelEvent event) { }
 		
 		private void computeRowCount() {
@@ -98,6 +101,7 @@ class TablePanel extends LogPanel {
 			}
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent event) {
 			int newMaximum = getMaximum();
 			int newExtent = getVisibleAmount();

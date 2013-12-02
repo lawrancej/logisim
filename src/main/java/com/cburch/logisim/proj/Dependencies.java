@@ -18,6 +18,7 @@ import com.cburch.logisim.util.Dag;
 public class Dependencies {
 	private class MyListener
 			implements LibraryListener, CircuitListener {
+		@Override
 		public void libraryChanged(LibraryEvent e) {
 			switch (e.getAction()) {
 			case LibraryEvent.ADD_TOOL:
@@ -43,6 +44,7 @@ public class Dependencies {
 			}
 		}
 
+		@Override
 		public void circuitChanged(CircuitEvent e) {
 			Component comp;
 			switch (e.getAction()) {

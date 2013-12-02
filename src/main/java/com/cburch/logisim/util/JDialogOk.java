@@ -21,6 +21,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public abstract class JDialogOk extends JDialog {
 	private class MyListener extends WindowAdapter
 			implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			if (src == ok) {

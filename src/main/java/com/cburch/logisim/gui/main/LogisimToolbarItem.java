@@ -46,10 +46,12 @@ class LogisimToolbarItem implements ToolbarItem {
 		}
 	}
 	
+	@Override
 	public boolean isSelectable() {
 		return menu != null && menu.isEnabled(action);
 	}
 	
+	@Override
 	public void paintIcon(Component destination, Graphics g) {
 		if (!isSelectable() && g instanceof Graphics2D) {
 			Composite c = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
@@ -68,6 +70,7 @@ class LogisimToolbarItem implements ToolbarItem {
 		}
 	}
 	
+	@Override
 	public String getToolTip() {
 		if (toolTip != null) {
 			return toolTip.toString();
@@ -76,6 +79,7 @@ class LogisimToolbarItem implements ToolbarItem {
 		}
 	}
 	
+	@Override
 	public Dimension getDimension(Object orientation) {
 		if (icon == null) {
 			return new Dimension(16, 16);

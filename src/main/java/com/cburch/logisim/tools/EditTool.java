@@ -6,6 +6,7 @@ package com.cburch.logisim.tools;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class EditTool extends Tool {
 		= Location.create(Integer.MIN_VALUE, Integer.MIN_VALUE);
 	
 	private class Listener implements CircuitListener, Selection.Listener {
+		@Override
 		public void circuitChanged(CircuitEvent event) {
 			if (event.getAction() != CircuitEvent.ACTION_INVALIDATE) {
 				lastX = -1;
@@ -50,6 +52,7 @@ public class EditTool extends Tool {
 			}
 		}
 
+		@Override
 		public void selectionChanged(Event event) {
 			lastX = -1;
 			cache.clear();
@@ -274,7 +277,7 @@ public class EditTool extends Tool {
 		int dx = mx - snapx;
 		int dy = my - snapy;
 		boolean isEligible = dx * dx + dy * dy < 36;
-		if ((mods & MouseEvent.ALT_DOWN_MASK) != 0) isEligible = true;
+		if ((mods & InputEvent.ALT_DOWN_MASK) != 0) isEligible = true;
 		if (!isEligible) {
 			snapx = -1;
 			snapy = -1;
@@ -321,7 +324,7 @@ public class EditTool extends Tool {
 	}
 	
 	private boolean isWiringPoint(Canvas canvas, Location loc, int modsEx) {
-		boolean wiring = (modsEx & MouseEvent.ALT_DOWN_MASK) == 0;
+		boolean wiring = (modsEx & InputEvent.ALT_DOWN_MASK) == 0;
 		boolean select = !wiring;
 		
 		if (canvas != null && canvas.getSelection() != null) {

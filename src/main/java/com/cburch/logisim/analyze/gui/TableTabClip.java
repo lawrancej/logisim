@@ -30,14 +30,17 @@ class TableTabClip implements ClipboardOwner {
 			this.contents = contents;
 		}
 
+		@Override
 		public DataFlavor[] getTransferDataFlavors() {
 			return new DataFlavor[] { binaryFlavor, DataFlavor.stringFlavor };
 		}
 
+		@Override
 		public boolean isDataFlavorSupported(DataFlavor flavor) {
 			return flavor == binaryFlavor || flavor == DataFlavor.stringFlavor;
 		}
 
+		@Override
 		public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
 			if (flavor == binaryFlavor) {
 				return this;
@@ -225,6 +228,7 @@ class TableTabClip implements ClipboardOwner {
 		}
 	}
 	
+	@Override
 	public void lostOwnership(Clipboard clip, Transferable transfer) { }
 
 }

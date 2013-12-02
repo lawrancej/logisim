@@ -73,6 +73,7 @@ public class PokeTool extends Tool {
 	}
 	
 	private class Listener implements CircuitListener {
+		@Override
 		public void circuitChanged(CircuitEvent event) {
 			Circuit circ = pokedCircuit;
 			if (event.getCircuit() == circ && circ != null

@@ -7,8 +7,6 @@ import static com.cburch.logisim.util.LocaleString.__;
 
 import java.awt.Graphics;
 
-import org.apache.batik.swing.JSVGCanvas;
-
 import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.Expressions;
 import com.cburch.logisim.data.Value;

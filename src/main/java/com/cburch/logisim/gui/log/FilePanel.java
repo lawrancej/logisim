@@ -26,10 +26,13 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 class FilePanel extends LogPanel {
 	private class Listener implements ActionListener, ModelListener {
+		@Override
 		public void selectionChanged(ModelEvent event) { }
 
+		@Override
 		public void entryAdded(ModelEvent event, Value[] values) { }
 		
+		@Override
 		public void filePropertyChanged(ModelEvent event) {
 			Model model = getModel();
 			computeEnableItems(model);
@@ -51,6 +54,7 @@ class FilePanel extends LogPanel {
 			}
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if (src == enableButton) {

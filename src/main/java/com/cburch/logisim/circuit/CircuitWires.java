@@ -67,8 +67,10 @@ class CircuitWires {
 	}
 	
 	private class TunnelListener implements AttributeListener {
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
 
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			Attribute<?> attr = e.getAttribute();
 			if (attr == StdAttr.LABEL || attr == PullResistor.ATTR_PULL_TYPE) {

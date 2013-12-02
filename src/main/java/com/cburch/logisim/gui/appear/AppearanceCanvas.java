@@ -44,10 +44,12 @@ public class AppearanceCanvas extends Canvas
 	
 	private class Listener
 			implements CanvasModelListener, PropertyChangeListener {
+		@Override
 		public void modelChanged(CanvasModelEvent event) {
 			computeSize(false);
 		}
 
+		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
 			String prop = evt.getPropertyName();
 			if (prop.equals(GridPainter.ZOOM_PROPERTY)) {
@@ -315,34 +317,41 @@ public class AppearanceCanvas extends Canvas
 	//
 	// CanvasPaneContents methods
 	//
+	@Override
 	public void setCanvasPane(CanvasPane value) {
 		canvasPane = value;
 		computeSize(true);
 		popupManager = new LayoutPopupManager(value, this);
 	}
 
+	@Override
 	public void recomputeSize() {
 		computeSize(true);
 		repaint();
 	}
 
+	@Override
 	public Dimension getPreferredScrollableViewportSize() {
 		return getPreferredSize();
 	}
 
+	@Override
 	public int getScrollableBlockIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		return canvasPane.supportScrollableBlockIncrement(visibleRect, orientation, direction);
 	}
 
+	@Override
 	public boolean getScrollableTracksViewportHeight() {
 		return false;
 	}
 
+	@Override
 	public boolean getScrollableTracksViewportWidth() {
 		return false;
 	}
 
+	@Override
 	public int getScrollableUnitIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		return canvasPane.supportScrollableUnitIncrement(visibleRect, orientation, direction);

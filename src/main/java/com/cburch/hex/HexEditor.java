@@ -22,10 +22,12 @@ import javax.swing.SwingConstants;
  */
 public class HexEditor extends JComponent implements Scrollable {
 	private class Listener implements HexModelListener {
+		@Override
 		public void metainfoChanged(HexModel source) {
 			measures.recompute();
 			repaint();
 		}
+		@Override
 		public void bytesChanged(HexModel source, long start, long numBytes,
 				int[] oldValues) {
 			repaint(0, measures.toY(start),
@@ -199,10 +201,12 @@ public class HexEditor extends JComponent implements Scrollable {
 	//
 	// Scrollable methods
 	//
+	@Override
 	public Dimension getPreferredScrollableViewportSize() {
 		return getPreferredSize();
 	}
 
+	@Override
 	public int getScrollableUnitIncrement(Rectangle vis,
 			int orientation, int direction) {
 		if (orientation == SwingConstants.VERTICAL) {
@@ -218,6 +222,7 @@ public class HexEditor extends JComponent implements Scrollable {
 		}
 	}
 
+	@Override
 	public int getScrollableBlockIncrement(Rectangle vis,
 			int orientation, int direction) {
 		if (orientation == SwingConstants.VERTICAL) {
@@ -234,10 +239,12 @@ public class HexEditor extends JComponent implements Scrollable {
 		}
 	}
 
+	@Override
 	public boolean getScrollableTracksViewportWidth() {
 		return true;
 	}
 
+	@Override
 	public boolean getScrollableTracksViewportHeight() {
 		return false;
 	}

@@ -90,6 +90,7 @@ class MouseOptions extends OptionsPanel {
 		//
 		// ActionListener method
 		//
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			if (src == remove) {
@@ -104,9 +105,13 @@ class MouseOptions extends OptionsPanel {
 		//
 		// MouseListener methods
 		//
+		@Override
 		public void mouseClicked(MouseEvent e) { }
+		@Override
 		public void mouseEntered(MouseEvent e) { }
+		@Override
 		public void mouseExited(MouseEvent e) { }
+		@Override
 		public void mousePressed(MouseEvent e) {
 			if (e.getSource() == addArea && curTool != null) {
 				Tool t = curTool.cloneTool();
@@ -115,11 +120,13 @@ class MouseOptions extends OptionsPanel {
 				setSelectedRow(model.getRow(mods));
 			}
 		}
+		@Override
 		public void mouseReleased(MouseEvent e) { }
 
 		//
 		// ListSelectionListener method
 		//
+		@Override
 		public void valueChanged(ListSelectionEvent e) {
 			int row = mappings.getSelectedRow();
 			if (row < 0) {
@@ -142,6 +149,7 @@ class MouseOptions extends OptionsPanel {
 		//
 		// MouseMappingsListener method
 		//
+		@Override
 		public void mouseMappingsChanged() {
 			model.fireTableStructureChanged();
 		}
@@ -149,6 +157,7 @@ class MouseOptions extends OptionsPanel {
 		//
 		// Explorer.Listener methods
 		//
+		@Override
 		public void selectionChanged(ProjectExplorerEvent event) {
 			Object target = event.getTarget();
 			if (target instanceof ProjectExplorerToolNode) {
@@ -159,9 +168,13 @@ class MouseOptions extends OptionsPanel {
 			}
 		}
 
+		@Override
 		public void doubleClicked(ProjectExplorerEvent event) { }
+		@Override
 		public void moveRequested(ProjectExplorerEvent event, AddTool dragged, AddTool target) { }
+		@Override
 		public void deleteRequested(ProjectExplorerEvent event) { }
+		@Override
 		public JPopupMenu menuRequested(ProjectExplorerEvent event) { return null; }
 	}
 
@@ -180,14 +193,17 @@ class MouseOptions extends OptionsPanel {
 			super.fireTableStructureChanged();
 		}
 
+		@Override
 		public int getRowCount() {
 			return cur_keys.size();
 		}
 
+		@Override
 		public int getColumnCount() {
 			return 2;
 		}
 
+		@Override
 		public Object getValueAt(int row, int column) {
 			Integer key = cur_keys.get(row);
 			if (column == 0) {

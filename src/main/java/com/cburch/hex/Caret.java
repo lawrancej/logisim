@@ -32,8 +32,10 @@ public class Caret {
 	
 	private class Listener implements MouseListener, MouseMotionListener,
 			KeyListener, FocusListener {
+		@Override
 		public void mouseClicked(MouseEvent e) { }
 
+		@Override
 		public void mousePressed(MouseEvent e) {
 			Measures measures = hex.getMeasures();
 			long loc = measures.toAddress(e.getX(), e.getY());
@@ -41,14 +43,18 @@ public class Caret {
 			if (!hex.isFocusOwner()) hex.requestFocus();
 		}
 
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			mouseDragged(e);
 		}
 
+		@Override
 		public void mouseEntered(MouseEvent e) { }
 
+		@Override
 		public void mouseExited(MouseEvent e) { }
 
+		@Override
 		public void mouseDragged(MouseEvent e) {
 			Measures measures = hex.getMeasures();
 			long loc = measures.toAddress(e.getX(), e.getY());
@@ -58,8 +64,10 @@ public class Caret {
 			// component
 		}
 
+		@Override
 		public void mouseMoved(MouseEvent e) { }
 
+		@Override
 		public void keyTyped(KeyEvent e) {
 			int mask = e.getModifiers();
 			if ((mask & ~InputEvent.SHIFT_MASK) != 0) return;
@@ -91,6 +99,7 @@ public class Caret {
 			}
 		}
 
+		@Override
 		public void keyPressed(KeyEvent e) {
 			int cols = hex.getMeasures().getColumnCount();
 			int rows;
@@ -150,12 +159,15 @@ public class Caret {
 			}
 		}
 
+		@Override
 		public void keyReleased(KeyEvent e) { }
 
+		@Override
 		public void focusGained(FocusEvent e) {
 			expose(cursor, false);
 		}
 
+		@Override
 		public void focusLost(FocusEvent e) {
 			expose(cursor, false);
 		}
@@ -183,6 +195,7 @@ public class Caret {
 		InputMap imap = hex.getInputMap();
 		ActionMap amap = hex.getActionMap();
 		AbstractAction nullAction = new AbstractAction() {
+			@Override
 			public void actionPerformed(ActionEvent e) { }
 		};
 		String nullKey = "null";

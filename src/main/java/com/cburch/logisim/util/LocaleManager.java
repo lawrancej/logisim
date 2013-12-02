@@ -28,6 +28,7 @@ public class LocaleManager {
 			this.key = key;
 		}
 
+		@Override
 		public String toString() {
 			return source.get(key);
 		}

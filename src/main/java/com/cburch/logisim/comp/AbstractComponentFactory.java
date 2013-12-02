@@ -32,20 +32,28 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
 	@Override
 	public String toString() { return getName(); }
 
+	@Override
 	public abstract String getName();
+	@Override
 	public String getDisplayName() { return getDisplayGetter().toString(); }
+	@Override
 	public StringGetter getDisplayGetter() { return StringUtil.constantGetter(getName()); }
+	@Override
 	public abstract Component createComponent(Location loc, AttributeSet attrs);
+	@Override
 	public abstract Bounds getOffsetBounds(AttributeSet attrs);
 
+	@Override
 	public AttributeSet createAttributeSet() {
 		return AttributeSets.EMPTY;
 	}
 	
+	@Override
 	public boolean isAllDefaultValues(AttributeSet attrs, LogisimVersion ver) {
 		return false;
 	}
 
+	@Override
 	public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
 		AttributeSet dfltSet = defaultSet;
 		if (dfltSet == null) {
@@ -58,6 +66,7 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
 	//
 	// user interface methods
 	//
+	@Override
 	public void drawGhost(ComponentDrawContext context, Color color,
 				int x, int y, AttributeSet attrs) {
 		Graphics g = context.getGraphics();
@@ -68,6 +77,7 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
 			bds.getWidth(), bds.getHeight());
 	}
 
+	@Override
 	public void paintIcon(ComponentDrawContext context,
 			int x, int y, AttributeSet attrs) {
 		Graphics g = context.getGraphics();
@@ -86,6 +96,7 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
 		}
 	}
 	
+	@Override
 	public Object getFeature(Object key, AttributeSet attrs) {
 		return null;
 	}

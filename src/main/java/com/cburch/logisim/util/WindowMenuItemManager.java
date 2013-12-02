@@ -9,33 +9,41 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.WindowConstants;
 
 public abstract class WindowMenuItemManager {
 	private class MyListener implements WindowListener {
+		@Override
 		public void windowOpened(WindowEvent event) { }
+		@Override
 		public void windowClosing(WindowEvent event) {
 			JFrame frame = getJFrame(false);
-			if (frame.getDefaultCloseOperation() == JFrame.HIDE_ON_CLOSE) {
+			if (frame.getDefaultCloseOperation() == WindowConstants.HIDE_ON_CLOSE) {
 				removeFromManager();
 			}
 		}
 		
+		@Override
 		public void windowClosed(WindowEvent event) {
 			removeFromManager();
 		}
 		
+		@Override
 		public void windowDeiconified(WindowEvent event) { }
 
+		@Override
 		public void windowIconified(WindowEvent event) {
 			addToManager();
 			WindowMenuManager.setCurrentManager(WindowMenuItemManager.this);
 		}
 
+		@Override
 		public void windowActivated(WindowEvent event) {
 			addToManager();
 			WindowMenuManager.setCurrentManager(WindowMenuItemManager.this);
 		}
 
+		@Override
 		public void windowDeactivated(WindowEvent event) {
 			WindowMenuManager.unsetCurrentManager(WindowMenuItemManager.this);
 		}

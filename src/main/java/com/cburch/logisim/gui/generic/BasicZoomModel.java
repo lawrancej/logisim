@@ -27,27 +27,33 @@ public class BasicZoomModel implements ZoomModel {
 		setShowGrid(gridPref.getBoolean());
 	}
 
+	@Override
 	public void addPropertyChangeListener(String prop, PropertyChangeListener l) {
 		support.addPropertyChangeListener(prop, l);
 	}
 
+	@Override
 	public void removePropertyChangeListener(String prop,
 			PropertyChangeListener l) {
 		support.removePropertyChangeListener(prop, l);
 	}
 
+	@Override
 	public boolean getShowGrid() {
 		return showGrid;
 	}
 
+	@Override
 	public double getZoomFactor() {
 		return zoomFactor;
 	}
 
+	@Override
 	public double[] getZoomOptions() {
 		return zoomOptions;
 	}
 
+	@Override
 	public void setShowGrid(boolean value) {
 		if (value != showGrid) {
 			showGrid = value;
@@ -55,6 +61,7 @@ public class BasicZoomModel implements ZoomModel {
 		}
 	}
 
+	@Override
 	public void setZoomFactor(double value) {
 		double oldValue = zoomFactor;
 		if (value != oldValue) {

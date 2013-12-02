@@ -148,6 +148,7 @@ public class LayoutEditHandler extends EditHandler
 		}
 	}
 
+	@Override
 	public void projectChanged(ProjectEvent e) {
 		int action = e.getAction();
 		if (action == ProjectEvent.ACTION_SET_FILE) {
@@ -159,6 +160,7 @@ public class LayoutEditHandler extends EditHandler
 		}
 	}
 
+	@Override
 	public void libraryChanged(LibraryEvent e) {
 		int action = e.getAction();
 		if (action == LibraryEvent.ADD_LIBRARY) {
@@ -168,6 +170,7 @@ public class LayoutEditHandler extends EditHandler
 		}
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		if (event.getPropertyName().equals(Clipboard.contentsProperty)) {
 			computeEnabled();

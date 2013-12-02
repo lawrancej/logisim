@@ -30,10 +30,12 @@ public class Drawing implements CanvasModel {
 		overlaps = new DrawingOverlaps();
 	}
 	
+	@Override
 	public void addCanvasModelListener(CanvasModelListener l) {
 		listeners.add(l);
 	}
 	
+	@Override
 	public void removeCanvasModelListener(CanvasModelListener l) {
 		listeners.remove(l);
 	}
@@ -48,6 +50,7 @@ public class Drawing implements CanvasModel {
 		}
 	}
 
+	@Override
 	public void paint(Graphics g, Selection selection) {
 		Set<CanvasObject> suppressed = selection.getDrawsSuppressed();
 		for (CanvasObject shape : getObjectsFromBottom()) {
@@ -61,16 +64,19 @@ public class Drawing implements CanvasModel {
 		}
 	}
 	
+	@Override
 	public List<CanvasObject> getObjectsFromTop() {
 		ArrayList<CanvasObject> ret = new ArrayList<CanvasObject>(getObjectsFromBottom());
 		Collections.reverse(ret);
 		return ret;
 	}
 	
+	@Override
 	public List<CanvasObject> getObjectsFromBottom() {
 		return Collections.unmodifiableList(canvasObjects);
 	}
 	
+	@Override
 	public Collection<CanvasObject> getObjectsIn(Bounds bds) {
 		ArrayList<CanvasObject> ret = null;
 		for (CanvasObject shape : getObjectsFromBottom()) {
@@ -86,10 +92,12 @@ public class Drawing implements CanvasModel {
 		}
 	}
 	
+	@Override
 	public Collection<CanvasObject> getObjectsOverlapping(CanvasObject shape) {
 		return overlaps.getObjectsOverlapping(shape);
 	}
 
+	@Override
 	public void addObjects(int index, Collection<? extends CanvasObject> shapes) {
 		LinkedHashMap<CanvasObject, Integer> indexes;
 		indexes = new LinkedHashMap<CanvasObject, Integer>();
@@ -101,6 +109,7 @@ public class Drawing implements CanvasModel {
 		addObjectsHelp(indexes);
 	}
 
+	@Override
 	public void addObjects(Map<? extends CanvasObject, Integer> shapes) {
 		addObjectsHelp(shapes);
 	}
@@ -121,6 +130,7 @@ public class Drawing implements CanvasModel {
 		}
 	}
 	
+	@Override
 	public void removeObjects(Collection<? extends CanvasObject> shapes) {
 		List<CanvasObject> found = restrict(shapes);
 		CanvasModelEvent e = CanvasModelEvent.forRemove(this, found);
@@ -133,6 +143,7 @@ public class Drawing implements CanvasModel {
 		}
 	}
 	
+	@Override
 	public void translateObjects(Collection<? extends CanvasObject> shapes,
 			int dx, int dy) {
 		List<CanvasObject> found = restrict(shapes);
@@ -146,6 +157,7 @@ public class Drawing implements CanvasModel {
 		}
 	}
 	
+	@Override
 	public void reorderObjects(List<ReorderRequest> requests) {
 		boolean hasEffect = false;
 		for (ReorderRequest r : requests) {
@@ -167,6 +179,7 @@ public class Drawing implements CanvasModel {
 		}
 	}
 
+	@Override
 	public Handle moveHandle(HandleGesture gesture) {
 		CanvasModelEvent e = CanvasModelEvent.forMoveHandle(this, gesture);
 		CanvasObject o = gesture.getHandle().getObject();
@@ -183,6 +196,7 @@ public class Drawing implements CanvasModel {
 		}
 	}
 
+	@Override
 	public void insertHandle(Handle desired, Handle previous) {
 		CanvasObject obj = desired.getObject();
 		CanvasModelEvent e = CanvasModelEvent.forInsertHandle(this, desired);
@@ -193,6 +207,7 @@ public class Drawing implements CanvasModel {
 		}
 	}
 	
+	@Override
 	public Handle deleteHandle(Handle handle) {
 		CanvasModelEvent e = CanvasModelEvent.forDeleteHandle(this, handle);
 		if (isChangeAllowed(e)) {
@@ -206,6 +221,7 @@ public class Drawing implements CanvasModel {
 		}
 	}
 	
+	@Override
 	public void setAttributeValues(Map<AttributeMapKey, Object> values) {
 		HashMap<AttributeMapKey, Object> oldValues;
 		oldValues = new HashMap<AttributeMapKey, Object>();
@@ -229,6 +245,7 @@ public class Drawing implements CanvasModel {
 		}
 	}
 
+	@Override
 	public void setText(Text text, String value) {
 		String oldValue = text.getText();
 		CanvasModelEvent e = CanvasModelEvent.forChangeText(this, text,

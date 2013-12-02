@@ -42,6 +42,7 @@ public class AnalyzerManager extends WindowMenuItemManager
 		}
 	}
 
+	@Override
 	public void localeChanged() {
 		setText(_("analyzerWindowTitle"));
 	}

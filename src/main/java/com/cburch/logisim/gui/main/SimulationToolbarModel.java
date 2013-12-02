@@ -70,6 +70,7 @@ class SimulationToolbarModel extends AbstractToolbarModel
 	//
 	// ChangeListener methods
 	//
+	@Override
 	public void stateChanged(ChangeEvent e) {
 		Simulator sim = project.getSimulator(); 
 		boolean running = sim != null && sim.isRunning();

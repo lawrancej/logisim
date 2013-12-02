@@ -18,10 +18,12 @@ public abstract class AbstractToolbarModel implements ToolbarModel {
 		listeners = new ArrayList<ToolbarModelListener>();
 	}
 	
+	@Override
 	public void addToolbarModelListener(ToolbarModelListener listener) {
 		listeners.add(listener);
 	}
 	
+	@Override
 	public void removeToolbarModelListener(ToolbarModelListener listener) {
 		listeners.remove(listener);
 	}
@@ -40,9 +42,12 @@ public abstract class AbstractToolbarModel implements ToolbarModel {
 		}
 	}
 	
+	@Override
 	public abstract List<ToolbarItem> getItems();
 	
+	@Override
 	public abstract boolean isSelected(ToolbarItem item);
 	
+	@Override
 	public abstract void itemSelected(ToolbarItem item);
 }

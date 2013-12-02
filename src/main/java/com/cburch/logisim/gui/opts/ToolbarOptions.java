@@ -29,10 +29,12 @@ import static com.cburch.logisim.util.LocaleString.*;
 class ToolbarOptions extends OptionsPanel {
 	private class Listener
 			implements ProjectExplorerListener, ActionListener, ListSelectionListener {
+		@Override
 		public void selectionChanged(ProjectExplorerEvent event) {
 			computeEnabled();
 		}
 
+		@Override
 		public void doubleClicked(ProjectExplorerEvent event) {
 			Object target = event.getTarget();
 			if (target instanceof ProjectExplorerToolNode) {
@@ -41,10 +43,14 @@ class ToolbarOptions extends OptionsPanel {
 			}
 		}
 		
+		@Override
 		public void moveRequested(ProjectExplorerEvent event, AddTool dragged, AddTool target) { }
+		@Override
 		public void deleteRequested(ProjectExplorerEvent event) { }
+		@Override
 		public JPopupMenu menuRequested(ProjectExplorerEvent event) { return null; }
 
+		@Override
 		public void actionPerformed(ActionEvent event) {
 			Object src = event.getSource();
 			if (src == addTool) {
@@ -64,6 +70,7 @@ class ToolbarOptions extends OptionsPanel {
 			}
 		}
 
+		@Override
 		public void valueChanged(ListSelectionEvent event) {
 			computeEnabled();
 		}

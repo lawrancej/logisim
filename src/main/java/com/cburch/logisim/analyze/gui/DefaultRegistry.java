@@ -18,10 +18,12 @@ class DefaultRegistry {
 			this.defaultButton = defaultButton;
 		}
 
+		@Override
 		public void focusGained(FocusEvent event) {
 			rootPane.setDefaultButton(defaultButton);
 		}
 
+		@Override
 		public void focusLost(FocusEvent event) {
 			JButton currentDefault = rootPane.getDefaultButton();
 			if (currentDefault == defaultButton) rootPane.setDefaultButton(null);

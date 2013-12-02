@@ -172,7 +172,7 @@ class ExportImage {
 			bgroup.add(formatJpg);
 			formatPng.setSelected(true);
 
-			slider = new JSlider(JSlider.HORIZONTAL,
+			slider = new JSlider(SwingConstants.HORIZONTAL,
 					-3 * SLIDER_DIVISIONS, 3 * SLIDER_DIVISIONS, 0);
 			slider.setMajorTickSpacing(10);
 			slider.addChangeListener(this);
@@ -238,6 +238,7 @@ class ExportImage {
 			return FORMAT_PNG;
 		}
 
+		@Override
 		public void stateChanged(ChangeEvent e) {
 			double scale = getScale();
 			curScale.setText((int) Math.round(100.0 * scale) + "%");

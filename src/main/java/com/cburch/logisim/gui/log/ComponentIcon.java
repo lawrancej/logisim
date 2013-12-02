@@ -27,14 +27,17 @@ class ComponentIcon implements Icon {
 		triangleState = value;
 	}
 
+	@Override
 	public int getIconHeight() {
 		return 20;
 	}
 
+	@Override
 	public int getIconWidth() {
 		return 20;
 	}
 
+	@Override
 	public void paintIcon(java.awt.Component c, Graphics g,
 			int x, int y) {
 		// draw tool icon

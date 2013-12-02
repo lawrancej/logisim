@@ -25,6 +25,7 @@ import com.cburch.logisim.util.EventSourceWeakSupport;
 
 public class CircuitAppearance extends Drawing {
 	private class MyListener implements CanvasModelListener {
+		@Override
 		public void modelChanged(CanvasModelEvent event) {
 			if (!suppressRecompute) {
 				setDefaultAppearance(false);

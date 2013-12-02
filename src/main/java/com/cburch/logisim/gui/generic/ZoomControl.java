@@ -21,6 +21,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class ZoomControl extends JPanel {
 	private class SpinnerModel extends AbstractSpinnerModel
 			implements PropertyChangeListener {
+		@Override
 		public Object getNextValue() {
 			double zoom = model.getZoomFactor();
 			double[] choices = model.getZoomOptions();
@@ -31,6 +32,7 @@ public class ZoomControl extends JPanel {
 			return null;
 		}
 
+		@Override
 		public Object getPreviousValue() {
 			double zoom = model.getZoomFactor();
 			double[] choices = model.getZoomOptions();
@@ -41,6 +43,7 @@ public class ZoomControl extends JPanel {
 			return null;
 		}
 
+		@Override
 		public Object getValue() {
 			double zoom = model.getZoomFactor();
 			return toString(zoom * 100.0);
@@ -56,6 +59,7 @@ public class ZoomControl extends JPanel {
 			}
 		}
 
+		@Override
 		public void setValue(Object value) {
 			if (value instanceof String) {
 				String s = (String) value;
@@ -68,6 +72,7 @@ public class ZoomControl extends JPanel {
 			}
 		}
 
+		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
 			fireStateChanged();
 		}
@@ -112,15 +117,21 @@ public class ZoomControl extends JPanel {
 			}
 		}
 
+		@Override
 		public void mouseClicked(MouseEvent e) { }
+		@Override
 		public void mouseEntered(MouseEvent e) { }
+		@Override
 		public void mouseExited(MouseEvent e) { }
+		@Override
 		public void mouseReleased(MouseEvent e) { }
 
+		@Override
 		public void mousePressed(MouseEvent e) {
 			model.setShowGrid(!state);
 		}
 
+		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
 			update();
 		}

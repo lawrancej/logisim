@@ -22,22 +22,27 @@ class OutputSelector {
 			implements ComboBoxModel, VariableListListener {
 		private Object selected;
 
+		@Override
 		public void setSelectedItem(Object value) {
 			selected = value;
 		}
 
+		@Override
 		public Object getSelectedItem() {
 			return selected;
 		}
 
+		@Override
 		public int getSize() {
 			return source.size();
 		}
 
+		@Override
 		public Object getElementAt(int index) {
 			return source.get(index);
 		}
 
+		@Override
 		public void listChanged(VariableListEvent event) {
 			int index;
 			String variable;

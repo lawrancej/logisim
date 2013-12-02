@@ -164,10 +164,12 @@ public class LogisimFile extends Library implements LibraryEventSource {
 	//
 	// listener methods
 	//
+	@Override
 	public void addLibraryListener(LibraryListener what) {
 		listeners.add(what);
 	}
 
+	@Override
 	public void removeLibraryListener(LibraryListener what) {
 		listeners.remove(what);
 	}

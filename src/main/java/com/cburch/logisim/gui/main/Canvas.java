@@ -93,8 +93,10 @@ public class Canvas extends JPanel
 		//
 		// MouseListener methods
 		//
+		@Override
 		public void mouseClicked(MouseEvent e) { }
 
+		@Override
 		public void mouseMoved(MouseEvent e) {
 			if ((e.getModifiersEx() & BUTTONS_MASK) != 0) {
 				// If the control key is down while the mouse is being
@@ -111,12 +113,14 @@ public class Canvas extends JPanel
 			}
 		}
 
+		@Override
 		public void mouseDragged(MouseEvent e) {
 			if (drag_tool != null) {
 				drag_tool.mouseDragged(Canvas.this, getGraphics(), e);
 			}
 		}
 
+		@Override
 		public void mouseEntered(MouseEvent e) {
 			if (drag_tool != null) {
 				drag_tool.mouseEntered(Canvas.this, getGraphics(), e);
@@ -128,6 +132,7 @@ public class Canvas extends JPanel
 			}
 		}
 
+		@Override
 		public void mouseExited(MouseEvent e) {
 			if (drag_tool != null) {
 				drag_tool.mouseExited(Canvas.this, getGraphics(), e);
@@ -139,6 +144,7 @@ public class Canvas extends JPanel
 			}
 		}
 
+		@Override
 		public void mousePressed(MouseEvent e) {
 			viewport.setErrorMessage(null, null);
 			proj.setStartupScreen(false);
@@ -151,6 +157,7 @@ public class Canvas extends JPanel
 			completeAction();
 		}
 
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			if (drag_tool != null) {
 				drag_tool.mouseReleased(Canvas.this, getGraphics(), e);
@@ -176,14 +183,17 @@ public class Canvas extends JPanel
 		//
 		// KeyListener methods
 		//
+		@Override
 		public void keyPressed(KeyEvent e) {
 			Tool tool = proj.getTool();
 			if (tool != null) tool.keyPressed(Canvas.this, e);
 		}
+		@Override
 		public void keyReleased(KeyEvent e) {
 			Tool tool = proj.getTool();
 			if (tool != null) tool.keyReleased(Canvas.this, e);
 		}
+		@Override
 		public void keyTyped(KeyEvent e) {
 			Tool tool = proj.getTool();
 			if (tool != null) tool.keyTyped(Canvas.this, e);
@@ -192,14 +202,18 @@ public class Canvas extends JPanel
 		//
 		// PopupMenuListener mtehods
 		//
+		@Override
 		public void popupMenuCanceled(PopupMenuEvent e) {
 			menu_on = false;
 		}
+		@Override
 		public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 			menu_on = false;
 		}
+		@Override
 		public void popupMenuWillBecomeVisible(PopupMenuEvent e) {}
 
+		@Override
 		public void propertyChange(PropertyChangeEvent event) {
 			if (AppPreferences.GATE_SHAPE.isSource(event)
 					|| AppPreferences.SHOW_TICK_RATE.isSource(event)) {
@@ -214,6 +228,7 @@ public class Canvas extends JPanel
 	private class MyProjectListener
 			implements ProjectListener, LibraryListener, CircuitListener,
 				AttributeListener, SimulatorListener, Selection.Listener {
+		@Override
 		public void projectChanged(ProjectEvent event) {
 			int act = event.getAction();
 			if (act == ProjectEvent.ACTION_SET_CURRENT) {
@@ -256,6 +271,7 @@ public class Canvas extends JPanel
 			}
 		}
 		
+		@Override
 		public void libraryChanged(LibraryEvent event) {
 			if (event.getAction() == LibraryEvent.REMOVE_TOOL) {
 				Object t = event.getData();
@@ -306,6 +322,7 @@ public class Canvas extends JPanel
 			return ret;
 		}
 
+		@Override
 		public void circuitChanged(CircuitEvent event) {
 			int act = event.getAction();
 			if (act == CircuitEvent.ACTION_REMOVE) {
@@ -322,6 +339,7 @@ public class Canvas extends JPanel
 			}
 		}
 
+		@Override
 		public void propagationCompleted(SimulatorEvent e) {
 			/* This was a good idea for a while... but it leads to problems
 			 * when a repaint is done just before a user action takes place.
@@ -337,12 +355,16 @@ public class Canvas extends JPanel
 			*/
 			paintThread.requestRepaint();
 		}
+		@Override
 		public void tickCompleted(SimulatorEvent e) {
 			waitForRepaintDone();
 		}
+		@Override
 		public void simulatorStateChanged(SimulatorEvent e) { }
 
+		@Override
 		public void attributeListChanged(AttributeEvent e) { }
+		@Override
 		public void attributeValueChanged(AttributeEvent e) {
 			Attribute<?> attr = e.getAttribute();
 			if (attr == Options.ATTR_GATE_UNDEFINED) {
@@ -353,6 +375,7 @@ public class Canvas extends JPanel
 			}
 		}
 
+		@Override
 		public void selectionChanged(Selection.Event event) {
 			repaint();
 		}
@@ -861,6 +884,7 @@ public class Canvas extends JPanel
 	//
 	// CanvasPaneContents methods
 	//
+	@Override
 	public void setCanvasPane(CanvasPane value) {
 		canvasPane = value;
 		canvasPane.setViewport(viewport);
@@ -869,27 +893,33 @@ public class Canvas extends JPanel
 		computeSize(true);
 	}
 	
+	@Override
 	public void recomputeSize() {
 		computeSize(true);
 	}
 
+	@Override
 	public Dimension getPreferredScrollableViewportSize() {
 		return getPreferredSize();
 	}
 
+	@Override
 	public int getScrollableBlockIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		return canvasPane.supportScrollableBlockIncrement(visibleRect, orientation, direction);
 	}
 
+	@Override
 	public boolean getScrollableTracksViewportHeight() {
 		return false;
 	}
 
+	@Override
 	public boolean getScrollableTracksViewportWidth() {
 		return false;
 	}
 
+	@Override
 	public int getScrollableUnitIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		return canvasPane.supportScrollableUnitIncrement(visibleRect, orientation, direction);
@@ -920,6 +950,7 @@ public class Canvas extends JPanel
 		e.translatePoint(new_x - old_x, new_y - old_y);
 	}
 
+	@Override
 	public void localeChanged() {
 		paintThread.requestRepaint();
 	}
