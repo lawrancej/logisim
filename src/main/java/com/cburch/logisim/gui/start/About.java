@@ -18,27 +18,27 @@ import org.apache.batik.swing.svg.SVGDocumentLoaderAdapter;
 import com.cburch.logisim.Main;
 
 public class About {
-	static final int IMAGE_BORDER = 10;
-	static final int IMAGE_WIDTH = 380;
-	static final int IMAGE_HEIGHT = 284;
-	protected static JSVGCanvas svgCanvas =new JSVGCanvas();
-	
-	public static JComponent createComponents() {
-		final JPanel panel = new JPanel(new BorderLayout());
-		panel.add("Center", svgCanvas);
-		svgCanvas.setURI(About.class.getResource("/logisim/drawing.svg").toString());
-		svgCanvas.addSVGDocumentLoaderListener(new SVGDocumentLoaderAdapter() {});
-		svgCanvas.addGVTTreeBuilderListener(new GVTTreeBuilderAdapter() {});
-		svgCanvas.addGVTTreeRendererListener(new GVTTreeRendererAdapter() {});
-		return panel;
-	}
+    static final int IMAGE_BORDER = 10;
+    static final int IMAGE_WIDTH = 380;
+    static final int IMAGE_HEIGHT = 284;
+    protected static JSVGCanvas svgCanvas =new JSVGCanvas();
+    
+    public static JComponent createComponents() {
+        final JPanel panel = new JPanel(new BorderLayout());
+        panel.add("Center", svgCanvas);
+        svgCanvas.setURI(About.class.getResource("/logisim/drawing.svg").toString());
+        svgCanvas.addSVGDocumentLoaderListener(new SVGDocumentLoaderAdapter() {});
+        svgCanvas.addGVTTreeBuilderListener(new GVTTreeBuilderAdapter() {});
+        svgCanvas.addGVTTreeRendererListener(new GVTTreeRendererAdapter() {});
+        return panel;
+    }
 
-	public static void showAboutDialog(JFrame owner) {
-		JPanel panel = new JPanel(new BorderLayout());
-		panel.add(createComponents());
-		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+    public static void showAboutDialog(JFrame owner) {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(createComponents());
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
-		JOptionPane.showMessageDialog(owner, panel,
-				"Logisim " + Main.VERSION_NAME, JOptionPane.PLAIN_MESSAGE);
-	}
+        JOptionPane.showMessageDialog(owner, panel,
+                "Logisim " + Main.VERSION_NAME, JOptionPane.PLAIN_MESSAGE);
+    }
 }

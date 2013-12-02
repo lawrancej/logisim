@@ -34,198 +34,198 @@ import com.cburch.logisim.util.WindowMenuItemManager;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class LogFrame extends LFrame {
-	// TODO should automatically repaint icons when component attr change
-	// TODO ? moving a component using Select tool removes it from selection
-	private class WindowMenuManager extends WindowMenuItemManager
-			implements LocaleListener, ProjectListener, LibraryListener {
-		WindowMenuManager() {
-			super(_("logFrameMenuItem"), false);
-			project.addProjectListener(this);
-			project.addLibraryListener(this);
-		}
-		
-		@Override
-		public JFrame getJFrame(boolean create) {
-			return LogFrame.this;
-		}
-		
-		@Override
-		public void localeChanged() {
-			String title = project.getLogisimFile().getDisplayName();
-			setText(_("logFrameMenuItem", title));
-		}
+    // TODO should automatically repaint icons when component attr change
+    // TODO ? moving a component using Select tool removes it from selection
+    private class WindowMenuManager extends WindowMenuItemManager
+            implements LocaleListener, ProjectListener, LibraryListener {
+        WindowMenuManager() {
+            super(_("logFrameMenuItem"), false);
+            project.addProjectListener(this);
+            project.addLibraryListener(this);
+        }
+        
+        @Override
+        public JFrame getJFrame(boolean create) {
+            return LogFrame.this;
+        }
+        
+        @Override
+        public void localeChanged() {
+            String title = project.getLogisimFile().getDisplayName();
+            setText(_("logFrameMenuItem", title));
+        }
 
-		@Override
-		public void projectChanged(ProjectEvent event) {
-			if (event.getAction() == ProjectEvent.ACTION_SET_FILE) {
-				localeChanged();
-			}
-		}
-		
-		@Override
-		public void libraryChanged(LibraryEvent event) {
-			if (event.getAction() == LibraryEvent.SET_NAME) {
-				localeChanged();
-			}
-		}
-	}
+        @Override
+        public void projectChanged(ProjectEvent event) {
+            if (event.getAction() == ProjectEvent.ACTION_SET_FILE) {
+                localeChanged();
+            }
+        }
+        
+        @Override
+        public void libraryChanged(LibraryEvent event) {
+            if (event.getAction() == LibraryEvent.SET_NAME) {
+                localeChanged();
+            }
+        }
+    }
 
-	private class MyListener
-			implements ActionListener, ProjectListener, LibraryListener,
-				SimulatorListener, LocaleListener {
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			Object src = event.getSource();
-			if (src == close) {
-				WindowEvent e = new WindowEvent(LogFrame.this,
-						WindowEvent.WINDOW_CLOSING);
-				LogFrame.this.processWindowEvent(e);
-			}
-		}
-		
-		@Override
-		public void projectChanged(ProjectEvent event) {
-			int action = event.getAction();
-			if (action == ProjectEvent.ACTION_SET_STATE) {
-				setSimulator(event.getProject().getSimulator(),
-						event.getProject().getCircuitState());
-			} else if (action == ProjectEvent.ACTION_SET_FILE) {
-				setTitle(computeTitle(curModel, project));
-			}
-		}
-		
-		@Override
-		public void libraryChanged(LibraryEvent event) {
-			int action = event.getAction();
-			if (action == LibraryEvent.SET_NAME) {
-				setTitle(computeTitle(curModel, project));
-			}
-		}
-		
-		@Override
-		public void localeChanged() {
-			setTitle(computeTitle(curModel, project));
-			for (int i = 0; i < panels.length; i++) {
-				tabbedPane.setTitleAt(i, panels[i].getTitle());
-				tabbedPane.setToolTipTextAt(i, panels[i].getToolTipText());
-				panels[i].localeChanged();
-			}
-			close.setText(_("closeButton"));
-			windowManager.localeChanged();
-		}
+    private class MyListener
+            implements ActionListener, ProjectListener, LibraryListener,
+                SimulatorListener, LocaleListener {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            Object src = event.getSource();
+            if (src == close) {
+                WindowEvent e = new WindowEvent(LogFrame.this,
+                        WindowEvent.WINDOW_CLOSING);
+                LogFrame.this.processWindowEvent(e);
+            }
+        }
+        
+        @Override
+        public void projectChanged(ProjectEvent event) {
+            int action = event.getAction();
+            if (action == ProjectEvent.ACTION_SET_STATE) {
+                setSimulator(event.getProject().getSimulator(),
+                        event.getProject().getCircuitState());
+            } else if (action == ProjectEvent.ACTION_SET_FILE) {
+                setTitle(computeTitle(curModel, project));
+            }
+        }
+        
+        @Override
+        public void libraryChanged(LibraryEvent event) {
+            int action = event.getAction();
+            if (action == LibraryEvent.SET_NAME) {
+                setTitle(computeTitle(curModel, project));
+            }
+        }
+        
+        @Override
+        public void localeChanged() {
+            setTitle(computeTitle(curModel, project));
+            for (int i = 0; i < panels.length; i++) {
+                tabbedPane.setTitleAt(i, panels[i].getTitle());
+                tabbedPane.setToolTipTextAt(i, panels[i].getToolTipText());
+                panels[i].localeChanged();
+            }
+            close.setText(_("closeButton"));
+            windowManager.localeChanged();
+        }
 
-		@Override
-		public void propagationCompleted(SimulatorEvent e) {
-			curModel.propagationCompleted();
-		}
+        @Override
+        public void propagationCompleted(SimulatorEvent e) {
+            curModel.propagationCompleted();
+        }
 
-		@Override
-		public void tickCompleted(SimulatorEvent e) { }
+        @Override
+        public void tickCompleted(SimulatorEvent e) { }
 
-		@Override
-		public void simulatorStateChanged(SimulatorEvent e) { }
-	}
-	
-	private Project project;
-	private Simulator curSimulator = null;
-	private Model curModel;
-	private Map<CircuitState,Model> modelMap = new HashMap<CircuitState,Model>();
-	private MyListener myListener = new MyListener();
-	private WindowMenuManager windowManager;
-	
-	private LogPanel[] panels;
-	private JTabbedPane tabbedPane;
-	private JButton close = new JButton();
+        @Override
+        public void simulatorStateChanged(SimulatorEvent e) { }
+    }
+    
+    private Project project;
+    private Simulator curSimulator = null;
+    private Model curModel;
+    private Map<CircuitState,Model> modelMap = new HashMap<CircuitState,Model>();
+    private MyListener myListener = new MyListener();
+    private WindowMenuManager windowManager;
+    
+    private LogPanel[] panels;
+    private JTabbedPane tabbedPane;
+    private JButton close = new JButton();
 
-	public LogFrame(Project project) {
-		this.project = project;
-		this.windowManager = new WindowMenuManager();
-		project.addProjectListener(myListener);
-		project.addLibraryListener(myListener);
-		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setJMenuBar(new LogisimMenuBar(this, project));
-		setSimulator(project.getSimulator(), project.getCircuitState());
-		
-		panels = new LogPanel[] {
-				new SelectionPanel(this),
-				new ScrollPanel(this),
-				new FilePanel(this),
-		};
-		tabbedPane = new JTabbedPane();
-		for (int index = 0; index < panels.length; index++) {
-			LogPanel panel = panels[index];
-			tabbedPane.addTab(panel.getTitle(), null, panel, panel.getToolTipText());
-		}
+    public LogFrame(Project project) {
+        this.project = project;
+        this.windowManager = new WindowMenuManager();
+        project.addProjectListener(myListener);
+        project.addLibraryListener(myListener);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setJMenuBar(new LogisimMenuBar(this, project));
+        setSimulator(project.getSimulator(), project.getCircuitState());
+        
+        panels = new LogPanel[] {
+                new SelectionPanel(this),
+                new ScrollPanel(this),
+                new FilePanel(this),
+        };
+        tabbedPane = new JTabbedPane();
+        for (int index = 0; index < panels.length; index++) {
+            LogPanel panel = panels[index];
+            tabbedPane.addTab(panel.getTitle(), null, panel, panel.getToolTipText());
+        }
 
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.add(close);
-		close.addActionListener(myListener);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(close);
+        close.addActionListener(myListener);
 
-		Container contents = getContentPane();
-		tabbedPane.setPreferredSize(new Dimension(450, 300));
-		contents.add(tabbedPane, BorderLayout.CENTER);
-		contents.add(buttonPanel, BorderLayout.SOUTH);
+        Container contents = getContentPane();
+        tabbedPane.setPreferredSize(new Dimension(450, 300));
+        contents.add(tabbedPane, BorderLayout.CENTER);
+        contents.add(buttonPanel, BorderLayout.SOUTH);
 
-		LocaleManager.addLocaleListener(myListener);
-		myListener.localeChanged();
-		pack();
-	}
-	
-	public Project getProject() {
-		return project;
-	}
-	
-	Model getModel() {
-		return curModel;
-	}
-	
-	private void setSimulator(Simulator value, CircuitState state) {
-		if ((value == null) == (curModel == null)) {
-			if (value == null || value.getCircuitState() == curModel.getCircuitState()) return;
-		}
+        LocaleManager.addLocaleListener(myListener);
+        myListener.localeChanged();
+        pack();
+    }
+    
+    public Project getProject() {
+        return project;
+    }
+    
+    Model getModel() {
+        return curModel;
+    }
+    
+    private void setSimulator(Simulator value, CircuitState state) {
+        if ((value == null) == (curModel == null)) {
+            if (value == null || value.getCircuitState() == curModel.getCircuitState()) return;
+        }
 
-		LogisimMenuBar menubar = (LogisimMenuBar) getJMenuBar();
-		menubar.setCircuitState(value, state);
+        LogisimMenuBar menubar = (LogisimMenuBar) getJMenuBar();
+        menubar.setCircuitState(value, state);
 
-		if (curSimulator != null) curSimulator.removeSimulatorListener(myListener);
-		if (curModel != null) curModel.setSelected(this, false);
+        if (curSimulator != null) curSimulator.removeSimulatorListener(myListener);
+        if (curModel != null) curModel.setSelected(this, false);
 
-		Model oldModel = curModel;
-		Model data = null;
-		if (value != null) {
-			data = modelMap.get(value.getCircuitState());
-			if (data == null) {
-				data = new Model(value.getCircuitState());
-				modelMap.put(data.getCircuitState(), data);
-			}
-		}
-		curSimulator = value;
-		curModel = data;
+        Model oldModel = curModel;
+        Model data = null;
+        if (value != null) {
+            data = modelMap.get(value.getCircuitState());
+            if (data == null) {
+                data = new Model(value.getCircuitState());
+                modelMap.put(data.getCircuitState(), data);
+            }
+        }
+        curSimulator = value;
+        curModel = data;
 
-		if (curSimulator != null) curSimulator.addSimulatorListener(myListener);
-		if (curModel != null) curModel.setSelected(this, true);
-		setTitle(computeTitle(curModel, project));
-		if (panels != null) {
-			for (int i = 0; i < panels.length; i++) {
-				panels[i].modelChanged(oldModel, curModel);
-			}
-		}
-	}
-	
-	@Override
-	public void setVisible(boolean value) {
-		if (value) {
-			windowManager.frameOpened(this);
-		}
-		super.setVisible(value);
-	}
-	
-	LogPanel[] getPrefPanels() {
-		return panels;
-	}
-	
-	private static String computeTitle(Model data, Project proj) {
-		String name = data == null ? "???" : data.getCircuitState().getCircuit().getName();
-		return _("logFrameTitle", name, proj.getLogisimFile().getDisplayName());
-	}
+        if (curSimulator != null) curSimulator.addSimulatorListener(myListener);
+        if (curModel != null) curModel.setSelected(this, true);
+        setTitle(computeTitle(curModel, project));
+        if (panels != null) {
+            for (int i = 0; i < panels.length; i++) {
+                panels[i].modelChanged(oldModel, curModel);
+            }
+        }
+    }
+    
+    @Override
+    public void setVisible(boolean value) {
+        if (value) {
+            windowManager.frameOpened(this);
+        }
+        super.setVisible(value);
+    }
+    
+    LogPanel[] getPrefPanels() {
+        return panels;
+    }
+    
+    private static String computeTitle(Model data, Project proj) {
+        String name = data == null ? "???" : data.getCircuitState().getCircuit().getName();
+        return _("logFrameTitle", name, proj.getLogisimFile().getDisplayName());
+    }
 }

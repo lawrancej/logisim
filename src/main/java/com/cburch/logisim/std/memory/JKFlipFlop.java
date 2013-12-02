@@ -7,31 +7,31 @@ import com.cburch.logisim.data.Value;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class JKFlipFlop extends AbstractFlipFlop {
-	public JKFlipFlop() {
-		super("J-K Flip-Flop", "jkFlipFlop.svg",
-				__("jkFlipFlopComponent"), 2, false);
-	}
+    public JKFlipFlop() {
+        super("J-K Flip-Flop", "jkFlipFlop.svg",
+                __("jkFlipFlopComponent"), 2, false);
+    }
 
-	@Override
-	protected String getInputName(int index) {
-		return index == 0 ? "J" : "K";
-	}
+    @Override
+    protected String getInputName(int index) {
+        return index == 0 ? "J" : "K";
+    }
 
-	@Override
-	protected Value computeValue(Value[] inputs, Value curValue) {
-		if (inputs[0] == Value.FALSE) {
-			if (inputs[1] == Value.FALSE) {
-				return curValue;
-			} else if (inputs[1] == Value.TRUE) {
-				return Value.FALSE;
-			}
-		} else if (inputs[0] == Value.TRUE) {
-			if (inputs[1] == Value.FALSE) {
-				return Value.TRUE;
-			} else if (inputs[1] == Value.TRUE) {
-				return curValue.not();
-			}
-		}
-		return Value.UNKNOWN;
-	}
+    @Override
+    protected Value computeValue(Value[] inputs, Value curValue) {
+        if (inputs[0] == Value.FALSE) {
+            if (inputs[1] == Value.FALSE) {
+                return curValue;
+            } else if (inputs[1] == Value.TRUE) {
+                return Value.FALSE;
+            }
+        } else if (inputs[0] == Value.TRUE) {
+            if (inputs[1] == Value.FALSE) {
+                return Value.TRUE;
+            } else if (inputs[1] == Value.TRUE) {
+                return curValue.not();
+            }
+        }
+        return Value.UNKNOWN;
+    }
 }

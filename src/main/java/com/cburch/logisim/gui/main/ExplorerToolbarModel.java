@@ -15,69 +15,69 @@ import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import static com.cburch.logisim.util.LocaleString.*;
 
 class ExplorerToolbarModel extends AbstractToolbarModel
-		implements MenuListener.EnabledListener {
-	private Frame frame;
-	private LogisimToolbarItem itemToolbox;
-	private LogisimToolbarItem itemSimulation;
-	private LogisimToolbarItem itemLayout;
-	private LogisimToolbarItem itemAppearance;
-	private List<ToolbarItem> items;
-	
-	public ExplorerToolbarModel(Frame frame, MenuListener menu) {
-		this.frame = frame;
-		
-		itemToolbox = new LogisimToolbarItem(menu, "projtool.svg",
-				LogisimMenuBar.VIEW_TOOLBOX, __("projectViewToolboxTip"));
-		itemSimulation = new LogisimToolbarItem(menu, "projsim.svg",
-				LogisimMenuBar.VIEW_SIMULATION, __("projectViewSimulationTip"));
-		itemLayout = new LogisimToolbarItem(menu, "projlayo.svg",
-				LogisimMenuBar.EDIT_LAYOUT, __("projectEditLayoutTip"));
-		itemAppearance = new LogisimToolbarItem(menu, "projapp.svg",
-				LogisimMenuBar.EDIT_APPEARANCE, __("projectEditAppearanceTip"));
-		
-		items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {
-				itemToolbox,
-				itemSimulation,
-				new ToolbarSeparator(4),
-				itemLayout,
-				itemAppearance,
-			}));
-		
-		menu.addEnabledListener(this);
-	}
+        implements MenuListener.EnabledListener {
+    private Frame frame;
+    private LogisimToolbarItem itemToolbox;
+    private LogisimToolbarItem itemSimulation;
+    private LogisimToolbarItem itemLayout;
+    private LogisimToolbarItem itemAppearance;
+    private List<ToolbarItem> items;
+    
+    public ExplorerToolbarModel(Frame frame, MenuListener menu) {
+        this.frame = frame;
+        
+        itemToolbox = new LogisimToolbarItem(menu, "projtool.svg",
+                LogisimMenuBar.VIEW_TOOLBOX, __("projectViewToolboxTip"));
+        itemSimulation = new LogisimToolbarItem(menu, "projsim.svg",
+                LogisimMenuBar.VIEW_SIMULATION, __("projectViewSimulationTip"));
+        itemLayout = new LogisimToolbarItem(menu, "projlayo.svg",
+                LogisimMenuBar.EDIT_LAYOUT, __("projectEditLayoutTip"));
+        itemAppearance = new LogisimToolbarItem(menu, "projapp.svg",
+                LogisimMenuBar.EDIT_APPEARANCE, __("projectEditAppearanceTip"));
+        
+        items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {
+                itemToolbox,
+                itemSimulation,
+                new ToolbarSeparator(4),
+                itemLayout,
+                itemAppearance,
+            }));
+        
+        menu.addEnabledListener(this);
+    }
 
-	@Override
-	public List<ToolbarItem> getItems() {
-		return items;
-	}
-	
-	@Override
-	public boolean isSelected(ToolbarItem item) {
-		if (item == itemLayout) {
-			return frame.getEditorView().equals(Frame.EDIT_LAYOUT);
-		} else if (item == itemAppearance) {
-			return frame.getEditorView().equals(Frame.EDIT_APPEARANCE);
-		} else if (item == itemToolbox) {
-			return frame.getExplorerView().equals(Frame.VIEW_TOOLBOX);
-		} else if (item == itemSimulation) {
-			return frame.getExplorerView().equals(Frame.VIEW_SIMULATION);
-		} else {
-			return false;
-		}
-	}
+    @Override
+    public List<ToolbarItem> getItems() {
+        return items;
+    }
+    
+    @Override
+    public boolean isSelected(ToolbarItem item) {
+        if (item == itemLayout) {
+            return frame.getEditorView().equals(Frame.EDIT_LAYOUT);
+        } else if (item == itemAppearance) {
+            return frame.getEditorView().equals(Frame.EDIT_APPEARANCE);
+        } else if (item == itemToolbox) {
+            return frame.getExplorerView().equals(Frame.VIEW_TOOLBOX);
+        } else if (item == itemSimulation) {
+            return frame.getExplorerView().equals(Frame.VIEW_SIMULATION);
+        } else {
+            return false;
+        }
+    }
 
-	@Override
-	public void itemSelected(ToolbarItem item) {
-		if (item instanceof LogisimToolbarItem) {
-			((LogisimToolbarItem) item).doAction();
-		}
-	}
+    @Override
+    public void itemSelected(ToolbarItem item) {
+        if (item instanceof LogisimToolbarItem) {
+            ((LogisimToolbarItem) item).doAction();
+        }
+    }
 
-	//
-	// EnabledListener methods
-	//
-	@Override
-	public void menuEnableChanged(MenuListener source) {
-		fireToolbarAppearanceChanged();
-	}
+    //
+    // EnabledListener methods
+    //
+    @Override
+    public void menuEnableChanged(MenuListener source) {
+        fireToolbarAppearanceChanged();
+    }
 }

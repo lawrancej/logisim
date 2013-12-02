@@ -13,43 +13,43 @@ import com.cburch.logisim.tools.SetAttributeAction;
 import static com.cburch.logisim.util.LocaleString.*;
 
 class AttrTableComponentModel extends AttributeSetTableModel {
-	Project proj;
-	Circuit circ;
-	Component comp;
+    Project proj;
+    Circuit circ;
+    Component comp;
 
-	AttrTableComponentModel(Project proj, Circuit circ, Component comp) {
-		super(comp.getAttributeSet());
-		this.proj = proj;
-		this.circ = circ;
-		this.comp = comp;
-	}
-	
-	public Circuit getCircuit() {
-		return circ;
-	}
-	
-	public Component getComponent() {
-		return comp;
-	}
+    AttrTableComponentModel(Project proj, Circuit circ, Component comp) {
+        super(comp.getAttributeSet());
+        this.proj = proj;
+        this.circ = circ;
+        this.comp = comp;
+    }
+    
+    public Circuit getCircuit() {
+        return circ;
+    }
+    
+    public Component getComponent() {
+        return comp;
+    }
 
-	@Override
-	public String getTitle() {
-		return comp.getFactory().getDisplayName();
-	}
+    @Override
+    public String getTitle() {
+        return comp.getFactory().getDisplayName();
+    }
 
-	@Override
-	public void setValueRequested(Attribute<Object> attr, Object value)
-			throws AttrTableSetException {
-		if (!proj.getLogisimFile().contains(circ)) {
-			String msg = _("cannotModifyCircuitError");
-			throw new AttrTableSetException(msg);
-		} else {
-			SetAttributeAction act = new SetAttributeAction(circ,
-					__("changeAttributeAction"));
-			act.set(comp, attr, value);
-			proj.doAction(act);
-		}
-	}
+    @Override
+    public void setValueRequested(Attribute<Object> attr, Object value)
+            throws AttrTableSetException {
+        if (!proj.getLogisimFile().contains(circ)) {
+            String msg = _("cannotModifyCircuitError");
+            throw new AttrTableSetException(msg);
+        } else {
+            SetAttributeAction act = new SetAttributeAction(circ,
+                    __("changeAttributeAction"));
+            act.set(comp, attr, value);
+            proj.doAction(act);
+        }
+    }
 }
 
 

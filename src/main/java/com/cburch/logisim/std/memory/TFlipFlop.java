@@ -7,23 +7,23 @@ import com.cburch.logisim.data.Value;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class TFlipFlop extends AbstractFlipFlop {
-	public TFlipFlop() {
-		super("T Flip-Flop", "tFlipFlop.svg",
-				__("tFlipFlopComponent"), 1, false);
-	}
+    public TFlipFlop() {
+        super("T Flip-Flop", "tFlipFlop.svg",
+                __("tFlipFlopComponent"), 1, false);
+    }
 
-	@Override
-	protected String getInputName(int index) {
-		return "T";
-	}
+    @Override
+    protected String getInputName(int index) {
+        return "T";
+    }
 
-	@Override
-	protected Value computeValue(Value[] inputs, Value curValue) {
-		if (curValue == Value.UNKNOWN) curValue = Value.FALSE;
-		if (inputs[0] == Value.TRUE) {
-			return curValue.not();
-		} else {
-			return curValue;
-		}
-	}
+    @Override
+    protected Value computeValue(Value[] inputs, Value curValue) {
+        if (curValue == Value.UNKNOWN) curValue = Value.FALSE;
+        if (inputs[0] == Value.TRUE) {
+            return curValue.not();
+        } else {
+            return curValue;
+        }
+    }
 }

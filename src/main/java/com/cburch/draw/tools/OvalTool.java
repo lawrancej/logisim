@@ -15,34 +15,34 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.util.Icons;
 
 public class OvalTool extends RectangularTool {
-	private DrawingAttributeSet attrs;
-	
-	public OvalTool(DrawingAttributeSet attrs) {
-		this.attrs = attrs;
-	}
-	
-	@Override
-	public Icon getIcon() {
-		return Icons.getIcon("drawoval.svg");
-	}
-	
-	@Override
-	public List<Attribute<?>> getAttributes() {
-		return DrawAttr.getFillAttributes(attrs.getValue(DrawAttr.PAINT_TYPE));
-	}
+    private DrawingAttributeSet attrs;
+    
+    public OvalTool(DrawingAttributeSet attrs) {
+        this.attrs = attrs;
+    }
+    
+    @Override
+    public Icon getIcon() {
+        return Icons.getIcon("drawoval.svg");
+    }
+    
+    @Override
+    public List<Attribute<?>> getAttributes() {
+        return DrawAttr.getFillAttributes(attrs.getValue(DrawAttr.PAINT_TYPE));
+    }
 
-	@Override
-	public CanvasObject createShape(int x, int y, int w, int h) {
-		return attrs.applyTo(new Oval(x, y, w, h));
-	}
+    @Override
+    public CanvasObject createShape(int x, int y, int w, int h) {
+        return attrs.applyTo(new Oval(x, y, w, h));
+    }
 
-	@Override
-	public void drawShape(Graphics g, int x, int y, int w, int h) {
-		g.drawOval(x, y, w, h);
-	}
+    @Override
+    public void drawShape(Graphics g, int x, int y, int w, int h) {
+        g.drawOval(x, y, w, h);
+    }
 
-	@Override
-	public void fillShape(Graphics g, int x, int y, int w, int h) {
-		g.fillOval(x, y, w, h);
-	}
+    @Override
+    public void fillShape(Graphics g, int x, int y, int w, int h) {
+        g.fillOval(x, y, w, h);
+    }
 }

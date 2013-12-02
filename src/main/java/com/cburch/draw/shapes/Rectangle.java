@@ -17,82 +17,82 @@ import com.cburch.logisim.data.Location;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Rectangle extends Rectangular {
-	public Rectangle(int x, int y, int w, int h) {
-		super(x, y, w, h);
-	}
-	
-	@Override
-	public boolean matches(CanvasObject other) {
-		if (other instanceof Rectangle) {
-			return super.matches(other);
-		} else {
-			return false;
-		}
-	}
+    public Rectangle(int x, int y, int w, int h) {
+        super(x, y, w, h);
+    }
+    
+    @Override
+    public boolean matches(CanvasObject other) {
+        if (other instanceof Rectangle) {
+            return super.matches(other);
+        } else {
+            return false;
+        }
+    }
 
-	@Override
-	public int matchesHashCode() {
-		return super.matchesHashCode();
-	}
-	
-	@Override
-	public String toString() {
-		return "Rectangle:" + getBounds();
-	}
+    @Override
+    public int matchesHashCode() {
+        return super.matchesHashCode();
+    }
+    
+    @Override
+    public String toString() {
+        return "Rectangle:" + getBounds();
+    }
 
-	@Override
-	public String getDisplayName() {
-		return _("shapeRect");
-	}
-	
-	@Override
-	public Element toSvgElement(Document doc) {
-		return SvgCreator.createRectangle(doc, this);
-	}
+    @Override
+    public String getDisplayName() {
+        return _("shapeRect");
+    }
+    
+    @Override
+    public Element toSvgElement(Document doc) {
+        return SvgCreator.createRectangle(doc, this);
+    }
 
-	@Override
-	public List<Attribute<?>> getAttributes() {
-		return DrawAttr.getFillAttributes(getPaintType());
-	}
-	
-	@Override
-	protected boolean contains(int x, int y, int w, int h, Location q) {
-		return isInRect(q.getX(), q.getY(), x, y, w, h);
-	}
+    @Override
+    public List<Attribute<?>> getAttributes() {
+        return DrawAttr.getFillAttributes(getPaintType());
+    }
+    
+    @Override
+    protected boolean contains(int x, int y, int w, int h, Location q) {
+        return isInRect(q.getX(), q.getY(), x, y, w, h);
+    }
 
-	@Override
-	protected Location getRandomPoint(Bounds bds, Random rand) {
-		if (getPaintType() == DrawAttr.PAINT_STROKE) {
-			int w = getWidth();
-			int h = getHeight();
-			int u = rand.nextInt(2 * w + 2 * h);
-			int x = getX();
-			int y = getY();
-			if (u < w) {
-				x += u;
-			} else if (u < 2 * w) {
-				x += (u - w);
-				y += h;
-			} else if (u < 2 * w + h) {
-				y += (u - 2 * w);
-			} else {
-				x += w;
-				y += (u - 2 * w - h);
-			}
-			int d = getStrokeWidth();
-			if (d > 1) {
-				x += rand.nextInt(d) - d / 2;
-				y += rand.nextInt(d) - d / 2;
-			}
-			return Location.create(x, y);
-		} else {
-			return super.getRandomPoint(bds, rand);
-		}
-	}
-	
-	@Override
-	public void draw(Graphics g, int x, int y, int w, int h) {
-		if (setForFill(g)) g.fillRect(x, y, w, h);
-		if (setForStroke(g)) g.drawRect(x, y, w, h);
-	}
+    @Override
+    protected Location getRandomPoint(Bounds bds, Random rand) {
+        if (getPaintType() == DrawAttr.PAINT_STROKE) {
+            int w = getWidth();
+            int h = getHeight();
+            int u = rand.nextInt(2 * w + 2 * h);
+            int x = getX();
+            int y = getY();
+            if (u < w) {
+                x += u;
+            } else if (u < 2 * w) {
+                x += (u - w);
+                y += h;
+            } else if (u < 2 * w + h) {
+                y += (u - 2 * w);
+            } else {
+                x += w;
+                y += (u - 2 * w - h);
+            }
+            int d = getStrokeWidth();
+            if (d > 1) {
+                x += rand.nextInt(d) - d / 2;
+                y += rand.nextInt(d) - d / 2;
+            }
+            return Location.create(x, y);
+        } else {
+            return super.getRandomPoint(bds, rand);
+        }
+    }
+    
+    @Override
+    public void draw(Graphics g, int x, int y, int w, int h) {
+        if (setForFill(g)) g.fillRect(x, y, w, h);
+        if (setForStroke(g)) g.drawRect(x, y, w, h);
+    }
 }

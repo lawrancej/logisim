@@ -12,30 +12,30 @@ import com.cburch.draw.model.Handle;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelInsertHandleAction extends ModelAction {
-	private Handle desired;
-	
-	public ModelInsertHandleAction(CanvasModel model, Handle desired) {
-		super(model);
-		this.desired = desired;
-	}
+    private Handle desired;
+    
+    public ModelInsertHandleAction(CanvasModel model, Handle desired) {
+        super(model);
+        this.desired = desired;
+    }
 
-	@Override
-	public Collection<CanvasObject> getObjects() {
-		return Collections.singleton(desired.getObject());
-	}
+    @Override
+    public Collection<CanvasObject> getObjects() {
+        return Collections.singleton(desired.getObject());
+    }
 
-	@Override
-	public String getName() {
-		return _("actionInsertHandle");
-	}
-	
-	@Override
-	void doSub(CanvasModel model) {
-		model.insertHandle(desired, null);
-	}
-	
-	@Override
-	void undoSub(CanvasModel model) {
-		model.deleteHandle(desired);
-	}
+    @Override
+    public String getName() {
+        return _("actionInsertHandle");
+    }
+    
+    @Override
+    void doSub(CanvasModel model) {
+        model.insertHandle(desired, null);
+    }
+    
+    @Override
+    void undoSub(CanvasModel model) {
+        model.deleteHandle(desired);
+    }
 }
