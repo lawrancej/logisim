@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'launch4j'
+apply plugin: 'sonar-runner'
 
 mainClassName = "com.cburch.logisim.Main"
 version = '2.7.2'
