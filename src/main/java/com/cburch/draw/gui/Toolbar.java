@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.Icon;
@@ -24,20 +24,11 @@ class Toolbar extends JComponent {
 	private static int ICON_HEIGHT = 16;
 	private static int ICON_SEP = 4;
 
-	private class Listener implements MouseListener, MouseMotionListener {
+	private class Listener extends MouseAdapter {
 		private AbstractTool toolPressed;
 		private boolean inTool;
 		private int toolX;
 		private int toolY;
-
-		@Override
-		public void mouseClicked(MouseEvent e) { }
-
-		@Override
-		public void mouseEntered(MouseEvent e) { }
-
-		@Override
-		public void mouseExited(MouseEvent e) { }
 
 		@Override
 		public void mousePressed(MouseEvent e) {
@@ -90,10 +81,6 @@ class Toolbar extends JComponent {
 				repaint();
 			}
 		}
-
-		@Override
-		public void mouseMoved(MouseEvent e) { }
-		
 	}
 	
 	
