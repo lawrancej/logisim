@@ -35,10 +35,12 @@ class InstancePokerAdapter extends AbstractCaret implements Pokable {
 
     private void handleError(Throwable t, Class<? extends InstancePoker> pokerClass) {
         String className = pokerClass.getName();
-        System.err.println("error while instantiating poker " + className //OK
+        //OK
+        System.err.println("error while instantiating poker " + className
                 + ": " + t.getClass().getName());
         String msg = t.getMessage();
-        if (msg != null) System.err.println("  (" + msg + ")"); //OK
+        //OK
+        if (msg != null) System.err.println("  (" + msg + ")");
     }
 
     @Override

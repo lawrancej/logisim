@@ -91,7 +91,8 @@ public class Shifter extends InstanceFactory {
         int bits = dataWidth == null ? 32 : dataWidth.getWidth();
         Value vx = state.getPort(IN0);
         Value vd = state.getPort(IN1);
-        Value vy; // y will by x shifted by d
+        // y will by x shifted by d
+        Value vy;
         if (vd.isFullyDefined() && vx.getWidth() == bits) {
             int d = vd.toIntValue();
             Object shift = state.getAttributeValue(ATTR_SHIFT);
@@ -111,7 +112,8 @@ public class Shifter extends InstanceFactory {
                 } else if (shift == SHIFT_ROLL_LEFT) {
                     if (d >= bits) d -= bits;
                     y = (x << d) | (x >>> (bits - d));
-                } else { // SHIFT_LOGICAL_LEFT
+                // SHIFT_LOGICAL_LEFT
+                } else {
                     y = x << d;
                 }
                 vy = Value.createKnown(dataWidth, y);
@@ -134,7 +136,8 @@ public class Shifter extends InstanceFactory {
                     if (d >= bits) d -= bits;
                     System.arraycopy(x, x.length - d, y, 0, d);
                     System.arraycopy(x, 0, y, d, bits - d);
-                } else { // SHIFT_LOGICAL_LEFT
+                // SHIFT_LOGICAL_LEFT
+                } else {
                     if (d >= bits) d = bits;
                     Arrays.fill(y, 0, d, Value.FALSE);
                     System.arraycopy(x, 0, y, d, bits - d);
@@ -181,7 +184,8 @@ public class Shifter extends InstanceFactory {
             g.fillRect(x, y - 7, 2, 8);
             g.fillRect(x, y - 7, 10, 2);
             drawArrow(g, x + 3, y, 4);
-        } else { // SHIFT_LOGICAL_LEFT
+        // SHIFT_LOGICAL_LEFT
+        } else {
             g.fillRect(x + 2, y - 1, 8, 3);
             drawArrow(g, x, y, 4);
         }

@@ -65,7 +65,8 @@ public class StatisticsDialog extends JDialog implements ActionListener {
             case 2: return _("statsSimpleCountColumn");
             case 3: return _("statsUniqueCountColumn");
             case 4: return _("statsRecursiveCountColumn");
-            default: return "??"; // should never happen
+            // should never happen
+            default: return "??";
             }
         }
 
@@ -97,7 +98,8 @@ public class StatisticsDialog extends JDialog implements ActionListener {
             case 2: return Integer.valueOf(count.getSimpleCount());
             case 3: return Integer.valueOf(count.getUniqueCount());
             case 4: return Integer.valueOf(count.getRecursiveCount());
-            default: return ""; // should never happen
+            // should never happen
+            default: return "";
             }
         }
     }

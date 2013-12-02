@@ -240,16 +240,19 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
     private boolean isClassOk(Class<?> sub, Class<?> sup) {
         boolean isSub = sup.isAssignableFrom(sub);
         if (!isSub) {
-            System.err.println(sub.getName() + " must be a subclass of " + sup.getName()); //OK
+            //OK
+            System.err.println(sub.getName() + " must be a subclass of " + sup.getName());
             return false;
         }
         try {
             sub.getConstructor(new Class[0]);
             return true;
         } catch (SecurityException e) {
-            System.err.println(sub.getName() + " needs its no-args constructor to be public"); //OK
+            //OK
+            System.err.println(sub.getName() + " needs its no-args constructor to be public");
         } catch (NoSuchMethodException e) {
-            System.err.println(sub.getName() + " is missing a no-arguments constructor"); //OK
+            //OK
+            System.err.println(sub.getName() + " is missing a no-arguments constructor");
         }
         return true;
     }

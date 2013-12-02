@@ -218,7 +218,8 @@ public class Multiplexer extends InstanceFactory {
         int selMult = selectLoc == Plexers.SELECT_BOTTOM_LEFT ? 1 : -1;
         int dx = vertical ? 0 : -selMult;
         int dy = vertical ? selMult : 0;
-        if (inputs == 2) { // draw select wire
+        // draw select wire
+        if (inputs == 2) {
             Location pt = painter.getInstance().getPortLocation(inputs);
             if (painter.getShowState()) {
                 g.setColor(painter.getPort(inputs).getColor());
@@ -276,16 +277,21 @@ public class Multiplexer extends InstanceFactory {
     static void drawSelectCircle(Graphics g, Bounds bds, Location loc) {
         int locDelta = Math.max(bds.getHeight(), bds.getWidth()) <= 50 ? 8 : 6;
         Location circLoc;
-        if (bds.getHeight() >= bds.getWidth()) { // vertically oriented
-            if (loc.getY() < bds.getY() + bds.getHeight() / 2) { // at top
+        // vertically oriented
+        if (bds.getHeight() >= bds.getWidth()) {
+            // at top
+            if (loc.getY() < bds.getY() + bds.getHeight() / 2) {
                 circLoc = loc.translate(0, locDelta);
-            } else { // at bottom
+            // at bottom
+            } else {
                 circLoc = loc.translate(0, -locDelta);
             }
         } else {
-            if (loc.getX() < bds.getX() + bds.getWidth() / 2) { // at left
+            // at left
+            if (loc.getX() < bds.getX() + bds.getWidth() / 2) {
                 circLoc = loc.translate(locDelta, 0);
-            } else { // at right
+            // at right
+            } else {
                 circLoc = loc.translate(-locDelta, 0);
             }
         }

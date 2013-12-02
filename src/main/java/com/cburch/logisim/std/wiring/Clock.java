@@ -131,7 +131,8 @@ public class Clock extends InstanceFactory {
 
         Direction dir = painter.getAttributeValue(StdAttr.FACING);
         int pinx = 15; int piny = 8;
-        if (dir == Direction.EAST) { // keep defaults
+        // keep defaults
+        if (dir == Direction.EAST) {
         } else if (dir == Direction.WEST) { pinx = 3;
         } else if (dir == Direction.NORTH) { pinx = 8; piny = 3;
         } else if (dir == Direction.SOUTH) { pinx = 8; piny = 15;
@@ -143,7 +144,8 @@ public class Clock extends InstanceFactory {
     @Override
     public void paintInstance(InstancePainter painter) {
         java.awt.Graphics g = painter.getGraphics();
-        Bounds bds = painter.getInstance().getBounds(); // intentionally with no graphics object - we don't want label included
+        // intentionally with no graphics object - we don't want label included
+        Bounds bds = painter.getInstance().getBounds();
         int x = bds.getX();
         int y = bds.getY();
         GraphicsUtil.switchToWidth(g, 2);
@@ -199,7 +201,8 @@ public class Clock extends InstanceFactory {
     public void propagate(InstanceState state) {
         Value val = state.getPort(0);
         ClockState q = getState(state);
-        if (!val.equals(q.sending)) { // ignore if no change
+        // ignore if no change
+        if (!val.equals(q.sending)) {
             state.setPort(0, q.sending, 1);
         }
     }

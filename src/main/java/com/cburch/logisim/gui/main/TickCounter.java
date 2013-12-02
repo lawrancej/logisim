@@ -56,14 +56,16 @@ class TickCounter implements SimulatorListener {
             int maxSize = queueTimes.length;
             int start = queueStart;
             int end;
-            if (curSize < maxSize) { // new sample is added into queue
+            // new sample is added into queue
+            if (curSize < maxSize) {
                 end = start + curSize;
                 if (end >= maxSize) {
                     end -= maxSize;
                 }
                 curSize++;
                 queueSize = curSize;
-            } else { // new sample replaces oldest value in queue
+            // new sample replaces oldest value in queue
+            } else {
                 end = queueStart;
                 if (end + 1 >= maxSize) {
                     queueStart = 0;
@@ -138,8 +140,10 @@ class TickCounter implements SimulatorListener {
 
     private String roundString(double val, double min) {
         // round so we have only three significant digits
-        int i = 0; // invariant: a = 10^i
-        double a = 1.0; // invariant: a * bm == min, a is power of 10
+        // invariant: a = 10^i
+        int i = 0;
+        // invariant: a * bm == min, a is power of 10
+        double a = 1.0;
         double bm = min;
         double bv = val;
         if (bm >= 1000) {
@@ -162,9 +166,11 @@ class TickCounter implements SimulatorListener {
         // 2.34: i = -2, a = .2, b = 234
         // 20.1: i = -1, a = .1, b = 201
 
-        if (i >= 0) { // nothing after decimal point
+        // nothing after decimal point
+        if (i >= 0) {
             return "" + (int) Math.round(a * Math.round(bv));
-        } else { // keep some after decimal point
+        // keep some after decimal point
+        } else {
             return String.format("%." + (-i) + "f", Double.valueOf(a * bv));
         }
     }

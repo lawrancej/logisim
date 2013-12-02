@@ -149,9 +149,11 @@ public class PainterShaped {
             base = SHIELD_WIDE;
         }
 
-        if (height <= width) { // no wings
+        // no wings
+        if (height <= width) {
             return base;
-        } else { // we need to add wings
+        // we need to add wings
+        } else {
             int wingHeight = (height - width) / 2;
             int dx = Math.min(20, wingHeight / 4);
 
@@ -173,7 +175,8 @@ public class PainterShaped {
         int negated = attrs.negated;
 
         int[] lengths = getInputLineLengths(attrs, factory);
-        if (painter.getInstance() == null) { // drawing ghost - negation bubbles only
+        // drawing ghost - negation bubbles only
+        if (painter.getInstance() == null) {
             for (int i = 0; i < inputs; i++) {
                 boolean iNegated = ((negated >> i) & 1) == 1;
                 if (iNegated) {

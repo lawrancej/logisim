@@ -125,7 +125,8 @@ public class Pin extends InstanceFactory {
             }
         }
         int pinx = 16; int piny = 9;
-        if (dir == Direction.EAST) { // keep defaults
+        // keep defaults
+        if (dir == Direction.EAST) {
         } else if (dir == Direction.WEST) { pinx = 4;
         } else if (dir == Direction.NORTH) { pinx = 9; piny = 4;
         } else if (dir == Direction.SOUTH) { pinx = 9; piny = 16;
@@ -171,7 +172,8 @@ public class Pin extends InstanceFactory {
     public void paintInstance(InstancePainter painter) {
         PinAttributes attrs = (PinAttributes) painter.getAttributeSet();
         Graphics g = painter.getGraphics();
-        Bounds bds = painter.getInstance().getBounds(); // intentionally with no graphics object - we don't want label included
+        // intentionally with no graphics object - we don't want label included
+        Bounds bds = painter.getInstance().getBounds();
         int x = bds.getX();
         int y = bds.getY();
         GraphicsUtil.switchToWidth(g, 2);
@@ -282,7 +284,8 @@ public class Pin extends InstanceFactory {
             }
 
             q.foundValue = found;
-            if (!toSend.equals(found)) { // ignore if no change
+            // ignore if no change
+            if (!toSend.equals(found)) {
                 state.setPort(0, toSend, 1);
             }
         }
@@ -451,7 +454,8 @@ public class Pin extends InstanceFactory {
             if (width.getWidth() == 1) {
                 return 0;
             } else {
-                Bounds bds = state.getInstance().getBounds(); // intentionally with no graphics object - we don't want label included
+                // intentionally with no graphics object - we don't want label included
+                Bounds bds = state.getInstance().getBounds();
                 int i = (bds.getX() + bds.getWidth() - e.getX()) / 10;
                 int j = (bds.getY() + bds.getHeight() - e.getY()) / 20;
                 int bit = 8 * j + i;

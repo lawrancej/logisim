@@ -540,7 +540,8 @@ public class SelectTool extends Tool {
     }
 
     private void setState(Project proj, int new_state) {
-        if (state == new_state) return; // do nothing if state not new
+        // do nothing if state not new
+        if (state == new_state) return;
 
         state = new_state;
         proj.getFrame().getCanvas().setCursor(getCursor());

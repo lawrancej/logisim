@@ -254,7 +254,8 @@ public class Selection extends SelectionBase {
 
     @Override
     public void print() {
-        System.err.println(" isVisible: " + isVisible); //OK
+        //OK
+        System.err.println(" isVisible: " + isVisible);
         super.print();
     }
 

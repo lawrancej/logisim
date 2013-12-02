@@ -204,10 +204,12 @@ class KeyboardData implements InstanceData, Cloneable {
             if (i0 <= 2) i0 = 0;
 
             // resize segment to fit
-            if (fits(fm, str, w0, w1, i0, i1, max)) { // maybe should grow
+            // maybe should grow
+            if (fits(fm, str, w0, w1, i0, i1, max)) {
                 while (fits(fm, str, w0, w1, i0, i1 + 1, max)) i1++;
                 while (fits(fm, str, w0, w1, i0 - 1, i1, max)) i0--;
-            } else { // should shrink
+            // should shrink
+            } else {
                 if (pos < (i0 + i1) / 2) {
                     i1--;
                     while (!fits(fm, str, w0, w1, i0, i1, max)) i1--;

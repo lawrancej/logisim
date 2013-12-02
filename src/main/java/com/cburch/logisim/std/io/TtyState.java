@@ -74,15 +74,18 @@ class TtyState implements InstanceData, Cloneable {
 
         int lastLength = lastRow.length();
         switch (c) {
-        case 12: // control-L
+        // control-L
+        case 12:
             row = 0;
             lastRow.delete(0, lastLength);
             Arrays.fill(rowData, "");
             break;
-        case '\b': // backspace
+        // backspace
+        case '\b':
             if (lastLength > 0) lastRow.delete(lastLength - 1, lastLength);
             break;
-        case '\n': case '\r': // newline
+        // newline
+        case '\n': case '\r':
             commit();
             break;
         default:
@@ -108,11 +111,14 @@ class TtyState implements InstanceData, Cloneable {
         int oldRows = rowData.length + 1;
         if (rows != oldRows) {
             String[] newData = new String[rows - 1];
-            if (rows > oldRows            // rows have been added,
-                    || row < rows - 1) { // or rows removed but filled rows fit
+            // rows have been added,
+            if (rows > oldRows
+                    // or rows removed but filled rows fit
+                    || row < rows - 1) {
                 System.arraycopy(rowData, 0, newData, 0, row);
                 Arrays.fill(newData, row, rows - 1, "");
-            } else { // rows removed, and some filled rows must go
+            // rows removed, and some filled rows must go
+            } else {
                 System.arraycopy(rowData, row - rows + 1, newData, 0, rows - 1);
                 row = rows - 1;
             }
@@ -122,7 +128,8 @@ class TtyState implements InstanceData, Cloneable {
         int oldCols = colCount;
         if (cols != oldCols){
             colCount = cols;
-            if (cols < oldCols) { // will need to trim any long rows
+            // will need to trim any long rows
+            if (cols < oldCols) {
                 for (int i = 0; i < rows - 1; i++) {
                     String s = rowData[i];
                     if (s.length() > cols) rowData[i] = s.substring(0, cols);

@@ -247,7 +247,8 @@ class NotGate extends InstanceFactory {
             x = bds.getX() + bds.getWidth() / 2 + 2;
             y = bds.getY() - 2;
             halign = TextField.H_LEFT;
-        } else { // west or east
+        // west or east
+        } else {
             y = isRectangular ? bds.getY() - 2 : bds.getY();
             if (control != null && control.getY() == bds.getY()) {
                 // the control line will get in the way

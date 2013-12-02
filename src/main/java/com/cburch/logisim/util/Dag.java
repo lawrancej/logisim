@@ -11,7 +11,8 @@ import java.util.Iterator;
 public class Dag {
     private static class Node {
         Object data;
-        HashSet<Node> succs = new HashSet<Node>(); // of Nodes
+        // of Nodes
+        HashSet<Node> succs = new HashSet<Node>();
         int numPreds = 0;
         boolean mark;
 
@@ -49,7 +50,8 @@ public class Dag {
 
         Node src = createNode(srcData);
         Node dst = createNode(dstData);
-        if (src.succs.add(dst)) ++dst.numPreds; // add since not already present
+        // add since not already present
+        if (src.succs.add(dst)) ++dst.numPreds;
         return true;
     }
 
@@ -105,7 +107,8 @@ public class Dag {
 
         // mark all as unvisited
         for (Node n : nodes.values()) {
-            n.mark = false; // will become true once reached
+            // will become true once reached
+            n.mark = false;
         }
 
         // Search starting at query: If base is found, then it follows

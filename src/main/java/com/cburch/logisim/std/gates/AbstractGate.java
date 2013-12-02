@@ -202,7 +202,8 @@ abstract class AbstractGate extends InstanceFactory {
             paintRectangular(painter, width, height);
         } else if (shape == AppPreferences.SHAPE_DIN40700) {
             paintDinShape(painter, width, height, inputs);
-        } else { // SHAPE_SHAPED
+        // SHAPE_SHAPED
+        } else {
             if (negateOutput) {
                 g.translate(-10, 0);
                 paintShape(painter, width - 10, height);

@@ -178,13 +178,15 @@ public class Demultiplexer extends InstanceFactory {
         Value en = enable ? state.getPort(outputs + 1) : Value.TRUE;
 
         // determine output values
-        Value others; // the default output
+        // the default output
+        Value others;
         if (threeState.booleanValue()) {
             others = Value.createUnknown(data);
         } else {
             others = Value.createKnown(data, 0);
         }
-        int outIndex = -1; // the special output
+        // the special output
+        int outIndex = -1;
         Value out = null;
         if (en == Value.FALSE) {
             Object opt = state.getAttributeValue(Plexers.ATTR_DISABLED);
@@ -234,7 +236,8 @@ public class Demultiplexer extends InstanceFactory {
         int selMult = selectLoc == Plexers.SELECT_BOTTOM_LEFT ? 1 : -1;
         int dx = vertical ? selMult : 0;
         int dy = vertical ? 0 : -selMult;
-        if (outputs == 2) { // draw select wire
+        // draw select wire
+        if (outputs == 2) {
             Location sel = painter.getInstance().getPortLocation(outputs);
             if (painter.getShowState()) {
                 g.setColor(painter.getPort(outputs).getColor());

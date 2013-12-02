@@ -116,7 +116,8 @@ class TablePanel extends LogPanel {
     }
 
     private MyListener myListener = new MyListener();
-    private int cellWidth = 25; // reasonable start values
+    // reasonable start values
+    private int cellWidth = 25;
     private int cellHeight = 15;
     private int rowCount = 0;
     private int tableWidth;

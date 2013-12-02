@@ -68,12 +68,17 @@ public class EditTool extends Tool {
     private Canvas lastCanvas;
     private int lastRawX;
     private int lastRawY;
-    private int lastX; // last coordinates where wiring was computed
+    // last coordinates where wiring was computed
+    private int lastX;
     private int lastY;
-    private int lastMods; // last modifiers for mouse event
-    private Location wireLoc; // coordinates where to draw wiring indicator, if
-    private int pressX; // last coordinate where mouse was pressed
-    private int pressY; // (used to determine when a short wire has been clicked)
+    // last modifiers for mouse event
+    private int lastMods;
+    // coordinates where to draw wiring indicator, if
+    private Location wireLoc;
+    // last coordinate where mouse was pressed
+    private int pressX;
+    // (used to determine when a short wire has been clicked)
+    private int pressY;
 
     public EditTool(SelectTool select, WiringTool wiring) {
         this.listener = new Listener();
@@ -287,7 +292,8 @@ public class EditTool extends Tool {
         lastRawX = mx;
         lastRawY = my;
         lastMods = mods;
-        if (lastX == snapx && lastY == snapy && modsSame) { // already computed
+        // already computed
+        if (lastX == snapx && lastY == snapy && modsSame) {
             return wireLoc != NULL_LOCATION;
         } else {
             Location snap = Location.create(snapx, snapy);

@@ -116,7 +116,8 @@ public class Counter extends InstanceFactory {
             int newVal;
             if (!triggered) {
                 newVal = oldVal;
-            } else if (ct) { // trigger, enable = 1: should increment or decrement
+            // trigger, enable = 1: should increment or decrement
+            } else if (ct) {
                 int goal = ld ? 0 : max;
                 if (oldVal == goal) {
                     Object onGoal = state.getAttributeValue(ATTR_ON_GOAL);
@@ -131,17 +132,20 @@ public class Counter extends InstanceFactory {
                     } else if (onGoal == ON_GOAL_CONT) {
                         newVal = ld ? oldVal - 1 : oldVal + 1;
                     } else {
-                        System.err.println("Invalid goal attribute " + onGoal); //OK
+                        //OK
+                        System.err.println("Invalid goal attribute " + onGoal);
                         newVal = ld ? max : 0;
                     }
                 } else {
                     newVal = ld ? oldVal - 1 : oldVal + 1;
                 }
-            } else if (ld) { // trigger, enable = 0, load = 1: should load
+            // trigger, enable = 0, load = 1: should load
+            } else if (ld) {
                 Value in = state.getPort(IN);
                 newVal = in.isFullyDefined() ? in.toIntValue() : 0;
                 if (newVal > max) newVal &= max;
-            } else { // trigger, enable = 0, load = 0: no change
+            // trigger, enable = 0, load = 0: no change
+            } else {
                 newVal = oldVal;
             }
             newValue = Value.createKnown(dataWidth, newVal);

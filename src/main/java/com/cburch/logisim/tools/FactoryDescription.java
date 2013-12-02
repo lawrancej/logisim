@@ -127,7 +127,8 @@ public class FactoryDescription {
                 if (m != null) msg = msg + ": " + name + ": " + m;
                 else msg = msg + ": " + name;
             }
-            System.err.println("error while " + msg); //OK
+            //OK
+            System.err.println("error while " + msg);
             factory = null;
             factoryLoadAttempted = true;
             return null;

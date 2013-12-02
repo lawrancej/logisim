@@ -142,7 +142,8 @@ public class Startup {
              + templLoader.getBuiltin().getLibrary("Gates").getTools().size();
         if (count < 0) {
             // this will never happen, but the optimizer doesn't know that...
-            System.err.println("FATAL ERROR - no components"); //OK
+            //OK
+            System.err.println("FATAL ERROR - no components");
             System.exit(-1);
         }
 
@@ -176,7 +177,8 @@ public class Startup {
                 try {
                     ProjectActions.doOpen(monitor, fileToOpen, substitutions);
                 } catch (LoadFailedException ex) {
-                    System.err.println(fileToOpen.getName() + ": " + ex.getMessage()); //OK
+                    //OK
+                    System.err.println(fileToOpen.getName() + ": " + ex.getMessage());
                     System.exit(-1);
                 }
                 if (first) {
@@ -200,10 +202,13 @@ public class Startup {
                 return;
             }
         }
-        System.err.println(_("invalidLocaleError")); //OK
-        System.err.println(_("invalidLocaleOptionsHeader")); //OK
+        //OK
+        System.err.println(_("invalidLocaleError"));
+        //OK
+        System.err.println(_("invalidLocaleOptionsHeader"));
         for (int i = 0; i < opts.length; i++) {
-            System.err.println("   " + opts[i].toString()); //OK
+            //OK
+            System.err.println("   " + opts[i].toString());
         }
         System.exit(-1);
     }
@@ -270,7 +275,8 @@ public class Startup {
                     i++;
                     String[] fmts = args[i].split(",");
                     if (fmts.length == 0) {
-                        System.err.println(_("ttyFormatError")); //OK
+                        //OK
+                        System.err.println(_("ttyFormatError"));
                     }
                     for (int j = 0; j < fmts.length; j++) {
                         String fmt = fmts[j].trim();
@@ -285,11 +291,13 @@ public class Startup {
                         } else if (fmt.equals("stats")) {
                             ret.ttyFormat |= TtyInterface.FORMAT_STATISTICS;
                         } else {
-                            System.err.println(_("ttyFormatError")); //OK
+                            //OK
+                            System.err.println(_("ttyFormatError"));
                         }
                     }
                 } else {
-                    System.err.println(_("ttyFormatError")); //OK
+                    //OK
+                    System.err.println(_("ttyFormatError"));
                     return null;
                 }
             } else if (arg.equals("-sub")) {
@@ -297,42 +305,49 @@ public class Startup {
                     File a = new File(args[i + 1]);
                     File b = new File(args[i + 2]);
                     if (ret.substitutions.containsKey(a)) {
-                        System.err.println(_("argDuplicateSubstitutionError")); //OK
+                        //OK
+                        System.err.println(_("argDuplicateSubstitutionError"));
                         return null;
                     } else {
                         ret.substitutions.put(a, b);
                         i += 2;
                     }
                 } else {
-                    System.err.println(_("argTwoSubstitutionError")); //OK
+                    //OK
+                    System.err.println(_("argTwoSubstitutionError"));
                     return null;
                 }
             } else if (arg.equals("-load")) {
                 if (i + 1 < args.length) {
                     i++;
                     if (ret.loadFile != null) {
-                        System.err.println(_("loadMultipleError")); //OK
+                        //OK
+                        System.err.println(_("loadMultipleError"));
                     }
                     File f = new File(args[i]);
                     ret.loadFile = f;
                 } else {
-                    System.err.println(_("loadNeedsFileError")); //OK
+                    //OK
+                    System.err.println(_("loadNeedsFileError"));
                     return null;
                 }
             } else if (arg.equals("-empty")) {
                 if (ret.templFile != null || ret.templEmpty || ret.templPlain) {
-                    System.err.println(_("argOneTemplateError")); //OK
+                    //OK
+                    System.err.println(_("argOneTemplateError"));
                     return null;
                 }
                 ret.templEmpty = true;
             } else if (arg.equals("-plain")) {
                 if (ret.templFile != null || ret.templEmpty || ret.templPlain) {
-                    System.err.println(_("argOneTemplateError")); //OK
+                    //OK
+                    System.err.println(_("argOneTemplateError"));
                     return null;
                 }
                 ret.templPlain = true;
             } else if (arg.equals("-version")) {
-                System.out.println(Main.VERSION_NAME); //OK
+                //OK
+                System.out.println(Main.VERSION_NAME);
                 return null;
             } else if (arg.equals("-gates")) {
                 i++;
@@ -343,7 +358,8 @@ public class Startup {
                 } else if (a.equals("rectangular")) {
                     AppPreferences.GATE_SHAPE.set(AppPreferences.SHAPE_RECTANGULAR);
                 } else {
-                    System.err.println(_("argGatesOptionError")); //OK
+                    //OK
+                    System.err.println(_("argGatesOptionError"));
                     System.exit(-1);
                 }
             } else if (arg.equals("-locale")) {
@@ -359,22 +375,26 @@ public class Startup {
                 } else if (a.equals("no")) {
                     AppPreferences.ACCENTS_REPLACE.setBoolean(true);
                 } else {
-                    System.err.println(_("argAccentsOptionError")); //OK
+                    //OK
+                    System.err.println(_("argAccentsOptionError"));
                     System.exit(-1);
                 }
             } else if (arg.equals("-template")) {
                 if (ret.templFile != null || ret.templEmpty || ret.templPlain) {
-                    System.err.println(_("argOneTemplateError")); //OK
+                    //OK
+                    System.err.println(_("argOneTemplateError"));
                     return null;
                 }
                 i++;
                 if (i >= args.length) printUsage();
                 ret.templFile = new File(args[i]);
                 if (!ret.templFile.exists()) {
-                    System.err.println(String.format( //OK
+                    //OK
+                    System.err.println(String.format(
                             _("templateMissingError"), args[i]));
                 } else if (!ret.templFile.canRead()) {
-                    System.err.println(String.format( //OK
+                    //OK
+                    System.err.println(String.format(
                             _("templateCannotReadError"), args[i]));
                 }
             } else if (arg.equals("-nosplash")) {
@@ -389,33 +409,51 @@ public class Startup {
             }
         }
         if (ret.isTty && ret.filesToOpen.isEmpty()) {
-            System.err.println(_("ttyNeedsFileError")); //OK
+            //OK
+            System.err.println(_("ttyNeedsFileError"));
             return null;
         }
         if (ret.loadFile != null && !ret.isTty) {
-            System.err.println(_("loadNeedsTtyError")); //OK
+            //OK
+            System.err.println(_("loadNeedsTtyError"));
             return null;
         }
         return ret;
     }
 
     private static void printUsage() {
-        System.err.println(String.format(_("argUsage"), Startup.class.getName())); //OK
-        System.err.println(); //OK
-        System.err.println(_("argOptionHeader")); //OK
-        System.err.println("   " + _("argAccentsOption")); //OK
-        System.err.println("   " + _("argClearOption")); //OK
-        System.err.println("   " + _("argEmptyOption")); //OK
-        System.err.println("   " + _("argGatesOption")); //OK
-        System.err.println("   " + _("argHelpOption")); //OK
-        System.err.println("   " + _("argLoadOption")); //OK
-        System.err.println("   " + _("argLocaleOption")); //OK
-        System.err.println("   " + _("argNoSplashOption")); //OK
-        System.err.println("   " + _("argPlainOption")); //OK
-        System.err.println("   " + _("argSubOption")); //OK
-        System.err.println("   " + _("argTemplateOption")); //OK
-        System.err.println("   " + _("argTtyOption")); //OK
-        System.err.println("   " + _("argVersionOption")); //OK
+        //OK
+        System.err.println(String.format(_("argUsage"), Startup.class.getName()));
+        //OK
+        System.err.println();
+        //OK
+        System.err.println(_("argOptionHeader"));
+        //OK
+        System.err.println("   " + _("argAccentsOption"));
+        //OK
+        System.err.println("   " + _("argClearOption"));
+        //OK
+        System.err.println("   " + _("argEmptyOption"));
+        //OK
+        System.err.println("   " + _("argGatesOption"));
+        //OK
+        System.err.println("   " + _("argHelpOption"));
+        //OK
+        System.err.println("   " + _("argLoadOption"));
+        //OK
+        System.err.println("   " + _("argLocaleOption"));
+        //OK
+        System.err.println("   " + _("argNoSplashOption"));
+        //OK
+        System.err.println("   " + _("argPlainOption"));
+        //OK
+        System.err.println("   " + _("argSubOption"));
+        //OK
+        System.err.println("   " + _("argTemplateOption"));
+        //OK
+        System.err.println("   " + _("argTtyOption"));
+        //OK
+        System.err.println("   " + _("argVersionOption"));
         System.exit(-1);
     }
 }

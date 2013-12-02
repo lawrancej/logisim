@@ -15,7 +15,8 @@ import net.roydesign.mac.MRJAdapter;
 import com.cburch.logisim.gui.prefs.PreferencesFrame;
 import com.cburch.logisim.proj.ProjectActions;
 
-class MacOsAdapter { //MAC extends ApplicationAdapter {
+//MAC extends ApplicationAdapter {
+class MacOsAdapter {
 
     private static class MyListener implements ActionListener {
         @Override

@@ -196,9 +196,11 @@ public class ProjectActions {
                         JOptionPane.QUESTION_MESSAGE, null,
                         options, options[2]);
                 if (result == 0) {
-                    ; // keep proj as is, so that load happens into the window
+                    // keep proj as is, so that load happens into the window
+                    ;
                 } else if (result == 1) {
-                    proj = null; // we'll create a new project
+                    // we'll create a new project
+                    proj = null;
                 } else {
                     return proj;
                 }

@@ -89,7 +89,8 @@ public class Frame extends LFrame implements LocaleListener {
                 viewAttributes(proj.getTool());
                 computeTitle();
             } else if (action == ProjectEvent.ACTION_SET_TOOL) {
-                if (attrTable == null) return; // for startup
+                // for startup
+                if (attrTable == null) return;
                 Tool oldTool = (Tool) event.getOldData();
                 Tool newTool = (Tool) event.getData();
                 if (getEditorView().equals(EDIT_LAYOUT)) {
@@ -283,11 +284,13 @@ public class Frame extends LFrame implements LocaleListener {
         contents.remove(toolbar);
         mainPanelSuper.remove(toolbar);
         if (AppPreferences.TOOLBAR_HIDDEN.equals(loc)) {
-            ; // don't place value anywhere
+            // don't place value anywhere
+            ;
         } else if (AppPreferences.TOOLBAR_DOWN_MIDDLE.equals(loc)) {
             toolbar.setOrientation(Toolbar.VERTICAL);
             mainPanelSuper.add(toolbar, BorderLayout.WEST);
-        } else { // it is a BorderLayout constant
+        // it is a BorderLayout constant
+        } else {
             Object value = BorderLayout.NORTH;
             for (Direction dir : Direction.cardinals) {
                 if (dir.toString().equals(loc)) {
@@ -348,7 +351,8 @@ public class Frame extends LFrame implements LocaleListener {
         String curView = mainPanel.getView();
         if (curView.equals(view)) return;
 
-        if (view.equals(EDIT_APPEARANCE)) { // appearance view
+        // appearance view
+        if (view.equals(EDIT_APPEARANCE)) {
             AppearanceView app = appearance;
             if (app == null) {
                 app = new AppearanceView();
@@ -362,7 +366,8 @@ public class Frame extends LFrame implements LocaleListener {
             menuListener.setEditHandler(app.getEditHandler());
             mainPanel.setView(view);
             app.getCanvas().requestFocus();
-        } else { // layout view
+        // layout view
+        } else {
             toolbar.setToolbarModel(layoutToolbarModel);
             zoom.setZoomModel(layoutZoomModel);
             menuListener.setEditHandler(layoutEditHandler);

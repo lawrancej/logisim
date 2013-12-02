@@ -177,12 +177,15 @@ public class Print {
                 if (rotateToFit && scale < 1.0 / 1.1) {
                     double scale2 = Math.min(imHeight / bds.getWidth(),
                             (imWidth - headHeight) / bds.getHeight());
-                    if (scale2 >= scale * 1.1) { // will rotate
+                    // will rotate
+                    if (scale2 >= scale * 1.1) {
                         scale = scale2;
-                        if (imHeight > imWidth) { // portrait -> landscape
+                        // portrait -> landscape
+                        if (imHeight > imWidth) {
                             g2.translate(0, imHeight);
                             g2.rotate(-Math.PI / 2);
-                        } else { // landscape -> portrait
+                        // landscape -> portrait
+                        } else {
                             g2.translate(imWidth, 0);
                             g2.rotate(Math.PI / 2);
                         }

@@ -94,21 +94,24 @@ class AvoidanceMap {
         int y0 = loc0.getY();
         int x1 = loc1.getX();
         int y1 = loc1.getY();
-        if (x0 == x1) { // vertical wire
+        // vertical wire
+        if (x0 == x1) {
             for (Location loc : Wire.create(loc0, loc1)) {
                 Object prev = avoid.put(loc, Connector.ALLOW_HORIZONTAL);
                 if (prev == Connector.ALLOW_NEITHER || prev == Connector.ALLOW_VERTICAL) {
                     avoid.put(loc, Connector.ALLOW_NEITHER);
                 }
             }
-        } else if (y0 == y1) { // horizontal wire
+        // horizontal wire
+        } else if (y0 == y1) {
             for (Location loc : Wire.create(loc0, loc1)) {
                 Object prev = avoid.put(loc, Connector.ALLOW_VERTICAL);
                 if (prev == Connector.ALLOW_NEITHER || prev == Connector.ALLOW_HORIZONTAL) {
                     avoid.put(loc, Connector.ALLOW_NEITHER);
                 }
             }
-        } else { // diagonal - shouldn't happen
+        // diagonal - shouldn't happen
+        } else {
             throw new RuntimeException("diagonal wires not supported");
         }
     }
@@ -127,7 +130,8 @@ class AvoidanceMap {
         int y0 = loc0.getY();
         int x1 = loc1.getX();
         int y1 = loc1.getY();
-        if (x0 == x1) { // vertical wire
+        // vertical wire
+        if (x0 == x1) {
             for (Location loc : w) {
                 if (unmarkable == null || unmarkable.contains(deletedEnd)) {
                     Object prev = avoid.remove(loc);
@@ -136,7 +140,8 @@ class AvoidanceMap {
                     }
                 }
             }
-        } else if (y0 == y1) { // horizontal wire
+        // horizontal wire
+        } else if (y0 == y1) {
             for (Location loc : w) {
                 if (unmarkable == null || unmarkable.contains(deletedEnd)) {
                     Object prev = avoid.remove(loc);
@@ -145,7 +150,8 @@ class AvoidanceMap {
                     }
                 }
             }
-        } else { // diagonal - shouldn't happen
+        // diagonal - shouldn't happen
+        } else {
             throw new RuntimeException("diagonal wires not supported");
         }
     }

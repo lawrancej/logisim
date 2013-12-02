@@ -97,7 +97,8 @@ abstract class CircuitDetermination {
             } else if (factory == OrGate.FACTORY) {
                 notAllInputs();
             } else if (factory == NorGate.FACTORY) {
-                notAllInputs(); // the order of these two lines is significant
+                // the order of these two lines is significant
+                notAllInputs();
                 notOutput();
             } else if (factory == NandGate.FACTORY) {
                 ;

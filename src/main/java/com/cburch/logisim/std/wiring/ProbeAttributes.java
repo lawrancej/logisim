@@ -34,7 +34,8 @@ class ProbeAttributes extends AbstractAttributeSet {
 
     @Override
     protected void copyInto(AbstractAttributeSet destObj) {
-        ; // nothing to do
+        // nothing to do
+        ;
     }
 
     @Override

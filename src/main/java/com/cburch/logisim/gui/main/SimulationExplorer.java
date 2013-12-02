@@ -85,7 +85,8 @@ class SimulationExplorer extends JPanel
     }
     private void checkForPopup(MouseEvent e) {
         if (e.isPopupTrigger()) {
-            ; // do nothing
+            // do nothing
+            ;
         }
     }
     @Override

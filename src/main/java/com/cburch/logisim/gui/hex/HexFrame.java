@@ -139,7 +139,8 @@ public class HexFrame extends LFrame {
 
         private void enableItems(LogisimMenuBar menubar) {
             boolean sel = editor.selectionExists();
-            boolean clip = true; //TODO editor.clipboardExists();
+            //TODO editor.clipboardExists();
+            boolean clip = true;
             menubar.setEnabled(LogisimMenuBar.CUT, sel);
             menubar.setEnabled(LogisimMenuBar.COPY, sel);
             menubar.setEnabled(LogisimMenuBar.PASTE, clip);

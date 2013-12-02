@@ -131,7 +131,8 @@ public class GridPainter {
             paintGridOld(g, size, zoom, clip);
             return;
         }
-        int x0 = (clip.x / w) * w; // round down to multiple of w
+        // round down to multiple of w
+        int x0 = (clip.x / w) * w;
         int y0 = (clip.y / w) * w;
         for (int x = 0; x < clip.width + w; x += w) {
             for (int y = 0; y < clip.height + w; y += w) {
@@ -164,7 +165,8 @@ public class GridPainter {
                     g.fillRect(sx, sy, 1, 1);
                 }
             }
-            if (f <= 0.5) { // make every 5th pixel darker
+            // make every 5th pixel darker
+            if (f <= 0.5) {
                 int size5 = 5 * size;
                 g.setColor(Color.GRAY);
                 x0 = size5 * (int) Math.ceil(clip.x / f / size5);
@@ -222,7 +224,8 @@ public class GridPainter {
         } else {
             int off0 = 0;
             int off1 = 1;
-            if (f >= 2.0) { // we'll draw several pixels for each grid point
+            // we'll draw several pixels for each grid point
+            if (f >= 2.0) {
                 int num = (int) (f + 0.001);
                 off0 = -(num / 2);
                 off1 = off0 + num;
@@ -248,7 +251,8 @@ public class GridPainter {
                     }
                 }
             }
-            if (f <= 0.5) { // repaint over every 5th pixel so it is darker
+            // repaint over every 5th pixel so it is darker
+            if (f <= 0.5) {
                 int size5 = size * 5;
                 for (int j = 0; true; j += size5) {
                     int y = (int) Math.round(f * j);

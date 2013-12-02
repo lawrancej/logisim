@@ -61,7 +61,8 @@ public class TextTool extends Tool {
                     a = xn.toAction(__("addComponentAction",
                             Text.FACTORY.getDisplayGetter()));
                 } else {
-                    a = null; // don't add the blank text field
+                    // don't add the blank text field
+                    a = null;
                 }
             } else {
                 if (isEmpty && caretComponent.getFactory() instanceof Text) {
@@ -71,7 +72,8 @@ public class TextTool extends Tool {
                             Text.FACTORY.getDisplayGetter()));
                 } else {
                     Object obj = caretComponent.getFeature(TextEditable.class);
-                    if (obj == null) { // should never happen
+                    // should never happen
+                    if (obj == null) {
                         a = null;
                     } else {
                         TextEditable editable = (TextEditable) obj;
@@ -183,11 +185,13 @@ public class TextTool extends Tool {
 
         // Maybe user is clicking within the current caret.
         if (caret != null) {
-            if (caret.getBounds(g).contains(e.getX(), e.getY())) { // Yes
+            // Yes
+            if (caret.getBounds(g).contains(e.getX(), e.getY())) {
                 caret.mousePressed(e);
                 proj.repaintCanvas();
                 return;
-            } else { // No. End the current caret.
+            // No. End the current caret.
+            } else {
                 caret.stopEditing();
             }
         }

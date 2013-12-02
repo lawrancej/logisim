@@ -103,10 +103,12 @@ abstract class AbstractFlipFlop extends InstanceFactory {
         Object triggerType = state.getAttributeValue(triggerAttribute);
         boolean triggered = data.updateClock(state.getPort(n), triggerType);
 
-        if (state.getPort(n + 3) == Value.TRUE) { // clear requested
+        // clear requested
+        if (state.getPort(n + 3) == Value.TRUE) {
             changed |= data.curValue != Value.FALSE;
             data.curValue = Value.FALSE;
-        } else if (state.getPort(n + 4) == Value.TRUE) { // preset requested
+        // preset requested
+        } else if (state.getPort(n + 4) == Value.TRUE) {
             changed |= data.curValue != Value.TRUE;
             data.curValue = Value.TRUE;
         } else if (triggered && state.getPort(n + 5) != Value.FALSE) {

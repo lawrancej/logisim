@@ -346,7 +346,8 @@ public class Canvas extends JPanel
             // repaint - but only if it's been a while since the last one
             long now = System.currentTimeMillis();
             if (now > lastRepaint + repaintDuration) {
-                lastRepaint = now; // (ensure that multiple requests aren't made
+                // (ensure that multiple requests aren't made
+                lastRepaint = now;
                 repaintDuration = 15 + (int) (20 * Math.random());
                     // repaintDuration is for jittering the repaints to
                     // reduce aliasing effects
@@ -542,9 +543,12 @@ public class Canvas extends JPanel
 
     private CanvasPaintThread paintThread;
     private CanvasPainter painter;
-    private boolean paintDirty = false; // only for within paintComponent
-    private boolean inPaint = false; // only for within paintComponent
-    private Object repaintLock = new Object(); // for waitForRepaintDone
+    // only for within paintComponent
+    private boolean paintDirty = false;
+    // only for within paintComponent
+    private boolean inPaint = false;
+    // for waitForRepaintDone
+    private Object repaintLock = new Object();
 
     public Canvas(Project proj) {
         this.proj = proj;

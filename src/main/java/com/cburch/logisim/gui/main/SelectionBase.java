@@ -31,9 +31,12 @@ class SelectionBase {
     Project proj;
     private ArrayList<Selection.Listener> listeners = new ArrayList<Selection.Listener>();
 
-    final HashSet<Component> selected = new HashSet<Component>(); // of selected Components in circuit
-    final HashSet<Component> lifted = new HashSet<Component>(); // of selected Components removed
-    final HashSet<Component> suppressHandles = new HashSet<Component>(); // of Components
+    // of selected Components in circuit
+    final HashSet<Component> selected = new HashSet<Component>();
+    // of selected Components removed
+    final HashSet<Component> lifted = new HashSet<Component>();
+    // of Components
+    final HashSet<Component> suppressHandles = new HashSet<Component>();
     final Set<Component> unionSet = CollectionUtil.createUnmodifiableSetUnion(selected, lifted);
 
     private Bounds bounds = Bounds.EMPTY_BOUNDS;
@@ -279,13 +282,16 @@ class SelectionBase {
                 int offs = index - (side - 2) * (side - 2);
                 dx = side / 2;
                 dy = side / 2;
-                if (offs < side - 1) { // top edge of square
+                // top edge of square
+                if (offs < side - 1) {
                     dx -= offs;
-                } else if (offs < 2 * (side - 1)) { // left edge
+                // left edge
+                } else if (offs < 2 * (side - 1)) {
                     offs -= side - 1;
                     dx = -dx;
                     dy -= offs;
-                } else if (offs < 3 * (side - 1)) { // right edge
+                // right edge
+                } else if (offs < 3 * (side - 1)) {
                     offs -= 2 * (side - 1);
                     dx = -dx + offs;
                     dy = -dy;
@@ -327,18 +333,21 @@ class SelectionBase {
 
     // debugging methods
     public void print() {
-        System.err.println(" shouldSnap: " + shouldSnap()); //OK
+        //OK
+        System.err.println(" shouldSnap: " + shouldSnap());
 
         boolean hasPrinted = false;
         for (Component comp : selected) {
-            System.err.println((hasPrinted ? "         " : " select: ") //OK
+            //OK
+            System.err.println((hasPrinted ? "         " : " select: ")
                     + comp + "  [" + comp.hashCode() + "]");
             hasPrinted = true;
         }
 
         hasPrinted = false;
         for (Component comp : lifted) {
-            System.err.println((hasPrinted ? "         " : " lifted: ") //OK
+            //OK
+            System.err.println((hasPrinted ? "         " : " lifted: ")
                     + comp + "  [" + comp.hashCode() + "]");
             hasPrinted = true;
         }

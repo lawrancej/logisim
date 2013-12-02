@@ -73,7 +73,8 @@ public class BitExtender extends InstanceFactory {
         else if (type.equals("one")) s0 = _("extenderOneLabel");
         else if (type.equals("sign")) s0 = _("extenderSignLabel");
         else if (type.equals("input")) s0 = _("extenderInputLabel");
-        else s0 = "???"; // should never happen
+        // should never happen
+        else s0 = "???";
         String s1 = _("extenderMainLabel");
         Bounds bds = painter.getBounds();
         int x = bds.getX() + bds.getWidth() / 2;

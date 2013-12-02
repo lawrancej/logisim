@@ -222,7 +222,8 @@ public class Constant extends InstanceFactory {
         int w = painter.getAttributeValue(StdAttr.WIDTH).getWidth();
         int pinx = 16; int piny = 9;
         Direction dir = painter.getAttributeValue(StdAttr.FACING);
-        if (dir == Direction.EAST) { } // keep defaults
+        // keep defaults
+        if (dir == Direction.EAST) { }
         else if (dir == Direction.WEST) { pinx = 4; }
         else if (dir == Direction.NORTH) { pinx = 9; piny = 4; }
         else if (dir == Direction.SOUTH) { pinx = 9; piny = 16; }

@@ -382,7 +382,8 @@ public class AddTool extends Tool {
         String afterAdd = AppPreferences.ADD_AFTER.get();
         if (afterAdd.equals(AppPreferences.ADD_AFTER_UNCHANGED)) {
             return null;
-        } else { // switch to Edit Tool
+        // switch to Edit Tool
+        } else {
             Library base = proj.getLogisimFile().getLibrary("Base");
             if (base == null) {
                 return null;

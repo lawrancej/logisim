@@ -54,7 +54,8 @@ class PainterDin {
         }
         int diam = Math.min(height, 2 * width);
         if (dinType == AND) {
-            ; // nothing to do
+            // nothing to do
+            ;
         } else if (dinType == OR) {
             paintOrLines(painter, width, height, drawBubble);
         } else if (dinType == XOR || dinType == XNOR) {

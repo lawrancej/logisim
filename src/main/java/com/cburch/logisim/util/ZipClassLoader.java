@@ -66,7 +66,8 @@ public class ZipClassLoader extends ClassLoader {
                 }
             }
             if (aborted && DEBUG >= 1) {
-                System.err.println("request not handled successfully"); //OK
+                //OK
+                System.err.println("request not handled successfully");
             }
         }
 
@@ -91,7 +92,8 @@ public class ZipClassLoader extends ClassLoader {
                     Request request = waitForNextRequest();
                     if (request == null) return;
 
-                    if (DEBUG >= 2) System.err.println("processing " + request); //OK
+                    //OK
+                    if (DEBUG >= 2) System.err.println("processing " + request);
                     try {
                         switch (request.action) {
                         case REQUEST_LOAD: performLoad(request); break;
@@ -100,18 +102,22 @@ public class ZipClassLoader extends ClassLoader {
                     } finally {
                         request.ensureDone();
                     }
-                    if (DEBUG >= 2) System.err.println("processed: " + request.getResponse()); //OK
+                    //OK
+                    if (DEBUG >= 2) System.err.println("processed: " + request.getResponse());
                 }
             } catch (Exception t) {
-                if (DEBUG >= 3) { System.err.print("uncaught: "); t.printStackTrace(); } //OK
+                //OK
+                if (DEBUG >= 3) { System.err.print("uncaught: "); t.printStackTrace(); }
             } finally {
                 if (zipFile != null) {
                     try {
                         zipFile.close();
                         zipFile = null;
-                        if (DEBUG >= 1) System.err.println("  ZIP closed"); //OK
+                        //OK
+                        if (DEBUG >= 1) System.err.println("  ZIP closed");
                     } catch (IOException e) {
-                        if (DEBUG >= 1) System.err.println("Error closing ZIP file"); //OK
+                        //OK
+                        if (DEBUG >= 1) System.err.println("Error closing ZIP file");
                     }
                 }
             }
@@ -139,17 +145,20 @@ public class ZipClassLoader extends ClassLoader {
             Object ret = null;
             try {
                 if (zipFile != null) {
-                    if (DEBUG >= 3) System.err.println("  retrieve ZIP entry"); //OK
+                    //OK
+                    if (DEBUG >= 3) System.err.println("  retrieve ZIP entry");
                     String res = req.resource;
                     ZipEntry zipEntry = zipFile.getEntry(res);
                     if (zipEntry != null) {
                         String url = "jar:" + zipPath.toURI() + "!/" + res;
                         ret = new URL(url);
-                        if (DEBUG >= 3) System.err.println("  found: " + url); //OK
+                        //OK
+                        if (DEBUG >= 3) System.err.println("  found: " + url);
                     }
                 }
             } catch (Exception ex) {
-                if (DEBUG >= 3) System.err.println("  error retrieving data"); //OK
+                //OK
+                if (DEBUG >= 3) System.err.println("  error retrieving data");
                 ex.printStackTrace();
             }
             req.setResponse(ret);
@@ -161,30 +170,36 @@ public class ZipClassLoader extends ClassLoader {
             Object ret = null;
             try {
                 if (zipFile != null) {
-                    if (DEBUG >= 3) System.err.println("  retrieve ZIP entry"); //OK
+                    //OK
+                    if (DEBUG >= 3) System.err.println("  retrieve ZIP entry");
                     ZipEntry zipEntry = zipFile.getEntry(req.resource);
                     if (zipEntry != null) {
-                        if (DEBUG >= 3) System.err.println("  load file"); //OK
+                        //OK
+                        if (DEBUG >= 3) System.err.println("  load file");
                         byte[] result = new byte[(int) zipEntry.getSize()];
                         bis = new BufferedInputStream(zipFile.getInputStream(zipEntry));
                         try {
                             bis.read(result, 0, result.length);
                             ret = result;
                         } catch (IOException e) {
-                            if (DEBUG >= 3) System.err.println("  error loading file"); //OK
+                            //OK
+                            if (DEBUG >= 3) System.err.println("  error loading file");
                         }
                     }
                 }
             } catch (Exception ex) {
-                if (DEBUG >= 3) System.err.println("  error retrieving data"); //OK
+                //OK
+                if (DEBUG >= 3) System.err.println("  error retrieving data");
                 ex.printStackTrace();
             } finally {
                 if (bis!=null) {
                     try {
-                        if (DEBUG >= 3) System.err.println("  close file"); //OK
+                        //OK
+                        if (DEBUG >= 3) System.err.println("  close file");
                         bis.close();
                     } catch (IOException ioex) {
-                        if (DEBUG >= 3) System.err.println("  error closing data"); //OK
+                        //OK
+                        if (DEBUG >= 3) System.err.println("  error closing data");
                     }
                 }
             }
@@ -194,11 +209,14 @@ public class ZipClassLoader extends ClassLoader {
         private void ensureZipOpen() {
             if (zipFile == null) {
                 try {
-                    if (DEBUG >= 3) System.err.println("  open ZIP file"); //OK
+                    //OK
+                    if (DEBUG >= 3) System.err.println("  open ZIP file");
                     zipFile = new ZipFile(zipPath);
-                    if (DEBUG >= 1) System.err.println("  ZIP opened");  //OK
+                    //OK
+                    if (DEBUG >= 1) System.err.println("  ZIP opened");
                 } catch (IOException e) {
-                    if (DEBUG >= 1) System.err.println("  error opening ZIP file"); //OK
+                    //OK
+                    if (DEBUG >= 1) System.err.println("  error opening ZIP file");
                 }
             }
         }
@@ -219,7 +237,8 @@ public class ZipClassLoader extends ClassLoader {
 
     @Override
     public URL findResource(String resourceName) {
-        if (DEBUG >= 3) System.err.println("findResource " + resourceName); //OK
+        //OK
+        if (DEBUG >= 3) System.err.println("findResource " + resourceName);
         Object ret = request(REQUEST_FIND, resourceName);
         if (ret instanceof URL) {
             return (URL) ret;
@@ -245,13 +264,16 @@ public class ZipClassLoader extends ClassLoader {
             result = request(REQUEST_LOAD, resourceName);
 
             if (result instanceof byte[]) {
-                if (DEBUG >= 3) System.err.println("  define class"); //OK
+                //OK
+                if (DEBUG >= 3) System.err.println("  define class");
                 byte[] data = (byte[]) result;
                 result = defineClass(className, data, 0, data.length);
                 if (result != null) {
-                    if (DEBUG >= 3) System.err.println("  class defined"); //OK
+                    //OK
+                    if (DEBUG >= 3) System.err.println("  class defined");
                 } else {
-                    if (DEBUG >= 3) System.err.println("  format error"); //OK
+                    //OK
+                    if (DEBUG >= 3) System.err.println("  format error");
                     result = new ClassFormatError(className);
                 }
             }
@@ -273,7 +295,8 @@ public class ZipClassLoader extends ClassLoader {
     private Object request(int action, String resourceName) {
         Request request;
         synchronized(bgLock) {
-            if (bgThread == null) { // start the thread if it isn't working
+            // start the thread if it isn't working
+            if (bgThread == null) {
                 bgThread = new WorkThread();
                 bgThread.start();
             }

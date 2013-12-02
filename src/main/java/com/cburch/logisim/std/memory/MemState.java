@@ -14,19 +14,27 @@ import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringUtil;
 
 class MemState implements InstanceData, Cloneable, HexModelListener {
-    private static final int ROWS = 4; // rows in memory display
+    // rows in memory display
+    private static final int ROWS = 4;
 
-    private static final int TABLE_WIDTH12 = 80; // width of table for addr bits <= 12
-    private static final int TABLE_WIDTH32 = 65; // width of table for addr bits > 12
+    // width of table for addr bits <= 12
+    private static final int TABLE_WIDTH12 = 80;
+    // width of table for addr bits > 12
+    private static final int TABLE_WIDTH32 = 65;
 
-    private static final int ENTRY_HEIGHT = 15; // pixels high per entry
+    // pixels high per entry
+    private static final int ENTRY_HEIGHT = 15;
 
-    private static final int ENTRY_XOFFS12 = 40; // x offset for entries for addr bits <= 12
-    private static final int ENTRY_XOFFS32 = 60; // x offset for entries for addr bits > 12
+    // x offset for entries for addr bits <= 12
+    private static final int ENTRY_XOFFS12 = 40;
+    // x offset for entries for addr bits > 12
+    private static final int ENTRY_XOFFS32 = 60;
 
-    private static final int ENTRY_YOFFS = 5; // y offset for entries
+    // y offset for entries
+    private static final int ENTRY_YOFFS = 5;
 
-    private static final int ADDR_WIDTH_PER_CHAR = 10; // pixels wide per address character
+    // pixels wide per address character
+    private static final int ADDR_WIDTH_PER_CHAR = 10;
 
     private MemContents contents;
     private int columns;
@@ -146,7 +154,8 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
 
     void setScroll(long addr) {
         long maxAddr = getLastAddress() - ROWS * columns;
-        if (addr > maxAddr) addr = maxAddr; // note: maxAddr could be negative
+        // note: maxAddr could be negative
+        if (addr > maxAddr) addr = maxAddr;
         if (addr < 0) addr = 0;
         curScroll = addr;
     }

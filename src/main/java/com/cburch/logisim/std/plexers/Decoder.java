@@ -172,7 +172,8 @@ public class Decoder extends InstanceFactory {
         int outputs = 1 << select.getWidth();
 
         // determine default output values
-        Value others; // the default output
+        // the default output
+        Value others;
         if (threeState.booleanValue()) {
             others = Value.UNKNOWN;
         } else {
@@ -180,7 +181,8 @@ public class Decoder extends InstanceFactory {
         }
 
         // determine selected output value
-        int outIndex = -1; // the special output
+        // the special output
+        int outIndex = -1;
         Value out = null;
         Value en = enable ? state.getPort(outputs + 1) : Value.TRUE;
         if (en == Value.FALSE) {
@@ -231,7 +233,8 @@ public class Decoder extends InstanceFactory {
         boolean vertical = facing == Direction.NORTH || facing == Direction.SOUTH;
         int dx = vertical ? selMult : 0;
         int dy = vertical ? 0 : -selMult;
-        if (outputs == 2) { // draw select wire
+        // draw select wire
+        if (outputs == 2) {
             if (painter.getShowState()) {
                 g.setColor(painter.getPort(outputs).getColor());
             }

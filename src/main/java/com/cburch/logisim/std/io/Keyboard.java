@@ -37,7 +37,8 @@ public class Keyboard extends InstanceFactory {
     static final int HEIGHT = 25;
 
     private static final Font DEFAULT_FONT = new Font("monospaced", Font.PLAIN, 12);
-    private static final char FORM_FEED = '\u000c'; // control-L
+    // control-L
+    private static final char FORM_FEED = '\u000c';
 
     private static final Attribute<Integer> ATTR_BUFFER
         = Attributes.forIntegerRange("buflen",
@@ -205,7 +206,8 @@ public class Keyboard extends InstanceFactory {
                 w0 = xs + fm.stringWidth(str.substring(dispStart, pos));
                 w1 = xs + fm.stringWidth(str.substring(dispStart, pos + 1));
             } else {
-                continue; // this character is not in current view
+                // this character is not in current view
+                continue;
             }
             w0++;
             w1--;

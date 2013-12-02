@@ -218,7 +218,8 @@ public class TransmissionGate extends InstanceFactory {
         g.setColor(platform);
         g.drawLine(9, 12, 31, 12);
         g.drawLine(9, 28, 31, 28);
-        if (flip) { // arrow
+        // arrow
+        if (flip) {
             g.drawLine(18, 17, 21, 20);
             g.drawLine(18, 23, 21, 20);
         } else {

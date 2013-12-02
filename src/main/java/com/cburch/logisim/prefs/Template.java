@@ -47,7 +47,8 @@ public class Template {
         try {
             return new ByteArrayInputStream(contents.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            System.err.println("warning: UTF-8 is not supported"); //OK
+            //OK
+            System.err.println("warning: UTF-8 is not supported");
             return new ByteArrayInputStream(contents.getBytes());
         }
     }

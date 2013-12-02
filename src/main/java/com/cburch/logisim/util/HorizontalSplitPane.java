@@ -168,11 +168,13 @@ public class HorizontalSplitPane extends JPanel {
             double fraction) {
         this.comp0 = comp0;
         this.comp1 = comp1;
-        this.dragbar = new MyDragbar(); // above the other components
+        // above the other components
+        this.dragbar = new MyDragbar();
         this.fraction = fraction;
 
         setLayout(new MyLayout());
-        add(dragbar); // above the other components
+        // above the other components
+        add(dragbar);
         add(comp0);
         add(comp1);
     }

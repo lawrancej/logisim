@@ -300,7 +300,8 @@ public class WiringTool extends Tool {
     }
 
     private Wire checkForRepairs(Canvas canvas, Wire w, Location end) {
-        if (w.getLength() <= 10) return w; // don't repair a short wire to nothing
+        // don't repair a short wire to nothing
+        if (w.getLength() <= 10) return w;
         if (!canvas.getCircuit().getNonWires(end).isEmpty()) return w;
 
         int delta = (end.equals(w.getEnd0()) ? 10 : -10);

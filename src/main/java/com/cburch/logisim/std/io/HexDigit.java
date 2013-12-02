@@ -36,7 +36,8 @@ public class HexDigit extends InstanceFactory {
         int summary = 0;
         Value baseVal = state.getPort(0);
         if (baseVal == null) baseVal = Value.createUnknown(BitWidth.create(4));
-        int segs; // each nibble is one segment, in top-down, left-to-right
+        // each nibble is one segment, in top-down, left-to-right
+        int segs;
           // order: middle three nibbles are the three horizontal segments
         switch (baseVal.toIntValue()) {
         case 0:  segs = 0x1110111; break;
@@ -55,15 +56,23 @@ public class HexDigit extends InstanceFactory {
         case 13: segs = 0x0101111; break;
         case 14: segs = 0x1111100; break;
         case 15: segs = 0x1111000; break;
-        default: segs = 0x0001000; break; // a dash '-'
+        // a dash '-'
+        default: segs = 0x0001000; break;
         }
-        if ((segs & 0x1) != 0) summary |= 4; // vertical seg in bottom right
-        if ((segs & 0x10) != 0) summary |= 2; // vertical seg in top right
-        if ((segs & 0x100) != 0) summary |= 8; // horizontal seg at bottom
-        if ((segs & 0x1000) != 0) summary |= 64; // horizontal seg at middle
-        if ((segs & 0x10000) != 0) summary |= 1; // horizontal seg at top
-        if ((segs & 0x100000) != 0) summary |= 16; // vertical seg at bottom left
-        if ((segs & 0x1000000) != 0) summary |= 32; // vertical seg at top left
+        // vertical seg in bottom right
+        if ((segs & 0x1) != 0) summary |= 4;
+        // vertical seg in top right
+        if ((segs & 0x10) != 0) summary |= 2;
+        // horizontal seg at bottom
+        if ((segs & 0x100) != 0) summary |= 8;
+        // horizontal seg at middle
+        if ((segs & 0x1000) != 0) summary |= 64;
+        // horizontal seg at top
+        if ((segs & 0x10000) != 0) summary |= 1;
+        // vertical seg at bottom left
+        if ((segs & 0x100000) != 0) summary |= 16;
+        // vertical seg at top left
+        if ((segs & 0x1000000) != 0) summary |= 32;
         if (state.getPort(1) == Value.TRUE) summary |= 128;
 
         Object value = Integer.valueOf(summary);

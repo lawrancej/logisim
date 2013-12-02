@@ -90,7 +90,8 @@ public class Probe extends InstanceFactory {
         Value value = getValue(painter);
 
         Graphics g = painter.getGraphics();
-        Bounds bds = painter.getBounds(); // intentionally with no graphics object - we don't want label included
+        // intentionally with no graphics object - we don't want label included
+        Bounds bds = painter.getBounds();
         int x = bds.getX();
         int y = bds.getY();
         g.setColor(Color.WHITE);
@@ -121,7 +122,8 @@ public class Probe extends InstanceFactory {
 
     static void paintValue(InstancePainter painter, Value value) {
         Graphics g = painter.getGraphics();
-        Bounds bds = painter.getBounds(); // intentionally with no graphics object - we don't want label included
+        // intentionally with no graphics object - we don't want label included
+        Bounds bds = painter.getBounds();
 
         RadixOption radix = painter.getAttributeValue(RadixOption.ATTRIBUTE);
         if (radix == null || radix == RadixOption.RADIX_2) {
@@ -312,7 +314,8 @@ public class Probe extends InstanceFactory {
             }
         }
         if (ret == null) {
-            ret = Bounds.create(0, -10, 20, 20); // should never happen
+            // should never happen
+            ret = Bounds.create(0, -10, 20, 20);
         }
         return ret;
     }
@@ -351,7 +354,8 @@ public class Probe extends InstanceFactory {
                 valign = TextField.V_BOTTOM;
                 y -= 2;
             }
-        } else { // WEST
+        // WEST
+        } else {
             halign = TextField.H_RIGHT;
             valign = TextField.V_CENTER;
             x = bds.getX() - 2;

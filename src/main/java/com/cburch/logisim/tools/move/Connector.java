@@ -97,7 +97,8 @@ class Connector {
                 }
             }
         }
-        if (bestResult == null) { // should only happen for no connections
+        // should only happen for no connections
+        if (bestResult == null) {
             bestResult = new MoveResult(req, new ReplacementMap(), impossible, 0);
         } else {
             bestResult.addUnsatisfiedConnections(impossible);
@@ -220,12 +221,14 @@ class Connector {
             List<SearchNode> connNodes = initNodes.get(conn);
             Set<Location> connPathLocs = pathLocs.get(conn);
             SearchNode n = findShortestPath(connNodes, connPathLocs, avoid);
-            if (n != null) { // normal case - a path was found
+            // normal case - a path was found
+            if (n != null) {
                 totalDistance += n.getDistance();
                 ArrayList<Location> path = convertToPath(n);
                 processPath(path, conn, avoid, replacements, connPathLocs);
             } else if (ConnectorThread.isOverrideRequested()) {
-                return null; // search was aborted: return null to indicate this
+                // search was aborted: return null to indicate this
+                return null;
             } else {
                 unconnected.add(conn);
             }
@@ -299,7 +302,8 @@ class Connector {
                 case 2:
                     oDir = dir.getRight();
                     break;
-                default: // must be 3
+                // must be 3
+                default:
                     oDir = dir.reverse();
                 }
                 SearchNode o = n.next(oDir, allowed != null);
@@ -339,10 +343,12 @@ class Connector {
             boolean found = loc0.equals(pathLoc);
             for (Wire w : conn.getWirePath()) {
                 Location nextLoc = w.getOtherEnd(pathLoc);
-                if (found) { // existing wire will be removed
+                // existing wire will be removed
+                if (found) {
                     repl.remove(w);
                     avoid.unmarkWire(w, nextLoc, unmarkable);
-                } else if (w.contains(loc0)) { // wires after this will be removed
+                // wires after this will be removed
+                } else if (w.contains(loc0)) {
                     found = true;
                     if (!loc0.equals(nextLoc)) {
                         avoid.unmarkWire(w, nextLoc, unmarkable);

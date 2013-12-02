@@ -68,7 +68,8 @@ class GateAttributes extends AbstractAttributeSet {
 
     @Override
     protected void copyInto(AbstractAttributeSet dest) {
-        ; // nothing to do
+        // nothing to do
+        ;
     }
 
     @Override

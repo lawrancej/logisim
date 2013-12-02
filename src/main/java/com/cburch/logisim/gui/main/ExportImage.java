@@ -92,7 +92,8 @@ class ExportImage {
                 new String[] { "jpg", "jpeg", "jpe", "jfi", "jfif", "jfi" });
             break;
         default:
-            System.err.println("unexpected format; aborted"); //OK
+            //OK
+            System.err.println("unexpected format; aborted");
             return;
         }
 

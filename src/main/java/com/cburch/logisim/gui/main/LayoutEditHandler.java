@@ -110,32 +110,38 @@ public class LayoutEditHandler extends EditHandler
 
     @Override
     public void raise() {
-        ; // not yet supported in layout mode
+        // not yet supported in layout mode
+        ;
     }
 
     @Override
     public void lower() {
-        ; // not yet supported in layout mode
+        // not yet supported in layout mode
+        ;
     }
 
     @Override
     public void raiseTop() {
-        ; // not yet supported in layout mode
+        // not yet supported in layout mode
+        ;
     }
 
     @Override
     public void lowerBottom() {
-        ; // not yet supported in layout mode
+        // not yet supported in layout mode
+        ;
     }
 
     @Override
     public void addControlPoint() {
-        ; // not yet supported in layout mode
+        // not yet supported in layout mode
+        ;
     }
 
     @Override
     public void removeControlPoint() {
-        ; // not yet supported in layout mode
+        // not yet supported in layout mode
+        ;
     }
 
     private void selectSelectTool(Project proj) {

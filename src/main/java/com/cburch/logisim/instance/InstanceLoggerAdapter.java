@@ -25,10 +25,12 @@ class InstanceLoggerAdapter implements Loggable {
 
     private void handleError(Throwable t, Class<? extends InstanceLogger> loggerClass) {
         String className = loggerClass.getName();
-        System.err.println("error while instantiating logger " + className //OK
+        //OK
+        System.err.println("error while instantiating logger " + className
                 + ": " + t.getClass().getName());
         String msg = t.getMessage();
-        if (msg != null) System.err.println("  (" + msg + ")"); //OK
+        //OK
+        if (msg != null) System.err.println("  (" + msg + ")");
     }
 
     @Override

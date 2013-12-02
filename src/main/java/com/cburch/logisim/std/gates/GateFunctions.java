@@ -42,7 +42,8 @@ class GateFunctions {
                 if (v == Value.TRUE) {
                     count++;
                 } else if (v == Value.FALSE) {
-                    ; // do nothing
+                    // do nothing
+                    ;
                 } else {
                     count = -1;
                     break;

@@ -53,7 +53,8 @@ public class PriorityEncoder extends InstanceFactory {
             return Bounds.create(offs, -40, len, 40);
         } else if (dir == Direction.WEST) {
             return Bounds.create(  0, offs, 40, len);
-        } else { // dir == Direction.EAST
+        // dir == Direction.EAST
+        } else {
             return Bounds.create(-40, offs, 40, len);
         }
     }

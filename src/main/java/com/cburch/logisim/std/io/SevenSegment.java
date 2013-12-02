@@ -91,7 +91,8 @@ public class SevenSegment extends InstanceFactory {
                 Bounds seg = SEGMENTS[i];
                 g.fillRect(x + seg.getX(), y + seg.getY(), seg.getWidth(), seg.getHeight());
             } else {
-                g.fillOval(x + 28, y + 48, 5, 5); // draw decimal point
+                // draw decimal point
+                g.fillOval(x + 28, y + 48, 5, 5);
             }
         }
         painter.drawPorts();

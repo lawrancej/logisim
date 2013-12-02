@@ -75,7 +75,8 @@ public class DotMatrix extends InstanceFactory {
             return Bounds.create(-5, -10 * rows, 10 * cols, 10 * rows);
         } else if (input == INPUT_ROW) {
             return Bounds.create(0, -5, 10 * cols, 10 * rows);
-        } else { // input == INPUT_SELECT
+        // input == INPUT_SELECT
+        } else {
             if (rows == 1) {
                 return Bounds.create(0, -5, 10 * cols, 10 * rows);
             } else {

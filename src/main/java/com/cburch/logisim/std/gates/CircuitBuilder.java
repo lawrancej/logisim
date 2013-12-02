@@ -85,7 +85,8 @@ public class CircuitBuilder {
 
     private static class Layout {
         // initialized by parent
-        int y; // top edge relative to parent's top edge
+        // top edge relative to parent's top edge
+        int y;
            // (or edge corresponding to input)
 
         // initialized by self
@@ -93,10 +94,13 @@ public class CircuitBuilder {
         int height;
         ComponentFactory factory;
         AttributeSet attrs;
-        int outputY; // where output is relative to my top edge
-        int subX; // where right edge of sublayouts should be relative to my left edge
+        // where output is relative to my top edge
+        int outputY;
+        // where right edge of sublayouts should be relative to my left edge
+        int subX;
         Layout[] subLayouts;
-        String inputName; // for references directly to inputs
+        // for references directly to inputs
+        String inputName;
 
         Layout(int width, int height, int outputY,
                 ComponentFactory factory, AttributeSet attrs,
@@ -178,8 +182,10 @@ public class CircuitBuilder {
         }
 
         Layout[] sub = new Layout[inputs.size()];
-        int subWidth = 0; // maximum width of sublayouts
-        int subHeight = 0; // total height of sublayouts
+        // maximum width of sublayouts
+        int subWidth = 0;
+        // total height of sublayouts
+        int subHeight = 0;
         for (int i = 0; i < sub.length; i++) {
             sub[i] = layoutGatesSub(inputs.get(i));
             if (sub.length % 2 == 0 && i == (sub.length + 1) / 2
@@ -214,10 +220,12 @@ public class CircuitBuilder {
 
         // determine outputY and layout's height.
         int outputY;
-        if (sub.length % 2 == 1) { // odd number - match the middle input
+        // odd number - match the middle input
+        if (sub.length % 2 == 1) {
             int i = (sub.length - 1) / 2;
             outputY = sub[i].y + sub[i].outputY;
-        } else { // even number - halfway between middle two inputs
+        // even number - halfway between middle two inputs
+        } else {
             int i0 = (sub.length / 2) - 1;
             int i1 = (sub.length / 2);
             int o0 = sub[i0].y + sub[i0].outputY;
@@ -384,13 +392,15 @@ public class CircuitBuilder {
             } else {
                 int back;
                 if (i < numSubs / 2) {
-                    if (subOutputY < subDest.getY()) { // bending upward
+                    // bending upward
+                    if (subOutputY < subDest.getY()) {
                         back = i;
                     } else {
                         back = ((numSubs - 1) / 2) - i;
                     }
                 } else {
-                    if (subOutputY > subDest.getY()) { // bending downward
+                    // bending downward
+                    if (subOutputY > subDest.getY()) {
                         back = numSubs - 1 - i;
                     } else {
                         back = i - (numSubs / 2);

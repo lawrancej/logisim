@@ -133,7 +133,8 @@ public class Transistor extends InstanceFactory {
             return Bounds.create(delta, -40, 20, 40);
         } else if (facing == Direction.WEST) {
             return Bounds.create(0, delta, 40, 20);
-        } else { // facing == Direction.EAST
+        // facing == Direction.EAST
+        } else {
             return Bounds.create(-40, delta, 40, 20);
         }
     }
@@ -255,9 +256,11 @@ public class Transistor extends InstanceFactory {
         }
 
         // draw platforms
-        g.drawLine(-10, m * 10, -30, m * 10); // gate platform
+        // gate platform
+        g.drawLine(-10, m * 10, -30, m * 10);
         g.setColor(platform);
-        g.drawLine(-9, m * 8, -31, m * 8); // input/output platform
+        // input/output platform
+        g.drawLine(-9, m * 8, -31, m * 8);
 
         // arrow (same color as platform)
         g.drawLine(-21, m * 6, -18, m * 3);

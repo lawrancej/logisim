@@ -53,7 +53,8 @@ public class SplashScreen extends JWindow implements ActionListener {
             new Marker(2383, _("progressProjectCreate")),
             new Marker(2519, _("progressFrameCreate")),
     };
-    boolean inClose = false; // for avoiding mutual recursion
+    // for avoiding mutual recursion
+    boolean inClose = false;
     JProgressBar progress = new JProgressBar(0, PROGRESS_MAX);
     JButton close = new JButton(_("startupCloseButton"));
     JButton cancel = new JButton(_("startupQuitButton"));
@@ -96,12 +97,14 @@ public class SplashScreen extends JWindow implements ActionListener {
                 }
             });
             if (PRINT_TIMES) {
-                System.err.println((System.currentTimeMillis() - startTime) //OK
+                //OK
+                System.err.println((System.currentTimeMillis() - startTime)
                         + " " + marker.message);
             }
         } else {
             if (PRINT_TIMES) {
-                System.err.println((System.currentTimeMillis() - startTime) + " ??"); //OK
+                //OK
+                System.err.println((System.currentTimeMillis() - startTime) + " ??");
             }
         }
     }
@@ -124,7 +127,8 @@ public class SplashScreen extends JWindow implements ActionListener {
         setVisible(false);
         inClose = false;
         if (PRINT_TIMES) {
-            System.err.println((System.currentTimeMillis() - startTime) //OK
+            //OK
+            System.err.println((System.currentTimeMillis() - startTime)
                     + " closed");
         }
         markers = null;

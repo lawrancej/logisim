@@ -279,7 +279,8 @@ public class Project {
                 file.addLibraryListener(l);
             }
         }
-        file.setDirty(true); // toggle it so that everybody hears the file is fresh
+        // toggle it so that everybody hears the file is fresh
+        file.setDirty(true);
         file.setDirty(false);
     }
 

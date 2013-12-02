@@ -41,13 +41,15 @@ public class TtyInterface {
 
     public static void sendFromTty(char c) {
         lastIsNewline = c == '\n';
-        System.out.print(c); //OK
+        //OK
+        System.out.print(c);
     }
 
     private static void ensureLineTerminated() {
         if (!lastIsNewline) {
             lastIsNewline = true;
-            System.out.print('\n'); //OK
+            //OK
+            System.out.print('\n');
         }
     }
 
@@ -58,7 +60,8 @@ public class TtyInterface {
         try {
             file = loader.openLogisimFile(fileToOpen, args.getSubstitutions());
         } catch (LoadFailedException e) {
-            System.err.println(_("ttyLoadError", fileToOpen.getName())); //OK
+            //OK
+            System.err.println(_("ttyLoadError", fileToOpen.getName()));
             System.exit(-1);
             return;
         }
@@ -68,7 +71,8 @@ public class TtyInterface {
             format &= ~FORMAT_STATISTICS;
             displayStatistics(file);
         }
-        if (format == 0) { // no simulation remaining to perform, so just exit
+        // no simulation remaining to perform, so just exit
+        if (format == 0) {
             System.exit(0);
         }
 
@@ -96,11 +100,13 @@ public class TtyInterface {
             try {
                 boolean loaded = loadRam(circState, args.getLoadFile());
                 if (!loaded) {
-                    System.err.println(_("loadNoRamError")); //OK
+                    //OK
+                    System.err.println(_("loadNoRamError"));
                     System.exit(-1);
                 }
             } catch (IOException e) {
-                System.err.println(_("loadIoError") + ": " + e.toString()); //OK
+                //OK
+                System.err.println(_("loadIoError") + ": " + e.toString());
                 System.exit(-1);
             }
         }
@@ -123,17 +129,20 @@ public class TtyInterface {
         for (FileStatistics.Count count : stats.getCounts()) {
             Library lib = count.getLibrary();
             String libName = lib == null ? "-" : lib.getDisplayName();
-            System.out.printf(fmtNormal, //OK
+            //OK
+            System.out.printf(fmtNormal,
                     Integer.valueOf(count.getUniqueCount()),
                     Integer.valueOf(count.getRecursiveCount()),
                     count.getFactory().getDisplayName(), libName);
         }
         FileStatistics.Count totalWithout = stats.getTotalWithoutSubcircuits();
-        System.out.printf(fmt + "%s\n", //OK
+        //OK
+        System.out.printf(fmt + "%s\n",
                 Integer.valueOf(totalWithout.getUniqueCount()),
                 Integer.valueOf(totalWithout.getRecursiveCount()),
                 _("statsTotalWithout"));
-        System.out.printf(fmt + "%s\n", //OK
+        //OK
+        System.out.printf(fmt + "%s\n",
                 Integer.valueOf(total.getUniqueCount()),
                 Integer.valueOf(total.getRecursiveCount()),
                 _("statsTotalWith"));
@@ -204,7 +213,8 @@ public class TtyInterface {
             keyboardStates = new ArrayList<InstanceState>();
             boolean ttyFound = prepareForTty(circState, keyboardStates);
             if (!ttyFound) {
-                System.err.println(_("ttyNoTtyError")); //OK
+                //OK
+                System.err.println(_("ttyNoTtyError"));
                 System.exit(-1);
             }
             if (keyboardStates.isEmpty()) {
@@ -237,11 +247,13 @@ public class TtyInterface {
             }
 
             if (halted) {
-                retCode = 0; // normal exit
+                // normal exit
+                retCode = 0;
                 break;
             }
             if (prop.isOscillating()) {
-                retCode = 1; // abnormal exit
+                // abnormal exit
+                retCode = 1;
                 break;
             }
             if (keyboardStates != null) {
@@ -261,9 +273,11 @@ public class TtyInterface {
         if (showTty) ensureLineTerminated();
         if (showHalt || retCode != 0) {
             if (retCode == 0) {
-                System.out.println(_("ttyHaltReasonPin")); //OK
+                //OK
+                System.out.println(_("ttyHaltReasonPin"));
             } else if (retCode == 1) {
-                System.out.println(_("ttyHaltReasonOscillation")); //OK
+                //OK
+                System.out.println(_("ttyHaltReasonOscillation"));
             }
         }
         if (showSpeed) {
@@ -289,10 +303,13 @@ public class TtyInterface {
         }
         if (shouldPrint) {
             for (int i = 0; i < curOutputs.size(); i++) {
-                if (i != 0) System.out.print("\t"); //OK
-                System.out.print(curOutputs.get(i)); //OK
+                //OK
+                if (i != 0) System.out.print("\t");
+                //OK
+                System.out.print(curOutputs.get(i));
             }
-            System.out.println(); //OK
+            //OK
+            System.out.println();
         }
     }
 
@@ -313,7 +330,8 @@ public class TtyInterface {
     // but this doesn't quite work because on some systems, the keyboard input
     // is not interactively echoed until System.in.read() is invoked.
     private static class StdinThread extends Thread {
-        private LinkedList<char[]> queue; // of char[]
+        // of char[]
+        private LinkedList<char[]> queue;
 
         public StdinThread() {
             queue = new LinkedList<char[]>();
