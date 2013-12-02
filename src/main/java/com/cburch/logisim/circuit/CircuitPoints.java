@@ -69,7 +69,10 @@ class CircuitPoints {
             return Collections.emptySet();
         }
 
-        else return locData.components;
+        else {
+            return locData.components;
+        }
+
     }
 
     Collection<? extends Component> getSplitCauses(Location loc) {

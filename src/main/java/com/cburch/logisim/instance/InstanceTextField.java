@@ -155,6 +155,9 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
         int x = event.getX();
         int y = event.getY();
         if (bds.contains(x, y)) return field.getCaret(g, x, y);
-        else                    return null;
+        else {
+                               return null;
+        }
+
     }
 }

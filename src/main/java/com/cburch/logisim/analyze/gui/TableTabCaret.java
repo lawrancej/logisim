@@ -222,7 +222,10 @@ class TableTabCaret {
                         Entry cur = model.getOutputEntry(cursorRow, cursorCol - inputs);
                         if (cur == Entry.ZERO) cur = Entry.ONE;
                         else if (cur == Entry.ONE) cur = Entry.DONT_CARE;
-                        else cur = Entry.ZERO;
+                        else {
+                            cur = Entry.ZERO;
+                        }
+
                         model.setOutputEntry(cursorRow, cursorCol - inputs, cur);
                     }
                 }
@@ -276,11 +279,17 @@ class TableTabCaret {
             case KeyEvent.VK_RIGHT: setCursor(cursorRow, cursorCol + 1, shift); break;
             case KeyEvent.VK_HOME:
                 if (cursorCol == 0) setCursor(0, 0, shift);
-                else setCursor(cursorRow, 0, shift);
+                else {
+                    setCursor(cursorRow, 0, shift);
+                }
+
                 break;
             case KeyEvent.VK_END:
                 if (cursorCol == cols - 1) setCursor(rows - 1, cols - 1, shift);
-                else setCursor(cursorRow, cols - 1, shift);
+                else {
+                    setCursor(cursorRow, cols - 1, shift);
+                }
+
                 break;
             case KeyEvent.VK_PAGE_DOWN:
                 rows = table.getVisibleRect().height / table.getCellHeight();

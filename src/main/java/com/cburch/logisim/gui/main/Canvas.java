@@ -183,7 +183,10 @@ public class Canvas extends JPanel
                 return proj.getTool();
             }
 
-            else return ret;
+            else {
+                return ret;
+            }
+
         }
 
         //
@@ -272,7 +275,10 @@ public class Canvas extends JPanel
                      setCursor(Cursor.getDefaultCursor());
                 }
 
-                else            setCursor(t.getCursor());
+                else {
+                               setCursor(t.getCursor());
+                }
+
             } else if (act == ProjectEvent.ACTION_SET_STATE) {
                 CircuitState oldState = (CircuitState) event.getOldData();
                 CircuitState newState = (CircuitState) event.getData();
@@ -629,7 +635,10 @@ public class Canvas extends JPanel
             paintDirty = true;
         }
 
-        else        super.repaint();
+        else {
+                   super.repaint();
+        }
+
     }
 
     public StringGetter getErrorMessage() {
@@ -827,14 +836,20 @@ public class Canvas extends JPanel
                     }
 
                     else if (isWest)    viewport.setNorthwest(true);
-                    else            viewport.setNorth(true);
+                    else {
+                                   viewport.setNorth(true);
+                    }
+
                 } else if (isSouth) {
                     if (isEast) {
                             viewport.setSoutheast(true);
                     }
 
                     else if (isWest)    viewport.setSouthwest(true);
-                    else            viewport.setSouth(true);
+                    else {
+                                   viewport.setSouth(true);
+                    }
+
                 } else {
                     if (isEast) {
                             viewport.setEast(true);

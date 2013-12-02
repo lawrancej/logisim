@@ -381,7 +381,10 @@ public class Poly extends FillableCanvasObject {
                 g.drawPolygon(xs, ys, xs.length);
             }
 
-            else g.drawPolyline(xs, ys, xs.length);
+            else {
+                g.drawPolyline(xs, ys, xs.length);
+            }
+
         }
     }
 

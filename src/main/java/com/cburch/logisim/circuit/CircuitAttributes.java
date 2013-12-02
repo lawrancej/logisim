@@ -167,7 +167,10 @@ public class CircuitAttributes extends AbstractAttributeSet {
         if (attr == StdAttr.LABEL) return (E) label;
         if (attr == StdAttr.LABEL_FONT) return (E) labelFont;
         if (attr == LABEL_LOCATION_ATTR) return (E) labelLocation;
-        else return source.getStaticAttributes().getValue(attr);
+        else {
+            return source.getStaticAttributes().getValue(attr);
+        }
+
     }
 
     @Override

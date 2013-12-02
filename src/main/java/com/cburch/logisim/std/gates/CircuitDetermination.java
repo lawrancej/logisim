@@ -57,7 +57,10 @@ abstract class CircuitDetermination {
                 }
 
                 else if (factory == NandGate.FACTORY) subFactory = AndGate.FACTORY;
-                else subFactory = factory;
+                else {
+                    subFactory = factory;
+                }
+
 
                 int split = (inputs.size() + 1) / 2;
                 CircuitDetermination a = convertToTwoInputsSub(0, split, subFactory);

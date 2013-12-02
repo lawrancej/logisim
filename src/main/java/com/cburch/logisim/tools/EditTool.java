@@ -279,7 +279,10 @@ public class EditTool extends Tool {
             return updateLocation(canvas, x, lastRawY, e.getModifiersEx());
         }
 
-        else return false;
+        else {
+            return false;
+        }
+
     }
 
     private boolean updateLocation(Canvas canvas, int mx, int my, int mods) {
@@ -401,28 +404,40 @@ public class EditTool extends Tool {
                 attemptReface(canvas, Direction.NORTH, e);
             }
 
-            else                         select.keyPressed(canvas, e);
+            else {
+                                        select.keyPressed(canvas, e);
+            }
+
             break;
         case KeyEvent.VK_DOWN:
             if (e.getModifiersEx() == 0) {
                 attemptReface(canvas, Direction.SOUTH, e);
             }
 
-            else                         select.keyPressed(canvas, e);
+            else {
+                                        select.keyPressed(canvas, e);
+            }
+
             break;
         case KeyEvent.VK_LEFT:
             if (e.getModifiersEx() == 0) {
                 attemptReface(canvas, Direction.WEST, e);
             }
 
-            else                         select.keyPressed(canvas, e);
+            else {
+                                        select.keyPressed(canvas, e);
+            }
+
             break;
         case KeyEvent.VK_RIGHT:
             if (e.getModifiersEx() == 0) {
                 attemptReface(canvas, Direction.EAST, e);
             }
 
-            else                         select.keyPressed(canvas, e);
+            else {
+                                        select.keyPressed(canvas, e);
+            }
+
             break;
         case KeyEvent.VK_ALT:   updateLocation(canvas, e); e.consume(); break;
         default:

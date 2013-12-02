@@ -71,7 +71,10 @@ public class Selection extends SelectionBase {
                             cs = save.getFloatingComponents();
                         }
 
-                        else cs = save.getAnchoredComponents();
+                        else {
+                            cs = save.getAnchoredComponents();
+                        }
+
 
                         if (cs != null) {
                             for (Component c : cs) {

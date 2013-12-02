@@ -138,7 +138,10 @@ public class Project {
                 optionsFrame = new OptionsFrame(this);
             }
 
-            else optionsFrame = null;
+            else {
+                optionsFrame = null;
+            }
+
         }
         return optionsFrame;
     }

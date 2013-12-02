@@ -33,7 +33,10 @@ class TruthTableMouseListener implements MouseListener {
         }
 
         else if (oldValue == Entry.ONE) newValue = Entry.DONT_CARE;
-        else                           newValue = Entry.ZERO;
+        else {
+                                      newValue = Entry.ZERO;
+        }
+
         source.setEntryProvisional(cellY, cellX, newValue);
     }
     @Override

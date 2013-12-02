@@ -109,7 +109,10 @@ public class WindowMenu extends JMenu {
             persistentItems.add(item);
         }
 
-        else transientItems.add(item);
+        else {
+            transientItems.add(item);
+        }
+
         item.addActionListener(myListener);
         computeContents();
     }

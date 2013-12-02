@@ -194,7 +194,10 @@ public class CircuitState implements InstanceData {
                     this.componentData.put(key, newValue);
                 }
 
-                else this.componentData.remove(key);
+                else {
+                    this.componentData.remove(key);
+                }
+
             } else {
                 Object newValue;
                 if (oldValue instanceof ComponentState) {

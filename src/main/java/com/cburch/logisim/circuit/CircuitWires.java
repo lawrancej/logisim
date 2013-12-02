@@ -463,7 +463,10 @@ class CircuitWires {
                         g.setColor(Value.NIL_COLOR);
                     }
 
-                    else         g.setColor(state.getValue(s).getColor());
+                    else {
+                                g.setColor(state.getValue(s).getColor());
+                    }
+
                 } else {
                     g.setColor(Color.BLACK);
                 }
@@ -487,7 +490,10 @@ class CircuitWires {
                                 g.setColor(Value.NIL_COLOR);
                             }
 
-                            else         g.setColor(state.getValue(loc).getColor());
+                            else {
+                                        g.setColor(state.getValue(loc).getColor());
+                            }
+
                         } else {
                             g.setColor(Color.BLACK);
                         }
@@ -512,7 +518,10 @@ class CircuitWires {
                             g.setColor(Value.NIL_COLOR);
                         }
 
-                        else         g.setColor(state.getValue(s).getColor());
+                        else {
+                                    g.setColor(state.getValue(s).getColor());
+                        }
+
                     } else {
                         g.setColor(Color.BLACK);
                     }
@@ -548,7 +557,10 @@ class CircuitWires {
                                     g.setColor(Value.NIL_COLOR);
                                 }
 
-                                else         g.setColor(state.getValue(loc).getColor());
+                                else {
+                                            g.setColor(state.getValue(loc).getColor());
+                                }
+
                             } else {
                                 g.setColor(Color.BLACK);
                             }
@@ -832,7 +844,10 @@ class CircuitWires {
                 return pullTo;
             }
 
-            else return base;
+            else {
+                return base;
+            }
+
         } else {
             Value[] ret = base.getAll();
             for (int i = 0; i < ret.length; i++) {

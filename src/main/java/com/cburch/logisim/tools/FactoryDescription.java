@@ -128,7 +128,10 @@ public class FactoryDescription {
                     msg = msg + ": " + name + ": " + m;
                 }
 
-                else msg = msg + ": " + name;
+                else {
+                    msg = msg + ": " + name;
+                }
+
             }
             //OK
             System.err.println("error while " + msg);

@@ -116,7 +116,10 @@ public class Location implements Comparable<Location> {
             return this.x - other.x;
         }
 
-        else                  return this.y - other.y;
+        else {
+                             return this.y - other.y;
+        }
+
     }
 
     @Override

@@ -180,7 +180,10 @@ public class OutputExpressions {
                 inputsChanged(event);
             }
 
-            else outputsChanged(event);
+            else {
+                outputsChanged(event);
+            }
+
         }
 
         private void inputsChanged(VariableListEvent event) {

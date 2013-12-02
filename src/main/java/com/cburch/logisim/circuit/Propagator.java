@@ -467,7 +467,10 @@ public class Propagator {
                 causes.remove(loc);
             }
 
-            else causes.put(loc, head);
+            else {
+                causes.put(loc, head);
+            }
+
         } else {
             SetData prev = head;
             SetData cur = head.next;

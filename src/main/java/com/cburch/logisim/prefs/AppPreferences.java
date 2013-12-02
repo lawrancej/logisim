@@ -431,7 +431,10 @@ public class AppPreferences {
                     check = new Locale[] { Locale.getDefault(), Locale.ENGLISH };
                 }
 
-                else check = Locale.getAvailableLocales();
+                else {
+                    check = Locale.getAvailableLocales();
+                }
+
                 for (int i = 0; i < check.length; i++) {
                     Locale loc = check[i];
                     if (loc != null && loc.getLanguage().equals(lang)) {

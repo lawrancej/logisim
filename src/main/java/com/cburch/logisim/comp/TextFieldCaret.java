@@ -114,7 +114,10 @@ class TextFieldCaret implements Caret, TextFieldListener {
               fm = g.getFontMetrics();
         }
 
-        else                fm = g.getFontMetrics(font);
+        else {
+                           fm = g.getFontMetrics(font);
+        }
+
         int width = fm.stringWidth(curText);
         int ascent = fm.getAscent();
         int descent = fm.getDescent();

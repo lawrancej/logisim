@@ -157,7 +157,10 @@ public class AttributeSetImpl extends AbstractAttributeSet {
             head = n;
         }
 
-        else             tail.next = n;
+        else {
+                        tail.next = n;
+        }
+
         tail = n;
         ++count;
         fireAttributeListChanged();
@@ -176,7 +179,10 @@ public class AttributeSetImpl extends AbstractAttributeSet {
                     head = n.next;
                 }
 
-                else             prev.next = n.next;
+                else {
+                                prev.next = n.next;
+                }
+
                 --count;
                 fireAttributeListChanged();
                 return;

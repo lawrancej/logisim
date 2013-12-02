@@ -14,7 +14,10 @@ class MemContentsSub {
         }
 
         else if (bits <= 16) return new ShortContents(size);
-        else                return new IntContents(size);
+        else {
+                           return new IntContents(size);
+        }
+
     }
 
     static abstract class ContentsInterface implements Cloneable {

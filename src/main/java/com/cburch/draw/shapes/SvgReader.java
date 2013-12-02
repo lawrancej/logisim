@@ -190,14 +190,20 @@ public class SvgReader {
                         type = 0;
                     }
 
-                    else type = -1;
+                    else {
+                        type = -1;
+                    }
+
                     break;
                 case 'Q': case 'q':
                     if (type == 0) {
                         type = 1;
                     }
 
-                    else type = -1;
+                    else {
+                        type = -1;
+                    }
+
                     break;
                 /* not supported
                 case 'L': case 'l':
@@ -207,7 +213,10 @@ public class SvgReader {
                         type = 2;
                     }
 
-                    else type = -1;
+                    else {
+                        type = -1;
+                    }
+
                     break;
                 */
                 default:

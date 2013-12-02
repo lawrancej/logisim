@@ -78,7 +78,10 @@ public class StatisticsDialog extends JDialog implements ActionListener {
             FileStatistics.Count count;
             if (row < countsLen) count = counts.get(row);
             else if (row == countsLen) count = stats.getTotalWithoutSubcircuits();
-            else count = stats.getTotalWithSubcircuits();
+            else {
+                count = stats.getTotalWithSubcircuits();
+            }
+
             switch (column) {
             case 0:
                 if (row < countsLen) {

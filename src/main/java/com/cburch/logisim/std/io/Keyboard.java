@@ -238,7 +238,10 @@ public class Keyboard extends InstanceFactory {
 
     private static int getBufferLength(Object bufferAttr) {
         if (bufferAttr instanceof Integer) return ((Integer) bufferAttr).intValue();
-        else return 32;
+        else {
+            return 32;
+        }
+
     }
 
     private static KeyboardData getKeyboardState(InstanceState state) {

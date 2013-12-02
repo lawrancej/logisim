@@ -142,7 +142,10 @@ public class SelectionActions {
         public boolean shouldAppendTo(Action other) {
             Action last;
             if (other instanceof JoinedAction) last = ((JoinedAction) other).getLastAction();
-            else last = other;
+            else {
+                last = other;
+            }
+
 
             SelectionSave otherAfter = null;
             if (last instanceof Paste) {
@@ -190,7 +193,10 @@ public class SelectionActions {
         public boolean shouldAppendTo(Action other) {
             Action last;
             if (other instanceof JoinedAction) last = ((JoinedAction) other).getLastAction();
-            else last = other;
+            else {
+                last = other;
+            }
+
 
             SelectionSave otherAfter = null;
             if (last instanceof Paste) {
@@ -538,7 +544,10 @@ public class SelectionActions {
         public boolean shouldAppendTo(Action other) {
             Action last;
             if (other instanceof JoinedAction) last = ((JoinedAction) other).getLastAction();
-            else last = other;
+            else {
+                last = other;
+            }
+
 
             SelectionSave otherAfter = null;
             if (last instanceof Paste) {

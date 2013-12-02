@@ -214,7 +214,10 @@ public class Attributes {
                 combo.setSelectedIndex(-1);
             }
 
-            else combo.setSelectedItem(value);
+            else {
+                combo.setSelectedItem(value);
+            }
+
             return combo;
         }
     }
@@ -289,7 +292,10 @@ public class Attributes {
                 return _("booleanTrueOption");
             }
 
-            else return _("booleanFalseOption");
+            else {
+                return _("booleanFalseOption");
+            }
+
         }
 
         @Override
@@ -337,7 +343,10 @@ public class Attributes {
                     combo.setSelectedIndex(-1);
                 }
 
-                else combo.setSelectedItem(value);
+                else {
+                    combo.setSelectedItem(value);
+                }
+
                 return combo;
             }
         }
@@ -446,7 +455,10 @@ public class Attributes {
                 return Integer.toHexString(value);
             }
 
-            else return "0" + Integer.toHexString(value);
+            else {
+                return "0" + Integer.toHexString(value);
+            }
+
         }
         @Override
         public Color parse(String value) {

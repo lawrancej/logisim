@@ -194,14 +194,20 @@ public class DotMatrix extends InstanceFactory {
                     }
 
                     else if (val == Value.FALSE) c = offColor;
-                    else c = Value.ERROR_COLOR;
+                    else {
+                        c = Value.ERROR_COLOR;
+                    }
+
                     g.setColor(c);
 
                     if (drawSquare) {
                         g.fillRect(x, y, 10, 10);
                     }
 
-                    else g.fillOval(x + 1, y + 1, 8, 8);
+                    else {
+                        g.fillOval(x + 1, y + 1, 8, 8);
+                    }
+
                 } else {
                     g.setColor(Color.GRAY);
                     g.fillOval(x + 1, y + 1, 8, 8);

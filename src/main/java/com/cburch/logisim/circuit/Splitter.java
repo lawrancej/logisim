@@ -144,7 +144,10 @@ public class Splitter extends ManagedComponent
             return this;
         }
 
-        else return super.getFeature(key);
+        else {
+            return super.getFeature(key);
+        }
+
     }
 
     @Override

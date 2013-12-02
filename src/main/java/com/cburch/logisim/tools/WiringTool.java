@@ -110,13 +110,19 @@ public class WiringTool extends Tool {
                 direction = 0;
             }
 
-            else direction = VERTICAL;
+            else {
+                direction = VERTICAL;
+            }
+
         } else if (direction == VERTICAL && newY == start.getY()) {
             if (newX == start.getX()) {
                 direction = 0;
             }
 
-            else direction = HORIZONTAL;
+            else {
+                direction = HORIZONTAL;
+            }
+
         }
         return true;
     }
@@ -339,7 +345,10 @@ public class WiringTool extends Tool {
                     desc = __("addWireAction");
                 }
 
-                else desc = __("addWiresAction");
+                else {
+                    desc = __("addWiresAction");
+                }
+
                 Action act = mutation.toAction(desc);
                 canvas.getProject().doAction(act);
                 lastAction = act;

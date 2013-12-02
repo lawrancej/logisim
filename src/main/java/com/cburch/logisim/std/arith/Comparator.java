@@ -99,7 +99,10 @@ public class Comparator extends InstanceFactory {
                     gt = Value.TRUE;
                 }
 
-                else                 lt = Value.TRUE;
+                else {
+                                    lt = Value.TRUE;
+                }
+
                 break;
             }
         }

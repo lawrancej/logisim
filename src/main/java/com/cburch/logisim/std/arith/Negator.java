@@ -67,7 +67,10 @@ public class Negator extends InstanceFactory {
                         fill = bits[pos];
                     }
 
-                    else bits[pos] = fill;
+                    else {
+                        bits[pos] = fill;
+                    }
+
                 }
                 pos++;
             }

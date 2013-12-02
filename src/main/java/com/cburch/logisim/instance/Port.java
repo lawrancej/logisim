@@ -97,7 +97,10 @@ public class Port {
         else if (s.equals(INPUT))  return EndData.INPUT_ONLY;
         else if (s.equals(OUTPUT)) return EndData.OUTPUT_ONLY;
         else if (s.equals(INOUT))  return EndData.INPUT_OUTPUT;
-        else throw new IllegalArgumentException("Not recognized port type");
+        else {
+            throw new IllegalArgumentException("Not recognized port type");
+        }
+
     }
 
     private static String defaultExclusive(String s) {
@@ -108,7 +111,10 @@ public class Port {
         else if (s.equals(INPUT))  return SHARED;
         else if (s.equals(OUTPUT)) return EXCLUSIVE;
         else if (s.equals(INOUT))  return SHARED;
-        else throw new IllegalArgumentException("Not recognized port type");
+        else {
+            throw new IllegalArgumentException("Not recognized port type");
+        }
+
     }
 
     private static boolean toExclusive(String s) {
@@ -118,6 +124,9 @@ public class Port {
 
         else if (s.equals(EXCLUSIVE)) return true;
         else if (s.equals(SHARED))    return false;
-        else throw new IllegalArgumentException("Not recognized exclusion type");
+        else {
+            throw new IllegalArgumentException("Not recognized exclusion type");
+        }
+
     }
 }

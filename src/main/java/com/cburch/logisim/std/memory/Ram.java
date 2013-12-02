@@ -93,7 +93,10 @@ public class Ram extends Mem {
         }
 
         else if (separate) portCount += 5;
-        else portCount += 3;
+        else {
+            portCount += 3;
+        }
+
         Port[] ps = new Port[portCount];
 
         configureStandardPorts(instance, ps);

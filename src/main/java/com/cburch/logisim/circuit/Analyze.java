@@ -397,7 +397,10 @@ public class Analyze {
 
                     else if (outValue == Value.FALSE) out = Entry.ZERO;
                     else if (outValue == Value.ERROR) out = Entry.BUS_ERROR;
-                    else out = Entry.DONT_CARE;
+                    else {
+                        out = Entry.DONT_CARE;
+                    }
+
                     columns[j][i] = out;
                 }
             }

@@ -161,7 +161,10 @@ public class AttributeSets {
             if (index < 0) throw new IllegalArgumentException("attribute " + attr.getName() + " absent");
 
             if (value) readOnly |= (1 << index);
-            else readOnly &= ~(1 << index);
+            else {
+                readOnly &= ~(1 << index);
+            }
+
         }
 
         @Override

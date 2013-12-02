@@ -39,7 +39,10 @@ public class CurveUtil {
                 xMin = u;
             }
 
-            else xMax = u;
+            else {
+                xMax = u;
+            }
+
         }
         if (yMin == p1[1] || yMax == p1[1]) {
             // u where getTan(u)[1] == 0
@@ -49,7 +52,10 @@ public class CurveUtil {
                 yMin = u;
             }
 
-            else yMax = u;
+            else {
+                yMax = u;
+            }
+
         }
 
         int x = (int) xMin;
@@ -174,7 +180,10 @@ public class CurveUtil {
                     u = Math.pow( -q / 2, 1. / 3);
                 }
 
-                else u = -Math.pow( q / 2, 1. / 3);
+                else {
+                    u = -Math.pow( q / 2, 1. / 3);
+                }
+
                 return new double[] {
                     2*u + offset,
                     -u + offset };

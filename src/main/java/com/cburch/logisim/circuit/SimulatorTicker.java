@@ -89,7 +89,10 @@ class SimulatorTicker extends Thread {
                         ticksPending -= toTick;
                     }
 
-                    else ticksPending = 0;
+                    else {
+                        ticksPending = 0;
+                    }
+
                 }
                 // we fire tickCompleted in this thread so that other
                 // objects (in particular the repaint process) can slow

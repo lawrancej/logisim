@@ -206,11 +206,17 @@ public class Tty extends InstanceFactory {
 
     private static int getRowCount(Object val) {
         if (val instanceof Integer) return ((Integer) val).intValue();
-        else return 4;
+        else {
+            return 4;
+        }
+
     }
 
     private static int getColumnCount(Object val) {
         if (val instanceof Integer) return ((Integer) val).intValue();
-        else return 16;
+        else {
+            return 16;
+        }
+
     }
 }

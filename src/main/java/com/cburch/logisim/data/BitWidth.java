@@ -66,7 +66,10 @@ public class BitWidth implements Comparable<BitWidth> {
         }
 
         else if (width == 32) return -1;
-        else                 return (1 << width) - 1;
+        else {
+                            return (1 << width) - 1;
+        }
+
     }
 
     @Override

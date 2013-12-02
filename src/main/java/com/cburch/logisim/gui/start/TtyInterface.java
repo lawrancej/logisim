@@ -335,7 +335,10 @@ public class TtyInterface {
         else if (hertz >= 10) precision = 0.1;
         else if (hertz >= 1) precision = 0.01;
         else if (hertz >= 0.01) precision = 0.0001;
-        else precision = 0.0000001;
+        else {
+            precision = 0.0000001;
+        }
+
         hertz = (int) (hertz / precision) * precision;
         String hertzStr = hertz == (int) hertz ? "" + (int) hertz : "" + hertz;
         System.out.println(_("ttySpeedMsg", hertzStr, "" + tickCount, "" + elapse));

@@ -335,7 +335,10 @@ public class ProjectActions {
             return doSaveAs(proj);
         }
 
-        else return doSave(proj, f);
+        else {
+            return doSave(proj, f);
+        }
+
     }
 
     private static boolean doSave(Project proj, File f) {

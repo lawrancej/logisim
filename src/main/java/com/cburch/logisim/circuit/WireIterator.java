@@ -27,13 +27,19 @@ class WireIterator implements Iterator<Location> {
         }
 
         else if (curX > destX) deltaX = -10;
-        else deltaX = 0;
+        else {
+            deltaX = 0;
+        }
+
         if (curY < destY) {
             deltaY = 10;
         }
 
         else if (curY > destY) deltaY = -10;
-        else deltaY = 0;
+        else {
+            deltaY = 0;
+        }
+
 
         int offX = (destX - curX) % 10;
         // should not happen, but in case it does...

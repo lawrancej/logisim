@@ -83,7 +83,10 @@ public class Value {
 
             else if ((unknown & 1) != 0)    return Value.UNKNOWN;
             else if ((value & 1) != 0)  return Value.TRUE;
-            else return Value.FALSE;
+            else {
+                return Value.FALSE;
+            }
+
         } else {
             int mask = (width == 32 ? -1 : ~(-1 << width));
             error = error & mask;
@@ -199,7 +202,10 @@ public class Value {
 
         else if ((unknown & mask) != 0) return UNKNOWN;
         else if ((value & mask) != 0) return TRUE;
-        else return FALSE;
+        else {
+            return FALSE;
+        }
+
     }
 
     public BitWidth getBitWidth() {
@@ -256,7 +262,10 @@ public class Value {
 
             else if (unknown != 0) return "x";
             else if (value != 0)   return "1";
-            else                  return "0";
+            else {
+                                 return "0";
+            }
+
         default:
             StringBuilder ret = new StringBuilder();
             for (int i = width - 1; i >= 0; i--) {
@@ -399,7 +408,10 @@ public class Value {
 
             else if (unknown != 0) return _("valueUnknownSymbol");
             else if (value != 0)   return "1";
-            else                  return "0";
+            else {
+                                 return "0";
+            }
+
         default:
             StringBuilder ret = new StringBuilder();
             for (int i = width - 1; i >= 0; i--) {
@@ -563,7 +575,10 @@ public class Value {
             }
 
             else if (this == TRUE) return TRUE_COLOR;
-            else return FALSE_COLOR;
+            else {
+                return FALSE_COLOR;
+            }
+
         } else {
             return MULTI_COLOR;
         }

@@ -34,7 +34,10 @@ public class InputEventUtil {
             else if (s.equals(BUTTON1)) ret |= InputEvent.BUTTON1_DOWN_MASK;
             else if (s.equals(BUTTON2)) ret |= InputEvent.BUTTON2_DOWN_MASK;
             else if (s.equals(BUTTON3)) ret |= InputEvent.BUTTON3_DOWN_MASK;
-            else throw new NumberFormatException("InputEventUtil");
+            else {
+                throw new NumberFormatException("InputEventUtil");
+            }
+
         }
         return ret;
     }
@@ -94,7 +97,10 @@ public class InputEventUtil {
             else if (s.equals(_("button1Mod")))   ret |= InputEvent.BUTTON1_DOWN_MASK;
             else if (s.equals(_("button2Mod")))   ret |= InputEvent.BUTTON2_DOWN_MASK;
             else if (s.equals(_("button3Mod")))   ret |= InputEvent.BUTTON3_DOWN_MASK;
-            else throw new NumberFormatException("InputEventUtil");
+            else {
+                throw new NumberFormatException("InputEventUtil");
+            }
+
         }
         return ret;
     }

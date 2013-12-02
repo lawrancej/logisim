@@ -93,7 +93,10 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
             computePreferredSize();
         }
 
-        else repaint();
+        else {
+            repaint();
+        }
+
     }
 
     @Override

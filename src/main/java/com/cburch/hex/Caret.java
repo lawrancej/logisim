@@ -121,7 +121,10 @@ public class Caret {
                 if (cursor >= 0) {
                     int dist = (int) (cursor % cols);
                     if (dist == 0) setDot(0, shift);
-                    else setDot(cursor - dist, shift); break;
+                    else {
+                        setDot(cursor - dist, shift);
+                    }
+ break;
                 }
             case KeyEvent.VK_END:
                 if (cursor >= 0) {

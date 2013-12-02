@@ -34,7 +34,10 @@ public class ShiftRegisterPoker extends InstancePoker {
         int y = bds.getY();
         String label = state.getAttributeValue(StdAttr.LABEL);
         if (label == null || label.equals("")) y += bds.getHeight() / 2;
-        else y += 3 * bds.getHeight() / 4;
+        else {
+            y += 3 * bds.getHeight() / 4;
+        }
+
         y = e.getY() - y;
         if (y <= -6 || y >= 8) return -1;
 
@@ -53,7 +56,10 @@ public class ShiftRegisterPoker extends InstancePoker {
         int y = bds.getY();
         String label = painter.getAttributeValue(StdAttr.LABEL);
         if (label == null || label.equals("")) y += bds.getHeight() / 2;
-        else y += 3 * bds.getHeight() / 4;
+        else {
+            y += 3 * bds.getHeight() / 4;
+        }
+
         Graphics g = painter.getGraphics();
         g.setColor(Color.RED);
         g.drawRect(x, y - 6, 10, 13);
@@ -76,7 +82,10 @@ public class ShiftRegisterPoker extends InstancePoker {
                 int i = data.getLength() - 1 - loc;
                 Value v = data.get(i);
                 if (v == Value.FALSE) v = Value.TRUE;
-                else v = Value.FALSE;
+                else {
+                    v = Value.FALSE;
+                }
+
                 data.set(i, v);
                 state.fireInvalidated();
             }

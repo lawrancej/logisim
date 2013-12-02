@@ -278,7 +278,10 @@ public class TruthTable {
         }
 
         else if (values == null) outputColumns.remove(outputName);
-        else outputColumns.put(outputName, values);
+        else {
+            outputColumns.put(outputName, values);
+        }
+
         fireCellsChanged(column);
     }
 

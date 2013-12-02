@@ -159,7 +159,10 @@ public class AttrTable extends JPanel implements LocaleListener {
                 return "Attribute";
             }
 
-            else                  return "Value";
+            else {
+                                 return "Value";
+            }
+
         }
 
         @Override

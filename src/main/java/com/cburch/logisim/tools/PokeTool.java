@@ -127,7 +127,10 @@ public class PokeTool extends Tool {
             if (normal) {
                 caret.stopEditing();
             }
- else caret.cancelEditing();
+ else {
+     caret.cancelEditing();
+ }
+
             circ.removeCircuitListener(listener);
             pokedCircuit = null;
             pokedComponent = null;

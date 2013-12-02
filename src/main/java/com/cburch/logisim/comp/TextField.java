@@ -129,7 +129,10 @@ public class TextField {
               fm = g.getFontMetrics();
         }
 
-        else                fm = g.getFontMetrics(font);
+        else {
+                           fm = g.getFontMetrics(font);
+        }
+
         int width = fm.stringWidth(text);
         int ascent = fm.getAscent();
         int descent = fm.getDescent();

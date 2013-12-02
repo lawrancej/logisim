@@ -96,7 +96,10 @@ class SelectionAttributes extends AbstractAttributeSet {
             newSel = Collections.emptySet();
         }
 
-        else newSel = createSet(sel.getComponents());
+        else {
+            newSel = createSet(sel.getComponents());
+        }
+
         if (haveSameElements(newSel, oldSel)) {
             if (ignoreIfSelectionSame) {
                 return;

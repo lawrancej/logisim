@@ -125,7 +125,10 @@ class Measures {
             }
 
             else if (ret >= 8) cols = 8;
-            else cols = 4;
+            else {
+                cols = 4;
+            }
+
         }
         int lineWidth = headerWidth + cols * cellWidth
             + ((cols / 4) - 1) * spacerWidth;

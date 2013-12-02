@@ -161,7 +161,10 @@ public class Button extends InstanceFactory {
                     g.drawLine(px, py, px, py + 10);
                 }
 
-                else                          g.drawLine(px, py, px + 10, py);
+                else {
+                                             g.drawLine(px, py, px + 10, py);
+                }
+
                 GraphicsUtil.switchToWidth(g, 1);
             }
 

@@ -260,7 +260,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
             return true;
         }
 
-        else return contains(pt);
+        else {
+            return contains(pt);
+        }
+
     }
 
     //
