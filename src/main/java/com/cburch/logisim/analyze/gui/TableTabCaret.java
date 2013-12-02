@@ -221,7 +221,10 @@ class TableTabCaret {
                     if (cursorCol >= inputs) {
                         Entry cur = model.getOutputEntry(cursorRow, cursorCol - inputs);
                         if (cur == Entry.ZERO) cur = Entry.ONE;
-                        else if (cur == Entry.ONE) cur = Entry.DONT_CARE;
+                        else if (cur == Entry.ONE) {
+                            cur = Entry.DONT_CARE;
+                        }
+
                         else {
                             cur = Entry.ZERO;
                         }

@@ -301,8 +301,14 @@ public class Frame extends LFrame implements LocaleListener {
                               value = BorderLayout.EAST;
                     }
 
-                    else if (dir == Direction.SOUTH) value = BorderLayout.SOUTH;
-                    else if (dir == Direction.WEST)  value = BorderLayout.WEST;
+                    else if (dir == Direction.SOUTH) {
+                        value = BorderLayout.SOUTH;
+                    }
+
+                    else if (dir == Direction.WEST) {
+                         value = BorderLayout.WEST;
+                    }
+
                     else {
                                                     value = BorderLayout.NORTH;
                     }

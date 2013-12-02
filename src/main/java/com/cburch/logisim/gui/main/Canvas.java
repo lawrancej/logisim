@@ -350,7 +350,10 @@ public class Canvas extends JPanel
                     ret = o;
                 }
 
-                else if (o instanceof EditTool) ret = o;
+                else if (o instanceof EditTool) {
+                    ret = o;
+                }
+
             }
             return ret;
         }
@@ -835,7 +838,10 @@ public class Canvas extends JPanel
                             viewport.setNortheast(true);
                     }
 
-                    else if (isWest)    viewport.setNorthwest(true);
+                    else if (isWest) {
+                           viewport.setNorthwest(true);
+                    }
+
                     else {
                                    viewport.setNorth(true);
                     }
@@ -845,7 +851,10 @@ public class Canvas extends JPanel
                             viewport.setSoutheast(true);
                     }
 
-                    else if (isWest)    viewport.setSouthwest(true);
+                    else if (isWest) {
+                           viewport.setSouthwest(true);
+                    }
+
                     else {
                                    viewport.setSouth(true);
                     }
@@ -855,7 +864,10 @@ public class Canvas extends JPanel
                             viewport.setEast(true);
                     }
 
-                    else if (isWest)    viewport.setWest(true);
+                    else if (isWest) {
+                           viewport.setWest(true);
+                    }
+
                 }
             }
         }

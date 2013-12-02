@@ -50,9 +50,18 @@ public class Value {
                         value |= mask;
             }
 
-            else if (values[i] == FALSE)   /* do nothing */;
-            else if (values[i] == UNKNOWN) unknown |= mask;
-            else if (values[i] == ERROR)   error |= mask;
+            else if (values[i] == FALSE) {
+                  /* do nothing */;
+            }
+
+            else if (values[i] == UNKNOWN) {
+                unknown |= mask;
+            }
+
+            else if (values[i] == ERROR) {
+                  error |= mask;
+            }
+
             else {
                 throw new RuntimeException("unrecognized value "
                     + values[i]);
@@ -81,8 +90,14 @@ public class Value {
                       return Value.ERROR;
             }
 
-            else if ((unknown & 1) != 0)    return Value.UNKNOWN;
-            else if ((value & 1) != 0)  return Value.TRUE;
+            else if ((unknown & 1) != 0) {
+                   return Value.UNKNOWN;
+            }
+
+            else if ((value & 1) != 0) {
+                 return Value.TRUE;
+            }
+
             else {
                 return Value.FALSE;
             }
@@ -200,8 +215,14 @@ public class Value {
             return ERROR;
         }
 
-        else if ((unknown & mask) != 0) return UNKNOWN;
-        else if ((value & mask) != 0) return TRUE;
+        else if ((unknown & mask) != 0) {
+            return UNKNOWN;
+        }
+
+        else if ((value & mask) != 0) {
+            return TRUE;
+        }
+
         else {
             return FALSE;
         }
@@ -260,8 +281,14 @@ public class Value {
                        return "E";
             }
 
-            else if (unknown != 0) return "x";
-            else if (value != 0)   return "1";
+            else if (unknown != 0) {
+                return "x";
+            }
+
+            else if (value != 0) {
+                  return "1";
+            }
+
             else {
                                  return "0";
             }
@@ -406,8 +433,14 @@ public class Value {
                        return _("valueErrorSymbol");
             }
 
-            else if (unknown != 0) return _("valueUnknownSymbol");
-            else if (value != 0)   return "1";
+            else if (unknown != 0) {
+                return _("valueUnknownSymbol");
+            }
+
+            else if (value != 0) {
+                  return "1";
+            }
+
             else {
                                  return "0";
             }
@@ -574,7 +607,10 @@ public class Value {
                 return UNKNOWN_COLOR;
             }
 
-            else if (this == TRUE) return TRUE_COLOR;
+            else if (this == TRUE) {
+                return TRUE_COLOR;
+            }
+
             else {
                 return FALSE_COLOR;
             }

@@ -94,7 +94,10 @@ public class RoundRectangle extends Rectangular {
                 return inCircle(qx, qy, x + rx, y + ry, rx, ry);
             }
 
-            else if (qy < y + h - ry) return true;
+            else if (qy < y + h - ry) {
+                return true;
+            }
+
             else {
                 return inCircle(qx, qy, x + rx, y + h - ry, rx, ry);
             }
@@ -106,7 +109,10 @@ public class RoundRectangle extends Rectangular {
                 return inCircle(qx, qy, x + w - rx, y + ry, rx, ry);
             }
 
-            else if (qy < y + h - ry) return true;
+            else if (qy < y + h - ry) {
+                return true;
+            }
+
             else {
                 return inCircle(qx, qy, x + w - rx, y + h - ry, rx, ry);
             }

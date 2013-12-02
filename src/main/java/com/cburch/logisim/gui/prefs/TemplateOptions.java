@@ -81,8 +81,14 @@ class TemplateOptions extends OptionsPanel {
                     value = AppPreferences.TEMPLATE_PLAIN;
                 }
 
-                else if (empty.isSelected()) value = AppPreferences.TEMPLATE_EMPTY;
-                else if (custom.isSelected()) value = AppPreferences.TEMPLATE_CUSTOM;
+                else if (empty.isSelected()) {
+                    value = AppPreferences.TEMPLATE_EMPTY;
+                }
+
+                else if (custom.isSelected()) {
+                    value = AppPreferences.TEMPLATE_CUSTOM;
+                }
+
                 AppPreferences.setTemplateType(value);
             }
             computeEnabled();

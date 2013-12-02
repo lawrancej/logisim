@@ -32,7 +32,10 @@ class TruthTableMouseListener implements MouseListener {
                 newValue = Entry.ONE;
         }
 
-        else if (oldValue == Entry.ONE) newValue = Entry.DONT_CARE;
+        else if (oldValue == Entry.ONE) {
+            newValue = Entry.DONT_CARE;
+        }
+
         else {
                                       newValue = Entry.ZERO;
         }

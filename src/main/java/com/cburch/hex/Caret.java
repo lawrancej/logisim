@@ -157,7 +157,10 @@ public class Caret {
                 rows = hex.getVisibleRect().height / hex.getMeasures().getCellHeight();
                 if (rows > 2) rows--;
                 if (cursor >= rows * cols) setDot(cursor - rows * cols, shift);
-                else if (cursor >= cols) setDot(cursor % cols, shift);
+                else if (cursor >= cols) {
+                    setDot(cursor % cols, shift);
+                }
+
                 break;
             }
         }

@@ -104,7 +104,10 @@ public class WiringTool extends Tool {
                 direction = HORIZONTAL;
             }
 
-            else if (newY != start.getY()) direction = VERTICAL;
+            else if (newY != start.getY()) {
+                direction = VERTICAL;
+            }
+
         } else if (direction == HORIZONTAL && newX == start.getX()) {
             if (newY == start.getY()) {
                 direction = 0;

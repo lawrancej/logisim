@@ -29,11 +29,26 @@ public class InputEventUtil {
                         ret |= InputEvent.CTRL_DOWN_MASK;
             }
 
-            else if (s.equals(SHIFT))   ret |= InputEvent.SHIFT_DOWN_MASK;
-            else if (s.equals(ALT))     ret |= InputEvent.ALT_DOWN_MASK;
-            else if (s.equals(BUTTON1)) ret |= InputEvent.BUTTON1_DOWN_MASK;
-            else if (s.equals(BUTTON2)) ret |= InputEvent.BUTTON2_DOWN_MASK;
-            else if (s.equals(BUTTON3)) ret |= InputEvent.BUTTON3_DOWN_MASK;
+            else if (s.equals(SHIFT)) {
+                  ret |= InputEvent.SHIFT_DOWN_MASK;
+            }
+
+            else if (s.equals(ALT)) {
+                    ret |= InputEvent.ALT_DOWN_MASK;
+            }
+
+            else if (s.equals(BUTTON1)) {
+                ret |= InputEvent.BUTTON1_DOWN_MASK;
+            }
+
+            else if (s.equals(BUTTON2)) {
+                ret |= InputEvent.BUTTON2_DOWN_MASK;
+            }
+
+            else if (s.equals(BUTTON3)) {
+                ret |= InputEvent.BUTTON3_DOWN_MASK;
+            }
+
             else {
                 throw new NumberFormatException("InputEventUtil");
             }
@@ -92,11 +107,26 @@ public class InputEventUtil {
                           ret |= InputEvent.CTRL_DOWN_MASK;
             }
 
-            else if (s.equals(_("altMod")))       ret |= InputEvent.ALT_DOWN_MASK;
-            else if (s.equals(_("shiftMod")))     ret |= InputEvent.SHIFT_DOWN_MASK;
-            else if (s.equals(_("button1Mod")))   ret |= InputEvent.BUTTON1_DOWN_MASK;
-            else if (s.equals(_("button2Mod")))   ret |= InputEvent.BUTTON2_DOWN_MASK;
-            else if (s.equals(_("button3Mod")))   ret |= InputEvent.BUTTON3_DOWN_MASK;
+            else if (s.equals(_("altMod"))) {
+                      ret |= InputEvent.ALT_DOWN_MASK;
+            }
+
+            else if (s.equals(_("shiftMod"))) {
+                    ret |= InputEvent.SHIFT_DOWN_MASK;
+            }
+
+            else if (s.equals(_("button1Mod"))) {
+                  ret |= InputEvent.BUTTON1_DOWN_MASK;
+            }
+
+            else if (s.equals(_("button2Mod"))) {
+                  ret |= InputEvent.BUTTON2_DOWN_MASK;
+            }
+
+            else if (s.equals(_("button3Mod"))) {
+                  ret |= InputEvent.BUTTON3_DOWN_MASK;
+            }
+
             else {
                 throw new NumberFormatException("InputEventUtil");
             }

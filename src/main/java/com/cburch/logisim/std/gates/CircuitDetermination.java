@@ -56,7 +56,10 @@ abstract class CircuitDetermination {
                     subFactory = OrGate.FACTORY;
                 }
 
-                else if (factory == NandGate.FACTORY) subFactory = AndGate.FACTORY;
+                else if (factory == NandGate.FACTORY) {
+                    subFactory = AndGate.FACTORY;
+                }
+
                 else {
                     subFactory = factory;
                 }

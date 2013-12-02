@@ -71,7 +71,10 @@ public class LineUtil {
                 u = 0;
             }
 
-            else if (num < len2) u = num / len2;
+            else if (num < len2) {
+                u = num / len2;
+            }
+
             else {
                 u = 1;
             }

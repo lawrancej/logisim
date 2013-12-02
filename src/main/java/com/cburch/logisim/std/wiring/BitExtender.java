@@ -73,9 +73,18 @@ public class BitExtender extends InstanceFactory {
             s0 = _("extenderZeroLabel");
         }
 
-        else if (type.equals("one")) s0 = _("extenderOneLabel");
-        else if (type.equals("sign")) s0 = _("extenderSignLabel");
-        else if (type.equals("input")) s0 = _("extenderInputLabel");
+        else if (type.equals("one")) {
+            s0 = _("extenderOneLabel");
+        }
+
+        else if (type.equals("sign")) {
+            s0 = _("extenderSignLabel");
+        }
+
+        else if (type.equals("input")) {
+            s0 = _("extenderInputLabel");
+        }
+
         // should never happen
         else {
             s0 = "???";

@@ -13,7 +13,10 @@ class MemContentsSub {
                   return new ByteContents(size);
         }
 
-        else if (bits <= 16) return new ShortContents(size);
+        else if (bits <= 16) {
+            return new ShortContents(size);
+        }
+
         else {
                            return new IntContents(size);
         }

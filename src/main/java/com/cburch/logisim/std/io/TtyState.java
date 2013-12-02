@@ -58,7 +58,10 @@ class TtyState implements InstanceData, Cloneable {
             return rowData[index];
         }
 
-        else if (index == row) return lastRow.toString();
+        else if (index == row) {
+            return lastRow.toString();
+        }
+
         else {
             return "";
         }

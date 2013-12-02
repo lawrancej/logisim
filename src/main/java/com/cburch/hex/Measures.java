@@ -124,7 +124,10 @@ class Measures {
                 cols = 16;
             }
 
-            else if (ret >= 8) cols = 8;
+            else if (ret >= 8) {
+                cols = 8;
+            }
+
             else {
                 cols = 4;
             }

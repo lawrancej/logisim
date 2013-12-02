@@ -318,7 +318,10 @@ public class SubcircuitFactory extends InstanceFactory {
                     lines++;
                 }
 
-                else if (c == '\\') backs = true;
+                else if (c == '\\') {
+                    backs = true;
+                }
+
                 back = label.indexOf('\\', back + 2);
             }
 

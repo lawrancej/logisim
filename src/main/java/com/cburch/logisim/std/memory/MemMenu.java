@@ -76,9 +76,18 @@ class MemMenu implements ActionListener, MenuExtender {
             doEdit();
         }
 
-        else if (src == clear) doClear();
-        else if (src == load) doLoad();
-        else if (src == save) doSave();
+        else if (src == clear) {
+            doClear();
+        }
+
+        else if (src == load) {
+            doLoad();
+        }
+
+        else if (src == save) {
+            doSave();
+        }
+
     }
 
     private void doEdit() {

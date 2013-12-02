@@ -26,7 +26,10 @@ class WireIterator implements Iterator<Location> {
             deltaX = 10;
         }
 
-        else if (curX > destX) deltaX = -10;
+        else if (curX > destX) {
+            deltaX = -10;
+        }
+
         else {
             deltaX = 0;
         }
@@ -35,7 +38,10 @@ class WireIterator implements Iterator<Location> {
             deltaY = 10;
         }
 
-        else if (curY > destY) deltaY = -10;
+        else if (curY > destY) {
+            deltaY = -10;
+        }
+
         else {
             deltaY = 0;
         }

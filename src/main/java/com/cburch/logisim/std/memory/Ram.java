@@ -92,7 +92,10 @@ public class Ram extends Mem {
             portCount += 2;
         }
 
-        else if (separate) portCount += 5;
+        else if (separate) {
+            portCount += 5;
+        }
+
         else {
             portCount += 3;
         }

@@ -395,8 +395,14 @@ public class Analyze {
                         out = Entry.ONE;
                     }
 
-                    else if (outValue == Value.FALSE) out = Entry.ZERO;
-                    else if (outValue == Value.ERROR) out = Entry.BUS_ERROR;
+                    else if (outValue == Value.FALSE) {
+                        out = Entry.ZERO;
+                    }
+
+                    else if (outValue == Value.ERROR) {
+                        out = Entry.BUS_ERROR;
+                    }
+
                     else {
                         out = Entry.DONT_CARE;
                     }

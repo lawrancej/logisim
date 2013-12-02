@@ -193,7 +193,10 @@ public class DotMatrix extends InstanceFactory {
                         c = onColor;
                     }
 
-                    else if (val == Value.FALSE) c = offColor;
+                    else if (val == Value.FALSE) {
+                        c = offColor;
+                    }
+
                     else {
                         c = Value.ERROR_COLOR;
                     }
