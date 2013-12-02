@@ -84,7 +84,7 @@ public class ProjectActions {
         LogisimFile file;
         try {
             file = loader.openLogisimFile(templReader);
-        } catch (Throwable t) {
+        } catch (Exception t) {
             file = LogisimFile.createNew(loader);
             file.addCircuit(new Circuit("main"));
         } finally {

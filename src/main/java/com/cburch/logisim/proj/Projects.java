@@ -47,7 +47,7 @@ public class Projects {
                 mostRecentFrame = frame;
                 try {
                     frameLocations.put(frame, frame.getLocationOnScreen());
-                } catch (Throwable t) { }
+                } catch (Exception t) { }
             }
         }
 

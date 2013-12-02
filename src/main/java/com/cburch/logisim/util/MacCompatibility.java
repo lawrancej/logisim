@@ -19,7 +19,7 @@ public class MacCompatibility {
         double versionValue;
         try {
             versionValue = MRJAdapter.mrjVersion;
-        } catch (Throwable t) {
+        } catch (Exception t) {
             versionValue = 0.0;
         }
         mrjVersion = versionValue;
@@ -28,7 +28,7 @@ public class MacCompatibility {
     public static boolean isAboutAutomaticallyPresent() {
         try {
             return MRJAdapter.isAboutAutomaticallyPresent();
-        } catch (Throwable t) {
+        } catch (Exception t) {
             return false;
         }
     }
@@ -36,7 +36,7 @@ public class MacCompatibility {
     public static boolean isPreferencesAutomaticallyPresent() {
         try {
             return MRJAdapter.isPreferencesAutomaticallyPresent();
-        } catch (Throwable t) {
+        } catch (Exception t) {
             return false;
         }
     }
@@ -44,7 +44,7 @@ public class MacCompatibility {
     public static boolean isQuitAutomaticallyPresent() {
         try {
             return MRJAdapter.isQuitAutomaticallyPresent();
-        } catch (Throwable t) {
+        } catch (Exception t) {
             return false;
         }
     }
@@ -52,7 +52,7 @@ public class MacCompatibility {
     public static boolean isSwingUsingScreenMenuBar() {
         try {
             return MRJAdapter.isSwingUsingScreenMenuBar();
-        } catch (Throwable t) {
+        } catch (Exception t) {
             return false;
         }
     }
@@ -60,7 +60,7 @@ public class MacCompatibility {
     public static void setFramelessJMenuBar(JMenuBar menubar) {
         try {
             MRJAdapter.setFramelessJMenuBar(menubar);
-        } catch (Throwable t) { }
+        } catch (Exception t) { }
     }
 
     public static void setFileCreatorAndType(File dest, String app, String type)
@@ -72,7 +72,7 @@ public class MacCompatibility {
             } catch (IOException e) {
                 ioExcept = e;
             }
-        } catch (Throwable t) { }
+        } catch (Exception t) { }
         if (ioExcept != null) throw ioExcept;
     }
 

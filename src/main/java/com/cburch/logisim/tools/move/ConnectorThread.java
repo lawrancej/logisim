@@ -69,7 +69,7 @@ class ConnectorThread extends Thread {
                     MoveGesture gesture = req.getMoveGesture();
                     gesture.notifyResult(req, result);
                 }
-            } catch (Throwable t) {
+            } catch (Exception t) {
                 t.printStackTrace();
                 if (wasOverride) {
                     MoveResult result = new MoveResult(req,

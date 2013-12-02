@@ -102,7 +102,7 @@ public class ZipClassLoader extends ClassLoader {
                     }
                     if (DEBUG >= 2) System.err.println("processed: " + request.getResponse()); //OK
                 }
-            } catch (Throwable t) {
+            } catch (Exception t) {
                 if (DEBUG >= 3) { System.err.print("uncaught: "); t.printStackTrace(); } //OK
             } finally {
                 if (zipFile != null) {
@@ -148,7 +148,7 @@ public class ZipClassLoader extends ClassLoader {
                         if (DEBUG >= 3) System.err.println("  found: " + url); //OK
                     }
                 }
-            } catch (Throwable ex) {
+            } catch (Exception ex) {
                 if (DEBUG >= 3) System.err.println("  error retrieving data"); //OK
                 ex.printStackTrace();
             }
@@ -175,7 +175,7 @@ public class ZipClassLoader extends ClassLoader {
                         }
                     }
                 }
-            } catch (Throwable ex) {
+            } catch (Exception ex) {
                 if (DEBUG >= 3) System.err.println("  error retrieving data"); //OK
                 ex.printStackTrace();
             } finally {

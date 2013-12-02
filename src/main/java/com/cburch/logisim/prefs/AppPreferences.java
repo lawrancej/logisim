@@ -317,7 +317,7 @@ public class AppPreferences {
                 System.setProperty("sun.java2d.opengl", "False");
                 System.setProperty("sun.java2d.d3d", "True");
             }
-        } catch (Throwable t) { }
+        } catch (Exception t) { }
     }
 
     //
@@ -351,7 +351,7 @@ public class AppPreferences {
                     } finally {
                         in.close();
                     }
-                } catch (Throwable e) {
+                } catch (Exception e) {
                     plainTemplate = getEmptyTemplate();
                 }
             }
@@ -371,7 +371,7 @@ public class AppPreferences {
                     reader = new FileInputStream(toRead);
                     customTemplate = Template.create(reader);
                     customTemplateFile = templateFile;
-                } catch (Throwable t) {
+                } catch (Exception t) {
                     setTemplateFile(null);
                     customTemplate = null;
                     customTemplateFile = null;

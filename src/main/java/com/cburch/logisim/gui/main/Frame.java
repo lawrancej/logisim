@@ -533,7 +533,7 @@ public class Frame extends LFrame implements LocaleListener {
                 }
             }
             return gcBestPoint;
-        } catch (Throwable t) {
+        } catch (Exception t) {
             return null;
         }
     }

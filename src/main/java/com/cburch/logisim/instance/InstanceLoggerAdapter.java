@@ -17,7 +17,7 @@ class InstanceLoggerAdapter implements Loggable {
             this.comp = comp;
             this.logger = loggerClass.newInstance();
             this.state = new InstanceStateImpl(null, comp);
-        } catch (Throwable t) {
+        } catch (Exception t) {
             handleError(t, loggerClass);
             logger = null;
         }

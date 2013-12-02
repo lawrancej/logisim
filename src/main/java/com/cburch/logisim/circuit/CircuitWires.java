@@ -532,7 +532,7 @@ class CircuitWires {
                     computeBundleMap(ret);
                     bundleMap = ret;
                     break;
-                } catch (Throwable t) {
+                } catch (Exception t) {
                     if (tries == 0) {
                         t.printStackTrace();
                         bundleMap = ret;

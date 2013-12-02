@@ -121,7 +121,7 @@ public class FactoryDescription {
                     factoryLoadAttempted = true;
                     return ret;
                 }
-            } catch (Throwable t) {
+            } catch (Exception t) {
                 String name = t.getClass().getName();
                 String m = t.getMessage();
                 if (m != null) msg = msg + ": " + name + ": " + m;

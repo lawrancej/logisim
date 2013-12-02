@@ -254,7 +254,7 @@ public class SvgReader {
                         String repl = opacity.substring(0, comma) + "."
                             + opacity.substring(comma + 1);
                         x = Double.parseDouble(repl);
-                    } catch (Throwable t) {
+                    } catch (Exception t) {
                         throw e;
                     }
                 } else {

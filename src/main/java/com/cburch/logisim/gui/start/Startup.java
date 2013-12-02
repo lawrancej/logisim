@@ -65,10 +65,10 @@ public class Startup {
             MacOsAdapter.addListeners(true);
         } catch (ClassNotFoundException e) {
             return;
-        } catch (Throwable t) {
+        } catch (Exception t) {
             try {
                 MacOsAdapter.addListeners(false);
-            } catch (Throwable t2) { }
+            } catch (Exception t2) { }
         }
     }
 
@@ -114,7 +114,7 @@ public class Startup {
             try {
                 TtyInterface.run(this);
                 return;
-            } catch (Throwable t) {
+            } catch (Exception t) {
                 t.printStackTrace();
                 System.exit(-1);
                 return;
@@ -128,7 +128,7 @@ public class Startup {
             try {
                 monitor = new SplashScreen();
                 monitor.setVisible(true);
-            } catch (Throwable t) {
+            } catch (Exception t) {
                 monitor = null;
                 showSplash = false;
             }
