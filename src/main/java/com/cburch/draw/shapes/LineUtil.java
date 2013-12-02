@@ -27,7 +27,8 @@ public class LineUtil {
         double dx = x1 - x0;
         double dy = y1 - y0;
         double len2 = dx * dx + dy * dy;
-        if (len2 < zeroMax * zeroMax) { // the "segment" is essentially a point
+        // the "segment" is essentially a point
+        if (len2 < zeroMax * zeroMax) {
             return distanceSquared(xq, yq, (x0 + x1) / 2, (y0 + y1) / 2);
         }
 
@@ -77,23 +78,32 @@ public class LineUtil {
             int d45 = (Math.abs(mx - px) + Math.abs(my - py)) / 2;
             int d = (int) (4 * ang / Math.PI + 4.5);
             switch (d) {
-            case 0: case 8: // going west
-            case 4: // going east
+            // going west
+            case 0: case 8:
+            // going east
+            case 4:
                 return Location.create(mx, py);
-            case 2: // going north
-            case 6: // going south
+            // going north
+            case 2:
+            // going south
+            case 6:
                 return Location.create(px, my);
-            case 1: // going northwest
+            // going northwest
+            case 1:
                 return Location.create(px - d45, py - d45);
-            case 3: // going northeast
+            // going northeast
+            case 3:
                 return Location.create(px + d45, py - d45);
-            case 5: // going southeast
+            // going southeast
+            case 5:
                 return Location.create(px + d45, py + d45);
-            case 7: // going southwest
+            // going southwest
+            case 7:
                 return Location.create(px - d45, py + d45);
             }
         }
-        return Location.create(mx, my); // should never happen
+        // should never happen
+        return Location.create(mx, my);
     }
 
 }

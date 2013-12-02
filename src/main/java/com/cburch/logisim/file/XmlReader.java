@@ -104,7 +104,8 @@ class XmlReader {
             for (Element sub_elt : XmlIterator.forChildElements(elt)) {
                 String name = sub_elt.getTagName();
                 if (name.equals("circuit") || name.equals("lib")) {
-                    ; // Nothing to do: Done earlier.
+                    // Nothing to do: Done earlier.
+                    ;
                 } else if (name.equals("options")) {
                     try {
                         initAttributeSet(sub_elt, file.getOptions().getAttributeSet(), null);

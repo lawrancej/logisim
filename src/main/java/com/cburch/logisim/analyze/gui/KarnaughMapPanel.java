@@ -350,13 +350,15 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
                 g.fillRoundRect(x1, y,  w, h, d, d);
                 g.fillRoundRect(x,  y1, w, h, d, d);
                 g.fillRoundRect(x1, y1, w, h, d, d);
-            } else if (oneRowFound) { // first and last columns
+            // first and last columns
+            } else if (oneRowFound) {
                 int w = cellWidth - IMP_INSET;
                 int h = 4 * cellHeight - 2 * IMP_INSET;
                 int x1 = x + 3 * cellWidth + IMP_INSET;
                 g.fillRoundRect(x,  y + IMP_INSET, w, h, d, d);
                 g.fillRoundRect(x1, y + IMP_INSET, w, h, d, d);
-            } else { // first and last rows
+            // first and last rows
+            } else {
                 int w = 4 * cellWidth - 2 * IMP_INSET;
                 int h = cellHeight - IMP_INSET;
                 int y1 = y + 3 * cellHeight + IMP_INSET;
@@ -393,7 +395,8 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
             g.fillArc(x1, y0, d, d, 180, 90);
             g.fillArc(x1, y1 - d, d, d, 180, -90);
             */
-        } else { // numRows == 4
+        // numRows == 4
+        } else {
             int left = x + colMin * cellWidth + IMP_INSET;
             int w = numCols * cellWidth - 2 * IMP_INSET;
             int h = cellHeight - IMP_INSET;

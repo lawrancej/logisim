@@ -54,13 +54,15 @@ class SplitterPainter {
         int spine0y = y0 + parms.getSpine0Y();
         int spine1x = x0 + parms.getSpine1X();
         int spine1y = y0 + parms.getSpine1Y();
-        if (spine0x == spine1x && spine0y == spine1y) { // centered
+        // centered
+        if (spine0x == spine1x && spine0y == spine1y) {
             int fanout = attrs.fanout;
             spine0x = x0 + parms.getEnd0X() + parms.getEndToSpineDeltaX();
             spine0y = y0 + parms.getEnd0Y() + parms.getEndToSpineDeltaY();
             spine1x = spine0x + (fanout - 1) * parms.getEndToEndDeltaX();
             spine1y = spine0y + (fanout - 1) * parms.getEndToEndDeltaY();
-            if (parms.getEndToEndDeltaX() == 0) { // vertical spine
+            // vertical spine
+            if (parms.getEndToEndDeltaX() == 0) {
                 if (spine0y < spine1y) {
                     spine0y++;
                     spine1y--;
@@ -79,7 +81,8 @@ class SplitterPainter {
                 }
                 g.drawLine(x0, y0 + parms.getSpine1Y() / 4, x0, spine0y);
             }
-            if (fanout <= 1) { // spine is empty
+            // spine is empty
+            if (fanout <= 1) {
                 int diam = SPINE_DOT;
                 g.fillOval(spine0x - diam / 2, spine0y - diam / 2, diam, diam);
             } else {

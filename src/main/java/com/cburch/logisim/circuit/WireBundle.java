@@ -15,7 +15,8 @@ class WireBundle {
     private WireBundle parent;
     private Location widthDeterminant = null;
     WireThread[] threads = null;
-    CopyOnWriteArraySet<Location> points = new CopyOnWriteArraySet<Location>(); // points bundle hits
+    // points bundle hits
+    CopyOnWriteArraySet<Location> points = new CopyOnWriteArraySet<Location>();
     private WidthIncompatibilityData incompatibilityData = null;
 
     WireBundle() {
@@ -34,8 +35,10 @@ class WireBundle {
         }
         if (this.width != BitWidth.UNKNOWN) {
             if (width.equals(this.width)) {
-                return; // the widths match, and the bundle is already set; nothing to do
-            } else {    // the widths are broken: Create incompatibilityData holding this info
+                // the widths match, and the bundle is already set; nothing to do
+                return;
+            // the widths are broken: Create incompatibilityData holding this info
+            } else {
                 incompatibilityData = new WidthIncompatibilityData();
                 incompatibilityData.add(widthDeterminant, this.width);
                 incompatibilityData.add(det, width);

@@ -40,8 +40,10 @@ class WireRepair extends CircuitTransaction {
             } else if (set0 != null && set1 == null) {
                 set0.add(b);
                 map.put(b, set0);
-            } else if (set0 != set1) { // neither is null, and they are different
-                if (set0.size() > set1.size()) { // ensure set1 is the larger
+            // neither is null, and they are different
+            } else if (set0 != set1) {
+                // ensure set1 is the larger
+                if (set0.size() > set1.size()) {
                     ArrayList<Wire> temp = set0;
                     set0 = set1;
                     set1 = temp;

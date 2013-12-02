@@ -103,16 +103,21 @@ public class ReplacementMap {
     void append(ReplacementMap next) {
         for (Map.Entry<Component,HashSet<Component>> e : next.map.entrySet()) {
             Component b = e.getKey();
-            HashSet<Component> cs = e.getValue(); // what b is replaced by
-            HashSet<Component> as = this.inverse.remove(b); // what was replaced to get b
-            if (as == null) {                   // b pre-existed replacements so
-                as = new HashSet<Component>(3); // we say it replaces itself.
+            // what b is replaced by
+            HashSet<Component> cs = e.getValue();
+            // what was replaced to get b
+            HashSet<Component> as = this.inverse.remove(b);
+            // b pre-existed replacements so
+            if (as == null) {
+                // we say it replaces itself.
+                as = new HashSet<Component>(3);
                 as.add(b);
             }
 
             for (Component a : as) {
                 HashSet<Component> aDst = this.map.get(a);
-                if (aDst == null) { // should happen when b pre-existed only
+                // should happen when b pre-existed only
+                if (aDst == null) {
                     aDst = new HashSet<Component>(cs.size());
                     this.map.put(a, aDst);
                 }
@@ -121,7 +126,8 @@ public class ReplacementMap {
             }
 
             for (Component c : cs) {
-                HashSet<Component> cSrc = this.inverse.get(c); // should always be null
+                // should always be null
+                HashSet<Component> cSrc = this.inverse.get(c);
                 if (cSrc == null) {
                     cSrc = new HashSet<Component>(as.size());
                     this.inverse.put(c, cSrc);
@@ -135,7 +141,8 @@ public class ReplacementMap {
             if (!inverse.containsKey(c)) {
                 HashSet<Component> bs = e.getValue();
                 if (!bs.isEmpty()) {
-                    System.err.println("internal error: component replaced but not represented"); //OK
+                    //OK
+                    System.err.println("internal error: component replaced but not represented");
                 }
                 inverse.put(c, new HashSet<Component>(3));
             }

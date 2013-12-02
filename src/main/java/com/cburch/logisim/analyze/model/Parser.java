@@ -53,11 +53,13 @@ public class Parser {
         for (int i = 0, n = tokens.size(); i < n; i++) {
             Token token = (Token) tokens.get(i);
             if (token.type == TOKEN_IDENT && token.text.equals(variable)) {
-                ; // just ignore it
+                // just ignore it
+                ;
             } else if (token.type == TOKEN_WHITE) {
                 if (lastWhite != null) {
                     if (lastWhite.text.length() >= token.text.length()) {
-                        ; // don't repeat shorter whitespace
+                        // don't repeat shorter whitespace
+                        ;
                     } else {
                         ret.replace(ret.length() - lastWhite.text.length(),
                                 ret.length(), token.text);

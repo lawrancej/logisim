@@ -118,7 +118,8 @@ public class Poly extends FillableCanvasObject {
         } else if (type == DrawAttr.PAINT_FILL) {
             GeneralPath path = getPath();
             return path.contains(loc.getX(), loc.getY());
-        } else { // fill and stroke
+        // fill and stroke
+        } else {
             GeneralPath path = getPath();
             if (path.contains(loc.getX(), loc.getY())) return true;
             int width = getStrokeWidth();

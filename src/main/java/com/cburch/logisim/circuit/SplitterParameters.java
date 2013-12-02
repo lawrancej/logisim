@@ -7,18 +7,25 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.util.GraphicsUtil;
 
 class SplitterParameters {
-    private int dxEnd0; // location of split end 0 relative to origin
+    // location of split end 0 relative to origin
+    private int dxEnd0;
     private int dyEnd0;
-    private int ddxEnd; // distance from split end i to split end (i + 1)
+    // distance from split end i to split end (i + 1)
+    private int ddxEnd;
     private int ddyEnd;
-    private int dxEndSpine; // distance from split end to spine
+    // distance from split end to spine
+    private int dxEndSpine;
     private int dyEndSpine;
-    private int dxSpine0; // distance from origin to far end of spine
+    // distance from origin to far end of spine
+    private int dxSpine0;
     private int dySpine0;
-    private int dxSpine1; // distance from origin to near end of spine
+    // distance from origin to near end of spine
+    private int dxSpine1;
     private int dySpine1;
-    private int textAngle; // angle to rotate text
-    private int halign; // justification of text
+    // angle to rotate text
+    private int textAngle;
+    // justification of text
+    private int halign;
     private int valign;
 
     SplitterParameters(SplitterAttributes attrs) {
@@ -38,7 +45,8 @@ class SplitterParameters {
         int width = 20;
 
         int offs = 6;
-        if (facing == Direction.NORTH || facing == Direction.SOUTH) { // ^ or V
+        // ^ or V
+        if (facing == Direction.NORTH || facing == Direction.SOUTH) {
             int m = facing == Direction.NORTH ? 1 : -1;
             dxEnd0 = justify == 0 ? 10 * ((fanout + 1) / 2 - 1) : m * justify < 0 ? -10 : 10 * fanout;
             dyEnd0 = -m * width;
@@ -53,7 +61,8 @@ class SplitterParameters {
             textAngle = 90;
             halign = m > 0 ? GraphicsUtil.H_RIGHT : GraphicsUtil.H_LEFT;
             valign = m * justify <= 0 ? GraphicsUtil.V_BASELINE : GraphicsUtil.V_TOP;
-        } else { // > or <
+        // > or <
+        } else {
             int m = facing == Direction.WEST ? -1 : 1;
             dxEnd0 = m * width;
             dyEnd0 = justify == 0 ? -10 * (fanout / 2) : m * justify > 0 ? 10 : -10 * fanout;

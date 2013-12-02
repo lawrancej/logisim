@@ -15,7 +15,8 @@ public interface AttributeSet {
     public Attribute<?> getAttribute(String name);
 
     public boolean isReadOnly(Attribute<?> attr);
-    public void setReadOnly(Attribute<?> attr, boolean value);  // optional
+    // optional
+    public void setReadOnly(Attribute<?> attr, boolean value);
 
     public boolean isToSave(Attribute<?> attr);
 

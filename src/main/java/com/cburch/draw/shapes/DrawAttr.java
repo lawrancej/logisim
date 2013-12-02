@@ -53,11 +53,14 @@ public class DrawAttr {
     public static final Attribute<Integer> CORNER_RADIUS
         = Attributes.forIntegerRange("rx", __("attrRx"), 1, 1000);
 
-    public static final List<Attribute<?>> ATTRS_TEXT // for text
+    // for text
+    public static final List<Attribute<?>> ATTRS_TEXT
         = createAttributes(new Attribute[] { FONT, ALIGNMENT, FILL_COLOR });
-    public static final List<Attribute<?>> ATTRS_TEXT_TOOL // for text tool
+    // for text tool
+    public static final List<Attribute<?>> ATTRS_TEXT_TOOL
         = createAttributes(new Attribute[] { FONT, ALIGNMENT, TEXT_DEFAULT_FILL });
-    public static final List<Attribute<?>> ATTRS_STROKE // for line, polyline
+    // for line, polyline
+    public static final List<Attribute<?>> ATTRS_STROKE
         = createAttributes(new Attribute[] { STROKE_WIDTH, STROKE_COLOR });
 
     // attribute lists for rectangle, oval, polygon

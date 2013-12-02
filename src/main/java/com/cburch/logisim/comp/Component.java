@@ -55,7 +55,8 @@ public interface Component {
     public Object getFeature(Object key);
 
     // propagation methods
-    public List<EndData> getEnds(); // list of EndDatas
+    // list of EndDatas
+    public List<EndData> getEnds();
     public EndData getEnd(int index);
     public boolean endsAt(Location pt);
     public void propagate(CircuitState state);

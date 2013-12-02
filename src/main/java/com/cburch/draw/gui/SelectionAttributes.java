@@ -193,7 +193,8 @@ public class SelectionAttributes extends AbstractAttributeSet {
                 if (ret == null) {
                     ret = val;
                 } else if (val != null && val.equals(ret)) {
-                    ; // keep on, making sure everything else matches
+                    // keep on, making sure everything else matches
+                    ;
                 } else {
                     return null;
                 }

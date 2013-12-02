@@ -63,7 +63,8 @@ public class OutputExpressions {
             expr = newExpr;
             exprString = newExprString;
 
-            if (expr != minimalExpr) { // for efficiency to avoid recomputation
+            // for efficiency to avoid recomputation
+            if (expr != minimalExpr) {
                 Entry[] values = computeColumn(model.getTruthTable(), expr);
                 int outputColumn = model.getOutputs().indexOf(output);
                 updatingTable = true;
@@ -84,7 +85,8 @@ public class OutputExpressions {
             minimalExpr = null;
 
             if (exprString != null) {
-                exprString = null; // invalidate it so it recomputes
+                // invalidate it so it recomputes
+                exprString = null;
             }
             if (expr != null) {
                 Expression oldExpr = expr;
@@ -385,7 +387,8 @@ public class OutputExpressions {
         } else {
             Iterator<Implicant> ait = a.iterator();
             for (Implicant bi : b) {
-                if (!ait.hasNext()) return false; // should never happen
+                // should never happen
+                if (!ait.hasNext()) return false;
                 Implicant ai = ait.next();
                 if (!ai.equals(bi)) return false;
             }

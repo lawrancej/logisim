@@ -169,6 +169,7 @@ public class LineTool extends AbstractTool {
                 return Location.create(px, my);
             }
         }
-        return Location.create(mx, my); // should never happen
+        // should never happen
+        return Location.create(mx, my);
     }
 }

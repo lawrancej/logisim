@@ -167,7 +167,8 @@ public class TextTool extends AbstractTool {
 
     @Override
     public void draw(Canvas canvas, Graphics g) {
-        ; // actually, there's nothing to do here - it's handled by the field
+        // actually, there's nothing to do here - it's handled by the field
+        ;
     }
 
     private void cancelText(Canvas canvas) {

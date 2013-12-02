@@ -102,16 +102,26 @@ public abstract class RadixOption extends AttributeOption {
         @Override
         public int getMaxLength(BitWidth width) {
             switch (width.getWidth()) {
-            case  2: case  3: case  4:          return 2; // 2..8
-            case  5: case  6: case  7:          return 3; // 16..64
-            case  8: case  9: case 10:          return 4; // 128..512
-            case 11: case 12: case 13: case 14: return 5; // 1K..8K
-            case 15: case 16: case 17:          return 6; // 16K..64K
-            case 18: case 19: case 20:          return 7; // 128K..256K
-            case 21: case 22: case 23: case 24: return 8; // 1M..8M
-            case 25: case 26: case 27:          return 9; // 16M..64M
-            case 28: case 29: case 30:          return 10; // 128M..512M
-            case 31: case 32:                   return 11; // 1G..2G
+            // 2..8
+            case  2: case  3: case  4:          return 2;
+            // 16..64
+            case  5: case  6: case  7:          return 3;
+            // 128..512
+            case  8: case  9: case 10:          return 4;
+            // 1K..8K
+            case 11: case 12: case 13: case 14: return 5;
+            // 16K..64K
+            case 15: case 16: case 17:          return 6;
+            // 128K..256K
+            case 18: case 19: case 20:          return 7;
+            // 1M..8M
+            case 21: case 22: case 23: case 24: return 8;
+            // 16M..64M
+            case 25: case 26: case 27:          return 9;
+            // 128M..512M
+            case 28: case 29: case 30:          return 10;
+            // 1G..2G
+            case 31: case 32:                   return 11;
             default:                            return 1;
             }
         }

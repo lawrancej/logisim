@@ -56,7 +56,8 @@ public class SvgReader {
                 ret.setValue(DrawAttr.PAINT_TYPE, DrawAttr.PAINT_STROKE_FILL);
             }
         }
-        attrs = ret.getAttributes(); // since changing paintType could change it
+        // since changing paintType could change it
+        attrs = ret.getAttributes();
         if (attrs.contains(DrawAttr.STROKE_WIDTH) && elt.hasAttribute("stroke-width")) {
             Integer width = Integer.valueOf(elt.getAttribute("stroke-width"));
             ret.setValue(DrawAttr.STROKE_WIDTH, width);
@@ -168,7 +169,8 @@ public class SvgReader {
     private static AbstractCanvasObject createPath(Element elt) {
         Matcher patt = PATH_REGEX.matcher(elt.getAttribute("d"));
         List<String> tokens = new ArrayList<String>();
-        int type = -1; // -1 error, 0 start, 1 curve, 2 polyline
+        // -1 error, 0 start, 1 curve, 2 polyline
+        int type = -1;
         while (patt.find()) {
             String token = patt.group();
             tokens.add(token);

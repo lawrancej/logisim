@@ -44,11 +44,13 @@ public class Canvas extends JComponent {
     }
 
     public void toolGestureComplete(CanvasTool tool, CanvasObject created) {
-        ; // nothing to do - subclass may override
+        // nothing to do - subclass may override
+        ;
     }
 
     protected JPopupMenu showPopupMenu(MouseEvent e, CanvasObject clicked) {
-        return null; // subclass will override if it supports popup menus
+        // subclass will override if it supports popup menus
+        return null;
     }
 
     public Selection getSelection() {
@@ -90,15 +92,18 @@ public class Canvas extends JComponent {
     }
 
     public double getZoomFactor() {
-        return 1.0; // subclass will have to override this
+        // subclass will have to override this
+        return 1.0;
     }
 
     public int snapX(int x) {
-        return x; // subclass will have to override this
+        // subclass will have to override this
+        return x;
     }
 
     public int snapY(int y) {
-        return y; // subclass will have to override this
+        // subclass will have to override this
+        return y;
     }
 
     @Override

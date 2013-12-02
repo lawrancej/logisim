@@ -32,13 +32,15 @@ public class CurveUtil {
         // more accurate evaluation:
         // see Andree Michelle for a faster but less readable method
         if (xMin == p1[0] || xMax == p1[0]) {
-            double u = -A[0] / B[0]; // u where getTan(u)[0] == 0
+            // u where getTan(u)[0] == 0
+            double u = -A[0] / B[0];
             u = (1 - u) * (1 - u) * p0[0] + 2 * u * (1 - u) * p1[0] + u * u * p2[0];
             if (xMin == p1[0]) xMin = u;
             else xMax = u;
         }
         if (yMin == p1[1] || yMax == p1[1]) {
-            double u = -A[1] / B[1]; // u where getTan(u)[1] == 0
+            // u where getTan(u)[1] == 0
+            double u = -A[1] / B[1];
             u = (1 - u) * (1 - u) * p0[1] + 2 * u * (1 - u) * p1[1] + u * u * p2[1];
             if (yMin == p1[1]) yMin = u;
             else yMax = u;
@@ -129,7 +131,8 @@ public class CurveUtil {
     private static double[] solveCubic(double a, double b, double c, double d) {
         if (Math.abs(a) > zeroMax) {
             // let's adopt form: x3 + ax2 + bx + d = 0
-            double z = a; // multi-purpose util variable
+            // multi-purpose util variable
+            double z = a;
             a = b / z;
             b = c / z;
             c = d / z;

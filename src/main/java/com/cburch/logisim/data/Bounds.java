@@ -203,7 +203,8 @@ public class Bounds {
         }
     }
 
-    public Bounds expand(int d) { // d pixels in each direction
+    // d pixels in each direction
+    public Bounds expand(int d) {
         if (this == EMPTY_BOUNDS) return this;
         if (d == 0) return this;
         return create(x - d, y - d, wid + 2 * d, ht + 2 * d);

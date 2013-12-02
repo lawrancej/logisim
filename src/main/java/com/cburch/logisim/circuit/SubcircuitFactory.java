@@ -181,7 +181,8 @@ public class SubcircuitFactory extends InstanceFactory {
         attrs.setPinInstances(pins);
         instance.setPorts(ports);
         instance.recomputeBounds();
-        configureLabel(instance); // since this affects the circuit's bounds
+        // since this affects the circuit's bounds
+        configureLabel(instance);
     }
 
     private void configureLabel(Instance instance) {
@@ -245,7 +246,8 @@ public class SubcircuitFactory extends InstanceFactory {
                     Pin.FACTORY.setValue(pinState, newVal);
                     Pin.FACTORY.propagate(pinState);
                 }
-            } else { // it is output-only
+            // it is output-only
+            } else {
                 Value val = pinState.getPort(0);
                 superState.setPort(i, val, 1);
             }

@@ -215,7 +215,8 @@ class TextFieldCaret implements Caret, TextFieldListener {
             //TODO: enhance label editing
             break;
         default:
-            ; // ignore
+            // ignore
+            ;
         }
     }
 

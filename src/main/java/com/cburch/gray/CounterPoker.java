@@ -43,8 +43,10 @@ public class CounterPoker extends InstancePoker {
 
         Graphics g = painter.getGraphics();
         g.setColor(Color.RED);
-        int wid = 7 * len + 2; // width of caret rectangle
-        int ht = 16; // height of caret rectangle
+        // width of caret rectangle
+        int wid = 7 * len + 2;
+        // height of caret rectangle
+        int ht = 16;
         g.drawRect(bds.getX() + (bds.getWidth() - wid) / 2,
                 bds.getY() + (bds.getHeight() - ht) / 2, wid, ht);
         g.setColor(Color.BLACK);

@@ -16,7 +16,8 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 
 abstract class Rectangular extends FillableCanvasObject {
-    private Bounds bounds; // excluding the stroke's width
+    // excluding the stroke's width
+    private Bounds bounds;
 
     public Rectangular(int x, int y, int w, int h) {
         bounds = Bounds.create(x, y, w, h);
@@ -103,7 +104,8 @@ abstract class Rectangular extends FillableCanvasObject {
 
                     int w = Math.abs(newX1 - newX0);
                     int h = Math.abs(newY1 - newY0);
-                    if (w > h) { // reduce width to h
+                    // reduce width to h
+                    if (w > h) {
                         int dw = (w - h) / 2;
                         newX0 -= (newX0 > newX1 ? 1 : -1) * dw;
                         newX1 -= (newX1 > newX0 ? 1 : -1) * dw;
@@ -115,14 +117,16 @@ abstract class Rectangular extends FillableCanvasObject {
                 } else {
                     int w = Math.abs(newX1 - newX0);
                     int h = Math.abs(newY1 - newY0);
-                    if (w > h) { // reduce width to h
+                    // reduce width to h
+                    if (w > h) {
                         if (x0 == hx) {
                             newX0 = newX1 + (newX0 > newX1 ? 1 : -1) * h;
                         }
                         if (x1 == hx) {
                             newX1 = newX0 + (newX1 > newX0 ? 1 : -1) * h;
                         }
-                    } else { // reduce height to w
+                    // reduce height to w
+                    } else {
                         if (y0 == hy) {
                             newY0 = newY1 + (newY0 > newY1 ? 1 : -1) * w;
                         }
@@ -138,7 +142,8 @@ abstract class Rectangular extends FillableCanvasObject {
                     if (y0 == hy) newY1 -= dy;
                     if (y1 == hy) newY0 -= dy;
                 } else {
-                    ; // already handled
+                    // already handled
+                    ;
                 }
             }
             return new Handle[] { new Handle(this, newX0, newY0),

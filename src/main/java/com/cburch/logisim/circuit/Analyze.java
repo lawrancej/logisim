@@ -147,7 +147,8 @@ public class Analyze {
             } else if (Character.isWhitespace(c)) {
                 afterWhitespace = true;
             } else {
-                ; // just ignore any other characters
+                // just ignore any other characters
+                ;
             }
         }
         if (end != null && ret.length() > 0) ret.append(end.toString());
@@ -279,7 +280,8 @@ public class Analyze {
                     throw new AnalyzeException.CannotHandle(comp.getFactory().getDisplayName());
                 }
             } else if (comp.getFactory() instanceof Pin) {
-                ; // pins are handled elsewhere
+                // pins are handled elsewhere
+                ;
             } else {
                 // pins are handled elsewhere
                 throw new AnalyzeException.CannotHandle(comp.getFactory().getDisplayName());

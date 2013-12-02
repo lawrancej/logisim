@@ -112,7 +112,8 @@ public class Circuit {
     private SubcircuitFactory subcircuitFactory;
     private EventSourceWeakSupport<CircuitListener> listeners
         = new EventSourceWeakSupport<CircuitListener>();
-    private HashSet<Component> comps = new HashSet<Component>(); // doesn't include wires
+    // doesn't include wires
+    private HashSet<Component> comps = new HashSet<Component>();
     CircuitWires wires = new CircuitWires();
         // wires is package-protected for CircuitState and Analyze only.
     private ArrayList<Component> clocks = new ArrayList<Component>();
@@ -364,11 +365,13 @@ public class Circuit {
     private void showDebug(String message, Object parm) {
         PrintStream dest = DEBUG_STREAM;
         if (dest != null) {
-            dest.println("mutatorAdd"); //OK
+            //OK
+            dest.println("mutatorAdd");
             try {
                 throw new Exception();
             } catch (Exception e) {
-                e.printStackTrace(dest); //OK
+                //OK
+                e.printStackTrace(dest);
             }
         }
     }

@@ -139,10 +139,12 @@ public class ComponentDrawContext {
         if (label != null && !label.equals("")) {
             FontMetrics fm = base.getFontMetrics(g.getFont());
             int lwid = fm.stringWidth(label);
-            if (height > 20) { // centered at top edge
+            // centered at top edge
+            if (height > 20) {
                 g.drawString(label, x + (width - lwid) / 2,
                     y + 2 + fm.getAscent());
-            } else { // centered overall
+            // centered overall
+            } else {
                 g.drawString(label, x + (width - lwid) / 2,
                     y + (height + fm.getAscent()) / 2 - 1);
             }
@@ -163,10 +165,12 @@ public class ComponentDrawContext {
         if (label != null && !label.equals("")) {
             FontMetrics fm = base.getFontMetrics(g.getFont());
             int lwid = fm.stringWidth(label);
-            if (height > 20) { // centered at top edge
+            // centered at top edge
+            if (height > 20) {
                 g.drawString(label, x + (width - lwid) / 2,
                     y + 2 + fm.getAscent());
-            } else { // centered overall
+            // centered overall
+            } else {
                 g.drawString(label, x + (width - lwid) / 2,
                     y + (height + fm.getAscent()) / 2 - 1);
             }

@@ -91,7 +91,8 @@ class TableTabCaret {
 
         if (row == cursorRow && col == cursorCol
                 && (keepMark || (row == markRow && col == markCol))) {
-            ; // nothing is changing, so do nothing
+            // nothing is changing, so do nothing
+            ;
         } else if (!keepMark && markRow == cursorRow && markCol == cursorCol) {
             int oldRow = cursorRow;
             int oldCol = cursorCol;

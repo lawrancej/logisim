@@ -97,7 +97,8 @@ class PortManager {
             if (port != null) {
                 port.setPin(entry.getValue());
                 oldObjects.put(entry.getValue(), port);
-            } else { // this really shouldn't happen, but just to make sure...
+            // this really shouldn't happen, but just to make sure...
+            } else {
                 addsCopy.add(entry.getValue());
             }
         }
@@ -139,7 +140,8 @@ class PortManager {
             sameWay.add(pin);
             DefaultAppearance.sortPinList(sameWay, facing);
             boolean isFirst = false;
-            Instance neighbor = null; // (preferably previous in map)
+            // (preferably previous in map)
+            Instance neighbor = null;
             for (Instance p : sameWay) {
                 if (p == pin) {
                     break;
@@ -147,7 +149,8 @@ class PortManager {
                     neighbor = p;
                 }
             }
-            if (neighbor == null) { // pin must have been first in list
+            // pin must have been first in list
+            if (neighbor == null) {
                 neighbor = sameWay.get(1);
             }
             int dx;
@@ -178,24 +181,29 @@ class PortManager {
         int y;
         int dx = 0;
         int dy = 0;
-        if (facing == Direction.EAST) { // on west side by default
+        // on west side by default
+        if (facing == Direction.EAST) {
             x = bds.getX() - 7;
             y = bds.getY() + 5;
             dy = 10;
-        } else if (facing == Direction.WEST) { // on east side by default
+        // on east side by default
+        } else if (facing == Direction.WEST) {
             x = bds.getX() + bds.getWidth() - 3;
             y = bds.getY() + 5;
             dy = 10;
-        } else if (facing == Direction.SOUTH) { // on north side by default
+        // on north side by default
+        } else if (facing == Direction.SOUTH) {
             x = bds.getX() + 5;
             y = bds.getY() - 7;
             dx = 10;
-        } else { // on south side by default
+        // on south side by default
+        } else {
             x = bds.getX() + 5;
             y = bds.getY() + bds.getHeight() - 3;
             dx = 10;
         }
-        x = (x + 9) / 10 * 10; // round coordinates up to ensure they're on grid
+        // round coordinates up to ensure they're on grid
+        x = (x + 9) / 10 * 10;
         y = (y + 9) / 10 * 10;
         Location loc = Location.create(x, y);
         while (usedLocs.contains(loc)) {

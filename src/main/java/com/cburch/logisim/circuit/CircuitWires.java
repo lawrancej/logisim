@@ -34,7 +34,8 @@ import com.cburch.logisim.util.GraphicsUtil;
 
 class CircuitWires {
     static class SplitterData {
-        WireBundle[] end_bundle; // PointData associated with each end
+        // PointData associated with each end
+        WireBundle[] end_bundle;
 
         SplitterData(int fan_out) {
             end_bundle = new WireBundle[fan_out + 1];
@@ -149,9 +150,11 @@ class CircuitWires {
     // user-given data
     private HashSet<Wire> wires = new HashSet<Wire>();
     private HashSet<Splitter> splitters = new HashSet<Splitter>();
-    private HashSet<Component> tunnels = new HashSet<Component>(); // of Components with Tunnel factory
+    // of Components with Tunnel factory
+    private HashSet<Component> tunnels = new HashSet<Component>();
     private TunnelListener tunnelListener = new TunnelListener();
-    private HashSet<Component> pulls = new HashSet<Component>(); // of Components with PullResistor factory
+    // of Components with PullResistor factory
+    private HashSet<Component> pulls = new HashSet<Component>();
     final CircuitPoints points = new CircuitPoints();
 
     // derived data
@@ -296,7 +299,8 @@ class CircuitWires {
         boolean added = wires.add(w);
         if (!added) return false;
 
-        if (bounds != Bounds.EMPTY_BOUNDS) { // update bounds
+        // update bounds
+        if (bounds != Bounds.EMPTY_BOUNDS) {
             bounds = bounds.add(w.e0).add(w.e1);
         }
         return true;
@@ -320,7 +324,8 @@ class CircuitWires {
     //
     void propagate(CircuitState circState, Set<Location> points) {
         BundleMap map = getBundleMap();
-        CopyOnWriteArraySet<WireThread> dirtyThreads = new CopyOnWriteArraySet<WireThread>(); // affected threads
+        // affected threads
+        CopyOnWriteArraySet<WireThread> dirtyThreads = new CopyOnWriteArraySet<WireThread>();
 
         // get state, or create a new one if current state is outdated
         State s = circState.getWireData();
@@ -341,7 +346,8 @@ class CircuitWires {
         // determine affected threads, and set values for unwired points
         for (Location p : points) {
             WireBundle pb = map.getBundleAt(p);
-            if (pb == null) { // point is not wired
+            // point is not wired
+            if (pb == null) {
                 circState.setValueByWire(p, circState.getComponentOutputAt(p));
             } else {
                 WireThread[] th = pb.threads;
@@ -379,7 +385,8 @@ class CircuitWires {
 
             Value bv = null;
             if (!b.isValid() || b.threads == null) {
-                ; // do nothing
+                // do nothing
+                ;
             } else if (b.threads.length == 1) {
                 bv = s.thr_values.get(b.threads[0]);
             } else {
@@ -561,7 +568,8 @@ class CircuitWires {
         for (Iterator<WireBundle> it = ret.getBundles().iterator(); it.hasNext(); ) {
             WireBundle b = it.next();
             WireBundle bpar = b.find();
-            if (bpar != b) { // b isn't group's representative
+            // b isn't group's representative
+            if (bpar != b) {
                 for (Location pt : b.points) {
                     ret.setBundleAt(pt, bpar);
                     bpar.points.add(pt);
@@ -669,10 +677,12 @@ class CircuitWires {
                 b1.points.add(w.e0); ret.setBundleAt(w.e0, b1);
             } else {
                 WireBundle b1 = ret.getBundleAt(w.e1);
-                if (b1 == null) { // t1 doesn't exist
+                // t1 doesn't exist
+                if (b1 == null) {
                     b0.points.add(w.e1); ret.setBundleAt(w.e1, b0);
                 } else {
-                    b1.unite(b0); // unite b0 and b1
+                    // unite b0 and b1
+                    b1.unite(b0);
                 }
             }
         }

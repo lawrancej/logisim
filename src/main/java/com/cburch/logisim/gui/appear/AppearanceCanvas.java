@@ -159,7 +159,8 @@ public class AppearanceCanvas extends Canvas
                         changed = true;
                         movedToMax = true;
                         if (from == max && !movedToMax) {
-                            ; // this change is ineffective - don't add it
+                            // this change is ineffective - don't add it
+                            ;
                         } else {
                             mod.add(new ReorderRequest(o, from, max));
                         }

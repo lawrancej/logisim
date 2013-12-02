@@ -72,7 +72,8 @@ public abstract class AppearanceElement extends AbstractCanvasObject {
 
     @Override
     public Location getRandomPoint(Bounds bds, Random rand) {
-        return null; // this is only used to determine what lies on top of what - but the elements will always be on top anyway
+        // this is only used to determine what lies on top of what - but the elements will always be on top anyway
+        return null;
     }
 
     protected Bounds getBounds(int radius) {

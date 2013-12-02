@@ -101,19 +101,24 @@ class DefaultAppearance {
         // compute position of anchor relative to top left corner of box
         int ax;
         int ay;
-        if (numEast > 0) { // anchor is on east side
+        // anchor is on east side
+        if (numEast > 0) {
             ax = width;
             ay = offsEast;
-        } else if (numNorth > 0) { // anchor is on north side
+        // anchor is on north side
+        } else if (numNorth > 0) {
             ax = offsNorth;
             ay = 0;
-        } else if (numWest > 0) { // anchor is on west side
+        // anchor is on west side
+        } else if (numWest > 0) {
             ax = 0;
             ay = offsWest;
-        } else if (numSouth > 0) { // anchor is on south side
+        // anchor is on south side
+        } else if (numSouth > 0) {
             ax = offsSouth;
             ay = height;
-        } else { // anchor is top left corner
+        // anchor is top left corner
+        } else {
             ax = 0;
             ay = 0;
         }

@@ -115,7 +115,8 @@ public class ReaderInputStream extends InputStream {
         }
 
         while (slack == null) {
-            char[] buf = new char[len]; // might read too much
+            // might read too much
+            char[] buf = new char[len];
             int n = in.read(buf);
             if (n == -1) {
                 return -1;
@@ -179,7 +180,8 @@ public class ReaderInputStream extends InputStream {
      */
     @Override
     public boolean markSupported () {
-        return false;   // would be imprecise
+        // would be imprecise
+        return false;
     }
 
     /**

@@ -41,7 +41,8 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
 
     private MyListener myListener = new MyListener();
     private TruthTable table;
-    private int cellWidth = 25; // reasonable start values
+    // reasonable start values
+    private int cellWidth = 25;
     private int cellHeight = 15;
     private int tableWidth;
     private int tableHeight;

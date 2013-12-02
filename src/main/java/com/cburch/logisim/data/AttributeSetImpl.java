@@ -230,7 +230,8 @@ public class AttributeSetImpl extends AbstractAttributeSet {
                 + attr + " is read-only");
         }
         if (value.equals(n.value)) {
-            ; // do nothing - why change what's already there?
+            // do nothing - why change what's already there?
+            ;
         } else {
             n.value = value;
             fireAttributeValueChanged(attr, value);

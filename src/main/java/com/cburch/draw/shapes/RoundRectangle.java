@@ -102,7 +102,8 @@ public class RoundRectangle extends Rectangular {
             int w = getWidth();
             int h = getHeight();
             int r = radius;
-            int horz = Math.max(0, w - 2 * r); // length of horizontal segment
+            // length of horizontal segment
+            int horz = Math.max(0, w - 2 * r);
             int vert = Math.max(0, h - 2 * r);
             double len = 2 * horz + 2 * vert + 2 * Math.PI * r;
             double u = len * rand.nextDouble();

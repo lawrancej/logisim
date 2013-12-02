@@ -30,7 +30,8 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class Splitter extends ManagedComponent
         implements WireRepair, ToolTipMaker, MenuExtender, AttributeListener {
     // basic data
-    byte[] bit_thread; // how each bit maps to thread within end
+    // how each bit maps to thread within end
+    byte[] bit_thread;
 
     // derived data
     CircuitWires.SplitterData wire_data;
@@ -51,7 +52,8 @@ public class Splitter extends ManagedComponent
 
     @Override
     public void propagate(CircuitState state) {
-        ; // handled by CircuitWires, nothing to do
+        // handled by CircuitWires, nothing to do
+        ;
     }
 
     @Override

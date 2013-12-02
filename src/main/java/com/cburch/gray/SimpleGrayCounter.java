@@ -55,8 +55,10 @@ class SimpleGrayCounter extends InstanceFactory {
     @Override
     public void paintInstance(InstancePainter painter) {
         painter.drawBounds();
-        painter.drawClock(0, Direction.EAST); // draw a triangle on port 0
-        painter.drawPort(1); // draw port 1 as just a dot
+        // draw a triangle on port 0
+        painter.drawClock(0, Direction.EAST);
+        // draw port 1 as just a dot
+        painter.drawPort(1);
 
         // Display the current counter value centered within the rectangle.
         // However, if the context says not to show state (as when generating

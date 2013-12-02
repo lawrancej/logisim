@@ -183,7 +183,8 @@ class ExpressionView extends JPanel {
                     badness[i] = BADNESS_BEFORE_XOR;
                 } else if (cur == ')') {
                     badness[i] = BADNESS_BEFORE_SPACE;
-                } else { // cur == '('
+                // cur == '('
+                } else {
                     badness[i] = BADNESS_BEFORE_AND;
                 }
 

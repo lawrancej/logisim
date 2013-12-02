@@ -132,7 +132,8 @@ public class CircuitAppearance extends Drawing {
         List<CanvasObject> shapes = new ArrayList<CanvasObject>(shapesBase);
         int n = shapes.size();
         int ports = 0;
-        for (int i = n - 1; i >= 0; i--) { // count ports, move anchor to end
+        // count ports, move anchor to end
+        for (int i = n - 1; i >= 0; i--) {
             CanvasObject o = shapes.get(i);
             if (o instanceof AppearanceAnchor) {
                 if (i != n - 1) {
@@ -143,7 +144,8 @@ public class CircuitAppearance extends Drawing {
                 ports++;
             }
         }
-        for (int i = (n - ports - 1) - 1; i >= 0; i--) { // move ports to top
+        // move ports to top
+        for (int i = (n - ports - 1) - 1; i >= 0; i--) {
             CanvasObject o = shapes.get(i);
             if (o instanceof AppearancePort) {
                 shapes.remove(i);

@@ -147,7 +147,8 @@ public class ModelReorderAction extends ModelAction {
         for (ReorderRequest r : requests) {
             objects.add(r.getObject());
         }
-        int type = 0; // 0 = mixed/unknown, -1 = to greater index, 1 = to smaller index
+        // 0 = mixed/unknown, -1 = to greater index, 1 = to smaller index
+        int type = 0;
         for (ReorderRequest r : requests) {
             int thisType;
             int from = r.getFromIndex();

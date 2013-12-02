@@ -94,13 +94,17 @@ public class TruthTable {
             newIndex = inputs - 1 - newIndex;
             Entry[] ret = new Entry[old.length];
             int sameMask = (old.length - 1) ^ ((1 << (1 + Math.max(oldIndex, newIndex))) - 1)
-                ^ ((1 << Math.min(oldIndex, newIndex)) - 1);        // bits that don't change
-            int moveMask = 1 << oldIndex;                           // bit that moves
+                // bits that don't change
+                ^ ((1 << Math.min(oldIndex, newIndex)) - 1);
+            // bit that moves
+            int moveMask = 1 << oldIndex;
             int moveDist = Math.abs(newIndex - oldIndex);
             boolean moveLeft = newIndex > oldIndex;
-            int blockMask = (old.length - 1) ^ sameMask ^ moveMask; // bits that move by one
+            // bits that move by one
+            int blockMask = (old.length - 1) ^ sameMask ^ moveMask;
             for (int i = 0; i < old.length; i++) {
-                int j; // new index
+                // new index
+                int j;
                 if (moveLeft) {
                     j = (i & sameMask) | ((i & moveMask) << moveDist)
                         | ((i & blockMask) >> 1);

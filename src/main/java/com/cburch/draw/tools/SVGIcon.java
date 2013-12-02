@@ -26,7 +26,8 @@ public class SVGIcon implements Icon {
 
     public SVGIcon(String path) {
         try {
-            this.path = (path.startsWith("/logisim/icons/")) ? path : "/logisim/icons/" + path; // Quick and dirty hack. We should probably use a path resolver.
+            // Quick and dirty hack. We should probably use a path resolver.
+            this.path = (path.startsWith("/logisim/icons/")) ? path : "/logisim/icons/" + path;
             URL url = SVGIcon.class.getResource(this.path);
             String xmlParser = XMLResourceDescriptor.getXMLParserClassName();
             SAXSVGDocumentFactory df = new SAXSVGDocumentFactory(xmlParser);

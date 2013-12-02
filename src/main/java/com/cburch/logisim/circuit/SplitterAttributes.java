@@ -132,8 +132,10 @@ class SplitterAttributes extends AbstractAttributeSet {
     private SplitterParameters parameters;
     AttributeOption appear = APPEAR_LEFT;
     Direction facing = Direction.EAST;
-    byte fanout = 2;                 // number of ends this splits into
-    byte[] bit_end = new byte[2];    // how each bit maps to an end (0 if nowhere);
+    // number of ends this splits into
+    byte fanout = 2;
+    // how each bit maps to an end (0 if nowhere);
+    byte[] bit_end = new byte[2];
                                      //   other values will be between 1 and fanout
     BitOutOption[] options = null;
 
@@ -298,7 +300,8 @@ class SplitterAttributes extends AbstractAttributeSet {
             } else {
                 int threads_per_end = bits / fanout;
                 int ends_with_extra = bits % fanout;
-                int cur_end = -1; // immediately increments
+                // immediately increments
+                int cur_end = -1;
                 int left_in_end = 0;
                 for (int i = 0; i < bits; i++) {
                     if (left_in_end == 0) {

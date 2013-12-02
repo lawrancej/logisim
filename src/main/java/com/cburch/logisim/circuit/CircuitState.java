@@ -117,12 +117,17 @@ public class CircuitState implements InstanceData {
     }
 
     private MyCircuitListener myCircuitListener = new MyCircuitListener();
-    private Propagator base = null; // base of tree of CircuitStates
-    private Project proj; // project where circuit lies
-    private Circuit circuit; // circuit being simulated
+    // base of tree of CircuitStates
+    private Propagator base = null;
+    // project where circuit lies
+    private Project proj;
+    // circuit being simulated
+    private Circuit circuit;
 
-    private CircuitState parentState = null; // parent in tree of CircuitStates
-    private Component parentComp = null; // subcircuit component containing this state
+    // parent in tree of CircuitStates
+    private CircuitState parentState = null;
+    // subcircuit component containing this state
+    private Component parentComp = null;
     private HashSet<CircuitState> substates = new HashSet<CircuitState>();
 
     private CircuitWires.State wireData = null;
@@ -220,7 +225,8 @@ public class CircuitState implements InstanceData {
         return parentState;
     }
 
-    public Set<CircuitState> getSubstates() { // returns Set of CircuitStates
+    // returns Set of CircuitStates
+    public Set<CircuitState> getSubstates() {
         return substates;
     }
 

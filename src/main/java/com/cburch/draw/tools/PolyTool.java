@@ -29,7 +29,8 @@ public class PolyTool extends AbstractTool {
     // how close we need to be to the start point to count as "closing the loop"
     private static final int CLOSE_TOLERANCE = 2;
 
-    private boolean closed; // whether we are drawing polygons or polylines
+    // whether we are drawing polygons or polylines
+    private boolean closed;
     private DrawingAttributeSet attrs;
     private boolean active;
     private ArrayList<Location> locations;
@@ -139,12 +140,14 @@ public class PolyTool extends AbstractTool {
     public void keyTyped(Canvas canvas, KeyEvent e) {
         if (active) {
             char ch = e.getKeyChar();
-            if (ch == '\u001b') { // escape key
+            // escape key
+            if (ch == '\u001b') {
                 active = false;
                 locations.clear();
                 repaintArea(canvas);
                 canvas.toolGestureComplete(this, null);
-            } else if (ch == '\n') { // enter key
+            // enter key
+            } else if (ch == '\n') {
                 CanvasObject add = commit(canvas);
                 canvas.toolGestureComplete(this, add);
             }
