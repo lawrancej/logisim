@@ -98,17 +98,26 @@ public class LogisimMenuBar extends JMenuBar {
 
     public void setEnabled(LogisimMenuItem which, boolean value) {
         MenuItem item = menuItems.get(which);
-        if (item != null) item.setEnabled(value);
+        if (item != null) {
+            item.setEnabled(value);
+        }
+
     }
 
     public void addActionListener(LogisimMenuItem which, ActionListener l) {
         MenuItem item = menuItems.get(which);
-        if (item != null) item.addActionListener(l);
+        if (item != null) {
+            item.addActionListener(l);
+        }
+
     }
 
     public void removeActionListener(LogisimMenuItem which, ActionListener l) {
         MenuItem item = menuItems.get(which);
-        if (item != null) item.removeActionListener(l);
+        if (item != null) {
+            item.removeActionListener(l);
+        }
+
     }
 
     public void addEnableListener(ChangeListener l) {

@@ -162,7 +162,10 @@ public class Rom extends Mem {
             StringTokenizer toks = new StringTokenizer(first);
             try {
                 String header = toks.nextToken();
-                if (!header.equals("addr/data:")) return null;
+                if (!header.equals("addr/data:")) {
+                    return null;
+                }
+
                 int addr = Integer.parseInt(toks.nextToken());
                 int data = Integer.parseInt(toks.nextToken());
                 MemContents ret = MemContents.create(addr, data);
@@ -192,7 +195,10 @@ public class Rom extends Mem {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (contents == null) return;
+            if (contents == null) {
+                return;
+            }
+
             Project proj = source instanceof Frame ? ((Frame) source).getProject() : null;
             HexFrame frame = RomAttributes.getHexFrame(contents, proj);
             frame.setVisible(true);

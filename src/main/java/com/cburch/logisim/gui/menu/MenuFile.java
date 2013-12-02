@@ -123,7 +123,10 @@ class MenuFile extends Menu implements ActionListener {
             if (frame.confirmClose()) {
                 frame.dispose();
                 OptionsFrame f = proj.getOptionsFrame(false);
-                if (f != null) f.dispose();
+                if (f != null) {
+                    f.dispose();
+                }
+
             }
         } else if (src == save) {
             ProjectActions.doSave(proj);

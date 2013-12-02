@@ -106,17 +106,26 @@ public abstract class AbstractCanvasObject
             for (int i = 0; i < OVERLAP_TRIES; i++) {
                 if (i % 2 == 0) {
                     Location loc = this.getRandomPoint(c, rand);
-                    if (loc != null && that.contains(loc, false)) return true;
+                    if (loc != null && that.contains(loc, false)) {
+                        return true;
+                    }
+
                 } else {
                     Location loc = that.getRandomPoint(c, rand);
-                    if (loc != null && this.contains(loc, false)) return true;
+                    if (loc != null && this.contains(loc, false)) {
+                        return true;
+                    }
+
                 }
             }
             return false;
         } else {
             for (int i = 0; i < OVERLAP_TRIES; i++) {
                 Location loc = this.getRandomPoint(c, rand);
-                if (loc != null && other.contains(loc, false)) return true;
+                if (loc != null && other.contains(loc, false)) {
+                    return true;
+                }
+
             }
             return false;
         }
@@ -129,7 +138,10 @@ public abstract class AbstractCanvasObject
         int h = bds.getHeight();
         for (int i = 0; i < GENERATE_RANDOM_TRIES; i++) {
             Location loc = Location.create(x + rand.nextInt(w), y + rand.nextInt(h));
-            if (contains(loc, false)) return loc;
+            if (contains(loc, false)) {
+                return loc;
+            }
+
         }
         return null;
     }
@@ -169,7 +181,10 @@ public abstract class AbstractCanvasObject
     @Override
     public Attribute<?> getAttribute(String name) {
         for (Attribute<?> attr : getAttributes()) {
-            if (attr.getName().equals(name)) return attr;
+            if (attr.getName().equals(name)) {
+                return attr;
+            }
+
         }
         return null;
     }
@@ -213,7 +228,10 @@ public abstract class AbstractCanvasObject
         List<Attribute<?>> attrs = getAttributes();
         if (attrs.contains(DrawAttr.PAINT_TYPE)) {
             Object value = getValue(DrawAttr.PAINT_TYPE);
-            if (value == DrawAttr.PAINT_FILL) return false;
+            if (value == DrawAttr.PAINT_FILL) {
+                return false;
+            }
+
         }
 
         Integer width = getValue(DrawAttr.STROKE_WIDTH);
@@ -223,7 +241,10 @@ public abstract class AbstractCanvasObject
                 return false;
             } else {
                 GraphicsUtil.switchToWidth(g, width.intValue());
-                if (color != null) g.setColor(color);
+                if (color != null) {
+                    g.setColor(color);
+                }
+
                 return true;
             }
         } else {
@@ -235,14 +256,20 @@ public abstract class AbstractCanvasObject
         List<Attribute<?>> attrs = getAttributes();
         if (attrs.contains(DrawAttr.PAINT_TYPE)) {
             Object value = getValue(DrawAttr.PAINT_TYPE);
-            if (value == DrawAttr.PAINT_STROKE) return false;
+            if (value == DrawAttr.PAINT_STROKE) {
+                return false;
+            }
+
         }
 
         Color color = getValue(DrawAttr.FILL_COLOR);
         if (color != null && color.getAlpha() == 0) {
             return false;
         } else {
-            if (color != null) g.setColor(color);
+            if (color != null) {
+                g.setColor(color);
+            }
+
             return true;
         }
     }

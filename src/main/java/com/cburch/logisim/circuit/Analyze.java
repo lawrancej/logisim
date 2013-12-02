@@ -47,10 +47,22 @@ public class Analyze {
             public int compare(Instance ac, Instance bc) {
                 Location a = ac.getLocation();
                 Location b = bc.getLocation();
-                if (a.getY() < b.getY()) return -1;
-                if (a.getY() > b.getY()) return  1;
-                if (a.getX() < b.getX()) return -1;
-                if (a.getX() > b.getX()) return  1;
+                if (a.getY() < b.getY()) {
+                    return -1;
+                }
+
+                if (a.getY() > b.getY()) {
+                    return  1;
+                }
+
+                if (a.getX() < b.getX()) {
+                    return -1;
+                }
+
+                if (a.getX() > b.getX()) {
+                    return  1;
+                }
+
                 return a.hashCode() - b.hashCode();
             }
         };
@@ -80,7 +92,10 @@ public class Analyze {
 
         // Now process the unlabeled pins.
         for (Instance pin : pinList) {
-            if (ret.get(pin) != null) continue;
+            if (ret.get(pin) != null) {
+                continue;
+            }
+
 
             String defaultList;
             if (Pin.FACTORY.isInputPin(pin)) {
@@ -121,7 +136,10 @@ public class Analyze {
     }
 
     private static String toValidLabel(String label) {
-        if (label == null) return null;
+        if (label == null) {
+            return null;
+        }
+
         StringBuilder end = null;
         StringBuilder ret = new StringBuilder();
         boolean afterWhitespace = false;
@@ -140,7 +158,10 @@ public class Analyze {
                 if (ret.length() > 0) {
                     ret.append(c);
                 } else {
-                    if (end == null) end = new StringBuilder();
+                    if (end == null) {
+                        end = new StringBuilder();
+                    }
+
                     end.append(c);
                 }
                 afterWhitespace = false;
@@ -151,8 +172,14 @@ public class Analyze {
                 ;
             }
         }
-        if (end != null && ret.length() > 0) ret.append(end.toString());
-        if (ret.length() == 0) return null;
+        if (end != null && ret.length() > 0) {
+            ret.append(end.toString());
+        }
+
+        if (ret.length() == 0) {
+            return null;
+        }
+
         return ret.toString();
     }
 
@@ -198,7 +225,10 @@ public class Analyze {
             propagateComponents(expressionMap, dirtyComponents);
 
             Expression expr = checkForCircularExpressions(expressionMap);
-            if (expr != null) throw new AnalyzeException.Circular();
+            if (expr != null) {
+                throw new AnalyzeException.Circular();
+            }
+
         }
 
         model.setVariables(inputNames, outputNames);
@@ -222,7 +252,10 @@ public class Analyze {
         @Override
         public Expression put(Location point, Expression expression) {
             Expression ret = super.put(point, expression);
-            if (currentCause != null) causes.put(point, currentCause);
+            if (currentCause != null) {
+                causes.put(point, currentCause);
+            }
+
             if (ret == null ? expression != null : !ret.equals(expression)) {
                 dirtyPoints.add(point);
             }
@@ -240,7 +273,10 @@ public class Analyze {
             WireBundle bundle = expressionMap.circuit.wires.getWireBundle(p);
             if (e != null && bundle != null && bundle.points != null) {
                 for (Location p2 : bundle.points) {
-                    if (p2.equals(p)) continue;
+                    if (p2.equals(p)) {
+                        continue;
+                    }
+
                     Expression old = expressionMap.get(p2);
                     if (old != null) {
                         Component eCause = expressionMap.currentCause;
@@ -295,7 +331,10 @@ public class Analyze {
             throws AnalyzeException {
         for (Location point : expressionMap.dirtyPoints) {
             Expression expr = expressionMap.get(point);
-            if (expr.isCircular()) return expr;
+            if (expr.isCircular()) {
+                return expr;
+            }
+
         }
         return null;
     }
@@ -352,7 +391,10 @@ public class Analyze {
                     InstanceState pinState = circuitState.getInstanceState(pin);
                     Entry out;
                     Value outValue = Pin.FACTORY.getValue(pinState).get(0);
-                    if (outValue == Value.TRUE) out = Entry.ONE;
+                    if (outValue == Value.TRUE) {
+                        out = Entry.ONE;
+                    }
+
                     else if (outValue == Value.FALSE) out = Entry.ZERO;
                     else if (outValue == Value.ERROR) out = Entry.BUS_ERROR;
                     else out = Entry.DONT_CARE;

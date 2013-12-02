@@ -157,7 +157,10 @@ public class Button extends InstanceFactory {
                 int py = p.getY();
                 GraphicsUtil.switchToWidth(g, Wire.WIDTH);
                 g.setColor(Value.TRUE_COLOR);
-                if (facing == Direction.NORTH) g.drawLine(px, py, px, py + 10);
+                if (facing == Direction.NORTH) {
+                    g.drawLine(px, py, px, py + 10);
+                }
+
                 else                          g.drawLine(px, py, px + 10, py);
                 GraphicsUtil.switchToWidth(g, 1);
             }

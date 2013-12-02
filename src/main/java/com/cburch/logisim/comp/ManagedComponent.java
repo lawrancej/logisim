@@ -61,7 +61,10 @@ public abstract class ManagedComponent extends AbstractComponent {
     protected void fireEndsChanged(List<EndData> oldEnds, List<EndData> newEnds) {
         ComponentEvent e = null;
         for (ComponentListener l : listeners) {
-            if (e == null) e = new ComponentEvent(this, oldEnds, newEnds);
+            if (e == null) {
+                e = new ComponentEvent(this, oldEnds, newEnds);
+            }
+
             l.endChanged(e);
         }
     }

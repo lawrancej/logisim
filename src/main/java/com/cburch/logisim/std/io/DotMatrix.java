@@ -189,12 +189,18 @@ public class DotMatrix extends InstanceFactory {
                 if (showState) {
                     Value val = data.get(j, i, ticks);
                     Color c;
-                    if (val == Value.TRUE) c = onColor;
+                    if (val == Value.TRUE) {
+                        c = onColor;
+                    }
+
                     else if (val == Value.FALSE) c = offColor;
                     else c = Value.ERROR_COLOR;
                     g.setColor(c);
 
-                    if (drawSquare) g.fillRect(x, y, 10, 10);
+                    if (drawSquare) {
+                        g.fillRect(x, y, 10, 10);
+                    }
+
                     else g.fillOval(x + 1, y + 1, 8, 8);
                 } else {
                     g.setColor(Color.GRAY);
@@ -304,7 +310,10 @@ public class DotMatrix extends InstanceFactory {
                         }
                     }
                 } else {
-                    if (wholeRow != Value.FALSE) wholeRow = Value.ERROR;
+                    if (wholeRow != Value.FALSE) {
+                        wholeRow = Value.ERROR;
+                    }
+
                     for (int j = colVals.length - 1; j >= 0; j--, gridloc++) {
                         if (grid[gridloc] == Value.TRUE) {
                             persistTo[gridloc] = persist - 1;

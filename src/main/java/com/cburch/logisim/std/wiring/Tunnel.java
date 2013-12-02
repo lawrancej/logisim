@@ -75,7 +75,10 @@ public class Tunnel extends InstanceFactory {
                 fm.getAscent() + fm.getDescent(), g, label);
         if (attrs.setOffsetBounds(bds)) {
             Instance instance = painter.getInstance();
-            if (instance != null) instance.recomputeBounds();
+            if (instance != null) {
+                instance.recomputeBounds();
+            }
+
         }
 
         int x0 = bds.getX();

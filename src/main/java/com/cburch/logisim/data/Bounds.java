@@ -21,7 +21,10 @@ public class Bounds {
         Object cached = cache.get(hashCode);
         if (cached != null) {
             Bounds bds = (Bounds) cached;
-            if (bds.x == x && bds.y == y && bds.wid == wid && bds.ht == ht) return bds;
+            if (bds.x == x && bds.y == y && bds.wid == wid && bds.ht == ht) {
+                return bds;
+            }
+
         }
         Bounds ret = new Bounds(x, y, wid, ht);
         cache.put(hashCode, ret);
@@ -46,13 +49,22 @@ public class Bounds {
         this.y = y;
         this.wid = wid;
         this.ht = ht;
-        if (wid < 0) { x += wid / 2; wid = 0; }
-        if (ht < 0)  { y += ht  / 2; ht = 0;  }
+        if (wid < 0) {
+            { x += wid / 2;
+        }
+ wid = 0; }
+        if (ht < 0) {
+             { y += ht  / 2;
+        }
+ ht = 0;  }
     }
 
     @Override
     public boolean equals(Object other_obj) {
-        if (!(other_obj instanceof Bounds)) return false;
+        if (!(other_obj instanceof Bounds)) {
+            return false;
+        }
+
         Bounds other = (Bounds) other_obj;
         return x == other.x && y == other.y
             && wid == other.wid && ht == other.ht;
@@ -150,8 +162,14 @@ public class Bounds {
     }
 
     public Bounds add(int x, int y) {
-        if (this == EMPTY_BOUNDS) return Bounds.create(x, y, 1, 1);
-        if (contains(x, y)) return this;
+        if (this == EMPTY_BOUNDS) {
+            return Bounds.create(x, y, 1, 1);
+        }
+
+        if (contains(x, y)) {
+            return this;
+        }
+
 
         int new_x = this.x;
         int new_wid = this.wid;
@@ -175,7 +193,10 @@ public class Bounds {
     }
 
     public Bounds add(int x, int y, int wid, int ht) {
-        if (this == EMPTY_BOUNDS) return Bounds.create(x, y, wid, ht);
+        if (this == EMPTY_BOUNDS) {
+            return Bounds.create(x, y, wid, ht);
+        }
+
         int retX = Math.min(x, this.x);
         int retY = Math.min(y, this.y);
         int retWidth = Math.max(x + wid, this.x + this.wid) - retX;
@@ -188,8 +209,14 @@ public class Bounds {
     }
 
     public Bounds add(Bounds bd) {
-        if (this == EMPTY_BOUNDS) return bd;
-        if (bd == EMPTY_BOUNDS) return this;
+        if (this == EMPTY_BOUNDS) {
+            return bd;
+        }
+
+        if (bd == EMPTY_BOUNDS) {
+            return this;
+        }
+
         int retX = Math.min(bd.x, this.x);
         int retY = Math.min(bd.y, this.y);
         int retWidth = Math.max(bd.x + bd.wid, this.x + this.wid) - retX;
@@ -205,14 +232,26 @@ public class Bounds {
 
     // d pixels in each direction
     public Bounds expand(int d) {
-        if (this == EMPTY_BOUNDS) return this;
-        if (d == 0) return this;
+        if (this == EMPTY_BOUNDS) {
+            return this;
+        }
+
+        if (d == 0) {
+            return this;
+        }
+
         return create(x - d, y - d, wid + 2 * d, ht + 2 * d);
     }
 
     public Bounds translate(int dx, int dy) {
-        if (this == EMPTY_BOUNDS) return this;
-        if (dx == 0 && dy == 0) return this;
+        if (this == EMPTY_BOUNDS) {
+            return this;
+        }
+
+        if (dx == 0 && dy == 0) {
+            return this;
+        }
+
         return create(x + dx, y + dy, wid, ht);
     }
 
@@ -245,10 +284,22 @@ public class Bounds {
         int y2 = other.y;
         int x3 = x2 + other.wid;
         int y3 = y2 + other.ht;
-        if (x2 > x0) x0 = x2;
-        if (y2 > y0) y0 = y2;
-        if (x3 < x1) x1 = x3;
-        if (y3 < y1) y1 = y3;
+        if (x2 > x0) {
+            x0 = x2;
+        }
+
+        if (y2 > y0) {
+            y0 = y2;
+        }
+
+        if (x3 < x1) {
+            x1 = x3;
+        }
+
+        if (y3 < y1) {
+            y1 = y3;
+        }
+
         if (x1 < x0 || y1 < y0) {
             return EMPTY_BOUNDS;
         } else {

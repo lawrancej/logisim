@@ -90,7 +90,10 @@ public class Frame extends LFrame implements LocaleListener {
                 computeTitle();
             } else if (action == ProjectEvent.ACTION_SET_TOOL) {
                 // for startup
-                if (attrTable == null) return;
+                if (attrTable == null) {
+                    return;
+                }
+
                 Tool oldTool = (Tool) event.getOldData();
                 Tool newTool = (Tool) event.getData();
                 if (getEditorView().equals(EDIT_LAYOUT)) {
@@ -294,7 +297,10 @@ public class Frame extends LFrame implements LocaleListener {
             Object value = BorderLayout.NORTH;
             for (Direction dir : Direction.cardinals) {
                 if (dir.toString().equals(loc)) {
-                    if (dir == Direction.EAST)       value = BorderLayout.EAST;
+                    if (dir == Direction.EAST) {
+                              value = BorderLayout.EAST;
+                    }
+
                     else if (dir == Direction.SOUTH) value = BorderLayout.SOUTH;
                     else if (dir == Direction.WEST)  value = BorderLayout.WEST;
                     else                             value = BorderLayout.NORTH;
@@ -349,7 +355,10 @@ public class Frame extends LFrame implements LocaleListener {
 
     public void setEditorView(String view) {
         String curView = mainPanel.getView();
-        if (curView.equals(view)) return;
+        if (curView.equals(view)) {
+            return;
+        }
+
 
         // appearance view
         if (view.equals(EDIT_APPEARANCE)) {
@@ -410,7 +419,10 @@ public class Frame extends LFrame implements LocaleListener {
         AttributeSet newAttrs;
         if (newTool == null) {
             newAttrs = null;
-            if (!force) return;
+            if (!force) {
+                return;
+            }
+
         } else {
             newAttrs = newTool.getAttributeSet(layoutCanvas);
         }
@@ -477,7 +489,10 @@ public class Frame extends LFrame implements LocaleListener {
     public boolean confirmClose(String title) {
         String message = _("confirmDiscardMessage", proj.getLogisimFile().getName());
 
-        if (!proj.isFileDirty()) return true;
+        if (!proj.isFileDirty()) {
+            return true;
+        }
+
         toFront();
         String[] options = { _("saveOption"), _("discardOption"), _("cancelOption") };
         int result = JOptionPane.showOptionDialog(this,
@@ -499,9 +514,15 @@ public class Frame extends LFrame implements LocaleListener {
 
     private static Point getInitialLocation() {
         String s = AppPreferences.WINDOW_LOCATION.get();
-        if (s == null) return null;
+        if (s == null) {
+            return null;
+        }
+
         int comma = s.indexOf(',');
-        if (comma < 0) return null;
+        if (comma < 0) {
+            return null;
+        }
+
         try {
             int x = Integer.parseInt(s.substring(0, comma));
             int y = Integer.parseInt(s.substring(comma + 1));
@@ -549,7 +570,10 @@ public class Frame extends LFrame implements LocaleListener {
             if (frame != null) {
                 Point loc = frame.getLocationOnScreen();
                 int d = Math.abs(loc.x - x) + Math.abs(loc.y - y);
-                if (d <= 3) return true;
+                if (d <= 3) {
+                    return true;
+                }
+
             }
         }
         return false;

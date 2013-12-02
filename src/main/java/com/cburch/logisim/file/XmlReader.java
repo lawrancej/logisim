@@ -81,7 +81,10 @@ class XmlReader {
             // first, load the sublibraries
             for (Element o : XmlIterator.forChildElements(elt, "lib")) {
                 Library lib = toLibrary(o);
-                if (lib != null) file.addLibrary(lib);
+                if (lib != null) {
+                    file.addLibrary(lib);
+                }
+
             }
 
             // second, create the circuits - empty for now
@@ -145,7 +148,10 @@ class XmlReader {
             String name = elt.getAttribute("name");
             String desc = elt.getAttribute("desc");
             Library ret = loader.loadLibrary(desc);
-            if (ret == null) return null;
+            if (ret == null) {
+                return null;
+            }
+
             libs.put(name, ret);
             for (Element sub_elt : XmlIterator.forChildElements(elt, "tool")) {
                 if (!sub_elt.hasAttribute("name")) {
@@ -291,7 +297,10 @@ class XmlReader {
             HashMap<String,String> attrsDefined = new HashMap<String,String>();
             for (Element attrElt : XmlIterator.forChildElements(parentElt, "a")) {
                 if (!attrElt.hasAttribute("name")) {
-                    if (messages == null) messages = new ArrayList<String>();
+                    if (messages == null) {
+                        messages = new ArrayList<String>();
+                    }
+
                     messages.add(_("attrNameMissingError"));
                 } else {
                     String attrName = attrElt.getAttribute("name");
@@ -305,7 +314,10 @@ class XmlReader {
                 }
             }
 
-            if (attrs == null) return;
+            if (attrs == null) {
+                return;
+            }
+
 
             LogisimVersion ver = sourceVersion;
             boolean setDefaults = defaults != null
@@ -315,7 +327,10 @@ class XmlReader {
             // (as it will for a splitter).
             for (int i = 0; true; i++) {
                 List<Attribute<?>> attrList = attrs.getAttributes();
-                if (i >= attrList.size()) break;
+                if (i >= attrList.size()) {
+                    break;
+                }
+
                 @SuppressWarnings("unchecked")
                 Attribute<Object> attr = (Attribute<Object>) attrList.get(i);
                 String attrName = attr.getName();
@@ -332,7 +347,10 @@ class XmlReader {
                         Object val = attr.parse(attrVal);
                         attrs.setValue(attr, val);
                     } catch (NumberFormatException e) {
-                        if (messages == null) messages = new ArrayList<String>();
+                        if (messages == null) {
+                            messages = new ArrayList<String>();
+                        }
+
                         messages.add(_("attrValueInvalidError",
                             attrVal, attrName));
                     }
@@ -407,9 +425,18 @@ class XmlReader {
                 for (Element elt : XmlIterator.forChildElements(toolbar, "tool")) {
                     String eltName = elt.getAttribute("name");
                     if (eltName != null && !eltName.equals("")) {
-                        if (eltName.equals("Select Tool")) select = elt;
-                        if (eltName.equals("Wiring Tool")) wiring = elt;
-                        if (eltName.equals("Edit Tool")) edit = elt;
+                        if (eltName.equals("Select Tool")) {
+                            select = elt;
+                        }
+
+                        if (eltName.equals("Wiring Tool")) {
+                            wiring = elt;
+                        }
+
+                        if (eltName.equals("Edit Tool")) {
+                            edit = elt;
+                        }
+
                     }
                 }
                 if (select != null && wiring != null && edit == null) {
@@ -458,12 +485,18 @@ class XmlReader {
                 gatesLabel = label;
             }
 
-            if (firstLibElt == null) firstLibElt = libElt;
+            if (firstLibElt == null) {
+                firstLibElt = libElt;
+            }
+
             lastLibElt = libElt;
             try {
                 if (label != null) {
                     int thisLabel = Integer.parseInt(label);
-                    if (thisLabel > maxLabel) maxLabel = thisLabel;
+                    if (thisLabel > maxLabel) {
+                        maxLabel = thisLabel;
+                    }
+
                 }
             } catch (NumberFormatException e) { }
         }
@@ -517,9 +550,15 @@ class XmlReader {
 
     private void relocateTools(Element src, Element dest,
             HashMap<String,String> labelMap) {
-        if (src == null || src == dest) return;
+        if (src == null || src == dest) {
+            return;
+        }
+
         String srcLabel = src.getAttribute("name");
-        if (srcLabel == null) return;
+        if (srcLabel == null) {
+            return;
+        }
+
 
         ArrayList<Element> toRemove = new ArrayList<Element>();
         for (Element elt : XmlIterator.forChildElements(src, "tool")) {

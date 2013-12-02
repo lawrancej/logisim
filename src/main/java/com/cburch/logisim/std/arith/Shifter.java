@@ -104,13 +104,22 @@ public class Shifter extends InstanceFactory {
                 if (shift == SHIFT_LOGICAL_RIGHT) {
                     y = x >>> d;
                 } else if (shift == SHIFT_ARITHMETIC_RIGHT) {
-                    if (d >= bits) d = bits - 1;
+                    if (d >= bits) {
+                        d = bits - 1;
+                    }
+
                     y = x >> d | ((x << (32 - bits)) >> (32 - bits + d));
                 } else if (shift == SHIFT_ROLL_RIGHT) {
-                    if (d >= bits) d -= bits;
+                    if (d >= bits) {
+                        d -= bits;
+                    }
+
                     y = (x >>> d) | (x << (bits - d));
                 } else if (shift == SHIFT_ROLL_LEFT) {
-                    if (d >= bits) d -= bits;
+                    if (d >= bits) {
+                        d -= bits;
+                    }
+
                     y = (x << d) | (x >>> (bits - d));
                 // SHIFT_LOGICAL_LEFT
                 } else {
@@ -121,24 +130,39 @@ public class Shifter extends InstanceFactory {
                 Value[] x = vx.getAll();
                 Value[] y = new Value[bits];
                 if (shift == SHIFT_LOGICAL_RIGHT) {
-                    if (d >= bits) d = bits;
+                    if (d >= bits) {
+                        d = bits;
+                    }
+
                     System.arraycopy(x, d, y, 0, bits - d);
                     Arrays.fill(y, bits - d, bits, Value.FALSE);
                 } else if (shift == SHIFT_ARITHMETIC_RIGHT) {
-                    if (d >= bits) d = bits;
+                    if (d >= bits) {
+                        d = bits;
+                    }
+
                     System.arraycopy(x, d, y, 0, x.length - d);
                     Arrays.fill(y, bits - d, y.length, x[bits - 1]);
                 } else if (shift == SHIFT_ROLL_RIGHT) {
-                    if (d >= bits) d -= bits;
+                    if (d >= bits) {
+                        d -= bits;
+                    }
+
                     System.arraycopy(x, d, y, 0, bits - d);
                     System.arraycopy(x, 0, y, bits - d, d);
                 } else if (shift == SHIFT_ROLL_LEFT) {
-                    if (d >= bits) d -= bits;
+                    if (d >= bits) {
+                        d -= bits;
+                    }
+
                     System.arraycopy(x, x.length - d, y, 0, d);
                     System.arraycopy(x, 0, y, d, bits - d);
                 // SHIFT_LOGICAL_LEFT
                 } else {
-                    if (d >= bits) d = bits;
+                    if (d >= bits) {
+                        d = bits;
+                    }
+
                     Arrays.fill(y, 0, d, Value.FALSE);
                     System.arraycopy(x, 0, y, d, bits - d);
                 }

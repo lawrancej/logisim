@@ -65,8 +65,14 @@ class KeyboardData implements InstanceData, Cloneable {
                 char[] newBuf = new char[len];
                 System.arraycopy(buf, 0, newBuf, 0, Math.min(len, oldLen));
                 if (len < oldLen) {
-                    if (bufferLength > len) bufferLength = len;
-                    if (cursorPos > len) cursorPos = len;
+                    if (bufferLength > len) {
+                        bufferLength = len;
+                    }
+
+                    if (cursorPos > len) {
+                        cursorPos = len;
+                    }
+
                 }
                 buffer = newBuf;
                 str = null;
@@ -78,7 +84,10 @@ class KeyboardData implements InstanceData, Cloneable {
     @Override
     public String toString() {
         String s = str;
-        if (s != null) return s;
+        if (s != null) {
+            return s;
+        }
+
         StringBuilder build = new StringBuilder();
         char[] buf = buffer;
         int len = bufferLength;
@@ -99,7 +108,10 @@ class KeyboardData implements InstanceData, Cloneable {
         int len = bufferLength;
         for (int i = pos; i < len; i++) {
             char c = buf[i];
-            if (Character.isISOControl(c)) return i;
+            if (Character.isISOControl(c)) {
+                return i;
+            }
+
         }
         return -1;
     }
@@ -116,12 +128,18 @@ class KeyboardData implements InstanceData, Cloneable {
     public char dequeue() {
         char[] buf = buffer;
         int len = bufferLength;
-        if (len == 0) return '\0';
+        if (len == 0) {
+            return '\0';
+        }
+
         char ret = buf[0];
         for (int i = 1; i < len; i++) buf[i - 1] = buf[i];
         bufferLength = len - 1;
         int pos = cursorPos;
-        if (pos > 0) cursorPos = pos - 1;
+        if (pos > 0) {
+            cursorPos = pos - 1;
+        }
+
         str = null;
         dispValid = false;
         return ret;
@@ -130,7 +148,10 @@ class KeyboardData implements InstanceData, Cloneable {
     public boolean insert(char value) {
         char[] buf = buffer;
         int len = bufferLength;
-        if (len >= buf.length) return false;
+        if (len >= buf.length) {
+            return false;
+        }
+
         int pos = cursorPos;
         for (int i = len; i > pos; i--) buf[i] = buf[i - 1];
         buf[pos] = value;
@@ -145,7 +166,10 @@ class KeyboardData implements InstanceData, Cloneable {
         char[] buf = buffer;
         int len = bufferLength;
         int pos = cursorPos;
-        if (pos >= len) return false;
+        if (pos >= len) {
+            return false;
+        }
+
         for (int i = pos + 1; i < len; i++) buf[i - 1] = buf[i];
         bufferLength = len - 1;
         str = null;
@@ -157,7 +181,10 @@ class KeyboardData implements InstanceData, Cloneable {
         int len = bufferLength;
         int pos = cursorPos;
         int newPos = pos + delta;
-        if (newPos < 0 || newPos > len) return false;
+        if (newPos < 0 || newPos > len) {
+            return false;
+        }
+
         cursorPos = newPos;
         dispValid = false;
         return true;
@@ -165,16 +192,25 @@ class KeyboardData implements InstanceData, Cloneable {
 
     public boolean setCursor(int value) {
         int len = bufferLength;
-        if (value > len) value = len;
+        if (value > len) {
+            value = len;
+        }
+
         int pos = cursorPos;
-        if (pos == value) return false;
+        if (pos == value) {
+            return false;
+        }
+
         cursorPos = value;
         dispValid = false;
         return true;
     }
 
     public void updateDisplay(FontMetrics fm) {
-        if (dispValid) return;
+        if (dispValid) {
+            return;
+        }
+
         int pos = cursorPos;
         int i0 = dispStart;
         int i1 = dispEnd;
@@ -190,18 +226,36 @@ class KeyboardData implements InstanceData, Cloneable {
             int w1 = fm.stringWidth("m");
             int w = i0 == 0 ? fm.stringWidth(str)
                     : w0 + fm.stringWidth(str.substring(i0));
-            if (w <= max) i1 = len;
+            if (w <= max) {
+                i1 = len;
+            }
+
 
             // rearrange start/end so as to include cursor
             if (pos <= i0) {
-                if (pos < i0) { i1 += pos - i0; i0 = pos; }
-                if (pos == i0 && i0 > 0) { i0--; i1--; }
+                if (pos < i0) {
+                    { i1 += pos - i0;
+                }
+ i0 = pos; }
+                if (pos == i0 && i0 > 0) {
+                    { i0--;
+                }
+ i1--; }
             }
             if (pos >= i1) {
-                if (pos > i1) { i0 += pos - i1; i1 = pos; }
-                if (pos == i1 && i1 < len) { i0++; i1++; }
+                if (pos > i1) {
+                    { i0 += pos - i1;
+                }
+ i1 = pos; }
+                if (pos == i1 && i1 < len) {
+                    { i0++;
+                }
+ i1++; }
             }
-            if (i0 <= 2) i0 = 0;
+            if (i0 <= 2) {
+                i0 = 0;
+            }
+
 
             // resize segment to fit
             // maybe should grow
@@ -219,7 +273,10 @@ class KeyboardData implements InstanceData, Cloneable {
                 }
 
             }
-            if (i0 == 1) i0 = 0;
+            if (i0 == 1) {
+                i0 = 0;
+            }
+
         }
         dispStart = i0;
         dispEnd = i1;
@@ -228,12 +285,24 @@ class KeyboardData implements InstanceData, Cloneable {
 
     private boolean fits(FontMetrics fm, String str, int w0, int w1,
             int i0, int i1, int max) {
-        if (i0 >= i1) return true;
+        if (i0 >= i1) {
+            return true;
+        }
+
         int len = str.length();
-        if (i0 < 0 || i1 > len) return false;
+        if (i0 < 0 || i1 > len) {
+            return false;
+        }
+
         int w = fm.stringWidth(str.substring(i0, i1));
-        if (i0 > 0) w += w0;
-        if (i1 < str.length()) w += w1;
+        if (i0 > 0) {
+            w += w0;
+        }
+
+        if (i1 < str.length()) {
+            w += w1;
+        }
+
         return w <= max;
     }
 }

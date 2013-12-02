@@ -120,8 +120,14 @@ public class CanvasPane extends JScrollPane {
             height = (int) Math.ceil(height * zoom);
         }
         Dimension minSize = getViewportSize();
-        if (minSize.width > width) width = minSize.width;
-        if (minSize.height > height) height = minSize.height;
+        if (minSize.width > width) {
+            width = minSize.width;
+        }
+
+        if (minSize.height > height) {
+            height = minSize.height;
+        }
+
         return new Dimension(width, height);
     }
 }

@@ -86,7 +86,10 @@ class XmlWriter {
 
         for (Library lib : file.getLibraries()) {
             Element elt = fromLibrary(lib);
-            if (elt != null) ret.appendChild(elt);
+            if (elt != null) {
+                ret.appendChild(elt);
+            }
+
         }
 
         if (file.getMainCircuit() != null) {
@@ -107,7 +110,10 @@ class XmlWriter {
 
     Element fromLibrary(Library lib) {
         Element ret = doc.createElement("lib");
-        if (libs.containsKey(lib)) return null;
+        if (libs.containsKey(lib)) {
+            return null;
+        }
+
         String name = "" + libs.size();
         String desc = loader.getDescriptor(lib);
         if (desc == null) {
@@ -183,7 +189,10 @@ class XmlWriter {
         }
 
         Element elt = doc.createElement("tool");
-        if (lib_name != null) elt.setAttribute("lib", lib_name);
+        if (lib_name != null) {
+            elt.setAttribute("lib", lib_name);
+        }
+
         elt.setAttribute("name", tool.getName());
         addAttributeSetContent(elt, tool.getAttributeSet(), tool);
         return elt;
@@ -210,7 +219,10 @@ class XmlWriter {
         }
         for (Component comp : circuit.getNonWires()) {
             Element elt = fromComponent(comp);
-            if (elt != null) ret.appendChild(elt);
+            if (elt != null) {
+                ret.appendChild(elt);
+            }
+
         }
         return ret;
     }
@@ -233,7 +245,10 @@ class XmlWriter {
         }
 
         Element ret = doc.createElement("comp");
-        if (lib_name != null) ret.setAttribute("lib", lib_name);
+        if (lib_name != null) {
+            ret.setAttribute("lib", lib_name);
+        }
+
         ret.setAttribute("name", source.getName());
         ret.setAttribute("loc", comp.getLocation().toString());
         addAttributeSetContent(ret, comp.getAttributeSet(), comp.getFactory());
@@ -249,9 +264,15 @@ class XmlWriter {
 
     void addAttributeSetContent(Element elt, AttributeSet attrs,
             AttributeDefaultProvider source) {
-        if (attrs == null) return;
+        if (attrs == null) {
+            return;
+        }
+
         LogisimVersion ver = Main.VERSION;
-        if (source != null && source.isAllDefaultValues(attrs, ver)) return;
+        if (source != null && source.isAllDefaultValues(attrs, ver)) {
+            return;
+        }
+
         for (Attribute<?> attrBase : attrs.getAttributes()) {
             @SuppressWarnings("unchecked")
             Attribute<Object> attr = (Attribute<Object>) attrBase;
@@ -278,7 +299,10 @@ class XmlWriter {
             return file;
         }
         for (Library lib : file.getLibraries()) {
-            if (libraryContains(lib, tool)) return lib;
+            if (libraryContains(lib, tool)) {
+                return lib;
+            }
+
         }
         return null;
     }
@@ -288,14 +312,20 @@ class XmlWriter {
             return file;
         }
         for (Library lib : file.getLibraries()) {
-            if (lib.contains(source)) return lib;
+            if (lib.contains(source)) {
+                return lib;
+            }
+
         }
         return null;
     }
 
     boolean libraryContains(Library lib, Tool query) {
         for (Tool tool : lib.getTools()) {
-            if (tool.sharesSource(query)) return true;
+            if (tool.sharesSource(query)) {
+                return true;
+            }
+
         }
         return false;
     }

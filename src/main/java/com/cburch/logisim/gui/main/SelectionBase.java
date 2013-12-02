@@ -128,7 +128,10 @@ class SelectionBase {
         }
 
         if (removed) {
-            if (shouldSnapComponent(comp)) computeShouldSnap();
+            if (shouldSnapComponent(comp)) {
+                computeShouldSnap();
+            }
+
             fireSelectionChanged();
         }
     }
@@ -147,7 +150,10 @@ class SelectionBase {
 
     // removes all from selection - NOT from circuit
     void clear(CircuitMutation xn, boolean dropLifted) {
-        if (selected.isEmpty() && lifted.isEmpty()) return;
+        if (selected.isEmpty() && lifted.isEmpty()) {
+            return;
+        }
+
 
         if (dropLifted && !lifted.isEmpty()) {
             xn.addAll(lifted);
@@ -163,7 +169,10 @@ class SelectionBase {
 
     public void setSuppressHandles(Collection<Component> toSuppress) {
         suppressHandles.clear();
-        if (toSuppress != null) suppressHandles.addAll(toSuppress);
+        if (toSuppress != null) {
+            suppressHandles.addAll(toSuppress);
+        }
+
     }
 
     void duplicateHelper(CircuitMutation xn) {
@@ -225,7 +234,10 @@ class SelectionBase {
     private boolean hasConflictTranslated(Collection<Component> components,
             int dx, int dy, boolean selfConflicts) {
         Circuit circuit = proj.getCurrentCircuit();
-        if (circuit == null) return false;
+        if (circuit == null) {
+            return false;
+        }
+
         for (Component comp : components) {
             if (!(comp instanceof Wire)) {
                 for (EndData endData : comp.getEnds()) {
@@ -233,7 +245,10 @@ class SelectionBase {
                         Location endLoc = endData.getLocation().translate(dx, dy);
                         Component conflict = circuit.getExclusive(endLoc);
                         if (conflict != null) {
-                            if (selfConflicts || !components.contains(conflict)) return true;
+                            if (selfConflicts || !components.contains(conflict)) {
+                                return true;
+                            }
+
                         }
                     }
                 }
@@ -242,7 +257,10 @@ class SelectionBase {
                 for (Component comp2 : circuit.getAllContaining(newLoc)) {
                     Bounds bds = comp2.getBounds();
                     if (bds.equals(newBounds)) {
-                        if (selfConflicts || !components.contains(comp2)) return true;
+                        if (selfConflicts || !components.contains(comp2)) {
+                            return true;
+                        }
+
                     }
                 }
             }

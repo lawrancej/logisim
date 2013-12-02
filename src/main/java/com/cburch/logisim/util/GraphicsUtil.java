@@ -34,16 +34,28 @@ public class GraphicsUtil {
 
     static public Rectangle getTextBounds(Graphics g, Font font,
             String text, int x, int y, int halign, int valign) {
-        if (g == null) return new Rectangle(x, y, 0, 0);
+        if (g == null) {
+            return new Rectangle(x, y, 0, 0);
+        }
+
         Font oldfont = g.getFont();
-        if (font != null) g.setFont(font);
+        if (font != null) {
+            g.setFont(font);
+        }
+
         Rectangle ret = getTextBounds(g, text, x, y, halign, valign);
-        if (font != null) g.setFont(oldfont);
+        if (font != null) {
+            g.setFont(oldfont);
+        }
+
         return ret;
     }
     static public Rectangle getTextBounds(Graphics g, String text,
             int x, int y, int halign, int valign) {
-        if (g == null) return new Rectangle(x, y, 0, 0);
+        if (g == null) {
+            return new Rectangle(x, y, 0, 0);
+        }
+
         FontMetrics mets = g.getFontMetrics();
         int width = mets.stringWidth(text);
         int ascent = mets.getAscent();
@@ -70,13 +82,22 @@ public class GraphicsUtil {
     static public void drawText(Graphics g, Font font,
             String text, int x, int y, int halign, int valign) {
         Font oldfont = g.getFont();
-        if (font != null) g.setFont(font);
+        if (font != null) {
+            g.setFont(font);
+        }
+
         drawText(g, text, x, y, halign, valign);
-        if (font != null) g.setFont(oldfont);
+        if (font != null) {
+            g.setFont(oldfont);
+        }
+
     }
     static public void drawText(Graphics g, String text,
             int x, int y, int halign, int valign) {
-        if (text.length() == 0) return;
+        if (text.length() == 0) {
+            return;
+        }
+
         Rectangle bd = getTextBounds(g, text, x, y, halign, valign);
         g.drawString(text, bd.x, bd.y + g.getFontMetrics().getAscent());
     }

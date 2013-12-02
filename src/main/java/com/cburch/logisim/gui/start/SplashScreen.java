@@ -122,7 +122,10 @@ public class SplashScreen extends JWindow implements ActionListener {
     }
 
     public void close() {
-        if (inClose) return;
+        if (inClose) {
+            return;
+        }
+
         inClose = true;
         setVisible(false);
         inClose = false;

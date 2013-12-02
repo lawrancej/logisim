@@ -34,14 +34,20 @@ public abstract class AbstractComponent implements Component {
     @Override
     public boolean contains(Location pt) {
         Bounds bds = getBounds();
-        if (bds == null) return false;
+        if (bds == null) {
+            return false;
+        }
+
         return bds.contains(pt, 1);
     }
 
     @Override
     public boolean contains(Location pt, Graphics g) {
         Bounds bds = getBounds(g);
-        if (bds == null) return false;
+        if (bds == null) {
+            return false;
+        }
+
         return bds.contains(pt, 1);
     }
 
@@ -59,7 +65,10 @@ public abstract class AbstractComponent implements Component {
     @Override
     public boolean endsAt(Location pt) {
         for (EndData data : getEnds()) {
-            if (data.getLocation().equals(pt)) return true;
+            if (data.getLocation().equals(pt)) {
+                return true;
+            }
+
         }
         return false;
     }

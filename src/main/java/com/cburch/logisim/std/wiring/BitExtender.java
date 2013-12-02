@@ -69,7 +69,10 @@ public class BitExtender extends InstanceFactory {
 
         String s0;
         String type = getType(painter.getAttributeSet());
-        if (type.equals("zero")) s0 = _("extenderZeroLabel");
+        if (type.equals("zero")) {
+            s0 = _("extenderZeroLabel");
+        }
+
         else if (type.equals("one")) s0 = _("extenderOneLabel");
         else if (type.equals("sign")) s0 = _("extenderSignLabel");
         else if (type.equals("input")) s0 = _("extenderInputLabel");
@@ -89,7 +92,10 @@ public class BitExtender extends InstanceFactory {
         BitWidth w1 = painter.getAttributeValue(ATTR_IN_WIDTH);
         painter.drawPort(0, "" + w0.getWidth(), Direction.WEST);
         painter.drawPort(1, "" + w1.getWidth(), Direction.EAST);
-        if (type.equals("input")) painter.drawPort(2);
+        if (type.equals("input")) {
+            painter.drawPort(2);
+        }
+
     }
 
     //
@@ -135,7 +141,10 @@ public class BitExtender extends InstanceFactory {
             extend = win > 0 ? in.get(win - 1) : Value.ERROR;
         } else if (type.equals("input")) {
             extend = state.getPort(2);
-            if (extend.getWidth() != 1) extend = Value.ERROR;
+            if (extend.getWidth() != 1) {
+                extend = Value.ERROR;
+            }
+
         } else {
             extend = Value.FALSE;
         }

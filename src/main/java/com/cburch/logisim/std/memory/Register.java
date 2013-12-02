@@ -83,7 +83,10 @@ public class Register extends InstanceFactory {
             data.value = 0;
         } else if (triggered && state.getPort(EN) != Value.FALSE) {
             Value in = state.getPort(IN);
-            if (in.isFullyDefined()) data.value = in.toIntValue();
+            if (in.isFullyDefined()) {
+                data.value = in.toIntValue();
+            }
+
         }
 
         state.setPort(OUT, Value.createKnown(dataWidth, data.value), DELAY);

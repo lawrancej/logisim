@@ -70,23 +70,41 @@ class Measures {
 
     public long toAddress(int x, int y) {
         HexModel model = hex.getModel();
-        if (model == null) return Integer.MIN_VALUE;
+        if (model == null) {
+            return Integer.MIN_VALUE;
+        }
+
         long addr0 = model.getFirstOffset();
         long addr1 = model.getLastOffset();
 
         long base = getBaseAddress(model) + ((long) y / cellHeight) * cols;
         int offs = (x - baseX) / (cellWidth + (spacerWidth + 2) / 4);
-        if (offs < 0) offs = 0;
-        if (offs >= cols) offs = cols - 1;
+        if (offs < 0) {
+            offs = 0;
+        }
+
+        if (offs >= cols) {
+            offs = cols - 1;
+        }
+
 
         long ret = base + offs;
-        if (ret > addr1) ret = addr1;
-        if (ret < addr0) ret = addr0;
+        if (ret > addr1) {
+            ret = addr1;
+        }
+
+        if (ret < addr0) {
+            ret = addr0;
+        }
+
         return ret;
     }
 
     void ensureComputed(Graphics g) {
-        if (guessed || cellWidth < 0) computeCellSize(g);
+        if (guessed || cellWidth < 0) {
+            computeCellSize(g);
+        }
+
     }
 
     void recompute() {
@@ -102,7 +120,10 @@ class Measures {
         } else {
             width = hex.getWidth();
             int ret = (width - headerWidth) / (cellWidth + (spacerWidth + 3) / 4);
-            if (ret >= 16) cols = 16;
+            if (ret >= 16) {
+                cols = 16;
+            }
+
             else if (ret >= 8) cols = 8;
             else cols = 4;
         }
@@ -113,7 +134,10 @@ class Measures {
             baseX = newBase;
             hex.repaint();
         }
-        if (cols != oldCols) recompute();
+        if (cols != oldCols) {
+            recompute();
+        }
+
     }
 
     private void computeCellSize(Graphics g) {
@@ -152,7 +176,10 @@ class Measures {
             charWidth = 0;
             for(int i = 0; i < 16; i++) {
                 int width = fm.stringWidth(Integer.toHexString(i));
-                if (width > charWidth) charWidth = width;
+                if (width > charWidth) {
+                    charWidth = width;
+                }
+
             }
             spaceWidth = fm.stringWidth(" ");
             lineHeight = fm.getHeight();
@@ -174,7 +201,10 @@ class Measures {
             long addr1 = model.getLastOffset();
             long rows = (int) (((addr1 - addr0 + 1) + cols - 1) / cols);
             height = rows * cellHeight;
-            if (height > Integer.MAX_VALUE) height = Integer.MAX_VALUE;
+            if (height > Integer.MAX_VALUE) {
+                height = Integer.MAX_VALUE;
+            }
+
         }
 
         // update preferred size

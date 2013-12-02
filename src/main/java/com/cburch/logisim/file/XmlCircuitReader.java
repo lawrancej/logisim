@@ -54,7 +54,10 @@ public class XmlCircuitReader extends CircuitTransaction {
         Element elt = circData.circuitElement;
         Circuit dest = circData.circuit;
         Map<Element, Component> knownComponents = circData.knownComponents;
-        if (knownComponents == null) knownComponents = Collections.emptyMap();
+        if (knownComponents == null) {
+            knownComponents = Collections.emptyMap();
+        }
+
         try {
             reader.initAttributeSet(circData.circuitElement, dest.getStaticAttributes(), null);
         } catch (XmlReaderException e) {

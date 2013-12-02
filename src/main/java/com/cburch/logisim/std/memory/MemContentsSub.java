@@ -9,7 +9,10 @@ class MemContentsSub {
     private MemContentsSub() { }
 
     static ContentsInterface createContents(int size, int bits) {
-        if (bits <= 8)       return new ByteContents(size);
+        if (bits <= 8) {
+                  return new ByteContents(size);
+        }
+
         else if (bits <= 16) return new ShortContents(size);
         else                return new IntContents(size);
     }
@@ -31,7 +34,10 @@ class MemContentsSub {
 
         boolean matches(int[] values, int start, int mask) {
             for (int i = 0; i < values.length; i++) {
-                if (get(start + i) != (values[i] & mask)) return false;
+                if (get(start + i) != (values[i] & mask)) {
+                    return false;
+                }
+
             }
             return true;
         }
@@ -44,7 +50,10 @@ class MemContentsSub {
 
         boolean isClear() {
             for (int i = 0, n = getLength(); i < n; i++) {
-                if (get(i) != 0) return false;
+                if (get(i) != 0) {
+                    return false;
+                }
+
             }
             return true;
         }

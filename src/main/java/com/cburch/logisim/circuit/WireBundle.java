@@ -28,7 +28,10 @@ class WireBundle {
     }
 
     void setWidth(BitWidth width, Location det) {
-        if (width == BitWidth.UNKNOWN) return;
+        if (width == BitWidth.UNKNOWN) {
+            return;
+        }
+
         if (incompatibilityData != null) {
             incompatibilityData.add(det, width);
             return;
@@ -80,7 +83,10 @@ class WireBundle {
     void unite(WireBundle other) {
         WireBundle group = this.find();
         WireBundle group2 = other.find();
-        if (group != group2) group.parent = group2;
+        if (group != group2) {
+            group.parent = group2;
+        }
+
     }
 
     WireBundle find() {

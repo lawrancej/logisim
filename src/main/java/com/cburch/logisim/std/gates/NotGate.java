@@ -71,15 +71,33 @@ class NotGate extends InstanceFactory {
         Object value = attrs.getValue(ATTR_SIZE);
         if (value == SIZE_NARROW) {
             Direction facing = attrs.getValue(StdAttr.FACING);
-            if (facing == Direction.SOUTH) return Bounds.create(-9, -20, 18, 20);
-            if (facing == Direction.NORTH) return Bounds.create(-9,   0, 18, 20);
-            if (facing == Direction.WEST) return Bounds.create(0, -9, 20, 18);
+            if (facing == Direction.SOUTH) {
+                return Bounds.create(-9, -20, 18, 20);
+            }
+
+            if (facing == Direction.NORTH) {
+                return Bounds.create(-9,   0, 18, 20);
+            }
+
+            if (facing == Direction.WEST) {
+                return Bounds.create(0, -9, 20, 18);
+            }
+
             return Bounds.create(-20, -9, 20, 18);
         } else {
             Direction facing = attrs.getValue(StdAttr.FACING);
-            if (facing == Direction.SOUTH) return Bounds.create(-9, -30, 18, 30);
-            if (facing == Direction.NORTH) return Bounds.create(-9,   0, 18, 30);
-            if (facing == Direction.WEST) return Bounds.create(0, -9, 30, 18);
+            if (facing == Direction.SOUTH) {
+                return Bounds.create(-9, -30, 18, 30);
+            }
+
+            if (facing == Direction.NORTH) {
+                return Bounds.create(-9,   0, 18, 30);
+            }
+
+            if (facing == Direction.WEST) {
+                return Bounds.create(0, -9, 30, 18);
+            }
+
             return Bounds.create(-30, -9, 30, 18);
         }
     }

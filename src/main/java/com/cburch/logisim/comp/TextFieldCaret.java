@@ -62,7 +62,10 @@ class TextFieldCaret implements Caret, TextFieldListener {
 
     @Override
     public void draw(Graphics g) {
-        if (field.getFont() != null) g.setFont(field.getFont());
+        if (field.getFont() != null) {
+            g.setFont(field.getFont());
+        }
+
 
         // draw boundary
         Bounds bds = getBounds(g);
@@ -94,7 +97,10 @@ class TextFieldCaret implements Caret, TextFieldListener {
         g.drawString(curText, x, y);
 
         // draw cursor
-        if (pos > 0) x += fm.stringWidth(curText.substring(0, pos));
+        if (pos > 0) {
+            x += fm.stringWidth(curText.substring(0, pos));
+        }
+
         g.drawLine(x, y, x, y - ascent);
     }
 
@@ -104,7 +110,10 @@ class TextFieldCaret implements Caret, TextFieldListener {
         int y = field.getY();
         Font font = field.getFont();
         FontMetrics fm;
-        if (font == null)   fm = g.getFontMetrics();
+        if (font == null) {
+              fm = g.getFontMetrics();
+        }
+
         else                fm = g.getFontMetrics(font);
         int width = fm.stringWidth(curText);
         int ascent = fm.getAscent();
@@ -168,15 +177,24 @@ class TextFieldCaret implements Caret, TextFieldListener {
     public void keyPressed(KeyEvent e) {
         int ign = InputEvent.ALT_MASK | InputEvent.CTRL_MASK
             | InputEvent.META_MASK;
-        if ((e.getModifiers() & ign) != 0) return;
+        if ((e.getModifiers() & ign) != 0) {
+            return;
+        }
+
         switch (e.getKeyCode()) {
         case KeyEvent.VK_LEFT:
         case KeyEvent.VK_KP_LEFT:
-            if (pos > 0) --pos;
+            if (pos > 0) {
+                --pos;
+            }
+
             break;
         case KeyEvent.VK_RIGHT:
         case KeyEvent.VK_KP_RIGHT:
-            if (pos < curText.length()) ++pos;
+            if (pos < curText.length()) {
+                ++pos;
+            }
+
             break;
         case KeyEvent.VK_HOME:
             pos = 0;
@@ -227,7 +245,10 @@ class TextFieldCaret implements Caret, TextFieldListener {
     public void keyTyped(KeyEvent e) {
         int ign = InputEvent.ALT_MASK | InputEvent.CTRL_MASK
             | InputEvent.META_MASK;
-        if ((e.getModifiers() & ign) != 0) return;
+        if ((e.getModifiers() & ign) != 0) {
+            return;
+        }
+
 
         char c = e.getKeyChar();
         if (c == '\n') {

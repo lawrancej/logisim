@@ -31,10 +31,16 @@ public class Startup {
     private static Startup startupTemp = null;
 
     static void doOpen(File file) {
-        if (startupTemp != null) startupTemp.doOpenFile(file);
+        if (startupTemp != null) {
+            startupTemp.doOpenFile(file);
+        }
+
     }
     static void doPrint(File file) {
-        if (startupTemp != null) startupTemp.doPrintFile(file);
+        if (startupTemp != null) {
+            startupTemp.doPrintFile(file);
+        }
+
     }
 
     private void doOpenFile(File file) {
@@ -58,9 +64,15 @@ public class Startup {
     private static void registerHandler() {
         try {
             Class<?> needed1 = Class.forName("com.apple.eawt.Application");
-            if (needed1 == null) return;
+            if (needed1 == null) {
+                return;
+            }
+
             Class<?> needed2 = Class.forName("com.apple.eawt.ApplicationAdapter");
-            if (needed2 == null) return;
+            if (needed2 == null) {
+                return;
+            }
+
             MacOsAdapter.register();
             MacOsAdapter.addListeners(true);
         } catch (ClassNotFoundException e) {
@@ -136,7 +148,10 @@ public class Startup {
 
         // pre-load the two basic component libraries, just so that the time
         // taken is shown separately in the progress bar.
-        if (showSplash) monitor.setProgress(SplashScreen.LIBRARIES);
+        if (showSplash) {
+            monitor.setProgress(SplashScreen.LIBRARIES);
+        }
+
         Loader templLoader = new Loader(monitor);
         int count = templLoader.getBuiltin().getLibrary("Base").getTools().size()
              + templLoader.getBuiltin().getLibrary("Gates").getTools().size();
@@ -152,7 +167,10 @@ public class Startup {
 
         // now that the splash screen is almost gone, we do some last-minute
         // interface initialization
-        if (showSplash) monitor.setProgress(SplashScreen.GUI_INIT);
+        if (showSplash) {
+            monitor.setProgress(SplashScreen.GUI_INIT);
+        }
+
         WindowManagers.initialize();
         if (MacCompatibility.isSwingUsingScreenMenuBar()) {
             MacCompatibility.setFramelessJMenuBar(new LogisimMenuBar(null, null));
@@ -170,7 +188,10 @@ public class Startup {
         // load file
         if (filesToOpen.isEmpty()) {
             ProjectActions.doNew(monitor, true);
-            if (showSplash) monitor.close();
+            if (showSplash) {
+                monitor.close();
+            }
+
         } else {
             boolean first = true;
             for (File fileToOpen : filesToOpen) {
@@ -183,7 +204,10 @@ public class Startup {
                 }
                 if (first) {
                     first = false;
-                    if (showSplash) monitor.close();
+                    if (showSplash) {
+                        monitor.close();
+                    }
+
                     monitor = null;
                 }
             }
@@ -215,7 +239,10 @@ public class Startup {
 
     private void loadTemplate(Loader loader, File templFile,
             boolean templEmpty) {
-        if (showSplash) monitor.setProgress(SplashScreen.TEMPLATE_OPEN);
+        if (showSplash) {
+            monitor.setProgress(SplashScreen.TEMPLATE_OPEN);
+        }
+
         if (templFile != null) {
             AppPreferences.setTemplateFile(templFile);
             AppPreferences.setTemplateType(AppPreferences.TEMPLATE_CUSTOM);
@@ -351,7 +378,10 @@ public class Startup {
                 return null;
             } else if (arg.equals("-gates")) {
                 i++;
-                if (i >= args.length) printUsage();
+                if (i >= args.length) {
+                    printUsage();
+                }
+
                 String a = args[i];
                 if (a.equals("shaped")) {
                     AppPreferences.GATE_SHAPE.set(AppPreferences.SHAPE_SHAPED);
@@ -364,11 +394,17 @@ public class Startup {
                 }
             } else if (arg.equals("-locale")) {
                 i++;
-                if (i >= args.length) printUsage();
+                if (i >= args.length) {
+                    printUsage();
+                }
+
                 setLocale(args[i]);
             } else if (arg.equals("-accents")) {
                 i++;
-                if (i >= args.length) printUsage();
+                if (i >= args.length) {
+                    printUsage();
+                }
+
                 String a = args[i];
                 if (a.equals("yes")) {
                     AppPreferences.ACCENTS_REPLACE.setBoolean(false);
@@ -386,7 +422,10 @@ public class Startup {
                     return null;
                 }
                 i++;
-                if (i >= args.length) printUsage();
+                if (i >= args.length) {
+                    printUsage();
+                }
+
                 ret.templFile = new File(args[i]);
                 if (!ret.templFile.exists()) {
                     //OK

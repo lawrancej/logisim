@@ -107,26 +107,41 @@ class TickCounter implements SimulatorListener {
                 // oscillate rapidly between 990 Hz and 1 KHz - it's better for
                 // it to oscillate between 990 Hz and 1005 Hz.
                 int baseLen = size;
-                if (baseLen > 100) baseLen = 100;
+                if (baseLen > 100) {
+                    baseLen = 100;
+                }
+
                 int baseStart = end - baseLen + 1;
                 double min = rate;
                 if (baseStart < 0) {
                     baseStart += maxSize;
                     for (int i = baseStart + maxSize; i < maxSize; i++) {
                         double x = queueRates[i];
-                        if (x < min) min = x;
+                        if (x < min) {
+                            min = x;
+                        }
+
                     }
                     for (int i = 0; i < end; i++) {
                         double x = queueRates[i];
-                        if (x < min) min = x;
+                        if (x < min) {
+                            min = x;
+                        }
+
                     }
                 } else {
                     for (int i = baseStart; i < end; i++) {
                         double x = queueRates[i];
-                        if (x < min) min = x;
+                        if (x < min) {
+                            min = x;
+                        }
+
                     }
                 }
-                if (min < 0.9 * rate) min = rate;
+                if (min < 0.9 * rate) {
+                    min = rate;
+                }
+
 
                 if (min >= 1000.0) {
                     return _("tickRateKHz",

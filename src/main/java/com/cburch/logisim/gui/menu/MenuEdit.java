@@ -37,7 +37,10 @@ class MenuEdit extends Menu {
             Object src = e.getSource();
             Project proj = menubar.getProject();
             if (src == undo) {
-                if (proj != null) proj.undoAction();
+                if (proj != null) {
+                    proj.undoAction();
+                }
+
             }
         }
     }

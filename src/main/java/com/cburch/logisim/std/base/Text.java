@@ -80,7 +80,10 @@ public class Text extends InstanceFactory {
     private Bounds estimateBounds(TextAttributes attrs) {
         // TODO - you can imagine being more clever here
         String text = attrs.getText();
-        if (text == null || text.length() == 0) return Bounds.EMPTY_BOUNDS;
+        if (text == null || text.length() == 0) {
+            return Bounds.EMPTY_BOUNDS;
+        }
+
         int size = attrs.getFont().getSize();
         int h = size;
         int w = size * text.length() / 2;
@@ -112,7 +115,10 @@ public class Text extends InstanceFactory {
     public void paintGhost(InstancePainter painter) {
         TextAttributes attrs = (TextAttributes) painter.getAttributeSet();
         String text = attrs.getText();
-        if (text == null || text.equals("")) return;
+        if (text == null || text.equals("")) {
+            return;
+        }
+
 
         int halign = attrs.getHorizontalAlign();
         int valign = attrs.getVerticalAlign();
@@ -132,7 +138,10 @@ public class Text extends InstanceFactory {
         }
         if (attrs.setOffsetBounds(newBds)) {
             Instance instance = painter.getInstance();
-            if (instance != null) instance.recomputeBounds();
+            if (instance != null) {
+                instance.recomputeBounds();
+            }
+
         }
 
         g.setFont(old);

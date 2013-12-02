@@ -157,7 +157,10 @@ abstract class Mem extends InstanceFactory {
 
     @Override
     protected Object getInstanceFeature(Instance instance, Object key) {
-        if (key == MenuExtender.class) return new MemMenu(this, instance);
+        if (key == MenuExtender.class) {
+            return new MemMenu(this, instance);
+        }
+
         return super.getInstanceFeature(instance, key);
     }
 

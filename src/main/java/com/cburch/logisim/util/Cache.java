@@ -15,7 +15,10 @@ public class Cache {
         this(8);
     }
     public Cache(int logSize) {
-        if (logSize > 12) logSize = 12;
+        if (logSize > 12) {
+            logSize = 12;
+        }
+
 
         data = new Object[1 << logSize];
         mask = data.length - 1;
@@ -32,7 +35,10 @@ public class Cache {
     }
 
     public Object get(Object value) {
-        if (value == null) return null;
+        if (value == null) {
+            return null;
+        }
+
         int code = value.hashCode() & mask;
         Object ret = data[code];
         if (ret != null && ret.equals(value)) {

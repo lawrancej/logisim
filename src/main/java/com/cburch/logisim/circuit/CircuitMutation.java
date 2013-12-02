@@ -78,7 +78,10 @@ public final class CircuitMutation extends CircuitTransaction {
     }
 
     public Action toAction(StringGetter name) {
-        if (name == null) name = __("unknownChangeAction");
+        if (name == null) {
+            name = __("unknownChangeAction");
+        }
+
         return new CircuitAction(name, this);
     }
 

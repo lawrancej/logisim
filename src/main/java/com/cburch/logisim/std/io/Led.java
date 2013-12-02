@@ -153,7 +153,10 @@ public class Led extends InstanceFactory {
         @Override
         public Value getLogValue(InstanceState state, Object option) {
             InstanceDataSingleton data = (InstanceDataSingleton) state.getData();
-            if (data == null) return Value.FALSE;
+            if (data == null) {
+                return Value.FALSE;
+            }
+
             return data.getValue() == Value.TRUE ? Value.TRUE : Value.FALSE;
         }
     }

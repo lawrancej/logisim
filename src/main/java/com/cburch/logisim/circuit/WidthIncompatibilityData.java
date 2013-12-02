@@ -19,7 +19,10 @@ public class WidthIncompatibilityData {
 
     public void add(Location p, BitWidth w) {
         for (int i = 0; i < points.size(); i++) {
-            if (p.equals(points.get(i)) && w.equals(widths.get(i))) return;
+            if (p.equals(points.get(i)) && w.equals(widths.get(i))) {
+                return;
+            }
+
         }
         points.add(p);
         widths.add(w);
@@ -39,11 +42,20 @@ public class WidthIncompatibilityData {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof WidthIncompatibilityData)) return false;
-        if (this == other) return true;
+        if (!(other instanceof WidthIncompatibilityData)) {
+            return false;
+        }
+
+        if (this == other) {
+            return true;
+        }
+
 
         WidthIncompatibilityData o = (WidthIncompatibilityData) other;
-        if (this.size() != o.size()) return false;
+        if (this.size() != o.size()) {
+            return false;
+        }
+
         for (int i = 0; i < this.size(); i++) {
             Location p = this.getPoint(i);
             BitWidth w = this.getBitWidth(i);
@@ -51,9 +63,15 @@ public class WidthIncompatibilityData {
             for (int j = 0; j < o.size(); j++) {
                 Location q = this.getPoint(j);
                 BitWidth x = this.getBitWidth(j);
-                if (p.equals(q) && w.equals(x)) { matched = true; break; }
+                if (p.equals(q) && w.equals(x)) {
+                    { matched = true;
+                }
+ break; }
             }
-            if (!matched) return false;
+            if (!matched) {
+                return false;
+            }
+
         }
         return true;
     }

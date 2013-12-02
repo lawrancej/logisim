@@ -40,7 +40,10 @@ public class Location implements Comparable<Location> {
     }
 
     public Location translate(int dx, int dy) {
-        if (dx == 0 && dy == 0) return this;
+        if (dx == 0 && dy == 0) {
+            return this;
+        }
+
         return Location.create(x + dx, y + dy);
     }
 
@@ -49,11 +52,26 @@ public class Location implements Comparable<Location> {
     }
 
     public Location translate(Direction dir, int dist, int right) {
-        if (dist == 0 && right == 0) return this;
-        if (dir == Direction.EAST) return Location.create(x + dist, y + right);
-        if (dir == Direction.WEST) return Location.create(x - dist, y - right);
-        if (dir == Direction.SOUTH) return Location.create(x - right, y + dist);
-        if (dir == Direction.NORTH) return Location.create(x + right, y - dist);
+        if (dist == 0 && right == 0) {
+            return this;
+        }
+
+        if (dir == Direction.EAST) {
+            return Location.create(x + dist, y + right);
+        }
+
+        if (dir == Direction.WEST) {
+            return Location.create(x - dist, y - right);
+        }
+
+        if (dir == Direction.SOUTH) {
+            return Location.create(x - right, y + dist);
+        }
+
+        if (dir == Direction.NORTH) {
+            return Location.create(x + right, y - dist);
+        }
+
         return Location.create(x + dist, y + right);
     }
 
@@ -79,7 +97,10 @@ public class Location implements Comparable<Location> {
 
     @Override
     public boolean equals(Object other_obj) {
-        if (!(other_obj instanceof Location)) return false;
+        if (!(other_obj instanceof Location)) {
+            return false;
+        }
+
         Location other = (Location) other_obj;
         return this.x == other.x && this.y == other.y;
     }
@@ -91,7 +112,10 @@ public class Location implements Comparable<Location> {
 
     @Override
     public int compareTo(Location other) {
-        if (this.x != other.x) return this.x - other.x;
+        if (this.x != other.x) {
+            return this.x - other.x;
+        }
+
         else                  return this.y - other.y;
     }
 
@@ -105,7 +129,10 @@ public class Location implements Comparable<Location> {
         Object ret = cache.get(hashCode);
         if (ret != null) {
             Location loc = (Location) ret;
-            if (loc.x == x && loc.y == y) return loc;
+            if (loc.x == x && loc.y == y) {
+                return loc;
+            }
+
         }
         Location loc = new Location(hashCode, x, y);
         cache.put(hashCode, loc);

@@ -79,18 +79,30 @@ public class RoundRectangle extends Rectangular {
         int qy = q.getY();
         int rx = radius;
         int ry = radius;
-        if (2 * rx > w) rx = w / 2;
-        if (2 * ry > h) ry = h / 2;
+        if (2 * rx > w) {
+            rx = w / 2;
+        }
+
+        if (2 * ry > h) {
+            ry = h / 2;
+        }
+
         if (!isInRect(qx, qy, x, y, w, h)) {
             return false;
         } else if (qx < x + rx) {
-            if (qy < y + ry) return inCircle(qx, qy, x + rx, y + ry, rx, ry);
+            if (qy < y + ry) {
+                return inCircle(qx, qy, x + rx, y + ry, rx, ry);
+            }
+
             else if (qy < y + h - ry) return true;
             else return inCircle(qx, qy, x + rx, y + h - ry, rx, ry);
         } else if (qx < x + w - rx) {
             return true;
         } else {
-            if (qy < y + ry) return inCircle(qx, qy, x + w - rx, y + ry, rx, ry);
+            if (qy < y + ry) {
+                return inCircle(qx, qy, x + w - rx, y + ry, rx, ry);
+            }
+
             else if (qy < y + h - ry) return true;
             else return inCircle(qx, qy, x + w - rx, y + h - ry, rx, ry);
         }
@@ -122,8 +134,14 @@ public class RoundRectangle extends Rectangular {
             } else {
                 int rx = radius;
                 int ry = radius;
-                if (2 * rx > w) rx = w / 2;
-                if (2 * ry > h) ry = h / 2;
+                if (2 * rx > w) {
+                    rx = w / 2;
+                }
+
+                if (2 * ry > h) {
+                    ry = h / 2;
+                }
+
                 u = 2 * Math.PI * rand.nextDouble();
                 int dx = (int) Math.round(rx * Math.cos(u));
                 int dy = (int) Math.round(ry * Math.sin(u));
@@ -160,7 +178,13 @@ public class RoundRectangle extends Rectangular {
     @Override
     public void draw(Graphics g, int x, int y, int w, int h) {
         int diam = 2 * radius;
-        if (setForFill(g)) g.fillRoundRect(x, y, w, h, diam, diam);
-        if (setForStroke(g)) g.drawRoundRect(x, y, w, h, diam, diam);
+        if (setForFill(g)) {
+            g.fillRoundRect(x, y, w, h, diam, diam);
+        }
+
+        if (setForStroke(g)) {
+            g.drawRoundRect(x, y, w, h, diam, diam);
+        }
+
     }
 }

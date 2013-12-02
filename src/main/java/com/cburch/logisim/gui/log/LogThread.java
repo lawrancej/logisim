@@ -71,7 +71,10 @@ class LogThread extends Thread implements ModelListener {
     @Override
     public void entryAdded(ModelEvent event, Value[] values) {
         synchronized(lock) {
-            if (isFileEnabled()) addEntry(values);
+            if (isFileEnabled()) {
+                addEntry(values);
+            }
+
         }
     }
 
@@ -85,9 +88,15 @@ class LogThread extends Thread implements ModelListener {
                     boolean found = false;
                     for (int i = 0; i < values.length; i++) {
                         values[i] = model.getValueLog(sel.get(i)).getLast();
-                        if (values[i] != null) found = true;
+                        if (values[i] != null) {
+                            found = true;
+                        }
+
                     }
-                    if (found) addEntry(values);
+                    if (found) {
+                        addEntry(values);
+                    }
+
                 }
             } else {
                 if (writer != null) {
@@ -119,7 +128,10 @@ class LogThread extends Thread implements ModelListener {
             if (model.getFileHeader()) {
                 StringBuilder buf = new StringBuilder();
                 for (int i = 0; i < sel.size(); i++) {
-                    if (i > 0) buf.append("\t");
+                    if (i > 0) {
+                        buf.append("\t");
+                    }
+
                     buf.append(sel.get(i).toString());
                 }
                 writer.println(buf.toString());
@@ -128,7 +140,10 @@ class LogThread extends Thread implements ModelListener {
         }
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
-            if (i > 0) buf.append("\t");
+            if (i > 0) {
+                buf.append("\t");
+            }
+
             if (values[i] != null) {
                 int radix = sel.get(i).getRadix();
                 buf.append(values[i].toDisplayString(radix));

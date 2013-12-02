@@ -94,7 +94,10 @@ public class Multiplier extends InstanceFactory {
 
     static Value[] computeProduct(BitWidth width, Value a, Value b, Value c_in) {
         int w = width.getWidth();
-        if (c_in == Value.NIL || c_in.isUnknown()) c_in = Value.createKnown(width, 0);
+        if (c_in == Value.NIL || c_in.isUnknown()) {
+            c_in = Value.createKnown(width, 0);
+        }
+
         if (a.isFullyDefined() && b.isFullyDefined() && c_in.isFullyDefined()) {
             long sum = (long) a.toIntValue() * (long) b.toIntValue()
                 + c_in.toIntValue();
@@ -135,14 +138,20 @@ public class Multiplier extends InstanceFactory {
 
     private static int findUnknown(Value[] vals) {
         for (int i = 0; i < vals.length; i++) {
-            if (!vals[i].isFullyDefined()) return i;
+            if (!vals[i].isFullyDefined()) {
+                return i;
+            }
+
         }
         return vals.length;
     }
 
     private static int findError(Value[] vals) {
         for (int i = 0; i < vals.length; i++) {
-            if (vals[i].isErrorValue()) return i;
+            if (vals[i].isErrorValue()) {
+                return i;
+            }
+
         }
         return vals.length;
     }
@@ -151,7 +160,10 @@ public class Multiplier extends InstanceFactory {
         int ret = 0;
         for (int i = 0; i < vals.length; i++) {
             int val = vals[i].toIntValue();
-            if (val < 0) return ret;
+            if (val < 0) {
+                return ret;
+            }
+
             ret |= val << i;
         }
         return ret;

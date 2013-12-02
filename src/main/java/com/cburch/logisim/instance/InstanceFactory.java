@@ -113,7 +113,10 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
                 String n = iconName;
                 if (n != null) {
                     i = Icons.getIcon(n);
-                    if (i == null) n = null;
+                    if (i == null) {
+                        n = null;
+                    }
+
                 }
             }
             if (i != null) {
@@ -147,7 +150,10 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
 
     public boolean contains(Location loc, AttributeSet attrs) {
         Bounds bds = getOffsetBounds(attrs);
-        if (bds == null) return false;
+        if (bds == null) {
+            return false;
+        }
+
         return bds.contains(loc, 1);
     }
 
@@ -259,9 +265,18 @@ public abstract class InstanceFactory extends AbstractComponentFactory {
 
     @Override
     public final Object getFeature(Object key, AttributeSet attrs) {
-        if (key == FACING_ATTRIBUTE_KEY) return facingAttribute;
-        if (key == KeyConfigurator.class) return keyConfigurator;
-        if (key == SHOULD_SNAP) return shouldSnap;
+        if (key == FACING_ATTRIBUTE_KEY) {
+            return facingAttribute;
+        }
+
+        if (key == KeyConfigurator.class) {
+            return keyConfigurator;
+        }
+
+        if (key == SHOULD_SNAP) {
+            return shouldSnap;
+        }
+
         return super.getFeature(key, attrs);
     }
 

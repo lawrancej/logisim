@@ -129,7 +129,10 @@ abstract class AbstractGate extends InstanceFactory {
                     int inputs = attrs.inputs;
                     for (int i = 1; i <= inputs; i++) {
                         Location offs = getInputOffset(attrs, i);
-                        if (loc.manhattanDistanceTo(offs) <= 5) return true;
+                        if (loc.manhattanDistanceTo(offs) <= 5) {
+                            return true;
+                        }
+
                     }
                     return false;
                 }
@@ -273,7 +276,10 @@ abstract class AbstractGate extends InstanceFactory {
     protected void paintIconRectangular(InstancePainter painter) {
         Graphics g = painter.getGraphics();
         g.drawRect(1, 2, 16, 16);
-        if (negateOutput) g.drawOval(16, 8, 4, 4);
+        if (negateOutput) {
+            g.drawOval(16, 8, 4, 4);
+        }
+
         String label = getRectangularLabel(painter.getAttributeSet());
         GraphicsUtil.drawCenteredText(g, label, 9, 8);
     }
@@ -466,11 +472,17 @@ abstract class AbstractGate extends InstanceFactory {
             Value[] v = value.getAll();
             if (outType == GateAttributes.OUTPUT_0Z) {
                 for (int i = 0; i < v.length; i++) {
-                    if (v[i] == Value.TRUE) v[i] = Value.UNKNOWN;
+                    if (v[i] == Value.TRUE) {
+                        v[i] = Value.UNKNOWN;
+                    }
+
                 }
             } else if (outType == GateAttributes.OUTPUT_Z1) {
                 for (int i = 0; i < v.length; i++) {
-                    if (v[i] == Value.FALSE) v[i] = Value.UNKNOWN;
+                    if (v[i] == Value.FALSE) {
+                        v[i] = Value.UNKNOWN;
+                    }
+
                 }
             }
             return Value.create(v);
@@ -557,7 +569,10 @@ abstract class AbstractGate extends InstanceFactory {
             dy = skipStart * (inputs - 1) + skipDist * index;
         } else {
             dy = skipStart * inputs + skipDist * index;
-            if (index >= inputs / 2) dy += skipLowerEven;
+            if (index >= inputs / 2) {
+                dy += skipLowerEven;
+            }
+
         }
 
         int dx = axisLength;

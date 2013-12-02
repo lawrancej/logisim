@@ -55,10 +55,16 @@ public class WindowMenu extends JMenu {
 
         private WindowMenuItem findOwnerItem() {
             for (WindowMenuItem i : persistentItems) {
-                if (i.getJFrame() == owner) return i;
+                if (i.getJFrame() == owner) {
+                    return i;
+                }
+
             }
             for (WindowMenuItem i : transientItems) {
-                if (i.getJFrame() == owner) return i;
+                if (i.getJFrame() == owner) {
+                    return i;
+                }
+
             }
             return null;
         }
@@ -99,7 +105,10 @@ public class WindowMenu extends JMenu {
     }
 
     void addMenuItem(Object source, WindowMenuItem item, boolean persistent) {
-        if (persistent) persistentItems.add(item);
+        if (persistent) {
+            persistentItems.add(item);
+        }
+
         else transientItems.add(item);
         item.addActionListener(myListener);
         computeContents();
@@ -179,7 +188,10 @@ public class WindowMenu extends JMenu {
     }
 
     void doZoom() {
-        if (owner == null) return;
+        if (owner == null) {
+            return;
+        }
+
 
         owner.pack();
         Dimension screenSize = owner.getToolkit().getScreenSize();
@@ -205,7 +217,13 @@ public class WindowMenu extends JMenu {
             }
         }
 
-        if (locChanged) owner.setLocation(windowLoc);
-        if (sizeChanged) owner.setSize(windowSize);
+        if (locChanged) {
+            owner.setLocation(windowLoc);
+        }
+
+        if (sizeChanged) {
+            owner.setSize(windowSize);
+        }
+
     }
 }

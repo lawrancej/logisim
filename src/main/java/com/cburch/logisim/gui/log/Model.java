@@ -66,20 +66,29 @@ class Model {
     }
 
     public void setFileEnabled(boolean value) {
-        if (fileEnabled == value) return;
+        if (fileEnabled == value) {
+            return;
+        }
+
         fileEnabled = value;
         fireFilePropertyChanged(new ModelEvent());
     }
 
     public void setFile(File value) {
-        if (file == null ? value == null : file.equals(value)) return;
+        if (file == null ? value == null : file.equals(value)) {
+            return;
+        }
+
         file = value;
         fileEnabled = file != null;
         fireFilePropertyChanged(new ModelEvent());
     }
 
     public void setFileHeader(boolean value) {
-        if (fileHeader == value) return;
+        if (fileHeader == value) {
+            return;
+        }
+
         fileHeader = value;
         fireFilePropertyChanged(new ModelEvent());
     }
@@ -106,13 +115,19 @@ class Model {
     }
 
     public void setSelected(JFrame frame, boolean value) {
-        if (selected == value) return;
+        if (selected == value) {
+            return;
+        }
+
         selected = value;
         if (selected) {
             logger = new LogThread(this);
             logger.start();
         } else {
-            if (logger != null) logger.cancel();
+            if (logger != null) {
+                logger.cancel();
+            }
+
             logger = null;
             fileEnabled = false;
         }

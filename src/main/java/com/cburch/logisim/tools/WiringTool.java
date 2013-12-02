@@ -94,16 +94,28 @@ public class WiringTool extends Tool {
     }
 
     private boolean computeMove(int newX, int newY) {
-        if (cur.getX() == newX && cur.getY() == newY) return false;
+        if (cur.getX() == newX && cur.getY() == newY) {
+            return false;
+        }
+
         Location start = this.start;
         if (direction == 0) {
-            if (newX != start.getX()) direction = HORIZONTAL;
+            if (newX != start.getX()) {
+                direction = HORIZONTAL;
+            }
+
             else if (newY != start.getY()) direction = VERTICAL;
         } else if (direction == HORIZONTAL && newX == start.getX()) {
-            if (newY == start.getY()) direction = 0;
+            if (newY == start.getY()) {
+                direction = 0;
+            }
+
             else direction = VERTICAL;
         } else if (direction == VERTICAL && newY == start.getY()) {
-            if (newX == start.getX()) direction = 0;
+            if (newX == start.getX()) {
+                direction = 0;
+            }
+
             else direction = HORIZONTAL;
         }
         return true;
@@ -143,11 +155,23 @@ public class WiringTool extends Tool {
             g.setColor(Color.BLACK);
             GraphicsUtil.switchToWidth(g, 3);
             if (direction == HORIZONTAL) {
-                if (x0 != x1) g.drawLine(x0, y0, x1, y0);
-                if (y0 != y1) g.drawLine(x1, y0, x1, y1);
+                if (x0 != x1) {
+                    g.drawLine(x0, y0, x1, y0);
+                }
+
+                if (y0 != y1) {
+                    g.drawLine(x1, y0, x1, y1);
+                }
+
             } else if (direction == VERTICAL) {
-                if (y0 != y1) g.drawLine(x0, y0, x0, y1);
-                if (x0 != x1) g.drawLine(x0, y1, x1, y1);
+                if (y0 != y1) {
+                    g.drawLine(x0, y0, x0, y1);
+                }
+
+                if (x0 != x1) {
+                    g.drawLine(x0, y1, x1, y1);
+                }
+
             }
         } else if (AppPreferences.ADD_SHOW_GHOSTS.getBoolean() && inCanvas) {
             g.setColor(Color.GRAY);
@@ -216,7 +240,10 @@ public class WiringTool extends Tool {
             Canvas.snapToGrid(e);
             int curX = e.getX();
             int curY = e.getY();
-            if (!computeMove(curX, curY)) return;
+            if (!computeMove(curX, curY)) {
+                return;
+            }
+
             hasDragged = true;
 
             Rectangle rect = new Rectangle();
@@ -231,12 +258,18 @@ public class WiringTool extends Tool {
             Wire shorten = null;
             if (startShortening) {
                 for (Wire w : canvas.getCircuit().getWires(start)) {
-                    if (w.contains(cur)) { shorten = w; break; }
+                    if (w.contains(cur)) {
+                        { shorten = w;
+                    }
+ break; }
                 }
             }
             if (shorten == null) {
                 for (Wire w : canvas.getCircuit().getWires(cur)) {
-                    if (w.contains(start)) { shorten = w; break; }
+                    if (w.contains(start)) {
+                        { shorten = w;
+                    }
+ break; }
                 }
             }
             shortening = shorten;
@@ -251,7 +284,10 @@ public class WiringTool extends Tool {
 
     @Override
     public void mouseReleased(Canvas canvas, Graphics g, MouseEvent e) {
-        if (!exists) return;
+        if (!exists) {
+            return;
+        }
+
 
         Canvas.snapToGrid(e);
         int curX = e.getX();
@@ -271,7 +307,10 @@ public class WiringTool extends Tool {
                 if (performShortening(canvas, start, cur)) {
                     return;
                 }
-                if (w.getLength() > 0) ws.add(w);
+                if (w.getLength() > 0) {
+                    ws.add(w);
+                }
+
             } else {
                 Location m;
                 if (direction == HORIZONTAL) {
@@ -283,14 +322,23 @@ public class WiringTool extends Tool {
                 Wire w1 = Wire.create(m, cur);
                 w0 = checkForRepairs(canvas, w0, start);
                 w1 = checkForRepairs(canvas, w1, cur);
-                if (w0.getLength() > 0) ws.add(w0);
-                if (w1.getLength() > 0) ws.add(w1);
+                if (w0.getLength() > 0) {
+                    ws.add(w0);
+                }
+
+                if (w1.getLength() > 0) {
+                    ws.add(w1);
+                }
+
             }
             if (ws.size() > 0) {
                 CircuitMutation mutation = new CircuitMutation(canvas.getCircuit());
                 mutation.addAll(ws);
                 StringGetter desc;
-                if (ws.size() == 1) desc = __("addWireAction");
+                if (ws.size() == 1) {
+                    desc = __("addWireAction");
+                }
+
                 else desc = __("addWiresAction");
                 Action act = mutation.toAction(desc);
                 canvas.getProject().doAction(act);
@@ -301,8 +349,14 @@ public class WiringTool extends Tool {
 
     private Wire checkForRepairs(Canvas canvas, Wire w, Location end) {
         // don't repair a short wire to nothing
-        if (w.getLength() <= 10) return w;
-        if (!canvas.getCircuit().getNonWires(end).isEmpty()) return w;
+        if (w.getLength() <= 10) {
+            return w;
+        }
+
+        if (!canvas.getCircuit().getNonWires(end).isEmpty()) {
+            return w;
+        }
+
 
         int delta = (end.equals(w.getEnd0()) ? 10 : -10);
         Location cand;

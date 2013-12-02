@@ -193,7 +193,10 @@ abstract class AbstractFlipFlop extends InstanceFactory {
         public void mouseReleased(InstanceState state, MouseEvent e) {
             if (isPressed && isInside(state, e)) {
                 StateData myState = (StateData) state.getData();
-                if (myState == null) return;
+                if (myState == null) {
+                    return;
+                }
+
 
                 myState.curValue = myState.curValue.not();
                 state.fireInvalidated();

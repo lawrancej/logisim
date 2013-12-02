@@ -81,7 +81,10 @@ class BuildCircuitButton extends JButton {
             for (int i = 0; i < outputs.size(); i++) {
                 String output = outputs.get(i);
                 Expression expr = model.getOutputExpressions().getExpression(output);
-                if (expr != null && expr.containsXor()) { enableNands = false; break; }
+                if (expr != null && expr.containsXor()) {
+                    { enableNands = false;
+                }
+ break; }
             }
             nands.setEnabled(enableNands);
 
@@ -128,7 +131,10 @@ class BuildCircuitButton extends JButton {
                 int action = JOptionPane.showConfirmDialog(parent,
                         dlog, _("buildDialogTitle"), JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
-                if (action != JOptionPane.OK_OPTION) return;
+                if (action != JOptionPane.OK_OPTION) {
+                    return;
+                }
+
 
                 ProjectItem projectItem = (ProjectItem) dlog.project.getSelectedItem();
                 if (projectItem == null) {

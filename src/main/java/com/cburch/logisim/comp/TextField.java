@@ -125,7 +125,10 @@ public class TextField {
         int x = this.x;
         int y = this.y;
         FontMetrics fm;
-        if (font == null)   fm = g.getFontMetrics();
+        if (font == null) {
+              fm = g.getFontMetrics();
+        }
+
         else                fm = g.getFontMetrics(font);
         int width = fm.stringWidth(text);
         int ascent = fm.getAscent();
@@ -147,7 +150,10 @@ public class TextField {
 
     public void draw(Graphics g) {
         Font old = g.getFont();
-        if (font != null) g.setFont(font);
+        if (font != null) {
+            g.setFont(font);
+        }
+
 
         int x = this.x;
         int y = this.y;

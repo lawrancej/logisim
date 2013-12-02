@@ -131,7 +131,10 @@ public class ProjectExplorer extends JTree implements LocaleListener {
                 Library lib = libNode.getValue();
                 if (ret instanceof JLabel) {
                     String text = lib.getDisplayName();
-                    if (lib.isDirty()) text += DIRTY_MARKER;
+                    if (lib.isDirty()) {
+                        text += DIRTY_MARKER;
+                    }
+
                     ((JLabel) ret).setText(text);
                 }
             }
@@ -142,30 +145,45 @@ public class ProjectExplorer extends JTree implements LocaleListener {
     private class MySelectionModel extends DefaultTreeSelectionModel {
         @Override
         public void addSelectionPath(TreePath path) {
-            if (isPathValid(path)) super.addSelectionPath(path);
+            if (isPathValid(path)) {
+                super.addSelectionPath(path);
+            }
+
         }
 
         @Override
         public void setSelectionPath(TreePath path) {
-            if (isPathValid(path)) super.setSelectionPath(path);
+            if (isPathValid(path)) {
+                super.setSelectionPath(path);
+            }
+
         }
 
         @Override
         public void addSelectionPaths(TreePath[] paths) {
             paths = getValidPaths(paths);
-            if (paths != null) super.addSelectionPaths(paths);
+            if (paths != null) {
+                super.addSelectionPaths(paths);
+            }
+
         }
 
         @Override
         public void setSelectionPaths(TreePath[] paths) {
             paths = getValidPaths(paths);
-            if (paths != null) super.setSelectionPaths(paths);
+            if (paths != null) {
+                super.setSelectionPaths(paths);
+            }
+
         }
 
         private TreePath[] getValidPaths(TreePath[] paths) {
             int count = 0;
             for (int i = 0; i < paths.length; i++) {
-                if (isPathValid(paths[i])) ++count;
+                if (isPathValid(paths[i])) {
+                    ++count;
+                }
+
             }
             if (count == 0) {
                 return null;
@@ -175,14 +193,20 @@ public class ProjectExplorer extends JTree implements LocaleListener {
                 TreePath[] ret = new TreePath[count];
                 int j = 0;
                 for (int i = 0; i < paths.length; i++) {
-                    if (isPathValid(paths[i])) ret[j++] = paths[i];
+                    if (isPathValid(paths[i])) {
+                        ret[j++] = paths[i];
+                    }
+
                 }
                 return ret;
             }
         }
 
         private boolean isPathValid(TreePath path) {
-            if (path == null || path.getPathCount() > 3) return false;
+            if (path == null || path.getPathCount() > 3) {
+                return false;
+            }
+
             Object last = path.getLastPathComponent();
             return last instanceof ProjectExplorerToolNode;
         }
@@ -311,7 +335,10 @@ public class ProjectExplorer extends JTree implements LocaleListener {
 
     public Tool getSelectedTool() {
         TreePath path = getSelectionPath();
-        if (path == null) return null;
+        if (path == null) {
+            return null;
+        }
+
         Object last = path.getLastPathComponent();
         if (last instanceof ProjectExplorerToolNode) {
             return ((ProjectExplorerToolNode) last).getValue();
@@ -325,7 +352,10 @@ public class ProjectExplorer extends JTree implements LocaleListener {
     }
 
     public void setHaloedTool(Tool t) {
-        if (haloedTool == t) return;
+        if (haloedTool == t) {
+            return;
+        }
+
         haloedTool = t;
         repaint();
     }

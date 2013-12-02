@@ -33,8 +33,14 @@ public class LineUtil {
         }
 
         double u = ((xq - x0) * dx + (yq - y0) * dy) / len2;
-        if (u <= 0) return distanceSquared(xq, yq, x0, y0);
-        if (u >= 1) return distanceSquared(xq, yq, x1, y1);
+        if (u <= 0) {
+            return distanceSquared(xq, yq, x0, y0);
+        }
+
+        if (u >= 1) {
+            return distanceSquared(xq, yq, x1, y1);
+        }
+
         return distanceSquared(xq, yq, x0 + u * dx, y0 + u * dy);
     }
 
@@ -61,7 +67,10 @@ public class LineUtil {
         double num = (xq - x0) * dx + (yq - y0) * dy;
         double u;
         if (isSegment) {
-            if (num < 0) u = 0;
+            if (num < 0) {
+                u = 0;
+            }
+
             else if (num < len2) u = num / len2;
             else u = 1;
         } else {

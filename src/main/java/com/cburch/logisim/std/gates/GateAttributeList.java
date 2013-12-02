@@ -31,7 +31,10 @@ class GateAttributeList extends AbstractList<Attribute<?>> {
         index -= len;
         if (attrs.xorBehave != null) {
             index--;
-            if (index < 0) return GateAttributes.ATTR_XOR;
+            if (index < 0) {
+                return GateAttributes.ATTR_XOR;
+            }
+
         }
         Direction facing = attrs.facing;
         int inputs = attrs.inputs;
@@ -56,7 +59,10 @@ class GateAttributeList extends AbstractList<Attribute<?>> {
     @Override
     public int size() {
         int ret = BASE_ATTRIBUTES.length;
-        if (attrs.xorBehave != null) ret++;
+        if (attrs.xorBehave != null) {
+            ret++;
+        }
+
         ret += attrs.inputs;
         return ret;
     }

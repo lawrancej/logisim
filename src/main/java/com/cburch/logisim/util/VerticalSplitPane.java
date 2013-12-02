@@ -23,8 +23,14 @@ public class VerticalSplitPane extends JPanel {
 
         @Override
         public Dimension preferredLayoutSize(Container parent) {
-            if (fraction <= 0.0) return comp1.getPreferredSize();
-            if (fraction >= 1.0) return comp0.getPreferredSize();
+            if (fraction <= 0.0) {
+                return comp1.getPreferredSize();
+            }
+
+            if (fraction >= 1.0) {
+                return comp0.getPreferredSize();
+            }
+
             Insets in = parent.getInsets();
             Dimension d0 = comp0.getPreferredSize();
             Dimension d1 = comp1.getPreferredSize();
@@ -34,8 +40,14 @@ public class VerticalSplitPane extends JPanel {
 
         @Override
         public Dimension minimumLayoutSize(Container parent) {
-            if (fraction <= 0.0) return comp1.getMinimumSize();
-            if (fraction >= 1.0) return comp0.getMinimumSize();
+            if (fraction <= 0.0) {
+                return comp1.getMinimumSize();
+            }
+
+            if (fraction >= 1.0) {
+                return comp0.getMinimumSize();
+            }
+
             Insets in = parent.getInsets();
             Dimension d0 = comp0.getMinimumSize();
             Dimension d1 = comp1.getMinimumSize();
@@ -115,8 +127,14 @@ public class VerticalSplitPane extends JPanel {
     }
 
     public void setFraction(double value) {
-        if (value < 0.0) value = 0.0;
-        if (value > 1.0) value = 1.0;
+        if (value < 0.0) {
+            value = 0.0;
+        }
+
+        if (value > 1.0) {
+            value = 1.0;
+        }
+
         if (fraction != value) {
             fraction = value;
             revalidate();

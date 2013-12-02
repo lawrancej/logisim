@@ -81,9 +81,18 @@ class ControlledBuffer extends InstanceFactory {
             w = 30;
         }
         Direction facing = attrs.getValue(StdAttr.FACING);
-        if (facing == Direction.NORTH) return Bounds.create(-10,  0, 20, w);
-        if (facing == Direction.SOUTH) return Bounds.create(-10, -w, 20, w);
-        if (facing == Direction.WEST) return Bounds.create(0, -10, w, 20);
+        if (facing == Direction.NORTH) {
+            return Bounds.create(-10,  0, 20, w);
+        }
+
+        if (facing == Direction.SOUTH) {
+            return Bounds.create(-10, -w, 20, w);
+        }
+
+        if (facing == Direction.WEST) {
+            return Bounds.create(0, -10, w, 20);
+        }
+
         return Bounds.create(-w, -10, w, 20);
     }
 
@@ -107,7 +116,10 @@ class ControlledBuffer extends InstanceFactory {
             int[] xp = new int[] { x + 15, x + 1, x + 1, x + 15 };
             int[] yp = new int[] { 10,     3,     17,    10 };
             g.drawPolyline(xp, yp, 4);
-            if (isInverter) g.drawOval(x + 13, 8, 4, 4);
+            if (isInverter) {
+                g.drawOval(x + 13, 8, 4, 4);
+            }
+
             g.setColor(Value.FALSE_COLOR);
             g.drawLine(x + 8, 14, x + 8, 18);
         }

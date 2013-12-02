@@ -132,9 +132,18 @@ public class Splitter extends ManagedComponent
 
     @Override
     public Object getFeature(Object key) {
-        if (key == WireRepair.class) return this;
-        if (key == ToolTipMaker.class) return this;
-        if (key == MenuExtender.class) return this;
+        if (key == WireRepair.class) {
+            return this;
+        }
+
+        if (key == ToolTipMaker.class) {
+            return this;
+        }
+
+        if (key == MenuExtender.class) {
+            return this;
+        }
+
         else return super.getFeature(key);
     }
 
@@ -176,7 +185,10 @@ public class Splitter extends ManagedComponent
                     }
                 }
             }
-            if (inString) appendBuf(buf, beginString, bit_end.length - 1);
+            if (inString) {
+                appendBuf(buf, beginString, bit_end.length - 1);
+            }
+
             String base;
             switch (bits) {
             case 0:  base = "splitterSplit0Tip"; break;
@@ -189,7 +201,10 @@ public class Splitter extends ManagedComponent
         }
     }
     private static void appendBuf(StringBuilder buf, int start, int end) {
-        if (buf.length() > 0) buf.append(",");
+        if (buf.length() > 0) {
+            buf.append(",");
+        }
+
         if (start == end) {
             buf.append(start);
         } else {

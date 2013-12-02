@@ -50,7 +50,10 @@ class LibraryManager {
 
         @Override
         public boolean equals(Object other) {
-            if (!(other instanceof LogisimProjectDescriptor)) return false;
+            if (!(other instanceof LogisimProjectDescriptor)) {
+                return false;
+            }
+
             LogisimProjectDescriptor o = (LogisimProjectDescriptor) other;
             return this.file.equals(o.file);
         }
@@ -87,7 +90,10 @@ class LibraryManager {
 
         @Override
         public boolean equals(Object other) {
-            if (!(other instanceof JarDescriptor)) return false;
+            if (!(other instanceof JarDescriptor)) {
+                return false;
+            }
+
             JarDescriptor o = (JarDescriptor) other;
             return this.file.equals(o.file) && this.className.equals(o.className);
         }
@@ -160,7 +166,10 @@ class LibraryManager {
 
     public LoadedLibrary loadLogisimLibrary(Loader loader, File toRead) {
         LoadedLibrary ret = findKnown(toRead);
-        if (ret != null) return ret;
+        if (ret != null) {
+            return ret;
+        }
+
 
         try {
             ret = new LoadedLibrary(loader.loadLogisimFile(toRead));
@@ -178,7 +187,10 @@ class LibraryManager {
     public LoadedLibrary loadJarLibrary(Loader loader, File toRead, String className) {
         JarDescriptor jarDescriptor = new JarDescriptor(toRead, className);
         LoadedLibrary ret = findKnown(jarDescriptor);
-        if (ret != null) return ret;
+        if (ret != null) {
+            return ret;
+        }
+
 
         try {
             ret = new LoadedLibrary(loader.loadJarFile(toRead, className));
@@ -217,7 +229,10 @@ class LibraryManager {
                 if (loadedLib.getBase() instanceof LogisimFile) {
                     LogisimFile loadedProj = (LogisimFile) loadedLib.getBase();
                     Library ret = findReference(loadedProj, query);
-                    if (ret != null) return lib;
+                    if (ret != null) {
+                        return lib;
+                    }
+
                 }
             }
         }

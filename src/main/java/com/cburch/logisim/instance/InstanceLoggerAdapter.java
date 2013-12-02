@@ -30,7 +30,10 @@ class InstanceLoggerAdapter implements Loggable {
                 + ": " + t.getClass().getName());
         String msg = t.getMessage();
         //OK
-        if (msg != null) System.err.println("  (" + msg + ")");
+        if (msg != null) {
+            System.err.println("  (" + msg + ")");
+        }
+
     }
 
     @Override

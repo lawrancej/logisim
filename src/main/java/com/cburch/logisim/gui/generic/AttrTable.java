@@ -155,7 +155,10 @@ public class AttrTable extends JPanel implements LocaleListener {
 
         @Override
         public String getColumnName(int columnIndex) {
-            if (columnIndex == 0) return "Attribute";
+            if (columnIndex == 0) {
+                return "Attribute";
+            }
+
             else                  return "Value";
         }
 
@@ -327,7 +330,10 @@ public class AttrTable extends JPanel implements LocaleListener {
             if (columnIndex == 0) {
                 return new JLabel(row.getLabel());
             } else {
-                if (currentEditor != null) currentEditor.transferFocus();
+                if (currentEditor != null) {
+                    currentEditor.transferFocus();
+                }
+
 
                 Component editor = row.getEditor(parent);
                 if (editor instanceof JComboBox) {

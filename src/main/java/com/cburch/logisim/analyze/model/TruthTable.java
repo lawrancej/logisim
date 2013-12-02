@@ -200,8 +200,14 @@ public class TruthTable {
         } else {
             String outputName = model.getOutputs().get(column);
             Entry[] columnData = outputColumns.get(outputName);
-            if (columnData == null) return DEFAULT_ENTRY;
-            if (row < 0 || row >= columnData.length) return Entry.DONT_CARE;
+            if (columnData == null) {
+                return DEFAULT_ENTRY;
+            }
+
+            if (row < 0 || row >= columnData.length) {
+                return Entry.DONT_CARE;
+            }
+
             return columnData[row];
         }
     }
@@ -220,13 +226,19 @@ public class TruthTable {
         Entry[] columnData = outputColumns.get(outputName);
 
         if (columnData == null) {
-            if (value == DEFAULT_ENTRY) return;
+            if (value == DEFAULT_ENTRY) {
+                return;
+            }
+
             columnData = new Entry[getRowCount()];
             outputColumns.put(outputName, columnData);
             Arrays.fill(columnData, DEFAULT_ENTRY);
             columnData[row] = value;
         } else {
-            if (columnData[row] == value) return;
+            if (columnData[row] == value) {
+                return;
+            }
+
             columnData[row] = value;
         }
 
@@ -261,7 +273,10 @@ public class TruthTable {
 
         String outputName = model.getOutputs().get(column);
         Entry[] oldValues = outputColumns.get(outputName);
-        if (oldValues == values) return;
+        if (oldValues == values) {
+            return;
+        }
+
         else if (values == null) outputColumns.remove(outputName);
         else outputColumns.put(outputName, values);
         fireCellsChanged(column);

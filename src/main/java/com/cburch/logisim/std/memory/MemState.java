@@ -78,10 +78,19 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
         }
         long newLast = contents.getLastOffset();
         // I do subtraction in the next two conditions to account for possibility of overflow
-        if (cursorLoc > newLast) cursorLoc = newLast;
-        if (curAddr - newLast > 0) curAddr = -1;
+        if (cursorLoc > newLast) {
+            cursorLoc = newLast;
+        }
+
+        if (curAddr - newLast > 0) {
+            curAddr = -1;
+        }
+
         long maxScroll = Math.max(0, newLast + 1 - (ROWS - 1) * columns);
-        if (curScroll > maxScroll) curScroll = maxScroll;
+        if (curScroll > maxScroll) {
+            curScroll = maxScroll;
+        }
+
     }
 
     public MemContents getContents() {
@@ -147,7 +156,10 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
                 curScroll = addr;
             } else if (addr >= curTop + ROWS * columns) {
                 curScroll = addr - (ROWS - 1) * columns;
-                if (curScroll < 0) curScroll = 0;
+                if (curScroll < 0) {
+                    curScroll = 0;
+                }
+
             }
         }
     }
@@ -155,8 +167,14 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
     void setScroll(long addr) {
         long maxAddr = getLastAddress() - ROWS * columns;
         // note: maxAddr could be negative
-        if (addr > maxAddr) addr = maxAddr;
-        if (addr < 0) addr = 0;
+        if (addr > maxAddr) {
+            addr = maxAddr;
+        }
+
+        if (addr < 0) {
+            addr = 0;
+        }
+
         curScroll = addr;
     }
 
@@ -246,16 +264,25 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
 
         long topRow = curScroll / columns;
         long row = addr / columns;
-        if (row < topRow || row >= topRow + ROWS) return -1;
+        if (row < topRow || row >= topRow + ROWS) {
+            return -1;
+        }
+
         int col = (int) (addr - row * columns);
-        if (col < 0 || col >= columns) return -1;
+        if (col < 0 || col >= columns) {
+            return -1;
+        }
+
         return boxX + boxW * col / columns;
     }
 
     private int addrToY(Bounds bds, long addr) {
         long topRow = curScroll / columns;
         long row = addr / columns;
-        if (row < topRow || row >= topRow + ROWS) return -1;
+        if (row < topRow || row >= topRow + ROWS) {
+            return -1;
+        }
+
         return (int) (bds.getY() + ENTRY_YOFFS + ENTRY_HEIGHT * (row - topRow));
     }
 

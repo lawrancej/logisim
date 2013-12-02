@@ -111,8 +111,14 @@ public class BitAdder extends InstanceFactory {
             Value[] bits = v.getAll();
             for (int j = 0; j < bits.length; j++) {
                 Value b = bits[j];
-                if (b == Value.TRUE) minCount++;
-                if (b != Value.FALSE) maxCount++;
+                if (b == Value.TRUE) {
+                    minCount++;
+                }
+
+                if (b != Value.FALSE) {
+                    maxCount++;
+                }
+
             }
         }
 

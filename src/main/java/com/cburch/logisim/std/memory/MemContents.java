@@ -34,36 +34,57 @@ class MemContents implements Cloneable, HexModel {
     //
     @Override
     public void addHexModelListener(HexModelListener l) {
-        if (listeners == null) listeners = new EventSourceWeakSupport<HexModelListener>();
+        if (listeners == null) {
+            listeners = new EventSourceWeakSupport<HexModelListener>();
+        }
+
         listeners.add(l);
     }
 
     @Override
     public void removeHexModelListener(HexModelListener l) {
-        if (listeners == null) return;
+        if (listeners == null) {
+            return;
+        }
+
         listeners.add(l);
-        if (listeners.isEmpty()) listeners = null;
+        if (listeners.isEmpty()) {
+            listeners = null;
+        }
+
     }
 
     private void fireMetainfoChanged() {
-        if (listeners == null) return;
+        if (listeners == null) {
+            return;
+        }
+
         boolean found = false;
         for (HexModelListener l : listeners) {
             found = true;
             l.metainfoChanged(this);
         }
-        if (!found) listeners = null;
+        if (!found) {
+            listeners = null;
+        }
+
     }
 
     private void fireBytesChanged(long start, long numBytes,
             int[] oldValues) {
-        if (listeners == null) return;
+        if (listeners == null) {
+            return;
+        }
+
         boolean found = false;
         for (HexModelListener l : listeners) {
             found = true;
             l.bytesChanged(this, start, numBytes, oldValues);
         }
-        if (!found) listeners = null;
+        if (!found) {
+            listeners = null;
+        }
+
     }
 
     //
@@ -91,7 +112,10 @@ class MemContents implements Cloneable, HexModel {
     public int get(long addr) {
         int page = (int) (addr >>> PAGE_SIZE_BITS);
         int offs = (int) (addr & PAGE_MASK);
-        if (page < 0 || page >= pages.length || pages[page] == null) return 0;
+        if (page < 0 || page >= pages.length || pages[page] == null) {
+            return 0;
+        }
+
         return pages[page].get(offs) & mask;
     }
 
@@ -100,7 +124,10 @@ class MemContents implements Cloneable, HexModel {
             MemContentsSub.ContentsInterface page = pages[i];
             if (page != null) {
                 for (int j = page.getLength() - 1; j >= 0; j--) {
-                    if (page.get(j) != 0) return false;
+                    if (page.get(j) != 0) {
+                        return false;
+                    }
+
                 }
             }
         }
@@ -124,7 +151,10 @@ class MemContents implements Cloneable, HexModel {
 
     @Override
     public void set(long start, int[] values) {
-        if (values.length == 0) return;
+        if (values.length == 0) {
+            return;
+        }
+
 
         int pageStart = (int) (start >>> PAGE_SIZE_BITS);
         int startOffs = (int) (start & PAGE_MASK);
@@ -137,7 +167,10 @@ class MemContents implements Cloneable, HexModel {
             if (!page.matches(values, startOffs, mask)) {
                 int[] oldValues = page.get(startOffs, values.length);
                 page.load(startOffs, values, mask);
-                if (page.isClear()) pages[pageStart] = null;
+                if (page.isClear()) {
+                    pages[pageStart] = null;
+                }
+
                 fireBytesChanged(start, values.length, oldValues);
             }
         } else {
@@ -153,7 +186,10 @@ class MemContents implements Cloneable, HexModel {
                 if (!page.matches(vals, startOffs, mask)) {
                     int[] oldValues = page.get(startOffs, vals.length);
                     page.load(startOffs, vals, mask);
-                    if (page.isClear()) pages[pageStart] = null;
+                    if (page.isClear()) {
+                        pages[pageStart] = null;
+                    }
+
                     fireBytesChanged(start, PAGE_SIZE - pageStart, oldValues);
                 }
                 nextOffs = vals.length;
@@ -165,7 +201,10 @@ class MemContents implements Cloneable, HexModel {
                 if (page == null) {
                     boolean allZeroes = true;
                     for (int j = 0; j < PAGE_SIZE; j++) {
-                        if ((values[offs + j] & mask) != 0) { allZeroes = false; break; }
+                        if ((values[offs + j] & mask) != 0) {
+                            { allZeroes = false;
+                        }
+ break; }
                     }
                     if (!allZeroes) {
                         page = MemContentsSub.createContents(PAGE_SIZE, width);
@@ -177,7 +216,10 @@ class MemContents implements Cloneable, HexModel {
                     if (!page.matches(vals, startOffs, mask)) {
                         int[] oldValues = page.get(0, PAGE_SIZE);
                         page.load(0, vals, mask);
-                        if (page.isClear()) pages[i] = null;
+                        if (page.isClear()) {
+                            pages[i] = null;
+                        }
+
                         fireBytesChanged((long) i << PAGE_SIZE_BITS, PAGE_SIZE, oldValues);
                     }
                 }
@@ -190,7 +232,10 @@ class MemContents implements Cloneable, HexModel {
                 if (!page.matches(vals, startOffs, mask)) {
                     int[] oldValues = page.get(0, endOffs + 1);
                     page.load(0, vals, mask);
-                    if (page.isClear()) pages[pageEnd] = null;
+                    if (page.isClear()) {
+                        pages[pageEnd] = null;
+                    }
+
                     fireBytesChanged((long) pageEnd << PAGE_SIZE_BITS, endOffs + 1, oldValues);
                 }
             }
@@ -199,7 +244,10 @@ class MemContents implements Cloneable, HexModel {
 
     @Override
     public void fill(long start, long len, int value) {
-        if (len == 0) return;
+        if (len == 0) {
+            return;
+        }
+
 
         int pageStart = (int) (start >>> PAGE_SIZE_BITS);
         int startOffs = (int) (start & PAGE_MASK);
@@ -215,7 +263,10 @@ class MemContents implements Cloneable, HexModel {
             if (!page.matches(vals, startOffs, mask)) {
                 int[] oldValues = page.get(startOffs, (int) len);
                 page.load(startOffs, vals, mask);
-                if (value == 0 && page.isClear()) pages[pageStart] = null;
+                if (value == 0 && page.isClear()) {
+                    pages[pageStart] = null;
+                }
+
                 fireBytesChanged(start, len, oldValues);
             }
         } else {
@@ -232,14 +283,20 @@ class MemContents implements Cloneable, HexModel {
                     if (!page.matches(vals, startOffs, mask)) {
                         int[] oldValues = page.get(startOffs, vals.length);
                         page.load(startOffs, vals, mask);
-                        if (value == 0 && page.isClear()) pages[pageStart] = null;
+                        if (value == 0 && page.isClear()) {
+                            pages[pageStart] = null;
+                        }
+
                         fireBytesChanged(start, PAGE_SIZE - pageStart, oldValues);
                     }
                 }
             }
             if (value == 0) {
                 for (int i = pageStart + 1; i < pageEnd; i++) {
-                    if (pages[i] != null) clearPage(i);
+                    if (pages[i] != null) {
+                        clearPage(i);
+                    }
+
                 }
             } else {
                 int[] vals = new int[PAGE_SIZE];
@@ -265,7 +322,10 @@ class MemContents implements Cloneable, HexModel {
                     if (!page.matches(vals, 0, mask)) {
                         int[] oldValues = page.get(0, endOffs + 1);
                         page.load(0, vals, mask);
-                        if (value == 0 && page.isClear()) pages[pageEnd] = null;
+                        if (value == 0 && page.isClear()) {
+                            pages[pageEnd] = null;
+                        }
+
                         fireBytesChanged((long) pageEnd << PAGE_SIZE_BITS, endOffs + 1, oldValues);
                     }
                 }
@@ -276,7 +336,10 @@ class MemContents implements Cloneable, HexModel {
     public void clear() {
         for (int i = 0; i < pages.length; i++) {
             if (pages[i] != null) {
-                if (pages[i] != null) clearPage(i);
+                if (pages[i] != null) {
+                    clearPage(i);
+                }
+
             }
         }
     }
@@ -288,7 +351,10 @@ class MemContents implements Cloneable, HexModel {
         for (int j = 0; j < oldValues.length; j++) {
             int val = page.get(j) & mask;
             oldValues[j] = val;
-            if (val != 0) changed = true;
+            if (val != 0) {
+                changed = true;
+            }
+
         }
         if (changed) {
             pages[index] = null;
@@ -297,7 +363,10 @@ class MemContents implements Cloneable, HexModel {
     }
 
     public void setDimensions(int addrBits, int width) {
-        if (addrBits == this.addrBits && width == this.width) return;
+        if (addrBits == this.addrBits && width == this.width) {
+            return;
+        }
+
         this.addrBits = addrBits;
         this.width = width;
         this.mask = width == 32 ? 0xffffffff : ((1 << width) - 1);
@@ -305,7 +374,10 @@ class MemContents implements Cloneable, HexModel {
         MemContentsSub.ContentsInterface[] oldPages = pages;
         int pageCount;
         int pageLength;
-        if (addrBits < PAGE_SIZE_BITS) { pageCount = 1; pageLength = 1 << addrBits; }
+        if (addrBits < PAGE_SIZE_BITS) {
+            { pageCount = 1;
+        }
+ pageLength = 1 << addrBits; }
         else { pageCount = 1 << (addrBits - PAGE_SIZE_BITS); pageLength = PAGE_SIZE; }
         pages = new MemContentsSub.ContentsInterface[pageCount];
         if (oldPages != null) {

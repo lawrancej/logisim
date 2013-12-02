@@ -173,10 +173,16 @@ public class Canvas extends JPanel
         }
 
         private Tool getToolFor(MouseEvent e) {
-            if (menu_on) return null;
+            if (menu_on) {
+                return null;
+            }
+
 
             Tool ret = mappings.getToolFor(e);
-            if (ret == null) return proj.getTool();
+            if (ret == null) {
+                return proj.getTool();
+            }
+
             else return ret;
         }
 
@@ -186,17 +192,26 @@ public class Canvas extends JPanel
         @Override
         public void keyPressed(KeyEvent e) {
             Tool tool = proj.getTool();
-            if (tool != null) tool.keyPressed(Canvas.this, e);
+            if (tool != null) {
+                tool.keyPressed(Canvas.this, e);
+            }
+
         }
         @Override
         public void keyReleased(KeyEvent e) {
             Tool tool = proj.getTool();
-            if (tool != null) tool.keyReleased(Canvas.this, e);
+            if (tool != null) {
+                tool.keyReleased(Canvas.this, e);
+            }
+
         }
         @Override
         public void keyTyped(KeyEvent e) {
             Tool tool = proj.getTool();
-            if (tool != null) tool.keyTyped(Canvas.this, e);
+            if (tool != null) {
+                tool.keyTyped(Canvas.this, e);
+            }
+
         }
 
         //
@@ -238,7 +253,10 @@ public class Canvas extends JPanel
                 }
             } else if (act == ProjectEvent.ACTION_SET_FILE) {
                 LogisimFile old = (LogisimFile) event.getOldData();
-                if (old != null) old.getOptions().getAttributeSet().removeAttributeListener(this);
+                if (old != null) {
+                    old.getOptions().getAttributeSet().removeAttributeListener(this);
+                }
+
                 LogisimFile file = (LogisimFile) event.getData();
                 if (file != null) {
                     AttributeSet attrs = file.getOptions().getAttributeSet();
@@ -250,7 +268,10 @@ public class Canvas extends JPanel
                 viewport.setErrorMessage(null, null);
 
                 Tool t = event.getTool();
-                if (t == null)  setCursor(Cursor.getDefaultCursor());
+                if (t == null) {
+                     setCursor(Cursor.getDefaultCursor());
+                }
+
                 else            setCursor(t.getCursor());
             } else if (act == ProjectEvent.ACTION_SET_STATE) {
                 CircuitState oldState = (CircuitState) event.getOldData();
@@ -293,7 +314,10 @@ public class Canvas extends JPanel
                     if (next == null) {
                         for (Library lib : proj.getLogisimFile().getLibraries()) {
                             next = findTool(lib.getTools());
-                            if (next != null) break;
+                            if (next != null) {
+                                break;
+                            }
+
                         }
                     }
                     proj.setTool(next);
@@ -316,7 +340,10 @@ public class Canvas extends JPanel
         private Tool findTool(List<? extends Tool> opts) {
             Tool ret = null;
             for (Tool o : opts) {
-                if (ret == null && o != null) ret = o;
+                if (ret == null && o != null) {
+                    ret = o;
+                }
+
                 else if (o instanceof EditTool) ret = o;
             }
             return ret;
@@ -523,7 +550,10 @@ public class Canvas extends JPanel
             g.setFont(old.deriveFont(Font.BOLD).deriveFont(18.0f));
             FontMetrics fm = g.getFontMetrics();
             int x = (getWidth() - fm.stringWidth(msg)) / 2;
-            if (x < 0) x = 0;
+            if (x < 0) {
+                x = 0;
+            }
+
             g.drawString(msg, x, getHeight() - 23);
             g.setFont(old);
             return;
@@ -595,7 +625,10 @@ public class Canvas extends JPanel
 
     @Override
     public void repaint() {
-        if (inPaint) paintDirty = true;
+        if (inPaint) {
+            paintDirty = true;
+        }
+
         else        super.repaint();
     }
 
@@ -716,7 +749,10 @@ public class Canvas extends JPanel
             do {
                 painter.paintContents(g, proj);
             } while (paintDirty);
-            if (canvasPane == null) viewport.paintContents(g);
+            if (canvasPane == null) {
+                viewport.paintContents(g);
+            }
+
         } finally {
             inPaint = false;
             synchronized(repaintLock) {
@@ -786,15 +822,24 @@ public class Canvas extends JPanel
                 boolean isSouth = y >= viewable.y + viewable.height;
 
                 if (isNorth) {
-                    if (isEast)     viewport.setNortheast(true);
+                    if (isEast) {
+                            viewport.setNortheast(true);
+                    }
+
                     else if (isWest)    viewport.setNorthwest(true);
                     else            viewport.setNorth(true);
                 } else if (isSouth) {
-                    if (isEast)     viewport.setSoutheast(true);
+                    if (isEast) {
+                            viewport.setSoutheast(true);
+                    }
+
                     else if (isWest)    viewport.setSouthwest(true);
                     else            viewport.setSouth(true);
                 } else {
-                    if (isEast)     viewport.setEast(true);
+                    if (isEast) {
+                            viewport.setEast(true);
+                    }
+
                     else if (isWest)    viewport.setWest(true);
                 }
             }
@@ -869,12 +914,18 @@ public class Canvas extends JPanel
 
     private void repairMouseEvent(MouseEvent e) {
         double zoom = getZoomFactor();
-        if (zoom != 1.0) zoomEvent(e, zoom);
+        if (zoom != 1.0) {
+            zoomEvent(e, zoom);
+        }
+
     }
 
     private void unrepairMouseEvent(MouseEvent e) {
         double zoom = getZoomFactor();
-        if (zoom != 1.0) zoomEvent(e, 1.0 / zoom);
+        if (zoom != 1.0) {
+            zoomEvent(e, 1.0 / zoom);
+        }
+
     }
 
     private void zoomEvent(MouseEvent e, double zoom) {

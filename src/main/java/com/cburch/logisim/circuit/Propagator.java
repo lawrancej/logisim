@@ -43,7 +43,10 @@ public class Propagator {
             // Yes, these subtractions may overflow. This is intentional, as it
             // avoids potential wraparound problems as the counters increment.
             int ret = this.time - o.time;
-            if (ret != 0) return ret;
+            if (ret != 0) {
+                return ret;
+            }
+
             return this.serialNumber - o.serialNumber;
         }
 
@@ -53,7 +56,10 @@ public class Propagator {
             SetData ret = new SetData(time + dtime,
                     newProp.setDataSerialNumber, newState, loc, cause, val);
             newProp.setDataSerialNumber++;
-            if (this.next != null) ret.next = this.next.cloneFor(newState);
+            if (this.next != null) {
+                ret.next = this.next.cloneFor(newState);
+            }
+
             return ret;
         }
 
@@ -79,7 +85,10 @@ public class Propagator {
 
         @Override
         public boolean equals(Object other) {
-            if (!(other instanceof ComponentPoint)) return false;
+            if (!(other instanceof ComponentPoint)) {
+                return false;
+            }
+
             ComponentPoint o = (ComponentPoint) other;
             return this.cause.equals(o.cause) && this.loc.equals(o.loc);
         }
@@ -159,7 +168,10 @@ public class Propagator {
     }
 
     public void drawOscillatingPoints(ComponentDrawContext context) {
-        if (isOscillating) oscPoints.draw(context);
+        if (isOscillating) {
+            oscPoints.draw(context);
+        }
+
     }
 
     //
@@ -216,7 +228,10 @@ public class Propagator {
     }
 
     private void stepInternal(PropagationPoints changedPoints) {
-        if (toProcess.isEmpty()) return;
+        if (toProcess.isEmpty()) {
+            return;
+        }
+
 
         // update clock
         clock = toProcess.peek().time;
@@ -226,14 +241,20 @@ public class Propagator {
             = new HashMap<CircuitState,HashSet<ComponentPoint>>();
         while (true) {
             SetData data = toProcess.peek();
-            if (data == null || data.time != clock) break;
+            if (data == null || data.time != clock) {
+                break;
+            }
+
             toProcess.remove();
             CircuitState state = data.state;
 
             // if it's already handled for this clock tick, continue
             HashSet<ComponentPoint> handled = visited.get(state);
             if (handled != null) {
-                if (!handled.add(new ComponentPoint(data.cause, data.loc))) continue;
+                if (!handled.add(new ComponentPoint(data.cause, data.loc))) {
+                    continue;
+                }
+
             } else {
                 handled = new HashSet<ComponentPoint>();
                 visited.put(state, handled);
@@ -245,7 +266,10 @@ public class Propagator {
                     + data.state + " to " + data.val
                     + " by " + data.cause); // */
 
-            if (changedPoints != null) changedPoints.add(state, data.loc);
+            if (changedPoints != null) {
+                changedPoints.add(state, data.loc);
+            }
+
 
             // change the information about value
             SetData oldHead = state.causes.get(data.loc);
@@ -276,21 +300,30 @@ public class Propagator {
         while (!toProcess.isEmpty()) {
             SetData data;
             data = (SetData) toProcess.peek();
-            if (data.time != clock) break;
+            if (data.time != clock) {
+                break;
+            }
+
             toProcess.remove();
             CircuitState state = data.state;
 
             // if it's already handled for this clock tick, continue
             HashSet handled = (HashSet) visited.get(state);
             if (handled != null) {
-                if (!handled.add(new ComponentPoint(data.cause, data.loc))) continue;
+                if (!handled.add(new ComponentPoint(data.cause, data.loc))) {
+                    continue;
+                }
+
             } else {
                 handled = new HashSet();
                 visited.put(state, handled);
                 handled.add(new ComponentPoint(data.cause, data.loc));
             }
 
-            if (oscAdding) oscPoints.add(state, data.loc);
+            if (oscAdding) {
+                oscPoints.add(state, data.loc);
+            }
+
 
             // change the information about value
             SetData oldHead = (SetData) state.causes.get(data.loc);
@@ -309,7 +342,10 @@ public class Propagator {
     } */
 
     void locationTouched(CircuitState state, Location loc) {
-        if (oscAdding) oscPoints.add(state, loc);
+        if (oscAdding) {
+            oscPoints.add(state, loc);
+        }
+
     }
 
     //
@@ -317,7 +353,10 @@ public class Propagator {
     //
     void setValue(CircuitState state, Location pt, Value val,
             Component cause, int delay) {
-        if (cause instanceof Wire || cause instanceof Splitter) return;
+        if (cause instanceof Wire || cause instanceof Splitter) {
+            return;
+        }
+
         if (delay <= 0) {
             delay = 1;
         }
@@ -370,7 +409,10 @@ public class Propagator {
             if (!newVal.equals(oldVal) || wireVal != null) {
                 state.markPointAsDirty(loc);
             }
-            if (wireVal != null) state.setValueByWire(loc, Value.NIL);
+            if (wireVal != null) {
+                state.setValueByWire(loc, Value.NIL);
+            }
+
         }
     }
 
@@ -421,7 +463,10 @@ public class Propagator {
             ;
         } else if (head.cause == cause) {
             head = head.next;
-            if (head == null) causes.remove(loc);
+            if (head == null) {
+                causes.remove(loc);
+            }
+
             else causes.put(loc, head);
         } else {
             SetData prev = head;
@@ -442,7 +487,10 @@ public class Propagator {
     // static methods
     //
     static Value computeValue(SetData causes) {
-        if (causes == null) return Value.NIL;
+        if (causes == null) {
+            return Value.NIL;
+        }
+
         Value ret = causes.val;
         for (SetData n = causes.next; n != null; n = n.next) {
             ret = ret.combine(n.val);

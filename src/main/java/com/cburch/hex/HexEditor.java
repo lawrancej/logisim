@@ -50,7 +50,10 @@ public class HexEditor extends JComponent implements Scrollable {
 
         setOpaque(true);
         setBackground(Color.WHITE);
-        if (model != null) model.addHexModelListener(listener);
+        if (model != null) {
+            model.addHexModelListener(listener);
+        }
+
 
         measures.recompute();
     }
@@ -76,17 +79,29 @@ public class HexEditor extends JComponent implements Scrollable {
     }
 
     public void setModel(HexModel value) {
-        if (model == value) return;
-        if (model != null) model.removeHexModelListener(listener);
+        if (model == value) {
+            return;
+        }
+
+        if (model != null) {
+            model.removeHexModelListener(listener);
+        }
+
         model = value;
         highlighter.clear();
         caret.setDot(-1, false);
-        if (model != null) model.addHexModelListener(listener);
+        if (model != null) {
+            model.addHexModelListener(listener);
+        }
+
         measures.recompute();
     }
 
     public void scrollAddressToVisible(int start, int end) {
-        if (start < 0 || end < 0) return;
+        if (start < 0 || end < 0) {
+            return;
+        }
+
         int x0 = measures.toX(start);
         int x1 = measures.toX(end) + measures.getCellWidth();
         int y0 = measures.toY(start);
@@ -125,7 +140,10 @@ public class HexEditor extends JComponent implements Scrollable {
         long addr1 = model.getLastOffset();
 
         long xaddr0 = measures.toAddress(0, clip.y);
-        if (xaddr0 == addr0) xaddr0 = measures.getBaseAddress(model);
+        if (xaddr0 == addr0) {
+            xaddr0 = measures.getBaseAddress(model);
+        }
+
         long xaddr1 = measures.toAddress(getWidth(), clip.y + clip.height) + 1;
         highlighter.paint(g, xaddr0, xaddr1);
 
@@ -191,7 +209,10 @@ public class HexEditor extends JComponent implements Scrollable {
     public void delete() {
         long p0 = caret.getMark();
         long p1 = caret.getDot();
-        if (p0 < 0 || p1 < 0) return;
+        if (p0 < 0 || p1 < 0) {
+            return;
+        }
+
         if (p0 > p1) {
             long t = p0; p0 = p1; p1 = t;
         }
@@ -214,7 +235,10 @@ public class HexEditor extends JComponent implements Scrollable {
             if (ret < 1) {
                 measures.recompute();
                 ret = measures.getCellHeight();
-                if (ret < 1) return 1;
+                if (ret < 1) {
+                    return 1;
+                }
+
             }
             return ret;
         } else {
@@ -230,7 +254,10 @@ public class HexEditor extends JComponent implements Scrollable {
             if (height < 1) {
                 measures.recompute();
                 height = measures.getCellHeight();
-                if (height < 1) return 19 * vis.height / 20;
+                if (height < 1) {
+                    return 19 * vis.height / 20;
+                }
+
             }
             int lines = Math.max(1, (vis.height / height) - 1);
             return lines * height;

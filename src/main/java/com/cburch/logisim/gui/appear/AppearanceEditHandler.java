@@ -42,7 +42,10 @@ public class AppearanceEditHandler extends EditHandler
         this.canvas = canvas;
         canvas.getSelection().addSelectionListener(this);
         CanvasModel model = canvas.getModel();
-        if (model != null) model.addCanvasModelListener(this);
+        if (model != null) {
+            model.addCanvasModelListener(this);
+        }
+
         canvas.addPropertyChangeListener(Canvas.MODEL_PROPERTY, this);
     }
 
@@ -72,8 +75,14 @@ public class AppearanceEditHandler extends EditHandler
                 if (!(entry.getKey() instanceof AppearanceElement)) {
                     count++;
                     int z = entry.getValue().intValue();
-                    if (z < zmin) zmin = z;
-                    if (z > zmax) zmax = z;
+                    if (z < zmin) {
+                        zmin = z;
+                    }
+
+                    if (z > zmax) {
+                        zmax = z;
+                    }
+
                 }
             }
             int maxPoss = AppearanceCanvas.getMaxIndex(canvas.getModel());
@@ -133,7 +142,10 @@ public class AppearanceEditHandler extends EditHandler
         for (CanvasObject o : contents) {
             add.add(o.clone());
         }
-        if (add.isEmpty()) return;
+        if (add.isEmpty()) {
+            return;
+        }
+
 
         // find how far we have to translate shapes so that at least one of the
         // pasted shapes doesn't match what's already in the model
@@ -149,7 +161,10 @@ public class AppearanceEditHandler extends EditHandler
                     break;
                 }
             }
-            if (!allMatch) break;
+            if (!allMatch) {
+                break;
+            }
+
 
             // otherwise translate everything by 10 pixels and repeat test
             for (CanvasObject o : add) {

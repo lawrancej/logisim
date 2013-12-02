@@ -35,8 +35,14 @@ public class EndData {
     public int getType() { return i_o; }
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof EndData)) return false;
-        if (other == this) return true;
+        if (!(other instanceof EndData)) {
+            return false;
+        }
+
+        if (other == this) {
+            return true;
+        }
+
         EndData o = (EndData) other;
         return o.loc.equals(this.loc) && o.width.equals(this.width)
             && o.i_o == this.i_o && o.exclusive == this.exclusive;

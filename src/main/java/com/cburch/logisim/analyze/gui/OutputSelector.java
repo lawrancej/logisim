@@ -71,7 +71,10 @@ class OutputSelector {
                 break;
             case VariableListEvent.REMOVE:
                 variable = event.getVariable();
-                if (variable.equals(prototypeValue)) computePrototypeValue();
+                if (variable.equals(prototypeValue)) {
+                    computePrototypeValue();
+                }
+
                 index = ((Integer) event.getData()).intValue();
                 fireIntervalRemoved(this, index, index);
                 selection = select.getSelectedItem();
@@ -85,7 +88,10 @@ class OutputSelector {
                 break;
             case VariableListEvent.REPLACE:
                 variable = event.getVariable();
-                if (variable.equals(prototypeValue)) computePrototypeValue();
+                if (variable.equals(prototypeValue)) {
+                    computePrototypeValue();
+                }
+
                 index = ((Integer) event.getData()).intValue();
                 fireContentsChanged(this, index, index);
                 selection = select.getSelectedItem();
@@ -158,7 +164,10 @@ class OutputSelector {
             newValue = "xx";
             for (int i = 0, n = source.size(); i < n; i++) {
                 String candidate = source.get(i);
-                if (candidate.length() > newValue.length()) newValue = candidate;
+                if (candidate.length() > newValue.length()) {
+                    newValue = candidate;
+                }
+
             }
         }
         if (prototypeValue == null || newValue.length() != prototypeValue.length()) {

@@ -14,10 +14,22 @@ public class Entry {
     public static final Entry OSCILLATE_ERROR = new Entry(__("oscillateError"));
 
     public static Entry parse(String description) {
-        if (ZERO.description.equals(description)) return ZERO;
-        if (ONE.description.equals(description)) return ONE;
-        if (DONT_CARE.description.equals(description)) return DONT_CARE;
-        if (BUS_ERROR.description.equals(description)) return BUS_ERROR;
+        if (ZERO.description.equals(description)) {
+            return ZERO;
+        }
+
+        if (ONE.description.equals(description)) {
+            return ONE;
+        }
+
+        if (DONT_CARE.description.equals(description)) {
+            return DONT_CARE;
+        }
+
+        if (BUS_ERROR.description.equals(description)) {
+            return BUS_ERROR;
+        }
+
         return null;
     }
 

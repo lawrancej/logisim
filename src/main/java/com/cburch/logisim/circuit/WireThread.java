@@ -21,7 +21,10 @@ class WireThread {
     void unite(WireThread other) {
         WireThread group = this.find();
         WireThread group2 = other.find();
-        if (group != group2) group.parent = group2;
+        if (group != group2) {
+            group.parent = group2;
+        }
+
     }
 
     WireThread find() {

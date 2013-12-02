@@ -123,7 +123,10 @@ public class GridPainter {
         double zoom = zoomFactor;
         int size = gridSize;
 
-        if (!showGrid) return;
+        if (!showGrid) {
+            return;
+        }
+
 
         Image img = gridImage;
         int w = gridImageWidth;
@@ -157,7 +160,10 @@ public class GridPainter {
             int x1 = x0 + (int) (clip.width / f);
             int y0 = size * (int) Math.ceil(clip.y / f / size);
             int y1 = y0 + (int) (clip.height / f);
-            if (f <= 0.5) g.setColor(GRID_ZOOMED_OUT_COLOR);
+            if (f <= 0.5) {
+                g.setColor(GRID_ZOOMED_OUT_COLOR);
+            }
+
             for (double x = x0; x < x1; x += size) {
                 for (double y = y0; y < y1; y += size) {
                     int sx = (int) Math.round(f * x);
@@ -234,14 +240,20 @@ public class GridPainter {
             int dotColor = f <= 0.5 ? GRID_DOT_ZOOMED_COLOR : GRID_DOT_COLOR;
             for (int j = 0; true; j += size) {
                 int y = (int) Math.round(f * j);
-                if (y + off0 >= w) break;
+                if (y + off0 >= w) {
+                    break;
+                }
+
 
                 for (int yo = y + off0; yo < y + off1; yo++) {
                     if (yo >= 0 && yo < w) {
                         int base = yo * w;
                         for (int i = 0; true; i += size) {
                             int x = (int) Math.round(f * i);
-                            if (x + off0 >= w) break;
+                            if (x + off0 >= w) {
+                                break;
+                            }
+
                             for (int xo = x + off0; xo < x + off1; xo++) {
                                 if (xo >= 0 && xo < w) {
                                     pix[base + xo] = dotColor;
@@ -256,12 +268,18 @@ public class GridPainter {
                 int size5 = size * 5;
                 for (int j = 0; true; j += size5) {
                     int y = (int) Math.round(f * j);
-                    if (y >= w) break;
+                    if (y >= w) {
+                        break;
+                    }
+
                     y *= w;
 
                     for (int i = 0; true; i += size5) {
                         int x = (int) Math.round(f * i);
-                        if (x >= w) break;
+                        if (x >= w) {
+                            break;
+                        }
+
                         pix[y + x] = GRID_DOT_COLOR;
                     }
                 }

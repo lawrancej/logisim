@@ -124,8 +124,14 @@ public abstract class Expression {
             public int visitXor(Expression a, Expression b) { return binary(a, b); }
             @Override
             public int visitNot(Expression a) {
-                if (!visited.add(a)) return 1;
-                if (a.visit(this) == 1) return 1;
+                if (!visited.add(a)) {
+                    return 1;
+                }
+
+                if (a.visit(this) == 1) {
+                    return 1;
+                }
+
                 visited.remove(a);
                 return 0;
             }
@@ -135,12 +141,24 @@ public abstract class Expression {
             public int visitConstant(int value) { return 0; }
 
             private int binary(Expression a, Expression b) {
-                if (!visited.add(a)) return 1;
-                if (a.visit(this) == 1) return 1;
+                if (!visited.add(a)) {
+                    return 1;
+                }
+
+                if (a.visit(this) == 1) {
+                    return 1;
+                }
+
                 visited.remove(a);
 
-                if (!visited.add(b)) return 1;
-                if (b.visit(this) == 1) return 1;
+                if (!visited.add(b)) {
+                    return 1;
+                }
+
+                if (b.visit(this) == 1) {
+                    return 1;
+                }
+
                 visited.remove(b);
 
                 return 0;
@@ -154,30 +172,51 @@ public abstract class Expression {
             public Expression visitAnd(Expression a, Expression b) {
                 Expression l = a.visit(this);
                 Expression r = b.visit(this);
-                if (l == null) return r;
-                if (r == null) return l;
+                if (l == null) {
+                    return r;
+                }
+
+                if (r == null) {
+                    return l;
+                }
+
                 return Expressions.and(l, r);
             }
             @Override
             public Expression visitOr(Expression a, Expression b) {
                 Expression l = a.visit(this);
                 Expression r = b.visit(this);
-                if (l == null) return r;
-                if (r == null) return l;
+                if (l == null) {
+                    return r;
+                }
+
+                if (r == null) {
+                    return l;
+                }
+
                 return Expressions.or(l, r);
             }
             @Override
             public Expression visitXor(Expression a, Expression b) {
                 Expression l = a.visit(this);
                 Expression r = b.visit(this);
-                if (l == null) return r;
-                if (r == null) return l;
+                if (l == null) {
+                    return r;
+                }
+
+                if (r == null) {
+                    return l;
+                }
+
                 return Expressions.xor(l, r);
             }
             @Override
             public Expression visitNot(Expression a) {
                 Expression l = a.visit(this);
-                if (l == null) return null;
+                if (l == null) {
+                    return null;
+                }
+
                 return Expressions.not(l);
             }
             @Override
@@ -262,7 +301,10 @@ public abstract class Expression {
 
             @Override
             public int visitAnd(Expression a, Expression b) {
-                if (level > 1) return 0;
+                if (level > 1) {
+                    return 0;
+                }
+
                 int oldLevel = level;
                 level = 1;
                 int ret = a.visit(this) == 1 && b.visit(this) == 1 ? 1 : 0;
@@ -271,7 +313,10 @@ public abstract class Expression {
             }
             @Override
             public int visitOr(Expression a, Expression b) {
-                if (level > 0) return 0;
+                if (level > 0) {
+                    return 0;
+                }
+
                 return a.visit(this) == 1 && b.visit(this) == 1 ? 1 : 0;
             }
             @Override
@@ -280,7 +325,10 @@ public abstract class Expression {
             }
             @Override
             public int visitNot(Expression a) {
-                if (level == 2) return 0;
+                if (level == 2) {
+                    return 0;
+                }
+
                 int oldLevel = level;
                 level = 2;
                 int ret = a.visit(this);

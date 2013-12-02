@@ -153,7 +153,10 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
     @Override
     public Attribute<?> getAttribute(String name) {
         for (Attribute<?> attr : attrs) {
-            if (attr.getName().equals(name)) return attr;
+            if (attr.getName().equals(name)) {
+                return attr;
+            }
+
         }
         return null;
     }

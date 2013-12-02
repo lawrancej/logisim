@@ -52,7 +52,10 @@ abstract class CircuitDetermination {
                 }
             } else {
                 ComponentFactory subFactory;
-                if (factory == NorGate.FACTORY) subFactory = OrGate.FACTORY;
+                if (factory == NorGate.FACTORY) {
+                    subFactory = OrGate.FACTORY;
+                }
+
                 else if (factory == NandGate.FACTORY) subFactory = AndGate.FACTORY;
                 else subFactory = factory;
 
@@ -146,8 +149,14 @@ abstract class CircuitDetermination {
                 inputs = new ArrayList<CircuitDetermination>();
 
                 ComponentFactory subFactory = factory;
-                if (subFactory == NandGate.FACTORY) subFactory = AndGate.FACTORY;
-                if (subFactory == NorGate.FACTORY) subFactory = OrGate.FACTORY;
+                if (subFactory == NandGate.FACTORY) {
+                    subFactory = AndGate.FACTORY;
+                }
+
+                if (subFactory == NorGate.FACTORY) {
+                    subFactory = OrGate.FACTORY;
+                }
+
 
                 int per = num / newNum;
                 int numExtra = num - per * newNum;
@@ -196,7 +205,10 @@ abstract class CircuitDetermination {
     }
 
     static CircuitDetermination create(Expression expr) {
-        if (expr == null) return null;
+        if (expr == null) {
+            return null;
+        }
+
         return expr.visit(new Determine());
     }
 

@@ -66,10 +66,16 @@ public class SubcircuitFactory extends InstanceFactory {
         @Override
         public void actionPerformed(ActionEvent e) {
             CircuitState superState = proj.getCircuitState();
-            if (superState == null) return;
+            if (superState == null) {
+                return;
+            }
+
 
             CircuitState subState = getSubstate(superState, instance);
-            if (subState == null) return;
+            if (subState == null) {
+                return;
+            }
+
             proj.setCircuitState(subState);
         }
     }
@@ -152,7 +158,10 @@ public class SubcircuitFactory extends InstanceFactory {
 
     @Override
     public Object getInstanceFeature(Instance instance, Object key) {
-        if (key == MenuExtender.class) return new CircuitFeature(instance);
+        if (key == MenuExtender.class) {
+            return new CircuitFeature(instance);
+        }
+
         return super.getInstanceFeature(instance, key);
     }
 
@@ -305,7 +314,10 @@ public class SubcircuitFactory extends InstanceFactory {
             boolean backs = false;
             while (back >= 0 && back <= label.length() - 2) {
                 char c = label.charAt(back + 1);
-                if (c == 'n') lines++;
+                if (c == 'n') {
+                    lines++;
+                }
+
                 else if (c == '\\') backs = true;
                 back = label.indexOf('\\', back + 2);
             }

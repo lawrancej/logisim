@@ -62,16 +62,25 @@ class TemplateOptions extends OptionsPanel {
                                 JOptionPane.ERROR_MESSAGE);
                     } finally {
                         try {
-                            if (reader != null) reader.close();
+                            if (reader != null) {
+                                reader.close();
+                            }
+
                         } catch (IOException ex) { }
                         try {
-                            if (reader != null) reader2.close();
+                            if (reader != null) {
+                                reader2.close();
+                            }
+
                         } catch (IOException ex) { }
                     }
                 }
             } else {
                 int value = AppPreferences.TEMPLATE_UNKNOWN;
-                if (plain.isSelected()) value = AppPreferences.TEMPLATE_PLAIN;
+                if (plain.isSelected()) {
+                    value = AppPreferences.TEMPLATE_PLAIN;
+                }
+
                 else if (empty.isSelected()) value = AppPreferences.TEMPLATE_EMPTY;
                 else if (custom.isSelected()) value = AppPreferences.TEMPLATE_CUSTOM;
                 AppPreferences.setTemplateType(value);

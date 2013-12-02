@@ -50,7 +50,10 @@ public abstract class Library {
             index++;
             if (obj instanceof AddTool) {
                 AddTool tool = (AddTool) obj;
-                if (tool.getFactory() == query) return index;
+                if (tool.getFactory() == query) {
+                    return index;
+                }
+
             }
         }
         return -1;

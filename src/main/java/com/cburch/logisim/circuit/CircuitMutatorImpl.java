@@ -28,7 +28,10 @@ class CircuitMutatorImpl implements CircuitMutator {
     public void clear(Circuit circuit) {
         HashSet<Component> comps = new HashSet<Component>(circuit.getNonWires());
         comps.addAll(circuit.getWires());
-        if (!comps.isEmpty()) modified.add(circuit);
+        if (!comps.isEmpty()) {
+            modified.add(circuit);
+        }
+
         log.add(CircuitChange.clear(circuit, comps));
 
         ReplacementMap repl = new ReplacementMap();

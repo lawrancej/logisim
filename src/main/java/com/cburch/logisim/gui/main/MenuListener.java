@@ -73,7 +73,10 @@ class MenuListener {
             menubar.addActionListener(LogisimMenuBar.LOWER_BOTTOM, this);
             menubar.addActionListener(LogisimMenuBar.ADD_CONTROL, this);
             menubar.addActionListener(LogisimMenuBar.REMOVE_CONTROL, this);
-            if (handler != null) handler.computeEnabled();
+            if (handler != null) {
+                handler.computeEnabled();
+            }
+
         }
 
         @Override
@@ -81,29 +84,65 @@ class MenuListener {
             Object src = e.getSource();
             EditHandler h = handler;
             if (src == LogisimMenuBar.CUT) {
-                if (h != null) h.cut();
+                if (h != null) {
+                    h.cut();
+                }
+
             } else if (src == LogisimMenuBar.COPY) {
-                if (h != null) h.copy();
+                if (h != null) {
+                    h.copy();
+                }
+
             } else if (src == LogisimMenuBar.PASTE) {
-                if (h != null) h.paste();
+                if (h != null) {
+                    h.paste();
+                }
+
             } else if (src == LogisimMenuBar.DELETE) {
-                if (h != null) h.delete();
+                if (h != null) {
+                    h.delete();
+                }
+
             } else if (src == LogisimMenuBar.DUPLICATE) {
-                if (h != null) h.duplicate();
+                if (h != null) {
+                    h.duplicate();
+                }
+
             } else if (src == LogisimMenuBar.SELECT_ALL) {
-                if (h != null) h.selectAll();
+                if (h != null) {
+                    h.selectAll();
+                }
+
             } else if (src == LogisimMenuBar.RAISE) {
-                if (h != null) h.raise();
+                if (h != null) {
+                    h.raise();
+                }
+
             } else if (src == LogisimMenuBar.LOWER) {
-                if (h != null) h.lower();
+                if (h != null) {
+                    h.lower();
+                }
+
             } else if (src == LogisimMenuBar.RAISE_TOP) {
-                if (h != null) h.raiseTop();
+                if (h != null) {
+                    h.raiseTop();
+                }
+
             } else if (src == LogisimMenuBar.LOWER_BOTTOM) {
-                if (h != null) h.lowerBottom();
+                if (h != null) {
+                    h.lowerBottom();
+                }
+
             } else if (src == LogisimMenuBar.ADD_CONTROL) {
-                if (h != null) h.addControlPoint();
+                if (h != null) {
+                    h.addControlPoint();
+                }
+
             } else if (src == LogisimMenuBar.REMOVE_CONTROL) {
-                if (h != null) h.removeControlPoint();
+                if (h != null) {
+                    h.removeControlPoint();
+                }
+
             }
         }
 
@@ -293,7 +332,10 @@ class MenuListener {
 
         @Override
         public void stateChangeRequested(Simulator sim, CircuitState state) {
-            if (state != null) frame.getProject().setCircuitState(state);
+            if (state != null) {
+                frame.getProject().setCircuitState(state);
+            }
+
         }
     }
 

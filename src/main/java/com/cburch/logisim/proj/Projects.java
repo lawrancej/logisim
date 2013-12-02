@@ -90,12 +90,18 @@ public class Projects {
             Frame backup = null;
             for (Project proj : openProjects) {
                 Frame frame = proj.getFrame();
-                if (ret == null) ret = frame;
+                if (ret == null) {
+                    ret = frame;
+                }
+
                 if (ret.isVisible() && (ret.getExtendedState() & java.awt.Frame.ICONIFIED) != 0) {
                     backup = ret;
                 }
             }
-            if (ret == null) ret = backup;
+            if (ret == null) {
+                ret = backup;
+            }
+
         }
         return ret;
     }
@@ -105,22 +111,37 @@ public class Projects {
             projectRemoved(proj, oldFrame, myListener);
         }
 
-        if (frame == null) return;
+        if (frame == null) {
+            return;
+        }
+
 
         // locate the window
         Point lowest = null;
         for (Project p : openProjects) {
             Frame f = p.getFrame();
-            if (f == null) continue;
+            if (f == null) {
+                continue;
+            }
+
             Point loc = p.getFrame().getLocation();
-            if (lowest == null || loc.y > lowest.y) lowest = loc;
+            if (lowest == null || loc.y > lowest.y) {
+                lowest = loc;
+            }
+
         }
         if (lowest != null) {
             Dimension sz = frame.getToolkit().getScreenSize();
             int x = Math.min(lowest.x + 20, sz.width - 200);
             int y = Math.min(lowest.y + 20, sz.height - 200);
-            if (x < 0) x = 0;
-            if (y < 0) y = 0;
+            if (x < 0) {
+                x = 0;
+            }
+
+            if (y < 0) {
+                y = 0;
+            }
+
             frame.setLocation(x, y);
         }
 
@@ -137,7 +158,10 @@ public class Projects {
 
     public static boolean windowNamed(String name) {
         for (Project proj : openProjects) {
-            if (proj.getLogisimFile().getName().equals(name)) return true;
+            if (proj.getLogisimFile().getName().equals(name)) {
+                return true;
+            }
+
         }
         return false;
     }
@@ -145,9 +169,15 @@ public class Projects {
     public static Project findProjectFor(File query) {
         for (Project proj : openProjects) {
             Loader loader = proj.getLogisimFile().getLoader();
-            if (loader == null) continue;
+            if (loader == null) {
+                continue;
+            }
+
             File f = loader.getMainFile();
-            if (query.equals(f)) return proj;
+            if (query.equals(f)) {
+                return proj;
+            }
+
         }
         return null;
     }

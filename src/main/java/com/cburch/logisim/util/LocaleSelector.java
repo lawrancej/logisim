@@ -70,7 +70,10 @@ class LocaleSelector extends JList
         LocaleOption sel = null;
         for (int i = 0; i < items.length; i++) {
             items[i].update(current);
-            if (current.equals(items[i].locale)) sel = items[i];
+            if (current.equals(items[i].locale)) {
+                sel = items[i];
+            }
+
         }
         if (sel != null) {
             setSelectedValue(sel, true);

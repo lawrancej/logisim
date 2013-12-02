@@ -77,11 +77,17 @@ class ToolboxManip implements ProjectExplorerListener {
             } else if (action == LibraryEvent.ADD_TOOL) {
                 Tool tool = (Tool) event.getData();
                 AttributeSet attrs = tool.getAttributeSet();
-                if (attrs != null) attrs.addAttributeListener(this);
+                if (attrs != null) {
+                    attrs.addAttributeListener(this);
+                }
+
             } else if (action == LibraryEvent.REMOVE_TOOL) {
                 Tool tool = (Tool) event.getData();
                 AttributeSet attrs = tool.getAttributeSet();
-                if (attrs != null) attrs.removeAttributeListener(this);
+                if (attrs != null) {
+                    attrs.removeAttributeListener(this);
+                }
+
             }
             explorer.repaint();
         }
@@ -92,7 +98,10 @@ class ToolboxManip implements ProjectExplorerListener {
             }
             for (Tool tool : lib.getTools()) {
                 AttributeSet attrs = tool.getAttributeSet();
-                if (attrs != null) attrs.addAttributeListener(this);
+                if (attrs != null) {
+                    attrs.addAttributeListener(this);
+                }
+
             }
         }
 
@@ -102,7 +111,10 @@ class ToolboxManip implements ProjectExplorerListener {
             }
             for (Tool tool : lib.getTools()) {
                 AttributeSet attrs = tool.getAttributeSet();
-                if (attrs != null) attrs.removeAttributeListener(this);
+                if (attrs != null) {
+                    attrs.removeAttributeListener(this);
+                }
+
             }
         }
 
@@ -166,7 +178,10 @@ class ToolboxManip implements ProjectExplorerListener {
                     SubcircuitFactory circFact = (SubcircuitFactory) source;
                     proj.setCurrentCircuit(circFact.getSubcircuit());
                     proj.getFrame().setEditorView(Frame.EDIT_LAYOUT);
-                    if (lastSelected != null) proj.setTool(lastSelected);
+                    if (lastSelected != null) {
+                        proj.setTool(lastSelected);
+                    }
+
                 }
             }
         }
@@ -177,7 +192,10 @@ class ToolboxManip implements ProjectExplorerListener {
         LogisimFile file = proj.getLogisimFile();
         int draggedIndex = file.getTools().indexOf(dragged);
         int targetIndex = file.getTools().indexOf(target);
-        if (targetIndex > draggedIndex) targetIndex++;
+        if (targetIndex > draggedIndex) {
+            targetIndex++;
+        }
+
         proj.doAction(LogisimFileActions.moveCircuit(dragged, targetIndex));
     }
 

@@ -62,17 +62,32 @@ public class Implicant implements Comparable<Implicant> {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Implicant)) return false;
+        if (!(other instanceof Implicant)) {
+            return false;
+        }
+
         Implicant o = (Implicant) other;
         return this.unknowns == o.unknowns && this.values == o.values;
     }
 
     @Override
     public int compareTo(Implicant o) {
-        if (this.values < o.values) return -1;
-        if (this.values > o.values) return  1;
-        if (this.unknowns < o.unknowns) return -1;
-        if (this.unknowns > o.unknowns) return  1;
+        if (this.values < o.values) {
+            return -1;
+        }
+
+        if (this.values > o.values) {
+            return  1;
+        }
+
+        if (this.unknowns < o.unknowns) {
+            return -1;
+        }
+
+        if (this.unknowns > o.unknowns) {
+            return  1;
+        }
+
         return 0;
     }
 
@@ -96,7 +111,10 @@ public class Implicant implements Comparable<Implicant> {
     }
 
     public int getRow() {
-        if (unknowns != 0) return -1;
+        if (unknowns != 0) {
+            return -1;
+        }
+
         return values;
     }
 
@@ -106,7 +124,10 @@ public class Implicant implements Comparable<Implicant> {
         for (int i = cols - 1; i >= 0; i--) {
             if ((unknowns & (1 << i)) == 0) {
                 Expression literal = Expressions.variable(source.getInputHeader(cols - 1 - i));
-                if ((values & (1 << i)) == 0) literal = Expressions.not(literal);
+                if ((values & (1 << i)) == 0) {
+                    literal = Expressions.not(literal);
+                }
+
                 term = Expressions.and(term, literal);
             }
         }
@@ -119,7 +140,10 @@ public class Implicant implements Comparable<Implicant> {
         for (int i = cols - 1; i >= 0; i--) {
             if ((unknowns & (1 << i)) == 0) {
                 Expression literal = Expressions.variable(source.getInputHeader(cols - 1 - i));
-                if ((values & (1 << i)) != 0) literal = Expressions.not(literal);
+                if ((values & (1 << i)) != 0) {
+                    literal = Expressions.not(literal);
+                }
+
                 term = Expressions.or(term, literal);
             }
         }
@@ -127,7 +151,10 @@ public class Implicant implements Comparable<Implicant> {
     }
 
     static Expression toExpression(int format, AnalyzerModel model, List<Implicant> implicants) {
-        if (implicants == null) return null;
+        if (implicants == null) {
+            return null;
+        }
+
         TruthTable table = model.getTruthTable();
         if (format == AnalyzerModel.FORMAT_PRODUCT_OF_SUMS) {
             Expression product = null;
@@ -148,7 +175,10 @@ public class Implicant implements Comparable<Implicant> {
             String variable) {
         TruthTable table = model.getTruthTable();
         int column = model.getOutputs().indexOf(variable);
-        if (column < 0) return Collections.emptyList();
+        if (column < 0) {
+            return Collections.emptyList();
+        }
+
 
         Entry desired = format == AnalyzerModel.FORMAT_SUM_OF_PRODUCTS
             ? Entry.ONE : Entry.ZERO;
@@ -173,7 +203,10 @@ public class Implicant implements Comparable<Implicant> {
                 base.put(imp, entry);
             }
         }
-        if (!knownFound) return null;
+        if (!knownFound) {
+            return null;
+        }
+
 
         // work up to more general implicants, discovering
         // any prime implicants.
@@ -229,12 +262,18 @@ public class Implicant implements Comparable<Implicant> {
         HashSet<Implicant> retSet = new HashSet<Implicant>();
         HashSet<Implicant> covered = new HashSet<Implicant>();
         for (Implicant required : toCover) {
-            if (covered.contains(required)) continue;
+            if (covered.contains(required)) {
+                continue;
+            }
+
             int row = required.getRow();
             Implicant essential = null;
             for (Implicant imp : primes) {
                 if ((row & ~imp.unknowns) == imp.values) {
-                    if (essential == null) essential = imp;
+                    if (essential == null) {
+                        essential = imp;
+                    }
+
                     else { essential = null; break; }
                 }
             }
@@ -261,7 +300,10 @@ public class Implicant implements Comparable<Implicant> {
                 Implicant imp = it.next();
                 int count = 0;
                 for (Implicant term : imp.getTerms()) {
-                    if (toCover.contains(term)) ++count;
+                    if (toCover.contains(term)) {
+                        ++count;
+                    }
+
                 }
                 if (count == 0) {
                     it.remove();

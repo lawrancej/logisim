@@ -25,7 +25,10 @@ class PropagationPoints {
 
         @Override
         public boolean equals(Object other) {
-            if (!(other instanceof Entry)) return false;
+            if (!(other instanceof Entry)) {
+                return false;
+            }
+
             Entry o = (Entry) other;
             return state.equals(o.state) && loc.equals(o.loc);
         }
@@ -55,7 +58,10 @@ class PropagationPoints {
     }
 
     void draw(ComponentDrawContext context) {
-        if (data.isEmpty()) return;
+        if (data.isEmpty()) {
+            return;
+        }
+
 
         CircuitState state = context.getCircuitState();
         HashMap<CircuitState,CircuitState> stateMap = new HashMap<CircuitState,CircuitState>();

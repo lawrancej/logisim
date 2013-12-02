@@ -40,7 +40,10 @@ class MenuSimulate extends Menu {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (currentSim != null) currentSim.setTickFrequency(freq);
+            if (currentSim != null) {
+                currentSim.setTickFrequency(freq);
+            }
+
         }
 
         public void localeChanged() {
@@ -110,13 +113,25 @@ class MenuSimulate extends Menu {
                     proj.repaintCanvas();
                 }
             } else if (src == reset) {
-                if (sim != null) sim.requestReset();
+                if (sim != null) {
+                    sim.requestReset();
+                }
+
             } else if (src == step || src == LogisimMenuBar.SIMULATE_STEP) {
-                if (sim != null) sim.step();
+                if (sim != null) {
+                    sim.step();
+                }
+
             } else if (src == tickOnce || src == LogisimMenuBar.TICK_STEP) {
-                if (sim != null) sim.tick();
+                if (sim != null) {
+                    sim.tick();
+                }
+
             } else if (src == ticksEnabled || src == LogisimMenuBar.TICK_ENABLE) {
-                if (sim != null) sim.setIsTicking(!sim.isTicking());
+                if (sim != null) {
+                    sim.setIsTicking(!sim.isTicking());
+                }
+
             } else if (src == log) {
                 LogFrame frame = menubar.getProject().getLogFrame(true);
                 frame.setVisible(true);
@@ -130,7 +145,10 @@ class MenuSimulate extends Menu {
         @Override
         public void simulatorStateChanged(SimulatorEvent e) {
             Simulator sim = e.getSource();
-            if (sim != currentSim) return;
+            if (sim != currentSim) {
+                return;
+            }
+
             computeEnabled();
             run.setSelected(sim.isRunning());
             ticksEnabled.setSelected(sim.isTicking());
@@ -270,7 +288,10 @@ class MenuSimulate extends Menu {
     }
 
     public void setCurrentState(Simulator sim, CircuitState value) {
-        if (currentState == value) return;
+        if (currentState == value) {
+            return;
+        }
+
         Simulator oldSim = currentSim;
         CircuitState oldState = currentState;
         currentSim = sim;
@@ -284,7 +305,10 @@ class MenuSimulate extends Menu {
             while (cur != null && cur != currentState) {
                 cur = cur.getParentState();
             }
-            if (cur == null) bottomState = currentState;
+            if (cur == null) {
+                bottomState = currentState;
+            }
+
         }
 
         boolean oldPresent = oldState != null;
@@ -299,8 +323,14 @@ class MenuSimulate extends Menu {
                 tickFreqs[i].setSelected(Math.abs(tickFreqs[i].freq - freq) < 0.001);
             }
 
-            if (oldSim != null) oldSim.removeSimulatorListener(myListener);
-            if (currentSim != null) currentSim.addSimulatorListener(myListener);
+            if (oldSim != null) {
+                oldSim.removeSimulatorListener(myListener);
+            }
+
+            if (currentSim != null) {
+                currentSim.addSimulatorListener(myListener);
+            }
+
             myListener.simulatorStateChanged(new SimulatorEvent(sim));
         }
 
@@ -310,7 +340,10 @@ class MenuSimulate extends Menu {
             downStateItems.add(new CircuitStateMenuItem(cur));
             cur = cur.getParentState();
         }
-        if (cur != null) cur = cur.getParentState();
+        if (cur != null) {
+            cur = cur.getParentState();
+        }
+
         clearItems(upStateItems);
         while (cur != null) {
             upStateItems.add(0, new CircuitStateMenuItem(cur));

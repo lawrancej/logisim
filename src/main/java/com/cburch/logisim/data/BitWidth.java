@@ -61,14 +61,20 @@ public class BitWidth implements Comparable<BitWidth> {
     }
 
     public int getMask() {
-        if (width == 0)       return 0;
+        if (width == 0) {
+                  return 0;
+        }
+
         else if (width == 32) return -1;
         else                 return (1 << width) - 1;
     }
 
     @Override
     public boolean equals(Object other_obj) {
-        if (!(other_obj instanceof BitWidth)) return false;
+        if (!(other_obj instanceof BitWidth)) {
+            return false;
+        }
+
         BitWidth other = (BitWidth) other_obj;
         return this.width == other.width;
     }
@@ -108,7 +114,10 @@ public class BitWidth implements Comparable<BitWidth> {
         if (str == null || str.length() == 0) {
             throw new NumberFormatException("Width string cannot be null");
         }
-        if (str.charAt(0) == '/') str = str.substring(1);
+        if (str.charAt(0) == '/') {
+            str = str.substring(1);
+        }
+
         return create(Integer.parseInt(str));
     }
 

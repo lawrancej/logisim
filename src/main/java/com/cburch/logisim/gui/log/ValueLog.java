@@ -24,7 +24,10 @@ class ValueLog {
 
     public Value get(int index) {
         int i = firstIndex + index;
-        if (i >= LOG_SIZE) i -= LOG_SIZE;
+        if (i >= LOG_SIZE) {
+            i -= LOG_SIZE;
+        }
+
         return log[i];
     }
 
@@ -40,7 +43,10 @@ class ValueLog {
         } else {
             log[firstIndex] = val;
             firstIndex++;
-            if (firstIndex >= LOG_SIZE) firstIndex = 0;
+            if (firstIndex >= LOG_SIZE) {
+                firstIndex = 0;
+            }
+
         }
     }
 }

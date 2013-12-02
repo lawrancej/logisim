@@ -35,7 +35,10 @@ public class HexDigit extends InstanceFactory {
     public void propagate(InstanceState state) {
         int summary = 0;
         Value baseVal = state.getPort(0);
-        if (baseVal == null) baseVal = Value.createUnknown(BitWidth.create(4));
+        if (baseVal == null) {
+            baseVal = Value.createUnknown(BitWidth.create(4));
+        }
+
         // each nibble is one segment, in top-down, left-to-right
         int segs;
           // order: middle three nibbles are the three horizontal segments
@@ -60,20 +63,44 @@ public class HexDigit extends InstanceFactory {
         default: segs = 0x0001000; break;
         }
         // vertical seg in bottom right
-        if ((segs & 0x1) != 0) summary |= 4;
+        if ((segs & 0x1) != 0) {
+            summary |= 4;
+        }
+
         // vertical seg in top right
-        if ((segs & 0x10) != 0) summary |= 2;
+        if ((segs & 0x10) != 0) {
+            summary |= 2;
+        }
+
         // horizontal seg at bottom
-        if ((segs & 0x100) != 0) summary |= 8;
+        if ((segs & 0x100) != 0) {
+            summary |= 8;
+        }
+
         // horizontal seg at middle
-        if ((segs & 0x1000) != 0) summary |= 64;
+        if ((segs & 0x1000) != 0) {
+            summary |= 64;
+        }
+
         // horizontal seg at top
-        if ((segs & 0x10000) != 0) summary |= 1;
+        if ((segs & 0x10000) != 0) {
+            summary |= 1;
+        }
+
         // vertical seg at bottom left
-        if ((segs & 0x100000) != 0) summary |= 16;
+        if ((segs & 0x100000) != 0) {
+            summary |= 16;
+        }
+
         // vertical seg at top left
-        if ((segs & 0x1000000) != 0) summary |= 32;
-        if (state.getPort(1) == Value.TRUE) summary |= 128;
+        if ((segs & 0x1000000) != 0) {
+            summary |= 32;
+        }
+
+        if (state.getPort(1) == Value.TRUE) {
+            summary |= 128;
+        }
+
 
         Object value = Integer.valueOf(summary);
         InstanceDataSingleton data = (InstanceDataSingleton) state.getData();

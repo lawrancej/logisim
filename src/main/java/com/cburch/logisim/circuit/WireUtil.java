@@ -23,7 +23,10 @@ public class WireUtil {
 
     // Merge all parallel endpoint-to-endpoint wires within the given set.
     public static Collection<? extends Component> mergeExclusive(Collection<? extends Component> toMerge) {
-        if (toMerge.size() <= 1) return toMerge;
+        if (toMerge.size() <= 1) {
+            return toMerge;
+        }
+
 
         HashSet<Component> ret = new HashSet<Component>(toMerge);
         CircuitPoints points = computeCircuitPoints(toMerge);

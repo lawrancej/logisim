@@ -23,9 +23,15 @@ class TruthTableMouseListener implements MouseListener {
         int rows = model.getRowCount();
         cellX = source.getOutputColumn(event);
         cellY = source.getRow(event);
-        if (cellX < 0 || cellY < 0 || cellX >= cols || cellY >= rows) return;
+        if (cellX < 0 || cellY < 0 || cellX >= cols || cellY >= rows) {
+            return;
+        }
+
         oldValue = source.getTruthTable().getOutputEntry(cellY, cellX);
-        if (oldValue == Entry.ZERO)     newValue = Entry.ONE;
+        if (oldValue == Entry.ZERO) {
+                newValue = Entry.ONE;
+        }
+
         else if (oldValue == Entry.ONE) newValue = Entry.DONT_CARE;
         else                           newValue = Entry.ZERO;
         source.setEntryProvisional(cellY, cellX, newValue);
@@ -36,7 +42,10 @@ class TruthTableMouseListener implements MouseListener {
         TruthTable model = source.getTruthTable();
         int cols = model.getInputColumnCount() + model.getOutputColumnCount();
         int rows = model.getRowCount();
-        if (cellX < 0 || cellY < 0 || cellX >= cols || cellY >= rows) return;
+        if (cellX < 0 || cellY < 0 || cellX >= cols || cellY >= rows) {
+            return;
+        }
+
 
         int x = source.getOutputColumn(event);
         int y = source.getRow(event);

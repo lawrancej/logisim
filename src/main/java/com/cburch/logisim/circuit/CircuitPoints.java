@@ -49,7 +49,10 @@ class CircuitPoints {
 
     Component getExclusive(Location loc) {
         LocationData locData = map.get(loc);
-        if (locData == null) return null;
+        if (locData == null) {
+            return null;
+        }
+
         int i = -1;
         for (EndData endData : locData.ends) {
             i++;
@@ -62,7 +65,10 @@ class CircuitPoints {
 
     Collection<? extends Component> getComponents(Location loc) {
         LocationData locData = map.get(loc);
-        if (locData == null) return Collections.emptySet();
+        if (locData == null) {
+            return Collections.emptySet();
+        }
+
         else return locData.components;
     }
 
@@ -82,7 +88,10 @@ class CircuitPoints {
 
     private Collection<? extends Component> find(Location loc, boolean isWire) {
         LocationData locData = map.get(loc);
-        if (locData == null) return Collections.emptySet();
+        if (locData == null) {
+            return Collections.emptySet();
+        }
+
 
         // first see how many elements we have; we can handle some simple
         // cases without creating any new lists
@@ -90,17 +99,32 @@ class CircuitPoints {
         int retSize = 0;
         Component retValue = null;
         for (Component o : list) {
-            if ((o instanceof Wire) == isWire) { retValue = o; retSize++; }
+            if ((o instanceof Wire) == isWire) {
+                { retValue = o;
+            }
+ retSize++; }
         }
-        if (retSize == list.size()) return list;
-        if (retSize == 0) return Collections.emptySet();
-        if (retSize == 1) return Collections.singleton(retValue);
+        if (retSize == list.size()) {
+            return list;
+        }
+
+        if (retSize == 0) {
+            return Collections.emptySet();
+        }
+
+        if (retSize == 1) {
+            return Collections.singleton(retValue);
+        }
+
 
         // otherwise we have to create our own list
         Component[] ret = new Component[retSize];
         int retPos = 0;
         for (Component o : list) {
-            if ((o instanceof Wire) == isWire) { ret[retPos] = o; retPos++; }
+            if ((o instanceof Wire) == isWire) {
+                { ret[retPos] = o;
+            }
+ retPos++; }
         }
         return Arrays.asList(ret);
     }
@@ -142,7 +166,10 @@ class CircuitPoints {
     }
 
     void add(Component comp, EndData endData) {
-        if (endData != null) addSub(endData.getLocation(), comp, endData);
+        if (endData != null) {
+            addSub(endData.getLocation(), comp, endData);
+        }
+
     }
 
     void remove(Component comp) {
@@ -160,7 +187,10 @@ class CircuitPoints {
     }
 
     void remove(Component comp, EndData endData) {
-        if (endData != null) removeSub(endData.getLocation(), comp);
+        if (endData != null) {
+            removeSub(endData.getLocation(), comp);
+        }
+
     }
 
     private void addSub(Location loc, Component comp, EndData endData) {
@@ -176,10 +206,16 @@ class CircuitPoints {
 
     private void removeSub(Location loc, Component comp) {
         LocationData locData = map.get(loc);
-        if (locData == null) return;
+        if (locData == null) {
+            return;
+        }
+
 
         int index = locData.components.indexOf(comp);
-        if (index < 0) return;
+        if (index < 0) {
+            return;
+        }
+
 
         if (locData.components.size() == 1) {
             map.remove(loc);

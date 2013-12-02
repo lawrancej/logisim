@@ -99,7 +99,10 @@ public class Project {
     }
 
     public void setFrame(Frame value) {
-        if (frame == value) return;
+        if (frame == value) {
+            return;
+        }
+
         Frame oldValue = frame;
         frame = value;
         Projects.windowCreated(this, oldValue, value);
@@ -131,7 +134,10 @@ public class Project {
 
     public OptionsFrame getOptionsFrame(boolean create) {
         if (optionsFrame == null || optionsFrame.getLogisimFile() != file) {
-            if (create) optionsFrame = new OptionsFrame(this);
+            if (create) {
+                optionsFrame = new OptionsFrame(this);
+            }
+
             else optionsFrame = null;
         }
         return optionsFrame;
@@ -139,7 +145,10 @@ public class Project {
 
     public LogFrame getLogFrame(boolean create) {
         if (logFrame == null) {
-            if (create) logFrame = new LogFrame(this);
+            if (create) {
+                logFrame = new LogFrame(this);
+            }
+
         }
         return logFrame;
     }
@@ -178,9 +187,15 @@ public class Project {
     }
 
     public Selection getSelection() {
-        if (frame == null) return null;
+        if (frame == null) {
+            return null;
+        }
+
         Canvas canvas = frame.getCanvas();
-        if (canvas == null) return null;
+        if (canvas == null) {
+            return null;
+        }
+
         return canvas.getSelection();
     }
 
@@ -189,7 +204,10 @@ public class Project {
     }
 
     public JFileChooser createChooser() {
-        if (file == null) return JFileChoosers.create();
+        if (file == null) {
+            return JFileChoosers.create();
+        }
+
         Loader loader = file.getLoader();
         return loader == null ? JFileChoosers.create() : loader.createChooser();
     }
@@ -207,24 +225,36 @@ public class Project {
 
     public void addLibraryListener(LibraryListener value) {
         fileListeners.add(value);
-        if (file != null) file.addLibraryListener(value);
+        if (file != null) {
+            file.addLibraryListener(value);
+        }
+
     }
 
     public void removeLibraryListener(LibraryListener value) {
         fileListeners.remove(value);
-        if (file != null) file.removeLibraryListener(value);
+        if (file != null) {
+            file.removeLibraryListener(value);
+        }
+
     }
 
     public void addCircuitListener(CircuitListener value) {
         circuitListeners.add(value);
         Circuit current = getCurrentCircuit();
-        if (current != null) current.addCircuitListener(value);
+        if (current != null) {
+            current.addCircuitListener(value);
+        }
+
     }
 
     public void removeCircuitListener(CircuitListener value) {
         circuitListeners.remove(value);
         Circuit current = getCurrentCircuit();
-        if (current != null) current.removeCircuitListener(value);
+        if (current != null) {
+            current.removeCircuitListener(value);
+        }
+
     }
 
     private void fireEvent(int action, Object old, Object data) {
@@ -285,7 +315,10 @@ public class Project {
     }
 
     public void setCircuitState(CircuitState value) {
-        if (value == null || circuitState == value) return;
+        if (value == null || circuitState == value) {
+            return;
+        }
+
 
         CircuitState old = circuitState;
         Circuit oldCircuit = old == null ? null : old.getCircuit();
@@ -294,7 +327,10 @@ public class Project {
         if (circuitChanged) {
             Canvas canvas = frame == null ? null : frame.getCanvas();
             if (canvas != null) {
-                if (tool != null) tool.deselect(canvas);
+                if (tool != null) {
+                    tool.deselect(canvas);
+                }
+
                 Selection selection = canvas.getSelection();
                 if (selection != null) {
                     Action act = SelectionActions.dropAll(selection);
@@ -302,7 +338,10 @@ public class Project {
                         doAction(act);
                     }
                 }
-                if (tool != null) tool.select(canvas);
+                if (tool != null) {
+                    tool.select(canvas);
+                }
+
             }
             if (oldCircuit != null) {
                 for (CircuitListener l : circuitListeners) {
@@ -326,15 +365,24 @@ public class Project {
 
     public void setCurrentCircuit(Circuit circuit) {
         CircuitState circState = stateMap.get(circuit);
-        if (circState == null) circState = new CircuitState(this, circuit);
+        if (circState == null) {
+            circState = new CircuitState(this, circuit);
+        }
+
         setCircuitState(circState);
     }
 
     public void setTool(Tool value) {
-        if (tool == value) return;
+        if (tool == value) {
+            return;
+        }
+
         Tool old = tool;
         Canvas canvas = frame.getCanvas();
-        if (old != null) old.deselect(canvas);
+        if (old != null) {
+            old.deselect(canvas);
+        }
+
         Selection selection = canvas.getSelection();
         if (selection != null && !selection.isEmpty()) {
             if (value == null || !getOptions().getMouseMappings().containsSelectTool()) {
@@ -346,22 +394,34 @@ public class Project {
         }
         startupScreen = false;
         tool = value;
-        if (tool != null) tool.select(frame.getCanvas());
+        if (tool != null) {
+            tool.select(frame.getCanvas());
+        }
+
         fireEvent(ProjectEvent.ACTION_SET_TOOL, old, tool);
     }
 
     public void doAction(Action act) {
-        if (act == null) return;
+        if (act == null) {
+            return;
+        }
+
         Action toAdd = act;
         startupScreen = false;
         if (!undoLog.isEmpty() && act.shouldAppendTo(getLastAction())) {
             ActionData firstData = undoLog.removeLast();
             Action first = firstData.action;
-            if (first.isModification()) --undoMods;
+            if (first.isModification()) {
+                --undoMods;
+            }
+
             toAdd = first.append(act);
             if (toAdd != null) {
                 undoLog.add(new ActionData(circuitState, toAdd));
-                if (toAdd.isModification()) ++undoMods;
+                if (toAdd.isModification()) {
+                    ++undoMods;
+                }
+
             }
             fireEvent(new ProjectEvent(ProjectEvent.ACTION_START, this, act));
             act.doIt(this);
@@ -376,7 +436,10 @@ public class Project {
         while (undoLog.size() > MAX_UNDO_SIZE) {
             undoLog.removeFirst();
         }
-        if (toAdd.isModification()) ++undoMods;
+        if (toAdd.isModification()) {
+            ++undoMods;
+        }
+
         file.setDirty(isFileDirty());
         fireEvent(new ProjectEvent(ProjectEvent.ACTION_COMPLETE, this, act));
     }
@@ -386,7 +449,10 @@ public class Project {
             ActionData data = undoLog.removeLast();
             setCircuitState(data.circuitState);
             Action action = data.action;
-            if (action.isModification()) --undoMods;
+            if (action.isModification()) {
+                --undoMods;
+            }
+
             fireEvent(new ProjectEvent(ProjectEvent.UNDO_START, this, action));
             action.undo(this);
             file.setDirty(isFileDirty());

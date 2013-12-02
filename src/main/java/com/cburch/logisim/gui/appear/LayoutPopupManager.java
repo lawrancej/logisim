@@ -109,7 +109,10 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
     private void showPopup(Set<AppearancePort> portObjects) {
         dragStart = null;
         CircuitState circuitState = canvas.getCircuitState();
-        if (circuitState == null) return;
+        if (circuitState == null) {
+            return;
+        }
+
         ArrayList<Instance> ports = new ArrayList<Instance>(portObjects.size());
         for (AppearancePort portObject : portObjects) {
             ports.add(portObject.getPin());
@@ -142,13 +145,19 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
     @Override
     public void mouseExited(MouseEvent e) {
         long sincePopup = System.currentTimeMillis() - curPopupTime;
-        if (sincePopup > 50) hideCurrentPopup();
+        if (sincePopup > 50) {
+            hideCurrentPopup();
+        }
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
         long sincePopup = System.currentTimeMillis() - curPopupTime;
-        if (sincePopup > 50) hideCurrentPopup();
+        if (sincePopup > 50) {
+            hideCurrentPopup();
+        }
+
         dragStart = Location.create(e.getX(), e.getY());
     }
 

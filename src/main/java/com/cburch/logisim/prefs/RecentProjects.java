@@ -128,7 +128,10 @@ class RecentProjects implements PreferenceChangeListener {
             int index = -1;
             try {
                 index = Integer.parseInt(rest);
-                if (index < 0 || index >= NUM_RECENT) index = -1;
+                if (index < 0 || index >= NUM_RECENT) {
+                    index = -1;
+                }
+
             } catch (NumberFormatException e) { }
             if (index >= 0) {
                 File oldValue = recentFiles[index];
@@ -166,9 +169,15 @@ class RecentProjects implements PreferenceChangeListener {
 
     private void getAndDecode(Preferences prefs, int index) {
         String encoding = prefs.get(BASE_PROPERTY + index, null);
-        if (encoding == null) return;
+        if (encoding == null) {
+            return;
+        }
+
         int semi = encoding.indexOf(';');
-        if (semi < 0) return;
+        if (semi < 0) {
+            return;
+        }
+
         try {
             long time = Long.parseLong(encoding.substring(0, semi));
             File file = new File(encoding.substring(semi + 1));

@@ -28,7 +28,10 @@ public class Template {
         while (true) {
             try {
                 int nbytes = reader.read(buf);
-                if (nbytes < 0) break;
+                if (nbytes < 0) {
+                    break;
+                }
+
                 dest.append(buf, 0, nbytes);
             } catch (IOException e) {
                 break;

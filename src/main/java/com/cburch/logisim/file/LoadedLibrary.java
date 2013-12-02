@@ -119,7 +119,10 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
     }
 
     private void resolveChanges(Library old) {
-        if (listeners.isEmpty()) return;
+        if (listeners.isEmpty()) {
+            return;
+        }
+
 
         if (!base.getDisplayName().equals(old.getDisplayName())) {
             fireLibraryEvent(LibraryEvent.SET_NAME, base.getDisplayName());
@@ -206,7 +209,10 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
         ArrayList<Component> toReplace = null;
         for (Component comp : circuit.getNonWires()) {
             if (compMap.containsKey(comp.getFactory())) {
-                if (toReplace == null) toReplace = new ArrayList<Component>();
+                if (toReplace == null) {
+                    toReplace = new ArrayList<Component>();
+                }
+
                 toReplace.add(comp);
             }
         }

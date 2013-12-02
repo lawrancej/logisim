@@ -36,7 +36,10 @@ public class UndoLog {
     private void fireEvent(int action, Action actionObject) {
         UndoLogEvent e = null;
         for (UndoLogListener listener : listeners) {
-            if (e == null) e = new UndoLogEvent(this, action, actionObject);
+            if (e == null) {
+                e = new UndoLogEvent(this, action, actionObject);
+            }
+
             listener.undoLogChanged(e);
         }
     }
@@ -68,7 +71,10 @@ public class UndoLog {
     // mutator methods
     //
     public void doAction(Action act) {
-        if (act == null) return;
+        if (act == null) {
+            return;
+        }
+
         act.doIt();
         logAction(act);
     }
@@ -78,7 +84,10 @@ public class UndoLog {
         if (!undoLog.isEmpty()) {
             Action prev = undoLog.getLast();
             if (act.shouldAppendTo(prev)) {
-                if (prev.isModification()) --modCount;
+                if (prev.isModification()) {
+                    --modCount;
+                }
+
                 Action joined = prev.append(act);
                 if (joined == null) {
                     fireEvent(UndoLogEvent.ACTION_DONE, act);
@@ -91,14 +100,20 @@ public class UndoLog {
             }
         }
         undoLog.add(act);
-        if (act.isModification()) ++modCount;
+        if (act.isModification()) {
+            ++modCount;
+        }
+
         fireEvent(UndoLogEvent.ACTION_DONE, act);
     }
 
     public void undoAction() {
         if (undoLog.size() > 0) {
             Action action = undoLog.removeLast();
-            if (action.isModification()) --modCount;
+            if (action.isModification()) {
+                --modCount;
+            }
+
             action.undo();
             redoLog.add(action);
             fireEvent(UndoLogEvent.ACTION_UNDONE, action);
@@ -108,7 +123,10 @@ public class UndoLog {
     public void redoAction() {
         if (redoLog.size() > 0) {
             Action action = redoLog.removeLast();
-            if (action.isModification()) ++modCount;
+            if (action.isModification()) {
+                ++modCount;
+            }
+
             action.doIt();
             undoLog.add(action);
             fireEvent(UndoLogEvent.ACTION_DONE, action);

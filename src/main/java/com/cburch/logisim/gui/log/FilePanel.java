@@ -61,7 +61,10 @@ class FilePanel extends LogPanel {
                 getModel().setFileEnabled(!getModel().isFileEnabled());
             } else if (src == selectButton) {
                 int result = chooser.showSaveDialog(getLogFrame());
-                if (result != JFileChooser.APPROVE_OPTION) return;
+                if (result != JFileChooser.APPROVE_OPTION) {
+                    return;
+                }
+
                 File file = chooser.getSelectedFile();
                 if (file.exists() && (!file.canWrite() || file.isDirectory())) {
                     JOptionPane.showMessageDialog(getLogFrame(),
@@ -171,7 +174,10 @@ class FilePanel extends LogPanel {
 
     @Override
     public void modelChanged(Model oldModel, Model newModel) {
-        if (oldModel != null) oldModel.removeModelListener(listener);
+        if (oldModel != null) {
+            oldModel.removeModelListener(listener);
+        }
+
         if (newModel != null) {
             newModel.addModelListener(listener);
             listener.filePropertyChanged(null);

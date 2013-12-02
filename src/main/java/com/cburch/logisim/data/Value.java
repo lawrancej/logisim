@@ -29,8 +29,14 @@ public class Value {
     private static final Cache cache = new Cache();
 
     public static Value create(Value[] values) {
-        if (values.length == 0) return NIL;
-        if (values.length == 1) return values[0];
+        if (values.length == 0) {
+            return NIL;
+        }
+
+        if (values.length == 1) {
+            return values[0];
+        }
+
         if (values.length > MAX_WIDTH) throw new RuntimeException(
             "Cannot have more than " + MAX_WIDTH + " bits in a value");
 
@@ -40,7 +46,10 @@ public class Value {
         int error = 0;
         for (int i = 0; i < values.length; i++) {
             int mask = 1 << i;
-            if (values[i] == TRUE)         value |= mask;
+            if (values[i] == TRUE) {
+                        value |= mask;
+            }
+
             else if (values[i] == FALSE)   /* do nothing */;
             else if (values[i] == UNKNOWN) unknown |= mask;
             else if (values[i] == ERROR)   error |= mask;
@@ -68,7 +77,10 @@ public class Value {
         if (width == 0) {
             return Value.NIL;
         } else if (width == 1) {
-            if ((error & 1) != 0)       return Value.ERROR;
+            if ((error & 1) != 0) {
+                      return Value.ERROR;
+            }
+
             else if ((unknown & 1) != 0)    return Value.UNKNOWN;
             else if ((value & 1) != 0)  return Value.TRUE;
             else return Value.FALSE;
@@ -123,7 +135,10 @@ public class Value {
     }
 
     public Value extendWidth(int newWidth, Value others) {
-        if (width == newWidth) return this;
+        if (width == newWidth) {
+            return this;
+        }
+
         int maskInverse = (width == 32 ? 0 : (-1 << width));
         if (others == Value.ERROR) {
             return Value.create(newWidth, error | maskInverse, unknown, value);
@@ -173,9 +188,15 @@ public class Value {
     }
 
     public Value get(int which) {
-        if (which < 0 || which >= width) return ERROR;
+        if (which < 0 || which >= width) {
+            return ERROR;
+        }
+
         int mask = 1 << which;
-        if ((error & mask) != 0) return ERROR;
+        if ((error & mask) != 0) {
+            return ERROR;
+        }
+
         else if ((unknown & mask) != 0) return UNKNOWN;
         else if ((value & mask) != 0) return TRUE;
         else return FALSE;
@@ -191,7 +212,10 @@ public class Value {
 
     @Override
     public boolean equals(Object other_obj) {
-        if (!(other_obj instanceof Value)) return false;
+        if (!(other_obj instanceof Value)) {
+            return false;
+        }
+
         Value other = (Value) other_obj;
         boolean ret = this.width == other.width
             && this.error == other.error
@@ -210,8 +234,14 @@ public class Value {
     }
 
     public int toIntValue() {
-        if (error != 0) return -1;
-        if (unknown != 0) return -1;
+        if (error != 0) {
+            return -1;
+        }
+
+        if (unknown != 0) {
+            return -1;
+        }
+
         return value;
     }
 
@@ -220,7 +250,10 @@ public class Value {
         switch (width) {
         case 0: return "-";
         case 1:
-            if (error != 0)        return "E";
+            if (error != 0) {
+                       return "E";
+            }
+
             else if (unknown != 0) return "x";
             else if (value != 0)   return "1";
             else                  return "0";
@@ -228,7 +261,10 @@ public class Value {
             StringBuilder ret = new StringBuilder();
             for (int i = width - 1; i >= 0; i--) {
                 ret.append(get(i).toString());
-                if (i % 4 == 0 && i != 0) ret.append(" ");
+                if (i % 4 == 0 && i != 0) {
+                    ret.append(" ");
+                }
+
             }
             return ret.toString();
         }
@@ -247,12 +283,24 @@ public class Value {
                 int v = 0;
                 c[i] = '?';
                 for (int j = last - 1; j >= frst; j--) {
-                    if (vals[j] == Value.ERROR) { c[i] = 'E'; break; }
-                    if (vals[j] == Value.UNKNOWN) { c[i] = 'x'; break; }
+                    if (vals[j] == Value.ERROR) {
+                        { c[i] = 'E';
+                    }
+ break; }
+                    if (vals[j] == Value.UNKNOWN) {
+                        { c[i] = 'x';
+                    }
+ break; }
                     v = 2 * v;
-                    if (vals[j] == Value.TRUE) v++;
+                    if (vals[j] == Value.TRUE) {
+                        v++;
+                    }
+
                 }
-                if (c[i] == '?') c[i] = Character.forDigit(v, 8);
+                if (c[i] == '?') {
+                    c[i] = Character.forDigit(v, 8);
+                }
+
             }
             return new String(c);
         }
@@ -271,21 +319,42 @@ public class Value {
                 int v = 0;
                 c[i] = '?';
                 for (int j = last - 1; j >= frst; j--) {
-                    if (vals[j] == Value.ERROR) { c[i] = 'E'; break; }
-                    if (vals[j] == Value.UNKNOWN) { c[i] = 'x'; break; }
+                    if (vals[j] == Value.ERROR) {
+                        { c[i] = 'E';
+                    }
+ break; }
+                    if (vals[j] == Value.UNKNOWN) {
+                        { c[i] = 'x';
+                    }
+ break; }
                     v = 2 * v;
-                    if (vals[j] == Value.TRUE) v++;
+                    if (vals[j] == Value.TRUE) {
+                        v++;
+                    }
+
                 }
-                if (c[i] == '?') c[i] = Character.forDigit(v, 16);
+                if (c[i] == '?') {
+                    c[i] = Character.forDigit(v, 16);
+                }
+
             }
             return new String(c);
         }
     }
 
     public String toDecimalString(boolean signed) {
-        if (width == 0) return "-";
-        if (isErrorValue()) return _("valueError");
-        if (!isFullyDefined()) return _("valueUnknown");
+        if (width == 0) {
+            return "-";
+        }
+
+        if (isErrorValue()) {
+            return _("valueError");
+        }
+
+        if (!isFullyDefined()) {
+            return _("valueUnknown");
+        }
+
 
         int value = toIntValue();
         if (signed) {
@@ -304,9 +373,18 @@ public class Value {
         case 8:  return toOctalString();
         case 16: return toHexString();
         default:
-            if (width == 0) return "-";
-            if (isErrorValue()) return _("valueError");
-            if (!isFullyDefined()) return _("valueUnknown");
+            if (width == 0) {
+                return "-";
+            }
+
+            if (isErrorValue()) {
+                return _("valueError");
+            }
+
+            if (!isFullyDefined()) {
+                return _("valueUnknown");
+            }
+
             return Integer.toString(toIntValue(), radix);
         }
     }
@@ -315,7 +393,10 @@ public class Value {
         switch (width) {
         case 0: return "-";
         case 1:
-            if (error != 0)        return _("valueErrorSymbol");
+            if (error != 0) {
+                       return _("valueErrorSymbol");
+            }
+
             else if (unknown != 0) return _("valueUnknownSymbol");
             else if (value != 0)   return "1";
             else                  return "0";
@@ -323,20 +404,41 @@ public class Value {
             StringBuilder ret = new StringBuilder();
             for (int i = width - 1; i >= 0; i--) {
                 ret.append(get(i).toString());
-                if (i % 4 == 0 && i != 0) ret.append(" ");
+                if (i % 4 == 0 && i != 0) {
+                    ret.append(" ");
+                }
+
             }
             return ret.toString();
         }
     }
 
     public Value combine(Value other) {
-        if (other == null) return this;
-        if (this == NIL) return other;
-        if (other == NIL) return this;
+        if (other == null) {
+            return this;
+        }
+
+        if (this == NIL) {
+            return other;
+        }
+
+        if (other == NIL) {
+            return this;
+        }
+
         if (this.width == 1 && other.width == 1) {
-            if (this == other) return this;
-            if (this == UNKNOWN) return other;
-            if (other == UNKNOWN) return this;
+            if (this == other) {
+                return this;
+            }
+
+            if (this == UNKNOWN) {
+                return other;
+            }
+
+            if (other == UNKNOWN) {
+                return this;
+            }
+
             return ERROR;
         } else {
             int disagree = (this.value ^ other.value)
@@ -349,10 +451,19 @@ public class Value {
     }
 
     public Value and(Value other) {
-        if (other == null) return this;
+        if (other == null) {
+            return this;
+        }
+
         if (this.width == 1 && other.width == 1) {
-            if (this == FALSE || other == FALSE) return FALSE;
-            if (this == TRUE  && other == TRUE ) return TRUE;
+            if (this == FALSE || other == FALSE) {
+                return FALSE;
+            }
+
+            if (this == TRUE  && other == TRUE ) {
+                return TRUE;
+            }
+
             return ERROR;
         } else {
             int false0 = ~this.value & ~this.error & ~this.unknown;
@@ -366,10 +477,19 @@ public class Value {
     }
 
     public Value or(Value other) {
-        if (other == null) return this;
+        if (other == null) {
+            return this;
+        }
+
         if (this.width == 1 && other.width == 1) {
-            if (this == TRUE  || other == TRUE ) return TRUE;
-            if (this == FALSE && other == FALSE) return FALSE;
+            if (this == TRUE  || other == TRUE ) {
+                return TRUE;
+            }
+
+            if (this == FALSE && other == FALSE) {
+                return FALSE;
+            }
+
             return ERROR;
         } else {
             int true0 = this.value & ~this.error & ~this.unknown;
@@ -383,12 +503,27 @@ public class Value {
     }
 
     public Value xor(Value other) {
-        if (other == null) return this;
+        if (other == null) {
+            return this;
+        }
+
         if (this.width <= 1 && other.width <= 1) {
-            if (this == ERROR || other == ERROR) return ERROR;
-            if (this == UNKNOWN || other == UNKNOWN) return ERROR;
-            if (this == NIL || other == NIL) return ERROR;
-            if ((this == TRUE) == (other == TRUE)) return FALSE;
+            if (this == ERROR || other == ERROR) {
+                return ERROR;
+            }
+
+            if (this == UNKNOWN || other == UNKNOWN) {
+                return ERROR;
+            }
+
+            if (this == NIL || other == NIL) {
+                return ERROR;
+            }
+
+            if ((this == TRUE) == (other == TRUE)) {
+                return FALSE;
+            }
+
             return TRUE;
         } else {
             return Value.create(Math.max(this.width, other.width),
@@ -400,8 +535,14 @@ public class Value {
 
     public Value not() {
         if (width <= 1) {
-            if (this == TRUE) return FALSE;
-            if (this == FALSE) return TRUE;
+            if (this == TRUE) {
+                return FALSE;
+            }
+
+            if (this == FALSE) {
+                return TRUE;
+            }
+
             return ERROR;
         } else {
             return Value.create(this.width,
@@ -417,7 +558,10 @@ public class Value {
         } else if (width == 0) {
             return NIL_COLOR;
         } else if (width == 1) {
-            if (this == UNKNOWN) return UNKNOWN_COLOR;
+            if (this == UNKNOWN) {
+                return UNKNOWN_COLOR;
+            }
+
             else if (this == TRUE) return TRUE_COLOR;
             else return FALSE_COLOR;
         } else {

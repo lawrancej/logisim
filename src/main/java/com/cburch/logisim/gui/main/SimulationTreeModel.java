@@ -40,10 +40,16 @@ public class SimulationTreeModel implements TreeModel {
             currentView = value;
 
             SimulationTreeCircuitNode node1 = mapToNode(oldView);
-            if (node1 != null) fireNodeChanged(node1);
+            if (node1 != null) {
+                fireNodeChanged(node1);
+            }
+
 
             SimulationTreeCircuitNode node2 = mapToNode(value);
-            if (node2 != null) fireNodeChanged(node2);
+            if (node2 != null) {
+                fireNodeChanged(node2);
+            }
+
         }
     }
 
@@ -57,7 +63,10 @@ public class SimulationTreeModel implements TreeModel {
     }
 
     public TreePath mapToPath(CircuitState state) {
-        if (state == null) return null;
+        if (state == null) {
+            return null;
+        }
+
         ArrayList<CircuitState> path = new ArrayList<CircuitState>();
         CircuitState current = state;
         CircuitState parent = current.getParentState();

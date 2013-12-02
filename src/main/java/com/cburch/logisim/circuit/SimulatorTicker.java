@@ -28,7 +28,10 @@ class SimulatorTicker extends Thread {
 
     synchronized void setAwake(boolean value) {
         shouldTick = value;
-        if (shouldTick) notifyAll();
+        if (shouldTick) {
+            notifyAll();
+        }
+
     }
 
     public synchronized void shutDown() {
@@ -63,7 +66,10 @@ class SimulatorTicker extends Thread {
                 }
             } catch (InterruptedException e) { }
 
-            if (complete) break;
+            if (complete) {
+                break;
+            }
+
 
             int toTick;
             long now = System.currentTimeMillis();
@@ -79,7 +85,10 @@ class SimulatorTicker extends Thread {
                     manager.requestTick();
                 }
                 synchronized(this) {
-                    if (ticksPending > toTick) ticksPending -= toTick;
+                    if (ticksPending > toTick) {
+                        ticksPending -= toTick;
+                    }
+
                     else ticksPending = 0;
                 }
                 // we fire tickCompleted in this thread so that other
@@ -90,8 +99,14 @@ class SimulatorTicker extends Thread {
             try {
                 long nextTick = lastTick + millis;
                 int wait = (int) (nextTick - System.currentTimeMillis());
-                if (wait < 1) wait = 1;
-                if (wait > 100) wait = 100;
+                if (wait < 1) {
+                    wait = 1;
+                }
+
+                if (wait > 100) {
+                    wait = 100;
+                }
+
                 Thread.sleep(wait);
             } catch (InterruptedException e) { }
         }

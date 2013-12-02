@@ -210,7 +210,10 @@ public class Attributes {
         public java.awt.Component getCellEditor(Object value) {
             JComboBox combo = new JComboBox(vals);
             combo.setRenderer(new OptionComboRenderer<V>(this));
-            if (value == null) combo.setSelectedIndex(-1);
+            if (value == null) {
+                combo.setSelectedIndex(-1);
+            }
+
             else combo.setSelectedItem(value);
             return combo;
         }
@@ -282,7 +285,10 @@ public class Attributes {
 
         @Override
         public String toDisplayString(Boolean value) {
-            if (value.booleanValue()) return _("booleanTrueOption");
+            if (value.booleanValue()) {
+                return _("booleanTrueOption");
+            }
+
             else return _("booleanFalseOption");
         }
 
@@ -305,8 +311,14 @@ public class Attributes {
         @Override
         public Integer parse(String value) {
             int v = (int) Long.parseLong(value);
-            if (v < start) throw new NumberFormatException("integer too small");
-            if (v > end) throw new NumberFormatException("integer too large");
+            if (v < start) {
+                throw new NumberFormatException("integer too small");
+            }
+
+            if (v > end) {
+                throw new NumberFormatException("integer too large");
+            }
+
             return Integer.valueOf(v);
         }
         @Override
@@ -321,7 +333,10 @@ public class Attributes {
                     }
                 }
                 JComboBox combo = new JComboBox(options);
-                if (value == null) combo.setSelectedIndex(-1);
+                if (value == null) {
+                    combo.setSelectedIndex(-1);
+                }
+
                 else combo.setSelectedItem(value);
                 return combo;
             }
@@ -358,7 +373,10 @@ public class Attributes {
 
         @Override
         public String toDisplayString(Font f) {
-            if (f == null) return "???";
+            if (f == null) {
+                return "???";
+            }
+
             return f.getFamily()
                 + " " + FontUtil.toStyleDisplayString(f.getStyle())
                 + " " + f.getSize();
@@ -424,7 +442,10 @@ public class Attributes {
             return c.getAlpha() == 255 ? ret : ret + hex(c.getAlpha());
         }
         private String hex(int value) {
-            if (value >= 16) return Integer.toHexString(value);
+            if (value >= 16) {
+                return Integer.toHexString(value);
+            }
+
             else return "0" + Integer.toHexString(value);
         }
         @Override
@@ -449,7 +470,10 @@ public class Attributes {
     private static class ColorChooser extends ColorPicker
             implements JInputComponent {
         ColorChooser(Color initial) {
-            if (initial != null) setColor(initial);
+            if (initial != null) {
+                setColor(initial);
+            }
+
             setOpacityVisible(true);
         }
 

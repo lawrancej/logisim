@@ -115,7 +115,10 @@ class VariableTab extends AnalyzerTab implements TabInterface {
                 }
             } else if (src == remove) {
                 String name = (String) list.getSelectedValue();
-                if (name != null) data.remove(name);
+                if (name != null) {
+                    data.remove(name);
+                }
+
             } else if (src == moveUp) {
                 String name = (String) list.getSelectedValue();
                 if (name != null) {
@@ -241,7 +244,10 @@ class VariableTab extends AnalyzerTab implements TabInterface {
           gc.fill = GridBagConstraints.HORIZONTAL;
         gb.setConstraints(error, gc); add(error);
 
-        if (!data.isEmpty()) list.setSelectedValue(data.get(0), true);
+        if (!data.isEmpty()) {
+            list.setSelectedValue(data.get(0), true);
+        }
+
         computeEnabled();
     }
 

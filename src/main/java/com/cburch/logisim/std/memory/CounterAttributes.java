@@ -46,7 +46,10 @@ class CounterAttributes extends AbstractAttributeSet {
     @Override
     public <V> void setValue(Attribute<V> attr, V value) {
         Object oldValue = base.getValue(attr);
-        if (oldValue == null ? value == null : oldValue.equals(value)) return;
+        if (oldValue == null ? value == null : oldValue.equals(value)) {
+            return;
+        }
+
 
         Integer newMax = null;
         if (attr == StdAttr.WIDTH) {

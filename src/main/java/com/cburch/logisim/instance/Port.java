@@ -90,7 +90,10 @@ public class Port {
     }
 
     private static int toType(String s) {
-        if (s == null) throw new IllegalArgumentException("Null port type");
+        if (s == null) {
+            throw new IllegalArgumentException("Null port type");
+        }
+
         else if (s.equals(INPUT))  return EndData.INPUT_ONLY;
         else if (s.equals(OUTPUT)) return EndData.OUTPUT_ONLY;
         else if (s.equals(INOUT))  return EndData.INPUT_OUTPUT;
@@ -98,7 +101,10 @@ public class Port {
     }
 
     private static String defaultExclusive(String s) {
-        if (s == null) throw new IllegalArgumentException("Null port type");
+        if (s == null) {
+            throw new IllegalArgumentException("Null port type");
+        }
+
         else if (s.equals(INPUT))  return SHARED;
         else if (s.equals(OUTPUT)) return EXCLUSIVE;
         else if (s.equals(INOUT))  return SHARED;
@@ -106,7 +112,10 @@ public class Port {
     }
 
     private static boolean toExclusive(String s) {
-        if (s == null) throw new IllegalArgumentException("Null exclusion type");
+        if (s == null) {
+            throw new IllegalArgumentException("Null exclusion type");
+        }
+
         else if (s.equals(EXCLUSIVE)) return true;
         else if (s.equals(SHARED))    return false;
         else throw new IllegalArgumentException("Not recognized exclusion type");

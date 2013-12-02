@@ -168,18 +168,30 @@ public class ReplacementMap {
     public void print(PrintStream out) {
         boolean found = false;
         for (Component c : getRemovals()) {
-            if (!found) out.println("  removals:");
+            if (!found) {
+                out.println("  removals:");
+            }
+
             found = true;
             out.println("    " + c.toString());
         }
-        if (!found) out.println("  removals: none");
+        if (!found) {
+            out.println("  removals: none");
+        }
+
 
         found = false;
         for (Component c : getAdditions()) {
-            if (!found) out.println("  additions:");
+            if (!found) {
+                out.println("  additions:");
+            }
+
             found = true;
             out.println("    " + c.toString());
         }
-        if (!found) out.println("  additions: none");
+        if (!found) {
+            out.println("  additions: none");
+        }
+
     }
 }

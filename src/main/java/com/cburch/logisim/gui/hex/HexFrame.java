@@ -107,7 +107,10 @@ public class HexFrame extends LFrame {
         private Clip clip = null;
 
         private Clip getClip() {
-            if (clip == null) clip = new Clip(editor);
+            if (clip == null) {
+                clip = new Clip(editor);
+            }
+
             return clip;
         }
 

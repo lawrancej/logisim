@@ -84,7 +84,10 @@ public class AttributeSetImpl extends AbstractAttributeSet {
             Node n = head;
             int ret = 0;
             while (n != null) {
-                if (o.equals(n.attr)) return ret;
+                if (o.equals(n.attr)) {
+                    return ret;
+                }
+
                 n = n.next;
                 ++ret;
             }
@@ -150,7 +153,10 @@ public class AttributeSetImpl extends AbstractAttributeSet {
         }
 
         Node n = new Node(attr, value, false, null);
-        if (head == null) head = n;
+        if (head == null) {
+            head = n;
+        }
+
         else             tail.next = n;
         tail = n;
         ++count;
@@ -162,8 +168,14 @@ public class AttributeSetImpl extends AbstractAttributeSet {
         Node n = head;
         while (n != null) {
             if (n.attr.equals(attr)) {
-                if (tail == n)    tail = prev;
-                if (prev == null) head = n.next;
+                if (tail == n) {
+                       tail = prev;
+                }
+
+                if (prev == null) {
+                    head = n.next;
+                }
+
                 else             prev.next = n.next;
                 --count;
                 fireAttributeListChanged();
@@ -243,7 +255,10 @@ public class AttributeSetImpl extends AbstractAttributeSet {
     //
     private Node findNode(Attribute<?> attr) {
         for (Node n = head; n != null; n = n.next) {
-            if (n.attr.equals(attr)) return n;
+            if (n.attr.equals(attr)) {
+                return n;
+            }
+
         }
         return null;
     }

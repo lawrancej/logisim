@@ -51,7 +51,10 @@ public class Selection {
     private void fireChanged(int action, Collection<CanvasObject> affected) {
         SelectionEvent e = null;
         for (SelectionListener listener : listeners) {
-            if (e == null) e = new SelectionEvent(this, action, affected);
+            if (e == null) {
+                e = new SelectionEvent(this, action, affected);
+            }
+
             listener.selectionChanged(e);
         }
     }
@@ -102,7 +105,10 @@ public class Selection {
                 if (selected.remove(shape)) {
                     suppressed.remove(shape);
                     Handle h = selectedHandle;
-                    if (h != null && h.getObject() == shape) setHandleSelected(null);
+                    if (h != null && h.getObject() == shape) {
+                        setHandleSelected(null);
+                    }
+
                     removed.add(shape);
                 }
             }
@@ -122,7 +128,10 @@ public class Selection {
                 selected.remove(shape);
                 suppressed.remove(shape);
                 Handle h = selectedHandle;
-                if (h != null && h.getObject() == shape) setHandleSelected(null);
+                if (h != null && h.getObject() == shape) {
+                    setHandleSelected(null);
+                }
+
                 removed.add(shape);
             } else {
                 selected.add(shape);
@@ -168,7 +177,10 @@ public class Selection {
 
     public void setHandleGesture(HandleGesture gesture) {
         HandleGesture g = curHandleGesture;
-        if (g != null) suppressed.remove(g.getHandle().getObject());
+        if (g != null) {
+            suppressed.remove(g.getHandle().getObject());
+        }
+
 
         Handle h = gesture.getHandle();
         suppressed.put(h.getObject(), MOVING_HANDLE);

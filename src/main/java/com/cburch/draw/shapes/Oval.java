@@ -81,7 +81,13 @@ public class Oval extends Rectangular {
 
     @Override
     public void draw(Graphics g, int x, int y, int w, int h) {
-        if (setForFill(g)) g.fillOval(x, y, w, h);
-        if (setForStroke(g)) g.drawOval(x, y, w, h);
+        if (setForFill(g)) {
+            g.fillOval(x, y, w, h);
+        }
+
+        if (setForStroke(g)) {
+            g.drawOval(x, y, w, h);
+        }
+
     }
 }

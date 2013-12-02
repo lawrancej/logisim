@@ -18,8 +18,14 @@ public class Expressions {
 
         @Override
         public boolean equals(Object other) {
-            if (other == null) return false;
-            if (this.getClass() != other.getClass()) return false;
+            if (other == null) {
+                return false;
+            }
+
+            if (this.getClass() != other.getClass()) {
+                return false;
+            }
+
             Binary o = (Binary) other;
             return this.a.equals(o.a) && this.b.equals(o.b);
         }
@@ -138,7 +144,10 @@ public class Expressions {
 
         @Override
         public boolean equals(Object other) {
-            if (!(other instanceof Not)) return false;
+            if (!(other instanceof Not)) {
+                return false;
+            }
+
             Not o = (Not) other;
             return this.a.equals(o.a);
         }
@@ -178,7 +187,10 @@ public class Expressions {
 
         @Override
         public boolean equals(Object other) {
-            if (!(other instanceof Variable)) return false;
+            if (!(other instanceof Variable)) {
+                return false;
+            }
+
             Variable o = (Variable) other;
             return this.name.equals(o.name);
         }
@@ -218,7 +230,10 @@ public class Expressions {
 
         @Override
         public boolean equals(Object other) {
-            if (!(other instanceof Constant)) return false;
+            if (!(other instanceof Constant)) {
+                return false;
+            }
+
             Constant o = (Constant) other;
             return this.value == o.value;
         }
@@ -230,25 +245,46 @@ public class Expressions {
     }
 
     public static Expression and(Expression a, Expression b) {
-        if (a == null) return b;
-        if (b == null) return a;
+        if (a == null) {
+            return b;
+        }
+
+        if (b == null) {
+            return a;
+        }
+
         return new And(a, b);
     }
 
     public static Expression or(Expression a, Expression b) {
-        if (a == null) return b;
-        if (b == null) return a;
+        if (a == null) {
+            return b;
+        }
+
+        if (b == null) {
+            return a;
+        }
+
         return new Or(a, b);
     }
 
     public static Expression xor(Expression a, Expression b) {
-        if (a == null) return b;
-        if (b == null) return a;
+        if (a == null) {
+            return b;
+        }
+
+        if (b == null) {
+            return a;
+        }
+
         return new Xor(a, b);
     }
 
     public static Expression not(Expression a) {
-        if (a == null) return null;
+        if (a == null) {
+            return null;
+        }
+
         return new Not(a);
     }
 

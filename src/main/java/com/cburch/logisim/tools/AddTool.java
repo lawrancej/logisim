@@ -109,7 +109,10 @@ public class AddTool extends Tool {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof AddTool)) return false;
+        if (!(other instanceof AddTool)) {
+            return false;
+        }
+
         AddTool o = (AddTool) other;
         if (this.description != null) {
             return this.descriptionBase == o.descriptionBase
@@ -127,7 +130,10 @@ public class AddTool extends Tool {
 
     @Override
     public boolean sharesSource(Tool other) {
-        if (!(other instanceof AddTool)) return false;
+        if (!(other instanceof AddTool)) {
+            return false;
+        }
+
         AddTool o = (AddTool) other;
         if (this.sourceLoadAttempted && o.sourceLoadAttempted) {
             return this.factory.equals(o.factory);
@@ -219,9 +225,15 @@ public class AddTool extends Tool {
         // repaint problems on OpenJDK under Ubuntu
         int x = lastX;
         int y = lastY;
-        if (x == INVALID_COORD || y == INVALID_COORD) return;
+        if (x == INVALID_COORD || y == INVALID_COORD) {
+            return;
+        }
+
         ComponentFactory source = getFactory();
-        if (source == null) return;
+        if (source == null) {
+            return;
+        }
+
         if (state == SHOW_GHOST) {
             source.drawGhost(context, Color.GRAY, x, y, getBaseAttributes());
         } else if (state == SHOW_ADD) {
@@ -255,10 +267,16 @@ public class AddTool extends Tool {
 
     private synchronized void moveTo(Canvas canvas, Graphics g,
             int x, int y) {
-        if (state != SHOW_NONE) expose(canvas, lastX, lastY);
+        if (state != SHOW_NONE) {
+            expose(canvas, lastX, lastY);
+        }
+
         lastX = x;
         lastY = y;
-        if (state != SHOW_NONE) expose(canvas, lastX, lastY);
+        if (state != SHOW_NONE) {
+            expose(canvas, lastX, lastY);
+        }
+
     }
 
     @Override
@@ -288,7 +306,10 @@ public class AddTool extends Tool {
     @Override
     public void mouseMoved(Canvas canvas, Graphics g, MouseEvent e) {
         if (state != SHOW_NONE) {
-            if (shouldSnap) Canvas.snapToGrid(e);
+            if (shouldSnap) {
+                Canvas.snapToGrid(e);
+            }
+
             moveTo(canvas, g, e.getX(), e.getY());
         }
     }
@@ -310,7 +331,10 @@ public class AddTool extends Tool {
             }
         }
 
-        if (shouldSnap) Canvas.snapToGrid(e);
+        if (shouldSnap) {
+            Canvas.snapToGrid(e);
+        }
+
         moveTo(canvas, g, e.getX(), e.getY());
         setState(canvas, SHOW_ADD);
     }
@@ -318,7 +342,10 @@ public class AddTool extends Tool {
     @Override
     public void mouseDragged(Canvas canvas, Graphics g, MouseEvent e) {
         if (state != SHOW_NONE) {
-            if (shouldSnap) Canvas.snapToGrid(e);
+            if (shouldSnap) {
+                Canvas.snapToGrid(e);
+            }
+
             moveTo(canvas, g, e.getX(), e.getY());
         }
     }
@@ -329,14 +356,23 @@ public class AddTool extends Tool {
         Component added = null;
         if (state == SHOW_ADD) {
             Circuit circ = canvas.getCircuit();
-            if (!canvas.getProject().getLogisimFile().contains(circ)) return;
-            if (shouldSnap) Canvas.snapToGrid(e);
+            if (!canvas.getProject().getLogisimFile().contains(circ)) {
+                return;
+            }
+
+            if (shouldSnap) {
+                Canvas.snapToGrid(e);
+            }
+
             moveTo(canvas, g, e.getX(), e.getY());
 
             Location loc = Location.create(e.getX(), e.getY());
             AttributeSet attrsCopy = (AttributeSet) attrs.clone();
             ComponentFactory source = getFactory();
-            if (source == null) return;
+            if (source == null) {
+                return;
+            }
+
             Component c = source.createComponent(loc, attrsCopy);
 
             if (circ.hasConflict(c)) {
@@ -374,7 +410,10 @@ public class AddTool extends Tool {
             if (act != null) {
                 proj.doAction(act);
             }
-            if (added != null) canvas.getSelection().add(added);
+            if (added != null) {
+                canvas.getSelection().add(added);
+            }
+
         }
     }
 
@@ -445,7 +484,10 @@ public class AddTool extends Tool {
 
     private void setFacing(Canvas canvas, Direction facing) {
         ComponentFactory source = getFactory();
-        if (source == null) return;
+        if (source == null) {
+            return;
+        }
+
         AttributeSet base = getBaseAttributes();
         Object feature = source.getFeature(ComponentFactory.FACING_ATTRIBUTE_KEY, base);
         @SuppressWarnings("unchecked")

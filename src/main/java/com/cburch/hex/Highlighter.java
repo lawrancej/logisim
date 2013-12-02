@@ -30,13 +30,25 @@ class Highlighter {
 
     public synchronized Object add(long start, long end, Color color) {
         HexModel model = hex.getModel();
-        if (model == null) return null;
+        if (model == null) {
+            return null;
+        }
+
         if (start > end) {
             long t = start; start = end; end = t;
         }
-        if (start < model.getFirstOffset()) start = model.getFirstOffset();
-        if (end > model.getLastOffset()) end = model.getLastOffset();
-        if (start >= end) return null;
+        if (start < model.getFirstOffset()) {
+            start = model.getFirstOffset();
+        }
+
+        if (end > model.getLastOffset()) {
+            end = model.getLastOffset();
+        }
+
+        if (start >= end) {
+            return null;
+        }
+
 
         Entry entry = new Entry(start, end, color);
         entries.add(entry);
@@ -78,7 +90,10 @@ class Highlighter {
 
     synchronized void paint(Graphics g, long start, long end) {
         int size = entries.size();
-        if (size == 0) return;
+        if (size == 0) {
+            return;
+        }
+
         Measures m = hex.getMeasures();
         int lineStart = m.getValuesX();
         int lineWidth = m.getValuesWidth();
@@ -96,7 +111,10 @@ class Highlighter {
                 } else {
                     int midHeight = y1 - (y0 + cellHeight);
                     g.fillRect(x0, y0, lineStart + lineWidth - x0, cellHeight);
-                    if (midHeight > 0) g.fillRect(lineStart, y0 + cellHeight, lineWidth, midHeight);
+                    if (midHeight > 0) {
+                        g.fillRect(lineStart, y0 + cellHeight, lineWidth, midHeight);
+                    }
+
                     g.fillRect(lineStart, y1, x1 + cellWidth - lineStart, cellHeight);
                 }
             }

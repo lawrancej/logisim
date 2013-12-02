@@ -235,7 +235,10 @@ public class PainterShaped {
         Location loc0 = OrGate.FACTORY.getInputOffset(attrs, 0);
         Location locn = OrGate.FACTORY.getInputOffset(attrs, inputs - 1);
         int totalHeight = 10 + loc0.manhattanDistanceTo(locn);
-        if (totalHeight < width) totalHeight = width;
+        if (totalHeight < width) {
+            totalHeight = width;
+        }
+
 
         GeneralPath path = computeShield(width, totalHeight);
         for (int i = 0; i < inputs; i++) {
@@ -246,7 +249,10 @@ public class PainterShaped {
                 iters++;
                 p.setLocation(p.getX() + 1, p.getY());
             }
-            if (iters >= 15) iters = 0;
+            if (iters >= 15) {
+                iters = 0;
+            }
+
             lengths[i] = iters;
         }
 

@@ -196,7 +196,10 @@ public class EditTool extends Tool {
             for (Wire w : circ.getWires()) {
                 if (selected.contains(w)) {
                     if (w.contains(oldWireLoc)) {
-                        if (suppress == null) suppress = new ArrayList<Component>();
+                        if (suppress == null) {
+                            suppress = new ArrayList<Component>();
+                        }
+
                         suppress.add(w);
                     }
                 }
@@ -272,7 +275,10 @@ public class EditTool extends Tool {
 
     private boolean updateLocation(Canvas canvas, KeyEvent e) {
         int x = lastRawX;
-        if (x >= 0) return updateLocation(canvas, x, lastRawY, e.getModifiersEx());
+        if (x >= 0) {
+            return updateLocation(canvas, x, lastRawY, e.getModifiersEx());
+        }
+
         else return false;
     }
 
@@ -282,7 +288,10 @@ public class EditTool extends Tool {
         int dx = mx - snapx;
         int dy = my - snapy;
         boolean isEligible = dx * dx + dy * dy < 36;
-        if ((mods & InputEvent.ALT_DOWN_MASK) != 0) isEligible = true;
+        if ((mods & InputEvent.ALT_DOWN_MASK) != 0) {
+            isEligible = true;
+        }
+
         if (!isEligible) {
             snapx = -1;
             snapy = -1;
@@ -339,7 +348,10 @@ public class EditTool extends Tool {
                 for (Component c : sel) {
                     if (c instanceof Wire) {
                         Wire w = (Wire) c;
-                        if (w.contains(loc) && !w.endsAt(loc)) return select;
+                        if (w.contains(loc) && !w.endsAt(loc)) {
+                            return select;
+                        }
+
                     }
                 }
             }
@@ -347,10 +359,16 @@ public class EditTool extends Tool {
 
         Circuit circ = canvas.getCircuit();
         Collection<? extends Component> at = circ.getComponents(loc);
-        if (at != null && at.size() > 0) return wiring;
+        if (at != null && at.size() > 0) {
+            return wiring;
+        }
+
 
         for (Wire w : circ.getWires()) {
-            if (w.contains(loc)) { return wiring; }
+            if (w.contains(loc)) {
+                { return wiring;
+            }
+ }
         }
         return select;
     }
@@ -379,19 +397,31 @@ public class EditTool extends Tool {
             e.consume();
             break;
         case KeyEvent.VK_UP:
-            if (e.getModifiersEx() == 0) attemptReface(canvas, Direction.NORTH, e);
+            if (e.getModifiersEx() == 0) {
+                attemptReface(canvas, Direction.NORTH, e);
+            }
+
             else                         select.keyPressed(canvas, e);
             break;
         case KeyEvent.VK_DOWN:
-            if (e.getModifiersEx() == 0) attemptReface(canvas, Direction.SOUTH, e);
+            if (e.getModifiersEx() == 0) {
+                attemptReface(canvas, Direction.SOUTH, e);
+            }
+
             else                         select.keyPressed(canvas, e);
             break;
         case KeyEvent.VK_LEFT:
-            if (e.getModifiersEx() == 0) attemptReface(canvas, Direction.WEST, e);
+            if (e.getModifiersEx() == 0) {
+                attemptReface(canvas, Direction.WEST, e);
+            }
+
             else                         select.keyPressed(canvas, e);
             break;
         case KeyEvent.VK_RIGHT:
-            if (e.getModifiersEx() == 0) attemptReface(canvas, Direction.EAST, e);
+            if (e.getModifiersEx() == 0) {
+                attemptReface(canvas, Direction.EAST, e);
+            }
+
             else                         select.keyPressed(canvas, e);
             break;
         case KeyEvent.VK_ALT:   updateLocation(canvas, e); e.consume(); break;

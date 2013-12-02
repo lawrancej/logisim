@@ -80,12 +80,18 @@ public class Ram extends Mem {
     @Override
     void configurePorts(Instance instance) {
         Object bus = instance.getAttributeValue(ATTR_BUS);
-        if (bus == null) bus = BUS_COMBINED;
+        if (bus == null) {
+            bus = BUS_COMBINED;
+        }
+
         boolean asynch = ObjectUtils.equals(bus, BUS_ASYNCH);
         boolean separate = ObjectUtils.equals(bus, BUS_SEPARATE);
 
         int portCount = MEM_INPUTS;
-        if (asynch) portCount += 2;
+        if (asynch) {
+            portCount += 2;
+        }
+
         else if (separate) portCount += 5;
         else portCount += 3;
         Port[] ps = new Port[portCount];
@@ -214,7 +220,10 @@ public class Ram extends Mem {
         boolean asynch = ObjectUtils.equals(busVal, BUS_ASYNCH);
         boolean separate = ObjectUtils.equals(busVal, BUS_SEPARATE);
 
-        if (!asynch) painter.drawClock(CLK, Direction.NORTH);
+        if (!asynch) {
+            painter.drawClock(CLK, Direction.NORTH);
+        }
+
         painter.drawPort(OE, _("ramOELabel"), Direction.SOUTH);
         painter.drawPort(CLR, _("ramClrLabel"), Direction.SOUTH);
 
@@ -237,15 +246,27 @@ public class Ram extends Mem {
             this.parent = parent;
             this.listener = listener;
             this.clockState = new ClockState();
-            if (parent != null) parent.getAttributeSet().addAttributeListener(this);
+            if (parent != null) {
+                parent.getAttributeSet().addAttributeListener(this);
+            }
+
             contents.addHexModelListener(listener);
         }
 
         void setRam(Instance value) {
-            if (parent == value) return;
-            if (parent != null) parent.getAttributeSet().removeAttributeListener(this);
+            if (parent == value) {
+                return;
+            }
+
+            if (parent != null) {
+                parent.getAttributeSet().removeAttributeListener(this);
+            }
+
             parent = value;
-            if (value != null) value.getAttributeSet().addAttributeListener(this);
+            if (value != null) {
+                value.getAttributeSet().addAttributeListener(this);
+            }
+
         }
 
         @Override
@@ -294,7 +315,10 @@ public class Ram extends Mem {
         @Override
         public Object[] getLogOptions(InstanceState state) {
             int addrBits = state.getAttributeValue(ADDR_ATTR).getWidth();
-            if (addrBits >= logOptions.length) addrBits = logOptions.length - 1;
+            if (addrBits >= logOptions.length) {
+                addrBits = logOptions.length - 1;
+            }
+
             synchronized(logOptions) {
                 Object[] ret = logOptions[addrBits];
                 if (ret == null) {

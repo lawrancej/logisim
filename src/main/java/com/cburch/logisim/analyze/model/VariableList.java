@@ -40,7 +40,10 @@ public class VariableList {
     }
 
     private void fireEvent(int type, String variable, Object data) {
-        if (listeners.size() == 0) return;
+        if (listeners.size() == 0) {
+            return;
+        }
+
         VariableListEvent event = new VariableListEvent(this, type, variable, data);
         for (VariableListListener l : listeners) {
             l.listChanged(event);
@@ -105,14 +108,20 @@ public class VariableList {
 
     public void remove(String name) {
         int index = data.indexOf(name);
-        if (index < 0) throw new NoSuchElementException("input " + name);
+        if (index < 0) {
+            throw new NoSuchElementException("input " + name);
+        }
+
         data.remove(index);
         fireEvent(VariableListEvent.REMOVE, name, Integer.valueOf(index));
     }
 
     public void move(String name, int delta) {
         int index = data.indexOf(name);
-        if (index < 0) throw new NoSuchElementException(name);
+        if (index < 0) {
+            throw new NoSuchElementException(name);
+        }
+
         int newIndex = index + delta;
         if (newIndex < 0) {
             throw new IllegalArgumentException("cannot move index " + index
@@ -122,7 +131,10 @@ public class VariableList {
             throw new IllegalArgumentException("cannot move index " + index
                     + " by " + delta + ": size " + data.size());
         }
-        if (index == newIndex) return;
+        if (index == newIndex) {
+            return;
+        }
+
         data.remove(index);
         data.add(newIndex, name);
         fireEvent(VariableListEvent.MOVE, name, Integer.valueOf(newIndex - index));
@@ -130,8 +142,14 @@ public class VariableList {
 
     public void replace(String oldName, String newName) {
         int index = data.indexOf(oldName);
-        if (index < 0) throw new NoSuchElementException(oldName);
-        if (oldName.equals(newName)) return;
+        if (index < 0) {
+            throw new NoSuchElementException(oldName);
+        }
+
+        if (oldName.equals(newName)) {
+            return;
+        }
+
         data.set(index, newName);
         fireEvent(VariableListEvent.REPLACE, oldName, Integer.valueOf(index));
     }

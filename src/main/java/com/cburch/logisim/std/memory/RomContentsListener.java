@@ -64,7 +64,10 @@ class RomContentsListener implements HexModelListener {
                 Change o = (Change) other;
                 long oEnd = o.start + o.newValues.length;
                 long end = start + newValues.length;
-                if (oEnd >= start && end >= o.start) return true;
+                if (oEnd >= start && end >= o.start) {
+                    return true;
+                }
+
             }
             return super.shouldAppendTo(other);
         }

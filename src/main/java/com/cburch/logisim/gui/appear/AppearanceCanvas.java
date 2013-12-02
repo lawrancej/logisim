@@ -79,7 +79,10 @@ public class AppearanceCanvas extends Canvas
         setTool(selectTool);
 
         CanvasModel model = super.getModel();
-        if (model != null) model.addCanvasModelListener(listener);
+        if (model != null) {
+            model.addCanvasModelListener(listener);
+        }
+
         grid.addPropertyChangeListener(GridPainter.ZOOM_PROPERTY, listener);
     }
 
@@ -165,7 +168,10 @@ public class AppearanceCanvas extends Canvas
                             mod.add(new ReorderRequest(o, from, max));
                         }
                     } else {
-                        if (r.getToIndex() == max) movedToMax = true;
+                        if (r.getToIndex() == max) {
+                            movedToMax = true;
+                        }
+
                         mod.add(r);
                     }
                 }

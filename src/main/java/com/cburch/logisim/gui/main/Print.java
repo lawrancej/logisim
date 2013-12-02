@@ -54,9 +54,15 @@ public class Print {
                 parmsPanel, _("printParmsTitle"),
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-        if (action != JOptionPane.OK_OPTION) return;
+        if (action != JOptionPane.OK_OPTION) {
+            return;
+        }
+
         List<Circuit> circuits = list.getSelectedCircuits();
-        if (circuits.isEmpty()) return;
+        if (circuits.isEmpty()) {
+            return;
+        }
+
 
         PageFormat format = new PageFormat();
         Printable print = new MyPrintable(proj, circuits,
@@ -66,7 +72,10 @@ public class Print {
 
         PrinterJob job = PrinterJob.getPrinterJob();
         job.setPrintable(print, format);
-        if (job.printDialog() == false) return;
+        if (job.printDialog() == false) {
+            return;
+        }
+
         try {
             job.print();
         } catch (PrinterException e) {
@@ -150,7 +159,10 @@ public class Print {
 
         @Override
         public int print(Graphics base, PageFormat format, int pageIndex) {
-            if (pageIndex >= circuits.size()) return Printable.NO_SUCH_PAGE;
+            if (pageIndex >= circuits.size()) {
+                return Printable.NO_SUCH_PAGE;
+            }
+
 
             Circuit circ = circuits.get(pageIndex);
             CircuitState circState = proj.getCircuitState(circ);

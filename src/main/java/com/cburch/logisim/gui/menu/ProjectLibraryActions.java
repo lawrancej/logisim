@@ -74,7 +74,10 @@ public class ProjectLibraryActions {
                 JOptionPane.QUESTION_MESSAGE);
         if (action == JOptionPane.OK_OPTION) {
             Library[] libs = list.getSelectedLibraries();
-            if (libs != null) proj.doAction(LogisimFileActions.loadLibraries(libs));
+            if (libs != null) {
+                proj.doAction(LogisimFileActions.loadLibraries(libs));
+            }
+
         }
     }
 
@@ -126,7 +129,10 @@ public class ProjectLibraryActions {
                     _("jarClassNameTitle"),
                     JOptionPane.QUESTION_MESSAGE);
                 // if user canceled selection, abort
-                if (className == null) return;
+                if (className == null) {
+                    return;
+                }
+
             }
 
             Library lib = loader.loadJarLibrary(f, className);
@@ -141,7 +147,10 @@ public class ProjectLibraryActions {
         ArrayList<Library> canUnload = new ArrayList<Library>();
         for (Library lib : file.getLibraries()) {
             String message = file.getUnloadLibraryMessage(lib);
-            if (message == null) canUnload.add(lib);
+            if (message == null) {
+                canUnload.add(lib);
+            }
+
         }
         if (canUnload.isEmpty()) {
             JOptionPane.showMessageDialog(proj.getFrame(),
@@ -157,7 +166,10 @@ public class ProjectLibraryActions {
                 JOptionPane.QUESTION_MESSAGE);
         if (action == JOptionPane.OK_OPTION) {
             Library[] libs = list.getSelectedLibraries();
-            if (libs != null) proj.doAction(LogisimFileActions.unloadLibraries(libs));
+            if (libs != null) {
+                proj.doAction(LogisimFileActions.unloadLibraries(libs));
+            }
+
         }
     }
 

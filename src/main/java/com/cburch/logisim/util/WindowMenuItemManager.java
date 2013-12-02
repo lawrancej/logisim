@@ -127,7 +127,10 @@ public abstract class WindowMenuItemManager {
 
     void removeMenuItem(WindowMenu menu) {
         JRadioButtonMenuItem item = menuItems.remove(menu);
-        if (item != null) menu.removeMenuItem(this, item);
+        if (item != null) {
+            menu.removeMenuItem(this, item);
+        }
+
     }
 
     void setSelected(boolean selected) {

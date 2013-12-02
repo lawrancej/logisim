@@ -79,7 +79,10 @@ public class SetAttributeAction extends Action {
 
     @Override
     public void undo(Project proj) {
-        if (xnReverse != null) xnReverse.execute();
+        if (xnReverse != null) {
+            xnReverse.execute();
+        }
+
         for (int i = oldValues.size() - 1; i >= 0; i--) {
             Component comp = comps.get(i);
             Attribute<Object> attr = attrs.get(i);

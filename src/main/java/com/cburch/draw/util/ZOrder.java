@@ -28,7 +28,10 @@ public class ZOrder {
             Collection<? extends CanvasObject> query, CanvasModel model) {
         // returns 0 for bottommost element, large number for topmost, ordered
         // from the bottom up.
-        if (query == null) return Collections.emptyMap();
+        if (query == null) {
+            return Collections.emptyMap();
+        }
+
 
         Set<? extends CanvasObject> querySet = toSet(query);
         Map<CanvasObject, Integer> ret;
@@ -98,7 +101,10 @@ public class ZOrder {
             ListIterator<CanvasObject> it = objs.listIterator(index);
             while (it.hasPrevious()) {
                 CanvasObject o = it.previous();
-                if (set.contains(o) && !ignore.contains(o)) return o;
+                if (set.contains(o) && !ignore.contains(o)) {
+                    return o;
+                }
+
             }
             return null;
         }
@@ -109,7 +115,10 @@ public class ZOrder {
         int index = -1;
         for (CanvasObject o : objs) {
             index++;
-            if (o == query) return index;
+            if (o == query) {
+                return index;
+            }
+
         }
         return -1;
     }

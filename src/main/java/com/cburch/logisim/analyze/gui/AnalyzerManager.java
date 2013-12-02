@@ -20,7 +20,10 @@ public class AnalyzerManager extends WindowMenuItemManager
         if (analysisWindow == null) {
             analysisWindow = new Analyzer();
             analysisWindow.pack();
-            if (analysisManager != null) analysisManager.frameOpened(analysisWindow);
+            if (analysisManager != null) {
+                analysisManager.frameOpened(analysisWindow);
+            }
+
         }
         return analysisWindow;
     }

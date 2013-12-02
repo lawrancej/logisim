@@ -50,9 +50,18 @@ class Buffer extends InstanceFactory {
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
         Direction facing = attrs.getValue(StdAttr.FACING);
-        if (facing == Direction.SOUTH) return Bounds.create(-9, -20, 18, 20);
-        if (facing == Direction.NORTH) return Bounds.create(-9, 0, 18, 20);
-        if (facing == Direction.WEST) return Bounds.create(0, -9, 20, 18);
+        if (facing == Direction.SOUTH) {
+            return Bounds.create(-9, -20, 18, 20);
+        }
+
+        if (facing == Direction.NORTH) {
+            return Bounds.create(-9, 0, 18, 20);
+        }
+
+        if (facing == Direction.WEST) {
+            return Bounds.create(0, -9, 20, 18);
+        }
+
         return Bounds.create(-20, -9, 20, 18);
     }
 
@@ -165,7 +174,10 @@ class Buffer extends InstanceFactory {
             int vw = v.getWidth();
             BitWidth w = state.getAttributeValue(StdAttr.WIDTH);
             int ww = w.getWidth();
-            if (vw == ww && v.isFullyDefined()) return v;
+            if (vw == ww && v.isFullyDefined()) {
+                return v;
+            }
+
             Value[] vs = new Value[w.getWidth()];
             for (int i = 0; i < vs.length; i++) {
                 Value ini = i < vw ? v.get(i) : Value.ERROR;

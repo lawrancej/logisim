@@ -96,7 +96,10 @@ class GrayIncrementer extends InstanceFactory {
      * Logisim except that it manipulates Value and BitWidth objects. */
     static Value nextGray(Value prev) {
         BitWidth bits = prev.getBitWidth();
-        if (!prev.isFullyDefined()) return Value.createError(bits);
+        if (!prev.isFullyDefined()) {
+            return Value.createError(bits);
+        }
+
         int x = prev.toIntValue();
         // compute parity of x
         int ct = (x >> 16) ^ x;

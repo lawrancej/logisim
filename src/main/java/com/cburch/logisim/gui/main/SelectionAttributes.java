@@ -92,10 +92,16 @@ class SelectionAttributes extends AbstractAttributeSet {
         Selection sel = selection;
         Set<Component> oldSel = selected;
         Set<Component> newSel;
-        if (sel == null) newSel = Collections.emptySet();
+        if (sel == null) {
+            newSel = Collections.emptySet();
+        }
+
         else newSel = createSet(sel.getComponents());
         if (haveSameElements(newSel, oldSel)) {
-            if (ignoreIfSelectionSame) return;
+            if (ignoreIfSelectionSame) {
+                return;
+            }
+
             newSel = oldSel;
         } else {
             for (Component o : oldSel) {
@@ -114,7 +120,10 @@ class SelectionAttributes extends AbstractAttributeSet {
         boolean same = isSame(attrMap, this.attrs, this.values);
 
         if (same) {
-            if (newSel != oldSel) this.selected = newSel;
+            if (newSel != oldSel) {
+                this.selected = newSel;
+            }
+
         } else {
             Attribute<?>[] oldAttrs = this.attrs;
             Object[] oldValues = this.values;
@@ -128,7 +137,10 @@ class SelectionAttributes extends AbstractAttributeSet {
                 newValues[i] = entry.getValue();
                 newReadOnly[i] = computeReadOnly(newSel, newAttrs[i]);
             }
-            if (newSel != oldSel) this.selected = newSel;
+            if (newSel != oldSel) {
+                this.selected = newSel;
+            }
+
             this.attrs = newAttrs;
             this.attrsView = UnmodifiableList.decorate(Arrays.asList(newAttrs));
             this.values = newValues;
@@ -165,7 +177,10 @@ class SelectionAttributes extends AbstractAttributeSet {
     private static Set<Component> createSet(Collection<Component> comps) {
         boolean includeWires = true;
         for (Component comp : comps) {
-            if (!(comp instanceof Wire)) { includeWires = false; break; }
+            if (!(comp instanceof Wire)) {
+                { includeWires = false;
+            }
+ break; }
         }
 
         if (includeWires) {
@@ -173,7 +188,10 @@ class SelectionAttributes extends AbstractAttributeSet {
         } else {
             HashSet<Component> ret = new HashSet<Component>();
             for (Component comp : comps) {
-                if (!(comp instanceof Wire)) ret.add(comp);
+                if (!(comp instanceof Wire)) {
+                    ret.add(comp);
+                }
+
             }
             return ret;
         }
@@ -188,7 +206,10 @@ class SelectionAttributes extends AbstractAttributeSet {
             return false;
         } else {
             for (Component item : a) {
-                if (!b.contains(item)) return false;
+                if (!b.contains(item)) {
+                    return false;
+                }
+
             }
             return true;
         }
@@ -234,10 +255,16 @@ class SelectionAttributes extends AbstractAttributeSet {
                 j++;
 
                 Attribute<Object> a = entry.getKey();
-                if (!oldAttrs[j].equals(a) || j >= oldValues.length) return false;
+                if (!oldAttrs[j].equals(a) || j >= oldValues.length) {
+                    return false;
+                }
+
                 Object ov = oldValues[j];
                 Object nv = entry.getValue();
-                if (ov == null ? nv != null : !ov.equals(nv)) return false;
+                if (ov == null ? nv != null : !ov.equals(nv)) {
+                    return false;
+                }
+
             }
             return true;
         }
@@ -246,7 +273,10 @@ class SelectionAttributes extends AbstractAttributeSet {
     private static boolean computeReadOnly(Collection<Component> sel, Attribute<?> attr) {
         for (Component comp : sel) {
             AttributeSet attrs = comp.getAttributeSet();
-            if (attrs.isReadOnly(attr)) return true;
+            if (attrs.isReadOnly(attr)) {
+                return true;
+            }
+
         }
         return false;
     }
@@ -318,10 +348,16 @@ class SelectionAttributes extends AbstractAttributeSet {
     }
 
     private int findIndex(Attribute<?> attr) {
-        if (attr == null) return -1;
+        if (attr == null) {
+            return -1;
+        }
+
         Attribute<?>[] as = attrs;
         for (int i = 0; i < as.length; i++) {
-            if (attr.equals(as[i])) return i;
+            if (attr.equals(as[i])) {
+                return i;
+            }
+
         }
         return -1;
     }

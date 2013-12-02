@@ -22,10 +22,16 @@ class WireIterator implements Iterator<Location> {
         destX = e1.getX();
         destY = e1.getY();
         destReturned = false;
-        if (curX < destX) deltaX = 10;
+        if (curX < destX) {
+            deltaX = 10;
+        }
+
         else if (curX > destX) deltaX = -10;
         else deltaX = 0;
-        if (curY < destY) deltaY = 10;
+        if (curY < destY) {
+            deltaY = 10;
+        }
+
         else if (curY > destY) deltaY = -10;
         else deltaY = 0;
 

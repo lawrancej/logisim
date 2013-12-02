@@ -54,7 +54,10 @@ class TtyState implements InstanceData, Cloneable {
     }
 
     public String getRowString(int index) {
-        if (index < row) return rowData[index];
+        if (index < row) {
+            return rowData[index];
+        }
+
         else if (index == row) return lastRow.toString();
         else return "";
     }
@@ -82,7 +85,10 @@ class TtyState implements InstanceData, Cloneable {
             break;
         // backspace
         case '\b':
-            if (lastLength > 0) lastRow.delete(lastLength - 1, lastLength);
+            if (lastLength > 0) {
+                lastRow.delete(lastLength - 1, lastLength);
+            }
+
             break;
         // newline
         case '\n': case '\r':
@@ -90,7 +96,10 @@ class TtyState implements InstanceData, Cloneable {
             break;
         default:
             if (!Character.isISOControl(c)) {
-                if (lastLength == colCount) commit();
+                if (lastLength == colCount) {
+                    commit();
+                }
+
                 lastRow.append(c);
             }
         }
@@ -132,7 +141,10 @@ class TtyState implements InstanceData, Cloneable {
             if (cols < oldCols) {
                 for (int i = 0; i < rows - 1; i++) {
                     String s = rowData[i];
-                    if (s.length() > cols) rowData[i] = s.substring(0, cols);
+                    if (s.length() > cols) {
+                        rowData[i] = s.substring(0, cols);
+                    }
+
                 }
                 if (lastRow.length() > cols) {
                     lastRow.delete(cols, lastRow.length());

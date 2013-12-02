@@ -46,12 +46,18 @@ public class Dag {
     }
 
     public boolean addEdge(Object srcData, Object dstData) {
-        if (!canFollow(dstData, srcData)) return false;
+        if (!canFollow(dstData, srcData)) {
+            return false;
+        }
+
 
         Node src = createNode(srcData);
         Node dst = createNode(dstData);
         // add since not already present
-        if (src.succs.add(dst)) ++dst.numPreds;
+        if (src.succs.add(dst)) {
+            ++dst.numPreds;
+        }
+
         return true;
     }
 
@@ -59,23 +65,41 @@ public class Dag {
         // returns true if the edge could be removed
         Node src = findNode(srcData);
         Node dst = findNode(dstData);
-        if (src == null || dst == null) return false;
-        if (!src.succs.remove(dst)) return false;
+        if (src == null || dst == null) {
+            return false;
+        }
+
+        if (!src.succs.remove(dst)) {
+            return false;
+        }
+
 
         --dst.numPreds;
-        if (dst.numPreds == 0 && dst.succs.isEmpty()) nodes.remove(dstData);
-        if (src.numPreds == 0 && src.succs.isEmpty()) nodes.remove(srcData);
+        if (dst.numPreds == 0 && dst.succs.isEmpty()) {
+            nodes.remove(dstData);
+        }
+
+        if (src.numPreds == 0 && src.succs.isEmpty()) {
+            nodes.remove(srcData);
+        }
+
         return true;
     }
 
     public void removeNode(Object data) {
         Node n = findNode(data);
-        if (n == null) return;
+        if (n == null) {
+            return;
+        }
+
 
         for (Iterator<Node> it = n.succs.iterator(); it.hasNext(); ) {
             Node succ = it.next();
             --(succ.numPreds);
-            if (succ.numPreds == 0 && succ.succs.isEmpty()) it.remove();
+            if (succ.numPreds == 0 && succ.succs.isEmpty()) {
+                it.remove();
+            }
+
         }
 
         if (n.numPreds > 0) {
@@ -88,14 +112,23 @@ public class Dag {
     }
 
     private Node findNode(Object data) {
-        if (data == null) return null;
+        if (data == null) {
+            return null;
+        }
+
         return nodes.get(data);
     }
 
     private Node createNode(Object data) {
         Node ret = findNode(data);
-        if (ret != null) return ret;
-        if (data == null) return null;
+        if (ret != null) {
+            return ret;
+        }
+
+        if (data == null) {
+            return null;
+        }
+
 
         ret = new Node(data);
         nodes.put(data, ret);
@@ -103,7 +136,10 @@ public class Dag {
     }
 
     private boolean canFollow(Node query, Node base) {
-        if (base == query) return false;
+        if (base == query) {
+            return false;
+        }
+
 
         // mark all as unvisited
         for (Node n : nodes.values()) {
@@ -119,7 +155,10 @@ public class Dag {
             Node n = fringe.removeFirst();
             for (Node next : n.succs) {
                 if (!next.mark) {
-                    if (next == base) return false;
+                    if (next == base) {
+                        return false;
+                    }
+
                     next.mark = true;
                     fringe.addLast(next);
                 }

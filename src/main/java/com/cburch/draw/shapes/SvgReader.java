@@ -71,7 +71,10 @@ public class SvgReader {
         }
         if (attrs.contains(DrawAttr.FILL_COLOR)) {
             String color = elt.getAttribute("fill");
-            if (color.equals("")) color = "#000000";
+            if (color.equals("")) {
+                color = "#000000";
+            }
+
             String opacity = elt.getAttribute("fill-opacity");
             if (!color.equals("none")) {
                 ret.setValue(DrawAttr.FILL_COLOR, getColor(color, opacity));
@@ -134,8 +137,14 @@ public class SvgReader {
         String fontWeight = elt.getAttribute("font-weight");
         String fontSize = elt.getAttribute("font-size");
         int styleFlags = 0;
-        if (fontStyle.equals("italic")) styleFlags |= Font.ITALIC;
-        if (fontWeight.equals("bold")) styleFlags |= Font.BOLD;
+        if (fontStyle.equals("italic")) {
+            styleFlags |= Font.ITALIC;
+        }
+
+        if (fontWeight.equals("bold")) {
+            styleFlags |= Font.BOLD;
+        }
+
         int size = Integer.parseInt(fontSize);
         ret.setValue(DrawAttr.FONT, new Font(fontFamily, styleFlags, size));
 
@@ -177,18 +186,27 @@ public class SvgReader {
             if (Character.isLetter(token.charAt(0))) {
                 switch (token.charAt(0)) {
                 case 'M':
-                    if (type == -1) type = 0;
+                    if (type == -1) {
+                        type = 0;
+                    }
+
                     else type = -1;
                     break;
                 case 'Q': case 'q':
-                    if (type == 0) type = 1;
+                    if (type == 0) {
+                        type = 1;
+                    }
+
                     else type = -1;
                     break;
                 /* not supported
                 case 'L': case 'l':
                 case 'H': case 'h':
                 case 'V': case 'v':
-                    if (type == 0 || type == 2) type = 2;
+                    if (type == 0 || type == 2) {
+                        type = 2;
+                    }
+
                     else type = -1;
                     break;
                 */

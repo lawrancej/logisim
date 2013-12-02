@@ -174,7 +174,10 @@ public class TransmissionGate extends InstanceFactory {
             == (powerLoc == Wiring.GATE_TOP_LEFT);
 
         int degrees = Direction.WEST.toDegrees() - facing.toDegrees();
-        if (flip) degrees += 180;
+        if (flip) {
+            degrees += 180;
+        }
+
         double radians = Math.toRadians((degrees + 360) % 360);
 
         Graphics2D g = (Graphics2D) painter.getGraphics().create();

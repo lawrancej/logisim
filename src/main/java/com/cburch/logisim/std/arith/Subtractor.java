@@ -59,7 +59,10 @@ public class Subtractor extends InstanceFactory {
         Value a = state.getPort(IN0);
         Value b = state.getPort(IN1);
         Value b_in = state.getPort(B_IN);
-        if (b_in == Value.UNKNOWN || b_in == Value.NIL) b_in = Value.FALSE;
+        if (b_in == Value.UNKNOWN || b_in == Value.NIL) {
+            b_in = Value.FALSE;
+        }
+
         Value[] outs = Adder.computeSum(data, a, b.not(), b_in.not());
 
         // propagate them

@@ -233,7 +233,10 @@ class WireRepair extends CircuitTransaction {
             ArrayList<Location> splits = null;
             for (Location loc : splitLocs) {
                 if (w.contains(loc) && !loc.equals(w0) && !loc.equals(w1)) {
-                    if (splits == null) splits = new ArrayList<Location>();
+                    if (splits == null) {
+                        splits = new ArrayList<Location>();
+                    }
+
                     splits.add(loc);
                 }
             }

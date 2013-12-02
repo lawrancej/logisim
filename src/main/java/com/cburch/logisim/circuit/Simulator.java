@@ -91,7 +91,10 @@ public class Simulator {
 
                 if (resetRequested) {
                     resetRequested = false;
-                    if (propagator != null) propagator.reset();
+                    if (propagator != null) {
+                        propagator.reset();
+                    }
+
                     firePropagationCompleted();
                     propagateRequested |= isRunning;
                 }
@@ -106,7 +109,10 @@ public class Simulator {
                             ticksRequested = 0;
                         } else {
                             ticked = ticksRequested > 0;
-                            if (ticked) doTick();
+                            if (ticked) {
+                                doTick();
+                            }
+
                             do {
                                 propagateRequested = false;
                                 try {
@@ -144,7 +150,10 @@ public class Simulator {
                             }
                         }
                     }
-                    if (ticked) fireTickCompleted();
+                    if (ticked) {
+                        fireTickCompleted();
+                    }
+
                     firePropagationCompleted();
                 }
             }
@@ -230,7 +239,10 @@ public class Simulator {
             isRunning = value;
             renewTickerAwake();
             /*DEBUGGING - comment out:
-            if (!value) flushLog(); //*/
+            if (!value) {
+                flushLog();
+            }
+ //*/
             fireSimulatorStateChanged();
         }
     }

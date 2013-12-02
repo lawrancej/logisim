@@ -57,7 +57,10 @@ public class Decoder extends InstanceFactory {
         int outputs = 1 << select.getWidth();
         Bounds bds;
         boolean reversed = facing == Direction.WEST || facing == Direction.NORTH;
-        if (selectLoc == Plexers.SELECT_TOP_RIGHT) reversed = !reversed;
+        if (selectLoc == Plexers.SELECT_TOP_RIGHT) {
+            reversed = !reversed;
+        }
+
         if (outputs == 2) {
             int y = reversed ? 0 : -40;
             bds = Bounds.create(-20, y, 30, 40);

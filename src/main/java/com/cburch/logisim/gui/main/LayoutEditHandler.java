@@ -40,7 +40,10 @@ public class LayoutEditHandler extends EditHandler
 
         boolean selectAvailable = false;
         for (Library lib : proj.getLogisimFile().getLibraries()) {
-            if (lib instanceof Base) selectAvailable = true;
+            if (lib instanceof Base) {
+                selectAvailable = true;
+            }
+
         }
 
         setEnabled(LogisimMenuBar.CUT, !selEmpty && selectAvailable && canChange);
@@ -149,7 +152,10 @@ public class LayoutEditHandler extends EditHandler
             if (sub instanceof Base) {
                 Base base = (Base) sub;
                 Tool tool = base.getTool("Edit Tool");
-                if (tool != null) proj.setTool(tool);
+                if (tool != null) {
+                    proj.setTool(tool);
+                }
+
             }
         }
     }

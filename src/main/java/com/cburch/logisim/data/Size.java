@@ -23,7 +23,10 @@ public class Size {
 
     @Override
     public boolean equals(Object other_obj) {
-        if (!(other_obj instanceof Size)) return false;
+        if (!(other_obj instanceof Size)) {
+            return false;
+        }
+
         Size other = (Size) other_obj;
         return wid == other.wid && ht == other.ht;
     }

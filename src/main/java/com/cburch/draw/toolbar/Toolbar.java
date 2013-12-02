@@ -43,7 +43,10 @@ public class Toolbar extends JPanel {
         setOrientation(HORIZONTAL);
 
         computeContents();
-        if (model != null) model.addToolbarModelListener(myListener);
+        if (model != null) {
+            model.addToolbarModelListener(myListener);
+        }
+
     }
 
     public ToolbarModel getToolbarModel() {
@@ -53,8 +56,14 @@ public class Toolbar extends JPanel {
     public void setToolbarModel(ToolbarModel value) {
         ToolbarModel oldValue = model;
         if (value != oldValue) {
-            if (oldValue != null) oldValue.removeToolbarModelListener(myListener);
-            if (value != null) value.addToolbarModelListener(myListener);
+            if (oldValue != null) {
+                oldValue.removeToolbarModelListener(myListener);
+            }
+
+            if (value != null) {
+                value.addToolbarModelListener(myListener);
+            }
+
             model = value;
             computeContents();
         }
@@ -98,8 +107,14 @@ public class Toolbar extends JPanel {
         ToolbarButton oldValue = curPressed;
         if (oldValue != value) {
             curPressed = value;
-            if (oldValue != null) oldValue.repaint();
-            if (value != null) value.repaint();
+            if (oldValue != null) {
+                oldValue.repaint();
+            }
+
+            if (value != null) {
+                value.repaint();
+            }
+
         }
     }
 

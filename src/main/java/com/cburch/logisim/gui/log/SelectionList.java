@@ -66,9 +66,15 @@ class SelectionList extends JList {
     public void setSelection(Selection value) {
         if (selection != value) {
             Model model = (Model) getModel();
-            if (selection != null) selection.removeModelListener(model);
+            if (selection != null) {
+                selection.removeModelListener(model);
+            }
+
             selection = value;
-            if (selection != null) selection.addModelListener(model);
+            if (selection != null) {
+                selection.addModelListener(model);
+            }
+
             model.selectionChanged(null);
         }
     }

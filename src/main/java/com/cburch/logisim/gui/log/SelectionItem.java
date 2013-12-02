@@ -60,7 +60,10 @@ class SelectionItem implements AttributeListener, CircuitListener {
 
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < path.length; i++) {
-            if (i > 0) buf.append(".");
+            if (i > 0) {
+                buf.append(".");
+            }
+
             String label = path[i].getAttributeSet().getValue(StdAttr.LABEL);
             if (label != null && !label.equals("")) {
                 buf.append(label);
@@ -147,7 +150,10 @@ class SelectionItem implements AttributeListener, CircuitListener {
                     }
                 }
             }
-            if (circComp == null) return;
+            if (circComp == null) {
+                return;
+            }
+
 
             if (action == CircuitEvent.ACTION_REMOVE
                     && event.getData() != circComp) {
@@ -155,7 +161,10 @@ class SelectionItem implements AttributeListener, CircuitListener {
             }
 
             int index = model.getSelection().indexOf(this);
-            if (index < 0) return;
+            if (index < 0) {
+                return;
+            }
+
             model.getSelection().remove(index);
         }
     }

@@ -67,7 +67,10 @@ public class Selection extends SelectionBase {
                     selected.clear();
                     for (int i = 0; i < 2; i++) {
                         Component[] cs;
-                        if (i == 0) cs = save.getFloatingComponents();
+                        if (i == 0) {
+                            cs = save.getFloatingComponents();
+                        }
+
                         else cs = save.getAnchoredComponents();
 
                         if (cs != null) {
@@ -143,7 +146,10 @@ public class Selection extends SelectionBase {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Selection)) return false;
+        if (!(other instanceof Selection)) {
+            return false;
+        }
+
         Selection otherSelection = (Selection) other;
         return this.selected.equals(otherSelection.selected)
             && this.lifted.equals(otherSelection.lifted);
@@ -164,7 +170,10 @@ public class Selection extends SelectionBase {
     public Collection<Component> getComponentsContaining(Location query) {
         HashSet<Component> ret = new HashSet<Component>();
         for (Component comp : unionSet) {
-            if (comp.contains(query)) ret.add(comp);
+            if (comp.contains(query)) {
+                ret.add(comp);
+            }
+
         }
         return ret;
     }
@@ -172,7 +181,10 @@ public class Selection extends SelectionBase {
     public Collection<Component> getComponentsContaining(Location query, Graphics g) {
         HashSet<Component> ret = new HashSet<Component>();
         for (Component comp : unionSet) {
-            if (comp.contains(query, g)) ret.add(comp);
+            if (comp.contains(query, g)) {
+                ret.add(comp);
+            }
+
         }
         return ret;
     }
@@ -180,7 +192,10 @@ public class Selection extends SelectionBase {
     public Collection<Component> getComponentsWithin(Bounds bds) {
         HashSet<Component> ret = new HashSet<Component>();
         for (Component comp : unionSet) {
-            if (bds.contains(comp.getBounds())) ret.add(comp);
+            if (bds.contains(comp.getBounds())) {
+                ret.add(comp);
+            }
+
         }
         return ret;
     }
@@ -188,7 +203,10 @@ public class Selection extends SelectionBase {
     public Collection<Component> getComponentsWithin(Bounds bds, Graphics g) {
         HashSet<Component> ret = new HashSet<Component>();
         for (Component comp : unionSet) {
-            if (bds.contains(comp.getBounds(g))) ret.add(comp);
+            if (bds.contains(comp.getBounds(g))) {
+                ret.add(comp);
+            }
+
         }
         return ret;
     }

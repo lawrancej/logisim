@@ -28,7 +28,10 @@ public class JoinedAction extends Action {
     @Override
     public boolean isModification() {
         for (Action act : todo) {
-            if (act.isModification()) return true;
+            if (act.isModification()) {
+                return true;
+            }
+
         }
         return false;
     }

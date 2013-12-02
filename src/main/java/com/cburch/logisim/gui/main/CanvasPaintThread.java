@@ -72,7 +72,10 @@ class CanvasPaintThread extends Thread {
                     now = System.currentTimeMillis();
                     wait = nextRepaint - now;
                 }
-                if (!alive) break;
+                if (!alive) {
+                    break;
+                }
+
                 repaintRequested = false;
                 nextRepaint = now + REPAINT_TIMESPAN;
             }

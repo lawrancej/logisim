@@ -58,7 +58,10 @@ public class CircuitState implements InstanceData {
                     markPointAsDirty(w.getEnd0());
                     markPointAsDirty(w.getEnd1());
                 } else {
-                    if (base != null) base.checkComponentEnds(CircuitState.this, comp);
+                    if (base != null) {
+                        base.checkComponentEnds(CircuitState.this, comp);
+                    }
+
                     dirtyComponents.remove(comp);
                 }
             } else if (action == CircuitEvent.ACTION_CLEAR) {
@@ -83,7 +86,10 @@ public class CircuitState implements InstanceData {
                 } else {
                     Component comp = (Component) event.getData();
                     markComponentAsDirty(comp);
-                    if (base != null) base.checkComponentEnds(CircuitState.this, comp);
+                    if (base != null) {
+                        base.checkComponentEnds(CircuitState.this, comp);
+                    }
+
                 }
             } else if (action == CircuitEvent.ACTION_INVALIDATE) {
                 Component comp = (Component) event.getData();
@@ -184,7 +190,10 @@ public class CircuitState implements InstanceData {
             Object oldValue = src.componentData.get(key);
             if (oldValue instanceof CircuitState) {
                 Object newValue = substateData.get(oldValue);
-                if (newValue != null) this.componentData.put(key, newValue);
+                if (newValue != null) {
+                    this.componentData.put(key, newValue);
+                }
+
                 else this.componentData.remove(key);
             } else {
                 Object newValue;
@@ -239,7 +248,10 @@ public class CircuitState implements InstanceData {
     }
 
     public void drawOscillatingPoints(ComponentDrawContext context) {
-        if (base != null) base.drawOscillatingPoints(context);
+        if (base != null) {
+            base.drawOscillatingPoints(context);
+        }
+
     }
 
     public Object getData(Component comp) {
@@ -275,14 +287,20 @@ public class CircuitState implements InstanceData {
 
     public Value getValue(Location pt) {
         Value ret = values.get(pt);
-        if (ret != null) return ret;
+        if (ret != null) {
+            return ret;
+        }
+
 
         BitWidth wid = circuit.getWidth(pt);
         return Value.createUnknown(wid);
     }
 
     public void setValue(Location pt, Value val, Component cause, int delay) {
-        if (base != null) base.setValue(this, pt, val, cause, delay);
+        if (base != null) {
+            base.setValue(this, pt, val, cause, delay);
+        }
+
     }
 
     public void markComponentAsDirty(Component comp) {
@@ -339,7 +357,10 @@ public class CircuitState implements InstanceData {
                     toProcess = dirtyComponents.toArray();
                     break;
                 } catch (RuntimeException e) {
-                    if (firstException == null) firstException = e;
+                    if (firstException == null) {
+                        firstException = e;
+                    }
+
                     if (tries == 0) {
                         toProcess = new Object[0];
                         dirtyComponents = new CopyOnWriteArraySet<Component>();
@@ -377,7 +398,10 @@ public class CircuitState implements InstanceData {
                 } catch (ConcurrentModificationException e) {
                     // try again...
                     try { Thread.sleep(1); } catch (InterruptedException e2) { }
-                    if (i == 0) e.printStackTrace();
+                    if (i == 0) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
         }
@@ -395,7 +419,10 @@ public class CircuitState implements InstanceData {
         wireData = null;
         for (Iterator<Component> it = componentData.keySet().iterator(); it.hasNext(); ) {
             Component comp = it.next();
-            if (!(comp.getFactory() instanceof SubcircuitFactory)) it.remove();
+            if (!(comp.getFactory() instanceof SubcircuitFactory)) {
+                it.remove();
+            }
+
         }
         values.clear();
         dirtyComponents.clear();
@@ -460,7 +487,10 @@ public class CircuitState implements InstanceData {
             // NOTE: this will cause a double-propagation on components
             // whose outputs have just changed.
 
-            if (found && base != null) base.locationTouched(this, p);
+            if (found && base != null) {
+                base.locationTouched(this, p);
+            }
+
         }
     }
 

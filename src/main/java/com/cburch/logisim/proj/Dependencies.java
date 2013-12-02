@@ -66,7 +66,10 @@ public class Dependencies {
                             break;
                         }
                     }
-                    if (!found) depends.removeEdge(e.getCircuit(), factory.getSubcircuit());
+                    if (!found) {
+                        depends.removeEdge(e.getCircuit(), factory.getSubcircuit());
+                    }
+
                 }
                 break;
             case CircuitEvent.ACTION_CLEAR:

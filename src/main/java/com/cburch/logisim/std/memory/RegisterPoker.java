@@ -52,10 +52,16 @@ public class RegisterPoker extends InstancePoker {
     @Override
     public void keyTyped(InstanceState state, KeyEvent e) {
         int val = Character.digit(e.getKeyChar(), 16);
-        if (val < 0) return;
+        if (val < 0) {
+            return;
+        }
+
 
         BitWidth dataWidth = state.getAttributeValue(StdAttr.WIDTH);
-        if (dataWidth == null) dataWidth = BitWidth.create(8);
+        if (dataWidth == null) {
+            dataWidth = BitWidth.create(8);
+        }
+
         curValue = (curValue * 16 + val) & dataWidth.getMask();
         RegisterData data = (RegisterData) state.getData();
         data.value = curValue;

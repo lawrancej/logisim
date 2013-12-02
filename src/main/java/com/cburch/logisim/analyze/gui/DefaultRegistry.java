@@ -26,7 +26,10 @@ class DefaultRegistry {
         @Override
         public void focusLost(FocusEvent event) {
             JButton currentDefault = rootPane.getDefaultButton();
-            if (currentDefault == defaultButton) rootPane.setDefaultButton(null);
+            if (currentDefault == defaultButton) {
+                rootPane.setDefaultButton(null);
+            }
+
         }
     }
 

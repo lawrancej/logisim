@@ -42,7 +42,10 @@ class SimpleGrayCounter extends InstanceFactory {
         CounterData cur = CounterData.get(state, BIT_WIDTH);
 
         boolean trigger = cur.updateClock(state.getPort(0));
-        if (trigger) cur.setValue(GrayIncrementer.nextGray(cur.getValue()));
+        if (trigger) {
+            cur.setValue(GrayIncrementer.nextGray(cur.getValue()));
+        }
+
         state.setPort(1, cur.getValue(), 9);
 
         // (You might be tempted to determine the counter's current value

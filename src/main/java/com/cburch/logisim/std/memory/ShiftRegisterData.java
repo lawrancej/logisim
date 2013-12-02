@@ -44,7 +44,10 @@ class ShiftRegisterData extends ClockState implements InstanceData {
             for (int i = 0; i < copy; i++) {
                 newV[i] = v[j];
                 j++;
-                if (j == v.length) j = 0;
+                if (j == v.length) {
+                    j = 0;
+                }
+
             }
             Arrays.fill(newV, copy, newLength, Value.createKnown(newWidth, 0));
             v = newV;
@@ -76,14 +79,20 @@ class ShiftRegisterData extends ClockState implements InstanceData {
     public Value get(int index) {
         int i = vsPos + index;
         Value[] v = vs;
-        if (i >= v.length) i -= v.length;
+        if (i >= v.length) {
+            i -= v.length;
+        }
+
         return v[i];
     }
 
     public void set(int index, Value val) {
         int i = vsPos + index;
         Value[] v = vs;
-        if (i >= v.length) i -= v.length;
+        if (i >= v.length) {
+            i -= v.length;
+        }
+
         v[i] = val;
     }
 }

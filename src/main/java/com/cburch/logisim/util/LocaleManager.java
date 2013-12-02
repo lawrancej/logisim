@@ -111,7 +111,10 @@ public class LocaleManager {
                 s = tok.substring(2).trim();
             }
             if (s != null) {
-                if (ret == null) ret = new HashMap<Character,String>();
+                if (ret == null) {
+                    ret = new HashMap<Character,String>();
+                }
+
                 ret.put(new Character(c), s);
             }
         }
@@ -155,15 +158,27 @@ public class LocaleManager {
 
         try {
             loadLocale(Locale.getDefault());
-            if (locale != null) return;
+            if (locale != null) {
+                return;
+            }
+
         } catch (java.util.MissingResourceException e) { }
         try {
             loadLocale(Locale.ENGLISH);
-            if (locale != null) return;
+            if (locale != null) {
+                return;
+            }
+
         } catch (java.util.MissingResourceException e) { }
         Locale[] choices = getLocaleOptions();
-        if (choices != null && choices.length > 0) loadLocale(choices[0]);
-        if (locale != null) return;
+        if (choices != null && choices.length > 0) {
+            loadLocale(choices[0]);
+        }
+
+        if (locale != null) {
+            return;
+        }
+
         throw new RuntimeException("No locale bundles are available");
     }
 
@@ -194,7 +209,10 @@ public class LocaleManager {
             }
         }
         HashMap<Character,String> repl = LocaleManager.repl;
-        if (repl != null) ret = replaceAccents(ret, repl);
+        if (repl != null) {
+            ret = replaceAccents(ret, repl);
+        }
+
         return ret;
     }
 
@@ -209,9 +227,15 @@ public class LocaleManager {
     public Locale[] getLocaleOptions() {
         String locs = null;
         try {
-            if (settings != null) locs = settings.getString("locales");
+            if (settings != null) {
+                locs = settings.getString("locales");
+            }
+
         } catch (java.util.MissingResourceException e) { }
-        if (locs == null) return new Locale[] { };
+        if (locs == null) {
+            return new Locale[] { };
+        }
+
 
         ArrayList<Locale> retl = new ArrayList<Locale>();
         StringTokenizer toks = new StringTokenizer(locs);
@@ -239,7 +263,10 @@ public class LocaleManager {
         Locale[] locales = getLocaleOptions();
         if (locales == null || locales.length == 0) {
             Locale cur = getLocale();
-            if (cur == null) cur = new Locale("en");
+            if (cur == null) {
+                cur = new Locale("en");
+            }
+
             locales = new Locale[] { cur };
         }
         return new JScrollPane(new LocaleSelector(locales));
@@ -252,9 +279,15 @@ public class LocaleManager {
         int n = src.length();
         for (; i < n; i++) {
             char ci = src.charAt(i);
-            if (ci < 32 || ci >= 127) break;
+            if (ci < 32 || ci >= 127) {
+                break;
+            }
+
         }
-        if (i == n) return src;
+        if (i == n) {
+            return src;
+        }
+
 
         // ok, we'll have to consider replacing accents
         char[] cs = src.toCharArray();

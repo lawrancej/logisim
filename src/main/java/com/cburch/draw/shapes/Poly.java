@@ -65,7 +65,10 @@ public class Poly extends FillableCanvasObject {
                 return false;
             } else {
                 for (int i = 0, n = a.length; i < n; i++) {
-                    if (!a[i].equals(b[i])) return false;
+                    if (!a[i].equals(b[i])) {
+                        return false;
+                    }
+
                 }
                 return super.matches(that);
             }
@@ -121,7 +124,10 @@ public class Poly extends FillableCanvasObject {
         // fill and stroke
         } else {
             GeneralPath path = getPath();
-            if (path.contains(loc.getX(), loc.getY())) return true;
+            if (path.contains(loc.getX(), loc.getY())) {
+                return true;
+            }
+
             int width = getStrokeWidth();
             PolyUtil.ClosestResult result = PolyUtil.getClosestPoint(loc,
                     closed, handles);
@@ -209,8 +215,14 @@ public class Poly extends FillableCanvasObject {
                         Location prev = hs[(i + n - 1) % n].getLocation();
                         Location next = hs[(i + 1) % n].getLocation();
                         if (!closed) {
-                            if (i == 0) prev = null;
-                            if (i == n - 1) next = null;
+                            if (i == 0) {
+                                prev = null;
+                            }
+
+                            if (i == n - 1) {
+                                next = null;
+                            }
+
                         }
                         if (prev == null) {
                             r = LineUtil.snapTo8Cardinals(next, x, y);
@@ -365,7 +377,10 @@ public class Poly extends FillableCanvasObject {
             g.fillPolygon(xs, ys, xs.length);
         }
         if (setForStroke(g)) {
-            if (closed) g.drawPolygon(xs, ys, xs.length);
+            if (closed) {
+                g.drawPolygon(xs, ys, xs.length);
+            }
+
             else g.drawPolyline(xs, ys, xs.length);
         }
     }
@@ -386,10 +401,22 @@ public class Poly extends FillableCanvasObject {
         for(int i = 1; i < hs.length; i++) {
             int x = hs[i].getX();
             int y = hs[i].getY();
-            if (x < x0) x0 = x;
-            if (x > x1) x1 = x;
-            if (y < y0) y0 = y;
-            if (y > y1) y1 = y;
+            if (x < x0) {
+                x0 = x;
+            }
+
+            if (x > x1) {
+                x1 = x;
+            }
+
+            if (y < y0) {
+                y0 = y;
+            }
+
+            if (y > y1) {
+                y1 = y;
+            }
+
         }
         Bounds bds = Bounds.create(x0, y0, x1 - x0 + 1, y1 - y0 + 1);
         int stroke = getStrokeWidth();

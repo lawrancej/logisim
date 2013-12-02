@@ -70,11 +70,17 @@ class ExportImage {
                 options, _("exportImageSelect"),
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-        if (action != JOptionPane.OK_OPTION) return;
+        if (action != JOptionPane.OK_OPTION) {
+            return;
+        }
+
         List<Circuit> circuits = list.getSelectedCircuits();
         double scale = options.getScale();
         boolean printerView = options.getPrinterView();
-        if (circuits.isEmpty()) return;
+        if (circuits.isEmpty()) {
+            return;
+        }
+
 
         ImageFileFilter filter;
         int fmt = options.getImageFormat();
@@ -108,7 +114,10 @@ class ExportImage {
             chooser.setDialogTitle(_("exportImageFileSelect"));
         }
         int returnVal = chooser.showDialog(frame, _("exportImageButton"));
-        if (returnVal != JFileChooser.APPROVE_OPTION) return;
+        if (returnVal != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+
 
         // Determine whether destination is valid
         File dest = chooser.getSelectedFile();
@@ -119,7 +128,10 @@ class ExportImage {
                     _("confirmOverwriteMessage"),
                     _("confirmOverwriteTitle"),
                     JOptionPane.YES_NO_OPTION);
-                if (confirm != JOptionPane.YES_OPTION) return;
+                if (confirm != JOptionPane.YES_OPTION) {
+                    return;
+                }
+
             }
         } else {
             if (circuits.size() > 1) {
@@ -234,8 +246,14 @@ class ExportImage {
         boolean getPrinterView() { return printerView.isSelected(); }
 
         int getImageFormat() {
-            if (formatGif.isSelected()) return FORMAT_GIF;
-            if (formatJpg.isSelected()) return FORMAT_JPG;
+            if (formatGif.isSelected()) {
+                return FORMAT_GIF;
+            }
+
+            if (formatJpg.isSelected()) {
+                return FORMAT_JPG;
+            }
+
             return FORMAT_PNG;
         }
 
@@ -243,7 +261,10 @@ class ExportImage {
         public void stateChanged(ChangeEvent e) {
             double scale = getScale();
             curScale.setText((int) Math.round(100.0 * scale) + "%");
-            if (curScaleDim != null) curScale.setPreferredSize(curScaleDim);
+            if (curScaleDim != null) {
+                curScale.setPreferredSize(curScaleDim);
+            }
+
         }
     }
 
@@ -265,7 +286,10 @@ class ExportImage {
         public boolean accept(File f) {
             String name = f.getName().toLowerCase();
             for (int i = 0; i < extensions.length; i++) {
-                if (name.endsWith(extensions[i])) return true;
+                if (name.endsWith(extensions[i])) {
+                    return true;
+                }
+
             }
             return f.isDirectory();
         }

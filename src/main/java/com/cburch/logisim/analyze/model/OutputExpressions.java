@@ -33,14 +33,20 @@ public class OutputExpressions {
 
         String getExpressionString() {
             if (exprString == null) {
-                if (expr == null) invalidate(false, false);
+                if (expr == null) {
+                    invalidate(false, false);
+                }
+
                 exprString = expr == null ? "" : expr.toString();
             }
             return exprString;
         }
 
         Expression getMinimalExpression() {
-            if (minimalExpr == null) invalidate(false, false);
+            if (minimalExpr == null) {
+                invalidate(false, false);
+            }
+
             return minimalExpr;
         }
 
@@ -125,7 +131,10 @@ public class OutputExpressions {
 
         private boolean invalidating = false;
         private void invalidate(boolean initializing, boolean formatChanged) {
-            if (invalidating) return;
+            if (invalidating) {
+                return;
+            }
+
             invalidating = true;
             try {
                 List<Implicant> oldImplicants = minimalImplicants;
@@ -167,7 +176,10 @@ public class OutputExpressions {
     private class MyListener implements VariableListListener, TruthTableListener {
         @Override
         public void listChanged(VariableListEvent event) {
-            if (event.getSource() == model.getInputs()) inputsChanged(event);
+            if (event.getSource() == model.getInputs()) {
+                inputsChanged(event);
+            }
+
             else outputsChanged(event);
         }
 
@@ -180,7 +192,10 @@ public class OutputExpressions {
                 String input = event.getVariable();
                 for (String output : outputData.keySet()) {
                     OutputData data = getOutputData(output, false);
-                    if (data != null) data.removeInput(input);
+                    if (data != null) {
+                        data.removeInput(input);
+                    }
+
                 }
             } else if (type == VariableListEvent.REPLACE) {
                 String input = event.getVariable();
@@ -188,12 +203,18 @@ public class OutputExpressions {
                 String newName = event.getSource().get(inputIndex);
                 for (String output : outputData.keySet()) {
                     OutputData data = getOutputData(output, false);
-                    if (data != null) data.replaceInput(input, newName);
+                    if (data != null) {
+                        data.replaceInput(input, newName);
+                    }
+
                 }
             } else if (type == VariableListEvent.MOVE || type == VariableListEvent.ADD) {
                 for (String output : outputData.keySet()) {
                     OutputData data = getOutputData(output, false);
-                    if (data != null) data.invalidate(false, false);
+                    if (data != null) {
+                        data.invalidate(false, false);
+                    }
+
                 }
             }
         }
@@ -272,12 +293,18 @@ public class OutputExpressions {
     // access methods
     //
     public Expression getExpression(String output) {
-        if (output == null) return null;
+        if (output == null) {
+            return null;
+        }
+
         return getOutputData(output, true).getExpression();
     }
 
     public String getExpressionString(String output) {
-        if (output == null) return "";
+        if (output == null) {
+            return "";
+        }
+
         return getOutputData(output, true).getExpressionString();
     }
 
@@ -287,17 +314,26 @@ public class OutputExpressions {
     }
 
     public Expression getMinimalExpression(String output) {
-        if (output == null) return Expressions.constant(0);
+        if (output == null) {
+            return Expressions.constant(0);
+        }
+
         return getOutputData(output, true).getMinimalExpression();
     }
 
     public List<Implicant> getMinimalImplicants(String output) {
-        if (output == null) return Implicant.MINIMAL_LIST;
+        if (output == null) {
+            return Implicant.MINIMAL_LIST;
+        }
+
         return getOutputData(output, true).getMinimalImplicants();
     }
 
     public int getMinimizedFormat(String output) {
-        if (output == null) return AnalyzerModel.FORMAT_SUM_OF_PRODUCTS;
+        if (output == null) {
+            return AnalyzerModel.FORMAT_SUM_OF_PRODUCTS;
+        }
+
         return getOutputData(output, true).getMinimizedFormat();
     }
 
@@ -317,17 +353,26 @@ public class OutputExpressions {
     }
 
     public void setExpression(String output, Expression expr, String exprString) {
-        if (output == null) return;
+        if (output == null) {
+            return;
+        }
+
         getOutputData(output, true).setExpression(expr, exprString);
     }
 
     private void invalidate(String output, boolean formatChanged) {
         OutputData data = getOutputData(output, false);
-        if (data != null) data.invalidate(false, false);
+        if (data != null) {
+            data.invalidate(false, false);
+        }
+
     }
 
     private OutputData getOutputData(String output, boolean create) {
-        if (output == null) throw new IllegalArgumentException("null output name");
+        if (output == null) {
+            throw new IllegalArgumentException("null output name");
+        }
+
         OutputData ret = outputData.get(output);
         if (ret == null && create) {
             if (model.getOutputs().indexOf(output) < 0) {
@@ -359,12 +404,18 @@ public class OutputExpressions {
     }
 
     private static boolean columnsMatch(Entry[] a, Entry[] b) {
-        if (a.length != b.length) return false;
+        if (a.length != b.length) {
+            return false;
+        }
+
         for (int i = 0; i < a.length; i++) {
             if (a[i] != b[i]) {
                 boolean bothDefined = (a[i] == Entry.ZERO || a[i] == Entry.ONE)
                                     && (b[i] == Entry.ZERO || b[i] == Entry.ONE);
-                if (bothDefined) return false;
+                if (bothDefined) {
+                    return false;
+                }
+
             }
         }
         return true;
@@ -372,7 +423,10 @@ public class OutputExpressions {
 
     private static boolean isAllUndefined(Entry[] a) {
         for (int i = 0; i < a.length; i++) {
-            if (a[i] == Entry.ZERO || a[i] == Entry.ONE) return false;
+            if (a[i] == Entry.ZERO || a[i] == Entry.ONE) {
+                return false;
+            }
+
         }
         return true;
     }
@@ -388,9 +442,15 @@ public class OutputExpressions {
             Iterator<Implicant> ait = a.iterator();
             for (Implicant bi : b) {
                 // should never happen
-                if (!ait.hasNext()) return false;
+                if (!ait.hasNext()) {
+                    return false;
+                }
+
                 Implicant ai = ait.next();
-                if (!ai.equals(bi)) return false;
+                if (!ai.equals(bi)) {
+                    return false;
+                }
+
             }
             return true;
         }

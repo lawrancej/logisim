@@ -34,7 +34,10 @@ public class CardPanel extends JPanel {
     }
 
     public void setView(String choice) {
-        if (choice == null) choice = "";
+        if (choice == null) {
+            choice = "";
+        }
+
         String oldChoice = current;
         if (!oldChoice.equals(choice)) {
             current = choice;

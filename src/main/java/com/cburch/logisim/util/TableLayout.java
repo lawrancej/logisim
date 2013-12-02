@@ -35,7 +35,10 @@ public class TableLayout implements LayoutManager2 {
         }
         if ((rowWeight == null || rowIndex >= rowWeight.length) && weight != 0.0) {
             double[] a = new double[rowIndex + 10];
-            if (rowWeight != null) System.arraycopy(rowWeight, 0, a, 0, rowWeight.length);
+            if (rowWeight != null) {
+                System.arraycopy(rowWeight, 0, a, 0, rowWeight.length);
+            }
+
             rowWeight = a;
         }
         rowWeight[rowIndex] = weight;
@@ -60,8 +63,14 @@ public class TableLayout implements LayoutManager2 {
     public void addLayoutComponent(Component comp, Object constraints) {
         if (constraints instanceof TableConstraints) {
             TableConstraints con = (TableConstraints) constraints;
-            if (con.getRow() >= 0) curRow = con.getRow();
-            if (con.getCol() >= 0) curCol = con.getCol();
+            if (con.getRow() >= 0) {
+                curRow = con.getRow();
+            }
+
+            if (con.getCol() >= 0) {
+                curCol = con.getCol();
+            }
+
         }
         addLayoutComponent("", comp);
     }
@@ -92,8 +101,14 @@ public class TableLayout implements LayoutManager2 {
                 for (int j = 0; j < row.length; j++) {
                     if (row[j] != null) {
                         Dimension dim = row[j].getPreferredSize();
-                        if (dim.height > rowHeight) rowHeight = dim.height;
-                        if (dim.width > prefCol[j]) prefCol[j] = dim.width;
+                        if (dim.height > rowHeight) {
+                            rowHeight = dim.height;
+                        }
+
+                        if (dim.width > prefCol[j]) {
+                            prefCol[j] = dim.width;
+                        }
+
                     }
                 }
                 prefRow[i] = rowHeight;
@@ -152,7 +167,10 @@ public class TableLayout implements LayoutManager2 {
         }
 
         int x0 = (size.width - pref.width) / 2;
-        if (x0 < 0) x0 = 0;
+        if (x0 < 0) {
+            x0 = 0;
+        }
+
         double y = y0;
         int i = -1;
         for (Component[] row : contents) {

@@ -89,7 +89,10 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
     public void setOutput(String value) {
         boolean recompute = (output == null || value == null) && output != value;
         output = value;
-        if (recompute) computePreferredSize();
+        if (recompute) {
+            computePreferredSize();
+        }
+
         else repaint();
     }
 
@@ -102,17 +105,26 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
     public int getRow(MouseEvent event) {
         TruthTable table = model.getTruthTable();
         int inputs = table.getInputColumnCount();
-        if (inputs >= ROW_VARS.length) return -1;
+        if (inputs >= ROW_VARS.length) {
+            return -1;
+        }
+
         int left = computeMargin(getWidth(), tableWidth);
         int top = computeMargin(getHeight(), tableHeight);
         int x = event.getX() - left - headHeight - cellWidth;
         int y = event.getY() - top - headHeight - cellHeight;
-        if (x < 0 || y < 0) return -1;
+        if (x < 0 || y < 0) {
+            return -1;
+        }
+
         int row = y / cellHeight;
         int col = x / cellWidth;
         int rows = 1 << ROW_VARS[inputs];
         int cols = 1 << COL_VARS[inputs];
-        if (row >= rows || col >= cols) return -1;
+        if (row >= rows || col >= cols) {
+            return -1;
+        }
+
         return getTableRow(row, col, rows, cols);
     }
 
@@ -283,9 +295,18 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
         }
 
         g.setColor(Color.GRAY);
-        if (cols > 1 || inputCount == 0) g.drawLine(x, y, left + tableWidth, y);
-        if (rows > 1 || inputCount == 0) g.drawLine(x, y, x, top + tableHeight);
-        if (outputColumn < 0) return;
+        if (cols > 1 || inputCount == 0) {
+            g.drawLine(x, y, left + tableWidth, y);
+        }
+
+        if (rows > 1 || inputCount == 0) {
+            g.drawLine(x, y, x, top + tableHeight);
+        }
+
+        if (outputColumn < 0) {
+            return;
+        }
+
 
         g.setColor(Color.BLACK);
         for (int i = 0; i < rows; i++) {
@@ -322,11 +343,26 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
             int tableRow = sq.getRow();
             int row = getRow(tableRow, rows, cols);
             int col = getCol(tableRow, rows, cols);
-            if (row == 1) oneRowFound = true;
-            if (row > rowMax) rowMax = row;
-            if (row < rowMin) rowMin = row;
-            if (col > colMax) colMax = col;
-            if (col < colMin) colMin = col;
+            if (row == 1) {
+                oneRowFound = true;
+            }
+
+            if (row > rowMax) {
+                rowMax = row;
+            }
+
+            if (row < rowMin) {
+                rowMin = row;
+            }
+
+            if (col > colMax) {
+                colMax = col;
+            }
+
+            if (col < colMin) {
+                colMin = col;
+            }
+
             ++count;
         }
 
@@ -408,7 +444,10 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
     }
 
     private String header(int start, int stop) {
-        if (start >= stop) return "";
+        if (start >= stop) {
+            return "";
+        }
+
         VariableList inputs = model.getInputs();
         StringBuilder ret = new StringBuilder(inputs.get(start));
         for (int i = start + 1; i < stop; i++) {

@@ -95,7 +95,10 @@ public class Comparator extends InstanceFactory {
                 break;
             } else if (ab != bb) {
                 eq = Value.FALSE;
-                if (ab == Value.TRUE) gt = Value.TRUE;
+                if (ab == Value.TRUE) {
+                    gt = Value.TRUE;
+                }
+
                 else                 lt = Value.TRUE;
                 break;
             }

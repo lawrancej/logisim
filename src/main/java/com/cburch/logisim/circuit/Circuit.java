@@ -251,7 +251,10 @@ public class Circuit {
 
     public boolean isConnected(Location loc, Component ignore) {
         for (Component o : wires.points.getComponents(loc)) {
-            if (o != ignore) return true;
+            if (o != ignore) {
+                return true;
+            }
+
         }
         return false;
     }
@@ -263,7 +266,10 @@ public class Circuit {
     public Collection<Component> getAllContaining(Location pt) {
         HashSet<Component> ret = new HashSet<Component>();
         for (Component comp : getComponents()) {
-            if (comp.contains(pt)) ret.add(comp);
+            if (comp.contains(pt)) {
+                ret.add(comp);
+            }
+
         }
         return ret;
     }
@@ -271,7 +277,10 @@ public class Circuit {
     public Collection<Component> getAllContaining(Location pt, Graphics g) {
         HashSet<Component> ret = new HashSet<Component>();
         for (Component comp : getComponents()) {
-            if (comp.contains(pt, g)) ret.add(comp);
+            if (comp.contains(pt, g)) {
+                ret.add(comp);
+            }
+
         }
         return ret;
     }
@@ -279,7 +288,10 @@ public class Circuit {
     public Collection<Component> getAllWithin(Bounds bds) {
         HashSet<Component> ret = new HashSet<Component>();
         for (Component comp : getComponents()) {
-            if (bds.contains(comp.getBounds())) ret.add(comp);
+            if (bds.contains(comp.getBounds())) {
+                ret.add(comp);
+            }
+
         }
         return ret;
     }
@@ -287,7 +299,10 @@ public class Circuit {
     public Collection<Component> getAllWithin(Bounds bds, Graphics g) {
         HashSet<Component> ret = new HashSet<Component>();
         for (Component comp : getComponents()) {
-            if (bds.contains(comp.getBounds(g))) ret.add(comp);
+            if (bds.contains(comp.getBounds(g))) {
+                ret.add(comp);
+            }
+
         }
         return ret;
     }
@@ -299,7 +314,10 @@ public class Circuit {
     public Bounds getBounds() {
         Bounds wireBounds = wires.getWireBounds();
         Iterator<Component> it = comps.iterator();
-        if (!it.hasNext()) return wireBounds;
+        if (!it.hasNext()) {
+            return wireBounds;
+        }
+
         Component first = it.next();
         Bounds firstBounds = first.getBounds();
         int xMin = firstBounds.getX();
@@ -311,10 +329,22 @@ public class Circuit {
             Bounds bds = c.getBounds();
             int x0 = bds.getX(); int x1 = x0 + bds.getWidth();
             int y0 = bds.getY(); int y1 = y0 + bds.getHeight();
-            if (x0 < xMin) xMin = x0;
-            if (x1 > xMax) xMax = x1;
-            if (y0 < yMin) yMin = y0;
-            if (y1 > yMax) yMax = y1;
+            if (x0 < xMin) {
+                xMin = x0;
+            }
+
+            if (x1 > xMax) {
+                xMax = x1;
+            }
+
+            if (y0 < yMin) {
+                yMin = y0;
+            }
+
+            if (y1 > yMax) {
+                yMax = y1;
+            }
+
         }
         Bounds compBounds = Bounds.create(xMin, yMin, xMax - xMin, yMax - yMin);
         if (wireBounds.getWidth() == 0 || wireBounds.getHeight() == 0) {
@@ -341,13 +371,28 @@ public class Circuit {
             if (bds != null && bds != Bounds.EMPTY_BOUNDS) {
                 int x0 = bds.getX(); int x1 = x0 + bds.getWidth();
                 int y0 = bds.getY(); int y1 = y0 + bds.getHeight();
-                if (x0 < xMin) xMin = x0;
-                if (x1 > xMax) xMax = x1;
-                if (y0 < yMin) yMin = y0;
-                if (y1 > yMax) yMax = y1;
+                if (x0 < xMin) {
+                    xMin = x0;
+                }
+
+                if (x1 > xMax) {
+                    xMax = x1;
+                }
+
+                if (y0 < yMin) {
+                    yMin = y0;
+                }
+
+                if (y1 > yMax) {
+                    yMax = y1;
+                }
+
             }
         }
-        if (xMin > xMax || yMin > yMax) return Bounds.EMPTY_BOUNDS;
+        if (xMin > xMax || yMin > yMax) {
+            return Bounds.EMPTY_BOUNDS;
+        }
+
         return Bounds.create(xMin, yMin, xMax - xMin, yMax - yMin);
     }
 
@@ -382,13 +427,22 @@ public class Circuit {
 
         if (c instanceof Wire) {
             Wire w = (Wire) c;
-            if (w.getEnd0().equals(w.getEnd1())) return;
+            if (w.getEnd0().equals(w.getEnd1())) {
+                return;
+            }
+
             boolean added = wires.add(w);
-            if (!added) return;
+            if (!added) {
+                return;
+            }
+
         } else {
             // add it into the circuit
             boolean added = comps.add(c);
-            if (!added) return;
+            if (!added) {
+                return;
+            }
+
 
             wires.add(c);
             ComponentFactory factory = c.getFactory();

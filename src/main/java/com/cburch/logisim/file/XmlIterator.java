@@ -35,7 +35,10 @@ public class XmlIterator<E extends Node> implements Iterable<E>, Iterator<E>, Cl
             Node sub = nodes.item(i);
             if (sub.getNodeType() == Node.ELEMENT_NODE) {
                 Element elt = (Element) sub;
-                if (elt.getTagName().equals(tagName)) ret.add(elt);
+                if (elt.getTagName().equals(tagName)) {
+                    ret.add(elt);
+                }
+
             }
         }
         return ret;

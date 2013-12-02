@@ -78,7 +78,10 @@ public class Analyzer extends LFrame {
             if (c instanceof JScrollPane) {
                 c = ((JScrollPane) c).getViewport().getView();
             }
-            if (!(c instanceof TabInterface)) return;
+            if (!(c instanceof TabInterface)) {
+                return;
+            }
+
             TabInterface tab = (TabInterface) c;
             if (src == LogisimMenuBar.CUT) {
                 tab.copy();

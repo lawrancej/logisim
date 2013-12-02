@@ -14,7 +14,10 @@ public class Parser {
     public static Expression parse(String in, AnalyzerModel model) throws ParserException {
         ArrayList<Token> tokens = toTokens(in, false);
 
-        if (tokens.size() == 0) return null;
+        if (tokens.size() == 0) {
+            return null;
+        }
+
 
         for (Token token : tokens) {
             if (token.type == TOKEN_ERROR) {
@@ -141,7 +144,10 @@ public class Parser {
             if (includeWhite && pos != whiteStart) {
                 tokens.add(new Token(TOKEN_WHITE, whiteStart, in.substring(whiteStart, pos)));
             }
-            if (pos == in.length()) return tokens;
+            if (pos == in.length()) {
+                return tokens;
+            }
+
 
             int start = pos;
             char startChar = in.charAt(pos);
@@ -274,7 +280,10 @@ public class Parser {
         stack.add(new Context(expr, level, cause));
     }
     private static int peekLevel(ArrayList<Context> stack) {
-        if (stack.isEmpty()) return -3;
+        if (stack.isEmpty()) {
+            return -3;
+        }
+
         Context context = stack.get(stack.size() - 1);
         return context.level;
     }
@@ -285,7 +294,10 @@ public class Parser {
             Expression current) throws ParserException {
         while (!stack.isEmpty() && peekLevel(stack) >= level) {
             Context top = pop(stack);
-            if (current == null) throw top.cause.error(__("missingRightOperandError", top.cause.text));
+            if (current == null) {
+                throw top.cause.error(__("missingRightOperandError", top.cause.text));
+            }
+
             switch (top.level) {
             case Expression.AND_LEVEL: current = Expressions.and(top.current, current); break;
             case Expression.OR_LEVEL: current = Expressions.or(top.current, current); break;

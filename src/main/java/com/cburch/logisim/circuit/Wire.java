@@ -86,7 +86,10 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Wire)) return false;
+        if (!(other instanceof Wire)) {
+            return false;
+        }
+
         Wire w = (Wire) other;
         return w.e0.equals(this.e0) && w.e1.equals(this.e1);
     }
@@ -216,7 +219,10 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
 
     @Override
     public Object getFeature(Object key) {
-        if (key == CustomHandles.class) return this;
+        if (key == CustomHandles.class) {
+            return this;
+        }
+
         return null;
     }
 
@@ -240,7 +246,10 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
     @Override
     public Attribute<?> getAttribute(String name) {
         for (Attribute<?> attr : ATTRIBUTES) {
-            if (name.equals(attr.getName())) return attr;
+            if (name.equals(attr.getName())) {
+                return attr;
+            }
+
         }
         return null;
     }
@@ -299,7 +308,10 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
     private boolean overlaps(Location q0, Location q1, boolean includeEnds) {
         if (is_x_equal) {
             int x0 = q0.getX();
-            if (x0 != q1.getX() || x0 != e0.getX()) return false;
+            if (x0 != q1.getX() || x0 != e0.getX()) {
+                return false;
+            }
+
             if (includeEnds) {
                 return e1.getY() >= q0.getY() && e0.getY() <= q1.getY();
             } else {
@@ -307,7 +319,10 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
             }
         } else {
             int y0 = q0.getY();
-            if (y0 != q1.getY() || y0 != e0.getY()) return false;
+            if (y0 != q1.getY() || y0 != e0.getY()) {
+                return false;
+            }
+
             if (includeEnds) {
                 return e1.getX() >= q0.getX() && e0.getX() <= q1.getX();
             } else {

@@ -72,7 +72,10 @@ class MemMenu implements ActionListener, MenuExtender {
     @Override
     public void actionPerformed(ActionEvent evt) {
         Object src = evt.getSource();
-        if (src == edit) doEdit();
+        if (src == edit) {
+            doEdit();
+        }
+
         else if (src == clear) doClear();
         else if (src == load) doLoad();
         else if (src == save) doSave();
@@ -80,7 +83,10 @@ class MemMenu implements ActionListener, MenuExtender {
 
     private void doEdit() {
         MemState s = factory.getState(instance, circState);
-        if (s == null) return;
+        if (s == null) {
+            return;
+        }
+
         HexFrame frame = factory.getHexFrame(proj, instance, circState);
         frame.setVisible(true);
         frame.toFront();
@@ -89,7 +95,10 @@ class MemMenu implements ActionListener, MenuExtender {
     private void doClear() {
         MemState s = factory.getState(instance, circState);
         boolean isAllZero = s.getContents().isClear();
-        if (isAllZero) return;
+        if (isAllZero) {
+            return;
+        }
+
 
         int choice = JOptionPane.showConfirmDialog(frame,
                 _("ramConfirmClearMsg"),
@@ -103,7 +112,10 @@ class MemMenu implements ActionListener, MenuExtender {
     private void doLoad() {
         JFileChooser chooser = proj.createChooser();
         File oldSelected = factory.getCurrentImage(instance);
-        if (oldSelected != null) chooser.setSelectedFile(oldSelected);
+        if (oldSelected != null) {
+            chooser.setSelectedFile(oldSelected);
+        }
+
         chooser.setDialogTitle(_("ramLoadDialogTitle"));
         int choice = chooser.showOpenDialog(frame);
         if (choice == JFileChooser.APPROVE_OPTION) {
@@ -122,7 +134,10 @@ class MemMenu implements ActionListener, MenuExtender {
 
         JFileChooser chooser = proj.createChooser();
         File oldSelected = factory.getCurrentImage(instance);
-        if (oldSelected != null) chooser.setSelectedFile(oldSelected);
+        if (oldSelected != null) {
+            chooser.setSelectedFile(oldSelected);
+        }
+
         chooser.setDialogTitle(_("ramSaveDialogTitle"));
         int choice = chooser.showSaveDialog(frame);
         if (choice == JFileChooser.APPROVE_OPTION) {

@@ -48,7 +48,10 @@ class Selection {
     }
 
     public void move(int fromIndex, int toIndex) {
-        if (fromIndex == toIndex) return;
+        if (fromIndex == toIndex) {
+            return;
+        }
+
         SelectionItem o = components.remove(fromIndex);
         components.add(toIndex, o);
         model.fireSelectionChanged(new ModelEvent());

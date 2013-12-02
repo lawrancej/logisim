@@ -152,7 +152,10 @@ class SimulationTreeCircuitNode extends SimulationTreeNode
             for (TreeNode o : children) {
                 if (o instanceof SimulationTreeCircuitNode) {
                     SimulationTreeCircuitNode n = (SimulationTreeCircuitNode) o;
-                    if (n.circuitState == state) { toAdd = n; break; }
+                    if (n.circuitState == state) {
+                        { toAdd = n;
+                    }
+ break; }
                 }
             }
             if (toAdd == null) {
@@ -175,7 +178,10 @@ class SimulationTreeCircuitNode extends SimulationTreeNode
             String aName = a.getFactory().getDisplayName();
             String bName = b.getFactory().getDisplayName();
             int ret = aName.compareToIgnoreCase(bName);
-            if (ret != 0) return ret;
+            if (ret != 0) {
+                return ret;
+            }
+
         }
         return a.getLocation().toString().compareTo(b.getLocation().toString());
     }

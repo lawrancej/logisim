@@ -35,14 +35,20 @@ public class CurveUtil {
             // u where getTan(u)[0] == 0
             double u = -A[0] / B[0];
             u = (1 - u) * (1 - u) * p0[0] + 2 * u * (1 - u) * p1[0] + u * u * p2[0];
-            if (xMin == p1[0]) xMin = u;
+            if (xMin == p1[0]) {
+                xMin = u;
+            }
+
             else xMax = u;
         }
         if (yMin == p1[1] || yMax == p1[1]) {
             // u where getTan(u)[1] == 0
             double u = -A[1] / B[1];
             u = (1 - u) * (1 - u) * p0[1] + 2 * u * (1 - u) * p1[1] + u * u * p2[1];
-            if (yMin == p1[1]) yMin = u;
+            if (yMin == p1[1]) {
+                yMin = u;
+            }
+
             else yMax = u;
         }
 
@@ -80,7 +86,10 @@ public class CurveUtil {
         double c = 2 * (A[0] * A[0] + A[1] * A[1]) + pos[0] * B[0] + pos[1] * B[1];
         double d = pos[0] * A[0] + pos[1] * A[1];
         double[] roots = solveCubic(a, b, c, d);
-        if (roots == null) return null;
+        if (roots == null) {
+            return null;
+        }
+
 
         // find the closest point:
         double tMin = Double.MAX_VALUE;
@@ -161,7 +170,10 @@ public class CurveUtil {
             } else {
                 // D zero
                 double u;
-                if (q < 0) u = Math.pow( -q / 2, 1. / 3);
+                if (q < 0) {
+                    u = Math.pow( -q / 2, 1. / 3);
+                }
+
                 else u = -Math.pow( q / 2, 1. / 3);
                 return new double[] {
                     2*u + offset,

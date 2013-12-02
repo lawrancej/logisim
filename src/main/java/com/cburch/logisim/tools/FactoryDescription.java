@@ -124,7 +124,10 @@ public class FactoryDescription {
             } catch (Exception t) {
                 String name = t.getClass().getName();
                 String m = t.getMessage();
-                if (m != null) msg = msg + ": " + name + ": " + m;
+                if (m != null) {
+                    msg = msg + ": " + name + ": " + m;
+                }
+
                 else msg = msg + ": " + name;
             }
             //OK

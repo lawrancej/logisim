@@ -96,7 +96,10 @@ public class Adder extends InstanceFactory {
 
     static Value[] computeSum(BitWidth width, Value a, Value b, Value c_in) {
         int w = width.getWidth();
-        if (c_in == Value.UNKNOWN || c_in == Value.NIL) c_in = Value.FALSE;
+        if (c_in == Value.UNKNOWN || c_in == Value.NIL) {
+            c_in = Value.FALSE;
+        }
+
         if (a.isFullyDefined() && b.isFullyDefined() && c_in.isFullyDefined()) {
             if (w >= 32) {
                 long mask = (1L << w) - 1;

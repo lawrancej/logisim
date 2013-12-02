@@ -46,10 +46,22 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
         int release = 0;
         int revision = FINAL_REVISION;
         try {
-            if (parts.length >= 1) major = Integer.parseInt(parts[0]);
-            if (parts.length >= 2) minor = Integer.parseInt(parts[1]);
-            if (parts.length >= 3) release = Integer.parseInt(parts[2]);
-            if (parts.length >= 4) revision = Integer.parseInt(parts[3]);
+            if (parts.length >= 1) {
+                major = Integer.parseInt(parts[0]);
+            }
+
+            if (parts.length >= 2) {
+                minor = Integer.parseInt(parts[1]);
+            }
+
+            if (parts.length >= 3) {
+                release = Integer.parseInt(parts[2]);
+            }
+
+            if (parts.length >= 4) {
+                revision = Integer.parseInt(parts[3]);
+            }
+
         } catch (NumberFormatException e) { }
         return new LogisimVersion(major, minor, release, revision);
     }
@@ -89,11 +101,20 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
     @Override
     public int compareTo(LogisimVersion other) {
         int ret = this.major - other.major;
-        if (ret != 0) return ret;
+        if (ret != 0) {
+            return ret;
+        }
+
         ret = this.minor - other.minor;
-        if (ret != 0) return ret;
+        if (ret != 0) {
+            return ret;
+        }
+
         ret = this.release - other.release;
-        if (ret != 0) return ret;
+        if (ret != 0) {
+            return ret;
+        }
+
         return this.revision - other.revision;
     }
 
@@ -106,7 +127,10 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
         String ret = repr;
         if (ret == null) {
             ret = major + "." + minor + "." + release;
-            if (revision != FINAL_REVISION) ret += "." + revision;
+            if (revision != FINAL_REVISION) {
+                ret += "." + revision;
+            }
+
             repr = ret;
         }
         return ret;

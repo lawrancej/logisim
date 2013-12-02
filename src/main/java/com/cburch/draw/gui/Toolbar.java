@@ -126,7 +126,10 @@ class Toolbar extends JComponent {
                     g.fillRect(x, y, ICON_WIDTH, ICON_HEIGHT);
                 }
                 Icon icon = tool.getIcon();
-                if (icon != null) icon.paintIcon(this, g, x, y);
+                if (icon != null) {
+                    icon.paintIcon(this, g, x, y);
+                }
+
                 if (tool == current) {
                     GraphicsUtil.switchToWidth(g, 2);
                     g.setColor(Color.black);

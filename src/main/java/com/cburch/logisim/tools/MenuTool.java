@@ -134,7 +134,10 @@ public class MenuTool extends Tool {
                 menu = new MenuComponent(proj,
                     canvas.getCircuit(), comp);
                 MenuExtender extender = (MenuExtender) comp.getFeature(MenuExtender.class);
-                if (extender != null) extender.configureMenu(menu, proj);
+                if (extender != null) {
+                    extender.configureMenu(menu, proj);
+                }
+
             }
         } else {
             Collection<Component> cl = canvas.getCircuit().getAllContaining(pt, g);
@@ -143,7 +146,10 @@ public class MenuTool extends Tool {
                 menu = new MenuComponent(proj,
                     canvas.getCircuit(), comp);
                 MenuExtender extender = (MenuExtender) comp.getFeature(MenuExtender.class);
-                if (extender != null) extender.configureMenu(menu, proj);
+                if (extender != null) {
+                    extender.configureMenu(menu, proj);
+                }
+
             } else {
                 menu = null;
             }

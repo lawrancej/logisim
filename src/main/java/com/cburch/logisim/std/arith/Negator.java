@@ -54,13 +54,19 @@ public class Negator extends InstanceFactory {
                 if (bits[pos] == Value.FALSE) {
                     bits[pos] = fill;
                 } else if (bits[pos] == Value.TRUE) {
-                    if (fill != Value.FALSE) bits[pos] = fill;
+                    if (fill != Value.FALSE) {
+                        bits[pos] = fill;
+                    }
+
                     pos++;
                     break;
                 } else if (bits[pos] == Value.ERROR) {
                     fill = Value.ERROR;
                 } else {
-                    if (fill == Value.FALSE) fill = bits[pos];
+                    if (fill == Value.FALSE) {
+                        fill = bits[pos];
+                    }
+
                     else bits[pos] = fill;
                 }
                 pos++;

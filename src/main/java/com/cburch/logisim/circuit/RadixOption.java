@@ -84,7 +84,10 @@ public abstract class RadixOption extends AttributeOption {
         @Override
         public int getMaxLength(BitWidth width) {
             int bits = width.getWidth();
-            if (bits <= 1) return 1;
+            if (bits <= 1) {
+                return 1;
+            }
+
             return bits + ((bits - 1) / 4);
         }
     }

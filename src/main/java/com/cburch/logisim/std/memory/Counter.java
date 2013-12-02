@@ -128,7 +128,10 @@ public class Counter extends InstanceFactory {
                     } else if (onGoal == ON_GOAL_LOAD) {
                         Value in = state.getPort(IN);
                         newVal = in.isFullyDefined() ? in.toIntValue() : 0;
-                        if (newVal > max) newVal &= max;
+                        if (newVal > max) {
+                            newVal &= max;
+                        }
+
                     } else if (onGoal == ON_GOAL_CONT) {
                         newVal = ld ? oldVal - 1 : oldVal + 1;
                     } else {
@@ -143,7 +146,10 @@ public class Counter extends InstanceFactory {
             } else if (ld) {
                 Value in = state.getPort(IN);
                 newVal = in.isFullyDefined() ? in.toIntValue() : 0;
-                if (newVal > max) newVal &= max;
+                if (newVal > max) {
+                    newVal &= max;
+                }
+
             // trigger, enable = 0, load = 0: no change
             } else {
                 newVal = oldVal;

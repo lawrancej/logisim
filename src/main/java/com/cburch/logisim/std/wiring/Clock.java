@@ -220,7 +220,10 @@ public class Clock extends InstanceFactory {
             circState.setData(comp, state);
         }
         boolean curValue = ticks % (durationHigh + durationLow) < durationLow;
-        if (state.clicks % 2 == 1) curValue = !curValue;
+        if (state.clicks % 2 == 1) {
+            curValue = !curValue;
+        }
+
         Value desired = (curValue ? Value.FALSE : Value.TRUE);
         if (!state.sending.equals(desired)) {
             state.sending = desired;

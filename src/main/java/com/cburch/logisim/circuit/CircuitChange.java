@@ -181,16 +181,25 @@ class CircuitChange {
         case ADD_ALL:
         case REMOVE_ALL:
             for (Component comp : comps) {
-                if (comp.getFactory() instanceof Pin) return true;
+                if (comp.getFactory() instanceof Pin) {
+                    return true;
+                }
+
             }
             return false;
         case REPLACE:
             ReplacementMap repl = (ReplacementMap) newValue;
             for (Component comp : repl.getRemovals()) {
-                if (comp.getFactory() instanceof Pin) return true;
+                if (comp.getFactory() instanceof Pin) {
+                    return true;
+                }
+
             }
             for (Component comp : repl.getAdditions()) {
-                if (comp.getFactory() instanceof Pin) return true;
+                if (comp.getFactory() instanceof Pin) {
+                    return true;
+                }
+
             }
             return false;
         case SET:

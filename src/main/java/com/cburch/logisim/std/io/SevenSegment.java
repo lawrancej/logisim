@@ -45,7 +45,10 @@ public class SevenSegment extends InstanceFactory {
         int summary = 0;
         for (int i = 0; i < 8; i++) {
             Value val = state.getPort(i);
-            if (val == Value.TRUE) summary |= 1 << i;
+            if (val == Value.TRUE) {
+                summary |= 1 << i;
+            }
+
         }
         Object value = Integer.valueOf(summary);
         InstanceDataSingleton data = (InstanceDataSingleton) state.getData();

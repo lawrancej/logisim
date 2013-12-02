@@ -46,9 +46,15 @@ class PrefMonitorStringOpts extends AbstractPrefMonitor<String> {
                 String[] o = opts;
                 String chosen = null;
                 for (int i = 0; i < o.length; i++) {
-                    if (isSame(o[i], newValue)) { chosen = o[i]; break; }
+                    if (isSame(o[i], newValue)) {
+                        { chosen = o[i];
+                    }
+ break; }
                 }
-                if (chosen == null) chosen = dflt;
+                if (chosen == null) {
+                    chosen = dflt;
+                }
+
                 value = chosen;
                 AppPreferences.firePropertyChange(name, oldValue, chosen);
             }

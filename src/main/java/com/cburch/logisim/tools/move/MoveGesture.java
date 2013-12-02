@@ -112,7 +112,10 @@ public class MoveGesture {
 
     private static Set<ConnectionData> computeConnections(Circuit circuit,
             Set<Component> selected) {
-        if (selected == null || selected.isEmpty()) return Collections.emptySet();
+        if (selected == null || selected.isEmpty()) {
+            return Collections.emptySet();
+        }
+
 
         // first identify locations that might be connected
         Set<Location> locs = new HashSet<Location>();

@@ -55,7 +55,10 @@ class TablePanel extends LogPanel {
             int rows = 0;
             for (int i = sel.size() - 1; i >= 0; i--) {
                 int x = model.getValueLog(sel.get(i)).size();
-                if (x > rows) rows = x;
+                if (x > rows) {
+                    rows = x;
+                }
+
             }
             if (rowCount != rows) {
                 rowCount = rows;
@@ -89,7 +92,10 @@ class TablePanel extends LogPanel {
             int curY = getValue();
             int curHeight = getVisibleAmount();
             int numCells = curHeight / cellHeight - 1;
-            if (numCells <= 0) numCells = 1;
+            if (numCells <= 0) {
+                numCells = 1;
+            }
+
             if (direction > 0) {
                 return curY > 0
                     ? numCells * cellHeight
@@ -148,13 +154,22 @@ class TablePanel extends LogPanel {
 
     @Override
     public void modelChanged(Model oldModel, Model newModel) {
-        if (oldModel != null) oldModel.removeModelListener(myListener);
-        if (newModel != null) newModel.addModelListener(myListener);
+        if (oldModel != null) {
+            oldModel.removeModelListener(myListener);
+        }
+
+        if (newModel != null) {
+            newModel.addModelListener(myListener);
+        }
+
     }
 
     public int getColumn(MouseEvent event) {
         int x = event.getX() - (getWidth() - tableWidth) / 2;
-        if (x < 0) return -1;
+        if (x < 0) {
+            return -1;
+        }
+
         Selection sel = getModel().getSelection();
         int ret = (x + COLUMN_SEP / 2) / (cellWidth + COLUMN_SEP);
         return ret >= 0 && ret < sel.size() ? ret : -1;
@@ -162,7 +177,10 @@ class TablePanel extends LogPanel {
 
     public int getRow(MouseEvent event) {
         int y = event.getY() - (getHeight() - tableHeight) / 2;
-        if (y < cellHeight + HEADER_SEP) return -1;
+        if (y < cellHeight + HEADER_SEP) {
+            return -1;
+        }
+
         int ret = (y - cellHeight - HEADER_SEP) / cellHeight;
         return ret >= 0 && ret < rowCount ? ret : -1;
     }
@@ -175,7 +193,10 @@ class TablePanel extends LogPanel {
         int top = Math.max(0, (sz.height - tableHeight) / 2);
         int left = Math.max(0, (sz.width - tableWidth) / 2);
         Model model = getModel();
-        if (model == null) return;
+        if (model == null) {
+            return;
+        }
+
         Selection sel = model.getSelection();
         int columns = sel.size();
         if (columns == 0) {

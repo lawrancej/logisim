@@ -95,7 +95,10 @@ public class LogisimFile extends Library implements LibraryEventSource {
     public boolean isDirty() { return dirty; }
 
     public String getMessage() {
-        if (messages.size() == 0) return null;
+        if (messages.size() == 0) {
+            return null;
+        }
+
         return messages.removeFirst();
     }
 
@@ -118,10 +121,16 @@ public class LogisimFile extends Library implements LibraryEventSource {
     }
 
     public Circuit getCircuit(String name) {
-        if (name == null) return null;
+        if (name == null) {
+            return null;
+        }
+
         for (AddTool tool : tools) {
             SubcircuitFactory factory = (SubcircuitFactory) tool.getFactory();
-            if (name.equals(factory.getName())) return factory.getSubcircuit();
+            if (name.equals(factory.getName())) {
+                return factory.getSubcircuit();
+            }
+
         }
         return null;
     }
@@ -129,7 +138,10 @@ public class LogisimFile extends Library implements LibraryEventSource {
     public boolean contains(Circuit circ) {
         for (AddTool tool : tools) {
             SubcircuitFactory factory = (SubcircuitFactory) tool.getFactory();
-            if (factory.getSubcircuit() == circ) return true;
+            if (factory.getSubcircuit() == circ) {
+                return true;
+            }
+
         }
         return false;
     }
@@ -208,7 +220,10 @@ public class LogisimFile extends Library implements LibraryEventSource {
     public void addCircuit(Circuit circuit, int index) {
         AddTool tool = new AddTool(circuit.getSubcircuitFactory());
         tools.add(index, tool);
-        if (tools.size() == 1) setMainCircuit(circuit);
+        if (tools.size() == 1) {
+            setMainCircuit(circuit);
+        }
+
         fireEvent(LibraryEvent.ADD_TOOL, tool);
     }
 
@@ -284,7 +299,10 @@ public class LogisimFile extends Library implements LibraryEventSource {
     }
 
     public void setMainCircuit(Circuit circuit) {
-        if (circuit == null) return;
+        if (circuit == null) {
+            return;
+        }
+
         this.main = circuit;
         fireEvent(LibraryEvent.SET_MAIN, circuit);
     }
@@ -302,7 +320,10 @@ public class LogisimFile extends Library implements LibraryEventSource {
         } catch (TransformerException e) {
             String msg = e.getMessage();
             String err = _("xmlConversionError");
-            if (msg == null) err += ": " + msg;
+            if (msg == null) {
+                err += ": " + msg;
+            }
+
             loader.showError(err);
         }
     }
@@ -332,14 +353,20 @@ public class LogisimFile extends Library implements LibraryEventSource {
     Tool findTool(Tool query) {
         for (Library lib : getLibraries()) {
             Tool ret = findTool(lib, query);
-            if (ret != null) return ret;
+            if (ret != null) {
+                return ret;
+            }
+
         }
         return null;
     }
 
     private Tool findTool(Library lib, Tool query) {
         for (Tool tool : lib.getTools()) {
-            if (tool.equals(query)) return tool;
+            if (tool.equals(query)) {
+                return tool;
+            }
+
         }
         return null;
     }

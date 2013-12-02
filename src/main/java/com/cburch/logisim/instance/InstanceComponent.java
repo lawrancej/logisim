@@ -87,7 +87,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
             EndData oldEnd = i < esOldLength ? esOld[i] : null;
             EndData newEnd = p == null ? null : p.toEnd(loc, attrs);
             if (oldEnd == null || !oldEnd.equals(newEnd)) {
-                if (newEnd != null) es[i] = newEnd;
+                if (newEnd != null) {
+                    es[i] = newEnd;
+                }
+
                 if (endsChangedOld == null) {
                     endsChangedOld = new ArrayList<EndData>();
                     endsChangedNew = new ArrayList<EndData>();
@@ -105,7 +108,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
                     wattrs.add(attr);
                 }
 
-                if (p.getToolTip() != null) toolTipFound = true;
+                if (p.getToolTip() != null) {
+                    toolTipFound = true;
+                }
+
             }
         }
         if (!attrListenRequested) {
@@ -146,7 +152,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
     public void removeComponentListener(ComponentListener l) {
         if (listeners != null) {
             listeners.remove(l);
-            if (listeners.isEmpty()) listeners = null;
+            if (listeners.isEmpty()) {
+                listeners = null;
+            }
+
         }
     }
 
@@ -156,7 +165,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
         if (ls != null) {
             ComponentEvent e = null;
             for (ComponentListener l : ls) {
-                if (e == null) e = new ComponentEvent(this, oldEnds, newEnds);
+                if (e == null) {
+                    e = new ComponentEvent(this, oldEnds, newEnds);
+                }
+
                 l.endChanged(e);
             }
         }
@@ -167,7 +179,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
         if (ls != null) {
             ComponentEvent e = null;
             for (ComponentListener l : ls) {
-                if (e == null) e = new ComponentEvent(this);
+                if (e == null) {
+                    e = new ComponentEvent(this);
+                }
+
                 l.componentInvalidated(e);
             }
         }
@@ -193,10 +208,16 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
             return ret;
         } else if (key == ToolTipMaker.class) {
             Object defaultTip = factory.getDefaultToolTip();
-            if (hasToolTips || defaultTip != null) return this;
+            if (hasToolTips || defaultTip != null) {
+                return this;
+            }
+
         } else if (key == TextEditable.class) {
             InstanceTextField field = textField;
-            if (field != null) return field;
+            if (field != null) {
+                return field;
+            }
+
         }
         return null;
     }
@@ -218,7 +239,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
     public Bounds getBounds(Graphics g) {
         Bounds ret = bounds;
         InstanceTextField field = textField;
-        if (field != null) ret = ret.add(field.getBounds(g));
+        if (field != null) {
+            ret = ret.add(field.getBounds(g));
+        }
+
         return ret;
     }
 
@@ -232,7 +256,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
     @Override
     public boolean contains(Location pt, Graphics g) {
         InstanceTextField field = textField;
-        if (field != null && field.getBounds(g).contains(pt)) return true;
+        if (field != null && field.getBounds(g).contains(pt)) {
+            return true;
+        }
+
         else return contains(pt);
     }
 
@@ -253,7 +280,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
     public boolean endsAt(Location pt) {
         EndData[] ends = endArray;
         for (int i = 0; i < ends.length; i++) {
-            if (ends[i].getLocation().equals(pt)) return true;
+            if (ends[i].getLocation().equals(pt)) {
+                return true;
+            }
+
         }
         return false;
     }
@@ -304,7 +334,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
     @Override
     public void attributeValueChanged(AttributeEvent e) {
         Attribute<?> attr = e.getAttribute();
-        if (widthAttrs != null && widthAttrs.contains(attr)) computeEnds();
+        if (widthAttrs != null && widthAttrs.contains(attr)) {
+            computeEnds();
+        }
+
         if (attrListenRequested) {
             factory.instanceAttributeChanged(instance, e.getAttribute());
         }
@@ -315,7 +348,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
     //
     void drawLabel(ComponentDrawContext context) {
         InstanceTextField field = textField;
-        if (field != null) field.draw(this, context);
+        if (field != null) {
+            field.draw(this, context);
+        }
+
     }
 
     //
@@ -342,7 +378,10 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
     void addAttributeListener(Instance instance) {
         if (!attrListenRequested) {
             attrListenRequested = true;
-            if (widthAttrs == null) getAttributeSet().addAttributeListener(this);
+            if (widthAttrs == null) {
+                getAttributeSet().addAttributeListener(this);
+            }
+
         }
     }
 

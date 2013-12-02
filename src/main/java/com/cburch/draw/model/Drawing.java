@@ -81,7 +81,10 @@ public class Drawing implements CanvasModel {
         ArrayList<CanvasObject> ret = null;
         for (CanvasObject shape : getObjectsFromBottom()) {
             if (bds.contains(shape.getBounds())) {
-                if (ret == null) ret = new ArrayList<CanvasObject>();
+                if (ret == null) {
+                    ret = new ArrayList<CanvasObject>();
+                }
+
                 ret.add(shape);
             }
         }

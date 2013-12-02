@@ -47,15 +47,24 @@ public class Joystick extends InstanceFactory {
         int dx;
         int dy;
         State s = (State) state.getData();
-        if (s == null) { dx = 0; dy = 0; }
+        if (s == null) {
+            { dx = 0;
+        }
+ dy = 0; }
         else { dx = s.xPos; dy = s.yPos; }
 
         int steps = (1 << bits.getWidth()) - 1;
         dx = (dx + 14) * steps / 29 + 1;
         dy = (dy + 14) * steps / 29 + 1;
         if (bits.getWidth() > 4) {
-            if (dx >= steps / 2) dx++;
-            if (dy >= steps / 2) dy++;
+            if (dx >= steps / 2) {
+                dx++;
+            }
+
+            if (dy >= steps / 2) {
+                dy++;
+            }
+
         }
         state.setPort(0, Value.createKnown(bits, dx), 1);
         state.setPort(1, Value.createKnown(bits, dy), 1);
@@ -131,10 +140,22 @@ public class Joystick extends InstanceFactory {
 
         private void updateState(InstanceState state, int dx, int dy) {
             State s = (State) state.getData();
-            if (dx < -14) dx = -14;
-            if (dy < -14) dy = -14;
-            if (dx > 14) dx = 14;
-            if (dy > 14) dy = 14;
+            if (dx < -14) {
+                dx = -14;
+            }
+
+            if (dy < -14) {
+                dy = -14;
+            }
+
+            if (dx > 14) {
+                dx = 14;
+            }
+
+            if (dy > 14) {
+                dy = 14;
+            }
+
             if (s == null) {
                 s = new State(dx, dy);
                 state.setData(s);

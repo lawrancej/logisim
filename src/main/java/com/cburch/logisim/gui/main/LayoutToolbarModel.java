@@ -64,11 +64,20 @@ class LayoutToolbarModel extends AbstractToolbarModel {
             String ret = tool.getDescription();
             int index = 1;
             for (ToolbarItem item : items) {
-                if (item == this) break;
-                if (item instanceof ToolItem) ++index;
+                if (item == this) {
+                    break;
+                }
+
+                if (item instanceof ToolItem) {
+                    ++index;
+                }
+
             }
             if (index <= 10) {
-                if (index == 10) index = 0;
+                if (index == 10) {
+                    index = 0;
+                }
+
                 int mask = frame.getToolkit().getMenuShortcutKeyMask();
                 ret += " (" + InputEventUtil.toKeyDisplayString(mask)
                     + "-" + index + ")";

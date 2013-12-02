@@ -54,7 +54,10 @@ public class PokeTool extends Tool {
             Value v = canvas.getCircuitState().getValue(wire.getEnd0());
             RadixOption radix1 = RadixOption.decode(AppPreferences.POKE_WIRE_RADIX1.get());
             RadixOption radix2 = RadixOption.decode(AppPreferences.POKE_WIRE_RADIX2.get());
-            if (radix1 == null) radix1 = RadixOption.RADIX_2;
+            if (radix1 == null) {
+                radix1 = RadixOption.RADIX_2;
+            }
+
             String vStr = radix1.toString(v);
             if (radix2 != null && v.getWidth() > 1) {
                 vStr += " / " + radix2.toString(v);
@@ -121,7 +124,10 @@ public class PokeTool extends Tool {
         Circuit circ = pokedCircuit;
         Caret caret = pokeCaret;
         if (caret != null) {
-            if (normal) caret.stopEditing(); else caret.cancelEditing();
+            if (normal) {
+                caret.stopEditing();
+            }
+ else caret.cancelEditing();
             circ.removeCircuitListener(listener);
             pokedCircuit = null;
             pokedComponent = null;
@@ -146,7 +152,10 @@ public class PokeTool extends Tool {
 
     @Override
     public void draw(Canvas canvas, ComponentDrawContext context) {
-        if (pokeCaret != null) pokeCaret.draw(context.getGraphics());
+        if (pokeCaret != null) {
+            pokeCaret.draw(context.getGraphics());
+        }
+
     }
 
     @Override
@@ -170,7 +179,10 @@ public class PokeTool extends Tool {
             ComponentUserEvent event = new ComponentUserEvent(canvas, x, y);
             Circuit circ = canvas.getCircuit();
             for (Component c : circ.getAllContaining(loc, g)) {
-                if (pokeCaret != null) break;
+                if (pokeCaret != null) {
+                    break;
+                }
+
 
                 if (c instanceof Wire) {
                     Caret caret = new WireCaret(canvas, (Wire) c, x, y,
@@ -195,7 +207,10 @@ public class PokeTool extends Tool {
             dirty = true;
             pokeCaret.mousePressed(e);
         }
-        if (dirty) canvas.getProject().repaintCanvas();
+        if (dirty) {
+            canvas.getProject().repaintCanvas();
+        }
+
     }
 
     @Override

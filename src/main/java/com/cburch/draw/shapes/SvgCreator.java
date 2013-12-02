@@ -89,7 +89,10 @@ class SvgCreator {
         StringBuilder points = new StringBuilder();
         boolean first = true;
         for (Handle h : poly.getHandles(null)) {
-            if (!first) points.append(" ");
+            if (!first) {
+                points.append(" ");
+            }
+
             points.append(h.getX() + "," + h.getY());
             first = false;
         }

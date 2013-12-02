@@ -73,7 +73,10 @@ public class MacCompatibility {
                 ioExcept = e;
             }
         } catch (Exception t) { }
-        if (ioExcept != null) throw ioExcept;
+        if (ioExcept != null) {
+            throw ioExcept;
+        }
+
     }
 
 }

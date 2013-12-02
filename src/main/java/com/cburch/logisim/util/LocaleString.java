@@ -24,7 +24,10 @@ public class LocaleString {
             for (String key : manager.getKeys()) {
                 sourceMap.put(key, manager);
             }
-            if (section.equals("util")) util = manager;
+            if (section.equals("util")) {
+                util = manager;
+            }
+
         }
     }
     protected static LocaleManager getUtilLocaleManager() {

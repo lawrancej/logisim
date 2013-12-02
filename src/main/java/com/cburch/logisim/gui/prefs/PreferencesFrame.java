@@ -101,7 +101,10 @@ public class PreferencesFrame extends LFrame {
         for (int index = 0; index < panels.length; index++) {
             OptionsPanel panel = panels[index];
             tabbedPane.addTab(panel.getTitle(), null, panel, panel.getToolTipText());
-            if (panel instanceof IntlOptions) intlIndex = index;
+            if (panel instanceof IntlOptions) {
+                intlIndex = index;
+            }
+
         }
 
         JPanel buttonPanel = new JPanel();
@@ -113,7 +116,10 @@ public class PreferencesFrame extends LFrame {
         contents.add(tabbedPane, BorderLayout.CENTER);
         contents.add(buttonPanel, BorderLayout.SOUTH);
 
-        if (intlIndex >= 0) tabbedPane.setSelectedIndex(intlIndex);
+        if (intlIndex >= 0) {
+            tabbedPane.setSelectedIndex(intlIndex);
+        }
+
 
         LocaleManager.addLocaleListener(myListener);
         myListener.localeChanged();

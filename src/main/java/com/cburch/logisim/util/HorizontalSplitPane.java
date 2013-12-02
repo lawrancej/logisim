@@ -60,7 +60,10 @@ public class HorizontalSplitPane extends JPanel {
             if (dragging) {
                 dragging = false;
                 int newValue = getDragValue(e);
-                if (newValue != curValue) setDragValue(newValue);
+                if (newValue != curValue) {
+                    setDragValue(newValue);
+                }
+
                 repaint();
             }
         }
@@ -75,7 +78,10 @@ public class HorizontalSplitPane extends JPanel {
         public void mouseDragged(MouseEvent e) {
             if (dragging) {
                 int newValue = getDragValue(e);
-                if (newValue != curValue) setDragValue(newValue);
+                if (newValue != curValue) {
+                    setDragValue(newValue);
+                }
+
             }
         }
 
@@ -92,8 +98,14 @@ public class HorizontalSplitPane extends JPanel {
 
         @Override
         public Dimension preferredLayoutSize(Container parent) {
-            if (fraction <= 0.0) return comp1.getPreferredSize();
-            if (fraction >= 1.0) return comp0.getPreferredSize();
+            if (fraction <= 0.0) {
+                return comp1.getPreferredSize();
+            }
+
+            if (fraction >= 1.0) {
+                return comp0.getPreferredSize();
+            }
+
             Insets in = parent.getInsets();
             Dimension d0 = comp0.getPreferredSize();
             Dimension d1 = comp1.getPreferredSize();
@@ -103,8 +115,14 @@ public class HorizontalSplitPane extends JPanel {
 
         @Override
         public Dimension minimumLayoutSize(Container parent) {
-            if (fraction <= 0.0) return comp1.getMinimumSize();
-            if (fraction >= 1.0) return comp0.getMinimumSize();
+            if (fraction <= 0.0) {
+                return comp1.getMinimumSize();
+            }
+
+            if (fraction >= 1.0) {
+                return comp0.getMinimumSize();
+            }
+
             Insets in = parent.getInsets();
             Dimension d0 = comp0.getMinimumSize();
             Dimension d1 = comp1.getMinimumSize();
@@ -184,8 +202,14 @@ public class HorizontalSplitPane extends JPanel {
     }
 
     public void setFraction(double value) {
-        if (value < 0.0) value = 0.0;
-        if (value > 1.0) value = 1.0;
+        if (value < 0.0) {
+            value = 0.0;
+        }
+
+        if (value > 1.0) {
+            value = 1.0;
+        }
+
         if (fraction != value) {
             fraction = value;
             revalidate();

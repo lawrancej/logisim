@@ -59,7 +59,10 @@ public abstract class AttributeSetTableModel
         @Override
         public void setValue(Object value) throws AttrTableSetException {
             Attribute<Object> attr = this.attr;
-            if (attr == null || value == null) return;
+            if (attr == null || value == null) {
+                return;
+            }
+
 
             try {
                 if (value instanceof String) {
@@ -73,7 +76,10 @@ public abstract class AttributeSetTableModel
             } catch (NumberFormatException e) {
                 String msg = _("attributeChangeInvalidError");
                 String emsg = e.getMessage();
-                if (emsg != null && emsg.length() > 0) msg += ": " + emsg;
+                if (emsg != null && emsg.length() > 0) {
+                    msg += ": " + emsg;
+                }
+
                 msg += ".";
                 throw new AttrTableSetException(msg);
             }
@@ -185,7 +191,10 @@ public abstract class AttributeSetTableModel
             }
             index++;
         }
-        if (match && index == rows.size()) return;
+        if (match && index == rows.size()) {
+            return;
+        }
+
 
         // compute the new list of rows, possible adding into hash map
         ArrayList<AttrRow> newRows = new ArrayList<AttrRow>();

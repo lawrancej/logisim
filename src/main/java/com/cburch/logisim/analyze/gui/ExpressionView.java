@@ -159,7 +159,10 @@ class ExpressionView extends JPanel {
         private void computeBadnesses() {
             badness = new int[text.length() + 1];
             badness[text.length()] = 0;
-            if (text.length() == 0) return;
+            if (text.length() == 0) {
+                return;
+            }
+
 
             badness[0] = Integer.MAX_VALUE;
             NotData curNot = nots.isEmpty() ? null : (NotData) nots.get(0);
@@ -199,7 +202,10 @@ class ExpressionView extends JPanel {
                     NotData nd = curNot;
                     int ndi = curNotIndex;
                     while (nd != null && nd.startIndex < i) {
-                        if (nd.stopIndex > i) ++depth;
+                        if (nd.stopIndex > i) {
+                            ++depth;
+                        }
+
                         ++ndi;
                         nd = ndi < nots.size() ? (NotData) nots.get(ndi) : null;
                     }
@@ -275,7 +281,10 @@ class ExpressionView extends JPanel {
                     ++stopPos;
                     String line = text.substring(startPos, stopPos);
                     lineWidth = fm.stringWidth(line);
-                    if (lineWidth > width) break;
+                    if (lineWidth > width) {
+                        break;
+                    }
+
 
                     int lineBadness = badness[stopPos]
                         + (width - lineWidth) * BADNESS_PER_PIXEL;
@@ -324,11 +333,17 @@ class ExpressionView extends JPanel {
                     stack[0] = nd.stopIndex;
                     for (int j = i + 1; j < nots.size(); j++) {
                         NotData nd2 = nots.get(j);
-                        if (nd2.startIndex >= nd.stopIndex) break;
+                        if (nd2.startIndex >= nd.stopIndex) {
+                            break;
+                        }
+
                         while (nd2.startIndex >= stack[top]) top--;
                         ++top;
                         stack[top] = nd2.stopIndex;
-                        if (top > depth) depth = top;
+                        if (top > depth) {
+                            depth = top;
+                        }
+
                     }
                     nd.depth = depth;
                 }
@@ -342,7 +357,10 @@ class ExpressionView extends JPanel {
                 int maxDepth = -1;
                 ArrayList<NotData> nots = lineNots.get(i);
                 for (NotData nd : nots) {
-                    if (nd.depth > maxDepth) maxDepth = nd.depth;
+                    if (nd.depth > maxDepth) {
+                        maxDepth = nd.depth;
+                    }
+
                 }
                 lineY[i] = curY + maxDepth * NOT_SEP;
                 curY = lineY[i] + fm.getHeight() + EXTRA_LEADING;

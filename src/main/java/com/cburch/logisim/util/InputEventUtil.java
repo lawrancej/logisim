@@ -25,7 +25,10 @@ public class InputEventUtil {
         StringTokenizer toks = new StringTokenizer(str);
         while (toks.hasMoreTokens()) {
             String s = toks.nextToken();
-            if (s.equals(CTRL))         ret |= InputEvent.CTRL_DOWN_MASK;
+            if (s.equals(CTRL)) {
+                        ret |= InputEvent.CTRL_DOWN_MASK;
+            }
+
             else if (s.equals(SHIFT))   ret |= InputEvent.SHIFT_DOWN_MASK;
             else if (s.equals(ALT))     ret |= InputEvent.ALT_DOWN_MASK;
             else if (s.equals(BUTTON1)) ret |= InputEvent.BUTTON1_DOWN_MASK;
@@ -38,12 +41,30 @@ public class InputEventUtil {
 
     public static String toString(int mods) {
         ArrayList<String> arr = new ArrayList<String>();
-        if ((mods & InputEvent.CTRL_DOWN_MASK)    != 0) arr.add(CTRL);
-        if ((mods & InputEvent.ALT_DOWN_MASK)     != 0) arr.add(ALT);
-        if ((mods & InputEvent.SHIFT_DOWN_MASK)   != 0) arr.add(SHIFT);
-        if ((mods & InputEvent.BUTTON1_DOWN_MASK) != 0) arr.add(BUTTON1);
-        if ((mods & InputEvent.BUTTON2_DOWN_MASK) != 0) arr.add(BUTTON2);
-        if ((mods & InputEvent.BUTTON3_DOWN_MASK) != 0) arr.add(BUTTON3);
+        if ((mods & InputEvent.CTRL_DOWN_MASK)    != 0) {
+            arr.add(CTRL);
+        }
+
+        if ((mods & InputEvent.ALT_DOWN_MASK)     != 0) {
+            arr.add(ALT);
+        }
+
+        if ((mods & InputEvent.SHIFT_DOWN_MASK)   != 0) {
+            arr.add(SHIFT);
+        }
+
+        if ((mods & InputEvent.BUTTON1_DOWN_MASK) != 0) {
+            arr.add(BUTTON1);
+        }
+
+        if ((mods & InputEvent.BUTTON2_DOWN_MASK) != 0) {
+            arr.add(BUTTON2);
+        }
+
+        if ((mods & InputEvent.BUTTON3_DOWN_MASK) != 0) {
+            arr.add(BUTTON3);
+        }
+
 
         Iterator<String> it = arr.iterator();
         if (it.hasNext()) {
@@ -64,7 +85,10 @@ public class InputEventUtil {
         StringTokenizer toks = new StringTokenizer(str);
         while (toks.hasMoreTokens()) {
             String s = toks.nextToken();
-            if (s.equals(_("ctrlMod")))           ret |= InputEvent.CTRL_DOWN_MASK;
+            if (s.equals(_("ctrlMod"))) {
+                          ret |= InputEvent.CTRL_DOWN_MASK;
+            }
+
             else if (s.equals(_("altMod")))       ret |= InputEvent.ALT_DOWN_MASK;
             else if (s.equals(_("shiftMod")))     ret |= InputEvent.SHIFT_DOWN_MASK;
             else if (s.equals(_("button1Mod")))   ret |= InputEvent.BUTTON1_DOWN_MASK;
@@ -77,14 +101,35 @@ public class InputEventUtil {
 
     public static String toDisplayString(int mods) {
         ArrayList<String> arr = new ArrayList<String>();
-        if ((mods & InputEvent.CTRL_DOWN_MASK)    != 0) arr.add(_("ctrlMod"));
-        if ((mods & InputEvent.ALT_DOWN_MASK)     != 0) arr.add(_("altMod"));
-        if ((mods & InputEvent.SHIFT_DOWN_MASK)   != 0) arr.add(_("shiftMod"));
-        if ((mods & InputEvent.BUTTON1_DOWN_MASK) != 0) arr.add(_("button1Mod"));
-        if ((mods & InputEvent.BUTTON2_DOWN_MASK) != 0) arr.add(_("button2Mod"));
-        if ((mods & InputEvent.BUTTON3_DOWN_MASK) != 0) arr.add(_("button3Mod"));
+        if ((mods & InputEvent.CTRL_DOWN_MASK)    != 0) {
+            arr.add(_("ctrlMod"));
+        }
 
-        if (arr.isEmpty()) return "";
+        if ((mods & InputEvent.ALT_DOWN_MASK)     != 0) {
+            arr.add(_("altMod"));
+        }
+
+        if ((mods & InputEvent.SHIFT_DOWN_MASK)   != 0) {
+            arr.add(_("shiftMod"));
+        }
+
+        if ((mods & InputEvent.BUTTON1_DOWN_MASK) != 0) {
+            arr.add(_("button1Mod"));
+        }
+
+        if ((mods & InputEvent.BUTTON2_DOWN_MASK) != 0) {
+            arr.add(_("button2Mod"));
+        }
+
+        if ((mods & InputEvent.BUTTON3_DOWN_MASK) != 0) {
+            arr.add(_("button3Mod"));
+        }
+
+
+        if (arr.isEmpty()) {
+            return "";
+        }
+
 
         Iterator<String> it = arr.iterator();
         if (it.hasNext()) {
@@ -102,10 +147,22 @@ public class InputEventUtil {
 
     public static String toKeyDisplayString(int mods) {
         ArrayList<String> arr = new ArrayList<String>();
-        if ((mods & Event.META_MASK)  != 0) arr.add(_("metaMod"));
-        if ((mods & Event.CTRL_MASK)  != 0) arr.add(_("ctrlMod"));
-        if ((mods & Event.ALT_MASK)   != 0) arr.add(_("altMod"));
-        if ((mods & Event.SHIFT_MASK) != 0) arr.add(_("shiftMod"));
+        if ((mods & Event.META_MASK)  != 0) {
+            arr.add(_("metaMod"));
+        }
+
+        if ((mods & Event.CTRL_MASK)  != 0) {
+            arr.add(_("ctrlMod"));
+        }
+
+        if ((mods & Event.ALT_MASK)   != 0) {
+            arr.add(_("altMod"));
+        }
+
+        if ((mods & Event.SHIFT_MASK) != 0) {
+            arr.add(_("shiftMod"));
+        }
+
 
         Iterator<String> it = arr.iterator();
         if (it.hasNext()) {

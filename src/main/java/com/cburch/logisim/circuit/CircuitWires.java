@@ -180,22 +180,37 @@ class CircuitWires {
 
     BitWidth getWidth(Location q) {
         BitWidth det = points.getWidth(q);
-        if (det != BitWidth.UNKNOWN) return det;
+        if (det != BitWidth.UNKNOWN) {
+            return det;
+        }
+
 
         BundleMap bmap = getBundleMap();
-        if (!bmap.isValid()) return BitWidth.UNKNOWN;
+        if (!bmap.isValid()) {
+            return BitWidth.UNKNOWN;
+        }
+
         WireBundle qb = bmap.getBundleAt(q);
-        if (qb != null && qb.isValid()) return qb.getWidth();
+        if (qb != null && qb.isValid()) {
+            return qb.getWidth();
+        }
+
 
         return BitWidth.UNKNOWN;
     }
 
     Location getWidthDeterminant(Location q) {
         BitWidth det = points.getWidth(q);
-        if (det != BitWidth.UNKNOWN) return q;
+        if (det != BitWidth.UNKNOWN) {
+            return q;
+        }
+
 
         WireBundle qb = getBundleMap().getBundleAt(q);
-        if (qb != null && qb.isValid()) return qb.getWidthDeterminant();
+        if (qb != null && qb.isValid()) {
+            return qb.getWidthDeterminant();
+        }
+
 
         return q;
     }
@@ -224,7 +239,10 @@ class CircuitWires {
 
     WireSet getWireSet(Wire start) {
         WireBundle bundle = getWireBundle(start.e0);
-        if (bundle == null) return WireSet.EMPTY;
+        if (bundle == null) {
+            return WireSet.EMPTY;
+        }
+
         HashSet<Wire> wires = new HashSet<Wire>();
         for (Location loc : bundle.points) {
             wires.addAll(points.getWires(loc));
@@ -297,7 +315,10 @@ class CircuitWires {
 
     private boolean addWire(Wire w) {
         boolean added = wires.add(w);
-        if (!added) return false;
+        if (!added) {
+            return false;
+        }
+
 
         // update bounds
         if (bounds != Bounds.EMPTY_BOUNDS) {
@@ -308,7 +329,10 @@ class CircuitWires {
 
     private void removeWire(Wire w) {
         boolean removed = wires.remove(w);
-        if (!removed) return;
+        if (!removed) {
+            return;
+        }
+
 
         if (bounds != Bounds.EMPTY_BOUNDS) {
             // bounds is valid - invalidate if endpoint on border
@@ -369,7 +393,10 @@ class CircuitWires {
             }
         }
 
-        if (dirtyThreads.isEmpty()) return;
+        if (dirtyThreads.isEmpty()) {
+            return;
+        }
+
 
         // determine values of affected threads
         HashSet<ThreadBundle> bundles = new HashSet<ThreadBundle>();
@@ -394,10 +421,16 @@ class CircuitWires {
                 boolean tvs_valid = true;
                 for (int i = 0; i < tvs.length; i++) {
                     Value tv = s.thr_values.get(b.threads[i]);
-                    if (tv == null) { tvs_valid = false; break; }
+                    if (tv == null) {
+                        { tvs_valid = false;
+                    }
+ break; }
                     tvs[i] = tv;
                 }
-                if (tvs_valid) bv = Value.create(tvs);
+                if (tvs_valid) {
+                    bv = Value.create(tvs);
+                }
+
             }
 
             if (bv != null) {
@@ -426,7 +459,10 @@ class CircuitWires {
                 if (!wb.isValid()) {
                     g.setColor(Value.WIDTH_ERROR_COLOR);
                 } else if (showState) {
-                    if (!isValid) g.setColor(Value.NIL_COLOR);
+                    if (!isValid) {
+                        g.setColor(Value.NIL_COLOR);
+                    }
+
                     else         g.setColor(state.getValue(s).getColor());
                 } else {
                     g.setColor(Color.BLACK);
@@ -447,7 +483,10 @@ class CircuitWires {
                         if (!wb.isValid()) {
                             g.setColor(Value.WIDTH_ERROR_COLOR);
                         } else if (showState) {
-                            if (!isValid) g.setColor(Value.NIL_COLOR);
+                            if (!isValid) {
+                                g.setColor(Value.NIL_COLOR);
+                            }
+
                             else         g.setColor(state.getValue(loc).getColor());
                         } else {
                             g.setColor(Color.BLACK);
@@ -469,7 +508,10 @@ class CircuitWires {
                     if (!wb.isValid()) {
                         g.setColor(Value.WIDTH_ERROR_COLOR);
                     } else if (showState) {
-                        if (!isValid) g.setColor(Value.NIL_COLOR);
+                        if (!isValid) {
+                            g.setColor(Value.NIL_COLOR);
+                        }
+
                         else         g.setColor(state.getValue(s).getColor());
                     } else {
                         g.setColor(Color.BLACK);
@@ -491,7 +533,10 @@ class CircuitWires {
                 if (points.getComponentCount(loc) > 2) {
                     int icount = 0;
                     for (Component comp : points.getComponents(loc)) {
-                        if (!hidden.contains(comp)) ++icount;
+                        if (!hidden.contains(comp)) {
+                            ++icount;
+                        }
+
                     }
                     if (icount > 2) {
                         WireBundle wb = bmap.getBundleAt(loc);
@@ -499,7 +544,10 @@ class CircuitWires {
                             if (!wb.isValid()) {
                                 g.setColor(Value.WIDTH_ERROR_COLOR);
                             } else if (showState) {
-                                if (!isValid) g.setColor(Value.NIL_COLOR);
+                                if (!isValid) {
+                                    g.setColor(Value.NIL_COLOR);
+                                }
+
                                 else         g.setColor(state.getValue(loc).getColor());
                             } else {
                                 g.setColor(Color.BLACK);
@@ -621,7 +669,10 @@ class CircuitWires {
                 byte[] bit_end = spl_attrs.bit_end;
                 SplitterData spl_data = spl.wire_data;
                 WireBundle from_bundle = spl_data.end_bundle[0];
-                if (from_bundle == null || !from_bundle.isValid()) continue;
+                if (from_bundle == null || !from_bundle.isValid()) {
+                    continue;
+                }
+
 
                 for (int i = 0; i < bit_end.length; i++) {
                     int j = bit_end[i];
@@ -664,7 +715,10 @@ class CircuitWires {
         }
         for (WireBundle b : ret.getBundles()) {
             WidthIncompatibilityData e = b.getWidthIncompatibilityData();
-            if (e != null) ret.addWidthIncompatibilityData(e);
+            if (e != null) {
+                ret.addWidthIncompatibilityData(e);
+            }
+
         }
     }
 
@@ -759,7 +813,10 @@ class CircuitWires {
                 }
             }
             Value pullHere = tb.b.getPullValue();
-            if (pullHere != Value.UNKNOWN) pull = pull.combine(pullHere);
+            if (pullHere != Value.UNKNOWN) {
+                pull = pull.combine(pullHere);
+            }
+
         }
         if (pull != Value.UNKNOWN) {
             ret = pullValue(ret, pull);
@@ -771,12 +828,18 @@ class CircuitWires {
         if (base.isFullyDefined()) {
             return base;
         } else if (base.getWidth() == 1) {
-            if (base == Value.UNKNOWN) return pullTo;
+            if (base == Value.UNKNOWN) {
+                return pullTo;
+            }
+
             else return base;
         } else {
             Value[] ret = base.getAll();
             for (int i = 0; i < ret.length; i++) {
-                if (ret[i] == Value.UNKNOWN) ret[i] = pullTo;
+                if (ret[i] == Value.UNKNOWN) {
+                    ret[i] = pullTo;
+                }
+
             }
             return Value.create(ret);
         }

@@ -121,7 +121,10 @@ public class TtyInterface {
         int maxName = 0;
         for (FileStatistics.Count count : stats.getCounts()) {
             int nameLength = count.getFactory().getDisplayName().length();
-            if (nameLength > maxName) maxName = nameLength;
+            if (nameLength > maxName) {
+                maxName = nameLength;
+            }
+
         }
         String fmt = "%" + countDigits(total.getUniqueCount()) + "d\t"
             + "%" + countDigits(total.getRecursiveCount()) + "d\t";
@@ -160,7 +163,10 @@ public class TtyInterface {
 
     private static boolean loadRam(CircuitState circState, File loadFile)
             throws IOException {
-        if (loadFile == null) return false;
+        if (loadFile == null) {
+            return false;
+        }
+
 
         boolean found = false;
         for (Component comp : circState.getCircuit().getNonWires()) {
@@ -270,7 +276,10 @@ public class TtyInterface {
             prop.propagate();
         }
         long elapse = System.currentTimeMillis() - start;
-        if (showTty) ensureLineTerminated();
+        if (showTty) {
+            ensureLineTerminated();
+        }
+
         if (showHalt || retCode != 0) {
             if (retCode == 0) {
                 //OK
@@ -304,7 +313,10 @@ public class TtyInterface {
         if (shouldPrint) {
             for (int i = 0; i < curOutputs.size(); i++) {
                 //OK
-                if (i != 0) System.out.print("\t");
+                if (i != 0) {
+                    System.out.print("\t");
+                }
+
                 //OK
                 System.out.print(curOutputs.get(i));
             }
@@ -316,7 +328,10 @@ public class TtyInterface {
     private static void displaySpeed(long tickCount, long elapse) {
         double hertz = (double) tickCount / elapse * 1000.0;
         double precision;
-        if (hertz >= 100) precision = 1.0;
+        if (hertz >= 100) {
+            precision = 1.0;
+        }
+
         else if (hertz >= 10) precision = 0.1;
         else if (hertz >= 1) precision = 0.01;
         else if (hertz >= 0.01) precision = 0.0001;

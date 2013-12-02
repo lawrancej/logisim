@@ -104,7 +104,10 @@ public class Curve extends FillableCanvasObject {
             double[] p1 = toArray(this.p1);
             double[] p2 = toArray(this.p2);
             double[] p = CurveUtil.findNearestPoint(q, p0, p1, p2);
-            if (p == null) return false;
+            if (p == null) {
+                return false;
+            }
+
 
             int thr;
             if (type == DrawAttr.PAINT_STROKE) {

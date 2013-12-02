@@ -55,9 +55,15 @@ class SelectionAction extends Action {
     public void doIt(Project proj) {
         Selection sel = canvas.getSelection();
         sel.clearSelected();
-        if (toRemove != null) canvasModel.removeObjects(toRemove.keySet());
+        if (toRemove != null) {
+            canvasModel.removeObjects(toRemove.keySet());
+        }
+
         int dest = AppearanceCanvas.getMaxIndex(canvasModel) + 1;
-        if (toAdd != null) canvasModel.addObjects(dest, toAdd);
+        if (toAdd != null) {
+            canvasModel.addObjects(dest, toAdd);
+        }
+
 
         AppearanceAnchor anchor = findAnchor(canvasModel);
         if (anchor != null && anchorNewLocation != null) {
@@ -94,8 +100,14 @@ class SelectionAction extends Action {
         }
         Selection sel = canvas.getSelection();
         sel.clearSelected();
-        if (toAdd != null) canvasModel.removeObjects(toAdd);
-        if (toRemove != null) canvasModel.addObjects(toRemove);
+        if (toAdd != null) {
+            canvasModel.removeObjects(toAdd);
+        }
+
+        if (toRemove != null) {
+            canvasModel.addObjects(toRemove);
+        }
+
         sel.setSelected(oldSelection, true);
         canvas.repaint();
     }

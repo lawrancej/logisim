@@ -185,7 +185,10 @@ public class ComponentDrawContext {
     public void drawPin(Component comp, int i,
             String label, Direction dir) {
         Color curColor = g.getColor();
-        if (i < 0 || i >= comp.getEnds().size()) return;
+        if (i < 0 || i >= comp.getEnds().size()) {
+            return;
+        }
+
         EndData e = comp.getEnd(i);
         Location pt = e.getLocation();
         int x = pt.getX();

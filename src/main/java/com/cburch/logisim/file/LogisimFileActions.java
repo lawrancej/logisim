@@ -270,7 +270,10 @@ public class LogisimFileActions {
                     String desc = src.getLoader().getDescriptor(srcLib);
                     dstLib = dst.getLoader().loadLibrary(desc);
                     proj.getLogisimFile().addLibrary(dstLib);
-                    if (libraries == null) libraries = new ArrayList<Library>();
+                    if (libraries == null) {
+                        libraries = new ArrayList<Library>();
+                    }
+
                     libraries.add(dstLib);
                 }
                 copyToolAttributes(srcLib, dstLib);

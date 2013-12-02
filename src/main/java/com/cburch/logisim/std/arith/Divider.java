@@ -94,12 +94,18 @@ public class Divider extends InstanceFactory {
 
     static Value[] computeResult(BitWidth width, Value a, Value b, Value upper) {
         int w = width.getWidth();
-        if (upper == Value.NIL || upper.isUnknown()) upper = Value.createKnown(width, 0);
+        if (upper == Value.NIL || upper.isUnknown()) {
+            upper = Value.createKnown(width, 0);
+        }
+
         if (a.isFullyDefined() && b.isFullyDefined() && upper.isFullyDefined()) {
             long num = ((long) upper.toIntValue() << w)
                 | (a.toIntValue() & 0xFFFFFFFFL);
             long den = b.toIntValue() & 0xFFFFFFFFL;
-            if (den == 0) den = 1;
+            if (den == 0) {
+                den = 1;
+            }
+
             long result = num / den;
             long rem = num % den;
             if (rem < 0) {

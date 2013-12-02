@@ -24,7 +24,10 @@ class SplitterPainter {
             SplitterAttributes attrs, Location origin) {
         boolean showState = context.getShowState();
         CircuitState state = showState ? context.getCircuitState() : null;
-        if (state == null) showState = false;
+        if (state == null) {
+            showState = false;
+        }
+
 
         SplitterParameters parms = attrs.getParameters();
         int x0 = origin.getX();

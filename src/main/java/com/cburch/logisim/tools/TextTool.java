@@ -87,7 +87,10 @@ public class TextTool extends Tool {
             caretCreatingText = false;
             caret = null;
 
-            if (a != null) proj.doAction(a);
+            if (a != null) {
+                proj.doAction(a);
+            }
+
         }
 
         @Override
@@ -161,7 +164,10 @@ public class TextTool extends Tool {
 
     @Override
     public void draw(Canvas canvas, ComponentDrawContext context) {
-        if (caret != null) caret.draw(context.getGraphics());
+        if (caret != null) {
+            caret.draw(context.getGraphics());
+        }
+
     }
 
     @Override
@@ -178,7 +184,10 @@ public class TextTool extends Tool {
         Circuit circ = canvas.getCircuit();
 
         if (!proj.getLogisimFile().contains(circ)) {
-            if (caret != null) caret.cancelEditing();
+            if (caret != null) {
+                caret.cancelEditing();
+            }
+
             canvas.setErrorMessage(__("cannotModifyError"));
             return;
         }
@@ -235,7 +244,10 @@ public class TextTool extends Tool {
 
         // if nothing found, create a new label
         if (caret == null) {
-            if (loc.getX() < 0 || loc.getY() < 0) return;
+            if (loc.getX() < 0 || loc.getY() < 0) {
+                return;
+            }
+
             AttributeSet copy = (AttributeSet) attrs.clone();
             caretComponent = Text.FACTORY.createComponent(loc, copy);
             caretCreatingText = true;

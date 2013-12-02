@@ -40,7 +40,10 @@ class InstancePokerAdapter extends AbstractCaret implements Pokable {
                 + ": " + t.getClass().getName());
         String msg = t.getMessage();
         //OK
-        if (msg != null) System.err.println("  (" + msg + ")");
+        if (msg != null) {
+            System.err.println("  (" + msg + ")");
+        }
+
     }
 
     @Override
@@ -70,37 +73,58 @@ class InstancePokerAdapter extends AbstractCaret implements Pokable {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (poker != null) { poker.mousePressed(state, e); checkCurrent(); }
+        if (poker != null) {
+            { poker.mousePressed(state, e);
+        }
+ checkCurrent(); }
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (poker != null) { poker.mouseDragged(state, e); checkCurrent(); }
+        if (poker != null) {
+            { poker.mouseDragged(state, e);
+        }
+ checkCurrent(); }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (poker != null) { poker.mouseReleased(state, e); checkCurrent(); }
+        if (poker != null) {
+            { poker.mouseReleased(state, e);
+        }
+ checkCurrent(); }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (poker != null) { poker.keyPressed(state, e); checkCurrent(); }
+        if (poker != null) {
+            { poker.keyPressed(state, e);
+        }
+ checkCurrent(); }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (poker != null) { poker.keyReleased(state, e); checkCurrent(); }
+        if (poker != null) {
+            { poker.keyReleased(state, e);
+        }
+ checkCurrent(); }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (poker != null) { poker.keyTyped(state, e); checkCurrent(); }
+        if (poker != null) {
+            { poker.keyTyped(state, e);
+        }
+ checkCurrent(); }
     }
 
     @Override
     public void stopEditing() {
-        if (poker != null) { poker.stopEditing(state); checkCurrent(); }
+        if (poker != null) {
+            { poker.stopEditing(state);
+        }
+ checkCurrent(); }
     }
 
     @Override

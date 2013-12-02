@@ -66,7 +66,10 @@ class CanvasPainter implements PropertyChangeListener {
     }
 
     void setHaloedComponent(Circuit circ, Component comp) {
-        if (comp == haloedComponent) return;
+        if (comp == haloedComponent) {
+            return;
+        }
+
         Graphics g = canvas.getGraphics();
         exposeHaloedComponent(g);
         haloedCircuit = circ;
@@ -76,7 +79,10 @@ class CanvasPainter implements PropertyChangeListener {
 
     private void exposeHaloedComponent(Graphics g) {
         Component c = haloedComponent;
-        if (c == null) return;
+        if (c == null) {
+            return;
+        }
+
         Bounds bds = c.getBounds(g).expand(7);
         int w = bds.getWidth();
         int h = bds.getHeight();
@@ -140,7 +146,10 @@ class CanvasPainter implements PropertyChangeListener {
             hidden = NO_COMPONENTS;
         } else {
             hidden = dragTool.getHiddenComponents(canvas);
-            if (hidden == null) hidden = NO_COMPONENTS;
+            if (hidden == null) {
+                hidden = NO_COMPONENTS;
+            }
+
         }
 
         // draw halo around component whose attributes we are viewing
@@ -183,7 +192,10 @@ class CanvasPainter implements PropertyChangeListener {
     private void drawWidthIncompatibilityData(Graphics base, Graphics g, Project proj) {
         Set<WidthIncompatibilityData> exceptions;
         exceptions = proj.getCurrentCircuit().getWidthIncompatibilityData();
-        if (exceptions == null || exceptions.size() == 0) return;
+        if (exceptions == null || exceptions.size() == 0) {
+            return;
+        }
+
 
         g.setColor(Value.WIDTH_ERROR_COLOR);
         GraphicsUtil.switchToWidth(g, 2);
@@ -196,14 +208,23 @@ class CanvasPainter implements PropertyChangeListener {
                 // ensure it hasn't already been drawn
                 boolean drawn = false;
                 for (int j = 0; j < i; j++) {
-                    if (ex.getPoint(j).equals(p)) { drawn = true; break; }
+                    if (ex.getPoint(j).equals(p)) {
+                        { drawn = true;
+                    }
+ break; }
                 }
-                if (drawn) continue;
+                if (drawn) {
+                    continue;
+                }
+
 
                 // compute the caption combining all similar points
                 String caption = "" + w.getWidth();
                 for (int j = i + 1; j < ex.size(); j++) {
-                    if (ex.getPoint(j).equals(p)) { caption += "/" + ex.getBitWidth(j); break; }
+                    if (ex.getPoint(j).equals(p)) {
+                        { caption += "/" + ex.getBitWidth(j);
+                    }
+ break; }
                 }
                 g.drawOval(p.getX() - 4, p.getY() - 4, 8, 8);
                 g.drawString(caption, p.getX() + 5, p.getY() + 2 + fm.getAscent());

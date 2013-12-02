@@ -181,14 +181,23 @@ public class LogFrame extends LFrame {
 
     private void setSimulator(Simulator value, CircuitState state) {
         if ((value == null) == (curModel == null)) {
-            if (value == null || value.getCircuitState() == curModel.getCircuitState()) return;
+            if (value == null || value.getCircuitState() == curModel.getCircuitState()) {
+                return;
+            }
+
         }
 
         LogisimMenuBar menubar = (LogisimMenuBar) getJMenuBar();
         menubar.setCircuitState(value, state);
 
-        if (curSimulator != null) curSimulator.removeSimulatorListener(myListener);
-        if (curModel != null) curModel.setSelected(this, false);
+        if (curSimulator != null) {
+            curSimulator.removeSimulatorListener(myListener);
+        }
+
+        if (curModel != null) {
+            curModel.setSelected(this, false);
+        }
+
 
         Model oldModel = curModel;
         Model data = null;
@@ -202,8 +211,14 @@ public class LogFrame extends LFrame {
         curSimulator = value;
         curModel = data;
 
-        if (curSimulator != null) curSimulator.addSimulatorListener(myListener);
-        if (curModel != null) curModel.setSelected(this, true);
+        if (curSimulator != null) {
+            curSimulator.addSimulatorListener(myListener);
+        }
+
+        if (curModel != null) {
+            curModel.setSelected(this, true);
+        }
+
         setTitle(computeTitle(curModel, project));
         if (panels != null) {
             for (int i = 0; i < panels.length; i++) {

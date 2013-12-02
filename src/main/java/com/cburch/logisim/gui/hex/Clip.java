@@ -79,7 +79,10 @@ class Clip implements ClipboardOwner {
         Caret caret = editor.getCaret();
         long p0 = caret.getMark();
         long p1 = caret.getDot();
-        if (p0 < 0 || p1 < 0) return;
+        if (p0 < 0 || p1 < 0) {
+            return;
+        }
+
         if (p0 > p1) {
             long t = p0; p0 = p1; p1 = t;
         }
@@ -155,7 +158,10 @@ class Clip implements ClipboardOwner {
                         JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            if (p0 < 0 || p1 < 0) return;
+            if (p0 < 0 || p1 < 0) {
+                return;
+            }
+
             if (p0 > p1) {
                 long t = p0; p0 = p1; p1 = t;
             }

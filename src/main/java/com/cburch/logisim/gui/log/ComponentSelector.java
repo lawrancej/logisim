@@ -141,10 +141,16 @@ class ComponentSelector extends JTree {
                         for (TreeNode o2 : children) {
                             if (o2 instanceof ComponentNode) {
                                 ComponentNode n = (ComponentNode) o2;
-                                if (n.comp == comp) { toAdd = n; break; }
+                                if (n.comp == comp) {
+                                    { toAdd = n;
+                                }
+ break; }
                             }
                         }
-                        if (toAdd == null) toAdd = new ComponentNode(this, comp);
+                        if (toAdd == null) {
+                            toAdd = new ComponentNode(this, comp);
+                        }
+
                         newChildren.add(toAdd);
                     }
                 }
@@ -158,7 +164,10 @@ class ComponentSelector extends JTree {
                 for (TreeNode o : children) {
                     if (o instanceof CircuitNode) {
                         CircuitNode n = (CircuitNode) o;
-                        if (n.circuitState == state) { toAdd = n; break; }
+                        if (n.circuitState == state) {
+                            { toAdd = n;
+                        }
+ break; }
                     }
                 }
                 if (toAdd == null) {
@@ -181,7 +190,10 @@ class ComponentSelector extends JTree {
                 String aName = a.getFactory().getDisplayName();
                 String bName = b.getFactory().getDisplayName();
                 int ret = aName.compareToIgnoreCase(bName);
-                if (ret != 0) return ret;
+                if (ret != 0) {
+                    return ret;
+                }
+
             }
             return a.getLocation().toString().compareTo(b.getLocation().toString());
         }
@@ -214,7 +226,10 @@ class ComponentSelector extends JTree {
             Loggable log = (Loggable) comp.getFeature(Loggable.class);
             if (log != null) {
                 String ret = log.getLogName(null);
-                if (ret != null && !ret.equals("")) return ret;
+                if (ret != null && !ret.equals("")) {
+                    return ret;
+                }
+
             }
             return comp.getFactory().getDisplayName() + " " + comp.getLocation();
         }
@@ -237,7 +252,10 @@ class ComponentSelector extends JTree {
         @Override
         public int getIndex(TreeNode n) {
             for (int i = 0; i < opts.length; i++) {
-                if (opts[i] == n) return i;
+                if (opts[i] == n) {
+                    return i;
+                }
+
             }
             return -1;
         }
@@ -346,7 +364,10 @@ class ComponentSelector extends JTree {
         CircuitNode curRoot = (CircuitNode) model.getRoot();
         CircuitState state = logModel == null ? null : logModel.getCircuitState();
         if (state == null) {
-            if (curRoot != null) model.setRoot(null);
+            if (curRoot != null) {
+                model.setRoot(null);
+            }
+
             return;
         }
         if (curRoot == null || curRoot.circuitState != state) {
@@ -357,7 +378,10 @@ class ComponentSelector extends JTree {
 
     public List<SelectionItem> getSelectedItems() {
         TreePath[] sel = getSelectionPaths();
-        if (sel == null || sel.length == 0) return Collections.emptyList();
+        if (sel == null || sel.length == 0) {
+            return Collections.emptyList();
+        }
+
 
         ArrayList<SelectionItem> ret = new ArrayList<SelectionItem>();
         for (int i = 0; i < sel.length; i++) {
@@ -371,7 +395,10 @@ class ComponentSelector extends JTree {
                 opt = o.option;
             } else if (last instanceof ComponentNode) {
                 n = (ComponentNode) last;
-                if (n.opts != null) n = null;
+                if (n.opts != null) {
+                    n = null;
+                }
+
             }
             if (n != null) {
                 int count = 0;
@@ -392,14 +419,20 @@ class ComponentSelector extends JTree {
 
     public boolean hasSelectedItems() {
         TreePath[] sel = getSelectionPaths();
-        if (sel == null || sel.length == 0) return false;
+        if (sel == null || sel.length == 0) {
+            return false;
+        }
+
 
         for (int i = 0; i < sel.length; i++) {
             Object last = sel[i].getLastPathComponent();
             if (last instanceof OptionNode) {
                 return true;
             } else if (last instanceof ComponentNode) {
-                if (((ComponentNode) last).opts == null) return true;
+                if (((ComponentNode) last).opts == null) {
+                    return true;
+                }
+
             }
         }
         return false;

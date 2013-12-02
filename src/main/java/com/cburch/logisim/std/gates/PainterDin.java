@@ -119,7 +119,10 @@ class PainterDin {
             int yCurveStart = height / 2 - r;
             for (int i = 0; i < inputs; i++) {
                 int y = OrGate.FACTORY.getInputOffset(attrs, i).getY();
-                if (y < 0) y = -y;
+                if (y < 0) {
+                    y = -y;
+                }
+
                 if (y <= yCurveStart) {
                     lens[i] = r;
                 } else {

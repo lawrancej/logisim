@@ -212,7 +212,10 @@ public class ShiftRegister extends InstanceFactory {
         // draw input and output ports
         int ports = painter.getInstance().getPorts().size();
         for (int i = 0; i < ports; i++) {
-            if (i != CK) painter.drawPort(i);
+            if (i != CK) {
+                painter.drawPort(i);
+            }
+
         }
         painter.drawClock(CK, Direction.EAST);
     }

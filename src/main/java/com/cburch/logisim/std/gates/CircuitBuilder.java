@@ -40,8 +40,14 @@ public class CircuitBuilder {
             Expression expr = model.getOutputExpressions().getExpression(output);
             CircuitDetermination det = CircuitDetermination.create(expr);
             if (det != null) {
-                if (twoInputs) det.convertToTwoInputs();
-                if (useNands) det.convertToNands();
+                if (twoInputs) {
+                    det.convertToTwoInputs();
+                }
+
+                if (useNands) {
+                    det.convertToNands();
+                }
+
                 det.repair();
                 layouts[i] = layoutGates(det);
                 maxWidth = Math.max(maxWidth, layouts[i].width);
@@ -64,7 +70,10 @@ public class CircuitBuilder {
                 height = 40;
             } else {
                 int dy = 0;
-                if (layout.outputY < 20) dy = 20 - layout.outputY;
+                if (layout.outputY < 20) {
+                    dy = 20 - layout.outputY;
+                }
+
                 height = Math.max(dy + layout.height, 40);
                 output = Location.create(outputX, y + dy + layout.outputY);
                 placeComponents(result, layouts[i], x, y + dy, inputData, output);
@@ -157,7 +166,10 @@ public class CircuitBuilder {
                 // determine layout's width
                 Bounds bds = factory.getOffsetBounds(attrs);
                 int betweenWidth = 40;
-                if (sub[0].width == 0) betweenWidth = 0;
+                if (sub[0].width == 0) {
+                    betweenWidth = 0;
+                }
+
                 int width = sub[0].width + betweenWidth + bds.getWidth();
 
                 // determine outputY and layout's height.
@@ -173,7 +185,10 @@ public class CircuitBuilder {
                     outputY += dy;
                 }
                 int minHeight = outputY + bds.getY() + bds.getHeight();
-                if (minHeight > height) height = minHeight;
+                if (minHeight > height) {
+                    height = minHeight;
+                }
+
 
                 // ok; create and return the layout.
                 return new Layout(width, height, outputY, factory, attrs,
@@ -214,8 +229,14 @@ public class CircuitBuilder {
         // determine layout's width
         Bounds bds = factory.getOffsetBounds(attrs);
         int betweenWidth = 40 + 10 * (sub.length / 2 - 1);
-        if (sub.length == 1) betweenWidth = 20;
-        if (subWidth == 0) betweenWidth = 0;
+        if (sub.length == 1) {
+            betweenWidth = 20;
+        }
+
+        if (subWidth == 0) {
+            betweenWidth = 0;
+        }
+
         int width = subWidth + betweenWidth + bds.getWidth();
 
         // determine outputY and layout's height.
@@ -243,7 +264,10 @@ public class CircuitBuilder {
             outputY += dy;
         }
         int minHeight = outputY + bds.getY() + bds.getHeight();
-        if (minHeight > height) height = minHeight;
+        if (minHeight > height) {
+            height = minHeight;
+        }
+
 
         // ok; create and return the layout.
         return new Layout(width, height, outputY, factory, attrs,

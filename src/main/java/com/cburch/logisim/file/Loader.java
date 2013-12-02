@@ -131,7 +131,10 @@ public class Loader implements LibraryLoader {
     public LogisimFile openLogisimFile(File file) throws LoadFailedException {
         try {
             LogisimFile ret = loadLogisimFile(file);
-            if (ret != null) setMainFile(file);
+            if (ret != null) {
+                setMainFile(file);
+            }
+
             showMessages(ret);
             return ret;
         } catch (LoaderException e) {
@@ -196,8 +199,14 @@ public class Loader implements LibraryLoader {
             setMainFile(dest);
             LibraryManager.instance.fileSaved(this, dest, oldFile, file);
         } catch (IOException e) {
-            if (backupCreated) recoverBackup(backup, dest);
-            if (dest.exists() && dest.length() == 0) dest.delete();
+            if (backupCreated) {
+                recoverBackup(backup, dest);
+            }
+
+            if (dest.exists() && dest.length() == 0) {
+                dest.delete();
+            }
+
             JOptionPane.showMessageDialog(parent,
                 _("fileSaveError",
                     e.toString()),
@@ -209,8 +218,14 @@ public class Loader implements LibraryLoader {
                 try {
                     fwrite.close();
                 } catch (IOException e) {
-                    if (backupCreated) recoverBackup(backup, dest);
-                    if (dest.exists() && dest.length() == 0) dest.delete();
+                    if (backupCreated) {
+                        recoverBackup(backup, dest);
+                    }
+
+                    if (dest.exists() && dest.length() == 0) {
+                        dest.delete();
+                    }
+
                     JOptionPane.showMessageDialog(parent,
                         _("fileSaveCloseError",
                             e.toString()),
@@ -249,14 +264,20 @@ public class Loader implements LibraryLoader {
         for (int i = 1; i <= 20; i++) {
             String ext = i == 1 ? ".bak" : (".bak" + i);
             File candidate = new File(dir, name + ext);
-            if (!candidate.exists()) return candidate;
+            if (!candidate.exists()) {
+                return candidate;
+            }
+
         }
         return null;
     }
 
     private static void recoverBackup(File backup, File dest) {
         if (backup != null && backup.exists()) {
-            if (dest.exists()) dest.delete();
+            if (dest.exists()) {
+                dest.delete();
+            }
+
             backup.renameTo(dest);
         }
     }
@@ -384,7 +405,10 @@ public class Loader implements LibraryLoader {
     }
 
     private void showMessages(LogisimFile source) {
-        if (source == null) return;
+        if (source == null) {
+            return;
+        }
+
         String message = source.getMessage();
         while (message != null) {
             JOptionPane.showMessageDialog(parent,
@@ -402,7 +426,10 @@ public class Loader implements LibraryLoader {
         File file = new File(name);
         if (!file.isAbsolute()) {
             File currentDirectory = getCurrentDirectory();
-            if (currentDirectory != null) file = new File(currentDirectory, name);
+            if (currentDirectory != null) {
+                file = new File(currentDirectory, name);
+            }
+
         }
         while (!file.canRead()) {
             // It doesn't exist. Figure it out from the user.

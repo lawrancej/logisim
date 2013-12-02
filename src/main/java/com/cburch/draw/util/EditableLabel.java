@@ -176,7 +176,10 @@ public class EditableLabel implements Cloneable {
                 return true;
             } else {
                 int i = Arrays.binarySearch(xs, qx - x0);
-                if (i < 0) i = -(i + 1);
+                if (i < 0) {
+                    i = -(i + 1);
+                }
+
                 if (i >= xs.length) {
                     return false;
                 } else {
@@ -281,10 +284,22 @@ public class EditableLabel implements Cloneable {
             Rectangle2D rect = lay.getBounds();
             int asc = (int) Math.ceil(-rect.getMinY());
             int desc = (int) Math.ceil(rect.getMaxY());
-            if (asc < 0) asc = 0;
-            if (asc > 0xFFFF) asc = 0xFFFF;
-            if (desc < 0) desc = 0;
-            if (desc > 0xFFFF) desc = 0xFFFF;
+            if (asc < 0) {
+                asc = 0;
+            }
+
+            if (asc > 0xFFFF) {
+                asc = 0xFFFF;
+            }
+
+            if (desc < 0) {
+                desc = 0;
+            }
+
+            if (desc > 0xFFFF) {
+                desc = 0xFFFF;
+            }
+
             ys[i] = (asc << 16) | desc;
         }
         charX = xs;

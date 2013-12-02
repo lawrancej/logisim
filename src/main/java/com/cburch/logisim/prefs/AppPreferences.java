@@ -294,7 +294,10 @@ public class AppPreferences {
 
     public static void setTemplateFile(File value, Template template) {
         getPrefs();
-        if (value != null && !value.canRead()) value = null;
+        if (value != null && !value.canRead()) {
+            value = null;
+        }
+
         if (value == null ? templateFile != null : !value.equals(templateFile)) {
             try {
                 customTemplateFile = template == null ? null : value;
@@ -334,7 +337,10 @@ public class AppPreferences {
     }
 
     public static Template getEmptyTemplate() {
-        if (emptyTemplate == null) emptyTemplate = Template.createEmpty();
+        if (emptyTemplate == null) {
+            emptyTemplate = Template.createEmpty();
+        }
+
         return emptyTemplate;
     }
 
@@ -421,7 +427,10 @@ public class AppPreferences {
         private static Locale findLocale(String lang) {
             Locale[] check;
             for (int set = 0; set < 2; set++) {
-                if (set == 0) check = new Locale[] { Locale.getDefault(), Locale.ENGLISH };
+                if (set == 0) {
+                    check = new Locale[] { Locale.getDefault(), Locale.ENGLISH };
+                }
+
                 else check = Locale.getAvailableLocales();
                 for (int i = 0; i < check.length; i++) {
                     Locale loc = check[i];
