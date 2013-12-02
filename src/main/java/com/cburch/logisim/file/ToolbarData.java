@@ -40,7 +40,7 @@ public class ToolbarData {
     public void removeToolbarListener(ToolbarListener l) {
         listeners.remove(l);
     }
-    
+
     public void addToolAttributeListener(AttributeListener l) {
         for (Tool tool : contents) {
             if (tool != null) {
@@ -50,7 +50,7 @@ public class ToolbarData {
         }
         toolListeners.add(l);
     }
-    
+
     public void removeToolAttributeListener(AttributeListener l) {
         for (Tool tool : contents) {
             if (tool != null) {
@@ -94,11 +94,11 @@ public class ToolbarData {
         }
         return null;
     }
-    
+
     public int size() {
         return contents.size();
     }
-    
+
     public Object get(int index) {
         return contents.get(index);
     }

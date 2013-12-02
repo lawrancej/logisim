@@ -36,7 +36,7 @@ class ToolboxManip implements ProjectExplorerListener {
     private class MyListener
             implements ProjectListener, LibraryListener, AttributeListener {
         private LogisimFile curFile = null;
-        
+
         @Override
         public void projectChanged(ProjectEvent event) {
             int action = event.getAction();
@@ -46,7 +46,7 @@ class ToolboxManip implements ProjectExplorerListener {
                 explorer.repaint();
             }
         }
-        
+
         private void setFile(LogisimFile oldFile, LogisimFile newFile) {
             if (oldFile != null) {
                 removeLibrary(oldFile);
@@ -85,7 +85,7 @@ class ToolboxManip implements ProjectExplorerListener {
             }
             explorer.repaint();
         }
-        
+
         private void addLibrary(Library lib) {
             if (lib instanceof LibraryEventSource) {
                 ((LibraryEventSource) lib).addLibraryListener(this);
@@ -95,7 +95,7 @@ class ToolboxManip implements ProjectExplorerListener {
                 if (attrs != null) attrs.addAttributeListener(this);
             }
         }
-        
+
         private void removeLibrary(Library lib) {
             if (lib instanceof LibraryEventSource) {
                 ((LibraryEventSource) lib).removeLibraryListener(this);
@@ -114,14 +114,14 @@ class ToolboxManip implements ProjectExplorerListener {
         public void attributeValueChanged(AttributeEvent e) {
             explorer.repaint();
         }
-        
+
     }
-    
+
     private Project proj;
     private ProjectExplorer explorer;
     private MyListener myListener = new MyListener();
     private Tool lastSelected = null;
-    
+
     ToolboxManip(Project proj, ProjectExplorer explorer) {
         this.proj = proj;
         this.explorer = explorer;
@@ -147,7 +147,7 @@ class ToolboxManip implements ProjectExplorerListener {
                     }
                 }
             }
-            
+
             lastSelected = proj.getTool();
             proj.setTool(tool);
             proj.getFrame().viewAttributes(tool);
@@ -171,7 +171,7 @@ class ToolboxManip implements ProjectExplorerListener {
             }
         }
     }
-    
+
     @Override
     public void moveRequested(ProjectExplorerEvent event, AddTool dragged, AddTool target) {
         LogisimFile file = proj.getLogisimFile();
@@ -180,7 +180,7 @@ class ToolboxManip implements ProjectExplorerListener {
         if (targetIndex > draggedIndex) targetIndex++;
         proj.doAction(LogisimFileActions.moveCircuit(dragged, targetIndex));
     }
-    
+
     @Override
     public void deleteRequested(ProjectExplorerEvent event) {
         Object request = event.getTarget();

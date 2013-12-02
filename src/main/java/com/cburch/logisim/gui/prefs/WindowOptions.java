@@ -16,7 +16,7 @@ class WindowOptions extends OptionsPanel {
 
     public WindowOptions(PreferencesFrame window) {
         super(window);
-        
+
         checks = new PrefBoolean[] {
                 new PrefBoolean(AppPreferences.SHOW_TICK_RATE,
                         __("windowTickRate")),
@@ -37,7 +37,7 @@ class WindowOptions extends OptionsPanel {
                             __("windowToolbarDownMiddle")),
                     new PrefOption(AppPreferences.TOOLBAR_HIDDEN,
                             __("windowToolbarHidden")) });
-        
+
         JPanel panel = new JPanel(new TableLayout(2));
         panel.add(toolbarPlacement.getJLabel());
         panel.add(toolbarPlacement.getJComboBox());
@@ -58,7 +58,7 @@ class WindowOptions extends OptionsPanel {
     public String getHelpText() {
         return _("windowHelp");
     }
-    
+
     @Override
     public void localeChanged() {
         for (int i = 0; i < checks.length; i++) {

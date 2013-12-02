@@ -24,7 +24,7 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
     private static final Icon toolIcon = Icons.getIcon("subcirc.svg");
 
     private AttributeSet defaultSet;
-    
+
     protected AbstractComponentFactory() {
         defaultSet = null;
     }
@@ -47,7 +47,7 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
     public AttributeSet createAttributeSet() {
         return AttributeSets.EMPTY;
     }
-    
+
     @Override
     public boolean isAllDefaultValues(AttributeSet attrs, LogisimVersion ver) {
         return false;
@@ -95,7 +95,7 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
             }
         }
     }
-    
+
     @Override
     public Object getFeature(Object key, AttributeSet attrs) {
         return null;

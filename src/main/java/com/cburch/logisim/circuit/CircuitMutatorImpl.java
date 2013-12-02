@@ -17,13 +17,13 @@ class CircuitMutatorImpl implements CircuitMutator {
     private ArrayList<CircuitChange> log;
     private HashMap<Circuit,ReplacementMap> replacements;
     private HashSet<Circuit> modified;
-    
+
     public CircuitMutatorImpl() {
         log = new ArrayList<CircuitChange>();
         replacements = new HashMap<Circuit,ReplacementMap>();
         modified = new HashSet<Circuit>();
     }
-    
+
     @Override
     public void clear(Circuit circuit) {
         HashSet<Component> comps = new HashSet<Component>(circuit.getNonWires());
@@ -34,50 +34,50 @@ class CircuitMutatorImpl implements CircuitMutator {
         ReplacementMap repl = new ReplacementMap();
         for (Component comp : comps) repl.remove(comp);
         getMap(circuit).append(repl);
-        
+
         circuit.mutatorClear();
     }
-    
+
     @Override
     public void add(Circuit circuit, Component comp) {
         modified.add(circuit);
         log.add(CircuitChange.add(circuit, comp));
-        
+
         ReplacementMap repl = new ReplacementMap();
         repl.add(comp);
         getMap(circuit).append(repl);
-        
+
         circuit.mutatorAdd(comp);
     }
-    
+
     @Override
     public void remove(Circuit circuit, Component comp) {
         if (circuit.contains(comp)) {
             modified.add(circuit);
             log.add(CircuitChange.remove(circuit, comp));
-    
+
             ReplacementMap repl = new ReplacementMap();
             repl.remove(comp);
             getMap(circuit).append(repl);
-            
+
             circuit.mutatorRemove(comp);
         }
     }
-    
+
     @Override
     public void replace(Circuit circuit, Component prev, Component next) {
         replace(circuit, new ReplacementMap(prev, next));
     }
-    
+
     @Override
     public void replace(Circuit circuit, ReplacementMap repl) {
         if (!repl.isEmpty()) {
             modified.add(circuit);
             log.add(CircuitChange.replace(circuit, repl));
-    
+
             repl.freeze();
             getMap(circuit).append(repl);
-    
+
             for (Component c : repl.getRemovals()) {
                 circuit.mutatorRemove(c);
             }
@@ -86,7 +86,7 @@ class CircuitMutatorImpl implements CircuitMutator {
             }
         }
     }
-    
+
     @Override
     public void set(Circuit circuit, Component comp, Attribute<?> attr,
             Object newValue) {
@@ -100,7 +100,7 @@ class CircuitMutatorImpl implements CircuitMutator {
             attrs.setValue(a, newValue);
         }
     }
-    
+
     @Override
     public void setForCircuit(Circuit circuit, Attribute<?> attr,
             Object newValue) {
@@ -111,7 +111,7 @@ class CircuitMutatorImpl implements CircuitMutator {
         log.add(CircuitChange.setForCircuit(circuit, attr, oldValue, newValue));
         attrs.setValue(a, newValue);
     }
-    
+
     private ReplacementMap getMap(Circuit circuit) {
         ReplacementMap ret = replacements.get(circuit);
         if (ret == null) {
@@ -120,7 +120,7 @@ class CircuitMutatorImpl implements CircuitMutator {
         }
         return ret;
     }
-    
+
     CircuitTransaction getReverseTransaction() {
         CircuitMutation ret = new CircuitMutation();
         ArrayList<CircuitChange> log = this.log;
@@ -129,15 +129,15 @@ class CircuitMutatorImpl implements CircuitMutator {
         }
         return ret;
     }
-    
+
     ReplacementMap getReplacementMap(Circuit circuit) {
         return replacements.get(circuit);
     }
-    
+
     void markModified(Circuit circuit) {
         modified.add(circuit);
     }
-    
+
     Collection<Circuit> getModifiedCircuits() {
         return Collections.unmodifiableSet(modified);
     }

@@ -23,28 +23,28 @@ abstract class RectangularTool extends AbstractTool {
     private int lastMouseX;
     private int lastMouseY;
     private Bounds currentBounds;
-    
+
     public RectangularTool() {
         active = false;
         currentBounds = Bounds.EMPTY_BOUNDS;
     }
-    
+
     public abstract CanvasObject createShape(int x, int y, int w, int h);
     public abstract void drawShape(Graphics g, int x, int y, int w, int h);
     public abstract void fillShape(Graphics g, int x, int y, int w, int h);
-    
+
     @Override
     public Cursor getCursor(Canvas canvas) {
         return Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
     }
-    
+
     @Override
     public void toolDeselected(Canvas canvas) {
         Bounds bds = currentBounds;
         active = false;
         repaintArea(canvas, bds);
     }
-    
+
     @Override
     public void mousePressed(Canvas canvas, MouseEvent e) {
         Location loc = Location.create(e.getX(), e.getY());
@@ -55,12 +55,12 @@ abstract class RectangularTool extends AbstractTool {
         active = canvas.getModel() != null;
         repaintArea(canvas, bds);
     }
-    
+
     @Override
     public void mouseDragged(Canvas canvas, MouseEvent e) {
         updateMouse(canvas, e.getX(), e.getY(), e.getModifiersEx());
     }
-    
+
     @Override
     public void mouseReleased(Canvas canvas, MouseEvent e) {
         if (active) {
@@ -79,7 +79,7 @@ abstract class RectangularTool extends AbstractTool {
             canvas.toolGestureComplete(this, add);
         }
     }
-    
+
     @Override
     public void keyPressed(Canvas canvas, KeyEvent e) {
         int code = e.getKeyCode();
@@ -88,12 +88,12 @@ abstract class RectangularTool extends AbstractTool {
             updateMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
         }
     }
-    
+
     @Override
     public void keyReleased(Canvas canvas, KeyEvent e) {
         keyPressed(canvas, e);
     }
-    
+
     private void updateMouse(Canvas canvas, int mx, int my, int mods) {
         Bounds oldBounds = currentBounds;
         Bounds bds = computeBounds(canvas, mx, my, mods);
@@ -102,7 +102,7 @@ abstract class RectangularTool extends AbstractTool {
             repaintArea(canvas, oldBounds.add(bds));
         }
     }
-    
+
     private Bounds computeBounds(Canvas canvas, int mx, int my, int mods) {
         lastMouseX = mx;
         lastMouseY = my;
@@ -125,7 +125,7 @@ abstract class RectangularTool extends AbstractTool {
                 x1 = canvas.snapX(x1);
                 y1 = canvas.snapY(y1);
             }
-            
+
             boolean altDown = (mods & InputEvent.ALT_DOWN_MASK) != 0;
             boolean shiftDown = (mods & InputEvent.SHIFT_DOWN_MASK) != 0;
             if (altDown) {
@@ -146,7 +146,7 @@ abstract class RectangularTool extends AbstractTool {
                     x1 = x1 < x0 ? x0 - r : x0 + r;
                 }
             }
-            
+
             int x = x0;
             int y = y0;
             int w = x1 - x0;
@@ -171,7 +171,7 @@ abstract class RectangularTool extends AbstractTool {
                 bds.getWidth() + 20, bds.getHeight() + 20);
          */
     }
-    
+
     @Override
     public void draw(Canvas canvas, Graphics g) {
         Bounds bds = currentBounds;

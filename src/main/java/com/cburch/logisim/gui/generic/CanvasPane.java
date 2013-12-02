@@ -59,7 +59,7 @@ public class CanvasPane extends JScrollPane {
     private CanvasPaneContents contents;
     private Listener listener;
     private ZoomModel zoomModel;
-    
+
     public CanvasPane(CanvasPaneContents contents) {
         super((Component) contents);
         this.contents = contents;
@@ -73,7 +73,7 @@ public class CanvasPane extends JScrollPane {
         addComponentListener(listener);
         contents.setCanvasPane(this);
     }
-    
+
     public void setZoomModel(ZoomModel model) {
         ZoomModel oldModel = zoomModel;
         if (oldModel != null) {
@@ -84,12 +84,12 @@ public class CanvasPane extends JScrollPane {
             model.addPropertyChangeListener(ZoomModel.ZOOM, listener);
         }
     }
-    
+
     public double getZoomFactor() {
         ZoomModel model = zoomModel;
         return model == null ? 1.0 : model.getZoomFactor();
     }
-    
+
     public Dimension getViewportSize() {
         Dimension size = new Dimension();
         getViewport().getSize(size);
@@ -112,7 +112,7 @@ public class CanvasPane extends JScrollPane {
         double zoom = getZoomFactor();
         return (int) Math.round(10 * zoom);
     }
-    
+
     public Dimension supportPreferredSize(int width, int height) {
         double zoom = getZoomFactor();
         if (zoom != 1.0) {

@@ -19,7 +19,7 @@ class Measures {
     private int cols;
     private int baseX;
     private boolean guessed;
-    
+
     public Measures(HexEditor hex) {
         this.hex = hex;
         this.guessed = true;
@@ -28,10 +28,10 @@ class Measures {
         this.cellHeight = -1;
         this.cellChars = 2;
         this.headerChars = 4;
-        
+
         computeCellSize(null);
     }
-    
+
     public int getColumnCount() { return cols; }
     public int getBaseX() { return baseX; }
     public int getCellHeight() { return cellHeight; }
@@ -39,15 +39,15 @@ class Measures {
     public int getLabelWidth() { return headerWidth; }
     public int getLabelChars() { return headerChars; }
     public int getCellChars() { return cellChars; }
-    
+
     public int getValuesX() {
         return baseX + spacerWidth;
     }
-    
+
     public int getValuesWidth() {
         return ((cols - 1) / 4) * spacerWidth + cols * cellWidth;
     }
-    
+
     public long getBaseAddress(HexModel model) {
         if (model == null) {
             return 0;
@@ -62,7 +62,7 @@ class Measures {
         long ret = row * cellHeight;
         return ret < Integer.MAX_VALUE ? (int) ret : Integer.MAX_VALUE;
     }
-    
+
     public int toX(long addr) {
         int col = (int) (addr % cols);
         return baseX + (1 + (col / 4)) * spacerWidth + col * cellWidth;
@@ -78,13 +78,13 @@ class Measures {
         int offs = (x - baseX) / (cellWidth + (spacerWidth + 2) / 4);
         if (offs < 0) offs = 0;
         if (offs >= cols) offs = cols - 1;
-        
+
         long ret = base + offs;
         if (ret > addr1) ret = addr1;
         if (ret < addr0) ret = addr0;
         return ret;
     }
-    
+
     void ensureComputed(Graphics g) {
         if (guessed || cellWidth < 0) computeCellSize(g);
     }
@@ -92,7 +92,7 @@ class Measures {
     void recompute() {
         computeCellSize(hex.getGraphics());
     }
-    
+
     void widthChanged() {
         int oldCols = cols;
         int width;
@@ -115,10 +115,10 @@ class Measures {
         }
         if (cols != oldCols) recompute();
     }
-    
+
     private void computeCellSize(Graphics g) {
         HexModel model = hex.getModel();
-        
+
         // compute number of characters in headers and cells
         if (model == null) {
             headerChars = 4;
@@ -185,7 +185,7 @@ class Measures {
             hex.setPreferredSize(pref);
             hex.revalidate();
         }
-        
+
         widthChanged();
     }
 }

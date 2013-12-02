@@ -20,21 +20,21 @@ public class Implicant implements Comparable<Implicant> {
             implements Iterable<Implicant>, Iterator<Implicant> {
         Implicant source;
         int currentMask = 0;
-        
+
         TermIterator(Implicant source) {
             this.source = source;
         }
-        
+
         @Override
         public Iterator<Implicant> iterator() {
             return this;
         }
-        
+
         @Override
         public boolean hasNext() {
             return currentMask >= 0;
         }
-        
+
         @Override
         public Implicant next() {
             int ret = currentMask | source.values;
@@ -47,26 +47,26 @@ public class Implicant implements Comparable<Implicant> {
             }
             return new Implicant(0, ret);
         }
-        
+
         @Override
         public void remove() { }
     }
-    
+
     private int unknowns;
     private int values;
-    
+
     private Implicant(int unknowns, int values) {
         this.unknowns = unknowns;
         this.values = values;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (!(other instanceof Implicant)) return false;
         Implicant o = (Implicant) other;
         return this.unknowns == o.unknowns && this.values == o.values;
     }
-    
+
     @Override
     public int compareTo(Implicant o) {
         if (this.values < o.values) return -1;
@@ -75,12 +75,12 @@ public class Implicant implements Comparable<Implicant> {
         if (this.unknowns > o.unknowns) return  1;
         return 0;
     }
-    
+
     @Override
     public int hashCode() {
         return (unknowns << 16) | values;
     }
-    
+
     public int getUnknownCount() {
         int ret = 0;
         int n = unknowns;
@@ -90,16 +90,16 @@ public class Implicant implements Comparable<Implicant> {
         }
         return ret;
     }
-    
+
     public Iterable<Implicant> getTerms() {
         return new TermIterator(this);
     }
-    
+
     public int getRow() {
         if (unknowns != 0) return -1;
         return values;
     }
-    
+
     private Expression toProduct(TruthTable source) {
         Expression term = null;
         int cols = source.getInputColumnCount();
@@ -112,7 +112,7 @@ public class Implicant implements Comparable<Implicant> {
         }
         return term == null ? Expressions.constant(1) : term;
     }
-    
+
     private Expression toSum(TruthTable source) {
         Expression term = null;
         int cols = source.getInputColumnCount();
@@ -125,7 +125,7 @@ public class Implicant implements Comparable<Implicant> {
         }
         return term == null ? Expressions.constant(1) : term;
     }
-    
+
     static Expression toExpression(int format, AnalyzerModel model, List<Implicant> implicants) {
         if (implicants == null) return null;
         TruthTable table = model.getTruthTable();
@@ -143,13 +143,13 @@ public class Implicant implements Comparable<Implicant> {
             return sum == null ? Expressions.constant(0) : sum;
         }
     }
-    
+
     static List<Implicant> computeMinimal(int format, AnalyzerModel model,
             String variable) {
         TruthTable table = model.getTruthTable();
         int column = model.getOutputs().indexOf(variable);
         if (column < 0) return Collections.emptyList();
-        
+
         Entry desired = format == AnalyzerModel.FORMAT_SUM_OF_PRODUCTS
             ? Entry.ONE : Entry.ZERO;
         Entry undesired = desired == Entry.ONE ? Entry.ZERO : Entry.ONE;
@@ -174,7 +174,7 @@ public class Implicant implements Comparable<Implicant> {
             }
         }
         if (!knownFound) return null;
-        
+
         // work up to more general implicants, discovering
         // any prime implicants.
         HashSet<Implicant> primes = new HashSet<Implicant>();
@@ -205,17 +205,17 @@ public class Implicant implements Comparable<Implicant> {
                     }
                 }
             }
-            
+
             for (Map.Entry<Implicant,Entry> curEntry : current.entrySet()) {
                 Implicant det = curEntry.getKey();
                 if (!toRemove.contains(det) && curEntry.getValue() == desired) {
                     primes.add(det);
                 }
             }
-            
+
             current = next;
         }
-        
+
         // we won't have more than one implicant left, but it
         // is probably prime.
         for (Map.Entry<Implicant,Entry> curEntry : current.entrySet()) {
@@ -224,7 +224,7 @@ public class Implicant implements Comparable<Implicant> {
                 primes.add(imp);
             }
         }
-        
+
         // determine the essential prime implicants
         HashSet<Implicant> retSet = new HashSet<Implicant>();
         HashSet<Implicant> covered = new HashSet<Implicant>();
@@ -247,7 +247,7 @@ public class Implicant implements Comparable<Implicant> {
             }
         }
         toCover.removeAll(covered);
-        
+
         // This is an unusual case, but it's possible that the
         // essential prime implicants don't cover everything.
         // In that case, greedily pick out prime implicants
@@ -277,7 +277,7 @@ public class Implicant implements Comparable<Implicant> {
                     }
                 }
             }
-            
+
             // add it to our choice, and remove the covered rows
             if (max != null) {
                 retSet.add(max);

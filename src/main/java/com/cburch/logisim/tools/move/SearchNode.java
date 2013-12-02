@@ -9,21 +9,21 @@ import com.cburch.logisim.data.Location;
 class SearchNode implements Comparable<SearchNode> {
     private static final int CROSSING_PENALTY = 20;
     private static final int TURN_PENALTY = 50;
-    
+
     private final Location loc;
     private final Direction dir;
     private ConnectionData conn;
-    private final Location dest; 
+    private final Location dest;
     private int dist;
     private int heur;
     private boolean extendsWire;
     private SearchNode prev;
-    
+
     public SearchNode(ConnectionData conn, Location src,
             Direction srcDir, Location dst) {
         this(src, srcDir, conn, dst, 0, srcDir != null, null);
     }
-    
+
     private SearchNode(Location loc, Direction dir,
             ConnectionData conn, Location dest, int dist, boolean extendsWire,
             SearchNode prev) {
@@ -36,7 +36,7 @@ class SearchNode implements Comparable<SearchNode> {
         this.extendsWire = extendsWire;
         this.prev = prev;
     }
-    
+
     private int getHeuristic() {
         Location cur = loc;
         Location dst = dest;
@@ -78,7 +78,7 @@ class SearchNode implements Comparable<SearchNode> {
         }
         return ret;
     }
-    
+
     public SearchNode next(Direction moveDir, boolean crossing) {
         int newDist = dist;
         Direction connDir = conn.getDirection();
@@ -98,47 +98,47 @@ class SearchNode implements Comparable<SearchNode> {
                     newDist, exWire, this);
         }
     }
-    
+
     public boolean isStart() {
         return prev == null;
     }
-    
+
     public boolean isDestination() {
         return dest.equals(loc);
     }
-    
+
     public SearchNode getPrevious() {
         return prev;
     }
-    
+
     public int getDistance() {
         return dist;
     }
-    
+
     public Location getLocation() {
         return loc;
     }
-    
+
     public Direction getDirection() {
         return dir;
     }
-    
+
     public int getHeuristicValue() {
         return heur;
     }
-    
+
     public Location getDestination() {
         return dest;
     }
-    
+
     public boolean isExtendingWire() {
         return extendsWire;
     }
-    
+
     public ConnectionData getConnection() {
         return conn;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (other instanceof SearchNode) {
@@ -150,24 +150,24 @@ class SearchNode implements Comparable<SearchNode> {
             return false;
         }
     }
-    
+
     @Override
     public int hashCode() {
         int dirHash = dir == null ? 0 : dir.hashCode();
         return ((loc.hashCode() * 31) + dirHash) * 31 + dest.hashCode();
     }
-    
+
     @Override
     public int compareTo(SearchNode o) {
         int ret = this.heur - o.heur;
-        
+
         if (ret == 0) {
-            return this.hashCode() - o.hashCode(); 
+            return this.hashCode() - o.hashCode();
         } else {
             return ret;
         }
     }
-    
+
     @Override
     public String toString() {
         return loc + "/" + (dir == null ? "null" : dir.toString())

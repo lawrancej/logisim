@@ -35,7 +35,7 @@ class MenuFile extends Menu implements ActionListener {
     public MenuFile(LogisimMenuBar menubar) {
         this.menubar = menubar;
         openRecent = new OpenRecent(menubar);
-        
+
         int menuMask = getToolkit().getMenuShortcutKeyMask();
 
         newi.setAccelerator(KeyStroke.getKeyStroke(
@@ -109,7 +109,7 @@ class MenuFile extends Menu implements ActionListener {
         setEnabled(true);
         menubar.fireEnableChanged();
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();

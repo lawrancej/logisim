@@ -65,7 +65,7 @@ public class ModelReorderAction extends ModelAction {
             return new ModelReorderAction(model, reqs);
         }
     }
-    
+
     public static ModelReorderAction createRaiseTop(CanvasModel model,
             Collection<? extends CanvasObject> objects) {
         List<ReorderRequest> reqs = new ArrayList<ReorderRequest>();
@@ -84,7 +84,7 @@ public class ModelReorderAction extends ModelAction {
             return new ModelReorderAction(model, reqs);
         }
     }
-    
+
     public static ModelReorderAction createLowerBottom(CanvasModel model,
             Collection<? extends CanvasObject> objects) {
         List<ReorderRequest> reqs = new ArrayList<ReorderRequest>();
@@ -103,7 +103,7 @@ public class ModelReorderAction extends ModelAction {
             return new ModelReorderAction(model, reqs);
         }
     }
-    
+
     private static void repairRequests(List<ReorderRequest> reqs) {
         for (int i = 0, n = reqs.size(); i < n; i++) {
             ReorderRequest req = reqs.get(i);
@@ -135,11 +135,11 @@ public class ModelReorderAction extends ModelAction {
             }
         }
     }
-    
+
     private ArrayList<ReorderRequest> requests;
     private ArrayList<CanvasObject> objects;
     private int type;
-    
+
     public ModelReorderAction(CanvasModel model, List<ReorderRequest> requests) {
         super(model);
         this.requests = new ArrayList<ReorderRequest>(requests);
@@ -153,7 +153,7 @@ public class ModelReorderAction extends ModelAction {
             int from = r.getFromIndex();
             int to = r.getToIndex();
             if (to < from) {
-                thisType = -1; 
+                thisType = -1;
             } else if (to > from) {
                 thisType = 1;
             } else {
@@ -168,11 +168,11 @@ public class ModelReorderAction extends ModelAction {
         }
         this.type = type;
     }
-    
+
     public List<ReorderRequest> getReorderRequests() {
         return Collections.unmodifiableList(requests);
     }
-    
+
     @Override
     public Collection<CanvasObject> getObjects() {
         return objects;
@@ -188,12 +188,12 @@ public class ModelReorderAction extends ModelAction {
             return _("actionReorder", getShapesName(objects));
         }
     }
-    
+
     @Override
     void doSub(CanvasModel model) {
         model.reorderObjects(requests);
     }
-    
+
     @Override
     void undoSub(CanvasModel model) {
         ArrayList<ReorderRequest> inv = new ArrayList<ReorderRequest>(requests.size());

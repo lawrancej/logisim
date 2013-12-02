@@ -30,7 +30,7 @@ public class Probe extends InstanceFactory {
 
     private static class StateData implements InstanceData, Cloneable {
         Value curValue = Value.NIL;
-        
+
         @Override
         public Object clone() {
             try {
@@ -43,7 +43,7 @@ public class Probe extends InstanceFactory {
 
     public static class ProbeLogger extends InstanceLogger {
         public ProbeLogger() { }
-        
+
         @Override
         public String getLogName(InstanceState state, Object option) {
             String ret = state.getAttributeValue(StdAttr.LABEL);
@@ -73,7 +73,7 @@ public class Probe extends InstanceFactory {
         ProbeAttributes attrs = (ProbeAttributes) attrsBase;
         return getOffsetBounds(attrs.facing, attrs.width, attrs.radix);
     }
-    
+
     //
     // graphics methods
     //
@@ -88,7 +88,7 @@ public class Probe extends InstanceFactory {
     @Override
     public void paintInstance(InstancePainter painter) {
         Value value = getValue(painter);
-        
+
         Graphics g = painter.getGraphics();
         Bounds bds = painter.getBounds(); // intentionally with no graphics object - we don't want label included
         int x = bds.getX();
@@ -118,7 +118,7 @@ public class Probe extends InstanceFactory {
 
         painter.drawPorts();
     }
-    
+
     static void paintValue(InstancePainter painter, Value value) {
         Graphics g = painter.getGraphics();
         Bounds bds = painter.getBounds(); // intentionally with no graphics object - we don't want label included
@@ -162,7 +162,7 @@ public class Probe extends InstanceFactory {
                     bds.getY() + bds.getHeight() / 2);
         }
     }
-    
+
     //
     // methods for instances
     //
@@ -213,7 +213,7 @@ public class Probe extends InstanceFactory {
         StateData data = (StateData) state.getData();
         return data == null ? Value.NIL : data.curValue;
     }
-    
+
     void configureLabel(Instance instance) {
         ProbeAttributes attrs = (ProbeAttributes) instance.getAttributeSet();
         Probe.configureLabel(instance, attrs.labelloc, attrs.facing);

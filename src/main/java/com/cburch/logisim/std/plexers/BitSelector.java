@@ -43,20 +43,20 @@ public class BitSelector extends InstanceFactory {
         setIconName("bitSelector.svg");
         setFacingAttribute(StdAttr.FACING);
     }
-    
+
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
         Direction facing = attrs.getValue(StdAttr.FACING);
         Bounds base = Bounds.create(-30, -15, 30, 30);
         return base.rotate(Direction.EAST, facing, 0, 0);
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         instance.addAttributeListener();
         updatePorts(instance);
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.FACING) {
@@ -93,7 +93,7 @@ public class BitSelector extends InstanceFactory {
             inPt  = Location.create(-30, 0);
             selPt = Location.create(-10, 10);
         }
-        
+
         Port[] ps = new Port[3];
         ps[0] = new Port(0, 0, Port.OUTPUT, group.getWidth());
         ps[1] = new Port(inPt.getX(), inPt.getY(), Port.INPUT, data.getWidth());

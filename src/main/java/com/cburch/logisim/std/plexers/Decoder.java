@@ -38,7 +38,7 @@ public class Decoder extends InstanceFactory {
         setIconName("decoder.svg");
         setFacingAttribute(StdAttr.FACING);
     }
-    
+
     @Override
     public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
         if (attr == Plexers.ATTR_ENABLE) {
@@ -68,7 +68,7 @@ public class Decoder extends InstanceFactory {
         }
         return bds.rotate(Direction.EAST, facing, 0, 0);
     }
-    
+
     @Override
     public boolean contains(Location loc, AttributeSet attrs) {
         Direction facing = attrs.getValue(StdAttr.FACING).reverse();
@@ -80,7 +80,7 @@ public class Decoder extends InstanceFactory {
         instance.addAttributeListener();
         updatePorts(instance);
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.FACING || attr == Plexers.ATTR_SELECT_LOC
@@ -170,7 +170,7 @@ public class Decoder extends InstanceFactory {
         Boolean threeState = state.getAttributeValue(Plexers.ATTR_TRISTATE);
         boolean enable = state.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
         int outputs = 1 << select.getWidth();
-        
+
         // determine default output values
         Value others; // the default output
         if (threeState.booleanValue()) {
@@ -247,10 +247,10 @@ public class Decoder extends InstanceFactory {
             g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
         }
         GraphicsUtil.switchToWidth(g, 1);
-        
+
         // draw a circle indicating where the select input is located
         Multiplexer.drawSelectCircle(g, bds, painter.getInstance().getPortLocation(outputs));
-        
+
         // draw "0"
         int x0;
         int y0;
@@ -275,7 +275,7 @@ public class Decoder extends InstanceFactory {
         g.setColor(Color.GRAY);
         GraphicsUtil.drawText(g, "0", bds.getX() + x0, bds.getY() + y0,
                 halign, GraphicsUtil.V_BASELINE);
-        
+
         // draw trapezoid, "Decd", and ports
         g.setColor(Color.BLACK);
         Plexers.drawTrapezoid(g, bds, facing.reverse(), outputs == 2 ? 10 : 20);

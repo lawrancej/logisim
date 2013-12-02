@@ -7,11 +7,11 @@ import com.cburch.logisim.circuit.ReplacementMap;
 
 class ConnectorThread extends Thread {
     private static ConnectorThread INSTANCE = new ConnectorThread();
-    
+
     static {
         INSTANCE.start();
     }
-    
+
     public static void enqueueRequest(MoveRequest req, boolean priority) {
         synchronized (INSTANCE.lock) {
             if (!req.equals(INSTANCE.processingRequest)) {
@@ -21,26 +21,26 @@ class ConnectorThread extends Thread {
             }
         }
     }
-    
+
     public static boolean isOverrideRequested() {
         return INSTANCE.overrideRequest;
     }
-    
+
     private Object lock;
     private transient boolean overrideRequest;
     private MoveRequest nextRequest;
     private MoveRequest processingRequest;
-    
+
     private ConnectorThread() {
         lock = new Object();
         overrideRequest = false;
         nextRequest = null;
     }
-    
+
     public boolean isAbortRequested() {
         return overrideRequest;
     }
-    
+
     @Override
     public void run() {
         while (true) {
@@ -62,7 +62,7 @@ class ConnectorThread extends Thread {
                 overrideRequest = false;
                 processingRequest = req;
             }
-            
+
             try {
                 MoveResult result = Connector.computeWires(req);
                 if (result != null) {

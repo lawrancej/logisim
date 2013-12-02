@@ -59,7 +59,7 @@ public class DrawAttr {
         = createAttributes(new Attribute[] { FONT, ALIGNMENT, TEXT_DEFAULT_FILL });
     public static final List<Attribute<?>> ATTRS_STROKE // for line, polyline
         = createAttributes(new Attribute[] { STROKE_WIDTH, STROKE_COLOR });
-    
+
     // attribute lists for rectangle, oval, polygon
     private static final List<Attribute<?>> ATTRS_FILL_STROKE
         = createAttributes(new Attribute[] { PAINT_TYPE,
@@ -69,22 +69,22 @@ public class DrawAttr {
     private static final List<Attribute<?>> ATTRS_FILL_BOTH
         = createAttributes(new Attribute[] { PAINT_TYPE,
                 STROKE_WIDTH, STROKE_COLOR, FILL_COLOR });
-    
+
     // attribute lists for rounded rectangle
     private static final List<Attribute<?>> ATTRS_RRECT_STROKE
         = createAttributes(new Attribute[] { PAINT_TYPE,
                 STROKE_WIDTH, STROKE_COLOR, CORNER_RADIUS });
     private static final List<Attribute<?>> ATTRS_RRECT_FILL
-        = createAttributes(new Attribute[] { PAINT_TYPE, 
+        = createAttributes(new Attribute[] { PAINT_TYPE,
                 FILL_COLOR, CORNER_RADIUS });
     private static final List<Attribute<?>> ATTRS_RRECT_BOTH
         = createAttributes(new Attribute[] { PAINT_TYPE,
                 STROKE_WIDTH, STROKE_COLOR, FILL_COLOR, CORNER_RADIUS });
-    
+
     private static List<Attribute<?>> createAttributes(Attribute<?>[] values) {
         return UnmodifiableList.decorate(Arrays.asList(values));
     }
-    
+
     public static List<Attribute<?>> getFillAttributes(AttributeOption paint) {
         if (paint == PAINT_STROKE) {
             return ATTRS_FILL_STROKE;
@@ -94,7 +94,7 @@ public class DrawAttr {
             return ATTRS_FILL_BOTH;
         }
     }
-    
+
     public static List<Attribute<?>> getRoundRectAttributes(AttributeOption paint) {
         if (paint == PAINT_STROKE) {
             return ATTRS_RRECT_STROKE;

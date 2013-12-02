@@ -113,7 +113,7 @@ public class Multiplier extends InstanceFactory {
             int cOk = findUnknown(cvals);
             int cErr = findError(cvals);
             int cx = getKnown(cvals);
-            
+
             int known = Math.min(Math.min(aOk, bOk), cOk);
             int error = Math.min(Math.min(aErr, bErr), cErr);
             int ret = ax * bx + cx;
@@ -132,21 +132,21 @@ public class Multiplier extends InstanceFactory {
                     error < w ? Value.createError(width) : Value.createUnknown(width) };
         }
     }
-    
+
     private static int findUnknown(Value[] vals) {
         for (int i = 0; i < vals.length; i++) {
             if (!vals[i].isFullyDefined()) return i;
         }
         return vals.length;
     }
-    
+
     private static int findError(Value[] vals) {
         for (int i = 0; i < vals.length; i++) {
             if (vals[i].isErrorValue()) return i;
         }
         return vals.length;
     }
-    
+
     private static int getKnown(Value[] vals) {
         int ret = 0;
         for (int i = 0; i < vals.length; i++) {

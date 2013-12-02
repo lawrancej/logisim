@@ -37,7 +37,7 @@ public class DotMatrix extends InstanceFactory {
         = new AttributeOption("circle", __("ioShapeCircle"));
     static final AttributeOption SHAPE_SQUARE
         = new AttributeOption("square", __("ioShapeSquare"));
-    
+
     static final Attribute<AttributeOption> ATTR_INPUT_TYPE
         = Attributes.forOption("inputtype", __("ioMatrixInput"),
             new AttributeOption[] { INPUT_COLUMN, INPUT_ROW, INPUT_SELECT });
@@ -98,7 +98,7 @@ public class DotMatrix extends InstanceFactory {
             updatePorts(instance);
         }
     }
-    
+
     private void updatePorts(Instance instance) {
         Object input = instance.getAttributeValue(ATTR_INPUT_TYPE);
         int rows = instance.getAttributeValue(ATTR_MATRIX_ROWS).intValue();
@@ -128,12 +128,12 @@ public class DotMatrix extends InstanceFactory {
         }
         instance.setPorts(ps);
     }
-    
+
     private State getState(InstanceState state) {
         int rows = state.getAttributeValue(ATTR_MATRIX_ROWS).intValue();
         int cols = state.getAttributeValue(ATTR_MATRIX_COLS).intValue();
         long clock = state.getTickCount();
-        
+
         State data = (State) state.getData();
         if (data == null) {
             data = new State(rows, cols, clock);
@@ -151,7 +151,7 @@ public class DotMatrix extends InstanceFactory {
         int cols = state.getAttributeValue(ATTR_MATRIX_COLS).intValue();
         long clock = state.getTickCount();
         long persist = clock + state.getAttributeValue(ATTR_PERSIST).intValue();
-        
+
         State data = getState(state);
         if (type == INPUT_ROW) {
             for (int i = 0; i < rows; i++) {
@@ -192,7 +192,7 @@ public class DotMatrix extends InstanceFactory {
                     else if (val == Value.FALSE) c = offColor;
                     else c = Value.ERROR_COLOR;
                     g.setColor(c);
-                    
+
                     if (drawSquare) g.fillRect(x, y, 10, 10);
                     else g.fillOval(x + 1, y + 1, 8, 8);
                 } else {
@@ -207,19 +207,19 @@ public class DotMatrix extends InstanceFactory {
         GraphicsUtil.switchToWidth(g, 1);
         painter.drawPorts();
     }
-    
+
     private static class State implements InstanceData, Cloneable {
         private int rows;
         private int cols;
         private Value[] grid;
         private long[] persistTo;
-        
+
         public State(int rows, int cols, long curClock) {
             this.rows = -1;
             this.cols = -1;
             updateSize(rows, cols, curClock);
         }
-        
+
         @Override
         public Object clone() {
             try {
@@ -231,7 +231,7 @@ public class DotMatrix extends InstanceFactory {
                 return null;
             }
         }
-        
+
         private void updateSize(int rows, int cols, long curClock) {
             if (this.rows != rows || this.cols != cols) {
                 this.rows = rows;
@@ -243,7 +243,7 @@ public class DotMatrix extends InstanceFactory {
                 Arrays.fill(persistTo, curClock - 1);
             }
         }
-        
+
         private Value get(int row, int col, long curTick) {
             int index = row * cols + col;
             Value ret = grid[index];
@@ -252,7 +252,7 @@ public class DotMatrix extends InstanceFactory {
             }
             return ret;
         }
-        
+
         private void setRow(int index, Value rowVector, long persist) {
             int gridloc = (index + 1) * cols - 1;
             int stride = -1;
@@ -268,7 +268,7 @@ public class DotMatrix extends InstanceFactory {
                 }
             }
         }
-        
+
         private void setColumn(int index, Value colVector, long persist) {
             int gridloc = (rows - 1) * cols + index;
             int stride = -cols;
@@ -284,7 +284,7 @@ public class DotMatrix extends InstanceFactory {
                 }
             }
         }
-        
+
         private void setSelect(Value rowVector, Value colVector, long persist) {
             Value[] rowVals = rowVector.getAll();
             Value[] colVals = colVector.getAll();

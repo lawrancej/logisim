@@ -25,11 +25,11 @@ class ExpressionView extends JPanel {
     private static final int BADNESS_NOT_BREAK = 100;
     private static final int BADNESS_PER_NOT_BREAK = 30;
     private static final int BADNESS_PER_PIXEL = 1;
-    
+
     private static final int NOT_SEP = 3;
     private static final int EXTRA_LEADING = 4;
     private static final int MINIMUM_HEIGHT = 25;
-    
+
     private class MyListener implements ComponentListener {
         @Override
         public void componentResized(ComponentEvent arg0) {
@@ -51,15 +51,15 @@ class ExpressionView extends JPanel {
         @Override
         public void componentHidden(ComponentEvent arg0) { }
     }
-    
+
     private MyListener myListener = new MyListener();
     private RenderData renderData;
-    
+
     public ExpressionView() {
         addComponentListener(myListener);
         setExpression(null);
     }
-    
+
     public void setExpression(Expression expr) {
         ExpressionData exprData = new ExpressionData(expr);
         Graphics g = getGraphics();
@@ -69,33 +69,33 @@ class ExpressionView extends JPanel {
         revalidate();
         repaint();
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         if (renderData != null) {
             int x = Math.max(0, (getWidth() - renderData.prefWidth) / 2);
             int y = Math.max(0, (getHeight() - renderData.height) / 2);
             renderData.paint(g, x, y);
         }
     }
-    
+
     void localeChanged() {
         repaint();
     }
-    
+
     private static class NotData {
         int startIndex;
         int stopIndex;
         int depth;
     }
-    
+
     private static class ExpressionData {
         String text;
         final ArrayList<NotData> nots = new ArrayList<NotData>();
         int[] badness;
-    
+
         ExpressionData(Expression expr) {
             if (expr == null) {
                 text = "";
@@ -105,7 +105,7 @@ class ExpressionView extends JPanel {
                 computeBadnesses();
             }
         }
-        
+
         private void computeText(Expression expr) {
             final StringBuilder text = new StringBuilder();
             expr.visit(new ExpressionVisitor<Object>() {
@@ -115,7 +115,7 @@ class ExpressionView extends JPanel {
                 public Object visitOr(Expression a, Expression b) { return binary(a, b, Expression.OR_LEVEL, " + "); }
                 @Override
                 public Object visitXor(Expression a, Expression b) { return binary(a, b, Expression.XOR_LEVEL, " ^ "); }
-    
+
                 private Object binary(Expression a, Expression b, int level, String op) {
                     if (a.getPrecedence() < level) {
                         text.append("("); a.visit(this); text.append(")");
@@ -130,7 +130,7 @@ class ExpressionView extends JPanel {
                     }
                     return null;
                 }
-                
+
                 @Override
                 public Object visitNot(Expression a) {
                     NotData notData = new NotData();
@@ -140,13 +140,13 @@ class ExpressionView extends JPanel {
                     notData.stopIndex = text.length();
                     return null;
                 }
-                
+
                 @Override
                 public Object visitVariable(String name) {
                     text.append(name);
                     return null;
                 }
-                
+
                 @Override
                 public Object visitConstant(int value) {
                     text.append("" + Integer.toString(value, 16));
@@ -155,12 +155,12 @@ class ExpressionView extends JPanel {
             });
             this.text = text.toString();
         }
-        
+
         private void computeBadnesses() {
             badness = new int[text.length() + 1];
             badness[text.length()] = 0;
             if (text.length() == 0) return;
-            
+
             badness[0] = Integer.MAX_VALUE;
             NotData curNot = nots.isEmpty() ? null : (NotData) nots.get(0);
             int curNotIndex = 0;
@@ -186,13 +186,13 @@ class ExpressionView extends JPanel {
                 } else { // cur == '('
                     badness[i] = BADNESS_BEFORE_AND;
                 }
-                
+
                 while (curNot != null && curNot.stopIndex <= i) {
                     ++curNotIndex;
                     curNot = (curNotIndex >= nots.size() ? null
                             : (NotData) nots.get(curNotIndex));
                 }
-                
+
                 if (curNot != null && badness[i] < BADNESS_IDENT_BREAK) {
                     int depth = 0;
                     NotData nd = curNot;
@@ -206,12 +206,12 @@ class ExpressionView extends JPanel {
                         badness[i] += BADNESS_NOT_BREAK + (depth - 1) * BADNESS_PER_NOT_BREAK;
                     }
                 }
-                
+
                 prev = cur;
             }
         }
     }
-    
+
     private static class RenderData {
         ExpressionData exprData;
         int prefWidth;
@@ -220,12 +220,12 @@ class ExpressionView extends JPanel {
         String[] lineText;
         ArrayList<ArrayList<NotData>> lineNots;
         int[] lineY;
-        
+
         RenderData(ExpressionData exprData, int width, FontMetrics fm) {
             this.exprData = exprData;
             this.width = width;
             height = MINIMUM_HEIGHT;
-            
+
             if (fm == null) {
                 lineText = new String[] { exprData.text };
                 lineNots = new ArrayList<ArrayList<NotData>>();
@@ -247,7 +247,7 @@ class ExpressionView extends JPanel {
                         : fm.stringWidth(lineText[0]);
             }
         }
-        
+
         private void computeLineText(FontMetrics fm) {
             String text = exprData.text;
             int[] badness = exprData.badness;
@@ -256,7 +256,7 @@ class ExpressionView extends JPanel {
                 lineText = new String[] { text };
                 return;
             }
-            
+
             int startPos = 0;
             ArrayList<String> lines = new ArrayList<String>();
             while (startPos < text.length()) {
@@ -275,7 +275,7 @@ class ExpressionView extends JPanel {
                     String line = text.substring(startPos, stopPos);
                     lineWidth = fm.stringWidth(line);
                     if (lineWidth > width) break;
-                    
+
                     int lineBadness = badness[stopPos]
                         + (width - lineWidth) * BADNESS_PER_PIXEL;
                     if (lineBadness < bestBadness) {
@@ -289,7 +289,7 @@ class ExpressionView extends JPanel {
             }
             lineText = lines.toArray(new String[lines.size()]);
         }
-        
+
         private void computeLineNots() {
             ArrayList<NotData> allNots = exprData.nots;
             lineNots = new ArrayList<ArrayList<NotData>>();
@@ -311,7 +311,7 @@ class ExpressionView extends JPanel {
                 }
             }
         }
-        
+
         private void computeNotDepths() {
             for (ArrayList<NotData> nots : lineNots) {
                 int n = nots.size();
@@ -333,7 +333,7 @@ class ExpressionView extends JPanel {
                 }
             }
         }
-        
+
         private void computeLineY(FontMetrics fm) {
             lineY = new int[lineNots.size()];
             int curY = 0;
@@ -349,18 +349,18 @@ class ExpressionView extends JPanel {
             height = Math.max(MINIMUM_HEIGHT,
                     curY - fm.getLeading() - EXTRA_LEADING);
         }
-        
+
         public Dimension getPreferredSize() {
             return new Dimension(10, height);
         }
-        
+
         public void paint(Graphics g, int x, int y) {
             FontMetrics fm = g.getFontMetrics();
             int i = -1;
             for (String line : lineText) {
                 i++;
                 g.drawString(line, x, y + lineY[i] + fm.getAscent());
-                
+
                 ArrayList<NotData> nots = lineNots.get(i);
                 int j = -1;
                 for (NotData nd : nots) {

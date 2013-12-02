@@ -22,11 +22,11 @@ public class MoveGesture {
     private MoveRequestListener listener;
     private Circuit circuit;
     private HashSet<Component> selected;
-    
+
     private transient Set<ConnectionData> connections;
     private transient AvoidanceMap initAvoid;
     private HashMap<MoveRequest,MoveResult> cachedResults;
-    
+
     public MoveGesture(MoveRequestListener listener, Circuit circuit,
             Collection<Component> selected) {
         this.listener = listener;
@@ -36,11 +36,11 @@ public class MoveGesture {
         this.initAvoid = null;
         this.cachedResults = new HashMap<MoveRequest,MoveResult>();
     }
-    
+
     HashSet<Component> getSelected() {
         return selected;
     }
-    
+
     AvoidanceMap getFixedAvoidanceMap() {
         AvoidanceMap ret = initAvoid;
         if (ret == null) {
@@ -52,7 +52,7 @@ public class MoveGesture {
         }
         return ret;
     }
-    
+
     Set<ConnectionData> getConnections() {
         Set<ConnectionData> ret = connections;
         if (ret == null) {
@@ -61,7 +61,7 @@ public class MoveGesture {
         }
         return ret;
     }
-    
+
     public MoveResult findResult(int dx, int dy) {
         MoveRequest request = new MoveRequest(this, dx, dy);
         synchronized (cachedResults) {
@@ -81,7 +81,7 @@ public class MoveGesture {
             }
         }
     }
-    
+
     public MoveResult forceRequest(int dx, int dy) {
         MoveRequest request = new MoveRequest(this, dx, dy);
         ConnectorThread.enqueueRequest(request, true);
@@ -99,7 +99,7 @@ public class MoveGesture {
             return (MoveResult) result;
         }
     }
-    
+
     void notifyResult(MoveRequest request, MoveResult result) {
         synchronized (cachedResults) {
             cachedResults.put(request, result);
@@ -150,7 +150,7 @@ public class MoveGesture {
                     Collections.reverse(wirePath);
                     wirePathStart = cur;
                 }
-                
+
                 Direction dir = null;
                 if (lastOnPath != null) {
                     Location other = lastOnPath.getOtherEnd(loc);

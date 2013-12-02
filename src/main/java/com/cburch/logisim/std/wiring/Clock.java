@@ -39,15 +39,15 @@ public class Clock extends InstanceFactory {
     public static final Attribute<Integer> ATTR_LOW
         = new DurationAttribute("lowDuration", __("clockLowAttr"),
                 1, Integer.MAX_VALUE);
-    
+
     public static final Clock FACTORY = new Clock();
 
     private static final Icon toolIcon = Icons.getIcon("clock.svg");
-    
+
     private static class ClockState implements InstanceData, Cloneable {
         Value sending = Value.FALSE;
         int clicks = 0;
-        
+
         @Override
         public ClockState clone() {
             try { return (ClockState) super.clone(); }
@@ -67,7 +67,7 @@ public class Clock extends InstanceFactory {
             return s.sending;
         }
     }
-    
+
     public static class ClockPoker extends InstancePoker {
         boolean isPressed = true;
 
@@ -75,7 +75,7 @@ public class Clock extends InstanceFactory {
         public void mousePressed(InstanceState state, MouseEvent e) {
             isPressed = isInside(state, e);
         }
-        
+
         @Override
         public void mouseReleased(InstanceState state, MouseEvent e) {
             if (isPressed && isInside(state, e)) {
@@ -184,7 +184,7 @@ public class Clock extends InstanceFactory {
         instance.setPorts(new Port[] { new Port(0, 0, Port.OUTPUT, BitWidth.ONE) });
         configureLabel(instance);
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == Pin.ATTR_LABEL_LOC) {

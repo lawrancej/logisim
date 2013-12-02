@@ -22,7 +22,7 @@ class InstancePokerAdapter extends AbstractCaret implements Pokable {
     private InstancePoker poker;
     private InstanceStateImpl state;
     private ComponentDrawContext context;
-    
+
     public InstancePokerAdapter(InstanceComponent comp, Class<? extends InstancePoker> pokerClass) {
         try {
             this.comp = comp;
@@ -32,7 +32,7 @@ class InstancePokerAdapter extends AbstractCaret implements Pokable {
             poker = null;
         }
     }
-    
+
     private void handleError(Throwable t, Class<? extends InstancePoker> pokerClass) {
         String className = pokerClass.getName();
         System.err.println("error while instantiating poker " + className //OK
@@ -65,42 +65,42 @@ class InstancePokerAdapter extends AbstractCaret implements Pokable {
             }
         }
     }
-    
+
     @Override
     public void mousePressed(MouseEvent e) {
         if (poker != null) { poker.mousePressed(state, e); checkCurrent(); }
     }
-    
+
     @Override
     public void mouseDragged(MouseEvent e) {
         if (poker != null) { poker.mouseDragged(state, e); checkCurrent(); }
     }
-    
+
     @Override
     public void mouseReleased(MouseEvent e) {
         if (poker != null) { poker.mouseReleased(state, e); checkCurrent(); }
     }
-    
+
     @Override
     public void keyPressed(KeyEvent e) {
         if (poker != null) { poker.keyPressed(state, e); checkCurrent(); }
     }
-    
+
     @Override
     public void keyReleased(KeyEvent e) {
         if (poker != null) { poker.keyReleased(state, e); checkCurrent(); }
     }
-    
+
     @Override
     public void keyTyped(KeyEvent e) {
         if (poker != null) { poker.keyTyped(state, e); checkCurrent(); }
     }
-    
+
     @Override
     public void stopEditing() {
         if (poker != null) { poker.stopEditing(state); checkCurrent(); }
     }
-    
+
     @Override
     public Bounds getBounds(Graphics g) {
         if (poker != null) {
@@ -111,7 +111,7 @@ class InstancePokerAdapter extends AbstractCaret implements Pokable {
             return Bounds.EMPTY_BOUNDS;
         }
     }
-    
+
     @Override
     public void draw(Graphics g) {
         if (poker != null) {
@@ -120,7 +120,7 @@ class InstancePokerAdapter extends AbstractCaret implements Pokable {
             poker.paint(painter);
         }
     }
-    
+
     private void checkCurrent() {
         if (state != null && canvas != null) {
             CircuitState s0 = state.getCircuitState();

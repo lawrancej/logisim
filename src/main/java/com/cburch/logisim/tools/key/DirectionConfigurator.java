@@ -11,12 +11,12 @@ import com.cburch.logisim.data.Direction;
 public class DirectionConfigurator implements KeyConfigurator, Cloneable {
     private Attribute<Direction> attr;
     private int modsEx;
-    
+
     public DirectionConfigurator(Attribute<Direction> attr, int modifiersEx) {
         this.attr = attr;
         this.modsEx = modifiersEx;
     }
-    
+
     @Override
     public DirectionConfigurator clone() {
         try {
@@ -26,7 +26,7 @@ public class DirectionConfigurator implements KeyConfigurator, Cloneable {
             return null;
         }
     }
-    
+
     @Override
     public KeyConfigurationResult keyEventReceived(KeyConfigurationEvent event) {
         if (event.getType() == KeyConfigurationEvent.KEY_PRESSED) {

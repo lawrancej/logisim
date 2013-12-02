@@ -39,12 +39,12 @@ public class Constant extends InstanceFactory {
     public static InstanceFactory FACTORY = new Constant();
 
     private static final Color BACKGROUND_COLOR = new Color(230, 230, 230);
-    
+
     private static final List<Attribute<?>> ATTRIBUTES
         = Arrays.asList(new Attribute<?>[] {
                 StdAttr.FACING, StdAttr.WIDTH, ATTR_VALUE
         });
-    
+
     private static class ConstantAttributes extends AbstractAttributeSet {
         private Direction facing = Direction.EAST;;
         private BitWidth width = BitWidth.ONE;
@@ -87,16 +87,16 @@ public class Constant extends InstanceFactory {
                 throw new IllegalArgumentException("unknown attribute " + attr);
             }
             fireAttributeValueChanged(attr, value);
-        }       
+        }
     }
-    
+
     private static class ConstantExpression implements ExpressionComputer {
         private Instance instance;
-        
+
         public ConstantExpression(Instance instance) {
             this.instance = instance;
         }
-        
+
         @Override
         public void computeExpression(Map<Location,Expression> expressionMap) {
             AttributeSet attrs = instance.getAttributeSet();
@@ -106,7 +106,7 @@ public class Constant extends InstanceFactory {
                     Expressions.constant(intValue));
         }
     }
-    
+
     public Constant() {
         super("Constant", __("constantComponent"));
         setFacingAttribute(StdAttr.FACING);
@@ -125,7 +125,7 @@ public class Constant extends InstanceFactory {
         instance.addAttributeListener();
         updatePorts(instance);
     }
-    
+
     private void updatePorts(Instance instance) {
         Port[] ps = { new Port(0, 0, Port.OUTPUT, StdAttr.WIDTH) };
         instance.setPorts(ps);
@@ -142,7 +142,7 @@ public class Constant extends InstanceFactory {
             instance.fireInvalidated();
         }
     }
-    
+
     @Override
     protected Object getInstanceFeature(Instance instance, Object key) {
         if (key == ExpressionComputer.class) return new ConstantExpression(instance);
@@ -252,7 +252,7 @@ public class Constant extends InstanceFactory {
         GraphicsUtil.drawCenteredText(g, vStr, bds.getX() + bds.getWidth() / 2,
                 bds.getY() + bds.getHeight() / 2);
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         Bounds bds = painter.getOffsetBounds();

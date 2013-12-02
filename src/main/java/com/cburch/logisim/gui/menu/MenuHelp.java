@@ -78,7 +78,7 @@ class MenuHelp extends JMenu implements ActionListener {
             About.showAboutDialog(menubar.getParentWindow());
         }
     }
-    
+
     private void loadBroker() {
         String helpUrl = _("helpsetUrl");
         if (helpUrl == null) helpUrl = "doc/doc_en.hs";

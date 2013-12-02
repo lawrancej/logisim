@@ -27,7 +27,7 @@ public interface CanvasObject {
     public abstract Handle canInsertHandle(Location desired);
     public abstract Handle canDeleteHandle(Location desired);
     public abstract void paint(Graphics g, HandleGesture gesture);
-    
+
     public Handle moveHandle(HandleGesture gesture);
     public void insertHandle(Handle desired, Handle previous);
     public Handle deleteHandle(Handle handle);

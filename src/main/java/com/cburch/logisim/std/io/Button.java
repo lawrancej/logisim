@@ -58,7 +58,7 @@ public class Button extends InstanceFactory {
         instance.addAttributeListener();
         computeTextField(instance);
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.FACING) {
@@ -103,7 +103,7 @@ public class Button extends InstanceFactory {
                 valign = GraphicsUtil.V_BOTTOM;
             }
         }
-        
+
         instance.setTextField(StdAttr.LABEL, StdAttr.LABEL_FONT,
                 x, y, halign, valign);
     }
@@ -114,7 +114,7 @@ public class Button extends InstanceFactory {
         Value val = data == null ? Value.FALSE : (Value) data.getValue();
         state.setPort(0, val, 1);
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         Bounds bds = painter.getBounds();
@@ -130,13 +130,13 @@ public class Button extends InstanceFactory {
         } else {
             val = Value.FALSE;
         }
-        
+
         Color color = painter.getAttributeValue(Io.ATTR_COLOR);
         if (!painter.shouldDrawColor()) {
             int hue = (color.getRed() + color.getGreen() + color.getBlue()) / 3;
             color = new Color(hue, hue, hue);
         }
-        
+
         Graphics g = painter.getGraphics();
         int depress;
         if (val == Value.TRUE) {
@@ -149,7 +149,7 @@ public class Button extends InstanceFactory {
             } else {
                 depress = 0;
             }
-            
+
             Object facing = painter.getAttributeValue(StdAttr.FACING);
             if (facing == Direction.NORTH || facing == Direction.WEST) {
                 Location p = painter.getLocation();
@@ -161,7 +161,7 @@ public class Button extends InstanceFactory {
                 else                          g.drawLine(px, py, px + 10, py);
                 GraphicsUtil.switchToWidth(g, 1);
             }
-            
+
             g.setColor(color);
             g.fillRect(x, y, w - DEPTH, h - DEPTH);
             g.setColor(Color.BLACK);
@@ -179,25 +179,25 @@ public class Button extends InstanceFactory {
             g.drawLine(x + w - DEPTH, y + h - DEPTH, x + w, y + h);
             g.drawPolygon(xp, yp, xp.length);
         }
-        
+
         g.translate(depress, depress);
         g.setColor(painter.getAttributeValue(Io.ATTR_LABEL_COLOR));
         painter.drawLabel();
         g.translate(-depress, -depress);
         painter.drawPorts();
     }
-    
+
     public static class Poker extends InstancePoker {
         @Override
         public void mousePressed(InstanceState state, MouseEvent e) {
             setValue(state, Value.TRUE);
         }
-        
+
         @Override
         public void mouseReleased(InstanceState state, MouseEvent e) {
             setValue(state, Value.FALSE);
         }
-        
+
         private void setValue(InstanceState state, Value val) {
             InstanceDataSingleton data = (InstanceDataSingleton) state.getData();
             if (data == null) {

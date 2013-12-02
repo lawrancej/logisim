@@ -23,7 +23,7 @@ public interface ComponentFactory extends AttributeDefaultProvider {
     public static final Object SHOULD_SNAP = new Object();
     public static final Object TOOL_TIP = new Object();
     public static final Object FACING_ATTRIBUTE_KEY = new Object();
-    
+
     public String getName();
     public String getDisplayName();
     public StringGetter getDisplayGetter();
@@ -47,11 +47,11 @@ public interface ComponentFactory extends AttributeDefaultProvider {
      * In most cases, the <code>key</code> is a <code>Class</code> object
      * corresponding to an interface, and the method should return an
      * implementation of that interface if it supports the feature.
-     * 
+     *
      * As of this writing, possible values for <code>key</code> include:
      * <code>TOOL_TIP</code> (return a <code>String</code>) and
      * <code>SHOULD_SNAP</code> (return a <code>Boolean</code>).
-     * 
+     *
      * @param key  an object representing a feature.
      * @return an object representing information about how the component
      *    supports the feature, or <code>null</code> if it does not support

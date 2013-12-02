@@ -31,7 +31,7 @@ public class Arithmetic extends Library {
         new FactoryDescription("BitFinder", __("bitFinderComponent"),
                 "bitfindr.svg", "BitFinder"),
     };
-    
+
     private List<Tool> tools = null;
 
     public Arithmetic() { }

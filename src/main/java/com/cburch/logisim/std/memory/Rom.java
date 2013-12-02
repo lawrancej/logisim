@@ -31,11 +31,11 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Rom extends Mem {
     public static Attribute<MemContents> CONTENTS_ATTR = new ContentsAttribute();
-    
+
     // The following is so that instance's MemListeners aren't freed by the
     // garbage collector until the instance itself is ready to be freed.
     private WeakHashMap<Instance,MemListener> memListeners;
-    
+
     public Rom() {
         super("ROM", __("romComponent"), 0);
         setIconName("rom.svg");
@@ -64,7 +64,7 @@ public class Rom extends Mem {
         }
         return ret;
     }
-    
+
     @Override
     MemState getState(InstanceState state) {
         MemState ret = (MemState) state.getData();
@@ -75,12 +75,12 @@ public class Rom extends Mem {
         }
         return ret;
     }
- 
+
     @Override
     HexFrame getHexFrame(Project proj, Instance instance, CircuitState state) {
         return RomAttributes.getHexFrame(getMemContents(instance), proj);
     }
-    
+
     // TODO - maybe delete this method?
     MemContents getMemContents(Instance instance) {
         return instance.getAttributeValue(CONTENTS_ATTR);
@@ -93,7 +93,7 @@ public class Rom extends Mem {
 
         Value addrValue = state.getPort(ADDR);
         boolean chipSelect = state.getPort(CS) != Value.FALSE;
-        
+
         if (!chipSelect) {
             myState.setCurrent(-1);
             state.setPort(DATA, Value.createUnknown(dataBits), DELAY);
@@ -111,7 +111,7 @@ public class Rom extends Mem {
         int val = myState.getContents().get(addr);
         state.setPort(DATA, Value.createKnown(dataBits, val), DELAY);
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         super.configureNewInstance(instance);
@@ -120,7 +120,7 @@ public class Rom extends Mem {
         memListeners.put(instance, listener);
         contents.addHexModelListener(listener);
     }
-    
+
     private static class ContentsAttribute extends Attribute<MemContents> {
         public ContentsAttribute() {
             super("contents", __("romContentsAttr"));
@@ -177,12 +177,12 @@ public class Rom extends Mem {
             }
         }
     }
-        
+
     private static class ContentsCell extends JLabel
             implements MouseListener {
         Window source;
         MemContents contents;
-        
+
         ContentsCell(Window source, MemContents contents) {
             super(_("romContentsValue"));
             this.source = source;

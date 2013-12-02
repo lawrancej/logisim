@@ -10,7 +10,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Parser {
     private Parser() { }
-    
+
     public static Expression parse(String in, AnalyzerModel model) throws ParserException {
         ArrayList<Token> tokens = toTokens(in, false);
 
@@ -41,7 +41,7 @@ public class Parser {
 
         return parse(tokens);
     }
-    
+
     /** I wrote this without thinking, and then realized that this is
      * quite complicated because of removing operators. I haven't
      * bothered to do it correctly; instead, it just regenerates a
@@ -53,7 +53,7 @@ public class Parser {
         for (int i = 0, n = tokens.size(); i < n; i++) {
             Token token = (Token) tokens.get(i);
             if (token.type == TOKEN_IDENT && token.text.equals(variable)) {
-                ; // just ignore it 
+                ; // just ignore it
             } else if (token.type == TOKEN_WHITE) {
                 if (lastWhite != null) {
                     if (lastWhite.text.length() >= token.text.length()) {
@@ -75,7 +75,7 @@ public class Parser {
         return ret.toString();
     }
     */
-    
+
     static String replaceVariable(String in, String oldName, String newName) {
         StringBuilder ret = new StringBuilder();
         ArrayList<Token> tokens = toTokens(in, true);
@@ -103,32 +103,32 @@ public class Parser {
     private static final int TOKEN_CONST = 8;
     private static final int TOKEN_WHITE = 9;
     private static final int TOKEN_ERROR = 10;
-    
+
     private static class Token {
         int type;
         int offset;
         int length;
         String text;
-        
+
         Token(int type, int offset, String text) {
             this(type, offset, text.length(), text);
         }
-        
+
         Token(int type, int offset, int length, String text) {
             this.type = type;
             this.offset = offset;
             this.length = length;
             this.text = text;
         }
-        
+
         ParserException error(StringGetter message) {
             return new ParserException(message, offset, length);
         }
     }
-    
+
     private static ArrayList<Token> toTokens(String in, boolean includeWhite) {
         ArrayList<Token> tokens = new ArrayList<Token>();
-        
+
         // Guarantee that we will stop just after reading whitespace,
         // not in the middle of a token.
         in = in + " ";
@@ -140,7 +140,7 @@ public class Parser {
                 tokens.add(new Token(TOKEN_WHITE, whiteStart, in.substring(whiteStart, pos)));
             }
             if (pos == in.length()) return tokens;
-            
+
             int start = pos;
             char startChar = in.charAt(pos);
             pos++;
@@ -171,12 +171,12 @@ public class Parser {
             }
         }
     }
-        
+
     private static boolean okCharacter(char c) {
         return Character.isWhitespace(c) || Character.isJavaIdentifierStart(c)
             || "()01~^+!&|".indexOf(c) >= 0;
     }
-    
+
     //
     // parsing code
     //
@@ -184,14 +184,14 @@ public class Parser {
         int level;
         Expression current;
         Token cause;
-        
+
         Context(Expression current, int level, Token cause) {
             this.level = level;
             this.current = current;
             this.cause = cause;
         }
     }
-    
+
     private static Expression parse(ArrayList<Token> tokens) throws ParserException {
         ArrayList<Context> stack = new ArrayList<Context>();
         Expression current = null;
@@ -266,7 +266,7 @@ public class Parser {
         }
         return current;
     }
-    
+
     private static void push(ArrayList<Context> stack, Expression expr,
             int level, Token cause) {
         stack.add(new Context(expr, level, cause));

@@ -35,7 +35,7 @@ class SimulationTreeCircuitNode extends SimulationTreeNode
     private CircuitState circuitState;
     private Component subcircComp;
     private ArrayList<TreeNode> children;
-        
+
     public SimulationTreeCircuitNode(SimulationTreeModel model,
             SimulationTreeCircuitNode parent, CircuitState circuitState,
             Component subcircComp) {
@@ -52,21 +52,21 @@ class SimulationTreeCircuitNode extends SimulationTreeNode
         }
         computeChildren();
     }
-    
+
     public CircuitState getCircuitState() {
         return circuitState;
     }
-    
+
     @Override
     public ComponentFactory getComponentFactory() {
         return circuitState.getCircuit().getSubcircuitFactory();
     }
-    
+
     @Override
     public boolean isCurrentView(SimulationTreeModel model) {
         return model.getCurrentView() == circuitState;
     }
-    
+
     @Override
     public String toString() {
         if (subcircComp != null) {
@@ -128,7 +128,7 @@ class SimulationTreeCircuitNode extends SimulationTreeNode
             }
         }
     }
-    
+
     // returns true if changed
     private boolean computeChildren() {
         ArrayList<TreeNode> newChildren = new ArrayList<TreeNode>();
@@ -160,7 +160,7 @@ class SimulationTreeCircuitNode extends SimulationTreeNode
             }
             newChildren.add(toAdd);
         }
-        
+
         if (!children.equals(newChildren)) {
             children = newChildren;
             return true;
@@ -168,7 +168,7 @@ class SimulationTreeCircuitNode extends SimulationTreeNode
             return false;
         }
     }
-    
+
     @Override
     public int compare(Component a, Component b) {
         if (a != b) {

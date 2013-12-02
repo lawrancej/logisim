@@ -19,18 +19,18 @@ public abstract class AttributeSetTableModel
         implements AttrTableModel, AttributeListener {
     private class AttrRow implements AttrTableModelRow {
         private Attribute<Object> attr;
-        
+
         AttrRow(Attribute<?> attr) {
             @SuppressWarnings("unchecked")
             Attribute<Object> objAttr = (Attribute<Object>) attr;
             this.attr = objAttr;
         }
-        
+
         @Override
         public String getLabel() {
             return attr.getDisplayName();
         }
-        
+
         @Override
         public String getValue() {
             Object value = attrs.getValue(attr);
@@ -44,23 +44,23 @@ public abstract class AttributeSetTableModel
                 }
             }
         }
-        
+
         @Override
         public boolean isValueEditable() {
             return !attrs.isReadOnly(attr);
         }
-        
+
         @Override
         public Component getEditor(Window parent) {
             Object value = attrs.getValue(attr);
             return attr.getCellEditor(parent, value);
         }
-        
+
         @Override
         public void setValue(Object value) throws AttrTableSetException {
             Attribute<Object> attr = this.attr;
             if (attr == null || value == null) return;
-            
+
             try {
                 if (value instanceof String) {
                     value = attr.parse((String) value);
@@ -79,12 +79,12 @@ public abstract class AttributeSetTableModel
             }
         }
     }
-    
+
     private ArrayList<AttrTableModelListener> listeners;
     private AttributeSet attrs;
     private HashMap<Attribute<?>, AttrRow> rowMap;
     private ArrayList<AttrRow> rows;
-    
+
     public AttributeSetTableModel(AttributeSet attrs) {
         this.attrs = attrs;
         this.listeners = new ArrayList<AttrTableModelListener>();
@@ -98,14 +98,14 @@ public abstract class AttributeSetTableModel
             }
         }
     }
-    
+
     @Override
     public abstract String getTitle();
-    
+
     public AttributeSet getAttributeSet() {
         return attrs;
     }
-    
+
     public void setAttributeSet(AttributeSet value) {
         if (attrs != value) {
             if (!listeners.isEmpty()) {
@@ -134,21 +134,21 @@ public abstract class AttributeSetTableModel
             attrs.removeAttributeListener(this);
         }
     }
-    
+
     protected void fireTitleChanged() {
         AttrTableModelEvent event = new AttrTableModelEvent(this);
         for (AttrTableModelListener l : listeners) {
             l.attrTitleChanged(event);
         }
     }
-    
+
     protected void fireStructureChanged() {
         AttrTableModelEvent event = new AttrTableModelEvent(this);
         for (AttrTableModelListener l : listeners) {
             l.attrStructureChanged(event);
         }
     }
-    
+
     protected void fireValueChanged(int index) {
         AttrTableModelEvent event = new AttrTableModelEvent(this, index);
         for (AttrTableModelListener l : listeners) {
@@ -168,7 +168,7 @@ public abstract class AttributeSetTableModel
 
     protected abstract void setValueRequested(Attribute<Object> attr, Object value)
         throws AttrTableSetException;
-    
+
     //
     // AttributeListener methods
     //
@@ -186,7 +186,7 @@ public abstract class AttributeSetTableModel
             index++;
         }
         if (match && index == rows.size()) return;
-        
+
         // compute the new list of rows, possible adding into hash map
         ArrayList<AttrRow> newRows = new ArrayList<AttrRow>();
         HashSet<Attribute<?>> missing = new HashSet<Attribute<?>>(rowMap.keySet());

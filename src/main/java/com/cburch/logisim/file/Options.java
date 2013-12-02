@@ -15,7 +15,7 @@ public class Options {
     = new AttributeOption("ignore", __("gateUndefinedIgnore"));
     public static final AttributeOption GATE_UNDEFINED_ERROR
         = new AttributeOption("error", __("gateUndefinedError"));
-        
+
     public static final Attribute<Integer> sim_limit_attr
         = Attributes.forInteger("simlimit", __("simLimitOption"));
     public static final Attribute<Integer> sim_rand_attr
@@ -23,7 +23,7 @@ public class Options {
     public static final Attribute<AttributeOption> ATTR_GATE_UNDEFINED
         = Attributes.forOption("gateUndefined", __("gateUndefinedOption"),
                 new AttributeOption[] { GATE_UNDEFINED_IGNORE, GATE_UNDEFINED_ERROR });
-    
+
     public static final Integer sim_rand_dflt = Integer.valueOf(32);
 
     private static final Attribute<?>[] ATTRIBUTES = {
@@ -32,7 +32,7 @@ public class Options {
     private static final Object[] DEFAULTS = {
             GATE_UNDEFINED_IGNORE, Integer.valueOf(1000), Integer.valueOf(0),
     };
-    
+
     private AttributeSet attrs;
     private MouseMappings mmappings;
     private ToolbarData toolbar;

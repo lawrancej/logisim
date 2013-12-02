@@ -27,7 +27,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class XmlCircuitReader extends CircuitTransaction {
     private XmlReader.ReadContext reader;
     private List<XmlReader.CircuitData> circuitsData;
-    
+
     public XmlCircuitReader(XmlReader.ReadContext reader,
             List<XmlReader.CircuitData> circDatas) {
         this.reader = reader;
@@ -81,20 +81,20 @@ public class XmlCircuitReader extends CircuitTransaction {
                 }
             }
         }
-        
+
         List<AbstractCanvasObject> appearance = circData.appearance;
         if (appearance != null && !appearance.isEmpty()) {
             dest.getAppearance().setObjectsForce(appearance);
             dest.getAppearance().setDefaultAppearance(false);
         }
     }
-    
+
     private String toComponentString(Element elt) {
         String name = elt.getAttribute("name");
         String loc = elt.getAttribute("loc");
         return name + "(" + loc + ")";
     }
-    
+
     private String toWireString(Element elt) {
         String from = elt.getAttribute("from");
         String to = elt.getAttribute("to");
@@ -127,7 +127,7 @@ public class XmlCircuitReader extends CircuitTransaction {
 
         mutator.add(dest, Wire.create(pt0, pt1));
     }
-    
+
     static Component getComponent(Element elt, XmlReader.ReadContext reader)
             throws XmlReaderException {
         // Determine the factory that creates this element

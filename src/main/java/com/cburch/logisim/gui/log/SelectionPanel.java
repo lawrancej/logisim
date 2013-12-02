@@ -82,7 +82,7 @@ class SelectionPanel extends LogPanel {
         public void valueChanged(ListSelectionEvent event) {
             computeEnabled();
         }
-        
+
         private void computeEnabled() {
             int index = list.getSelectedIndex();
             addTool.setEnabled(selector.hasSelectedItems());
@@ -91,7 +91,7 @@ class SelectionPanel extends LogPanel {
             moveDown.setEnabled(index >= 0 && index < list.getModel().getSize() - 1);
             remove.setEnabled(index >= 0);
         }
-        
+
         private void doAdd(List<SelectionItem> selectedItems) {
             if (selectedItems != null && selectedItems.size() > 0) {
                 SelectionItem last = null;
@@ -102,7 +102,7 @@ class SelectionPanel extends LogPanel {
                 list.setSelectedValue(last, true);
             }
         }
-        
+
         private void doMove(int delta) {
             Selection sel = getSelection();
             int oldIndex = list.getSelectedIndex();
@@ -113,9 +113,9 @@ class SelectionPanel extends LogPanel {
             }
         }
     }
-    
+
     private Listener listener = new Listener();
-    
+
     private ComponentSelector selector;
     private JButton addTool;
     private JButton changeBase;
@@ -123,7 +123,7 @@ class SelectionPanel extends LogPanel {
     private JButton moveDown;
     private JButton remove;
     private SelectionList list;
-    
+
     public SelectionPanel(LogFrame window) {
         super(window);
         selector = new ComponentSelector(getModel());
@@ -134,14 +134,14 @@ class SelectionPanel extends LogPanel {
         remove = new JButton();
         list = new SelectionList();
         list.setSelection(getSelection());
-        
+
         JPanel buttons = new JPanel(new GridLayout(5, 1));
         buttons.add(addTool);
         buttons.add(changeBase);
         buttons.add(moveUp);
         buttons.add(moveDown);
         buttons.add(remove);
-        
+
         addTool.addActionListener(listener);
         changeBase.addActionListener(listener);
         moveUp.addActionListener(listener);
@@ -151,7 +151,7 @@ class SelectionPanel extends LogPanel {
         selector.addTreeSelectionListener(listener);
         list.addListSelectionListener(listener);
         listener.computeEnabled();
-        
+
         GridBagLayout gridbag = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
         setLayout(gridbag);
@@ -183,7 +183,7 @@ class SelectionPanel extends LogPanel {
     public String getHelpText() {
         return _("selectionHelp");
     }
-    
+
     @Override
     public void localeChanged() {
         addTool.setText(_("selectionAdd"));

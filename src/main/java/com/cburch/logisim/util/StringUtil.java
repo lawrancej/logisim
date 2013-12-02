@@ -12,7 +12,7 @@ public class StringUtil {
             }
         };
     }
-    
+
     public static StringGetter constantGetter(final String value) {
         return new StringGetter() {
             @Override
@@ -21,7 +21,7 @@ public class StringUtil {
             }
         };
     }
-    
+
     public static String toHexString(int bits, int value) {
         if (bits < 32) value &= (1 << bits) - 1;
         String ret = Integer.toHexString(value);

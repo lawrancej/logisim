@@ -140,20 +140,20 @@ public class CircuitState implements InstanceData {
         this.circuit = circuit;
         circuit.addCircuitListener(myCircuitListener);
     }
-    
+
     public Project getProject() {
         return proj;
     }
-    
+
     Component getSubcircuit() {
         return parentComp;
     }
-    
+
     @Override
     public CircuitState clone() {
         return cloneState();
     }
-    
+
     public CircuitState cloneState() {
         CircuitState ret = new CircuitState(proj, circuit);
         ret.copyFrom(this, new Propagator(ret));
@@ -161,7 +161,7 @@ public class CircuitState implements InstanceData {
         ret.parentState = null;
         return ret;
     }
-    
+
     private void copyFrom(CircuitState src, Propagator base) {
         this.base = base;
         this.parentComp = src.parentComp;
@@ -215,11 +215,11 @@ public class CircuitState implements InstanceData {
     public Circuit getCircuit() {
         return circuit;
     }
-    
+
     public CircuitState getParentState() {
         return parentState;
     }
-    
+
     public Set<CircuitState> getSubstates() { // returns Set of CircuitStates
         return substates;
     }
@@ -231,7 +231,7 @@ public class CircuitState implements InstanceData {
         }
         return base;
     }
-    
+
     public void drawOscillatingPoints(ComponentDrawContext context) {
         if (base != null) base.drawOscillatingPoints(context);
     }
@@ -296,7 +296,7 @@ public class CircuitState implements InstanceData {
     public void markPointAsDirty(Location pt) {
         dirtyPoints.add(pt);
     }
-    
+
     public InstanceState getInstanceState(Component comp) {
         Object factory = comp.getFactory();
         if (factory instanceof InstanceFactory) {
@@ -305,7 +305,7 @@ public class CircuitState implements InstanceData {
             throw new RuntimeException("getInstanceState requires instance component");
         }
     }
-    
+
     public InstanceState getInstanceState(Instance instance) {
         Object factory = instance.getFactory();
         if (factory instanceof InstanceFactory) {
@@ -384,7 +384,7 @@ public class CircuitState implements InstanceData {
             substate.processDirtyPoints();
         }
     }
-    
+
     void reset() {
         wireData = null;
         for (Iterator<Component> it = componentData.keySet().iterator(); it.hasNext(); ) {
@@ -396,7 +396,7 @@ public class CircuitState implements InstanceData {
         dirtyPoints.clear();
         causes.clear();
         markAllComponentsDirty();
-        
+
         for (CircuitState sub : substates) {
             sub.reset();
         }
@@ -453,14 +453,14 @@ public class CircuitState implements InstanceData {
             }
             // NOTE: this will cause a double-propagation on components
             // whose outputs have just changed.
-            
+
             if (found && base != null) base.locationTouched(this, p);
         }
     }
 
     //
     // private methods
-    // 
+    //
     private void markAllComponentsDirty() {
         dirtyComponents.addAll(circuit.getNonWires());
     }

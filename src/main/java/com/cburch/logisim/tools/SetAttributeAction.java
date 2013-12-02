@@ -25,7 +25,7 @@ public class SetAttributeAction extends Action {
     private List<Object> values;
     private List<Object> oldValues;
     private CircuitTransaction xnReverse;
-    
+
     public SetAttributeAction(Circuit circuit, StringGetter nameGetter) {
         this.nameGetter = nameGetter;
         this.circuit = circuit;
@@ -34,7 +34,7 @@ public class SetAttributeAction extends Action {
         this.values = new ArrayList<Object>();
         this.oldValues = new ArrayList<Object>();
     }
-    
+
     public void set(Component comp, Attribute<?> attr, Object value) {
         @SuppressWarnings("unchecked")
         Attribute<Object> a = (Attribute<Object>) attr;
@@ -42,16 +42,16 @@ public class SetAttributeAction extends Action {
         attrs.add(a);
         values.add(value);
     }
-    
+
     public boolean isEmpty() {
         return comps.isEmpty();
     }
-    
+
     @Override
     public String getName() {
         return nameGetter.toString();
     }
-    
+
     @Override
     public void doIt(Project proj) {
         CircuitMutation xn = new CircuitMutation(circuit);
@@ -67,10 +67,10 @@ public class SetAttributeAction extends Action {
             } else {
                 AttributeSet compAttrs = comp.getAttributeSet();
                 oldValues.add(compAttrs.getValue(attr));
-                compAttrs.setValue(attr, value);    
+                compAttrs.setValue(attr, value);
             }
         }
-        
+
         if (!xn.isEmpty()) {
             CircuitTransactionResult result = xn.execute();
             xnReverse = result.getReverseTransaction();

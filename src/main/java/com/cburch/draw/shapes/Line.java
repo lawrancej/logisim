@@ -24,7 +24,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Line extends AbstractCanvasObject {
     static final int ON_LINE_THRESH = 2;
-    
+
     private int x0;
     private int y0;
     private int x1;
@@ -32,7 +32,7 @@ public class Line extends AbstractCanvasObject {
     private Bounds bounds;
     private int strokeWidth;
     private Color strokeColor;
-    
+
     public Line(int x0, int y0, int x1, int y1) {
         this.x0 = x0;
         this.y0 = y0;
@@ -42,7 +42,7 @@ public class Line extends AbstractCanvasObject {
         strokeWidth = 1;
         strokeColor = Color.BLACK;
     }
-    
+
     @Override
     public boolean matches(CanvasObject other) {
         if (other instanceof Line) {
@@ -57,7 +57,7 @@ public class Line extends AbstractCanvasObject {
             return false;
         }
     }
-    
+
     @Override
     public int matchesHashCode() {
         int ret = x0 * 31 + y0;
@@ -66,7 +66,7 @@ public class Line extends AbstractCanvasObject {
         ret = ret * 31 + strokeColor.hashCode();
         return ret;
     }
-        
+
     @Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createLine(doc, this);
@@ -75,11 +75,11 @@ public class Line extends AbstractCanvasObject {
     public Location getEnd0() {
         return Location.create(x0, y0);
     }
-    
+
     public Location getEnd1() {
         return Location.create(x1, y1);
     }
-    
+
     @Override
     public String getDisplayName() {
         return _("shapeLine");
@@ -89,7 +89,7 @@ public class Line extends AbstractCanvasObject {
     public List<Attribute<?>> getAttributes() {
         return DrawAttr.ATTRS_STROKE;
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public <V> V getValue(Attribute<V> attr) {
@@ -101,7 +101,7 @@ public class Line extends AbstractCanvasObject {
             return null;
         }
     }
-    
+
     @Override
     public void updateValue(Attribute<?> attr, Object value) {
         if (attr == DrawAttr.STROKE_COLOR) {
@@ -110,12 +110,12 @@ public class Line extends AbstractCanvasObject {
             strokeWidth = ((Integer) value).intValue();
         }
     }
-    
+
     @Override
     public Bounds getBounds() {
         return bounds;
     }
-    
+
     @Override
     public Location getRandomPoint(Bounds bds, Random rand) {
         double u = rand.nextDouble();
@@ -137,7 +137,7 @@ public class Line extends AbstractCanvasObject {
         int thresh = Math.max(ON_LINE_THRESH, strokeWidth / 2);
         return d < thresh * thresh;
     }
-    
+
     @Override
     public void translate(int dx, int dy) {
         x0 += dx;
@@ -145,11 +145,11 @@ public class Line extends AbstractCanvasObject {
         x1 += dx;
         y1 += dy;
     }
-    
+
     public List<Handle> getHandles() {
         return getHandles(null);
     }
-    
+
     @Override
     public List<Handle> getHandles(HandleGesture gesture) {
         if (gesture == null) {
@@ -167,12 +167,12 @@ public class Line extends AbstractCanvasObject {
             return UnmodifiableList.decorate(Arrays.asList(ret));
         }
     }
-    
+
     @Override
     public boolean canMoveHandle(Handle handle) {
         return true;
     }
-    
+
     @Override
     public Handle moveHandle(HandleGesture gesture) {
         Handle h = gesture.getHandle();
@@ -192,7 +192,7 @@ public class Line extends AbstractCanvasObject {
         bounds = Bounds.create(x0, y0, 0, 0).add(x1, y1);
         return ret;
     }
-    
+
     @Override
     public void paint(Graphics g, HandleGesture gesture) {
         if (setForStroke(g)) {

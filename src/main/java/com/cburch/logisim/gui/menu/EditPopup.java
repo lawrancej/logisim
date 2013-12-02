@@ -25,20 +25,20 @@ public abstract class EditPopup extends JPopupMenu {
             }
         }
     }
-    
+
     private Listener listener;
     private Map<LogisimMenuItem, JMenuItem> items;
-    
+
     public EditPopup() {
         this(false);
     }
-    
+
     public EditPopup(boolean waitForInitialize) {
         listener = new Listener();
         items = new HashMap<LogisimMenuItem, JMenuItem>();
         if (!waitForInitialize) initialize();
     }
-    
+
     protected void initialize() {
         boolean x = false;
         x |= add(LogisimMenuBar.CUT, _("editCutItem"));
@@ -56,7 +56,7 @@ public abstract class EditPopup extends JPopupMenu {
         x |= add(LogisimMenuBar.REMOVE_CONTROL, _("editRemoveControlItem"));
         if (!x && getComponentCount() > 0) { remove(getComponentCount() - 1); }
     }
-    
+
     private boolean add(LogisimMenuItem item, String display) {
         if (shouldShow(item)) {
             JMenuItem menu = new JMenuItem(display);
@@ -69,10 +69,10 @@ public abstract class EditPopup extends JPopupMenu {
             return false;
         }
     }
-    
+
     protected abstract boolean shouldShow(LogisimMenuItem item);
-    
+
     protected abstract boolean isEnabled(LogisimMenuItem item);
-    
+
     protected abstract void fire(LogisimMenuItem item);
 }

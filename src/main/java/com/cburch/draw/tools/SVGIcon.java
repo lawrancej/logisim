@@ -23,7 +23,7 @@ public class SVGIcon implements Icon {
 
     String path;
     GraphicsNode svgIcon = null;
-    
+
     public SVGIcon(String path) {
         try {
             this.path = (path.startsWith("/logisim/icons/")) ? path : "/logisim/icons/" + path; // Quick and dirty hack. We should probably use a path resolver.
@@ -42,7 +42,7 @@ public class SVGIcon implements Icon {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public int getIconHeight() {
         //return (int)svgIcon.getPrimitiveBounds().getHeight();
@@ -60,7 +60,7 @@ public class SVGIcon implements Icon {
             svgIcon.setTransform(transform);
             svgIcon.paint(g);
         }
-    
+
     @Override
     public void paintIcon(Component arg0, Graphics g, int x, int y) {
 /*        Graphics2D g2 = (Graphics2D) g.create();

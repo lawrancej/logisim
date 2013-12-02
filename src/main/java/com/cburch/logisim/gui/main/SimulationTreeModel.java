@@ -18,22 +18,22 @@ public class SimulationTreeModel implements TreeModel {
     private ArrayList<TreeModelListener> listeners;
     private SimulationTreeCircuitNode root;
     private CircuitState currentView;
-    
+
     public SimulationTreeModel(CircuitState rootState) {
         this.listeners = new ArrayList<TreeModelListener>();
         this.root = new SimulationTreeCircuitNode(this, null,
                 rootState, null);
         this.currentView = null;
     }
-    
+
     public CircuitState getRootState() {
         return root.getCircuitState();
     }
-    
+
     public CircuitState getCurrentView() {
         return currentView;
     }
-    
+
     public void setCurrentView(CircuitState value) {
         CircuitState oldView = currentView;
         if (oldView != value) {
@@ -46,7 +46,7 @@ public class SimulationTreeModel implements TreeModel {
             if (node2 != null) fireNodeChanged(node2);
         }
     }
-    
+
     private SimulationTreeCircuitNode mapToNode(CircuitState state) {
         TreePath path = mapToPath(state);
         if (path == null) {
@@ -55,7 +55,7 @@ public class SimulationTreeModel implements TreeModel {
             return (SimulationTreeCircuitNode) path.getLastPathComponent();
         }
     }
-    
+
     public TreePath mapToPath(CircuitState state) {
         if (state == null) return null;
         ArrayList<CircuitState> path = new ArrayList<CircuitState>();
@@ -66,7 +66,7 @@ public class SimulationTreeModel implements TreeModel {
             current = parent;
             parent = current.getParentState();
         }
-        
+
         Object[] pathNodes = new Object[path.size() + 1];
         pathNodes[0] = root;
         int pathPos = 1;
@@ -92,7 +92,7 @@ public class SimulationTreeModel implements TreeModel {
         }
         return new TreePath(pathNodes);
     }
-    
+
     protected SimulationTreeNode mapComponentToNode(Component comp) {
         return null;
     }
@@ -106,21 +106,21 @@ public class SimulationTreeModel implements TreeModel {
     public void removeTreeModelListener(TreeModelListener l) {
         listeners.remove(l);
     }
-    
+
     protected void fireNodeChanged(Object node) {
         TreeModelEvent e = new TreeModelEvent(this, findPath(node));
         for (TreeModelListener l : listeners) {
             l.treeNodesChanged(e);
         }
     }
-    
+
     protected void fireStructureChanged(Object node) {
         TreeModelEvent e = new TreeModelEvent(this, findPath(node));
         for (TreeModelListener l : listeners) {
             l.treeStructureChanged(e);
         }
     }
-    
+
     private TreePath findPath(Object node) {
         ArrayList<Object> path = new ArrayList<Object>();
         Object current = node;

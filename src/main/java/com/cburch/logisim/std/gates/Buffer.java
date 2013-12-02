@@ -62,7 +62,7 @@ class Buffer extends InstanceFactory {
         in = Buffer.repair(state, in);
         state.setPort(0, in, GateAttributes.DELAY);
     }
-    
+
     //
     // methods for instances
     //
@@ -72,7 +72,7 @@ class Buffer extends InstanceFactory {
         instance.addAttributeListener();
         NotGate.configureLabel(instance, false, null);
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.FACING) {
@@ -81,7 +81,7 @@ class Buffer extends InstanceFactory {
             NotGate.configureLabel(instance, false, null);
         }
     }
-    
+
     private void configurePorts(Instance instance) {
         Direction facing = instance.getAttributeValue(StdAttr.FACING);
 
@@ -107,7 +107,7 @@ class Buffer extends InstanceFactory {
         }
         return super.getInstanceFeature(instance, key);
     }
-        
+
     //
     // painting methods
     //
@@ -115,7 +115,7 @@ class Buffer extends InstanceFactory {
     public void paintGhost(InstancePainter painter) {
         paintBase(painter);
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         Graphics g = painter.getGraphics();
@@ -146,7 +146,7 @@ class Buffer extends InstanceFactory {
         xp[2] = -19; yp[2] =  7;
         xp[3] = 0;   yp[3] =  0;
         g.drawPolyline(xp, yp, 4);
-        
+
         if (rotate != 0.0) {
             ((Graphics2D) g).rotate(-rotate);
         }

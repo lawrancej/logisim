@@ -17,7 +17,7 @@ import com.cburch.logisim.tools.Library;
 public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Library>
         implements LibraryListener {
     private LogisimFile file;
-    
+
     ProjectExplorerLibraryNode(ProjectExplorerModel model, Library lib) {
         super(model, lib);
         if (lib instanceof LogisimFile) {
@@ -26,7 +26,7 @@ public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Librar
         }
         buildChildren();
     }
-    
+
     @Override ProjectExplorerLibraryNode create(Library userObject) {
         return new ProjectExplorerLibraryNode(getModel(), userObject);
     }
@@ -42,7 +42,7 @@ public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Librar
             }
         }
     }
-    
+
     private void buildChildren() {
         Library lib = getValue();
         if (lib != null) {
@@ -50,7 +50,7 @@ public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Librar
             buildChildren(new ProjectExplorerLibraryNode(getModel(), null), lib.getLibraries(), lib.getTools().size());
         }
     }
-    
+
     private <T> void buildChildren(ProjectExplorerModel.Node<T> factory, List<? extends T> items,
             int startIndex) {
         // go through previously built children
@@ -70,7 +70,7 @@ public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Librar
             }
         }
         int oldCount = oldPos;
-        
+
         // go through what should be the children
         int actualPos = startIndex;
         int insertionCount = 0;
@@ -89,7 +89,7 @@ public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Librar
             }
             actualPos++;
         }
-        
+
         // identify removals first
         if (oldPos != oldCount) {
             int[] delIndex = new int[oldCount - oldPos];
@@ -113,7 +113,7 @@ public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Librar
             }
             this.fireNodesRemoved(delIndex, delNodes);
         }
-        
+
         // identify moved nodes
         int minChange = Integer.MAX_VALUE >> 3;
         int maxChange = Integer.MIN_VALUE >> 3;
@@ -137,7 +137,7 @@ public class ProjectExplorerLibraryNode extends ProjectExplorerModel.Node<Librar
             }
             this.fireNodesChanged(moveIndex, moveNodes);
         }
-        
+
         // identify inserted nodes
         if (insertionCount > 0) {
             int[] insIndex = new int[insertionCount];

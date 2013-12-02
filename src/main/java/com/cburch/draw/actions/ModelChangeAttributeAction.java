@@ -17,7 +17,7 @@ public class ModelChangeAttributeAction extends ModelAction {
     private Map<AttributeMapKey, Object> oldValues;
     private Map<AttributeMapKey, Object> newValues;
     private Attribute<?> attr;
-    
+
     public ModelChangeAttributeAction(CanvasModel model,
             Map<AttributeMapKey, Object> oldValues,
             Map<AttributeMapKey, Object> newValues) {
@@ -57,12 +57,12 @@ public class ModelChangeAttributeAction extends ModelAction {
             return _("actionChangeAttribute", a.getDisplayName());
         }
     }
-    
+
     @Override
     void doSub(CanvasModel model) {
         model.setAttributeValues(newValues);
     }
-    
+
     @Override
     void undoSub(CanvasModel model) {
         model.setAttributeValues(oldValues);

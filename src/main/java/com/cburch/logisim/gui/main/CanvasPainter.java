@@ -38,7 +38,7 @@ class CanvasPainter implements PropertyChangeListener {
     private Component haloedComponent = null;
     private Circuit haloedCircuit = null;
     private WireSet highlightedWires = WireSet.EMPTY;
-    
+
     CanvasPainter(Canvas canvas) {
         this.canvas = canvas;
         this.grid = new GridPainter(canvas);
@@ -46,14 +46,14 @@ class CanvasPainter implements PropertyChangeListener {
         AppPreferences.PRINTER_VIEW.addPropertyChangeListener(this);
         AppPreferences.ATTRIBUTE_HALO.addPropertyChangeListener(this);
     }
-    
+
     //
     // accessor methods
     //
     GridPainter getGridPainter() {
         return grid;
     }
-    
+
     Component getHaloedComponent() {
         return haloedComponent;
     }
@@ -86,7 +86,7 @@ class CanvasPainter implements PropertyChangeListener {
             (int) Math.round(bds.getY() + h/2.0 - b/2.0),
             (int) Math.round(a), (int) Math.round(b));
     }
-    
+
     @Override
     public void propertyChange(PropertyChangeEvent event) {
         if (AppPreferences.PRINTER_VIEW.isSource(event)
@@ -119,7 +119,7 @@ class CanvasPainter implements PropertyChangeListener {
         drawWithUserState(g, gScaled, proj);
         drawWidthIncompatibilityData(g, gScaled, proj);
         Circuit circ = proj.getCurrentCircuit();
-        
+
         CircuitState circState = proj.getCircuitState();
         ComponentDrawContext ptContext = new ComponentDrawContext(canvas,
                 circ, circState, g, gScaled);
@@ -179,7 +179,7 @@ class CanvasPainter implements PropertyChangeListener {
             gCopy.dispose();
         }
     }
-    
+
     private void drawWidthIncompatibilityData(Graphics base, Graphics g, Project proj) {
         Set<WidthIncompatibilityData> exceptions;
         exceptions = proj.getCurrentCircuit().getWidthIncompatibilityData();

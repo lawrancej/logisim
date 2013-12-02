@@ -24,7 +24,7 @@ public class LibraryEvent {
         this.action = action;
         this.data = data;
     }
-    
+
     public Library getSource() {
         return source;
     }

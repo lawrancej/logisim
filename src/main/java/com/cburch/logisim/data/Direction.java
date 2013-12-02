@@ -51,11 +51,11 @@ public class Direction implements AttributeOptionInterface {
     public String toDisplayString() {
         return disp.toString();
     }
-    
+
     public StringGetter getDisplayGetter() {
         return disp;
     }
-    
+
     public String toVerticalDisplayString() {
         return vert.toString();
     }
@@ -64,7 +64,7 @@ public class Direction implements AttributeOptionInterface {
     public int hashCode() {
         return id;
     }
-    
+
     public double toRadians() {
         if (this == Direction.EAST) return 0.0;
         if (this == Direction.WEST) return Math.PI;
@@ -72,7 +72,7 @@ public class Direction implements AttributeOptionInterface {
         if (this == Direction.SOUTH) return -Math.PI / 2.0;
         return 0.0;
     }
-    
+
     public int toDegrees() {
         if (this == Direction.EAST) return 0;
         if (this == Direction.WEST) return 180;
@@ -80,7 +80,7 @@ public class Direction implements AttributeOptionInterface {
         if (this == Direction.SOUTH) return 270;
         return 0;
     }
-    
+
     public Direction reverse() {
         if (this == Direction.EAST) return Direction.WEST;
         if (this == Direction.WEST) return Direction.EAST;
@@ -88,7 +88,7 @@ public class Direction implements AttributeOptionInterface {
         if (this == Direction.SOUTH) return Direction.NORTH;
         return Direction.WEST;
     }
-    
+
     public Direction getRight() {
         if (this == Direction.EAST) return Direction.SOUTH;
         if (this == Direction.WEST) return Direction.NORTH;
@@ -96,7 +96,7 @@ public class Direction implements AttributeOptionInterface {
         if (this == Direction.SOUTH) return Direction.WEST;
         return Direction.WEST;
     }
-    
+
     public Direction getLeft() {
         if (this == Direction.EAST) return Direction.NORTH;
         if (this == Direction.WEST) return Direction.SOUTH;

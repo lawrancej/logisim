@@ -28,7 +28,7 @@ import com.cburch.logisim.proj.Project;
 class SelectionAttributes extends AbstractAttributeSet {
     private static final Attribute<?>[] EMPTY_ATTRIBUTES = new Attribute<?>[0];
     private static final Object[] EMPTY_VALUES = new Object[0];
-    
+
     private class Listener implements Selection.Listener, AttributeListener {
         @Override
         public void selectionChanged(Selection.Event e) {
@@ -49,7 +49,7 @@ class SelectionAttributes extends AbstractAttributeSet {
             }
         }
     }
-    
+
     private Canvas canvas;
     private Selection selection;
     private Listener listener;
@@ -59,7 +59,7 @@ class SelectionAttributes extends AbstractAttributeSet {
     private boolean[] readOnly;
     private Object[] values;
     private List<Attribute<?>> attrsView;
-    
+
     public SelectionAttributes(Canvas canvas, Selection selection) {
         this.canvas = canvas;
         this.selection = selection;
@@ -74,11 +74,11 @@ class SelectionAttributes extends AbstractAttributeSet {
         updateList(true);
         setListening(true);
     }
-    
+
     public Selection getSelection() {
         return selection;
     }
-    
+
     void setListening(boolean value) {
         if (listening != value) {
             listening = value;
@@ -87,7 +87,7 @@ class SelectionAttributes extends AbstractAttributeSet {
             }
         }
     }
-    
+
     private void updateList(boolean ignoreIfSelectionSame) {
         Selection sel = selection;
         Set<Component> oldSel = selected;
@@ -109,10 +109,10 @@ class SelectionAttributes extends AbstractAttributeSet {
                 }
             }
         }
-        
+
         LinkedHashMap<Attribute<Object>,Object> attrMap = computeAttributes(newSel);
         boolean same = isSame(attrMap, this.attrs, this.values);
-        
+
         if (same) {
             if (newSel != oldSel) this.selected = newSel;
         } else {
@@ -133,7 +133,7 @@ class SelectionAttributes extends AbstractAttributeSet {
             this.attrsView = UnmodifiableList.decorate(Arrays.asList(newAttrs));
             this.values = newValues;
             this.readOnly = newReadOnly;
-            
+
             boolean listSame = oldAttrs != null && oldAttrs.length == newAttrs.length;
             if (listSame) {
                 for (i = 0; i < oldAttrs.length; i++) {
@@ -143,7 +143,7 @@ class SelectionAttributes extends AbstractAttributeSet {
                     }
                 }
             }
-            
+
             if (listSame) {
                 for (i = 0; i < oldValues.length; i++) {
                     Object oldVal = oldValues[i];
@@ -161,13 +161,13 @@ class SelectionAttributes extends AbstractAttributeSet {
             }
         }
     }
-    
+
     private static Set<Component> createSet(Collection<Component> comps) {
         boolean includeWires = true;
         for (Component comp : comps) {
             if (!(comp instanceof Wire)) { includeWires = false; break; }
         }
-        
+
         if (includeWires) {
             return new HashSet<Component>(comps);
         } else {
@@ -193,7 +193,7 @@ class SelectionAttributes extends AbstractAttributeSet {
             return true;
         }
     }
-    
+
     private static LinkedHashMap<Attribute<Object>,Object> computeAttributes(Collection<Component> newSel)  {
         LinkedHashMap<Attribute<Object>,Object> attrMap;
         attrMap = new LinkedHashMap<Attribute<Object>,Object>();
@@ -223,7 +223,7 @@ class SelectionAttributes extends AbstractAttributeSet {
         }
         return attrMap;
     }
-    
+
     private static boolean isSame(LinkedHashMap<Attribute<Object>,Object> attrMap,
             Attribute<?>[] oldAttrs, Object[] oldValues) {
         if (oldAttrs.length != attrMap.size()) {
@@ -242,7 +242,7 @@ class SelectionAttributes extends AbstractAttributeSet {
             return true;
         }
     }
-    
+
     private static boolean computeReadOnly(Collection<Component> sel, Attribute<?> attr) {
         for (Component comp : sel) {
             AttributeSet attrs = comp.getAttributeSet();
@@ -265,7 +265,7 @@ class SelectionAttributes extends AbstractAttributeSet {
             return attrsView;
         }
     }
-    
+
     @Override
     public boolean isReadOnly(Attribute<?> attr) {
         Project proj = canvas.getProject();
@@ -280,7 +280,7 @@ class SelectionAttributes extends AbstractAttributeSet {
             return i >= 0 && i < ro.length ? ro[i] : true;
         }
     }
-    
+
     @Override
     public boolean isToSave(Attribute<?> attr) {
         return false;
@@ -316,7 +316,7 @@ class SelectionAttributes extends AbstractAttributeSet {
             }
         }
     }
-    
+
     private int findIndex(Attribute<?> attr) {
         if (attr == null) return -1;
         Attribute<?>[] as = attrs;

@@ -23,7 +23,7 @@ public class Base extends Library {
     public Base() {
         SelectTool select = new SelectTool();
         WiringTool wiring = new WiringTool();
-        
+
         tools = Arrays.asList(new Tool[] {
             new PokeTool(),
             new EditTool(select, wiring),

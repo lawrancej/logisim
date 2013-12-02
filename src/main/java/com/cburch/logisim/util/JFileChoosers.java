@@ -20,11 +20,11 @@ public class JFileChoosers {
         LogisimFileChooser() {
             super();
         }
-        
+
         LogisimFileChooser(File initSelected) {
             super(initSelected);
         }
-        
+
         @Override
         public File getSelectedFile() {
             File dir = getCurrentDirectory();
@@ -37,15 +37,15 @@ public class JFileChoosers {
 
     private static final String[] PROP_NAMES = {
         null, "user.home", "user.dir", "java.home", "java.io.tmpdir" };
-    
+
     private static String currentDirectory = "";
-    
+
     private JFileChoosers() { }
-    
+
     public static String getCurrentDirectory() {
         return currentDirectory;
     }
-    
+
     public static JFileChooser create() {
         RuntimeException first = null;
         for (int i = 0; i < PROP_NAMES.length; i++) {
@@ -76,7 +76,7 @@ public class JFileChoosers {
         }
         throw first;
     }
-    
+
     public static JFileChooser createAt(File openDirectory) {
         if (openDirectory == null) {
             return create();
@@ -92,7 +92,7 @@ public class JFileChoosers {
             }
         }
     }
-    
+
     public static JFileChooser createSelected(File selected) {
         if (selected == null) {
             return create();

@@ -37,13 +37,13 @@ class MemMenu implements ActionListener, MenuExtender {
         this.factory = factory;
         this.instance = instance;
     }
-        
+
     @Override
     public void configureMenu(JPopupMenu menu, Project proj) {
         this.proj = proj;
         this.frame = proj.getFrame();
-        this.circState = proj.getCircuitState();    
-        
+        this.circState = proj.getCircuitState();
+
         Object attrs = instance.getAttributeSet();
         if (attrs instanceof RomAttributes) {
             ((RomAttributes) attrs).setProject(proj);

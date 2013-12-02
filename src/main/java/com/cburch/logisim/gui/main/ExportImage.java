@@ -49,7 +49,7 @@ class ExportImage {
     private static final int FORMAT_GIF = 0;
     private static final int FORMAT_PNG = 1;
     private static final int FORMAT_JPG = 2;
-    
+
     private static final int BORDER_SIZE = 5;
 
     private ExportImage() { }
@@ -75,7 +75,7 @@ class ExportImage {
         double scale = options.getScale();
         boolean printerView = options.getPrinterView();
         if (circuits.isEmpty()) return;
-        
+
         ImageFileFilter filter;
         int fmt = options.getImageFormat();
         switch (options.getImageFormat()) {
@@ -95,7 +95,7 @@ class ExportImage {
             System.err.println("unexpected format; aborted"); //OK
             return;
         }
-        
+
         // Then display file chooser
         Loader loader = proj.getLogisimFile().getLoader();
         JFileChooser chooser = loader.createChooser();
@@ -202,7 +202,7 @@ class ExportImage {
             gbc.fill = GridBagConstraints.HORIZONTAL;
             addGb(new JScrollPane(list));
             gbc.fill = GridBagConstraints.NONE;
-            
+
             gbc.gridy++;
             addGb(new JLabel(_("labelImageFormat") + " "));
             Box formatsPanel = new Box(BoxLayout.Y_AXIS);
@@ -210,17 +210,17 @@ class ExportImage {
             formatsPanel.add(formatGif);
             formatsPanel.add(formatJpg);
             addGb(formatsPanel);
-            
+
             gbc.gridy++;
             addGb(new JLabel(_("labelScale") + " "));
             addGb(slider);
             addGb(curScale);
-            
+
             gbc.gridy++;
             addGb(new JLabel(_("labelPrinterView") + " "));
             addGb(printerView);
         }
-        
+
         private void addGb(JComponent comp) {
             gridbag.setConstraints(comp, gbc);
             add(comp);
@@ -229,9 +229,9 @@ class ExportImage {
         double getScale() {
             return Math.pow(2.0, (double) slider.getValue() / SLIDER_DIVISIONS);
         }
-        
+
         boolean getPrinterView() { return printerView.isSelected(); }
-        
+
         int getImageFormat() {
             if (formatGif.isSelected()) return FORMAT_GIF;
             if (formatJpg.isSelected()) return FORMAT_JPG;
@@ -245,21 +245,21 @@ class ExportImage {
             if (curScaleDim != null) curScale.setPreferredSize(curScaleDim);
         }
     }
-    
+
     private static class ImageFileFilter extends FileFilter {
         private int type;
         private String[] extensions;
         private StringGetter desc;
-        
+
         private ImageFileFilter(int type, StringGetter desc, String[] exts) {
             this.type = type;
             this.desc = desc;
             extensions = new String[exts.length];
             for (int i = 0; i < exts.length; i++) {
-                extensions[i] = "." + exts[i].toLowerCase();    
+                extensions[i] = "." + exts[i].toLowerCase();
             }
         }
-        
+
         @Override
         public boolean accept(File f) {
             String name = f.getName().toLowerCase();
@@ -304,7 +304,7 @@ class ExportImage {
                 export(circ);
             }
         }
-        
+
         private void export(Circuit circuit) {
             Bounds bds = circuit.getBounds(canvas.getGraphics())
                 .expand(BORDER_SIZE);

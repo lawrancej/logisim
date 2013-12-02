@@ -35,33 +35,33 @@ class VariableTab extends AnalyzerTab implements TabInterface {
             implements VariableListListener {
         private VariableList list;
         private String[] listCopy;
-        
+
         public VariableListModel(VariableList list) {
             this.list = list;
             updateCopy();
             list.addVariableListListener(this);
         }
-        
+
         private void updateCopy() {
             listCopy = list.toArray(new String[list.size()]);
         }
-        
+
         @Override
         public int getSize() {
             return listCopy.length;
         }
-        
+
         @Override
         public Object getElementAt(int index) {
             return index >= 0 && index < listCopy.length ? listCopy[index] : null;
         }
-        
+
         private void update() {
             String[] oldCopy = listCopy;
             updateCopy();
             fireContentsChanged(this, 0, oldCopy.length);
         }
-        
+
         @Override
         public void listChanged(VariableListEvent event) {
             String[] oldCopy = listCopy;
@@ -89,7 +89,7 @@ class VariableTab extends AnalyzerTab implements TabInterface {
             }
         }
     }
-    
+
     private class MyListener
             implements ActionListener, DocumentListener, ListSelectionListener {
         @Override
@@ -130,7 +130,7 @@ class VariableTab extends AnalyzerTab implements TabInterface {
                 }
             }
         }
-        
+
         @Override
         public void insertUpdate(DocumentEvent event) {
             computeEnabled();
@@ -144,7 +144,7 @@ class VariableTab extends AnalyzerTab implements TabInterface {
         public void valueChanged(ListSelectionEvent event) {
             computeEnabled();
         }
-        
+
         public void listChanged(VariableListEvent event) {
             switch (event.getType()) {
             case VariableListEvent.ALL_REPLACED:
@@ -170,10 +170,10 @@ class VariableTab extends AnalyzerTab implements TabInterface {
             list.validate();
         }
     }
-    
+
     private VariableList data;
     private MyListener myListener = new MyListener();
-    
+
     private JList list = new JList();
     private JTextField field = new JTextField();
     private JButton remove = new JButton();
@@ -182,10 +182,10 @@ class VariableTab extends AnalyzerTab implements TabInterface {
     private JButton add = new JButton();
     private JButton rename = new JButton();
     private JLabel error = new JLabel(" ");
-    
+
     VariableTab(VariableList data) {
         this.data = data;
-        
+
         list.setModel(new VariableListModel(data));
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.addListSelectionListener(myListener);
@@ -196,31 +196,31 @@ class VariableTab extends AnalyzerTab implements TabInterface {
         rename.addActionListener(myListener);
         field.addActionListener(myListener);
         field.getDocument().addDocumentListener(myListener);
-        
+
         JScrollPane listPane = new JScrollPane(list,
             ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
             ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         listPane.setPreferredSize(new Dimension(100, 100));
-        
+
         JPanel topPanel = new JPanel(new GridLayout(3, 1));
         topPanel.add(remove);
         topPanel.add(moveUp);
         topPanel.add(moveDown);
-        
+
         JPanel fieldPanel = new JPanel();
         fieldPanel.add(rename);
         fieldPanel.add(add);
-        
+
         GridBagLayout gb = new GridBagLayout();
         GridBagConstraints gc = new GridBagConstraints();
         setLayout(gb);
         Insets oldInsets = gc.insets;
-        
+
           gc.insets = new Insets(10, 10, 0, 0);
           gc.fill = GridBagConstraints.BOTH;
           gc.weightx = 1.0;
         gb.setConstraints(listPane, gc); add(listPane);
-        
+
           gc.fill = GridBagConstraints.NONE;
           gc.anchor = GridBagConstraints.PAGE_START;
           gc.weightx = 0.0;
@@ -232,19 +232,19 @@ class VariableTab extends AnalyzerTab implements TabInterface {
           gc.gridy = GridBagConstraints.RELATIVE;
           gc.fill = GridBagConstraints.HORIZONTAL;
         gb.setConstraints(field, gc); add(field);
-        
+
           gc.insets = oldInsets;
           gc.fill = GridBagConstraints.NONE;
           gc.anchor = GridBagConstraints.LINE_END;
         gb.setConstraints(fieldPanel, gc); add(fieldPanel);
-        
+
           gc.fill = GridBagConstraints.HORIZONTAL;
         gb.setConstraints(error, gc); add(error);
-                
+
         if (!data.isEmpty()) list.setSelectedValue(data.get(0), true);
         computeEnabled();
     }
-    
+
     @Override
     void localeChanged() {
         remove.setText(_("variableRemoveButton"));
@@ -254,17 +254,17 @@ class VariableTab extends AnalyzerTab implements TabInterface {
         rename.setText(_("variableRenameButton"));
         validateInput();
     }
-    
+
     @Override
     void updateTab() {
         VariableListModel model = (VariableListModel) list.getModel();
         model.update();
     }
-    
+
     void registerDefaultButtons(DefaultRegistry registry) {
         registry.registerDefaultButton(field, add);
     }
-    
+
     private void computeEnabled() {
         int index = list.getSelectedIndex();
         int max = list.getModel().getSize();
@@ -277,7 +277,7 @@ class VariableTab extends AnalyzerTab implements TabInterface {
         add.setEnabled(ok && data.size() < data.getMaximumSize());
         rename.setEnabled(ok && selected);
     }
-    
+
     private boolean validateInput() {
         String text = field.getText().trim();
         boolean ok = true;

@@ -10,13 +10,13 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 class TickCounter implements SimulatorListener {
     private static final int QUEUE_LENGTH = 1000;
-    
+
     private long[] queueTimes;
     private double[] queueRates;
     private int queueStart;
     private int queueSize;
     private double tickFrequency;
-    
+
     public TickCounter() {
         queueTimes = new long[QUEUE_LENGTH];
         queueRates = new double[QUEUE_LENGTH];
@@ -26,7 +26,7 @@ class TickCounter implements SimulatorListener {
     public void clear() {
         queueSize = 0;
     }
-    
+
     @Override
     public void propagationCompleted(SimulatorEvent e) {
         Simulator sim = e.getSource();
@@ -51,7 +51,7 @@ class TickCounter implements SimulatorListener {
                 queueSize = 0;
                 tickFrequency = freq;
             }
-            
+
             int curSize = queueSize;
             int maxSize = queueTimes.length;
             int start = queueStart;
@@ -80,7 +80,7 @@ class TickCounter implements SimulatorListener {
                 rate = 1000.0 * (curSize - 1) / (endTime - startTime);
             }
             queueTimes[end] = endTime;
-            queueRates[end] = rate; 
+            queueRates[end] = rate;
         }
     }
 
@@ -135,7 +135,7 @@ class TickCounter implements SimulatorListener {
             }
         }
     }
-    
+
     private String roundString(double val, double min) {
         // round so we have only three significant digits
         int i = 0; // invariant: a = 10^i
@@ -161,7 +161,7 @@ class TickCounter implements SimulatorListener {
         // Examples:
         // 2.34: i = -2, a = .2, b = 234
         // 20.1: i = -1, a = .1, b = 201
-        
+
         if (i >= 0) { // nothing after decimal point
             return "" + (int) Math.round(a * Math.round(bv));
         } else { // keep some after decimal point

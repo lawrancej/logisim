@@ -45,7 +45,7 @@ abstract class Mem extends InstanceFactory {
             "addrWidth", __("ramAddrWidthAttr"), 2, 24);
     public static final Attribute<BitWidth> DATA_ATTR = Attributes.forBitWidth(
             "dataWidth", __("ramDataWidthAttr"));
-    
+
     // port-related constants
     static final int DATA = 0;
     static final int ADDR = 1;
@@ -67,7 +67,7 @@ abstract class Mem extends InstanceFactory {
 
         setOffsetBounds(Bounds.create(-140, -40, 140, 80));
     }
-    
+
     abstract void configurePorts(Instance instance);
     @Override
     public abstract AttributeSet createAttributeSet();
@@ -81,7 +81,7 @@ abstract class Mem extends InstanceFactory {
     protected void configureNewInstance(Instance instance) {
         configurePorts(instance);
     }
-    
+
     void configureStandardPorts(Instance instance, Port[] ps) {
         ps[DATA] = new Port(   0,  0, Port.INOUT, DATA_ATTR);
         ps[ADDR] = new Port(-140,  0, Port.INPUT, ADDR_ATTR);
@@ -139,17 +139,17 @@ abstract class Mem extends InstanceFactory {
         g.setColor(Color.GRAY);
         painter.drawPort(CS, _("ramCSLabel"), Direction.SOUTH);
     }
-    
+
     File getCurrentImage(Instance instance) {
         return currentInstanceFiles.get(instance);
     }
-    
+
     void setCurrentImage(Instance instance, File value) {
         currentInstanceFiles.put(instance, value);
     }
-    
+
     public void loadImage(InstanceState instanceState, File imageFile)
-            throws IOException { 
+            throws IOException {
         MemState s = this.getState(instanceState);
         HexFile.open(s.getContents(), imageFile);
         this.setCurrentImage(instanceState.getInstance(), imageFile);
@@ -160,12 +160,12 @@ abstract class Mem extends InstanceFactory {
         if (key == MenuExtender.class) return new MemMenu(this, instance);
         return super.getInstanceFeature(instance, key);
     }
-    
+
     static class MemListener implements HexModelListener {
         Instance instance;
-        
+
         MemListener(Instance instance) { this.instance = instance; }
-        
+
         @Override
         public void metainfoChanged(HexModel source) { }
 

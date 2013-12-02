@@ -116,7 +116,7 @@ class ToolbarActions {
         public void undo(Project proj) {
             toolbar.move(dest, oldpos);
         }
-        
+
         @Override
         public boolean shouldAppendTo(Action other) {
             if (other instanceof MoveTool) {

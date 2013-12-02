@@ -25,18 +25,18 @@ public abstract class AbstractCanvasObject
         implements AttributeSet, CanvasObject, Cloneable {
     private static final int OVERLAP_TRIES = 50;
     private static final int GENERATE_RANDOM_TRIES = 20;
-    
+
     private EventSourceWeakSupport<AttributeListener> listeners;
-    
+
     public AbstractCanvasObject() {
         listeners = new EventSourceWeakSupport<AttributeListener>();
     }
-    
+
     @Override
     public AttributeSet getAttributeSet() {
         return this;
     }
-    
+
     @Override
     public abstract String getDisplayName();
     public abstract Element toSvgElement(Document doc);
@@ -57,42 +57,42 @@ public abstract class AbstractCanvasObject
 
     @Override
     public abstract void paint(Graphics g, HandleGesture gesture);
-    
+
     @Override
     public boolean canRemove() {
         return true;
     }
-    
+
     @Override
     public boolean canMoveHandle(Handle handle) {
         return false;
     }
-    
+
     @Override
     public Handle canInsertHandle(Location desired) {
         return null;
     }
-    
+
     @Override
     public Handle canDeleteHandle(Location loc) {
         return null;
     }
-    
+
     @Override
     public Handle moveHandle(HandleGesture gesture) {
         throw new UnsupportedOperationException("moveHandle");
     }
-    
+
     @Override
     public void insertHandle(Handle desired, Handle previous) {
         throw new UnsupportedOperationException("insertHandle");
     }
-    
+
     @Override
     public Handle deleteHandle(Handle handle) {
         throw new UnsupportedOperationException("deleteHandle");
     }
-    
+
     @Override
     public boolean overlaps(CanvasObject other) {
         Bounds a = this.getBounds();
@@ -149,7 +149,7 @@ public abstract class AbstractCanvasObject
     public void removeAttributeListener(AttributeListener l) {
         listeners.remove(l);
     }
-    
+
     @Override
     public CanvasObject clone() {
         try {
@@ -165,7 +165,7 @@ public abstract class AbstractCanvasObject
     public boolean containsAttribute(Attribute<?> attr) {
         return getAttributes().contains(attr);
     }
-    
+
     @Override
     public Attribute<?> getAttribute(String name) {
         for (Attribute<?> attr : getAttributes()) {
@@ -178,12 +178,12 @@ public abstract class AbstractCanvasObject
     public boolean isReadOnly(Attribute<?> attr) {
         return false;
     }
-    
+
     @Override
     public void setReadOnly(Attribute<?> attr, boolean value) {
         throw new UnsupportedOperationException("setReadOnly");
     }
-    
+
     @Override
     public boolean isToSave(Attribute<?> attr) {
         return true;
@@ -201,14 +201,14 @@ public abstract class AbstractCanvasObject
             }
         }
     }
-    
+
     protected void fireAttributeListChanged() {
         AttributeEvent e = new AttributeEvent(this);
         for (AttributeListener listener : listeners) {
             listener.attributeListChanged(e);
         }
     }
-    
+
     protected boolean setForStroke(Graphics g) {
         List<Attribute<?>> attrs = getAttributes();
         if (attrs.contains(DrawAttr.PAINT_TYPE)) {
@@ -230,7 +230,7 @@ public abstract class AbstractCanvasObject
             return false;
         }
     }
-    
+
     protected boolean setForFill(Graphics g) {
         List<Attribute<?>> attrs = getAttributes();
         if (attrs.contains(DrawAttr.PAINT_TYPE)) {

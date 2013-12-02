@@ -14,7 +14,7 @@ import com.cburch.logisim.instance.StdAttr;
 
 class CounterAttributes extends AbstractAttributeSet {
     private AttributeSet base;
-    
+
     public CounterAttributes() {
         base = AttributeSets.fixedSet(new Attribute<?>[] {
                 StdAttr.WIDTH, Counter.ATTR_MAX, Counter.ATTR_ON_GOAL,
@@ -27,7 +27,7 @@ class CounterAttributes extends AbstractAttributeSet {
                 "", StdAttr.DEFAULT_LABEL_FONT
             });
     }
-    
+
     @Override
     public void copyInto(AbstractAttributeSet dest) {
         ((CounterAttributes) dest).base = (AttributeSet) this.base.clone();

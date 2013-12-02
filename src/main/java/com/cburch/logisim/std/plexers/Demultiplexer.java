@@ -41,7 +41,7 @@ public class Demultiplexer extends InstanceFactory {
         setFacingAttribute(StdAttr.FACING);
         setIconName("demultiplexer.svg");
     }
-    
+
     @Override
     public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
         if (attr == Plexers.ATTR_ENABLE) {
@@ -66,7 +66,7 @@ public class Demultiplexer extends InstanceFactory {
         }
         return bds.rotate(Direction.EAST, facing, 0, 0);
     }
-    
+
     @Override
     public boolean contains(Location loc, AttributeSet attrs) {
         Direction facing = attrs.getValue(StdAttr.FACING).reverse();
@@ -154,7 +154,7 @@ public class Demultiplexer extends InstanceFactory {
             ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
         }
         ps[ps.length - 1] = new Port(0, 0, Port.INPUT, data.getWidth());
-        
+
         for (int i = 0; i < outputs; i++) {
             ps[i].setToolTip(__("demultiplexerOutTip", "" + i));
         }
@@ -209,7 +209,7 @@ public class Demultiplexer extends InstanceFactory {
             state.setPort(i, i == outIndex ? out : others, Plexers.DELAY);
         }
     }
-    
+
     @Override
     public void paintGhost(InstancePainter painter) {
         Direction facing = painter.getAttributeValue(StdAttr.FACING);
@@ -250,7 +250,7 @@ public class Demultiplexer extends InstanceFactory {
             g.drawLine(en.getX(), en.getY(), en.getX() + len * dx, en.getY() + len * dy);
         }
         GraphicsUtil.switchToWidth(g, 1);
-        
+
         // draw a circle indicating where the select input is located
         Multiplexer.drawSelectCircle(g, bds, painter.getInstance().getPortLocation(outputs));
 

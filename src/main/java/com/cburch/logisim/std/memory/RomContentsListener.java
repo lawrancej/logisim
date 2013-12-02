@@ -17,7 +17,7 @@ class RomContentsListener implements HexModelListener {
         private int[] oldValues;
         private int[] newValues;
         private boolean completed = true;
-        
+
         Change(RomContentsListener source, MemContents contents,
                 long start, int[] oldValues, int[] newValues) {
             this.source = source;
@@ -57,7 +57,7 @@ class RomContentsListener implements HexModelListener {
                 }
             }
         }
-        
+
         @Override
         public boolean shouldAppendTo(Action other) {
             if (other instanceof Change) {
@@ -68,7 +68,7 @@ class RomContentsListener implements HexModelListener {
             }
             return super.shouldAppendTo(other);
         }
-        
+
         @Override
         public Action append(Action other) {
             if (other instanceof Change) {
@@ -93,21 +93,21 @@ class RomContentsListener implements HexModelListener {
 
     Project proj;
     boolean enabled = true;
-    
+
     RomContentsListener(Project proj) {
         this.proj = proj;
     }
-    
+
     void setEnabled(boolean value) {
         enabled = value;
     }
-    
+
     @Override
     public void metainfoChanged(HexModel source) {
         // ignore - this can only come from an already-registered
         // action
     }
-    
+
     @Override
     public void bytesChanged(HexModel source, long start,
             long numBytes, int[] oldValues) {

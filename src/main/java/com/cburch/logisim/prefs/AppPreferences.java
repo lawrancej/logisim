@@ -50,7 +50,7 @@ public class AppPreferences {
     private static Template emptyTemplate = null;
     private static Template customTemplate = null;
     private static File customTemplateFile = null;
-    
+
     // International preferences
     public static final String SHAPE_SHAPED = "shaped";
     public static final String SHAPE_RECTANGULAR = "rectangular";
@@ -64,11 +64,11 @@ public class AppPreferences {
         = create(new LocalePreference());
     public static final PrefMonitor<Boolean> ACCENTS_REPLACE
         = create(new PrefMonitorBoolean("accentsReplace", false));
-    
+
     // Window preferences
     public static final String TOOLBAR_HIDDEN = "hidden";
     public static final String TOOLBAR_DOWN_MIDDLE = "downMiddle";
-    
+
     public static final PrefMonitor<Boolean> SHOW_TICK_RATE
         = create(new PrefMonitorBoolean("showTickRate", false));
     public static final PrefMonitor<String> TOOLBAR_PLACEMENT
@@ -77,7 +77,7 @@ public class AppPreferences {
                     Direction.EAST.toString(), Direction.WEST.toString(),
                     TOOLBAR_DOWN_MIDDLE, TOOLBAR_HIDDEN },
                 Direction.NORTH.toString()));
-    
+
     // Layout preferences
     public static final String ADD_AFTER_UNCHANGED = "unchanged";
     public static final String ADD_AFTER_EDIT = "edit";
@@ -97,7 +97,7 @@ public class AppPreferences {
             new String[] { ADD_AFTER_EDIT, ADD_AFTER_UNCHANGED }, ADD_AFTER_EDIT));
     public static PrefMonitor<String> POKE_WIRE_RADIX1;
     public static PrefMonitor<String> POKE_WIRE_RADIX2;
-    
+
     static {
         RadixOption[] radixOptions = RadixOption.OPTIONS;
         String[] radixStrings = new String[radixOptions.length];
@@ -120,7 +120,7 @@ public class AppPreferences {
         = create(new PrefMonitorStringOpts("graphicsAcceleration",
                 new String[] { ACCEL_DEFAULT, ACCEL_NONE, ACCEL_OPENGL, ACCEL_D3D },
                 ACCEL_DEFAULT));
-    
+
     // hidden window preferences - not part of the preferences dialog, changes
     // to preference does not affect current windows, and the values are not
     // saved until the application is closed
@@ -150,7 +150,7 @@ public class AppPreferences {
         = create(new PrefMonitorDouble("windowLeftSplit", 0.5));
     public static final PrefMonitor<String> DIALOG_DIRECTORY
         = create(new PrefMonitorString("dialogDirectory", ""));
-    
+
     //
     // methods for accessing preferences
     //
@@ -184,7 +184,7 @@ public class AppPreferences {
                 }
             }
         }
-        
+
         @Override
         public void localeChanged() {
             Locale loc = LocaleManager.getLocale();
@@ -198,16 +198,16 @@ public class AppPreferences {
     private static <E> PrefMonitor<E> create(PrefMonitor<E> monitor) {
         return monitor;
     }
-    
+
     public static void clear() {
         Preferences p = getPrefs(true);
         try { p.clear(); } catch (BackingStoreException e) { }
     }
-    
+
     static Preferences getPrefs() {
         return getPrefs(false);
     }
-    
+
     private static Preferences getPrefs(boolean shouldClear) {
         if (prefs == null) {
             synchronized(AppPreferences.class) {
@@ -227,7 +227,7 @@ public class AppPreferences {
         }
         return prefs;
     }
-    
+
     private static File convertFile(String fileName) {
         if (fileName == null || fileName.equals("")) {
             return null;
@@ -236,7 +236,7 @@ public class AppPreferences {
             return file.canRead() ? file : null;
         }
     }
-    
+
     //
     // PropertyChangeSource methods
     //
@@ -252,7 +252,7 @@ public class AppPreferences {
     public static void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         propertySupport.removePropertyChangeListener(propertyName, listener);
     }
-    
+
     static void firePropertyChange(String property, boolean oldVal, boolean newVal) {
         propertySupport.firePropertyChange(property, oldVal, newVal);
     }
@@ -271,7 +271,7 @@ public class AppPreferences {
         }
         return ret;
     }
-    
+
     public static void setTemplateType(int value) {
         getPrefs();
         if (value != TEMPLATE_PLAIN && value != TEMPLATE_EMPTY && value != TEMPLATE_CUSTOM) {
@@ -281,17 +281,17 @@ public class AppPreferences {
             getPrefs().putInt(TEMPLATE_TYPE, value);
         }
     }
-    
+
     public static File getTemplateFile() {
         getPrefs();
         return templateFile;
     }
-    
+
     public static void setTemplateFile(File value) {
         getPrefs();
         setTemplateFile(value, null);
     }
-    
+
     public static void setTemplateFile(File value, Template template) {
         getPrefs();
         if (value != null && !value.canRead()) value = null;
@@ -303,7 +303,7 @@ public class AppPreferences {
             } catch (IOException ex) { }
         }
     }
-    
+
     public static void handleGraphicsAcceleration() {
         String accel = GRAPHICS_ACCELERATION.get();
         try {
@@ -319,7 +319,7 @@ public class AppPreferences {
             }
         } catch (Throwable t) { }
     }
-    
+
     //
     // template methods
     //
@@ -332,18 +332,18 @@ public class AppPreferences {
         default: return getPlainTemplate();
         }
     }
-    
+
     public static Template getEmptyTemplate() {
         if (emptyTemplate == null) emptyTemplate = Template.createEmpty();
         return emptyTemplate;
     }
-    
+
     private static Template getPlainTemplate() {
         if (plainTemplate == null) {
             ClassLoader ld = Startup.class.getClassLoader();
             InputStream in = ld.getResourceAsStream("logisim/default.templ");
             if (in == null) {
-                plainTemplate = getEmptyTemplate(); 
+                plainTemplate = getEmptyTemplate();
             } else {
                 try {
                     try {
@@ -358,7 +358,7 @@ public class AppPreferences {
         }
         return plainTemplate;
     }
-    
+
     private static Template getCustomTemplate() {
         File toRead = templateFile;
         if (customTemplateFile == null || !(customTemplateFile.equals(toRead))) {
@@ -384,18 +384,18 @@ public class AppPreferences {
         }
         return customTemplate == null ? getPlainTemplate() : customTemplate;
     }
-    
+
     //
     // recent projects
     //
     public static List<File> getRecentFiles() {
         return recentProjects.getRecentFiles();
     }
-    
+
     public static void updateRecentFile(File file) {
         recentProjects.updateRecent(file);
     }
-    
+
     //
     // LocalePreference
     //
@@ -417,7 +417,7 @@ public class AppPreferences {
                 super.set(value);
             }
         }
-        
+
         private static Locale findLocale(String lang) {
             Locale[] check;
             for (int set = 0; set < 2; set++) {

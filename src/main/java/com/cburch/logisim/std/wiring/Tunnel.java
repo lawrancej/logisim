@@ -58,7 +58,7 @@ public class Tunnel extends InstanceFactory {
             return bds;
         }
     }
-    
+
     //
     // graphics methods
     //
@@ -67,7 +67,7 @@ public class Tunnel extends InstanceFactory {
         TunnelAttributes attrs = (TunnelAttributes) painter.getAttributeSet();
         Direction facing = attrs.getFacing();
         String label = attrs.getLabel();
-        
+
         Graphics g = painter.getGraphics();
         g.setFont(attrs.getFont());
         FontMetrics fm = g.getFontMetrics();
@@ -77,7 +77,7 @@ public class Tunnel extends InstanceFactory {
             Instance instance = painter.getInstance();
             if (instance != null) instance.recomputeBounds();
         }
-        
+
         int x0 = bds.getX();
         int y0 = bds.getY();
         int x1 = x0 + bds.getWidth();
@@ -138,7 +138,7 @@ public class Tunnel extends InstanceFactory {
         g.translate(-x, -y);
         painter.drawPorts();
     }
-    
+
     //
     // methods for instances
     //
@@ -150,7 +150,7 @@ public class Tunnel extends InstanceFactory {
             });
         configureLabel(instance);
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.FACING) {
@@ -160,12 +160,12 @@ public class Tunnel extends InstanceFactory {
             instance.recomputeBounds();
         }
     }
-    
+
     @Override
     public void propagate(InstanceState state) {
         ; // nothing to do - handled by circuit
     }
-    
+
     //
     // private methods
     //
@@ -183,7 +183,7 @@ public class Tunnel extends InstanceFactory {
         int y = attrs.getLabelY();
         int halign = attrs.getLabelHAlign();
         int valign = attrs.getLabelVAlign();
-        
+
         int minDim = ARROW_MIN_WIDTH - 2 * MARGIN;
         int bw = Math.max(minDim, textWidth);
         int bh = Math.max(minDim, textHeight);
@@ -199,7 +199,7 @@ public class Tunnel extends InstanceFactory {
         case TextField.V_BOTTOM: by = y - bh; break;
         default: by = y - (bh / 2);
         }
-        
+
         if (g != null) {
             GraphicsUtil.drawText(g, label, bx + bw / 2, by + bh / 2,
                     GraphicsUtil.H_CENTER, GraphicsUtil.V_CENTER_OVERALL);

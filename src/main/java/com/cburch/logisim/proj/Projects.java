@@ -22,10 +22,10 @@ import com.cburch.logisim.util.PropertyChangeWeakSupport;
 
 public class Projects {
     public static final String projectListProperty = "projectList";
-    
+
     private static final WeakHashMap<Window, Point> frameLocations
         = new WeakHashMap<Window, Point>();
-    
+
     private static void projectRemoved(Project proj, Frame frame,
             MyListener listener) {
         frame.removeWindowListener(listener);
@@ -39,7 +39,7 @@ public class Projects {
         public void windowActivated(WindowEvent event) {
             mostRecentFrame = (Frame) event.getSource();
         }
-        
+
         @Override
         public void windowClosing(WindowEvent event) {
             Frame frame = (Frame) event.getSource();
@@ -50,12 +50,12 @@ public class Projects {
                 } catch (Throwable t) { }
             }
         }
-        
+
         @Override
         public void windowClosed(WindowEvent event) {
             Frame frame = (Frame) event.getSource();
             Project proj = frame.getProject();
-            
+
             if (frame == proj.getFrame()) {
                 projectRemoved(proj, frame, this);
             }
@@ -63,7 +63,7 @@ public class Projects {
                 ProjectActions.doQuit();
             }
         }
-        
+
         @Override
         public void windowOpened(WindowEvent event) {
             Frame frame = (Frame) event.getSource();
@@ -83,7 +83,7 @@ public class Projects {
     private static Frame mostRecentFrame = null;
 
     private Projects() { }
-    
+
     public static Frame getTopFrame() {
         Frame ret = mostRecentFrame;
         if (ret == null) {
@@ -99,14 +99,14 @@ public class Projects {
         }
         return ret;
     }
-    
+
     static void windowCreated(Project proj, Frame oldFrame, Frame frame) {
         if (oldFrame != null) {
             projectRemoved(proj, oldFrame, myListener);
         }
 
         if (frame == null) return;
-        
+
         // locate the window
         Point lowest = null;
         for (Project p : openProjects) {
@@ -130,18 +130,18 @@ public class Projects {
         }
         frame.addWindowListener(myListener);
     }
-    
+
     public static List<Project> getOpenProjects() {
         return Collections.unmodifiableList(openProjects);
     }
-    
+
     public static boolean windowNamed(String name) {
         for (Project proj : openProjects) {
             if (proj.getLogisimFile().getName().equals(name)) return true;
         }
         return false;
     }
-    
+
     public static Project findProjectFor(File query) {
         for (Project proj : openProjects) {
             Loader loader = proj.getLogisimFile().getLoader();
@@ -167,7 +167,7 @@ public class Projects {
     public static void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         propertySupport.removePropertyChangeListener(propertyName, listener);
     }
-    
+
     public static Point getLocation(Window win) {
         Point ret = frameLocations.get(win);
         return ret == null ? null : (Point) ret.clone();

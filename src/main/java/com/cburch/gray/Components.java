@@ -17,7 +17,7 @@ public class Components extends Library {
      * to create AddTools for new components that can be added into the circuit.
      */
     private List<AddTool> tools;
-    
+
     /** Constructs an instance of this library. This constructor is how
      * Logisim accesses first when it opens the JAR file: It looks for
      * a no-arguments constructor method of the user-designated class.
@@ -29,13 +29,13 @@ public class Components extends Library {
                 new AddTool(new GrayCounter()),
         });
     }
-    
-    /** Returns the name of the library that the user will see. */ 
+
+    /** Returns the name of the library that the user will see. */
     @Override
     public String getDisplayName() {
         return "Gray Tools";
     }
-    
+
     /** Returns a list of all the tools available in this library. */
     @Override
     public List<AddTool> getTools() {

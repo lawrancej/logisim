@@ -27,7 +27,7 @@ public class AppearanceSelection extends Selection {
         }
         super.setMovingDelta(dx, dy);
     }
-    
+
     private boolean shouldSnap(Collection<? extends CanvasObject> shapes) {
         for (CanvasObject o : shapes) {
             if (o instanceof AppearanceElement) {

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2012, Carl Burch.
- * 
+ *
  * This file is part of the Logisim source code. The latest
  * version is available at http://www.cburch.com/logisim/.
  *
@@ -24,7 +24,7 @@ import com.cburch.logisim.gui.start.Startup;
 
 /**
  * Main entry point into Logisim.
- * 
+ *
  * @version 2.7.2
  * @author Carl Burch
  */

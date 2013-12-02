@@ -11,7 +11,7 @@ class SimulatorTicker extends Thread {
     private boolean shouldTick;
     private int ticksPending;
     private boolean complete;
-    
+
     public SimulatorTicker(Simulator.PropagationManager manager) {
         this.manager = manager;
         ticksPerTickPhase = 1;
@@ -20,7 +20,7 @@ class SimulatorTicker extends Thread {
         ticksPending = 0;
         complete = false;
     }
-    
+
     public synchronized void setTickFrequency(int millis, int ticks) {
         millisPerTickPhase = millis;
         ticksPerTickPhase = ticks;
@@ -30,12 +30,12 @@ class SimulatorTicker extends Thread {
         shouldTick = value;
         if (shouldTick) notifyAll();
     }
-    
+
     public synchronized void shutDown() {
         complete = true;
         notifyAll();
     }
-    
+
     public synchronized void tickOnce() {
         ticksPending++;
         notifyAll();
@@ -62,9 +62,9 @@ class SimulatorTicker extends Thread {
                     }
                 }
             } catch (InterruptedException e) { }
-            
+
             if (complete) break;
-            
+
             int toTick;
             long now = System.currentTimeMillis();
             if (curShouldTick && now - lastTick >= millis) {

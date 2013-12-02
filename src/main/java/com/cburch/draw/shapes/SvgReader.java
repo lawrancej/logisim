@@ -21,9 +21,9 @@ import com.cburch.logisim.data.Location;
 
 public class SvgReader {
     private SvgReader() { }
-    
+
     private static final Pattern PATH_REGEX = Pattern.compile("[a-zA-Z]|[-0-9.]+");
-    
+
     public static AbstractCanvasObject createShape(Element elt) {
         String name = elt.getTagName();
         AbstractCanvasObject ret;
@@ -78,7 +78,7 @@ public class SvgReader {
         }
         return ret;
     }
-    
+
     private static AbstractCanvasObject createRectangle(Element elt) {
         int x = Integer.parseInt(elt.getAttribute("x"));
         int y = Integer.parseInt(elt.getAttribute("y"));
@@ -105,7 +105,7 @@ public class SvgReader {
         int h = (int) Math.round(ry * 2);
         return new Oval(x, y, w, h);
     }
-    
+
     private static AbstractCanvasObject createLine(Element elt) {
         int x0 = Integer.parseInt(elt.getAttribute("x1"));
         int y0 = Integer.parseInt(elt.getAttribute("y1"));
@@ -113,21 +113,21 @@ public class SvgReader {
         int y1 = Integer.parseInt(elt.getAttribute("y2"));
         return new Line(x0, y0, x1, y1);
     }
-    
+
     private static AbstractCanvasObject createPolygon(Element elt) {
         return new Poly(true, parsePoints(elt.getAttribute("points")));
     }
-    
+
     private static AbstractCanvasObject createPolyline(Element elt) {
         return new Poly(false, parsePoints(elt.getAttribute("points")));
     }
-    
+
     private static AbstractCanvasObject createText(Element elt) {
         int x = Integer.parseInt(elt.getAttribute("x"));
         int y = Integer.parseInt(elt.getAttribute("y"));
         String text = elt.getTextContent();
         Text ret = new Text(x, y, text);
-        
+
         String fontFamily = elt.getAttribute("font-family");
         String fontStyle = elt.getAttribute("font-style");
         String fontWeight = elt.getAttribute("font-weight");
@@ -137,7 +137,7 @@ public class SvgReader {
         if (fontWeight.equals("bold")) styleFlags |= Font.BOLD;
         int size = Integer.parseInt(fontSize);
         ret.setValue(DrawAttr.FONT, new Font(fontFamily, styleFlags, size));
-        
+
         String alignStr = elt.getAttribute("text-anchor");
         AttributeOption halign;
         if (alignStr.equals("start")) {
@@ -148,11 +148,11 @@ public class SvgReader {
             halign = DrawAttr.ALIGN_CENTER;
         }
         ret.setValue(DrawAttr.ALIGNMENT, halign);
-        
+
         // fill color is handled after we return
         return ret;
     }
-    
+
     private static List<Location> parsePoints(String points) {
         Pattern patt = Pattern.compile("[ ,\n\r\t]+");
         String[] toks = patt.split(points);
@@ -164,7 +164,7 @@ public class SvgReader {
         }
         return UnmodifiableList.decorate(Arrays.asList(ret));
     }
-    
+
     private static AbstractCanvasObject createPath(Element elt) {
         Matcher patt = PATH_REGEX.matcher(elt.getAttribute("d"));
         List<String> tokens = new ArrayList<String>();
@@ -198,7 +198,7 @@ public class SvgReader {
                 }
             }
         }
-    
+
         if (type == 1) {
             if (tokens.size() == 8 && tokens.get(0).equals("M")
                     && tokens.get(3).toUpperCase().equals("Q")) {
@@ -225,7 +225,7 @@ public class SvgReader {
             throw new NumberFormatException("Unrecognized path");
         }
     }
-    
+
     private static Color getColor(String hue, String opacity) {
         int r;
         int g;

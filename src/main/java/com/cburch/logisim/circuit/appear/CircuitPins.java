@@ -52,12 +52,12 @@ public class CircuitPins {
         myComponentListener = new MyComponentListener();
         pins = new HashSet<Instance>();
     }
-    
+
     public void transactionCompleted(ReplacementMap repl) {
         // determine the changes
         Set<Instance> adds = new HashSet<Instance>();
         Set<Instance> removes = new HashSet<Instance>();
-        Map<Instance, Instance> replaces = new HashMap<Instance, Instance>(); 
+        Map<Instance, Instance> replaces = new HashMap<Instance, Instance>();
         for (Component comp : repl.getAdditions()) {
             if (comp.getFactory() instanceof Pin) {
                 Instance in = Instance.getInstanceFor(comp);
@@ -91,7 +91,7 @@ public class CircuitPins {
 
         appearanceManager.updatePorts(adds, removes, replaces, getPins());
     }
-    
+
     public Collection<Instance> getPins() {
         return new ArrayList<Instance>(pins);
     }

@@ -69,7 +69,7 @@ public class Frame extends LFrame implements LocaleListener {
     public static final String VIEW_SIMULATION = "simulation";
 
     private static final double[] ZOOM_OPTIONS = { 20, 50, 75, 100, 133, 150, 200, 250, 300, 400 };
-    
+
     class MyProjectListener
             implements ProjectListener, LibraryListener, CircuitListener,
                 PropertyChangeListener, ChangeListener {
@@ -128,7 +128,7 @@ public class Frame extends LFrame implements LocaleListener {
                 placeToolbar();
             }
         }
-        
+
         @Override
         public void stateChanged(ChangeEvent event) {
             Object source = event.getSource();
@@ -173,14 +173,14 @@ public class Frame extends LFrame implements LocaleListener {
     private SimulationExplorer simExplorer;
     private AttrTable       attrTable;
     private ZoomControl     zoom;
-    
+
     // for the Layout view
     private LayoutToolbarModel layoutToolbarModel;
     private Canvas          layoutCanvas;
     private ZoomModel       layoutZoomModel;
     private LayoutEditHandler layoutEditHandler;
     private AttrTableSelectionModel attrTableSelectionModel;
-    
+
     // for the Appearance view
     private AppearanceView appearance;
 
@@ -195,7 +195,7 @@ public class Frame extends LFrame implements LocaleListener {
         proj.addLibraryListener(myProjectListener);
         proj.addCircuitListener(myProjectListener);
         computeTitle();
-        
+
         // set up elements for the Layout view
         layoutToolbarModel = new LayoutToolbarModel(this, proj);
         layoutCanvas = new Canvas(proj);
@@ -260,7 +260,7 @@ public class Frame extends LFrame implements LocaleListener {
             this.setLocation(prefPoint);
         }
         this.setExtendedState(AppPreferences.WINDOW_STATE.get().intValue());
-        
+
         menuListener.register(mainPanel);
         KeyboardToolSelection.register(toolbar);
 
@@ -276,7 +276,7 @@ public class Frame extends LFrame implements LocaleListener {
 
         LocaleManager.addLocaleListener(this);
     }
-    
+
     private void placeToolbar() {
         String loc = AppPreferences.TOOLBAR_PLACEMENT.get();
         Container contents = getContentPane();
@@ -304,7 +304,7 @@ public class Frame extends LFrame implements LocaleListener {
         }
         contents.validate();
     }
-    
+
     public Project getProject() {
         return proj;
     }
@@ -316,7 +316,7 @@ public class Frame extends LFrame implements LocaleListener {
             setAttrTableModel(new AttrTableComponentModel(proj, circ, comp));
         }
     }
-    
+
     void setAttrTableModel(AttrTableModel value) {
         attrTable.setAttrTableModel(value);
         if (value instanceof AttrTableToolModel) {
@@ -335,19 +335,19 @@ public class Frame extends LFrame implements LocaleListener {
             layoutCanvas.setHaloedComponent(null, null);
         }
     }
-    
+
     public void setExplorerView(String view) {
         explorerPane.setView(view);
     }
-    
+
     public String getExplorerView() {
         return explorerPane.getView();
     }
-    
+
     public void setEditorView(String view) {
         String curView = mainPanel.getView();
         if (curView.equals(view)) return;
-        
+
         if (view.equals(EDIT_APPEARANCE)) { // appearance view
             AppearanceView app = appearance;
             if (app == null) {
@@ -392,11 +392,11 @@ public class Frame extends LFrame implements LocaleListener {
         this.setTitle(s);
         myProjectListener.enableSave();
     }
-    
+
     void viewAttributes(Tool newTool) {
         viewAttributes(null, newTool, false);
     }
-    
+
     private void viewAttributes(Tool newTool, boolean force) {
         viewAttributes(null, newTool, force);
     }
@@ -435,7 +435,7 @@ public class Frame extends LFrame implements LocaleListener {
     public void localeChanged() {
         computeTitle();
     }
-    
+
     public void savePreferences() {
         AppPreferences.TICK_FREQUENCY.set(Double.valueOf(proj.getSimulator().getTickFrequency()));
         AppPreferences.LAYOUT_SHOW_GRID.setBoolean(layoutZoomModel.getShowGrid());
@@ -463,15 +463,15 @@ public class Frame extends LFrame implements LocaleListener {
         AppPreferences.WINDOW_MAIN_SPLIT.set(Double.valueOf(mainRegion.getFraction()));
         AppPreferences.DIALOG_DIRECTORY.set(JFileChoosers.getCurrentDirectory());
     }
-    
+
     public boolean confirmClose() {
         return confirmClose(_("confirmCloseTitle"));
     }
-    
+
     // returns true if user is OK with proceeding
     public boolean confirmClose(String title) {
         String message = _("confirmDiscardMessage", proj.getLogisimFile().getName());
-        
+
         if (!proj.isFileDirty()) return true;
         toFront();
         String[] options = { _("saveOption"), _("discardOption"), _("cancelOption") };
@@ -491,7 +491,7 @@ public class Frame extends LFrame implements LocaleListener {
         }
         return ret;
     }
-    
+
     private static Point getInitialLocation() {
         String s = AppPreferences.WINDOW_LOCATION.get();
         if (s == null) return null;
@@ -505,7 +505,7 @@ public class Frame extends LFrame implements LocaleListener {
                 y += 20;
             }
             Rectangle desired = new Rectangle(x, y, 50, 50);
-        
+
             int gcBestSize = 0;
             Point gcBestPoint = null;
             GraphicsEnvironment ge;

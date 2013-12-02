@@ -16,7 +16,7 @@ public class ModelTranslateAction extends ModelAction {
     private HashSet<CanvasObject> moved;
     private int dx;
     private int dy;
-    
+
     public ModelTranslateAction(CanvasModel model,
             Collection<CanvasObject> moved, int dx, int dy) {
         super(model);
@@ -24,7 +24,7 @@ public class ModelTranslateAction extends ModelAction {
         this.dx = dx;
         this.dy = dy;
     }
-    
+
     @Override
     public Collection<CanvasObject> getObjects() {
         return Collections.unmodifiableSet(moved);
@@ -34,17 +34,17 @@ public class ModelTranslateAction extends ModelAction {
     public String getName() {
         return _("actionTranslate", getShapesName(moved));
     }
-    
+
     @Override
     void doSub(CanvasModel model) {
         model.translateObjects(moved, dx, dy);
     }
-    
+
     @Override
     void undoSub(CanvasModel model) {
         model.translateObjects(moved, -dx, -dy);
     }
-    
+
     @Override
     public boolean shouldAppendTo(Action other) {
         if (other instanceof ModelTranslateAction) {

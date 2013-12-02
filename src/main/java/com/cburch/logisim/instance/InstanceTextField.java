@@ -37,14 +37,14 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
     private int fieldY;
     private int halign;
     private int valign;
-    
+
     InstanceTextField(InstanceComponent comp) {
         this.comp = comp;
         this.field = null;
         this.labelAttr = null;
         this.fontAttr = null;
     }
-    
+
     void update(Attribute<String> labelAttr, Attribute<Font> fontAttr,
             int x, int y, int halign, int valign) {
         boolean wasReg = shouldRegister();
@@ -58,10 +58,10 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
         AttributeSet attrs = comp.getAttributeSet();
         if (!wasReg && shouldReg) attrs.addAttributeListener(this);
         if (wasReg && !shouldReg) attrs.removeAttributeListener(this);
-        
+
         updateField(attrs);
     }
-    
+
     private void updateField(AttributeSet attrs) {
         String text = attrs.getValue(labelAttr);
         if (text == null || text.equals("")) {
@@ -80,22 +80,22 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
             }
         }
     }
-    
+
     private void createField(AttributeSet attrs, String text) {
         Font font = attrs.getValue(fontAttr);
         field = new TextField(fieldX, fieldY, halign, valign, font);
         field.setText(text);
         field.addTextFieldListener(this);
     }
-    
+
     private boolean shouldRegister() {
         return labelAttr != null || fontAttr != null;
     }
-    
+
     Bounds getBounds(Graphics g) {
         return field == null ? Bounds.EMPTY_BOUNDS : field.getBounds(g);
     }
-    
+
     void draw(Component comp, ComponentDrawContext context) {
         if (field != null) {
             Graphics g = context.getGraphics().create();
@@ -103,10 +103,10 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
             g.dispose();
         }
     }
-    
+
     @Override
     public void attributeListChanged(AttributeEvent e) { }
-    
+
     @Override
     public void attributeValueChanged(AttributeEvent e) {
         Attribute<?> attr = e.getAttribute();
@@ -125,7 +125,7 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
             comp.getAttributeSet().setValue(labelAttr, next);
         }
     }
-    
+
     @Override
     public Action getCommitAction(Circuit circuit, String oldText,
             String newText) {

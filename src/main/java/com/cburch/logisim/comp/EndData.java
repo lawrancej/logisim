@@ -22,7 +22,7 @@ public class EndData {
         this.i_o = type;
         this.exclusive = exclusive;
     }
-    
+
     public EndData(Location loc, BitWidth width, int type) {
         this(loc, width, type, type == OUTPUT_ONLY);
     }

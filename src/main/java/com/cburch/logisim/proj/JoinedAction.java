@@ -12,15 +12,15 @@ public class JoinedAction extends Action {
     JoinedAction(Action... actions) {
         todo = actions;
     }
-    
+
     public Action getFirstAction() {
         return todo[0];
     }
-    
+
     public Action getLastAction() {
         return todo[todo.length - 1];
     }
-    
+
     public List<Action> getActions() {
         return Arrays.asList(todo);
     }
@@ -49,7 +49,7 @@ public class JoinedAction extends Action {
             todo[i].undo(proj);
         }
     }
-    
+
     @Override
     public Action append(Action other) {
         int oldLen = todo.length;

@@ -24,7 +24,7 @@ class TextAttributes extends AbstractAttributeSet {
     private AttributeOption halign;
     private AttributeOption valign;
     private Bounds offsetBounds;
-    
+
     public TextAttributes() {
         text = "";
         font = StdAttr.DEFAULT_LABEL_FONT;
@@ -32,27 +32,27 @@ class TextAttributes extends AbstractAttributeSet {
         valign = Text.ATTR_VALIGN.parse("base");
         offsetBounds = null;
     }
-    
+
     String getText() {
         return text;
     }
-    
+
     Font getFont() {
         return font;
     }
-    
+
     int getHorizontalAlign() {
         return ((Integer) halign.getValue()).intValue();
     }
-    
+
     int getVerticalAlign() {
         return ((Integer) valign.getValue()).intValue();
     }
-    
+
     Bounds getOffsetBounds() {
         return offsetBounds;
     }
-    
+
     boolean setOffsetBounds(Bounds value) {
         Bounds old = offsetBounds;
         boolean same = old == null ? value == null : old.equals(value);

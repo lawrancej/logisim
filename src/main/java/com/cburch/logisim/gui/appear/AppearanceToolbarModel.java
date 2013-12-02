@@ -27,11 +27,11 @@ class AppearanceToolbarModel extends AbstractToolbarModel
         implements PropertyChangeListener {
     private Canvas canvas;
     private List<ToolbarItem> items;
-    
+
     public AppearanceToolbarModel(AbstractTool selectTool, Canvas canvas,
             DrawingAttributeSet attrs) {
         this.canvas = canvas;
-        
+
         AbstractTool[] tools = {
                 selectTool,
                 new TextTool(attrs),
@@ -51,7 +51,7 @@ class AppearanceToolbarModel extends AbstractToolbarModel
         items = Collections.unmodifiableList(rawItems);
         canvas.addPropertyChangeListener(Canvas.TOOL_PROPERTY, this);
     }
-    
+
     AbstractTool getFirstTool() {
         ToolbarToolItem item = (ToolbarToolItem) items.get(0);
         return item.getTool();
@@ -61,7 +61,7 @@ class AppearanceToolbarModel extends AbstractToolbarModel
     public List<ToolbarItem> getItems() {
         return items;
     }
-    
+
     @Override
     public boolean isSelected(ToolbarItem item) {
         if (item instanceof ToolbarToolItem) {

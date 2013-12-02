@@ -17,7 +17,7 @@ class GateAttributeList extends AbstractList<Attribute<?>> {
     };
 
     private GateAttributes attrs;
-    
+
     public GateAttributeList(GateAttributes attrs) {
         this.attrs = attrs;
     }

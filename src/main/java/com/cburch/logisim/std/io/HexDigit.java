@@ -65,7 +65,7 @@ public class HexDigit extends InstanceFactory {
         if ((segs & 0x100000) != 0) summary |= 16; // vertical seg at bottom left
         if ((segs & 0x1000000) != 0) summary |= 32; // vertical seg at top left
         if (state.getPort(1) == Value.TRUE) summary |= 128;
-        
+
         Object value = Integer.valueOf(summary);
         InstanceDataSingleton data = (InstanceDataSingleton) state.getData();
         if (data == null) {
@@ -74,7 +74,7 @@ public class HexDigit extends InstanceFactory {
             data.setValue(value);
         }
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         SevenSegment.drawBase(painter);

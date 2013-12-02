@@ -15,14 +15,14 @@ abstract class FillableCanvasObject extends AbstractCanvasObject {
     private int strokeWidth;
     private Color strokeColor;
     private Color fillColor;
-    
+
     public FillableCanvasObject() {
         paintType = DrawAttr.PAINT_STROKE;
         strokeWidth = 1;
         strokeColor = Color.BLACK;
         fillColor = Color.WHITE;
     }
-    
+
     @Override
     public boolean matches(CanvasObject other) {
         if (other instanceof FillableCanvasObject) {
@@ -57,15 +57,15 @@ abstract class FillableCanvasObject extends AbstractCanvasObject {
         }
         return ret;
     }
-    
+
     public AttributeOption getPaintType() {
         return paintType;
     }
-    
+
     public int getStrokeWidth() {
         return strokeWidth;
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public <V> V getValue(Attribute<V> attr) {
@@ -81,7 +81,7 @@ abstract class FillableCanvasObject extends AbstractCanvasObject {
             return null;
         }
     }
-    
+
     @Override
     public void updateValue(Attribute<?> attr, Object value) {
         if (attr == DrawAttr.PAINT_TYPE) {

@@ -16,21 +16,21 @@ import com.cburch.logisim.util.Icons;
 
 public class RectangleTool extends RectangularTool {
     private DrawingAttributeSet attrs;
-    
+
     public RectangleTool(DrawingAttributeSet attrs) {
         this.attrs = attrs;
     }
-    
+
     @Override
     public Icon getIcon() {
         return Icons.getIcon("drawrect.svg");
     }
-    
+
     @Override
     public List<Attribute<?>> getAttributes() {
         return DrawAttr.getFillAttributes(attrs.getValue(DrawAttr.PAINT_TYPE));
     }
-    
+
     @Override
     public CanvasObject createShape(int x, int y, int w, int h) {
         return attrs.applyTo(new Rectangle(x, y, w, h));

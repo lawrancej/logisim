@@ -27,7 +27,7 @@ public class Plexers extends Library {
     public static final Attribute<Boolean> ATTR_TRISTATE
         = Attributes.forBoolean("tristate", __("plexerThreeStateAttr"));
     public static final Object DEFAULT_TRISTATE = Boolean.FALSE;
-    
+
     public static final AttributeOption DISABLED_FLOATING
         = new AttributeOption("Z", __("plexerDisabledFloating"));
     public static final AttributeOption DISABLED_ZERO
@@ -35,7 +35,7 @@ public class Plexers extends Library {
     public static final Attribute<AttributeOption> ATTR_DISABLED
         = Attributes.forOption("disabled", __("plexerDisabledAttr"),
                 new AttributeOption[] { DISABLED_FLOATING, DISABLED_ZERO });
-    
+
     public static final Attribute<Boolean> ATTR_ENABLE
         = Attributes.forBoolean("enable", __("plexerEnableAttr"));
 
@@ -48,7 +48,7 @@ public class Plexers extends Library {
             new AttributeOption[] { SELECT_BOTTOM_LEFT, SELECT_TOP_RIGHT });
 
     protected static final int DELAY = 3;
-    
+
     private static FactoryDescription[] DESCRIPTIONS = {
         new FactoryDescription("Multiplexer", __("multiplexerComponent"),
                 "multiplexer.svg", "Multiplexer"),
@@ -100,7 +100,7 @@ public class Plexers extends Library {
         GraphicsUtil.switchToWidth(g, 2);
         g.drawPolygon(xp, yp, 4);
     }
-    
+
     static boolean contains(Location loc, Bounds bds, Direction facing) {
         if (bds.contains(loc, 1)) {
             int x = loc.getX();

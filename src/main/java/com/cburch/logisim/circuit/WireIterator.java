@@ -15,7 +15,7 @@ class WireIterator implements Iterator<Location> {
     private int deltaX;
     private int deltaY;
     private boolean destReturned;
-    
+
     public WireIterator(Location e0, Location e1) {
         curX = e0.getX();
         curY = e0.getY();
@@ -28,7 +28,7 @@ class WireIterator implements Iterator<Location> {
         if (curY < destY) deltaY = 10;
         else if (curY > destY) deltaY = -10;
         else deltaY = 0;
-        
+
         int offX = (destX - curX) % 10;
         if (offX != 0) { // should not happen, but in case it does...
             destX = curX + deltaX * ((destX - curX) / 10);
@@ -38,12 +38,12 @@ class WireIterator implements Iterator<Location> {
             destY = curY + deltaY * ((destY - curY) / 10);
         }
     }
-    
+
     @Override
     public boolean hasNext() {
         return !destReturned;
     }
-    
+
     @Override
     public Location next() {
         Location ret = Location.create(curX, curY);
@@ -52,7 +52,7 @@ class WireIterator implements Iterator<Location> {
         curY += deltaY;
         return ret;
     }
-    
+
     @Override
     public void remove() {
         throw new UnsupportedOperationException();

@@ -9,21 +9,21 @@ import javax.swing.JPanel;
 
 abstract class OptionsPanel extends JPanel{
     private PreferencesFrame optionsFrame;
-    
+
     public OptionsPanel(PreferencesFrame frame) {
         super();
         this.optionsFrame = frame;
     }
-    
+
     public OptionsPanel(PreferencesFrame frame, LayoutManager manager) {
         super(manager);
         this.optionsFrame = frame;
     }
-    
+
     public abstract String getTitle();
     public abstract String getHelpText();
     public abstract void localeChanged();
-    
+
     PreferencesFrame getPreferencesFrame() {
         return optionsFrame;
     }

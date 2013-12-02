@@ -50,7 +50,7 @@ public class Ram extends Mem {
     private static Object[] DEFAULTS = {
         BitWidth.create(8), BitWidth.create(8), BUS_COMBINED
     };
-    
+
     private static final int OE  = MEM_INPUTS + 0;
     private static final int CLR = MEM_INPUTS + 1;
     private static final int CLK = MEM_INPUTS + 2;
@@ -64,19 +64,19 @@ public class Ram extends Mem {
         setIconName("ram.svg");
         setInstanceLogger(Logger.class);
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         super.configureNewInstance(instance);
         instance.addAttributeListener();
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         super.instanceAttributeChanged(instance, attr);
         configurePorts(instance);
     }
-    
+
     @Override
     void configurePorts(Instance instance) {
         Object bus = instance.getAttributeValue(ATTR_BUS);
@@ -167,11 +167,11 @@ public class Ram extends Mem {
         boolean triggered = asynch || myState.setClock(state.getPort(CLK), StdAttr.TRIG_RISING);
         boolean outputEnabled = state.getPort(OE) != Value.FALSE;
         boolean shouldClear = state.getPort(CLR) == Value.TRUE;
-        
+
         if (shouldClear) {
             myState.getContents().clear();
         }
-        
+
         if (!chipSelect) {
             myState.setCurrent(-1);
             state.setPort(DATA, Value.createUnknown(dataBits), DELAY);
@@ -213,7 +213,7 @@ public class Ram extends Mem {
         Object busVal = painter.getAttributeValue(ATTR_BUS);
         boolean asynch = ObjectUtils.equals(busVal, BUS_ASYNCH);
         boolean separate = ObjectUtils.equals(busVal, BUS_SEPARATE);
-        
+
         if (!asynch) painter.drawClock(CLK, Direction.NORTH);
         painter.drawPort(OE, _("ramOELabel"), Direction.SOUTH);
         painter.drawPort(CLR, _("ramClrLabel"), Direction.SOUTH);
@@ -240,14 +240,14 @@ public class Ram extends Mem {
             if (parent != null) parent.getAttributeSet().addAttributeListener(this);
             contents.addHexModelListener(listener);
         }
-        
+
         void setRam(Instance value) {
             if (parent == value) return;
             if (parent != null) parent.getAttributeSet().removeAttributeListener(this);
             parent = value;
             if (value != null) value.getAttributeSet().addAttributeListener(this);
         }
-        
+
         @Override
         public RamState clone() {
             RamState ret = (RamState) super.clone();
@@ -256,7 +256,7 @@ public class Ram extends Mem {
             ret.getContents().addHexModelListener(listener);
             return ret;
         }
-        
+
         // Retrieves a HexFrame for editing within a separate window
         public HexFrame getHexFrame(Project proj) {
             if (hexFrame == null) {
@@ -270,7 +270,7 @@ public class Ram extends Mem {
             }
             return hexFrame;
         }
-        
+
         //
         // methods for accessing the write-enable data
         //
@@ -289,7 +289,7 @@ public class Ram extends Mem {
             getContents().setDimensions(addrBits.getWidth(), dataBits.getWidth());
         }
     }
-    
+
     public static class Logger extends InstanceLogger {
         @Override
         public Object[] getLogOptions(InstanceState state) {

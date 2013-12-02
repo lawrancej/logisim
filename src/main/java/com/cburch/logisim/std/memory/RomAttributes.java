@@ -17,7 +17,7 @@ class RomAttributes extends AbstractAttributeSet {
     private static List<Attribute<?>> ATTRIBUTES = Arrays.asList(new Attribute<?>[] {
             Mem.ADDR_ATTR, Mem.DATA_ATTR, Rom.CONTENTS_ATTR
         });
-    
+
     private static WeakHashMap<MemContents,RomContentsListener> listenerRegistry
         = new WeakHashMap<MemContents,RomContentsListener>();
     private static WeakHashMap<MemContents,HexFrame> windowRegistry
@@ -29,7 +29,7 @@ class RomAttributes extends AbstractAttributeSet {
         value.addHexModelListener(l);
         listenerRegistry.put(value, l);
     }
-    
+
     static HexFrame getHexFrame(MemContents value, Project proj) {
         synchronized(windowRegistry) {
             HexFrame ret = windowRegistry.get(value);
@@ -44,15 +44,15 @@ class RomAttributes extends AbstractAttributeSet {
     private BitWidth addrBits = BitWidth.create(8);
     private BitWidth dataBits = BitWidth.create(8);
     private MemContents contents;
-    
+
     RomAttributes() {
         contents = MemContents.create(addrBits.getWidth(), dataBits.getWidth());
     }
-    
+
     void setProject(Project proj) {
         register(contents, proj);
     }
-    
+
     @Override
     protected void copyInto(AbstractAttributeSet dest) {
         RomAttributes d = (RomAttributes) dest;
@@ -60,12 +60,12 @@ class RomAttributes extends AbstractAttributeSet {
         d.dataBits = dataBits;
         d.contents = contents.clone();
     }
-    
+
     @Override
     public List<Attribute<?>> getAttributes() {
         return ATTRIBUTES;
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public <V> V getValue(Attribute<V> attr) {
@@ -74,7 +74,7 @@ class RomAttributes extends AbstractAttributeSet {
         if (attr == Rom.CONTENTS_ATTR) return (V) contents;
         return null;
     }
-    
+
     @Override
     public <V> void setValue(Attribute<V> attr, V value) {
         if (attr == Mem.ADDR_ATTR) {

@@ -18,12 +18,12 @@ class LocaleSelector extends JList
     private static class LocaleOption implements Runnable {
         private Locale locale;
         private String text;
-        
+
         LocaleOption(Locale locale) {
             this.locale = locale;
             update(locale);
         }
-        
+
         @Override
         public String toString() {
             return text;
@@ -37,7 +37,7 @@ class LocaleSelector extends JList
                     + " / " + locale.getDisplayName(current);
             }
         }
-        
+
         @Override
         public void run() {
             if (!LocaleManager.getLocale().equals(locale)) {
@@ -48,7 +48,7 @@ class LocaleSelector extends JList
     }
 
     private LocaleOption[] items;
-    
+
     LocaleSelector(Locale[] locales) {
         setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         DefaultListModel model = new DefaultListModel();
@@ -63,7 +63,7 @@ class LocaleSelector extends JList
         localeChanged();
         addListSelectionListener(this);
     }
-    
+
     @Override
     public void localeChanged() {
         Locale current = LocaleManager.getLocale();

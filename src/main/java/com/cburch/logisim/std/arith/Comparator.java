@@ -27,7 +27,7 @@ public class Comparator extends InstanceFactory {
     private static final Attribute<AttributeOption> MODE_ATTRIBUTE
         = Attributes.forOption("mode", __("comparatorType"),
                 new AttributeOption[] { SIGNED_OPTION, UNSIGNED_OPTION });
-    
+
     private static final int IN0   = 0;
     private static final int IN1   = 1;
     private static final int GT    = 2;
@@ -41,7 +41,7 @@ public class Comparator extends InstanceFactory {
         setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
         setOffsetBounds(Bounds.create(-40, -20, 40, 40));
         setIconName("comparator.svg");
-        
+
         Port[] ps = new Port[5];
         ps[IN0] = new Port(-40, -10, Port.INPUT,  StdAttr.WIDTH);
         ps[IN1] = new Port(-40,  10, Port.INPUT,  StdAttr.WIDTH);
@@ -117,8 +117,8 @@ public class Comparator extends InstanceFactory {
         painter.drawPort(EQ, "=", Direction.WEST);
         painter.drawPort(LT, "<", Direction.WEST);
     }
-    
-    
+
+
     //
     // methods for instances
     //

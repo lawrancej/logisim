@@ -11,7 +11,7 @@ public class CircuitAction extends Action {
     private StringGetter name;
     private CircuitTransaction forward;
     private CircuitTransaction reverse;
-    
+
     CircuitAction(StringGetter name, CircuitMutation forward) {
         this.name = name;
         this.forward = forward;

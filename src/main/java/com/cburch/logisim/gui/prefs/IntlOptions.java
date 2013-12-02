@@ -31,7 +31,7 @@ class IntlOptions extends OptionsPanel {
 
     public IntlOptions(PreferencesFrame window) {
         super(window);
-        
+
         locale = createLocaleSelector();
         replAccents = new PrefBoolean(AppPreferences.ACCENTS_REPLACE,
                 __("intlReplaceAccents"));
@@ -43,7 +43,7 @@ class IntlOptions extends OptionsPanel {
                             __("shapeRectangular")),
                     new PrefOption(AppPreferences.SHAPE_DIN40700,
                             __("shapeDIN40700")) });
-        
+
         Box localePanel = new Box(BoxLayout.X_AXIS);
         localePanel.add(Box.createGlue());
         localePanel.add(localeLabel);
@@ -52,11 +52,11 @@ class IntlOptions extends OptionsPanel {
         localePanel.add(locale);
         locale.setAlignmentY(Component.TOP_ALIGNMENT);
         localePanel.add(Box.createGlue());
-        
+
         JPanel shapePanel = new JPanel();
         shapePanel.add(gateShape.getJLabel());
         shapePanel.add(gateShape.getJComboBox());
-        
+
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(Box.createGlue());
         add(shapePanel);
@@ -64,7 +64,7 @@ class IntlOptions extends OptionsPanel {
         add(replAccents);
         add(Box.createGlue());
     }
-    
+
     @Override
     public String getTitle() {
         return _("intlTitle");
@@ -74,7 +74,7 @@ class IntlOptions extends OptionsPanel {
     public String getHelpText() {
         return _("intlHelp");
     }
-    
+
     @Override
     public void localeChanged() {
         gateShape.localeChanged();

@@ -27,12 +27,12 @@ class CircuitJList extends JList {
                 options.add(circ);
             }
         }
-        
+
         setListData(options);
         if (currentFound) setSelectedValue(current, true);
         setVisibleRowCount(Math.min(6, options.size()));
     }
-    
+
     public List<Circuit> getSelectedCircuits() {
         Object[] selected = getSelectedValues();
         if (selected != null && selected.length > 0) {

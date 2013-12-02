@@ -28,22 +28,22 @@ public abstract class AbstractTool extends CanvasTool {
             new PolyTool(true, attrs),
         };
     }
-    
+
     public abstract Icon getIcon();
     public abstract List<Attribute<?>> getAttributes();
     public String getDescription() { return null; }
-    
+
     //
     // CanvasTool methods
     //
     @Override
     public abstract Cursor getCursor(Canvas canvas);
-    
+
     @Override
     public void toolSelected(Canvas canvas) { }
     @Override
     public void toolDeselected(Canvas canvas) { }
-    
+
     @Override
     public void mouseMoved(Canvas canvas, MouseEvent e) { }
     @Override
@@ -57,7 +57,7 @@ public abstract class AbstractTool extends CanvasTool {
     @Override
     public void mouseExited(Canvas canvas, MouseEvent e) { }
 
-    /** This is because a popup menu may result from the subsequent mouse release */ 
+    /** This is because a popup menu may result from the subsequent mouse release */
     @Override
     public void cancelMousePress(Canvas canvas) { }
 
@@ -67,7 +67,7 @@ public abstract class AbstractTool extends CanvasTool {
     public void keyReleased(Canvas canvas, KeyEvent e) { }
     @Override
     public void keyTyped(Canvas canvas, KeyEvent e) { }
-    
+
     @Override
     public void draw(Canvas canvas, Graphics g) { }
 }

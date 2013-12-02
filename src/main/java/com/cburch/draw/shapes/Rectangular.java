@@ -17,11 +17,11 @@ import com.cburch.logisim.data.Location;
 
 abstract class Rectangular extends FillableCanvasObject {
     private Bounds bounds; // excluding the stroke's width
-    
+
     public Rectangular(int x, int y, int w, int h) {
         bounds = Bounds.create(x, y, w, h);
     }
-    
+
     @Override
     public boolean matches(CanvasObject other) {
         if (other instanceof Rectangular) {
@@ -37,23 +37,23 @@ abstract class Rectangular extends FillableCanvasObject {
     public int matchesHashCode() {
         return bounds.hashCode() * 31 + super.matchesHashCode();
     }
-    
+
     public int getX() {
         return bounds.getX();
     }
-    
+
     public int getY() {
         return bounds.getY();
     }
-    
+
     public int getWidth() {
         return bounds.getWidth();
     }
-    
+
     public int getHeight() {
         return bounds.getHeight();
     }
-    
+
     @Override
     public Bounds getBounds() {
         int wid = getStrokeWidth();
@@ -64,17 +64,17 @@ abstract class Rectangular extends FillableCanvasObject {
             return bounds.expand(wid / 2);
         }
     }
-    
+
     @Override
     public void translate(int dx, int dy) {
         bounds = bounds.translate(dx, dy);
     }
-    
+
     @Override
     public List<Handle> getHandles(HandleGesture gesture) {
         return UnmodifiableList.decorate(Arrays.asList(getHandleArray(gesture)));
     }
-        
+
     private Handle[] getHandleArray(HandleGesture gesture) {
         Bounds bds = bounds;
         int x0 = bds.getX();
@@ -146,7 +146,7 @@ abstract class Rectangular extends FillableCanvasObject {
                 new Handle(this, newX0, newY1) };
         }
     }
-    
+
     @Override
     public boolean canMoveHandle(Handle handle) {
         return true;
@@ -178,7 +178,7 @@ abstract class Rectangular extends FillableCanvasObject {
         bounds = Bounds.create(x0, y0, x1 - x0, y1 - y0);
         return result;
     }
-    
+
     @Override
     public void paint(Graphics g, HandleGesture gesture) {
         if (gesture == null) {
@@ -194,11 +194,11 @@ abstract class Rectangular extends FillableCanvasObject {
             int y1 = p1.getY();
             if (x1 < x0) { int t = x0; x0 = x1; x1 = t; }
             if (y1 < y0) { int t = y0; y0 = y1; y1 = t; }
-    
+
             draw(g, x0, y0, x1 - x0, y1 - y0);
         }
     }
-    
+
     @Override
     public boolean contains(Location loc, boolean assumeFilled) {
         Object type = getPaintType();
@@ -231,11 +231,11 @@ abstract class Rectangular extends FillableCanvasObject {
             return false;
         }
     }
-    
+
     boolean isInRect(int qx, int qy, int x0, int y0, int w, int h) {
         return qx >= x0 && qx < x0 + w && qy >= y0 && qy < y0 + h;
     }
-    
+
     protected abstract boolean contains(int x, int y, int w, int h, Location q);
     protected abstract void draw(Graphics g, int x, int y, int w, int h);
 }

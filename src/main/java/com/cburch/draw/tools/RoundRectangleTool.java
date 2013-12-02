@@ -16,16 +16,16 @@ import com.cburch.logisim.util.Icons;
 
 public class RoundRectangleTool extends RectangularTool {
     private DrawingAttributeSet attrs;
-    
+
     public RoundRectangleTool(DrawingAttributeSet attrs) {
         this.attrs = attrs;
     }
-    
+
     @Override
     public Icon getIcon() {
         return Icons.getIcon("drawrrct.svg");
     }
-    
+
     @Override
     public List<Attribute<?>> getAttributes() {
         return DrawAttr.getRoundRectAttributes(attrs.getValue(DrawAttr.PAINT_TYPE));

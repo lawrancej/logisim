@@ -102,7 +102,7 @@ class NotGate extends InstanceFactory {
         String gateShape = AppPreferences.GATE_SHAPE.get();
         configureLabel(instance, gateShape.equals(AppPreferences.SHAPE_RECTANGULAR), null);
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == ATTR_SIZE || attr == StdAttr.FACING) {
@@ -112,7 +112,7 @@ class NotGate extends InstanceFactory {
             configureLabel(instance, gateShape.equals(AppPreferences.SHAPE_RECTANGULAR), null);
         }
     }
-    
+
     private void configurePorts(Instance instance) {
         Object size = instance.getAttributeValue(ATTR_SIZE);
         Direction facing = instance.getAttributeValue(StdAttr.FACING);
@@ -124,7 +124,7 @@ class NotGate extends InstanceFactory {
         ports[1] = new Port(out.getX(), out.getY(), Port.INPUT, StdAttr.WIDTH);
         instance.setPorts(ports);
     }
-    
+
     @Override
     protected Object getInstanceFeature(final Instance instance, Object key) {
         if (key == ExpressionComputer.class) {
@@ -140,7 +140,7 @@ class NotGate extends InstanceFactory {
         }
         return super.getInstanceFeature(instance, key);
     }
-    
+
     //
     // painting methods
     //
@@ -184,7 +184,7 @@ class NotGate extends InstanceFactory {
     public void paintGhost(InstancePainter painter) {
         paintBase(painter);
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         painter.getGraphics().setColor(Color.BLACK);
@@ -205,7 +205,7 @@ class NotGate extends InstanceFactory {
             rotate = -facing.toRadians();
             ((Graphics2D) g).rotate(rotate);
         }
-        
+
         Object shape = painter.getGateShape();
         if (shape == AppPreferences.SHAPE_RECTANGULAR) {
             paintRectangularBase(g, painter);
@@ -215,7 +215,7 @@ class NotGate extends InstanceFactory {
         } else {
             PainterShaped.paintNot(painter);
         }
-        
+
         if (rotate != 0.0) {
             ((Graphics2D) g).rotate(-rotate);
         }
@@ -235,7 +235,7 @@ class NotGate extends InstanceFactory {
         }
         GraphicsUtil.switchToWidth(g, 1);
     }
-    
+
     static void configureLabel(Instance instance, boolean isRectangular,
             Location control) {
         Object facing = instance.getAttributeValue(StdAttr.FACING);

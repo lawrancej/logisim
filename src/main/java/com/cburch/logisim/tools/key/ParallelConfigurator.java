@@ -15,13 +15,13 @@ public class ParallelConfigurator implements KeyConfigurator, Cloneable {
     public static ParallelConfigurator create(KeyConfigurator[] configs) {
         return new ParallelConfigurator(configs);
     }
-    
+
     private KeyConfigurator[] handlers;
-    
+
     private ParallelConfigurator(KeyConfigurator[] handlers) {
         this.handlers = handlers;
     }
-    
+
     @Override
     public ParallelConfigurator clone() {
         ParallelConfigurator ret;
@@ -38,7 +38,7 @@ public class ParallelConfigurator implements KeyConfigurator, Cloneable {
         }
         return ret;
     }
-    
+
     @Override
     public KeyConfigurationResult keyEventReceived(KeyConfigurationEvent event) {
         KeyConfigurator[] hs = handlers;

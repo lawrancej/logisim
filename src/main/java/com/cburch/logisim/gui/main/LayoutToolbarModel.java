@@ -32,16 +32,16 @@ import java.util.List;
 class LayoutToolbarModel extends AbstractToolbarModel {
     private class ToolItem implements ToolbarItem {
         private Tool tool;
-        
+
         ToolItem(Tool tool) {
             this.tool = tool;
         }
-        
+
         @Override
         public boolean isSelectable() {
             return true;
         }
-        
+
         @Override
         public void paintIcon(Component destination, Graphics g) {
             // draw halo
@@ -58,7 +58,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
             tool.paintIcon(c, 2, 2);
             g_copy.dispose();
         }
-        
+
         @Override
         public String getToolTip() {
             String ret = tool.getDescription();
@@ -75,7 +75,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
             }
             return ret;
         }
-        
+
         @Override
         public Dimension getDimension(Object orientation) {
             return new Dimension(24, 24);
@@ -116,7 +116,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
         public void toolbarChanged() {
             buildContents();
         }
-        
+
         //
         // AttributeListener methods
         //
@@ -126,7 +126,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
         public void attributeValueChanged(AttributeEvent e) {
             fireToolbarAppearanceChanged();
         }
-        
+
         //
         // PropertyChangeListener method
         //
@@ -137,7 +137,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
             }
         }
     }
-        
+
     private Frame frame;
     private Project proj;
     private MyListener myListener;
@@ -164,7 +164,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
     public List<ToolbarItem> getItems() {
         return items;
     }
-    
+
     @Override
     public boolean isSelected(ToolbarItem item) {
         if (item instanceof ToolItem) {
@@ -189,7 +189,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
             fireToolbarAppearanceChanged();
         }
     }
-    
+
     private void buildContents() {
         List<ToolbarItem> oldItems = items;
         List<ToolbarItem> newItems = new ArrayList<ToolbarItem>();
@@ -211,7 +211,7 @@ class LayoutToolbarModel extends AbstractToolbarModel {
         items = Collections.unmodifiableList(newItems);
         fireToolbarContentsChanged();
     }
-    
+
     private static ToolbarItem findItem(List<ToolbarItem> items, Tool tool) {
         for (ToolbarItem item : items) {
             if (item instanceof ToolItem) {

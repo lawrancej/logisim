@@ -83,7 +83,7 @@ class XorGate extends AbstractGate {
 
     @Override
     protected Value getIdentity() { return Value.FALSE; }
-    
+
     protected static Expression xorExpression(Expression[] inputs, int numInputs) {
         if (numInputs > 2) {
             throw new UnsupportedOperationException("XorGate");

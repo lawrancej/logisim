@@ -46,7 +46,7 @@ import com.cburch.logisim.util.LocaleManager;
 
 public class ProjectExplorer extends JTree implements LocaleListener {
     private static final String DIRTY_MARKER = "*";
-    
+
     public static final Color MAGNIFYING_INTERIOR = new Color(200, 200, 255, 64);
 
     private class ToolIcon implements Icon {
@@ -187,7 +187,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
             return last instanceof ProjectExplorerToolNode;
         }
     }
-    
+
     private class DeleteAction extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -249,7 +249,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
                 listener.selectionChanged(new ProjectExplorerEvent(path));
             }
         }
-        
+
         //
         // project/library file/circuit listener methods
         //
@@ -265,7 +265,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
                 ProjectExplorer.this.repaint();
             }
         }
-        
+
         //
         // PropertyChangeListener methods
         //
@@ -298,7 +298,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
         setSelectionModel(selector);
         setCellRenderer(renderer);
         addTreeSelectionListener(myListener);
-        
+
         InputMap imap = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), deleteAction);
         ActionMap amap = getActionMap();
@@ -308,7 +308,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
         AppPreferences.GATE_SHAPE.addPropertyChangeListener(myListener);
         LocaleManager.addLocaleListener(this);
     }
-    
+
     public Tool getSelectedTool() {
         TreePath path = getSelectionPath();
         if (path == null) return null;
@@ -319,7 +319,7 @@ public class ProjectExplorer extends JTree implements LocaleListener {
             return null;
         }
     }
-    
+
     public void setListener(ProjectExplorerListener value) {
         listener = value;
     }

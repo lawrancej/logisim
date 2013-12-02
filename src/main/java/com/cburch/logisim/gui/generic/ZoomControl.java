@@ -48,7 +48,7 @@ public class ZoomControl extends JPanel {
             double zoom = model.getZoomFactor();
             return toString(zoom * 100.0);
         }
-        
+
         private String toString(double factor) {
             if (factor > 10) {
                 return (int) (factor + 0.5) + "%";
@@ -77,18 +77,18 @@ public class ZoomControl extends JPanel {
             fireStateChanged();
         }
     }
-    
+
     private class GridIcon extends JComponent
             implements MouseListener, PropertyChangeListener {
         boolean state = true;
-        
+
         public GridIcon() {
             addMouseListener(this);
             setPreferredSize(new Dimension(15, 15));
             setToolTipText("");
             setFocusable(true);
         }
-        
+
         @Override
         public String getToolTipText(MouseEvent e) {
             return _("zoomShowGrid");
@@ -101,7 +101,7 @@ public class ZoomControl extends JPanel {
                 repaint();
             }
         }
-        
+
         @Override
         protected void paintComponent(Graphics g) {
             int width = getWidth();
@@ -136,29 +136,29 @@ public class ZoomControl extends JPanel {
             update();
         }
     }
-    
+
     private ZoomModel model;
     private JSpinner spinner;
     private SpinnerModel spinnerModel;
     private GridIcon grid;
-    
+
     public ZoomControl(ZoomModel model) {
         super(new BorderLayout());
         this.model = model;
-        
+
         spinnerModel = new SpinnerModel();
         spinner = new JSpinner();
         spinner.setModel(spinnerModel);
         this.add(spinner, BorderLayout.CENTER);
-        
+
         grid = new GridIcon();
         this.add(grid, BorderLayout.EAST);
         grid.update();
-        
+
         model.addPropertyChangeListener(ZoomModel.SHOW_GRID, grid);
         model.addPropertyChangeListener(ZoomModel.ZOOM, spinnerModel);
     }
-    
+
     public void setZoomModel(ZoomModel value) {
         ZoomModel oldModel = model;
         if (oldModel != value) {

@@ -48,7 +48,7 @@ public class Project {
         public void selectionChanged(Selection.Event e) {
             fireEvent(ProjectEvent.ACTION_SELECTION, e.getSource());
         }
-        
+
         @Override
         public void libraryChanged(LibraryEvent event) {
             int action = event.getAction();
@@ -128,7 +128,7 @@ public class Project {
     public Frame getFrame() {
         return frame;
     }
-    
+
     public OptionsFrame getOptionsFrame(boolean create) {
         if (optionsFrame == null || optionsFrame.getLogisimFile() != file) {
             if (create) optionsFrame = new OptionsFrame(this);
@@ -136,7 +136,7 @@ public class Project {
         }
         return optionsFrame;
     }
-    
+
     public LogFrame getLogFrame(boolean create) {
         if (logFrame == null) {
             if (create) logFrame = new LogFrame(this);
@@ -151,7 +151,7 @@ public class Project {
     public CircuitState getCircuitState() {
         return circuitState;
     }
-    
+
     public CircuitState getCircuitState(Circuit circuit) {
         if (circuitState != null && circuitState.getCircuit() == circuit) {
             return circuitState;
@@ -204,23 +204,23 @@ public class Project {
     public void removeProjectListener(ProjectListener what) {
         projectListeners.remove(what);
     }
-    
+
     public void addLibraryListener(LibraryListener value) {
         fileListeners.add(value);
         if (file != null) file.addLibraryListener(value);
     }
-    
+
     public void removeLibraryListener(LibraryListener value) {
         fileListeners.remove(value);
         if (file != null) file.removeLibraryListener(value);
     }
-    
+
     public void addCircuitListener(CircuitListener value) {
         circuitListeners.add(value);
         Circuit current = getCurrentCircuit();
         if (current != null) current.addCircuitListener(value);
     }
-    
+
     public void removeCircuitListener(CircuitListener value) {
         circuitListeners.remove(value);
         Circuit current = getCurrentCircuit();
@@ -240,7 +240,7 @@ public class Project {
             l.projectChanged(event);
         }
     }
-    
+
     // We track whether this project is the empty project opened
     // at startup by default, because we want to close it
     // immediately as another project is opened, if there
@@ -248,7 +248,7 @@ public class Project {
     public boolean isStartupScreen() {
         return startupScreen;
     }
-    
+
     public boolean confirmClose(String title) {
         return frame.confirmClose(title);
     }

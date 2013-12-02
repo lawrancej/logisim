@@ -15,15 +15,15 @@ import com.cburch.logisim.data.Location;
 
 public abstract class AppearanceElement extends AbstractCanvasObject {
     private Location location;
-    
+
     public AppearanceElement(Location location) {
         this.location = location;
     }
-    
+
     public Location getLocation() {
         return location;
     }
-    
+
     @Override
     public boolean matches(CanvasObject other) {
         if (other instanceof AppearanceElement) {
@@ -48,7 +48,7 @@ public abstract class AppearanceElement extends AbstractCanvasObject {
     public <V> V getValue(Attribute<V> attr) {
         return null;
     }
-    
+
     @Override
     public boolean canRemove() {
         return false;
@@ -69,7 +69,7 @@ public abstract class AppearanceElement extends AbstractCanvasObject {
         int dy = loc.getY() - location.getY();
         return dx * dx + dy * dy < radius * radius;
     }
-    
+
     @Override
     public Location getRandomPoint(Bounds bds, Random rand) {
         return null; // this is only used to determine what lies on top of what - but the elements will always be on top anyway

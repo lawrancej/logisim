@@ -14,10 +14,10 @@ public class Port {
     public static final String INPUT = "input";
     public static final String OUTPUT = "output";
     public static final String INOUT = "inout";
-    
+
     public static final String EXCLUSIVE = "exclusive";
     public static final String SHARED = "shared";
-    
+
     private int dx;
     private int dy;
     private int type;
@@ -25,7 +25,7 @@ public class Port {
     private Attribute<BitWidth> widthAttr;
     private boolean exclude;
     private StringGetter toolTip;
-    
+
     public Port(int dx, int dy, String type, BitWidth bits) {
         this(dx, dy, type, bits, defaultExclusive(type));
     }
@@ -33,11 +33,11 @@ public class Port {
     public Port(int dx, int dy, String type, int bits) {
         this(dx, dy, type, BitWidth.create(bits), defaultExclusive(type));
     }
-    
+
     public Port(int dx, int dy, String type, int bits, String exclude) {
         this(dx, dy, type, BitWidth.create(bits), exclude);
     }
-    
+
     public Port(int dx, int dy, String type, BitWidth bits, String exclude) {
         this.dx = dx;
         this.dy = dy;
@@ -47,11 +47,11 @@ public class Port {
         this.exclude = toExclusive(exclude);
         this.toolTip = null;
     }
-    
+
     public Port(int dx, int dy, String type, Attribute<BitWidth> attr) {
         this(dx, dy, type, attr, defaultExclusive(type));
     }
-    
+
     public Port(int dx, int dy, String type, Attribute<BitWidth> attr,
             String exclude) {
         this.dx = dx;
@@ -62,20 +62,20 @@ public class Port {
         this.exclude = toExclusive(exclude);
         this.toolTip = null;
     }
-    
+
     public void setToolTip(StringGetter value) {
         toolTip = value;
     }
-    
+
     public String getToolTip() {
         StringGetter getter = toolTip;
         return getter == null ? null : getter.toString();
     }
-    
+
     public Attribute<BitWidth> getWidthAttribute() {
         return widthAttr;
     }
-    
+
     public EndData toEnd(Location loc, AttributeSet attrs) {
         Location pt = loc.translate(dx, dy);
         if (widthFixed != null) {
@@ -88,7 +88,7 @@ public class Port {
             return new EndData(pt, (BitWidth) val, type, exclude);
         }
     }
-    
+
     private static int toType(String s) {
         if (s == null) throw new IllegalArgumentException("Null port type");
         else if (s.equals(INPUT))  return EndData.INPUT_ONLY;
@@ -96,7 +96,7 @@ public class Port {
         else if (s.equals(INOUT))  return EndData.INPUT_OUTPUT;
         else throw new IllegalArgumentException("Not recognized port type");
     }
-    
+
     private static String defaultExclusive(String s) {
         if (s == null) throw new IllegalArgumentException("Null port type");
         else if (s.equals(INPUT))  return SHARED;
@@ -104,7 +104,7 @@ public class Port {
         else if (s.equals(INOUT))  return SHARED;
         else throw new IllegalArgumentException("Not recognized port type");
     }
-    
+
     private static boolean toExclusive(String s) {
         if (s == null) throw new IllegalArgumentException("Null exclusion type");
         else if (s.equals(EXCLUSIVE)) return true;

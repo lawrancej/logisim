@@ -12,7 +12,7 @@ public class LDialog extends JDialog {
         super(owner, title, modal);
         init();
     }
-    
+
     private void init() {
         LFrame.attachIcon(this);
     }

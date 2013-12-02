@@ -67,17 +67,17 @@ public class VerticalSplitPane extends JPanel {
                     2 * HorizontalSplitPane.DRAG_TOLERANCE, maxHeight);
         }
     }
-    
+
     private class MyDragbar extends HorizontalSplitPane.Dragbar {
         MyDragbar() {
             setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
         }
-        
+
         @Override
         int getDragValue(MouseEvent e) {
             return getX() + e.getX() - VerticalSplitPane.this.getInsets().left;
         }
-    
+
         @Override
         void setDragValue(int value) {
             Insets in = VerticalSplitPane.this.getInsets();
@@ -90,11 +90,11 @@ public class VerticalSplitPane extends JPanel {
     private JComponent comp1;
     private MyDragbar dragbar;
     private double fraction;
-    
+
     public VerticalSplitPane(JComponent comp0, JComponent comp1) {
         this(comp0, comp1, 0.5);
     }
-    
+
     public VerticalSplitPane(JComponent comp0, JComponent comp1,
             double fraction) {
         this.comp0 = comp0;
@@ -107,11 +107,11 @@ public class VerticalSplitPane extends JPanel {
         add(comp0);
         add(comp1);
     }
-    
+
     public double getFraction() {
         return fraction;
     }
-    
+
     public void setFraction(double value) {
         if (value < 0.0) value = 0.0;
         if (value > 1.0) value = 1.0;

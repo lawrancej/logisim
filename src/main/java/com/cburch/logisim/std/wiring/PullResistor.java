@@ -39,7 +39,7 @@ public class PullResistor extends InstanceFactory {
             });
 
     public static final PullResistor FACTORY = new PullResistor();
-    
+
     private static final Icon ICON_SHAPED = Icons.getIcon("pullshap.svg");
     private static final Icon ICON_RECTANGULAR = Icons.getIcon("pullrect.svg");
 
@@ -63,7 +63,7 @@ public class PullResistor extends InstanceFactory {
             return Bounds.create(-6, -42, 12, 42);
         }
     }
-    
+
     //
     // graphics methods
     //
@@ -77,7 +77,7 @@ public class PullResistor extends InstanceFactory {
         }
         icon.paintIcon(painter.getDestination(), painter.getGraphics(), 2, 2);
     }
-    
+
     @Override
     public void paintGhost(InstancePainter painter) {
         Value pull = getPullValue(painter.getAttributeSet());
@@ -97,7 +97,7 @@ public class PullResistor extends InstanceFactory {
         g.translate(-x, -y);
         painter.drawPorts();
     }
-    
+
     private void paintBase(InstancePainter painter, Value pullValue,
             Color inColor, Color outColor) {
         boolean color = painter.shouldDrawColor();
@@ -119,7 +119,7 @@ public class PullResistor extends InstanceFactory {
             GraphicsUtil.drawText(g, pullValue.toDisplayString(), 0, -32,
                     GraphicsUtil.H_CENTER, GraphicsUtil.V_BASELINE);
         }
-        
+
         double rotate = 0.0;
         if (g instanceof Graphics2D) {
             rotate = Direction.SOUTH.toRadians() - facing.toRadians();
@@ -142,7 +142,7 @@ public class PullResistor extends InstanceFactory {
             ((Graphics2D) g).rotate(-rotate);
         }
     }
-    
+
     //
     // methods for instances
     //
@@ -153,7 +153,7 @@ public class PullResistor extends InstanceFactory {
                 new Port(0, 0, Port.INOUT, BitWidth.UNKNOWN)
             });
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.FACING) {
@@ -162,16 +162,16 @@ public class PullResistor extends InstanceFactory {
             instance.fireInvalidated();
         }
     }
-    
+
     @Override
     public void propagate(InstanceState state) {
         ; // nothing to do - handled by CircuitWires
     }
-    
+
     public static Value getPullValue(Instance instance) {
         return getPullValue(instance.getAttributeSet());
     }
-    
+
     private static Value getPullValue(AttributeSet attrs) {
         AttributeOption opt = attrs.getValue(ATTR_PULL_TYPE);
         return (Value) opt.getValue();

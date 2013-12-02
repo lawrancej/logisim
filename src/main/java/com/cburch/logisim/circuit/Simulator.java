@@ -11,7 +11,7 @@ import com.cburch.logisim.prefs.AppPreferences;
 public class Simulator {
     /*begin DEBUGGING
     private static PrintWriter debug_log;
-    
+
     static {
         try {
             debug_log = new PrintWriter(new BufferedWriter(new FileWriter("DEBUG")));
@@ -19,16 +19,16 @@ public class Simulator {
             System.err.println("Could not open debug log"); //OK
         }
     }
-    
+
     public static void log(String msg) {
         debug_log.println(msg);
     }
-    
+
     public static void flushLog() {
         debug_log.flush();
     }
     //end DEBUGGING*/
-    
+
     class PropagationManager extends Thread {
         private Propagator propagator = null;
         private PropagationPoints stepPoints = new PropagationPoints();
@@ -45,37 +45,37 @@ public class Simulator {
         public Propagator getPropagator() {
             return propagator;
         }
-        
+
         public void setPropagator(Propagator value) {
             propagator = value;
         }
-        
+
         public synchronized void requestPropagate() {
             if (!propagateRequested) {
                 propagateRequested = true;
                 notifyAll();
             }
         }
-        
+
         public synchronized void requestReset() {
             if (!resetRequested) {
                 resetRequested = true;
                 notifyAll();
             }
         }
-        
+
         public synchronized void requestTick()  {
             if (ticksRequested < 16) {
                 ticksRequested++;
             }
             notifyAll();
         }
-        
+
         public synchronized void shutDown() {
             complete = true;
             notifyAll();
         }
-        
+
         @Override
         public void run() {
             while (!complete) {
@@ -95,7 +95,7 @@ public class Simulator {
                     firePropagationCompleted();
                     propagateRequested |= isRunning;
                 }
-                
+
                 if (propagateRequested || ticksRequested > 0 || stepsRequested > 0) {
                     boolean ticked = false;
                     propagateRequested = false;
@@ -130,7 +130,7 @@ public class Simulator {
                                 ticksRequested = 1;
                                 doTick();
                             }
-                            
+
                             synchronized(this) {
                                 stepsRequested--;
                             }
@@ -149,7 +149,7 @@ public class Simulator {
                 }
             }
         }
-        
+
         private void doTick() {
             synchronized(this) {
                 ticksRequested--;
@@ -178,11 +178,11 @@ public class Simulator {
         } catch (IllegalArgumentException e) { }
         manager.start();
         ticker.start();
-        
+
         tickFrequency = 0.0;
         setTickFrequency(AppPreferences.TICK_FREQUENCY.get().doubleValue());
     }
-    
+
     public void shutDown() {
         ticker.shutDown();
         manager.shutDown();
@@ -192,31 +192,31 @@ public class Simulator {
         manager.setPropagator(state.getPropagator());
         renewTickerAwake();
     }
-    
+
     public CircuitState getCircuitState() {
         Propagator prop = manager.getPropagator();
         return prop == null ? null : prop.getRootState();
     }
-    
+
     public void requestReset() {
         manager.requestReset();
     }
-    
+
     public void tick() {
         ticker.tickOnce();
     }
-    
+
     public void step() {
         synchronized(manager) {
             manager.stepsRequested++;
             manager.notifyAll();
         }
     }
-    
+
     public void drawStepPoints(ComponentDrawContext context) {
         manager.stepPoints.draw(context);
     }
-    
+
     public boolean isExceptionEncountered() {
         return exceptionEncountered;
     }
@@ -229,7 +229,7 @@ public class Simulator {
         if (isRunning != value) {
             isRunning = value;
             renewTickerAwake();
-            /*DEBUGGING - comment out: 
+            /*DEBUGGING - comment out:
             if (!value) flushLog(); //*/
             fireSimulatorStateChanged();
         }
@@ -246,7 +246,7 @@ public class Simulator {
             fireSimulatorStateChanged();
         }
     }
-    
+
     private void renewTickerAwake() {
         ticker.setAwake(isRunning && isTicking && tickFrequency > 0);
     }
@@ -265,7 +265,7 @@ public class Simulator {
                 millis = 1;
                 ticks = (int) Math.round(freq / 1000);
             }
-            
+
             tickFrequency = freq;
             ticker.setTickFrequency(millis, ticks);
             renewTickerAwake();

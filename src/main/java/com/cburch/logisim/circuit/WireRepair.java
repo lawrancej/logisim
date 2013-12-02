@@ -20,11 +20,11 @@ class WireRepair extends CircuitTransaction {
 
     private static class MergeSets {
         private final HashMap<Wire,ArrayList<Wire>> map;
-        
+
         MergeSets() {
             map = new HashMap<Wire,ArrayList<Wire>>();
         }
-        
+
         void merge(Wire a, Wire b) {
             ArrayList<Wire> set0 = map.get(a);
             ArrayList<Wire> set1 = map.get(b);
@@ -52,7 +52,7 @@ class WireRepair extends CircuitTransaction {
                 }
             }
         }
-        
+
         Collection<ArrayList<Wire>> getMergeSets() {
             IdentityHashMap<ArrayList<Wire>,Boolean> lists;
             lists = new IdentityHashMap<ArrayList<Wire>,Boolean>();
@@ -64,7 +64,7 @@ class WireRepair extends CircuitTransaction {
     }
 
     private Circuit circuit;
-    
+
     public WireRepair(Circuit circuit) {
         this.circuit = circuit;
     }
@@ -80,7 +80,7 @@ class WireRepair extends CircuitTransaction {
         doOverlaps(mutator);
         doSplits(mutator);
     }
-    
+
     /* for debugging:
     private void printWires(String prefix, PrintStream out) {
         boolean first = true;
@@ -95,7 +95,7 @@ class WireRepair extends CircuitTransaction {
         out.println(prefix + ": none");
     }
     */
-    
+
     private void doMerges(CircuitMutator mutator) {
         MergeSets sets = new MergeSets();
         for (Location loc : circuit.wires.points.getSplitLocations()) {
@@ -137,7 +137,7 @@ class WireRepair extends CircuitTransaction {
         }
         mutator.replace(circuit, repl);
     }
-    
+
     private void doOverlaps(CircuitMutator mutator) {
         HashMap<Location,ArrayList<Wire>> wirePoints;
         wirePoints = new HashMap<Location,ArrayList<Wire>>();
@@ -151,7 +151,7 @@ class WireRepair extends CircuitTransaction {
                 locWires.add(w);
             }
         }
-        
+
         MergeSets mergeSets = new MergeSets();
         for (ArrayList<Wire> locWires : wirePoints.values()) {
             if (locWires.size() > 1) {
@@ -176,7 +176,7 @@ class WireRepair extends CircuitTransaction {
         }
         mutator.replace(circuit, replacements);
     }
-    
+
     private void doMergeSet(ArrayList<Wire> mergeSet, ReplacementMap replacements,
             Set<Location> splitLocs) {
         TreeSet<Location> ends = new TreeSet<Location>();
@@ -199,7 +199,7 @@ class WireRepair extends CircuitTransaction {
                 }
             }
         }
-        
+
         ArrayList<Wire> mergeResult = new ArrayList<Wire>();
         if (mids.size() == 2) {
             mergeResult.add(whole);
@@ -210,7 +210,7 @@ class WireRepair extends CircuitTransaction {
                 e0 = e1;
             }
         }
-        
+
         for (Wire w : mergeSet) {
             ArrayList<Component> wRepl = new ArrayList<Component>(2);
             for (Wire w2 : mergeResult) {
@@ -221,7 +221,7 @@ class WireRepair extends CircuitTransaction {
             replacements.put(w, wRepl);
         }
     }
-    
+
     private void doSplits(CircuitMutator mutator) {
         Set<Location> splitLocs = circuit.wires.points.getSplitLocations();
         ReplacementMap repl = new ReplacementMap();

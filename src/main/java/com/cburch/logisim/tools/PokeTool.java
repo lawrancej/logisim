@@ -59,19 +59,19 @@ public class PokeTool extends Tool {
             if (radix2 != null && v.getWidth() > 1) {
                 vStr += " / " + radix2.toString(v);
             }
-            
+
             FontMetrics fm = g.getFontMetrics();
             g.setColor(caretColor);
-            g.fillRect(x + 2, y + 2, fm.stringWidth(vStr) + 4, 
+            g.fillRect(x + 2, y + 2, fm.stringWidth(vStr) + 4,
                     fm.getAscent() + fm.getDescent() + 4);
             g.setColor(Color.BLACK);
-            g.drawRect(x + 2, y + 2, fm.stringWidth(vStr) + 4, 
+            g.drawRect(x + 2, y + 2, fm.stringWidth(vStr) + 4,
                     fm.getAscent() + fm.getDescent() + 4);
             g.fillOval(x - 2, y - 2, 5, 5);
             g.drawString(vStr, x + 4, y + 4 + fm.getAscent());
         }
     }
-    
+
     private class Listener implements CircuitListener {
         @Override
         public void circuitChanged(CircuitEvent event) {
@@ -96,12 +96,12 @@ public class PokeTool extends Tool {
     public PokeTool() {
         this.listener = new Listener();
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other instanceof PokeTool;
     }
-    
+
     @Override
     public int hashCode() {
         return PokeTool.class.hashCode();
@@ -116,7 +116,7 @@ public class PokeTool extends Tool {
     public String getDisplayName() {
         return _("pokeTool");
     }
-    
+
     private void removeCaret(boolean normal) {
         Circuit circ = pokedCircuit;
         Caret caret = pokeCaret;

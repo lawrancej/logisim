@@ -22,7 +22,7 @@ public class About {
     static final int IMAGE_WIDTH = 380;
     static final int IMAGE_HEIGHT = 284;
     protected static JSVGCanvas svgCanvas =new JSVGCanvas();
-    
+
     public static JComponent createComponents() {
         final JPanel panel = new JPanel(new BorderLayout());
         panel.add("Center", svgCanvas);

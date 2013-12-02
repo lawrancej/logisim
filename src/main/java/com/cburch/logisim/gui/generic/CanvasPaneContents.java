@@ -11,7 +11,7 @@ import javax.swing.Scrollable;
 public interface CanvasPaneContents extends Scrollable {
     public void setCanvasPane(CanvasPane pane);
     public void recomputeSize();
-    
+
     // from Scrollable
     @Override
     public Dimension getPreferredScrollableViewportSize();

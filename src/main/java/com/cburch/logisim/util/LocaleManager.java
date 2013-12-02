@@ -18,7 +18,7 @@ public class LocaleManager {
     // static members
     private static final String SETTINGS_NAME = "settings";
     private static ArrayList<LocaleManager> managers = new ArrayList<LocaleManager>();
-    
+
     private static class LocaleGetter implements StringGetter {
         private LocaleManager source;
         private String key;
@@ -33,9 +33,9 @@ public class LocaleManager {
             return source.get(key);
         }
     }
-    
+
     private static ArrayList<LocaleListener> listeners = new ArrayList<LocaleListener>();
-    private static boolean replaceAccents = false; 
+    private static boolean replaceAccents = false;
     private static HashMap<Character,String> repl = null;
     private static Locale curLocale = null;
 
@@ -68,7 +68,7 @@ public class LocaleManager {
                     select = backup;
                 }
             }
-            
+
             curLocale = select;
             Locale.setDefault(select);
             for (LocaleManager man : managers) {
@@ -78,18 +78,18 @@ public class LocaleManager {
             fireLocaleChanged();
         }
     }
-    
+
     public static boolean canReplaceAccents() {
         return fetchReplaceAccents() != null;
     }
-    
+
     public static void setReplaceAccents(boolean value) {
         HashMap<Character,String> newRepl = value ? fetchReplaceAccents() : null;
         replaceAccents = value;
         repl = newRepl;
         fireLocaleChanged();
     }
-    
+
     private static HashMap<Character,String> fetchReplaceAccents() {
         HashMap<Character,String> ret = null;
         String val;
@@ -201,11 +201,11 @@ public class LocaleManager {
     public StringGetter getter(String key) {
         return new LocaleGetter(this, key);
     }
-    
+
     public StringGetter getter(String key, String arg) {
         return StringUtil.formatter(getter(key), arg);
     }
-    
+
     public Locale[] getLocaleOptions() {
         String locs = null;
         try {
@@ -234,7 +234,7 @@ public class LocaleManager {
 
         return retl.toArray(new Locale[retl.size()]);
     }
-    
+
     public JComponent createLocaleSelector() {
         Locale[] locales = getLocaleOptions();
         if (locales == null || locales.length == 0) {
@@ -244,7 +244,7 @@ public class LocaleManager {
         }
         return new JScrollPane(new LocaleSelector(locales));
     }
-    
+
     private static String replaceAccents(String src, HashMap<Character,String> repl) {
         // find first non-standard character - so we can avoid the
         // replacement process if possible
@@ -255,7 +255,7 @@ public class LocaleManager {
             if (ci < 32 || ci >= 127) break;
         }
         if (i == n) return src;
-        
+
         // ok, we'll have to consider replacing accents
         char[] cs = src.toCharArray();
         StringBuilder ret = new StringBuilder(src.substring(0, i));

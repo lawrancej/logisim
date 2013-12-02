@@ -18,7 +18,7 @@ class LayoutOptions extends OptionsPanel {
 
     public LayoutOptions(PreferencesFrame window) {
         super(window);
-        
+
         checks = new PrefBoolean[] {
                 new PrefBoolean(AppPreferences.PRINTER_VIEW,
                         __("layoutPrinterView")),
@@ -53,7 +53,7 @@ class LayoutOptions extends OptionsPanel {
                             __("layoutAddAfterUnchanged")),
                     new PrefOption(AppPreferences.ADD_AFTER_EDIT,
                             __("layoutAddAfterEdit")) });
-        
+
         JPanel panel = new JPanel(new TableLayout(2));
         panel.add(afterAdd.getJLabel());
         panel.add(afterAdd.getJComboBox());
@@ -78,7 +78,7 @@ class LayoutOptions extends OptionsPanel {
     public String getHelpText() {
         return _("layoutHelp");
     }
-    
+
     @Override
     public void localeChanged() {
         for (int i = 0; i < checks.length; i++) {

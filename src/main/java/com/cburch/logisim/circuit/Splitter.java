@@ -53,7 +53,7 @@ public class Splitter extends ManagedComponent
     public void propagate(CircuitState state) {
         ; // handled by CircuitWires, nothing to do
     }
-    
+
     @Override
     public boolean contains(Location loc) {
         if (super.contains(loc)) {
@@ -61,10 +61,10 @@ public class Splitter extends ManagedComponent
             Direction facing = getAttributeSet().getValue(StdAttr.FACING);
             if (facing == Direction.EAST || facing == Direction.WEST) {
                 return Math.abs(loc.getX() - myLoc.getX()) > 5
-                    || loc.manhattanDistanceTo(myLoc) <= 5; 
-            } else {                
+                    || loc.manhattanDistanceTo(myLoc) <= 5;
+            } else {
                 return Math.abs(loc.getY() - myLoc.getY()) > 5
-                    || loc.manhattanDistanceTo(myLoc) <= 5; 
+                    || loc.manhattanDistanceTo(myLoc) <= 5;
             }
         } else {
             return false;
@@ -97,7 +97,7 @@ public class Splitter extends ManagedComponent
         int y = origin.getY() + parms.getEnd0Y();
         int dx = parms.getEndToEndDeltaX();
         int dy = parms.getEndToEndDeltaY();
-        
+
         EndData[] ends = new EndData[fanout + 1];
         ends[0] = new EndData(origin, BitWidth.create(bit_end.length), EndData.INPUT_OUTPUT);
         for (int i = 0; i < fanout; i++) {
@@ -111,7 +111,7 @@ public class Splitter extends ManagedComponent
         recomputeBounds();
         fireComponentInvalidated(new ComponentEvent(this));
     }
-    
+
     //
     // user interface methods
     //
@@ -127,7 +127,7 @@ public class Splitter extends ManagedComponent
             context.drawPins(this);
         }
     }
-    
+
     @Override
     public Object getFeature(Object key) {
         if (key == WireRepair.class) return this;
@@ -140,7 +140,7 @@ public class Splitter extends ManagedComponent
     public boolean shouldRepairWire(WireRepairData data) {
         return true;
     }
-    
+
     @Override
     public String getToolTip(ComponentUserEvent e) {
         int end = -1;
@@ -150,7 +150,7 @@ public class Splitter extends ManagedComponent
                 break;
             }
         }
-        
+
         if (end == 0) {
             return _("splitterCombinedTip");
         } else if (end > 0){
@@ -207,7 +207,7 @@ public class Splitter extends ManagedComponent
     //
     @Override
     public void attributeListChanged(AttributeEvent e) { }
-    
+
     @Override
     public void attributeValueChanged(AttributeEvent e) {
         configureComponent();

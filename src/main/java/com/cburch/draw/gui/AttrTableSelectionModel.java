@@ -23,13 +23,13 @@ import static com.cburch.logisim.util.LocaleString.*;
 class AttrTableSelectionModel extends AttributeSetTableModel
         implements SelectionListener {
     private Canvas canvas;
-    
+
     public AttrTableSelectionModel(Canvas canvas) {
         super(new SelectionAttributes(canvas.getSelection()));
         this.canvas = canvas;
         canvas.getSelection().addSelectionListener(this);
     }
-    
+
     @Override
     public String getTitle() {
         Selection sel = canvas.getSelection();
@@ -49,7 +49,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
             }
             totalCount++;
         }
-        
+
         if (firstObject == null) {
             return null;
         } else if (commonClass == null) {

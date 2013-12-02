@@ -34,12 +34,12 @@ public class OptionsFrame extends LFrame {
         WindowMenuManager() {
             super(_("optionsFrameMenuItem"), false);
         }
-        
+
         @Override
         public JFrame getJFrame(boolean create) {
             return OptionsFrame.this;
         }
-        
+
         @Override
         public void localeChanged() {
             String title = project.getLogisimFile().getDisplayName();
@@ -68,7 +68,7 @@ public class OptionsFrame extends LFrame {
                 windowManager.localeChanged();
             }
         }
-        
+
         @Override
         public void localeChanged() {
             setTitle(computeTitle(file));
@@ -82,12 +82,12 @@ public class OptionsFrame extends LFrame {
             windowManager.localeChanged();
         }
     }
-    
+
     private Project project;
     private LogisimFile file;
     private MyListener myListener = new MyListener();
     private WindowMenuManager windowManager = new WindowMenuManager();
-    
+
     private OptionsPanel[] panels;
     private JTabbedPane tabbedPane;
     private JButton revert = new JButton();
@@ -99,7 +99,7 @@ public class OptionsFrame extends LFrame {
         file.addLibraryListener(myListener);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setJMenuBar(new LogisimMenuBar(this, project));
-        
+
         panels = new OptionsPanel[] {
                 new SimulateOptions(this),
                 new ToolbarOptions(this),
@@ -126,19 +126,19 @@ public class OptionsFrame extends LFrame {
         myListener.localeChanged();
         pack();
     }
-    
+
     public Project getProject() {
         return project;
     }
-    
+
     public LogisimFile getLogisimFile() {
         return file;
     }
-    
+
     public Options getOptions() {
         return file.getOptions();
     }
-    
+
     @Override
     public void setVisible(boolean value) {
         if (value) {
@@ -146,11 +146,11 @@ public class OptionsFrame extends LFrame {
         }
         super.setVisible(value);
     }
-    
+
     OptionsPanel[] getPrefPanels() {
         return panels;
     }
-    
+
     private static String computeTitle(LogisimFile file) {
         String name = file == null ? "???" : file.getName();
         return _("optionsFrameTitle", name);

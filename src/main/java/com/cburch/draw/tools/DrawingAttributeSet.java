@@ -37,18 +37,18 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
                 DrawAttr.PAINT_STROKE,
                 Integer.valueOf(1), Color.BLACK,
                 Color.WHITE, Color.BLACK, Integer.valueOf(10) });
-    
+
     private class Restriction extends AbstractAttributeSet
             implements AttributeListener {
         private AbstractTool tool;
         private List<Attribute<?>> selectedAttrs;
         private List<Attribute<?>> selectedView;
-        
+
         Restriction(AbstractTool tool) {
             this.tool = tool;
             updateAttributes();
         }
-        
+
         private void updateAttributes() {
             List<Attribute<?>> toolAttrs;
             if (tool == null) {
@@ -107,17 +107,17 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
     private EventSourceWeakSupport<AttributeListener> listeners;
     private List<Attribute<?>> attrs;
     private List<Object> values;
-    
+
     public DrawingAttributeSet() {
         listeners = new EventSourceWeakSupport<AttributeListener>();
         attrs = ATTRS_ALL;
         values = DEFAULTS_ALL;
     }
-    
+
     public AttributeSet createSubset(AbstractTool tool) {
         return new Restriction(tool);
     }
-    
+
     @Override
     public void addAttributeListener(AttributeListener l) {
         listeners.add(l);
@@ -127,7 +127,7 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
     public void removeAttributeListener(AttributeListener l) {
         listeners.remove(l);
     }
-    
+
     @Override
     public Object clone() {
         try {
@@ -139,7 +139,7 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
             return null;
         }
     }
-    
+
     @Override
     public List<Attribute<?>> getAttributes() {
         return attrs;
@@ -149,7 +149,7 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
     public boolean containsAttribute(Attribute<?> attr) {
         return attrs.contains(attr);
     }
-    
+
     @Override
     public Attribute<?> getAttribute(String name) {
         for (Attribute<?> attr : attrs) {
@@ -162,17 +162,17 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
     public boolean isReadOnly(Attribute<?> attr) {
         return false;
     }
-    
+
     @Override
     public void setReadOnly(Attribute<?> attr, boolean value) {
         throw new UnsupportedOperationException("setReadOnly");
     }
-    
+
     @Override
     public boolean isToSave(Attribute<?> attr) {
         return true;
     }
-    
+
     @Override
     public <V> V getValue(Attribute<V> attr) {
         Iterator<Attribute<?>> ait = attrs.iterator();
@@ -213,8 +213,8 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
         }
         throw new IllegalArgumentException(attr.toString());
     }
-    
-    
+
+
     public <E extends CanvasObject> E applyTo(E drawable) {
         AbstractCanvasObject d = (AbstractCanvasObject) drawable;
         // use a for(i...) loop since the attribute list may change as we go on

@@ -37,7 +37,7 @@ public class Propagator {
             this.loc = loc;
             this.val = val;
         }
-        
+
         @Override
         public int compareTo(SetData o) {
             // Yes, these subtractions may overflow. This is intentional, as it
@@ -46,7 +46,7 @@ public class Propagator {
             if (ret != 0) return ret;
             return this.serialNumber - o.serialNumber;
         }
-        
+
         public SetData cloneFor(CircuitState newState) {
             Propagator newProp = newState.getPropagator();
             int dtime = newProp.clock - state.getPropagator().clock;
@@ -84,14 +84,14 @@ public class Propagator {
             return this.cause.equals(o.cause) && this.loc.equals(o.loc);
         }
     }
-    
+
     private static class Listener implements AttributeListener {
         WeakReference<Propagator> prop;
-        
+
         public Listener(Propagator propagator) {
             prop = new WeakReference<Propagator>(propagator);
         }
-        
+
         @Override
         public void attributeListChanged(AttributeEvent e) { }
 
@@ -107,7 +107,7 @@ public class Propagator {
     }
 
     private CircuitState    root; // root of state tree
-    
+
     /** The number of clock cycles to let pass before deciding that the
      * circuit is oscillating.
      */
@@ -124,12 +124,12 @@ public class Propagator {
     private int clock = 0;
     private boolean isOscillating = false;
     private boolean oscAdding = false;
-    private PropagationPoints oscPoints = new PropagationPoints(); 
+    private PropagationPoints oscPoints = new PropagationPoints();
     private int  ticks = 0;
     private Random noiseSource = new Random();
     private int noiseCount = 0;
     private int setDataSerialNumber = 0;
-    
+
     static int lastId = 0;
     int id = lastId++;
 
@@ -139,7 +139,7 @@ public class Propagator {
         root.getProject().getOptions().getAttributeSet().addAttributeListener(l);
         updateRandomness();
     }
-    
+
     private void updateRandomness() {
         Options opts = root.getProject().getOptions();
         Object rand = opts.getAttributeSet().getValue(Options.sim_rand_attr);
@@ -157,7 +157,7 @@ public class Propagator {
     public String toString() {
         return "Prop" + id;
     }
-    
+
     public void drawOscillatingPoints(ComponentDrawContext context) {
         if (isOscillating) oscPoints.draw(context);
     }
@@ -168,13 +168,13 @@ public class Propagator {
     CircuitState getRootState() {
         return root;
     }
-    
+
     void reset() {
         toProcess.clear();
         root.reset();
         isOscillating = false;
     }
-    
+
     public void propagate() {
         oscPoints.clear();
         clearDirtyPoints();
@@ -185,7 +185,7 @@ public class Propagator {
         int iters = 0;
         while (!toProcess.isEmpty()) {
             iters++;
-            
+
             if (iters < logThreshold) {
                 stepInternal(null);
             } else if (iters < oscThreshold) {
@@ -201,12 +201,12 @@ public class Propagator {
         oscAdding = false;
         oscPoints.clear();
     }
-    
+
     void step(PropagationPoints changedPoints) {
         oscPoints.clear();
         clearDirtyPoints();
         clearDirtyComponents();
-        
+
         PropagationPoints oldOsc = oscPoints;
         oscAdding = changedPoints != null;
         oscPoints = changedPoints;
@@ -214,10 +214,10 @@ public class Propagator {
         oscAdding = false;
         oscPoints = oldOsc;
     }
-    
+
     private void stepInternal(PropagationPoints changedPoints) {
         if (toProcess.isEmpty()) return;
-        
+
         // update clock
         clock = toProcess.peek().time;
 
@@ -239,12 +239,12 @@ public class Propagator {
                 visited.put(state, handled);
                 handled.add(new ComponentPoint(data.cause, data.loc));
             }
-            
+
             /*DEBUGGING - comment out
             Simulator.log(data.time + ": proc " + data.loc + " in "
                     + data.state + " to " + data.val
                     + " by " + data.cause); // */
-            
+
             if (changedPoints != null) changedPoints.add(state, data.loc);
 
             // change the information about value
@@ -262,7 +262,7 @@ public class Propagator {
         clearDirtyPoints();
         clearDirtyComponents();
     }
-    
+
     boolean isPending() {
         return !toProcess.isEmpty();
     }
@@ -270,7 +270,7 @@ public class Propagator {
     /*TODO for the SimulatorPrototype class
     void step() {
         clock++;
-        
+
         // propagate all values for this clock tick
         HashMap visited = new HashMap(); // State -> set of ComponentPoints handled
         while (!toProcess.isEmpty()) {
@@ -289,7 +289,7 @@ public class Propagator {
                 visited.put(state, handled);
                 handled.add(new ComponentPoint(data.cause, data.loc));
             }
-            
+
             if (oscAdding) oscPoints.add(state, data.loc);
 
             // change the information about value
@@ -307,7 +307,7 @@ public class Propagator {
         clearDirtyPoints();
         clearDirtyComponents();
     } */
-    
+
     void locationTouched(CircuitState state, Location loc) {
         if (oscAdding) oscPoints.add(state, loc);
     }
@@ -340,7 +340,7 @@ public class Propagator {
         /*DEBUGGING - comment out
         Simulator.log(clock + ": set " + pt + " in "
                 + state + " to " + val
-                + " by " + 
+                + " by " +
                 cause + " after " + delay); //*/
 
         setDataSerialNumber++;
@@ -350,7 +350,7 @@ public class Propagator {
         ticks++;
         return root.tick(ticks);
     }
-    
+
     public int getTickCount() {
         return ticks;
     }

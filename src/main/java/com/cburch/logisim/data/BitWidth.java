@@ -59,7 +59,7 @@ public class BitWidth implements Comparable<BitWidth> {
     public int getWidth() {
         return width;
     }
-    
+
     public int getMask() {
         if (width == 0)       return 0;
         else if (width == 32) return -1;

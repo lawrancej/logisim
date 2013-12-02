@@ -28,7 +28,7 @@ public class AppearanceView {
     private AttrTableDrawManager attrTableManager;
     private ZoomModel zoomModel;
     private AppearanceEditHandler editHandler;
-    
+
     public AppearanceView() {
         attrs = new DrawingAttributeSet();
         SelectTool selectTool = new SelectTool();
@@ -42,31 +42,31 @@ public class AppearanceView {
         canvasPane.setZoomModel(zoomModel);
         editHandler = new AppearanceEditHandler(canvas);
     }
-    
+
     public Canvas getCanvas() {
         return canvas;
     }
-    
+
     public CanvasPane getCanvasPane() {
         return canvasPane;
     }
-    
+
     public ToolbarModel getToolbarModel() {
         return toolbarModel;
     }
-    
+
     public ZoomModel getZoomModel() {
         return zoomModel;
     }
-    
+
     public EditHandler getEditHandler() {
         return editHandler;
     }
-    
+
     public AttributeSet getAttributeSet() {
         return attrs;
     }
-    
+
     public AttrTableDrawManager getAttrTableDrawManager(AttrTable table) {
         AttrTableDrawManager ret = attrTableManager;
         if (ret == null) {
@@ -75,7 +75,7 @@ public class AppearanceView {
         }
         return ret;
     }
-    
+
     public void setCircuit(Project proj, CircuitState circuitState) {
         canvas.setCircuit(proj, circuitState);
     }

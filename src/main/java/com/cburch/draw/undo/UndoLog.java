@@ -21,7 +21,7 @@ public class UndoLog {
         this.redoLog = new LinkedList<Action>();
         this.modCount = 0;
     }
-    
+
     //
     // listening methods
     //
@@ -72,7 +72,7 @@ public class UndoLog {
         act.doIt();
         logAction(act);
     }
-    
+
     public void logAction(Action act) {
         redoLog.clear();
         if (!undoLog.isEmpty()) {

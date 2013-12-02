@@ -30,29 +30,29 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
             fireLibraryEvent(event);
         }
     }
-    
+
     private Library base;
     private boolean dirty;
     private MyListener myListener;
     private EventSourceWeakSupport<LibraryListener> listeners;
-    
+
     LoadedLibrary(Library base) {
         dirty = false;
         myListener = new MyListener();
         listeners = new EventSourceWeakSupport<LibraryListener>();
-        
+
         while (base instanceof LoadedLibrary) base = ((LoadedLibrary) base).base;
         this.base = base;
         if (base instanceof LibraryEventSource) {
             ((LibraryEventSource) base).addLibraryListener(myListener);
         }
     }
-    
+
     @Override
     public void addLibraryListener(LibraryListener l) {
         listeners.add(l);
     }
-    
+
     @Override
     public void removeLibraryListener(LibraryListener l) {
         listeners.remove(l);
@@ -62,12 +62,12 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
     public String getName() {
         return base.getName();
     }
-    
+
     @Override
     public String getDisplayName() {
         return base.getDisplayName();
     }
-    
+
     @Override
     public boolean isDirty() {
         return dirty || base.isDirty();
@@ -77,23 +77,23 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
     public List<? extends Tool> getTools() {
         return base.getTools();
     }
-    
+
     @Override
     public List<Library> getLibraries() {
         return base.getLibraries();
     }
-    
+
     void setDirty(boolean value) {
         if (dirty != value) {
             dirty = value;
             fireLibraryEvent(LibraryEvent.DIRTY_STATE, isDirty() ? Boolean.TRUE : Boolean.FALSE);
         }
     }
-    
+
     Library getBase() {
         return base;
     }
-    
+
     void setBase(Library value) {
         if (base instanceof LibraryEventSource) {
             ((LibraryEventSource) base).removeLibraryListener(myListener);
@@ -105,7 +105,7 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
             ((LibraryEventSource) base).addLibraryListener(myListener);
         }
     }
-    
+
     private void fireLibraryEvent(int action, Object data) {
         fireLibraryEvent(new LibraryEvent(this, action, data));
     }
@@ -117,27 +117,27 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
             l.libraryChanged(event);
         }
     }
-    
+
     private void resolveChanges(Library old) {
         if (listeners.isEmpty()) return;
-        
+
         if (!base.getDisplayName().equals(old.getDisplayName())) {
             fireLibraryEvent(LibraryEvent.SET_NAME, base.getDisplayName());
         }
-        
+
         HashSet<Library> changes = new HashSet<Library>(old.getLibraries());
         changes.removeAll(base.getLibraries());
         for (Library lib : changes) {
             fireLibraryEvent(LibraryEvent.REMOVE_LIBRARY, lib);
         }
-        
+
         changes.clear();
         changes.addAll(base.getLibraries());
         changes.removeAll(old.getLibraries());
         for (Library lib : changes) {
             fireLibraryEvent(LibraryEvent.ADD_LIBRARY, lib);
         }
-        
+
         HashMap<ComponentFactory,ComponentFactory> componentMap;
         HashMap<Tool,Tool> toolMap;
         componentMap = new HashMap<ComponentFactory,ComponentFactory>();
@@ -156,7 +156,7 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
             }
         }
         replaceAll(componentMap, toolMap);
-        
+
         HashSet<Tool> toolChanges = new HashSet<Tool>(old.getTools());
         toolChanges.removeAll(toolMap.keySet());
         for (Tool tool : toolChanges) {
@@ -169,7 +169,7 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
             fireLibraryEvent(LibraryEvent.ADD_TOOL, tool);
         }
     }
-    
+
     private static void replaceAll(Map<ComponentFactory,ComponentFactory> compMap,
             Map<Tool,Tool> toolMap) {
         for (Project proj : Projects.getOpenProjects()) {
@@ -190,7 +190,7 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
             replaceAll(file, compMap, toolMap);
         }
     }
-    
+
     private static void replaceAll(LogisimFile file,
             Map<ComponentFactory,ComponentFactory> compMap,
             Map<Tool,Tool> toolMap) {
@@ -223,13 +223,13 @@ public class LoadedLibrary extends Library implements LibraryEventSource {
             xn.execute();
         }
     }
-    
+
     private static AttributeSet createAttributes(ComponentFactory factory, AttributeSet src) {
         AttributeSet dest = factory.createAttributeSet();
         copyAttributes(dest, src);
         return dest;
     }
-    
+
     static void copyAttributes(AttributeSet dest, AttributeSet src) {
         for (Attribute<?> destAttr : dest.getAttributes()) {
             Attribute<?> srcAttr = src.getAttribute(destAttr.getName());

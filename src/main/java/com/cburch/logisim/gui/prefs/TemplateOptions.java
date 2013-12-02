@@ -90,7 +90,7 @@ class TemplateOptions extends OptionsPanel {
                 setTemplateField((File) event.getNewValue());
             }
         }
-        
+
         private void setTemplateField(File f) {
             try {
                 templateField.setText(f == null ? "" : f.getCanonicalPath());
@@ -99,13 +99,13 @@ class TemplateOptions extends OptionsPanel {
             }
             computeEnabled();
         }
-        
+
         private void computeEnabled() {
             custom.setEnabled(!templateField.getText().equals(""));
             templateField.setEnabled(custom.isSelected());
         }
     }
-    
+
     private MyListener myListener = new MyListener();
 
     private JRadioButton plain = new JRadioButton();
@@ -116,19 +116,19 @@ class TemplateOptions extends OptionsPanel {
 
     public TemplateOptions(PreferencesFrame window) {
         super(window);
-        
+
         ButtonGroup bgroup = new ButtonGroup();
         bgroup.add(plain);
         bgroup.add(empty);
         bgroup.add(custom);
-        
+
         plain.addActionListener(myListener);
         empty.addActionListener(myListener);
         custom.addActionListener(myListener);
         templateField.setEditable(false);
         templateButton.addActionListener(myListener);
         myListener.computeEnabled();
-        
+
         GridBagLayout gridbag = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
         setLayout(gridbag);
@@ -150,7 +150,7 @@ class TemplateOptions extends OptionsPanel {
         gbc.weightx = 0.0; gridbag.setConstraints(strut, gbc); add(strut);
         gbc.weightx = 1.0; gridbag.setConstraints(templateField, gbc); add(templateField);
         gbc.weightx = 0.0; gridbag.setConstraints(templateButton, gbc); add(templateButton);
-        
+
         AppPreferences.addPropertyChangeListener(AppPreferences.TEMPLATE_TYPE, myListener);
         AppPreferences.addPropertyChangeListener(AppPreferences.TEMPLATE_FILE, myListener);
         switch (AppPreferences.getTemplateType()) {
@@ -170,7 +170,7 @@ class TemplateOptions extends OptionsPanel {
     public String getHelpText() {
         return _("templateHelp");
     }
-    
+
     @Override
     public void localeChanged() {
         plain.setText(_("templatePlainOption"));

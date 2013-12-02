@@ -34,10 +34,10 @@ class MenuProject extends Menu {
             }
         }
     }
-    
+
     private LogisimMenuBar menubar;
     private MyListener myListener = new MyListener();
-    
+
     private MenuItemImpl addCircuit = new MenuItemImpl(this, LogisimMenuBar.ADD_CIRCUIT);
     private JMenu loadLibrary = new JMenu();
     private JMenuItem loadBuiltin = new JMenuItem();
@@ -77,11 +77,11 @@ class MenuProject extends Menu {
         menubar.registerItem(LogisimMenuBar.ANALYZE_CIRCUIT, analyze);
         menubar.registerItem(LogisimMenuBar.CIRCUIT_STATS, stats);
         options.addActionListener(myListener);
-        
+
         loadLibrary.add(loadBuiltin);
         loadLibrary.add(loadLogisim);
         loadLibrary.add(loadJar);
-        
+
         add(addCircuit);
         add(loadLibrary);
         add(unload);
@@ -111,7 +111,7 @@ class MenuProject extends Menu {
         options.setEnabled(known);
         computeEnabled();
     }
-    
+
     public void localeChanged() {
         setText(_("projectMenu"));
         addCircuit.setText(_("projectAddCircuitItem"));
@@ -133,7 +133,7 @@ class MenuProject extends Menu {
         stats.setText(_("projectGetCircuitStatisticsItem"));
         options.setText(_("projectOptionsItem"));
     }
-    
+
     @Override
     void computeEnabled() {
         setEnabled(menubar.getProject() != null

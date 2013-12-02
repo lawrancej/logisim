@@ -16,7 +16,7 @@ public interface CanvasModel {
     // listener methods
     public void addCanvasModelListener(CanvasModelListener l);
     public void removeCanvasModelListener(CanvasModelListener l);
-    
+
     // methods that don't change any data in the model
     public void paint(Graphics g, Selection selection);
     public List<CanvasObject> getObjectsFromTop();

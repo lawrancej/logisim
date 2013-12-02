@@ -15,16 +15,16 @@ import java.util.prefs.Preferences;
 class RecentProjects implements PreferenceChangeListener {
     private static final String BASE_PROPERTY = "recent";
     private static final int NUM_RECENT = 10;
-    
+
     private static class FileTime {
         private long time;
         private File file;
-        
+
         public FileTime(File file, long time) {
             this.time = time;
             this.file = file;
         }
-        
+
         @Override
         public boolean equals(Object other) {
             if (other instanceof FileTime) {
@@ -35,27 +35,27 @@ class RecentProjects implements PreferenceChangeListener {
             }
         }
     }
-    
+
     private File[] recentFiles;
     private long[] recentTimes;
-    
+
     RecentProjects() {
         recentFiles = new File[NUM_RECENT];
         recentTimes = new long[NUM_RECENT];
         Arrays.fill(recentTimes, System.currentTimeMillis());
-        
+
         Preferences prefs = AppPreferences.getPrefs();
         prefs.addPreferenceChangeListener(this);
-        
+
         for (int index = 0; index < NUM_RECENT; index++) {
             getAndDecode(prefs, index);
         }
     }
-    
+
     public List<File> getRecentFiles() {
         long now = System.currentTimeMillis();
         long[] ages = new long[NUM_RECENT];
-        long[] toSort = new long[NUM_RECENT]; 
+        long[] toSort = new long[NUM_RECENT];
         for (int i = 0; i < NUM_RECENT; i++) {
             if (recentFiles[i] == null) {
                 ages[i] = -1;
@@ -84,7 +84,7 @@ class RecentProjects implements PreferenceChangeListener {
         }
         return ret;
     }
-    
+
     public void updateRecent(File file) {
         File fileToSave = file;
         try {
@@ -94,7 +94,7 @@ class RecentProjects implements PreferenceChangeListener {
         int index = getReplacementIndex(now, fileToSave);
         updateInto(index, now, fileToSave);
     }
-    
+
     private int getReplacementIndex(long now, File f) {
         long oldestAge = -1;
         int oldestIndex = 0;
@@ -163,7 +163,7 @@ class RecentProjects implements PreferenceChangeListener {
             }
         }
     }
-    
+
     private void getAndDecode(Preferences prefs, int index) {
         String encoding = prefs.get(BASE_PROPERTY + index, null);
         if (encoding == null) return;
@@ -175,8 +175,8 @@ class RecentProjects implements PreferenceChangeListener {
             updateInto(index, time, file);
         } catch (NumberFormatException e) { }
     }
-    
-    
+
+
     private static boolean isSame(Object a, Object b) {
         return a == null ? b == null : a.equals(b);
     }

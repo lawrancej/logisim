@@ -71,7 +71,7 @@ class Toolbar extends JComponent {
             int my = e.getY();
             int x0 = toolX;
             int y0 = toolY;
-            
+
             boolean was = inTool;
             boolean now = toolPressed != null
                 && mx >= x0 && mx < x0 + ICON_WIDTH
@@ -82,17 +82,17 @@ class Toolbar extends JComponent {
             }
         }
     }
-    
-    
+
+
     private Canvas canvas;
     private AbstractTool[][] tools;
     private Listener listener;
-    
+
     public Toolbar(Canvas canvas, DrawingAttributeSet attrs) {
         this.canvas = canvas;
         this.tools = new AbstractTool[][] { AbstractTool.getTools(attrs) };
         this.listener = new Listener();
-        
+
         AbstractTool[] toolBase = AbstractTool.getTools(attrs);
         this.tools = new AbstractTool[2][];
         this.tools[0] = new AbstractTool[(toolBase.length + 1) / 2];
@@ -100,17 +100,17 @@ class Toolbar extends JComponent {
         for(int i = 0; i < toolBase.length; i++) {
             this.tools[i % 2][i / 2] = toolBase[i];
         }
-        
+
         setPreferredSize(new Dimension(3 * ICON_SEP + 2 * ICON_WIDTH,
                 ICON_SEP + tools[0].length * (ICON_HEIGHT + ICON_SEP)));
         addMouseListener(listener);
         addMouseMotionListener(listener);
     }
-    
+
     public AbstractTool getDefaultTool() {
         return tools[0][0];
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         g.clearRect(0, 0, getWidth(), getHeight());

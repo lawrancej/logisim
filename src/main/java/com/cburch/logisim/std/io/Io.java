@@ -17,7 +17,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Io extends Library {
     static final AttributeOption LABEL_CENTER = new AttributeOption("center", "center", __("ioLabelCenter"));
-    
+
     static final Attribute<Color> ATTR_COLOR = Attributes.forColor("color",
             __("ioColorAttr"));
     static final Attribute<Color> ATTR_ON_COLOR
@@ -36,7 +36,7 @@ public class Io extends Library {
             __("ioActiveAttr"));
 
     static final Color DEFAULT_BACKGROUND = new Color(255, 255, 255, 0);
-    
+
     private static FactoryDescription[] DESCRIPTIONS = {
         new FactoryDescription("Button", __("buttonComponent"),
                 "button.svg", "Button"),

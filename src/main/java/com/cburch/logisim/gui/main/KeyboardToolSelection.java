@@ -29,15 +29,15 @@ public class KeyboardToolSelection extends AbstractAction {
             imap.put(keyStroke, key);
         }
     }
-    
+
     private Toolbar toolbar;
     private int index;
-    
+
     public KeyboardToolSelection(Toolbar toolbar, int index) {
         this.toolbar = toolbar;
         this.index = index;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent event) {
         ToolbarModel model = toolbar.getToolbarModel();

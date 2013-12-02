@@ -23,7 +23,7 @@ public abstract class RadixOption extends AttributeOption {
     };
     public static final Attribute<RadixOption> ATTRIBUTE
         = Attributes.forOption("radix", __("radixAttr"), OPTIONS);
-    
+
     public static RadixOption decode(String value) {
         for (RadixOption opt : OPTIONS) {
             if (value.equals(opt.saveName)) {
@@ -32,7 +32,7 @@ public abstract class RadixOption extends AttributeOption {
         }
         return RADIX_2;
     }
-    
+
     private String saveName;
     private StringGetter displayGetter;
 
@@ -41,46 +41,46 @@ public abstract class RadixOption extends AttributeOption {
         this.saveName = saveName;
         this.displayGetter = displayGetter;
     }
-    
+
     public StringGetter getDisplayGetter() {
         return displayGetter;
     }
-    
+
     public String getSaveString() {
         return saveName;
     }
-    
+
     @Override
     public String toDisplayString() {
         return displayGetter.toString();
     }
-    
+
     @Override
     public String toString() {
         return saveName;
     }
-    
+
     public abstract String toString(Value value);
     public abstract int getMaxLength(BitWidth width);
     public int getMaxLength(Value value) {
         return getMaxLength(value.getBitWidth());
     }
-    
+
     private static class Radix2 extends RadixOption {
         private Radix2() {
             super("2", __("radix2"));
         }
-        
+
         @Override
         public String toString(Value value) {
             return value.toDisplayString(2);
         }
-        
+
         @Override
         public int getMaxLength(Value value) {
             return value.toDisplayString(2).length();
         }
-        
+
         @Override
         public int getMaxLength(BitWidth width) {
             int bits = width.getWidth();
@@ -88,17 +88,17 @@ public abstract class RadixOption extends AttributeOption {
             return bits + ((bits - 1) / 4);
         }
     }
-    
+
     private static class Radix10Signed extends RadixOption {
         private Radix10Signed() {
             super("10signed", __("radix10Signed"));
         }
-        
+
         @Override
         public String toString(Value value) {
             return value.toDecimalString(true);
         }
-        
+
         @Override
         public int getMaxLength(BitWidth width) {
             switch (width.getWidth()) {
@@ -116,17 +116,17 @@ public abstract class RadixOption extends AttributeOption {
             }
         }
     }
-    
+
     private static class Radix10Unsigned extends RadixOption {
         private Radix10Unsigned() {
             super("10unsigned", __("radix10Unsigned"));
         }
-        
+
         @Override
         public String toString(Value value) {
             return value.toDecimalString(false);
         }
-        
+
         @Override
         public int getMaxLength(BitWidth width) {
             switch (width.getWidth()) {
@@ -143,38 +143,38 @@ public abstract class RadixOption extends AttributeOption {
             }
         }
     }
-    
+
     private static class Radix8 extends RadixOption {
         private Radix8() {
             super("8", __("radix8"));
         }
-        
+
         @Override
         public String toString(Value value) {
             return value.toDisplayString(8);
         }
-        
+
         @Override
         public int getMaxLength(Value value) {
             return value.toDisplayString(8).length();
         }
-        
+
         @Override
         public int getMaxLength(BitWidth width) {
             return Math.max(1, (width.getWidth() + 2) / 3);
         }
     }
-    
+
     private static class Radix16 extends RadixOption {
         private Radix16() {
             super("16", __("radix16"));
         }
-        
+
         @Override
         public String toString(Value value) {
             return value.toDisplayString(16);
         }
-        
+
         @Override
         public int getMaxLength(BitWidth width) {
             return Math.max(1, (width.getWidth() + 3) / 4);

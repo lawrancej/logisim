@@ -17,52 +17,52 @@ class PropagationPoints {
     private static class Entry {
         private CircuitState state;
         private Location loc;
-        
+
         private Entry(CircuitState state, Location loc) {
             this.state = state;
             this.loc = loc;
         }
-        
+
         @Override
         public boolean equals(Object other) {
             if (!(other instanceof Entry)) return false;
             Entry o = (Entry) other;
             return state.equals(o.state) && loc.equals(o.loc);
         }
-        
+
         @Override
         public int hashCode() {
             return state.hashCode() * 31 + loc.hashCode();
         }
     }
-    
+
     private HashSet<Entry> data;
-    
+
     PropagationPoints() {
         this.data = new HashSet<Entry>();
     }
-    
+
     void add(CircuitState state, Location loc) {
         data.add(new Entry(state, loc));
     }
-    
+
     void clear() {
         data.clear();
     }
-    
+
     boolean isEmpty() {
         return data.isEmpty();
     }
-    
+
     void draw(ComponentDrawContext context) {
         if (data.isEmpty()) return;
-        
+
         CircuitState state = context.getCircuitState();
         HashMap<CircuitState,CircuitState> stateMap = new HashMap<CircuitState,CircuitState>();
         for (CircuitState s : state.getSubstates()) {
             addSubstates(stateMap, s, s);
         }
-        
+
         Graphics g = context.getGraphics();
         GraphicsUtil.switchToWidth(g, 2);
         for (Entry e : data) {
@@ -78,7 +78,7 @@ class PropagationPoints {
         }
         GraphicsUtil.switchToWidth(g, 1);
     }
-    
+
     private void addSubstates(HashMap<CircuitState,CircuitState> map,
             CircuitState source, CircuitState value) {
         map.put(source, value);

@@ -35,7 +35,7 @@ public class Analyzer extends LFrame {
     public static final int TABLE_TAB = 2;
     public static final int EXPRESSION_TAB = 3;
     public static final int MINIMIZED_TAB = 4;
-    
+
     private class MyListener implements LocaleListener {
         @Override
         public void localeChanged() {
@@ -59,7 +59,7 @@ public class Analyzer extends LFrame {
             buildCircuit.localeChanged();
         }
     }
-    
+
     private class EditListener implements ActionListener, ChangeListener {
         private void register(LogisimMenuBar menubar) {
             menubar.addActionListener(LogisimMenuBar.CUT, this);
@@ -70,7 +70,7 @@ public class Analyzer extends LFrame {
             tabbedPane.addChangeListener(this);
             enableItems(menubar);
         }
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             Object src = e.getSource();
@@ -93,7 +93,7 @@ public class Analyzer extends LFrame {
                 tab.selectAll();
             }
         }
-        
+
         private void enableItems(LogisimMenuBar menubar) {
             Component c = tabbedPane.getSelectedComponent();
             if (c instanceof JScrollPane) {
@@ -110,7 +110,7 @@ public class Analyzer extends LFrame {
         @Override
         public void stateChanged(ChangeEvent e) {
             enableItems((LogisimMenuBar) getJMenuBar());
-            
+
             Object selected = tabbedPane.getSelectedComponent();
             if (selected instanceof JScrollPane) {
                 selected = ((JScrollPane) selected).getViewport().getView();
@@ -120,19 +120,19 @@ public class Analyzer extends LFrame {
             }
         }
     }
-    
+
     private MyListener myListener = new MyListener();
     private EditListener editListener = new EditListener();
     private AnalyzerModel model = new AnalyzerModel();
     private JTabbedPane tabbedPane = new JTabbedPane();
-    
+
     private VariableTab inputsPanel;
     private VariableTab outputsPanel;
     private TableTab truthTablePanel;
     private ExpressionTab expressionPanel;
     private MinimizedTab minimizedPanel;
     private BuildCircuitButton buildCircuit;
-    
+
     Analyzer() {
         inputsPanel = new VariableTab(model.getInputs());
         outputsPanel = new VariableTab(model.getOutputs());
@@ -142,14 +142,14 @@ public class Analyzer extends LFrame {
         buildCircuit = new BuildCircuitButton(this, model);
 
         truthTablePanel.addMouseListener(new TruthTableMouseListener());
-        
+
         tabbedPane = new JTabbedPane();
         addTab(INPUTS_TAB, inputsPanel);
         addTab(OUTPUTS_TAB, outputsPanel);
         addTab(TABLE_TAB, truthTablePanel);
         addTab(EXPRESSION_TAB, expressionPanel);
         addTab(MINIMIZED_TAB, minimizedPanel);
-        
+
         Container contents = getContentPane();
         JPanel vertStrut = new JPanel(null);
         vertStrut.setPreferredSize(new Dimension(0, 300));
@@ -161,20 +161,20 @@ public class Analyzer extends LFrame {
         contents.add(horzStrut, BorderLayout.NORTH);
         contents.add(tabbedPane, BorderLayout.CENTER);
         contents.add(buttonPanel, BorderLayout.SOUTH);
-        
+
         DefaultRegistry registry = new DefaultRegistry(getRootPane());
         inputsPanel.registerDefaultButtons(registry);
         outputsPanel.registerDefaultButtons(registry);
         expressionPanel.registerDefaultButtons(registry);
-        
+
         LocaleManager.addLocaleListener(myListener);
         myListener.localeChanged();
-        
+
         LogisimMenuBar menubar = new LogisimMenuBar(this, null);
         setJMenuBar(menubar);
         editListener.register(menubar);
     }
-    
+
     private void addTab(int index, final JComponent comp) {
         final JScrollPane pane = new JScrollPane(comp,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
@@ -198,11 +198,11 @@ public class Analyzer extends LFrame {
         });
         tabbedPane.insertTab("Untitled", null, pane, null, index);
     }
-    
+
     public AnalyzerModel getModel() {
         return model;
     }
-    
+
     public void setSelectedTab(int index) {
         Object found = tabbedPane.getComponentAt(index);
         if (found instanceof AnalyzerTab) {
@@ -210,7 +210,7 @@ public class Analyzer extends LFrame {
         }
         tabbedPane.setSelectedIndex(index);
     }
-    
+
     public static void main(String[] args) {
         Analyzer frame = new Analyzer();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

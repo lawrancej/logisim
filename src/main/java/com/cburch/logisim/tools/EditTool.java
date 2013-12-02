@@ -41,7 +41,7 @@ public class EditTool extends Tool {
     private static final int CACHE_MAX_SIZE = 32;
     private static final Location NULL_LOCATION
         = Location.create(Integer.MIN_VALUE, Integer.MIN_VALUE);
-    
+
     private class Listener implements CircuitListener, Selection.Listener {
         @Override
         public void circuitChanged(CircuitEvent event) {
@@ -59,7 +59,7 @@ public class EditTool extends Tool {
             updateLocation(lastCanvas, lastRawX, lastRawY, lastMods);
         }
     }
-    
+
     private Listener listener;
     private SelectTool select;
     private WiringTool wiring;
@@ -74,7 +74,7 @@ public class EditTool extends Tool {
     private Location wireLoc; // coordinates where to draw wiring indicator, if
     private int pressX; // last coordinate where mouse was pressed
     private int pressY; // (used to determine when a short wire has been clicked)
-    
+
     public EditTool(SelectTool select, WiringTool wiring) {
         this.listener = new Listener();
         this.select = select;
@@ -85,12 +85,12 @@ public class EditTool extends Tool {
         this.wireLoc = NULL_LOCATION;
         this.pressX = -1;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other instanceof EditTool;
     }
-    
+
     @Override
     public int hashCode() {
         return EditTool.class.hashCode();
@@ -100,12 +100,12 @@ public class EditTool extends Tool {
     public String getName() {
         return "Edit Tool";
     }
-    
+
     @Override
     public String getDisplayName() {
         return _("editTool");
     }
-    
+
     @Override
     public String getDescription() {
         return _("editToolDesc");
@@ -115,12 +115,12 @@ public class EditTool extends Tool {
     public AttributeSet getAttributeSet() {
         return select.getAttributeSet();
     }
-    
+
     @Override
     public void setAttributeSet(AttributeSet attrs) {
         select.setAttributeSet(attrs);
     }
-    
+
     @Override
     public AttributeSet getAttributeSet(Canvas canvas) {
         return canvas.getSelection().getAttributeSet();
@@ -130,17 +130,17 @@ public class EditTool extends Tool {
     public boolean isAllDefaultValues(AttributeSet attrs, LogisimVersion ver) {
         return true;
     }
-    
+
     @Override
     public void paintIcon(ComponentDrawContext c, int x, int y) {
         select.paintIcon(c, x, y);
     }
-    
+
     @Override
     public Set<Component> getHiddenComponents(Canvas canvas) {
         return current.getHiddenComponents(canvas);
     }
-        
+
     @Override
     public void draw(Canvas canvas, ComponentDrawContext context) {
         Location loc = wireLoc;
@@ -156,7 +156,7 @@ public class EditTool extends Tool {
         }
         current.draw(canvas, context);
     }
-    
+
     @Override
     public void select(Canvas canvas) {
         current = select;
@@ -166,7 +166,7 @@ public class EditTool extends Tool {
         canvas.getSelection().addListener(listener);
         select.select(canvas);
     }
-    
+
     @Override
     public void deselect(Canvas canvas) {
         current = select;
@@ -204,13 +204,13 @@ public class EditTool extends Tool {
         pressY = e.getY();
         current.mousePressed(canvas, g, e);
     }
-    
+
     @Override
     public void mouseDragged(Canvas canvas, Graphics g, MouseEvent e) {
         isClick(e);
         current.mouseDragged(canvas, g, e);
     }
-    
+
     @Override
     public void mouseReleased(Canvas canvas, Graphics g, MouseEvent e) {
         boolean click = isClick(e) && current == wiring;
@@ -225,26 +225,26 @@ public class EditTool extends Tool {
         cache.clear();
         updateLocation(canvas, e);
     }
-    
+
     @Override
     public void mouseEntered(Canvas canvas, Graphics g, MouseEvent e) {
         pressX = -1;
         current.mouseEntered(canvas, g, e);
         canvas.requestFocusInWindow();
     }
-    
+
     @Override
     public void mouseExited(Canvas canvas, Graphics g, MouseEvent e) {
         pressX = -1;
         current.mouseExited(canvas, g, e);
     }
-    
+
     @Override
     public void mouseMoved(Canvas canvas, Graphics g, MouseEvent e) {
         updateLocation(canvas, e);
         select.mouseMoved(canvas, g, e);
     }
-    
+
     private boolean isClick(MouseEvent e) {
         int px = pressX;
         if (px < 0) {
@@ -260,17 +260,17 @@ public class EditTool extends Tool {
             }
         }
     }
-    
+
     private boolean updateLocation(Canvas canvas, MouseEvent e) {
         return updateLocation(canvas, e.getX(), e.getY(), e.getModifiersEx());
     }
-    
+
     private boolean updateLocation(Canvas canvas, KeyEvent e) {
         int x = lastRawX;
         if (x >= 0) return updateLocation(canvas, x, lastRawY, e.getModifiersEx());
         else return false;
     }
-    
+
     private boolean updateLocation(Canvas canvas, int mx, int my, int mods) {
         int snapx = Canvas.snapXToGrid(mx);
         int snapy = Canvas.snapYToGrid(my);
@@ -322,11 +322,11 @@ public class EditTool extends Tool {
             return ret;
         }
     }
-    
+
     private boolean isWiringPoint(Canvas canvas, Location loc, int modsEx) {
         boolean wiring = (modsEx & InputEvent.ALT_DOWN_MASK) == 0;
         boolean select = !wiring;
-        
+
         if (canvas != null && canvas.getSelection() != null) {
             Collection<Component> sel = canvas.getSelection().getComponents();
             if (sel != null) {
@@ -338,11 +338,11 @@ public class EditTool extends Tool {
                 }
             }
         }
-        
+
         Circuit circ = canvas.getCircuit();
         Collection<? extends Component> at = circ.getComponents(loc);
         if (at != null && at.size() > 0) return wiring;
-        
+
         for (Wire w : circ.getWires()) {
             if (w.contains(loc)) { return wiring; }
         }
@@ -353,7 +353,7 @@ public class EditTool extends Tool {
     public void keyTyped(Canvas canvas, KeyEvent e) {
         select.keyTyped(canvas, e);
     }
-    
+
     @Override
     public void keyPressed(Canvas canvas, KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -393,7 +393,7 @@ public class EditTool extends Tool {
             select.keyPressed(canvas, e);
         }
     }
-    
+
     @Override
     public void keyReleased(Canvas canvas, KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -402,7 +402,7 @@ public class EditTool extends Tool {
             select.keyReleased(canvas, e);
         }
     }
-    
+
     private void attemptReface(Canvas canvas, final Direction facing, KeyEvent e) {
         if (e.getModifiersEx() == 0) {
             final Circuit circuit = canvas.getCircuit();
@@ -423,7 +423,7 @@ public class EditTool extends Tool {
             }
         }
     }
-    
+
     private Attribute<Direction> getFacingAttribute(Component comp) {
         AttributeSet attrs = comp.getAttributeSet();
         Object key = ComponentFactory.FACING_ATTRIBUTE_KEY;
@@ -432,9 +432,9 @@ public class EditTool extends Tool {
         Attribute<Direction> ret = (Attribute<Direction>) a;
         return ret;
     }
-    
+
     @Override
     public Cursor getCursor() {
-        return select.getCursor(); 
+        return select.getCursor();
     }
 }

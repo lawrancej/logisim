@@ -12,22 +12,22 @@ class Highlighter {
         private long start;
         private long end;
         private Color color;
-        
+
         Entry(long start, long end, Color color) {
             this.start = start;
             this.end = end;
             this.color = color;
         }
     }
-    
+
     private HexEditor hex;
     private ArrayList<Entry> entries;
-    
+
     Highlighter(HexEditor hex) {
         this.hex = hex;
         this.entries = new ArrayList<Entry>();
     }
-    
+
     public synchronized Object add(long start, long end, Color color) {
         HexModel model = hex.getModel();
         if (model == null) return null;
@@ -37,20 +37,20 @@ class Highlighter {
         if (start < model.getFirstOffset()) start = model.getFirstOffset();
         if (end > model.getLastOffset()) end = model.getLastOffset();
         if (start >= end) return null;
-        
+
         Entry entry = new Entry(start, end, color);
         entries.add(entry);
         expose(entry);
         return entry;
     }
-    
+
     public synchronized void remove(Object tag) {
         if (entries.remove(tag)) {
             Entry entry = (Entry) tag;
             expose(entry);
         }
     }
-    
+
     public synchronized void clear() {
         ArrayList<Entry> oldEntries = entries;
         entries = new ArrayList<Entry>();
@@ -58,7 +58,7 @@ class Highlighter {
             expose(oldEntries.get(n));
         }
     }
-    
+
     private void expose(Entry entry) {
         Measures m = hex.getMeasures();
         int y0 = m.toY(entry.start);
@@ -75,7 +75,7 @@ class Highlighter {
             hex.repaint(lineStart, y0, lineWidth, y1 - y0 + h);
         }
     }
-    
+
     synchronized void paint(Graphics g, long start, long end) {
         int size = entries.size();
         if (size == 0) return;

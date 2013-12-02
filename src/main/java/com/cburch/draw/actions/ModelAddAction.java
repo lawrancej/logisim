@@ -14,7 +14,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class ModelAddAction extends ModelAction {
     private ArrayList<CanvasObject> added;
     private int addIndex;
-    
+
     public ModelAddAction(CanvasModel model, CanvasObject added) {
         this(model, Collections.singleton(added));
     }
@@ -29,13 +29,13 @@ public class ModelAddAction extends ModelAction {
             int index) {
         super(model);
         this.added = new ArrayList<CanvasObject>(added);
-        this.addIndex = index; 
+        this.addIndex = index;
     }
-    
+
     public int getDestinationIndex() {
         return addIndex;
     }
-    
+
     @Override
     public Collection<CanvasObject> getObjects() {
         return Collections.unmodifiableList(added);
@@ -45,12 +45,12 @@ public class ModelAddAction extends ModelAction {
     public String getName() {
         return _("actionAdd", getShapesName(added));
     }
-    
+
     @Override
     void doSub(CanvasModel model) {
         model.addObjects(addIndex, added);
     }
-    
+
     @Override
     void undoSub(CanvasModel model) {
         model.removeObjects(added);

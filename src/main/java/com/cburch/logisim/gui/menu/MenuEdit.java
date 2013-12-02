@@ -102,7 +102,7 @@ class MenuEdit extends Menu {
         addSeparator();
         add(addCtrl);
         add(remCtrl);
-        
+
         Project proj = menubar.getProject();
         if (proj != null) {
             proj.addProjectListener(myListener);
@@ -141,7 +141,7 @@ class MenuEdit extends Menu {
         addCtrl.setText(_("editAddControlItem"));
         remCtrl.setText(_("editRemoveControlItem"));
     }
-    
+
     @Override
     void computeEnabled() {
         setEnabled(menubar.getProject() != null

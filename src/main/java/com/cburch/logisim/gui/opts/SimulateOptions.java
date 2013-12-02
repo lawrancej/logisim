@@ -47,7 +47,7 @@ class SimulateOptions extends OptionsPanel {
                 }
             }
         }
-        
+
         @Override
         public void attributeListChanged(AttributeEvent e) { }
         @Override
@@ -71,16 +71,16 @@ class SimulateOptions extends OptionsPanel {
                 }
             }
         }
-        
+
         private void loadGateUndefined(Object val) {
             ComboOption.setSelected(gateUndefined, val);
         }
-        
+
         private void loadSimRandomness(Integer val) {
             simRandomness.setSelected(val.intValue() > 0);
         }
     }
-    
+
     private MyListener myListener = new MyListener();
 
     private JLabel simLimitLabel = new JLabel();
@@ -103,24 +103,24 @@ class SimulateOptions extends OptionsPanel {
 
     public SimulateOptions(OptionsFrame window) {
         super(window);
-        
+
         JPanel simLimitPanel = new JPanel();
         simLimitPanel.add(simLimitLabel);
         simLimitPanel.add(simLimit);
         simLimit.addActionListener(myListener);
-        
+
         JPanel gateUndefinedPanel = new JPanel();
         gateUndefinedPanel.add(gateUndefinedLabel);
         gateUndefinedPanel.add(gateUndefined);
         gateUndefined.addActionListener(myListener);
-        
+
         simRandomness.addActionListener(myListener);
 
         setLayout(new TableLayout(1));
         add(simLimitPanel);
         add(gateUndefinedPanel);
         add(simRandomness);
-        
+
         window.getOptions().getAttributeSet().addAttributeListener(myListener);
         AttributeSet attrs = getOptions().getAttributeSet();
         myListener.loadSimLimit(attrs.getValue(Options.sim_limit_attr));
@@ -137,7 +137,7 @@ class SimulateOptions extends OptionsPanel {
     public String getHelpText() {
         return _("simulateHelp");
     }
-    
+
     @Override
     public void localeChanged() {
         simLimitLabel.setText(_("simulateLimit"));

@@ -41,10 +41,10 @@ class ControlledBuffer extends InstanceFactory {
     private static final Attribute<AttributeOption> ATTR_CONTROL
         = Attributes.forOption("control", __("controlledControlOption"),
                 new AttributeOption[] { RIGHT_HANDED, LEFT_HANDED });
-            
+
     public static ComponentFactory FACTORY_BUFFER = new ControlledBuffer(false);
     public static ComponentFactory FACTORY_INVERTER = new ControlledBuffer(true);
-    
+
     private static final Icon ICON_BUFFER = Icons.getIcon("controlledBuffer.svg");
     private static final Icon ICON_INVERTER = Icons.getIcon("controlledInverter.svg");
 
@@ -86,7 +86,7 @@ class ControlledBuffer extends InstanceFactory {
         if (facing == Direction.WEST) return Bounds.create(0, -10, w, 20);
         return Bounds.create(-w, -10, w, 20);
     }
-    
+
     //
     // graphics methods
     //
@@ -144,7 +144,7 @@ class ControlledBuffer extends InstanceFactory {
         }
         painter.drawLabel();
     }
-    
+
     private void paintShape(InstancePainter painter) {
         Direction facing = painter.getAttributeValue(StdAttr.FACING);
         Location loc = painter.getLocation();
@@ -168,7 +168,7 @@ class ControlledBuffer extends InstanceFactory {
             g.drawPolyline(xp, yp, 4);
             // if (isInverter) g.drawOval(-9, -4, 9, 9);
         }
-        
+
         if (rotate != 0.0) {
             ((Graphics2D) g).rotate(-rotate);
         }
@@ -184,7 +184,7 @@ class ControlledBuffer extends InstanceFactory {
         configurePorts(instance);
         NotGate.configureLabel(instance, false, instance.getPortLocation(2));
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.FACING || attr == NotGate.ATTR_SIZE) {
@@ -242,7 +242,7 @@ class ControlledBuffer extends InstanceFactory {
             state.setPort(0, out, GateAttributes.DELAY);
         }
     }
-    
+
     @Override
     public Object getInstanceFeature(final Instance instance, Object key) {
         if (key == WireRepair.class) {

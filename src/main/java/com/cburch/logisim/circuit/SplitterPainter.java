@@ -19,7 +19,7 @@ import com.cburch.logisim.util.GraphicsUtil;
 class SplitterPainter {
     private static final int SPINE_WIDTH = Wire.WIDTH + 2;
     private static final int SPINE_DOT = Wire.WIDTH + 4;
-    
+
     static void drawLines(ComponentDrawContext context,
             SplitterAttributes attrs, Location origin) {
         boolean showState = context.getShowState();
@@ -35,7 +35,7 @@ class SplitterPainter {
         int dy = parms.getEndToEndDeltaY();
         int dxEndSpine = parms.getEndToSpineDeltaX();
         int dyEndSpine = parms.getEndToSpineDeltaY();
-        
+
         Graphics g = context.getGraphics();
         Color oldColor = g.getColor();
         GraphicsUtil.switchToWidth(g, Wire.WIDTH);
@@ -126,7 +126,7 @@ class SplitterPainter {
         Graphics g = context.getGraphics().create();
         Font font = g.getFont();
         g.setFont(font.deriveFont(7.0f));
-        
+
         SplitterParameters parms = attrs.getParameters();
         int x = origin.getX() + parms.getEnd0X() + parms.getEndToSpineDeltaX();
         int y = origin.getY() + parms.getEnd0Y() + parms.getEndToSpineDeltaY();
@@ -153,7 +153,7 @@ class SplitterPainter {
 
         g.dispose();
     }
-    
+
     static void drawLegacy(ComponentDrawContext context, SplitterAttributes attrs,
             Location origin) {
         Graphics g = context.getGraphics();
@@ -161,7 +161,7 @@ class SplitterPainter {
         Direction facing = attrs.facing;
         int fanout = attrs.fanout;
         SplitterParameters parms = attrs.getParameters();
-        
+
         g.setColor(Color.BLACK);
         int x0 = origin.getX();
         int y0 = origin.getY();

@@ -38,7 +38,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Print {
     private Print() { }
-    
+
     public static void doPrint(Project proj) {
         CircuitJList list = new CircuitJList(proj, true);
         Frame frame = proj.getFrame();
@@ -57,13 +57,13 @@ public class Print {
         if (action != JOptionPane.OK_OPTION) return;
         List<Circuit> circuits = list.getSelectedCircuits();
         if (circuits.isEmpty()) return;
-        
+
         PageFormat format = new PageFormat();
         Printable print = new MyPrintable(proj, circuits,
                 parmsPanel.getHeader(),
                 parmsPanel.getRotateToFit(),
                 parmsPanel.getPrinterView());
-        
+
         PrinterJob job = PrinterJob.getPrinterJob();
         job.setPrintable(print, format);
         if (job.printDialog() == false) return;
@@ -76,14 +76,14 @@ public class Print {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-        
+
     private static class ParmsPanel extends JPanel {
         JCheckBox rotateToFit;
         JCheckBox printerView;
         JTextField header;
         GridBagLayout gridbag;
         GridBagConstraints gbc;
-        
+
         ParmsPanel(JList list) {
             // set up components
             rotateToFit = new JCheckBox();
@@ -92,12 +92,12 @@ public class Print {
             printerView.setSelected(true);
             header = new JTextField(20);
             header.setText("%n (%p of %P)");
-            
+
             // set up panel
             gridbag = new GridBagLayout();
             gbc = new GridBagConstraints();
             setLayout(gridbag);
-            
+
             // now add components into panel
             gbc.gridy = 0;
             gbc.gridx = GridBagConstraints.RELATIVE;
@@ -108,37 +108,37 @@ public class Print {
             gbc.fill = GridBagConstraints.HORIZONTAL;
             addGb(new JScrollPane(list));
             gbc.fill = GridBagConstraints.NONE;
-            
+
             gbc.gridy++;
             addGb(new JLabel(_("labelHeader") + " "));
             addGb(header);
-            
+
             gbc.gridy++;
             addGb(new JLabel(_("labelRotateToFit") + " "));
             addGb(rotateToFit);
-            
+
             gbc.gridy++;
             addGb(new JLabel(_("labelPrinterView") + " "));
             addGb(printerView);
         }
-        
+
         private void addGb(JComponent comp) {
             gridbag.setConstraints(comp, gbc);
             add(comp);
         }
-        
+
         boolean getRotateToFit() { return rotateToFit.isSelected(); }
         boolean getPrinterView() { return printerView.isSelected(); }
         String getHeader() { return header.getText(); }
     }
-    
+
     private static class MyPrintable implements Printable {
         Project proj;
         List<Circuit> circuits;
         String header;
         boolean rotateToFit;
         boolean printerView;
-        
+
         MyPrintable(Project proj, List<Circuit> circuits, String header,
                 boolean rotateToFit, boolean printerView) {
             this.proj = proj;
@@ -147,11 +147,11 @@ public class Print {
             this.rotateToFit = rotateToFit;
             this.printerView = printerView;
         }
-        
+
         @Override
         public int print(Graphics base, PageFormat format, int pageIndex) {
             if (pageIndex >= circuits.size()) return Printable.NO_SUCH_PAGE;
-            
+
             Circuit circ = circuits.get(pageIndex);
             CircuitState circState = proj.getCircuitState(circ);
             Graphics g = base.create();
@@ -166,7 +166,7 @@ public class Print {
             // Compute image size
             double imWidth = format.getImageableWidth();
             double imHeight = format.getImageableHeight();
-            
+
             // Correct coordinate system for page, including
             // translation and possible rotation.
             Bounds bds = circ.getBounds(g).expand(4);
@@ -192,7 +192,7 @@ public class Print {
                     }
                 }
             }
-            
+
             // Draw the header line if appropriate
             if (head != null) {
                 g.drawString(head,
@@ -203,7 +203,7 @@ public class Print {
                     g2.translate(0, headHeight);
                 }
             }
-            
+
             // Now change coordinate system for circuit, including
             // translation and possible scaling
             if (g2 != null) {
@@ -215,14 +215,14 @@ public class Print {
                 double dx = Math.max(0.0, (imWidth - bds.getWidth()) / 2);
                 g2.translate(-bds.getX() + dx, -bds.getY());
             }
-            
+
             // Ensure that the circuit is eligible to be drawn
             Rectangle clip = g.getClipBounds();
             clip.add(bds.getX(), bds.getY());
             clip.add(bds.getX() + bds.getWidth(),
                     bds.getY() + bds.getHeight());
             g.setClip(clip);
-            
+
             // And finally draw the circuit onto the page
             ComponentDrawContext context = new ComponentDrawContext(
                     proj.getFrame().getCanvas(), circ, circState,
@@ -233,7 +233,7 @@ public class Print {
             return Printable.PAGE_EXISTS;
         }
     }
-    
+
     private static String format(String header, int index, int max,
             String circName) {
         header = header.replace("%n", "%1$s");

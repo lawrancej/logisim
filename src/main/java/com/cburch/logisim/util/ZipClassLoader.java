@@ -24,29 +24,29 @@ public class ZipClassLoader extends ClassLoader {
         // 1 = open/close ZIP file only
         // 2 = also each resource request
         // 3 = all messages while retrieving resource
-    
+
     private static final int REQUEST_FIND = 0;
     private static final int REQUEST_LOAD = 1;
-    
+
     private static class Request {
         int action;
         String resource;
         boolean responseSent;
         Object response;
-        
+
         Request(int action, String resource) {
             this.action = action;
             this.resource = resource;
             this.responseSent = false;
         }
-        
+
         @Override
         public String toString() {
             String act = action == REQUEST_LOAD ? "load"
                     : action == REQUEST_FIND ? "find" : "act" + action;
             return act + ":" + resource;
         }
-        
+
         void setResponse(Object value) {
             synchronized(this) {
                 response = value;
@@ -54,7 +54,7 @@ public class ZipClassLoader extends ClassLoader {
                 notifyAll();
             }
         }
-        
+
         void ensureDone() {
             boolean aborted = false;
             synchronized(this) {
@@ -69,7 +69,7 @@ public class ZipClassLoader extends ClassLoader {
                 System.err.println("request not handled successfully"); //OK
             }
         }
-        
+
         Object getResponse() {
             synchronized(this) {
                 while (!responseSent) {
@@ -79,18 +79,18 @@ public class ZipClassLoader extends ClassLoader {
             }
         }
     }
-    
+
     private class WorkThread extends Thread {
         private LinkedList<Request> requests = new LinkedList<Request>();
         private ZipFile zipFile = null;
-        
+
         @Override
         public void run() {
             try {
                 while (true) {
                     Request request = waitForNextRequest();
                     if (request == null) return;
-                    
+
                     if (DEBUG >= 2) System.err.println("processing " + request); //OK
                     try {
                         switch (request.action) {
@@ -116,7 +116,7 @@ public class ZipClassLoader extends ClassLoader {
                 }
             }
         }
-        
+
         private Request waitForNextRequest() {
             synchronized(bgLock) {
                 long start = System.currentTimeMillis();
@@ -133,7 +133,7 @@ public class ZipClassLoader extends ClassLoader {
                 return requests.removeFirst();
             }
         }
-        
+
         private void performFind(Request req) {
             ensureZipOpen();
             Object ret = null;
@@ -154,7 +154,7 @@ public class ZipClassLoader extends ClassLoader {
             }
             req.setResponse(ret);
         }
-        
+
         private void performLoad(Request req) {
             BufferedInputStream bis = null;
             ensureZipOpen();
@@ -190,7 +190,7 @@ public class ZipClassLoader extends ClassLoader {
             }
             req.setResponse(ret);
         }
-        
+
         private void ensureZipOpen() {
             if (zipFile == null) {
                 try {
@@ -203,20 +203,20 @@ public class ZipClassLoader extends ClassLoader {
             }
         }
     }
-    
+
     private File zipPath;
     private HashMap<String,Object> classes = new HashMap<String,Object>();
     private Object bgLock = new Object();
     private WorkThread bgThread = null;
- 
+
     public ZipClassLoader(String zipFileName) {
         this(new File(zipFileName));
     }
- 
+
     public ZipClassLoader(File zipFile) {
         zipPath = zipFile;
     }
-    
+
     @Override
     public URL findResource(String resourceName) {
         if (DEBUG >= 3) System.err.println("findResource " + resourceName); //OK
@@ -258,7 +258,7 @@ public class ZipClassLoader extends ClassLoader {
 
             synchronized(classes) { classes.put(className, result); }
         }
-        
+
         if (result instanceof Class) {
             return (Class<?>) result;
         } else if (result instanceof ClassNotFoundException) {
@@ -269,7 +269,7 @@ public class ZipClassLoader extends ClassLoader {
             return super.findClass(className);
         }
     }
-    
+
     private Object request(int action, String resourceName) {
         Request request;
         synchronized(bgLock) {

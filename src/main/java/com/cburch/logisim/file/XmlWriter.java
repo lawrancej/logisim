@@ -47,7 +47,7 @@ class XmlWriter {
         Document doc = docBuilder.newDocument();
         XmlWriter context = new XmlWriter(file, doc, loader);
         context.fromLogisimFile();
-        
+
         TransformerFactory tfFactory = TransformerFactory.newInstance();
         try {
             tfFactory.setAttribute("indent-number", Integer.valueOf(2));
@@ -56,7 +56,7 @@ class XmlWriter {
         tf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
         tf.setOutputProperty(OutputKeys.INDENT, "yes");
         try {
-            tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", 
+            tf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount",
                     "2");
         } catch (IllegalArgumentException e) { }
 

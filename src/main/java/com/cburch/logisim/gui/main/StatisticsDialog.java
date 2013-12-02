@@ -34,10 +34,10 @@ public class StatisticsDialog extends JDialog implements ActionListener {
                 circuit.getName(), new StatisticsTableModel(stats));
         dlog.setVisible(true);
     }
-    
+
     private static class StatisticsTableModel extends AbstractTableModel {
         private FileStatistics stats;
-        
+
         StatisticsTableModel(FileStatistics stats) {
             this.stats = stats;
         }
@@ -51,12 +51,12 @@ public class StatisticsDialog extends JDialog implements ActionListener {
         public int getRowCount() {
             return stats.getCounts().size() + 2;
         }
-        
+
         @Override
         public Class<?> getColumnClass(int column) {
             return column < 2 ? String.class : Integer.class;
         }
-        
+
         @Override
         public String getColumnName(int column) {
             switch (column) {
@@ -68,7 +68,7 @@ public class StatisticsDialog extends JDialog implements ActionListener {
             default: return "??"; // should never happen
             }
         }
-        
+
         @Override
         public Object getValueAt(int row, int column) {
             List<FileStatistics.Count> counts = stats.getCounts();
@@ -87,7 +87,7 @@ public class StatisticsDialog extends JDialog implements ActionListener {
                 } else {
                     return _("statsTotalWith");
                 }
-            case 1: 
+            case 1:
                 if (row < countsLen) {
                     Library lib = count.getLibrary();
                     return lib == null ? "-" : lib.getDisplayName();
@@ -101,14 +101,14 @@ public class StatisticsDialog extends JDialog implements ActionListener {
             }
         }
     }
-    
+
     private static class CompareString implements Comparator<String> {
         private String[] fixedAtBottom;
-        
+
         public CompareString(String... fixedAtBottom) {
             this.fixedAtBottom = fixedAtBottom;
         }
-        
+
         @Override
         public int compare(String a, String b) {
             for (int i = fixedAtBottom.length - 1; i >= 0; i--) {
@@ -119,22 +119,22 @@ public class StatisticsDialog extends JDialog implements ActionListener {
             return a.compareToIgnoreCase(b);
         }
     }
-    
+
     private static class StatisticsTable extends JTable {
         @Override
         public void setBounds(int x, int y, int width, int height) {
             super.setBounds(x, y, width, height);
             setPreferredColumnWidths(new double[] { 0.45, 0.25, 0.1, 0.1, 0.1 });
         }
-        
+
         protected void setPreferredColumnWidths(double[] percentages) {
             Dimension tableDim = getPreferredSize();
-            
+
             double total = 0;
             for (int i = 0; i < getColumnModel().getColumnCount(); i++) {
                 total += percentages[i];
             }
-            
+
             for (int i = 0; i < getColumnModel().getColumnCount(); i++) {
                 TableColumn column = getColumnModel().getColumn(i);
                 double width = tableDim.width * (percentages[i] / total);
@@ -142,13 +142,13 @@ public class StatisticsDialog extends JDialog implements ActionListener {
             }
         }
     }
-    
+
     private StatisticsDialog(JFrame parent, String circuitName,
             StatisticsTableModel model) {
         super(parent, true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle(_("statsDialogTitle", circuitName));
-        
+
         JTable table = new StatisticsTable();
         TableSorter mySorter = new TableSorter(model, table.getTableHeader());
         Comparator<String> comp = new CompareString("",
@@ -156,18 +156,18 @@ public class StatisticsDialog extends JDialog implements ActionListener {
         mySorter.setColumnComparator(String.class, comp);
         table.setModel(mySorter);
         JScrollPane tablePane = new JScrollPane(table);
-        
+
         JButton button = new JButton(_("statsCloseButton"));
         button.addActionListener(this);
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(button);
-        
+
         Container contents = this.getContentPane();
         contents.setLayout(new BorderLayout());
         contents.add(tablePane, BorderLayout.CENTER);
         contents.add(buttonPanel, BorderLayout.PAGE_END);
         this.pack();
-        
+
         Dimension pref = contents.getPreferredSize();
         if (pref.width > 750 || pref.height > 550) {
             if (pref.width > 750) pref.width = 750;
@@ -175,7 +175,7 @@ public class StatisticsDialog extends JDialog implements ActionListener {
             this.setSize(pref);
         }
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         this.dispose();

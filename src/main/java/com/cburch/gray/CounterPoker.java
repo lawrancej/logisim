@@ -24,7 +24,7 @@ public class CounterPoker extends InstancePoker {
     public CounterPoker() { }
 
     /** Determines whether the location the mouse was pressed should result
-     * in initiating a poke. 
+     * in initiating a poke.
      */
     @Override
     public boolean init(InstanceState state, MouseEvent e) {
@@ -64,7 +64,7 @@ public class CounterPoker extends InstancePoker {
         Value newValue = Value.createKnown(width, newVal);
         cur.setValue(newValue);
         state.fireInvalidated();
-        
+
         // You might be tempted to propagate the value immediately here, using
         // state.setPort. However, the circuit may currently be propagating in
         // another thread, and invoking setPort directly could interfere with

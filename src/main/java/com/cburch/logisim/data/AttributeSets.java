@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AttributeSets {
     private AttributeSets() { }
-    
+
     public static final AttributeSet EMPTY = new AttributeSet() {
         @Override
         public Object clone() { return this; }
@@ -40,7 +40,7 @@ public class AttributeSets {
         @Override
         public <V> void setValue(Attribute<V> attr, V value) { }
     };
-    
+
     public static <V> AttributeSet fixedSet(Attribute<V> attr, V initValue) {
         return new SingletonSet(attr, initValue);
     }
@@ -54,7 +54,7 @@ public class AttributeSets {
             return EMPTY;
         }
     }
-    
+
     public static void copy(AttributeSet src, AttributeSet dst) {
         if (src == null || src.getAttributes() == null) return;
         for (Attribute<?> attr : src.getAttributes()) {
@@ -69,7 +69,7 @@ public class AttributeSets {
         private List<Attribute<?>> attrs;
         private Object value;
         private boolean readOnly = false;
-        
+
         SingletonSet(Attribute<?> attr, Object initValue) {
             this.attrs = new ArrayList<Attribute<?>>(1);
             this.attrs.add(attr);
@@ -88,12 +88,12 @@ public class AttributeSets {
         public List<Attribute<?>> getAttributes() {
             return attrs;
         }
-        
+
         @Override
         public boolean isReadOnly(Attribute<?> attr) {
             return readOnly;
         }
-        
+
         @Override
         public void setReadOnly(Attribute<?> attr, boolean value) {
             int index = attrs.indexOf(attr);
@@ -118,12 +118,12 @@ public class AttributeSets {
             fireAttributeValueChanged(attr, value);
         }
     }
-    
+
     private static class FixedSet extends AbstractAttributeSet {
         private List<Attribute<?>> attrs;
         private Object[] values;
         private int readOnly = 0;
-        
+
         FixedSet(Attribute<?>[] attrs, Object[] initValues) {
             if (attrs.length != initValues.length) {
                 throw new IllegalArgumentException("attribute and value arrays must have same length");
@@ -147,19 +147,19 @@ public class AttributeSets {
         public List<Attribute<?>> getAttributes() {
             return attrs;
         }
-        
+
         @Override
         public boolean isReadOnly(Attribute<?> attr) {
             int index = attrs.indexOf(attr);
             if (index < 0) return true;
             return isReadOnly(index);
         }
-        
+
         @Override
         public void setReadOnly(Attribute<?> attr, boolean value) {
             int index = attrs.indexOf(attr);
             if (index < 0) throw new IllegalArgumentException("attribute " + attr.getName() + " absent");
-            
+
             if (value) readOnly |= (1 << index);
             else readOnly &= ~(1 << index);
         }
@@ -184,7 +184,7 @@ public class AttributeSets {
             values[index] = value;
             fireAttributeValueChanged(attr, value);
         }
-        
+
         private boolean isReadOnly(int index) {
             return ((readOnly >> index) & 1) == 1;
         }

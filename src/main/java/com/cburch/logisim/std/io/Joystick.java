@@ -60,7 +60,7 @@ public class Joystick extends InstanceFactory {
         state.setPort(0, Value.createKnown(bits, dx), 1);
         state.setPort(1, Value.createKnown(bits, dy), 1);
     }
-    
+
     @Override
     public void paintGhost(InstancePainter painter) {
         Graphics g = painter.getGraphics();
@@ -73,7 +73,7 @@ public class Joystick extends InstanceFactory {
         Location loc = painter.getLocation();
         int x = loc.getX();
         int y = loc.getY();
-        
+
         Graphics g = painter.getGraphics();
         g.drawRoundRect(x - 30, y - 10, 30, 30, 8, 8);
         g.drawRoundRect(x - 28, y - 8, 26, 26, 4, 4);
@@ -100,27 +100,27 @@ public class Joystick extends InstanceFactory {
     private static class State implements InstanceData, Cloneable {
         private int xPos;
         private int yPos;
-        
+
         public State(int x, int y) { xPos = x; yPos = y; }
-        
+
         @Override
         public Object clone() {
             try { return super.clone(); }
             catch (CloneNotSupportedException e) { return null; }
         }
     }
-    
+
     public static class Poker extends InstancePoker {
         @Override
         public void mousePressed(InstanceState state, MouseEvent e) {
             mouseDragged(state, e);
         }
-        
+
         @Override
         public void mouseReleased(InstanceState state, MouseEvent e) {
             updateState(state, 0, 0);
         }
-        
+
         @Override
         public void mouseDragged(InstanceState state, MouseEvent e) {
             Location loc = state.getInstance().getLocation();
@@ -128,7 +128,7 @@ public class Joystick extends InstanceFactory {
             int cy = loc.getY() + 5;
             updateState(state, e.getX() - cx, e.getY() - cy);
         }
-        
+
         private void updateState(InstanceState state, int dx, int dy) {
             State s = (State) state.getData();
             if (dx < -14) dx = -14;
@@ -144,7 +144,7 @@ public class Joystick extends InstanceFactory {
             }
             state.getInstance().fireInvalidated();
         }
-        
+
         @Override
         public void paint(InstancePainter painter) {
             State state = (State) painter.getData();
@@ -167,7 +167,7 @@ public class Joystick extends InstanceFactory {
             int x1 = x - 15 + dx;
             int y1 = y + 5 + dy;
             g.drawLine(x0, y0, x1, y1);
-            Color ballColor = painter.getAttributeValue(Io.ATTR_COLOR); 
+            Color ballColor = painter.getAttributeValue(Io.ATTR_COLOR);
             Joystick.drawBall(g, x1, y1, ballColor, true);
         }
     }

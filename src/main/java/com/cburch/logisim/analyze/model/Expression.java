@@ -10,7 +10,7 @@ public abstract class Expression {
     public static final int XOR_LEVEL = 1;
     public static final int AND_LEVEL = 2;
     public static final int NOT_LEVEL = 3;
-    
+
     static interface Visitor {
         public void visitAnd(Expression a, Expression b);
         public void visitOr(Expression a, Expression b);
@@ -19,7 +19,7 @@ public abstract class Expression {
         public void visitVariable(String name);
         public void visitConstant(int value);
     }
-    
+
     static interface IntVisitor {
         public int visitAnd(Expression a, Expression b);
         public int visitOr(Expression a, Expression b);
@@ -28,12 +28,12 @@ public abstract class Expression {
         public int visitVariable(String name);
         public int visitConstant(int value);
     }
-    
+
     public abstract int getPrecedence();
     public abstract <T> T visit(ExpressionVisitor<T> visitor);
     abstract void visit(Visitor visitor);
     abstract int visit(IntVisitor visitor);
-    
+
     public boolean evaluate(final Assignments assignments) {
         int ret = visit(new IntVisitor() {
             @Override
@@ -63,7 +63,7 @@ public abstract class Expression {
         });
         return (ret & 1) != 0;
     }
-    
+
     @Override
     public String toString() {
         final StringBuilder text = new StringBuilder();
@@ -88,7 +88,7 @@ public abstract class Expression {
                     b.visit(this);
                 }
             }
-            
+
             @Override
             public void visitNot(Expression a) {
                 text.append("~");
@@ -98,12 +98,12 @@ public abstract class Expression {
                     a.visit(this);
                 }
             }
-            
+
             @Override
             public void visitVariable(String name) {
                 text.append(name);
             }
-            
+
             @Override
             public void visitConstant(int value) {
                 text.append("" + Integer.toString(value, 16));
@@ -111,7 +111,7 @@ public abstract class Expression {
         });
         return text.toString();
     }
-    
+
     public boolean isCircular() {
         final HashSet<Expression> visited = new HashSet<Expression>();
         visited.add(this);
@@ -138,16 +138,16 @@ public abstract class Expression {
                 if (!visited.add(a)) return 1;
                 if (a.visit(this) == 1) return 1;
                 visited.remove(a);
-                
+
                 if (!visited.add(b)) return 1;
                 if (b.visit(this) == 1) return 1;
                 visited.remove(b);
-                
+
                 return 0;
             }
         });
     }
-    
+
     Expression removeVariable(final String input) {
         return visit(new ExpressionVisitor<Expression>() {
             @Override
@@ -190,7 +190,7 @@ public abstract class Expression {
             }
         });
     }
-    
+
     Expression replaceVariable(final String oldName, final String newName) {
         return visit(new ExpressionVisitor<Expression>() {
             @Override
@@ -226,7 +226,7 @@ public abstract class Expression {
             }
         });
     }
-    
+
     public boolean containsXor() {
         return 1 == visit(new IntVisitor() {
             @Override
@@ -255,11 +255,11 @@ public abstract class Expression {
             }
         });
     }
-    
+
     public boolean isCnf() {
         return 1 == visit(new IntVisitor() {
             int level = 0;
-            
+
             @Override
             public int visitAnd(Expression a, Expression b) {
                 if (level > 1) return 0;

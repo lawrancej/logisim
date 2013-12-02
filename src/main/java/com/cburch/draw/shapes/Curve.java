@@ -26,14 +26,14 @@ public class Curve extends FillableCanvasObject {
     private Location p1;
     private Location p2;
     private Bounds bounds;
-    
+
     public Curve(Location end0, Location end1, Location ctrl) {
         this.p0 = end0;
         this.p1 = ctrl;
         this.p2 = end1;
         bounds = CurveUtil.getBounds(toArray(p0), toArray(p1), toArray(p2));
     }
-    
+
     @Override
     public boolean matches(CanvasObject other) {
         if (other instanceof Curve) {
@@ -53,7 +53,7 @@ public class Curve extends FillableCanvasObject {
         ret = ret * 31 + super.matchesHashCode();
         return ret;
     }
-    
+
     @Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createCurve(doc, this);
@@ -62,20 +62,20 @@ public class Curve extends FillableCanvasObject {
     public Location getEnd0() {
         return p0;
     }
-    
+
     public Location getEnd1() {
         return p2;
     }
-    
+
     public Location getControl() {
         return p1;
     }
-    
+
     public QuadCurve2D getCurve2D() {
         return new QuadCurve2D.Double(p0.getX(), p0.getY(),
                 p1.getX(), p1.getY(), p2.getX(), p2.getY());
     }
-    
+
     @Override
     public String getDisplayName() {
         return _("shapeCurve");
@@ -85,12 +85,12 @@ public class Curve extends FillableCanvasObject {
     public List<Attribute<?>> getAttributes() {
         return DrawAttr.getFillAttributes(getPaintType());
     }
-    
+
     @Override
     public Bounds getBounds() {
         return bounds;
     }
-    
+
     @Override
     public boolean contains(Location loc, boolean assumeFilled) {
         Object type = getPaintType();
@@ -99,13 +99,13 @@ public class Curve extends FillableCanvasObject {
         }
         if (type != DrawAttr.PAINT_FILL) {
             int stroke = getStrokeWidth();
-            double[] q = toArray(loc); 
+            double[] q = toArray(loc);
             double[] p0 = toArray(this.p0);
             double[] p1 = toArray(this.p1);
             double[] p2 = toArray(this.p2);
             double[] p = CurveUtil.findNearestPoint(q, p0, p1, p2);
             if (p == null) return false;
-            
+
             int thr;
             if (type == DrawAttr.PAINT_STROKE) {
                 thr = Math.max(Line.ON_LINE_THRESH, stroke / 2);
@@ -124,7 +124,7 @@ public class Curve extends FillableCanvasObject {
         }
         return false;
     }
-    
+
     @Override
     public void translate(int dx, int dy) {
         p0 = p0.translate(dx, dy);
@@ -132,12 +132,12 @@ public class Curve extends FillableCanvasObject {
         p2 = p2.translate(dx, dy);
         bounds = bounds.translate(dx, dy);
     }
-    
+
     @Override
     public List<Handle> getHandles(HandleGesture gesture) {
         return UnmodifiableList.decorate(Arrays.asList(getHandleArray(gesture)));
     }
-    
+
     private Handle[] getHandleArray(HandleGesture gesture) {
         if (gesture == null) {
             return new Handle[] { new Handle(this, p0), new Handle(this, p1),
@@ -190,12 +190,12 @@ public class Curve extends FillableCanvasObject {
             return ret;
         }
     }
-    
+
     @Override
     public boolean canMoveHandle(Handle handle) {
         return true;
     }
-    
+
     @Override
     public Handle moveHandle(HandleGesture gesture) {
         Handle[] hs = getHandleArray(gesture);
@@ -215,7 +215,7 @@ public class Curve extends FillableCanvasObject {
         bounds = CurveUtil.getBounds(toArray(p0), toArray(p1), toArray(p2));
         return ret;
     }
-    
+
     @Override
     public void paint(Graphics g, HandleGesture gesture) {
         QuadCurve2D curve = getCurve(gesture);
@@ -226,13 +226,13 @@ public class Curve extends FillableCanvasObject {
             ((Graphics2D) g).draw(curve);
         }
     }
-    
+
     private QuadCurve2D getCurve(HandleGesture gesture) {
         Handle[] p = getHandleArray(gesture);
         return new QuadCurve2D.Double(p[0].getX(), p[0].getY(),
                 p[1].getX(), p[1].getY(), p[2].getX(), p[2].getY());
     }
-    
+
     private static double[] toArray(Location loc) {
         return new double[] { loc.getX(), loc.getY() };
     }

@@ -92,7 +92,7 @@ public class MouseMappings {
         }
         return false;
     }
-    
+
     public boolean containsSelectTool() {
         for (Tool tool : map.values()) {
             if (tool instanceof SelectTool) return true;

@@ -14,7 +14,7 @@ class TruthTableMouseListener implements MouseListener {
     private int cellY;
     private Entry oldValue;
     private Entry newValue;
-    
+
     @Override
     public void mousePressed(MouseEvent event) {
         TruthTablePanel source = (TruthTablePanel) event.getSource();

@@ -9,27 +9,27 @@ import com.cburch.logisim.util.PropertyChangeWeakSupport;
 
 class Clipboard {
     private Clipboard() { }
-    
+
     public static final String contentsProperty = "appearance";
-    
+
     private static ClipboardContents current = ClipboardContents.EMPTY;
     private static PropertyChangeWeakSupport propertySupport
         = new PropertyChangeWeakSupport(Clipboard.class);
-    
+
     public static boolean isEmpty() {
         return current == null || current.getElements().isEmpty();
     }
-    
+
     public static ClipboardContents get() {
         return current;
     }
-    
+
     public static void set(ClipboardContents value) {
         ClipboardContents old = current;
         current = value;
         propertySupport.firePropertyChange(contentsProperty, old, current);
     }
-    
+
     //
     // PropertyChangeSource methods
     //

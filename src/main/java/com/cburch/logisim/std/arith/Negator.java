@@ -27,7 +27,7 @@ public class Negator extends InstanceFactory {
         setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
         setOffsetBounds(Bounds.create(-40, -20, 40, 40));
         setIconName("negator.svg");
-        
+
         Port[] ps = new Port[2];
         ps[IN]  = new Port(-40,  0, Port.INPUT,  StdAttr.WIDTH);
         ps[OUT] = new Port(  0,  0, Port.OUTPUT, StdAttr.WIDTH);

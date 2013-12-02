@@ -18,12 +18,12 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class RoundRectangle extends Rectangular {
     private int radius;
-    
+
     public RoundRectangle(int x, int y, int w, int h) {
         super(x, y, w, h);
         this.radius = 10;
     }
-    
+
     @Override
     public boolean matches(CanvasObject other) {
         if (other instanceof RoundRectangle) {
@@ -38,22 +38,22 @@ public class RoundRectangle extends Rectangular {
     public int matchesHashCode() {
         return super.matchesHashCode() * 31 + radius;
     }
-    
+
     @Override
     public String getDisplayName() {
         return _("shapeRoundRect");
     }
-    
+
     @Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createRoundRectangle(doc, this);
     }
-    
+
     @Override
     public List<Attribute<?>> getAttributes() {
         return DrawAttr.getRoundRectAttributes(getPaintType());
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public <V> V getValue(Attribute<V> attr) {
@@ -72,7 +72,7 @@ public class RoundRectangle extends Rectangular {
             super.updateValue(attr, value);
         }
     }
-    
+
     @Override
     protected boolean contains(int x, int y, int w, int h, Location q) {
         int qx = q.getX();
@@ -137,7 +137,7 @@ public class RoundRectangle extends Rectangular {
                     y += r + vert + dy;
                 }
             }
-            
+
             int d = getStrokeWidth();
             if (d > 1) {
                 x += rand.nextInt(d) - d / 2;
@@ -155,7 +155,7 @@ public class RoundRectangle extends Rectangular {
         double sum = (dx * dx) / (4 * rx * rx) + (dy * dy) / (4 * ry * ry);
         return sum <= 0.25;
     }
-    
+
     @Override
     public void draw(Graphics g, int x, int y, int w, int h) {
         int diam = 2 * radius;

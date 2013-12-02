@@ -57,7 +57,7 @@ class CircuitWires {
         State(BundleMap bundleMap) {
             this.bundleMap = bundleMap;
         }
-        
+
         @Override
         public Object clone() {
             State ret = new State(this.bundleMap);
@@ -65,7 +65,7 @@ class CircuitWires {
             return ret;
         }
     }
-    
+
     private class TunnelListener implements AttributeListener {
         @Override
         public void attributeListChanged(AttributeEvent e) { }
@@ -166,7 +166,7 @@ class CircuitWires {
     boolean isMapVoided() {
         return bundleMap == null;
     }
-    
+
     Set<WidthIncompatibilityData> getWidthIncompatibilityData() {
         return getBundleMap().getWidthIncompatibilityData();
     }
@@ -213,12 +213,12 @@ class CircuitWires {
         }
         return bds;
     }
-    
+
     WireBundle getWireBundle(Location query) {
         BundleMap bmap = getBundleMap();
         return bmap.getBundleAt(query);
     }
-    
+
     WireSet getWireSet(Wire start) {
         WireBundle bundle = getWireBundle(start.e0);
         if (bundle == null) return WireSet.EMPTY;
@@ -275,17 +275,17 @@ class CircuitWires {
         points.remove(comp);
         voidBundleMap();
     }
-    
+
     void add(Component comp, EndData end) {
         points.add(comp, end);
         voidBundleMap();
     }
-    
+
     void remove(Component comp, EndData end) {
         points.remove(comp, end);
         voidBundleMap();
     }
-    
+
     void replace(Component comp, EndData oldEnd, EndData newEnd) {
         points.remove(comp, oldEnd);
         points.add(comp, newEnd);
@@ -614,7 +614,7 @@ class CircuitWires {
                 SplitterData spl_data = spl.wire_data;
                 WireBundle from_bundle = spl_data.end_bundle[0];
                 if (from_bundle == null || !from_bundle.isValid()) continue;
-    
+
                 for (int i = 0; i < bit_end.length; i++) {
                     int j = bit_end[i];
                     if (j > 0) {
@@ -659,7 +659,7 @@ class CircuitWires {
             if (e != null) ret.addWidthIncompatibilityData(e);
         }
     }
-    
+
     private void connectWires(BundleMap ret) {
         // make a WireBundle object for each tree of connected wires
         for (Wire w : wires) {
@@ -677,7 +677,7 @@ class CircuitWires {
             }
         }
     }
-    
+
     private void connectTunnels(BundleMap ret) {
         // determine the sets of tunnels
         HashMap<String,ArrayList<Location>> tunnelSets = new HashMap<String,ArrayList<Location>>();
@@ -693,7 +693,7 @@ class CircuitWires {
                 tunnelSet.add(comp.getLocation());
             }
         }
-        
+
         // now connect the bundles that are tunnelled together
         for (ArrayList<Location> tunnelSet : tunnelSets.values()) {
             WireBundle foundBundle = null;
@@ -708,7 +708,7 @@ class CircuitWires {
             }
             if (foundBundle == null) {
                 foundLocation = tunnelSet.get(0);
-                foundBundle = ret.createBundleAt(foundLocation); 
+                foundBundle = ret.createBundleAt(foundLocation);
             }
             for (Location loc : tunnelSet) {
                 if (loc != foundLocation) {
@@ -723,7 +723,7 @@ class CircuitWires {
             }
         }
     }
-    
+
     private void connectPullResistors(BundleMap ret) {
         for (Component comp : pulls) {
             Location loc = comp.getEnd(0).getLocation();
@@ -756,7 +756,7 @@ class CircuitWires {
         }
         return ret;
     }
-    
+
     private static Value pullValue(Value base, Value pullTo) {
         if (base.isFullyDefined()) {
             return base;

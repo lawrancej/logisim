@@ -53,23 +53,23 @@ public class ComponentDrawContext {
             Graphics base, Graphics g) {
         this(c, circuit, circuitState, base, g, false);
     }
-    
+
     public void setShowState(boolean value) {
         showState = value;
     }
-    
+
     public void setShowColor(boolean value) {
         showColor = value;
     }
-    
+
     public InstancePainter getInstancePainter() {
         return instancePainter;
     }
-    
+
     public void setHighlightedWires(WireSet value) {
         this.highlightedWires = value == null ? WireSet.EMPTY : value;
     }
-    
+
     public WireSet getHighlightedWires() {
         return highlightedWires;
     }
@@ -125,7 +125,7 @@ public class ComponentDrawContext {
     public void drawRectangle(Component comp) {
         drawRectangle(comp, "");
     }
-    
+
     public void drawRectangle(Component comp, String label) {
         Bounds bds = comp.getBounds(g);
         drawRectangle(bds.getX(), bds.getY(), bds.getWidth(),
@@ -148,7 +148,7 @@ public class ComponentDrawContext {
             }
         }
     }
-    
+
     public void drawRectangle(ComponentFactory source, int x, int y,
             AttributeSet attrs, String label) {
         Bounds bds = source.getOffsetBounds(attrs);
@@ -279,7 +279,7 @@ public class ComponentDrawContext {
         drawHandle(right, bot);
         drawHandle(left,  top);
     }
-    
+
     public void drawHandle(Location loc) {
         drawHandle(loc.getX(), loc.getY());
     }

@@ -110,7 +110,7 @@ public class Led extends InstanceFactory {
             data.setValue(val);
         }
     }
-    
+
     @Override
     public void paintGhost(InstancePainter painter) {
         Graphics g = painter.getGraphics();
@@ -149,12 +149,12 @@ public class Led extends InstanceFactory {
         public String getLogName(InstanceState state, Object option) {
             return state.getAttributeValue(StdAttr.LABEL);
         }
-    
+
         @Override
         public Value getLogValue(InstanceState state, Object option) {
             InstanceDataSingleton data = (InstanceDataSingleton) state.getData();
             if (data == null) return Value.FALSE;
-            return data.getValue() == Value.TRUE ? Value.TRUE : Value.FALSE; 
+            return data.getValue() == Value.TRUE ? Value.TRUE : Value.FALSE;
         }
     }
 }

@@ -52,7 +52,7 @@ public class WindowMenu extends JMenu {
                 }
             }
         }
-        
+
         private WindowMenuItem findOwnerItem() {
             for (WindowMenuItem i : persistentItems) {
                 if (i.getJFrame() == owner) return i;
@@ -63,7 +63,7 @@ public class WindowMenu extends JMenu {
             return null;
         }
     }
-    
+
     private JFrame owner;
     private MyListener myListener = new MyListener();
     private JMenuItem minimize = new JMenuItem();
@@ -76,11 +76,11 @@ public class WindowMenu extends JMenu {
     public WindowMenu(JFrame owner) {
         this.owner = owner;
         WindowMenuManager.addMenu(this);
-        
+
         int menuMask = getToolkit().getMenuShortcutKeyMask();
         minimize.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, menuMask));
         close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, menuMask));
-        
+
         if (owner == null) {
             minimize.setEnabled(false);
             zoom.setEnabled(false);
@@ -93,45 +93,45 @@ public class WindowMenu extends JMenu {
 
         computeEnabled();
         computeContents();
-        
+
         LocaleManager.addLocaleListener(myListener);
         myListener.localeChanged();
     }
-    
+
     void addMenuItem(Object source, WindowMenuItem item, boolean persistent) {
         if (persistent) persistentItems.add(item);
         else transientItems.add(item);
         item.addActionListener(myListener);
         computeContents();
     }
-    
+
     void removeMenuItem(Object source, JRadioButtonMenuItem item) {
         if (transientItems.remove(item)) {
             item.removeActionListener(myListener);
         }
         computeContents();
     }
-    
+
     void computeEnabled() {
         WindowMenuItemManager currentManager = WindowMenuManager.getCurrentManager();
         minimize.setEnabled(currentManager != null);
         zoom.setEnabled(currentManager != null);
         close.setEnabled(currentManager != null);
     }
-    
+
     void setNullItemSelected(boolean value) {
         nullItem.setSelected(value);
     }
-    
+
     private void computeContents() {
         ButtonGroup bgroup = new ButtonGroup();
         bgroup.add(nullItem);
-        
+
         removeAll();
         add(minimize);
         add(zoom);
         add(close);
-        
+
         if (!persistentItems.isEmpty()) {
             addSeparator();
             for (JRadioButtonMenuItem item : persistentItems) {
@@ -139,7 +139,7 @@ public class WindowMenu extends JMenu {
                 add(item);
             }
         }
-        
+
         if (!transientItems.isEmpty()) {
             addSeparator();
             for (JRadioButtonMenuItem item : transientItems) {
@@ -147,7 +147,7 @@ public class WindowMenu extends JMenu {
                 add(item);
             }
         }
-        
+
         WindowMenuItemManager currentManager = WindowMenuManager.getCurrentManager();
         if (currentManager != null) {
             JRadioButtonMenuItem item = currentManager.getMenuItem(this);
@@ -156,13 +156,13 @@ public class WindowMenu extends JMenu {
             }
         }
     }
-    
+
     void doMinimize() {
         if (owner != null) {
             owner.setExtendedState(Frame.ICONIFIED);
         }
     }
-    
+
     void doClose() {
         if (owner instanceof WindowClosable) {
             ((WindowClosable) owner).requestClose();
@@ -177,15 +177,15 @@ public class WindowMenu extends JMenu {
             }
         }
     }
-    
+
     void doZoom() {
         if (owner == null) return;
-        
+
         owner.pack();
         Dimension screenSize = owner.getToolkit().getScreenSize();
         Dimension windowSize = owner.getPreferredSize();
         Point windowLoc = owner.getLocation();
-        
+
         boolean locChanged = false;
         boolean sizeChanged = false;
         if (windowLoc.x + windowSize.width > screenSize.width) {
@@ -204,7 +204,7 @@ public class WindowMenu extends JMenu {
                 sizeChanged = true;
             }
         }
-        
+
         if (locChanged) owner.setLocation(windowLoc);
         if (sizeChanged) owner.setSize(windowSize);
     }

@@ -29,7 +29,7 @@ import javax.swing.event.ChangeListener;
 
 public class Caret {
     private static Color SELECT_COLOR = new Color(192, 192, 255);
-    
+
     private class Listener implements MouseListener, MouseMotionListener,
             KeyListener, FocusListener {
         @Override
@@ -59,7 +59,7 @@ public class Caret {
             Measures measures = hex.getMeasures();
             long loc = measures.toAddress(e.getX(), e.getY());
             setDot(loc, true);
-            
+
             // TODO should repeat dragged events when mouse leaves the
             // component
         }
@@ -172,7 +172,7 @@ public class Caret {
             expose(cursor, false);
         }
     }
-    
+
     private static final Stroke CURSOR_STROKE = new BasicStroke(2.0f);
 
     private HexEditor hex;
@@ -180,18 +180,18 @@ public class Caret {
     private long mark;
     private long cursor;
     private Object highlight;
-    
+
     Caret(HexEditor hex) {
         this.hex = hex;
         this.listeners = new ArrayList<ChangeListener>();
         this.cursor = -1;
-        
+
         Listener l = new Listener();
         hex.addMouseListener(l);
         hex.addMouseMotionListener(l);
         hex.addKeyListener(l);
         hex.addFocusListener(l);
-        
+
         InputMap imap = hex.getInputMap();
         ActionMap amap = hex.getActionMap();
         AbstractAction nullAction = new AbstractAction() {
@@ -210,23 +210,23 @@ public class Caret {
         imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_END, 0), nullKey);
         imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), nullKey);
     }
-    
+
     public void addChangeListener(ChangeListener l) {
         listeners.add(l);
     }
-    
+
     public void removeChangeListener(ChangeListener l) {
         listeners.remove(l);
     }
-    
+
     public long getMark() {
         return mark;
     }
-    
+
     public long getDot() {
         return cursor;
     }
-    
+
     public void setDot(long value, boolean keepMark) {
         HexModel model = hex.getModel();
         if (model == null || value < model.getFirstOffset()
@@ -255,7 +255,7 @@ public class Caret {
             }
         }
     }
-    
+
     private void expose(long loc, boolean scrollTo) {
         if (loc >= 0) {
             Measures measures = hex.getMeasures();
@@ -269,7 +269,7 @@ public class Caret {
             }
         }
     }
-    
+
     void paintForeground(Graphics g, long start, long end) {
         if (cursor >= start && cursor < end && hex.isFocusOwner()) {
             Measures measures = hex.getMeasures();

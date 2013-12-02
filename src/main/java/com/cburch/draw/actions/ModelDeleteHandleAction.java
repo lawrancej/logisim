@@ -14,7 +14,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class ModelDeleteHandleAction extends ModelAction {
     private Handle handle;
     private Handle previous;
-    
+
     public ModelDeleteHandleAction(CanvasModel model, Handle handle) {
         super(model);
         this.handle = handle;
@@ -29,12 +29,12 @@ public class ModelDeleteHandleAction extends ModelAction {
     public String getName() {
         return _("actionDeleteHandle");
     }
-    
+
     @Override
     void doSub(CanvasModel model) {
         previous = model.deleteHandle(handle);
     }
-    
+
     @Override
     void undoSub(CanvasModel model) {
         model.insertHandle(handle, previous);

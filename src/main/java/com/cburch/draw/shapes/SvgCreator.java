@@ -16,7 +16,7 @@ import com.cburch.logisim.data.Location;
 
 class SvgCreator {
     private SvgCreator() { }
-    
+
     public static Element createRectangle(Document doc, Rectangle rect) {
         return createRectangular(doc, rect);
     }
@@ -29,7 +29,7 @@ class SvgCreator {
         elt.setAttribute("ry", "" + r);
         return elt;
     }
-    
+
     private static Element createRectangular(Document doc, Rectangular rect) {
         Element elt = doc.createElement("rect");
         elt.setAttribute("x", "" + rect.getX());
@@ -53,7 +53,7 @@ class SvgCreator {
         populateFill(elt, oval);
         return elt;
     }
-    
+
     public static Element createLine(Document doc, Line line) {
         Element elt = doc.createElement("line");
         Location v1 = line.getEnd0();
@@ -65,7 +65,7 @@ class SvgCreator {
         populateStroke(elt, line);
         return elt;
     }
-    
+
     public static Element createCurve(Document doc, Curve curve) {
         Element elt = doc.createElement("path");
         Location e0 = curve.getEnd0();
@@ -77,7 +77,7 @@ class SvgCreator {
         populateFill(elt, curve);
         return elt;
     }
-    
+
     public static Element createPoly(Document doc, Poly poly) {
         Element elt;
         if (poly.isClosed()) {
@@ -98,7 +98,7 @@ class SvgCreator {
         populateFill(elt, poly);
         return elt;
     }
-    
+
     public static Element createText(Document doc, Text text) {
         Element elt = doc.createElement("text");
         Location loc = text.getLocation();
@@ -132,7 +132,7 @@ class SvgCreator {
         elt.appendChild(doc.createTextNode(text.getText()));
         return elt;
     }
-    
+
     private static void populateFill(Element elt, AbstractCanvasObject shape) {
         Object type = shape.getValue(DrawAttr.PAINT_TYPE);
         if (type == DrawAttr.PAINT_FILL) {
@@ -154,7 +154,7 @@ class SvgCreator {
             }
         }
     }
-    
+
     private static void populateStroke(Element elt, AbstractCanvasObject shape) {
         Integer width = shape.getValue(DrawAttr.STROKE_WIDTH);
         if (width != null && width.intValue() != 1) {
@@ -167,22 +167,22 @@ class SvgCreator {
         }
         elt.setAttribute("fill", "none");
     }
-    
+
     private static boolean colorMatches(Color a, Color b) {
         return a.getRed() == b.getRed() && a.getGreen() == b.getGreen()
             && a.getBlue() == b.getBlue();
     }
-    
+
     private static String getColorString(Color color) {
         return String.format("#%02x%02x%02x",
             Integer.valueOf(color.getRed()), Integer.valueOf(color.getGreen()),
             Integer.valueOf(color.getBlue()));
     }
-    
+
     private static boolean showOpacity(Color color) {
         return color.getAlpha() != 255;
     }
-    
+
     private static String getOpacityString(Color color) {
         double alpha = color.getAlpha() / 255.0;
         return String.format(Locale.US, "%5.3f", Double.valueOf(alpha));

@@ -12,19 +12,19 @@ import com.cburch.logisim.gui.generic.AttributeSetTableModel;
 class AttrTableToolModel extends AttributeSetTableModel {
     private DrawingAttributeSet defaults;
     private AbstractTool currentTool;
-    
+
     public AttrTableToolModel(DrawingAttributeSet defaults, AbstractTool tool) {
         super(defaults.createSubset(tool));
         this.defaults = defaults;
         this.currentTool = tool;
     }
-    
+
     public void setTool(AbstractTool value) {
         currentTool = value;
         setAttributeSet(defaults.createSubset(value));
         fireTitleChanged();
     }
-    
+
     @Override
     public String getTitle() {
         return currentTool.getDescription();

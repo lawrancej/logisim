@@ -18,23 +18,23 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class HexFile {
     private HexFile() { }
-    
+
     private static final String RAW_IMAGE_HEADER = "v2.0 raw";
     private static final String COMMENT_MARKER = "#";
-    
+
     private static class HexReader {
         private BufferedReader in;
         private int[] data;
         private StringTokenizer curLine;
         private long leftCount;
         private long leftValue;
-        
+
         public HexReader(BufferedReader in) throws IOException {
             this.in = in;
             data = new int[4096];
             curLine = findNonemptyLine();
         }
-        
+
         private StringTokenizer findNonemptyLine() throws IOException {
             String line = in.readLine();
             while (line != null) {
@@ -49,7 +49,7 @@ public class HexFile {
             }
             return null;
         }
-        
+
         private String nextToken() throws IOException {
             if (curLine != null && curLine.hasMoreTokens()) {
                 return curLine.nextToken();
@@ -58,7 +58,7 @@ public class HexFile {
                 return curLine == null ? null : curLine.nextToken();
             }
         }
-        
+
         public boolean hasNext() throws IOException {
             if (leftCount > 0) {
                 return true;
@@ -69,7 +69,7 @@ public class HexFile {
                 return curLine != null;
             }
         }
-        
+
         public int[] next() throws IOException {
             int pos = 0;
             if (leftCount > 0) {
@@ -85,7 +85,7 @@ public class HexFile {
                 }
             }
             if (pos >= data.length) return data;
-                
+
             for (String tok = nextToken(); tok != null; tok = nextToken()) {
                 try {
                     int star = tok.indexOf("*");
@@ -99,7 +99,7 @@ public class HexFile {
                 } catch (NumberFormatException e) {
                     throw new IOException(_("hexNumberFormatError"));
                 }
-                
+
                 int n = (int) Math.min(data.length - pos, leftCount);
                 if (n == 1) {
                     data[pos] = (int) leftValue;
@@ -112,7 +112,7 @@ public class HexFile {
                 }
                 if (pos >= data.length) return data;
             }
-            
+
             if (pos >= data.length) {
                 return data;
             } else {
@@ -147,7 +147,7 @@ public class HexFile {
         }
         if (tokens > 0) out.write('\n');
     }
-    
+
     public static void open(HexModel dst, Reader in) throws IOException {
         HexReader reader = new HexReader(new BufferedReader(in));
         long offs = dst.getFirstOffset();
@@ -161,7 +161,7 @@ public class HexFile {
         }
         dst.fill(offs, dst.getLastOffset() - offs + 1, 0);
     }
-    
+
     public static int[] parse(Reader in) throws IOException {
         HexReader reader = new HexReader(new BufferedReader(in));
         int cur = 0;

@@ -18,13 +18,13 @@ import com.cburch.logisim.instance.StdAttr;
 
 public class ShiftRegisterPoker extends InstancePoker {
     private int loc;
-    
+
     @Override
     public boolean init(InstanceState state, MouseEvent e) {
         loc = computeStage(state, e);
         return loc >= 0;
     }
-    
+
     private int computeStage(InstanceState state, MouseEvent e) {
         Integer lenObj = state.getAttributeValue(ShiftRegister.ATTR_LENGTH);
         BitWidth widObj = state.getAttributeValue(StdAttr.WIDTH);
@@ -37,7 +37,7 @@ public class ShiftRegisterPoker extends InstancePoker {
         else y += 3 * bds.getHeight() / 4;
         y = e.getY() - y;
         if (y <= -6 || y >= 8) return -1;
-        
+
         int x = e.getX() - (bds.getX() + 15);
         if (!loadObj.booleanValue() || widObj.getWidth() > 4) return -1;
         if (x < 0 || x >= lenObj.intValue() * 10) return -1;
@@ -58,12 +58,12 @@ public class ShiftRegisterPoker extends InstancePoker {
         g.setColor(Color.RED);
         g.drawRect(x, y - 6, 10, 13);
     }
-    
+
     @Override
     public void mousePressed(InstanceState state, MouseEvent e) {
         loc = computeStage(state, e);
     }
-    
+
     @Override
     public void mouseReleased(InstanceState state, MouseEvent e) {
         int oldLoc = loc;
@@ -82,7 +82,7 @@ public class ShiftRegisterPoker extends InstancePoker {
             }
         }
     }
-    
+
     @Override
     public void keyTyped(InstanceState state, KeyEvent e) {
         int loc = this.loc;

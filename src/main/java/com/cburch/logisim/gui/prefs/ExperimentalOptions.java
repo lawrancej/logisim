@@ -20,7 +20,7 @@ class ExperimentalOptions extends OptionsPanel {
 
     public ExperimentalOptions(PreferencesFrame window) {
         super(window);
-        
+
         accel = new PrefOptionList(AppPreferences.GRAPHICS_ACCELERATION,
             __("accelLabel"), new PrefOption[] {
                 new PrefOption(AppPreferences.ACCEL_DEFAULT, __("accelDefault")),
@@ -28,7 +28,7 @@ class ExperimentalOptions extends OptionsPanel {
                 new PrefOption(AppPreferences.ACCEL_OPENGL, __("accelOpenGL")),
                 new PrefOption(AppPreferences.ACCEL_D3D, __("accelD3D")),
             });
-        
+
         JPanel accelPanel = new JPanel(new BorderLayout());
         accelPanel.add(accel.getJLabel(), BorderLayout.LINE_START);
         accelPanel.add(accel.getJComboBox(), BorderLayout.CENTER);
@@ -36,7 +36,7 @@ class ExperimentalOptions extends OptionsPanel {
         accelRestart.setFont(accelRestart.getFont().deriveFont(Font.ITALIC));
         JPanel accelPanel2 = new JPanel();
         accelPanel2.add(accelPanel);
-        
+
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(Box.createGlue());
         add(accelPanel2);
@@ -52,7 +52,7 @@ class ExperimentalOptions extends OptionsPanel {
     public String getHelpText() {
         return _("experimentHelp");
     }
-    
+
     @Override
     public void localeChanged() {
         accel.localeChanged();

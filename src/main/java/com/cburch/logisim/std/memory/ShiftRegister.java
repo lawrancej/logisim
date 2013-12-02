@@ -29,7 +29,7 @@ public class ShiftRegister extends InstanceFactory {
             __("shiftRegLengthAttr"), 1, 32);
     static final Attribute<Boolean> ATTR_LOAD = Attributes.forBoolean("parallel",
             __("shiftRegParallelAttr"));
-    
+
     private static final int IN  = 0;
     private static final int SH  = 1;
     private static final int CK  = 2;
@@ -54,24 +54,24 @@ public class ShiftRegister extends InstanceFactory {
         setInstanceLogger(ShiftRegisterLogger.class);
         setInstancePoker(ShiftRegisterPoker.class);
     }
-    
+
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
         Object parallel = attrs.getValue(ATTR_LOAD);
         if (parallel == null || ((Boolean) parallel).booleanValue()) {
             int len = attrs.getValue(ATTR_LENGTH).intValue();
-            return Bounds.create(0, -20, 20 + 10 * len, 40); 
+            return Bounds.create(0, -20, 20 + 10 * len, 40);
         } else {
             return Bounds.create(0, -20, 30, 40);
         }
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         configurePorts(instance);
         instance.addAttributeListener();
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == ATTR_LOAD || attr == ATTR_LENGTH || attr == StdAttr.WIDTH) {
@@ -79,7 +79,7 @@ public class ShiftRegister extends InstanceFactory {
             configurePorts(instance);
         }
     }
-    
+
     private void configurePorts(Instance instance) {
         BitWidth widthObj = instance.getAttributeValue(StdAttr.WIDTH);
         int width = widthObj.getWidth();
@@ -116,7 +116,7 @@ public class ShiftRegister extends InstanceFactory {
                 bds.getY() + bds.getHeight() / 4,
                 GraphicsUtil.H_CENTER, GraphicsUtil.V_CENTER);
     }
-    
+
     private ShiftRegisterData getData(InstanceState state) {
         BitWidth width = state.getAttributeValue(StdAttr.WIDTH);
         Integer lenObj = state.getAttributeValue(ATTR_LENGTH);
@@ -150,7 +150,7 @@ public class ShiftRegister extends InstanceFactory {
             } else if (state.getPort(SH) != Value.FALSE) {
                 data.push(state.getPort(IN));
             }
-        } 
+        }
 
         state.setPort(OUT, data.get(0), 4);
         if (parallel) {
@@ -165,7 +165,7 @@ public class ShiftRegister extends InstanceFactory {
         // draw boundary, label
         painter.drawBounds();
         painter.drawLabel();
-        
+
         // draw state
         boolean parallel = painter.getAttributeValue(ATTR_LOAD).booleanValue();
         if (parallel) {

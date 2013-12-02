@@ -27,7 +27,7 @@ public class PriorityEncoder extends InstanceFactory {
     private static final int EN_IN = 1;
     private static final int EN_OUT = 2;
     private static final int GS = 3;
-    
+
     public PriorityEncoder() {
         super("Priority Encoder", __("priorityEncoderComponent"));
         setAttributes(new Attribute[] {
@@ -39,7 +39,7 @@ public class PriorityEncoder extends InstanceFactory {
         setIconName("priencod.svg");
         setFacingAttribute(StdAttr.FACING);
     }
-    
+
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
         Direction dir = attrs.getValue(StdAttr.FACING);
@@ -63,7 +63,7 @@ public class PriorityEncoder extends InstanceFactory {
         instance.addAttributeListener();
         updatePorts(instance);
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.FACING || attr == Plexers.ATTR_SELECT) {
@@ -83,7 +83,7 @@ public class PriorityEncoder extends InstanceFactory {
         Port[] ps = new Port[n + 4];
         if (dir == Direction.NORTH || dir == Direction.SOUTH) {
             int x = -5 * n + 10;
-            int y = dir == Direction.NORTH ? 40 : -40; 
+            int y = dir == Direction.NORTH ? 40 : -40;
             for (int i = 0; i < n; i++) {
                 ps[i] = new Port(x + 10 * i, y, Port.INPUT, 1);
             }
@@ -92,7 +92,7 @@ public class PriorityEncoder extends InstanceFactory {
             ps[n + EN_OUT] = new Port(x - 10, y / 2, Port.OUTPUT, 1);
             ps[n + GS] = new Port(10, 0, Port.OUTPUT, 1);
         } else {
-            int x = dir == Direction.EAST ? -40 : 40; 
+            int x = dir == Direction.EAST ? -40 : 40;
             int y = -5 * n + 10;
             for (int i = 0; i < n; i++) {
                 ps[i] = new Port(x, y + 10 * i, Port.INPUT, 1);
@@ -119,7 +119,7 @@ public class PriorityEncoder extends InstanceFactory {
         BitWidth select = state.getAttributeValue(Plexers.ATTR_SELECT);
         int n = 1 << select.getWidth();
         boolean enabled = state.getPort(n + EN_IN) != Value.FALSE;
-        
+
         int out = -1;
         Value outDefault;
         if (enabled) {

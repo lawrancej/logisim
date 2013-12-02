@@ -40,20 +40,20 @@ public interface Component {
      * In most cases, the <code>key</code> is a <code>Class</code> object
      * corresponding to an interface, and the method should return an
      * implementation of that interface if it supports the feature.
-     * 
+     *
      * As of this writing, possible values for <code>key</code> include:
      * <code>Pokable.class</code>, <code>CustomHandles.class</code>,
      * <code>WireRepair.class</code>, <code>TextEditable.class</code>,
      * <code>MenuExtender.class</code>, <code>ToolTipMaker.class</code>,
      * <code>ExpressionComputer.class</code>, and <code>Loggable.class</code>.
-     * 
+     *
      * @param key  an object representing a feature.
      * @return an object representing information about how the component
      *    supports the feature, or <code>null</code> if it does not support
      *    the feature.
      */
     public Object getFeature(Object key);
-    
+
     // propagation methods
     public List<EndData> getEnds(); // list of EndDatas
     public EndData getEnd(int index);

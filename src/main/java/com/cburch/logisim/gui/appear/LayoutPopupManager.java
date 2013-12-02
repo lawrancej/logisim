@@ -32,18 +32,18 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
     private Popup curPopup;
     private long curPopupTime;
     private Location dragStart;
-    
+
     public LayoutPopupManager(CanvasPane canvasPane, AppearanceCanvas canvas) {
         this.canvasPane = canvasPane;
         this.canvas = canvas;
         this.curPopup = null;
         this.dragStart = null;
-        
+
         canvas.getSelection().addSelectionListener(this);
         canvas.addMouseListener(this);
         canvas.addMouseMotionListener(this);
     }
-    
+
     public void hideCurrentPopup() {
         Popup cur = curPopup;
         if (cur != null) {
@@ -65,7 +65,7 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
             }
         }
     }
-    
+
     private Set<AppearancePort> shouldShowPopup(Collection<CanvasObject> add) {
         boolean found = false;
         for (CanvasObject o : add) {
@@ -82,7 +82,7 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
         }
         return null;
     }
-    
+
     // returns all the ports in the current selection
     private Set<AppearancePort> getSelectedPorts() {
         HashSet<AppearancePort> ports = new HashSet<AppearancePort>();
@@ -93,7 +93,7 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
         }
         return ports;
     }
-    
+
     // returns true if the canvas contains any port not in the given set
     private boolean isPortUnselected(Set<AppearancePort> selected) {
         for (CanvasObject o : canvas.getModel().getObjectsFromBottom()) {
@@ -114,7 +114,7 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
         for (AppearancePort portObject : portObjects) {
             ports.add(portObject.getPin());
         }
-        
+
         hideCurrentPopup();
         LayoutThumbnail layout = new LayoutThumbnail();
         layout.setCircuit(circuitState, ports);
@@ -165,6 +165,6 @@ class LayoutPopupManager implements SelectionListener, MouseListener, MouseMotio
 
     @Override
     public void mouseMoved(MouseEvent arg0) { }
-    
+
 
 }

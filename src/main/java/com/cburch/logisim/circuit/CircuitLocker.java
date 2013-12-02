@@ -19,28 +19,28 @@ class CircuitLocker {
     private ReadWriteLock circuitLock;
     private transient Thread mutatingThread;
     private CircuitMutatorImpl mutatingMutator;
-    
+
     CircuitLocker() {
         serialNumber = NEXT_SERIAL_NUMBER.getAndIncrement();
         circuitLock = new ReentrantReadWriteLock();
         mutatingThread = null;
         mutatingMutator = null;
     }
-    
+
     public boolean hasWriteLock() {
         return mutatingThread == Thread.currentThread();
     }
-    
+
     CircuitMutatorImpl getMutator() {
         return mutatingMutator;
     }
-    
+
     void checkForWritePermission(String operationName) {
         if (mutatingThread != Thread.currentThread()) {
             throw new IllegalStateException(operationName + " outside transaction");
         }
     }
-    
+
     void execute(CircuitTransaction xn) {
         if (mutatingThread == Thread.currentThread()) {
             xn.run(mutatingMutator);
@@ -48,7 +48,7 @@ class CircuitLocker {
             xn.execute();
         }
     }
-    
+
     private static class CircuitComparator implements Comparator<Circuit> {
         @Override
         public int compare(Circuit a, Circuit b) {
@@ -57,7 +57,7 @@ class CircuitLocker {
             return an - bn;
         }
     }
-    
+
     static Map<Circuit,Lock> acquireLocks(CircuitTransaction xn,
             CircuitMutatorImpl mutator) {
         Map<Circuit,Integer> requests = xn.getAccessedCircuits();
@@ -95,7 +95,7 @@ class CircuitLocker {
         }
         return circuitLocks;
     }
-    
+
     static void releaseLocks(Map<Circuit,Lock> locks) {
         Thread curThread = Thread.currentThread();
         for (Map.Entry<Circuit,Lock> entry : locks.entrySet()) {

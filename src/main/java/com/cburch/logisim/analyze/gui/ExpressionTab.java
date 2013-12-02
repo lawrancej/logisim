@@ -37,7 +37,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
             implements DocumentListener,
                 OutputExpressionsListener, ItemListener {
         boolean edited = false;
-        
+
         @Override
         public void actionPerformed(ActionEvent event) {
             Object src = event.getSource();
@@ -100,13 +100,13 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
         public void itemStateChanged(ItemEvent event) {
             updateTab();
         }
-        
+
         private String getCurrentString() {
             String output = getCurrentVariable();
             return output == null ? ""
                     : model.getOutputExpressions().getExpressionString(output);
         }
-        
+
         private void currentStringChanged() {
             String output = getCurrentVariable();
             String exprString = model.getOutputExpressions().getExpressionString(output);
@@ -132,11 +132,11 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
     private AnalyzerModel model;
     private int curExprStringLength = 0;
     private StringGetter errorMessage;
-    
+
     public ExpressionTab(AnalyzerModel model) {
         this.model = model;
         selector = new OutputSelector(model);
-        
+
         model.getOutputExpressions().addOutputExpressionsListener(myListener);
         selector.addItemListener(myListener);
         clear.addActionListener(myListener);
@@ -152,7 +152,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
         buttons.add(clear);
         buttons.add(revert);
         buttons.add(enter);
-        
+
         GridBagLayout gb = new GridBagLayout();
         GridBagConstraints gc = new GridBagConstraints();
         setLayout(gb);
@@ -160,7 +160,7 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
         gc.gridx = 0;
         gc.gridy = GridBagConstraints.RELATIVE;
         gc.fill = GridBagConstraints.BOTH;
-        
+
         JPanel selectorPanel = selector.createPanel();
         gb.setConstraints(selectorPanel, gc); add(selectorPanel);
         gb.setConstraints(prettyView, gc); add(prettyView);
@@ -176,11 +176,11 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
         gb.setConstraints(buttons, gc); add(buttons);
           gc.fill = GridBagConstraints.BOTH;
         gb.setConstraints(error, gc); add(error);
-        
+
         myListener.insertUpdate(null);
         setError(null);
     }
-    
+
     @Override
     void localeChanged() {
         selector.localeChanged();
@@ -192,22 +192,22 @@ class ExpressionTab extends AnalyzerTab implements TabInterface {
             error.setText(errorMessage.toString());
         }
     }
-    
+
     @Override
     void updateTab() {
         String output = getCurrentVariable();
         prettyView.setExpression(model.getOutputExpressions().getExpression(output));
         myListener.currentStringChanged();
     }
-    
+
     void registerDefaultButtons(DefaultRegistry registry) {
         registry.registerDefaultButton(field, enter);
     }
-    
+
     String getCurrentVariable() {
         return selector.getSelectedOutput();
     }
-    
+
     private void setError(StringGetter msg) {
         if (msg == null) {
             errorMessage = null;

@@ -15,10 +15,10 @@ import com.cburch.logisim.util.GraphicsUtil;
 
 class ToolbarButton extends JComponent implements MouseListener {
     private static final int BORDER = 2;
-    
+
     private Toolbar toolbar;
     private ToolbarItem item;
-    
+
     ToolbarButton(Toolbar toolbar, ToolbarItem item) {
         this.toolbar = toolbar;
         this.item = item;
@@ -26,7 +26,7 @@ class ToolbarButton extends JComponent implements MouseListener {
         setFocusable(true);
         setToolTipText("");
     }
-    
+
     public ToolbarItem getItem() {
         return item;
     }
@@ -43,7 +43,7 @@ class ToolbarButton extends JComponent implements MouseListener {
     public Dimension getMinimumSize() {
         return getPreferredSize();
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         if (toolbar.getPressed() == this) {
@@ -90,13 +90,13 @@ class ToolbarButton extends JComponent implements MouseListener {
             toolbar.setPressed(null);
         }
     }
-    
+
     @Override
     public void mouseClicked(MouseEvent e) { }
-    
+
     @Override
     public void mouseEntered(MouseEvent e) { }
-    
+
     @Override
     public void mouseExited(MouseEvent e) {
         toolbar.setPressed(null);

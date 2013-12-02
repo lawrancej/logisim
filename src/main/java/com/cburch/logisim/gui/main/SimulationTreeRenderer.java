@@ -20,7 +20,7 @@ public class SimulationTreeRenderer extends DefaultTreeCellRenderer {
     private static class RendererIcon implements Icon {
         private ComponentFactory factory;
         private boolean isCurrentView;
-        
+
         RendererIcon(ComponentFactory factory, boolean isCurrentView) {
             this.factory = factory;
             this.isCurrentView = isCurrentView;
@@ -56,7 +56,7 @@ public class SimulationTreeRenderer extends DefaultTreeCellRenderer {
             }
         }
     }
-    
+
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value,
             boolean selected, boolean expanded, boolean leaf, int row,

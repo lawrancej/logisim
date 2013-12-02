@@ -41,11 +41,11 @@ class PinAttributes extends ProbeAttributes {
         if (attr == Pin.ATTR_PULL) return (V) pull;
         return super.getValue(attr);
     }
-    
+
     boolean isOutput() {
         return type != EndData.INPUT_ONLY;
     }
-    
+
     boolean isInput() {
         return type != EndData.OUTPUT_ONLY;
     }

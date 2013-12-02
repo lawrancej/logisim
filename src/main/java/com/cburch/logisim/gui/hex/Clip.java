@@ -20,10 +20,10 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 class Clip implements ClipboardOwner {
     private static final DataFlavor binaryFlavor = new DataFlavor(int[].class, "Binary data");
-    
+
     private static class Data implements Transferable {
         private int[] data;
-        
+
         Data(int[] data) {
             this.data = data;
         }
@@ -51,7 +51,7 @@ class Clip implements ClipboardOwner {
                         k >>= 1;
                     }
                 }
-                
+
                 int chars = (bits + 3) / 4;
                 StringBuilder buf = new StringBuilder();
                 for (int i = 0; i < data.length; i++) {
@@ -64,17 +64,17 @@ class Clip implements ClipboardOwner {
                 }
                 return buf.toString();
             } else {
-                throw new UnsupportedFlavorException(flavor); 
+                throw new UnsupportedFlavorException(flavor);
             }
         }
     }
-    
+
     private HexEditor editor;
-    
+
     Clip(HexEditor editor) {
         this.editor = editor;
     }
-    
+
     public void copy() {
         Caret caret = editor.getCaret();
         long p0 = caret.getMark();
@@ -84,23 +84,23 @@ class Clip implements ClipboardOwner {
             long t = p0; p0 = p1; p1 = t;
         }
         p1++;
-        
+
         int[] data = new int[(int) (p1 - p0)];
         HexModel model = editor.getModel();
         for (long i = p0; i < p1; i++) {
             data[(int) (i - p0)] = model.get(i);
         }
-        
+
         Clipboard clip = editor.getToolkit().getSystemClipboard();
         clip.setContents(new Data(data), this);
     }
-    
+
     public boolean canPaste() {
         Clipboard clip = editor.getToolkit().getSystemClipboard();
         Transferable xfer = clip.getContents(this);
         return xfer.isDataFlavorSupported(binaryFlavor);
     }
-    
+
     public void paste() {
         Clipboard clip = editor.getToolkit().getSystemClipboard();
         Transferable xfer = clip.getContents(this);
@@ -122,7 +122,7 @@ class Clip implements ClipboardOwner {
             } catch (IOException e) {
                 return;
             }
-            
+
             try {
                 data = HexFile.parse(new StringReader(buf));
             } catch (IOException e) {
@@ -160,7 +160,7 @@ class Clip implements ClipboardOwner {
                 long t = p0; p0 = p1; p1 = t;
             }
             p1++;
-            
+
             HexModel model = editor.getModel();
             if (p1 - p0 == data.length) {
                 model.set(p0, data);
@@ -172,7 +172,7 @@ class Clip implements ClipboardOwner {
             }
         }
     }
-    
+
     @Override
     public void lostOwnership(Clipboard clip, Transferable transfer) { }
 

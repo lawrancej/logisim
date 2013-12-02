@@ -33,19 +33,19 @@ import com.cburch.logisim.util.EventSourceWeakSupport;
 
 public class Circuit {
     private static final PrintStream DEBUG_STREAM = null;
-    
+
     private class EndChangedTransaction extends CircuitTransaction {
         private Component comp;
         private Map<Location,EndData> toRemove;
         private Map<Location,EndData> toAdd;
-        
+
         EndChangedTransaction(Component comp, Map<Location,EndData> toRemove,
                 Map<Location,EndData> toAdd) {
             this.comp = comp;
             this.toRemove = toRemove;
             this.toAdd = toAdd;
         }
-        
+
         @Override
         protected Map<Circuit,Integer> getAccessedCircuits() {
             return Collections.singletonMap(Circuit.this, READ_WRITE);
@@ -99,7 +99,7 @@ public class Circuit {
             }
             return map;
         }
-        
+
         @Override
         public void componentInvalidated(ComponentEvent e) {
             fireEvent(CircuitEvent.ACTION_INVALIDATE, e.getSource());
@@ -126,15 +126,15 @@ public class Circuit {
         locker = new CircuitLocker();
         circuitsUsingThis = new WeakHashMap<Component, Circuit>();
     }
-    
+
     CircuitLocker getLocker() {
         return locker;
     }
-    
+
     public Collection<Circuit> getCircuitsUsingThis() {
         return circuitsUsingThis.values();
     }
-    
+
     public void mutatorClear() {
         locker.checkForWritePermission("clear");
 
@@ -155,7 +155,7 @@ public class Circuit {
     public String toString() {
         return staticAttrs.getValue(CircuitAttributes.NAME_ATTR);
     }
-    
+
     public AttributeSet getStaticAttributes() {
         return staticAttrs;
     }
@@ -191,11 +191,11 @@ public class Circuit {
     public CircuitAppearance getAppearance() {
         return appearance;
     }
-    
+
     public SubcircuitFactory getSubcircuitFactory() {
         return subcircuitFactory;
     }
-    
+
     public Set<WidthIncompatibilityData> getWidthIncompatibilityData() {
         return wires.getWidthIncompatibilityData();
     }
@@ -207,11 +207,11 @@ public class Circuit {
     public Location getWidthDeterminant(Location p) {
         return wires.getWidthDeterminant(p);
     }
-    
+
     public boolean hasConflict(Component comp) {
         return wires.points.hasConflict(comp);
     }
-    
+
     public Component getExclusive(Location loc) {
         return wires.points.getExclusive(loc);
     }
@@ -219,7 +219,7 @@ public class Circuit {
     private Set<Component> getComponents() {
         return CollectionUtil.createUnmodifiableSetUnion(comps, wires.getWires());
     }
-    
+
     public boolean contains(Component c) {
         return comps.contains(c) || wires.getWires().contains(c);
     }
@@ -235,26 +235,26 @@ public class Circuit {
     public Collection<? extends Component> getComponents(Location loc) {
         return wires.points.getComponents(loc);
     }
-    
+
     public Collection<? extends Component> getSplitCauses(Location loc) {
         return wires.points.getSplitCauses(loc);
     }
-    
+
     public Collection<Wire> getWires(Location loc) {
         return wires.points.getWires(loc);
     }
-    
+
     public Collection<? extends Component> getNonWires(Location loc) {
         return wires.points.getNonWires(loc);
     }
-    
+
     public boolean isConnected(Location loc, Component ignore) {
         for (Component o : wires.points.getComponents(loc)) {
             if (o != ignore) return true;
         }
         return false;
     }
-    
+
     public Set<Location> getSplitLocations() {
         return wires.points.getSplitLocations();
     }
@@ -290,7 +290,7 @@ public class Circuit {
         }
         return ret;
     }
-    
+
     public WireSet getWireSet(Wire start) {
         return wires.getWireSet(start);
     }
@@ -360,7 +360,7 @@ public class Circuit {
     public void setName(String name) {
         staticAttrs.setValue(CircuitAttributes.NAME_ATTR, name);
     }
-    
+
     private void showDebug(String message, Object parm) {
         PrintStream dest = DEBUG_STREAM;
         if (dest != null) {

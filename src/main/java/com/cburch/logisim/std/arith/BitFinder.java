@@ -34,7 +34,7 @@ public class BitFinder extends InstanceFactory {
     static final Attribute<AttributeOption> TYPE
         = Attributes.forOption("type", __("bitFinderTypeAttr"),
                 new AttributeOption[] { LOW_ONE, HIGH_ONE, LOW_ZERO, HIGH_ZERO });
-    
+
     public BitFinder() {
         super("BitFinder", __("bitFinderComponent"));
         setAttributes(new Attribute[] {
@@ -45,18 +45,18 @@ public class BitFinder extends InstanceFactory {
         setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
         setIconName("bitfindr.svg");
     }
-    
+
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
         return Bounds.create(-40, -20, 40, 40);
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         configurePorts(instance);
         instance.addAttributeListener();
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.WIDTH) {
@@ -65,7 +65,7 @@ public class BitFinder extends InstanceFactory {
             instance.fireInvalidated();
         }
     }
-    
+
     private void configurePorts(Instance instance) {
         BitWidth inWidth = instance.getAttributeValue(StdAttr.WIDTH);
         int outWidth = computeOutputBits(inWidth.getWidth() - 1);
@@ -74,7 +74,7 @@ public class BitFinder extends InstanceFactory {
         ps[0] = new Port(-20,  20, Port.OUTPUT, BitWidth.ONE);
         ps[1] = new Port(  0,   0, Port.OUTPUT, BitWidth.create(outWidth));
         ps[2] = new Port(-40,   0, Port.INPUT,  inWidth);
-        
+
         Object type = instance.getAttributeValue(TYPE);
         if (type == HIGH_ZERO) {
             ps[0].setToolTip(__("bitFinderPresentTip", "0"));
@@ -92,7 +92,7 @@ public class BitFinder extends InstanceFactory {
         ps[2].setToolTip(__("bitFinderInputTip"));
         instance.setPorts(ps);
     }
-    
+
     private int computeOutputBits(int maxBits) {
         int outWidth = 1;
         while ((1 << outWidth) <= maxBits) outWidth++;
@@ -121,7 +121,7 @@ public class BitFinder extends InstanceFactory {
             want = Value.TRUE;
             for (i = 0; i < bits.length && bits[i] == Value.FALSE; i++) { }
         }
-        
+
         Value present;
         Value index;
         if (i < 0 || i >= bits.length) {
@@ -134,18 +134,18 @@ public class BitFinder extends InstanceFactory {
             present = Value.ERROR;
             index = Value.createError(BitWidth.create(outWidth));
         }
-        
+
         int delay = outWidth * Adder.PER_DELAY;
         state.setPort(0, present, delay);
         state.setPort(1, index, delay);
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         Graphics g = painter.getGraphics();
         painter.drawBounds();
         painter.drawPorts();
-        
+
         String top = _("bitFinderFindLabel");
         String mid;
         String bot;
@@ -163,7 +163,7 @@ public class BitFinder extends InstanceFactory {
             mid = _("bitFinderLowLabel");
             bot = "1";
         }
-        
+
         Bounds bds = painter.getBounds();
         int x = bds.getX() + bds.getWidth() / 2;
         int y0 = bds.getY();

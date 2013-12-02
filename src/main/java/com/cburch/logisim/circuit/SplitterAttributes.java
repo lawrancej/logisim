@@ -25,12 +25,12 @@ class SplitterAttributes extends AbstractAttributeSet {
         = new AttributeOption("right", __("splitterAppearanceRight"));
     public static final AttributeOption APPEAR_CENTER
         = new AttributeOption("center", __("splitterAppearanceCenter"));
-    
+
     public static final Attribute<AttributeOption> ATTR_APPEARANCE
         = Attributes.forOption("appear", __("splitterAppearanceAttr"),
                 new AttributeOption[] { APPEAR_LEFT, APPEAR_RIGHT, APPEAR_CENTER,
                     APPEAR_LEGACY});
-    
+
     public static final Attribute<BitWidth> ATTR_WIDTH
         = Attributes.forBitWidth("incoming", __("splitterBitWidthAttr"));
     public static final Attribute<Integer> ATTR_FANOUT
@@ -85,11 +85,11 @@ class SplitterAttributes extends AbstractAttributeSet {
             this.which = which;
             this.options = options;
         }
-        
+
         private BitOutAttribute createCopy() {
             return new BitOutAttribute(which, options);
         }
-        
+
         public Object getDefault() {
             return Integer.valueOf(which + 1);
         }
@@ -142,7 +142,7 @@ class SplitterAttributes extends AbstractAttributeSet {
         configureDefaults();
         parameters = new SplitterParameters(this);
     }
-    
+
     Attribute<?> getBitOutAttribute(int index) {
         return attrs.get(INIT_ATTRIBUTES.size() + index);
     }
@@ -164,7 +164,7 @@ class SplitterAttributes extends AbstractAttributeSet {
         dest.bit_end = this.bit_end.clone();
         dest.options = this.options;
     }
-    
+
     public SplitterParameters getParameters() {
         SplitterParameters ret = parameters;
         if (ret == null) {
@@ -255,7 +255,7 @@ class SplitterAttributes extends AbstractAttributeSet {
             attr.options = options;
         }
     }
-    
+
     private void configureDefaults() {
         int offs = INIT_ATTRIBUTES.size();
         int curNum = attrs.size() - offs;
@@ -264,7 +264,7 @@ class SplitterAttributes extends AbstractAttributeSet {
         byte[] dflt = computeDistribution(fanout, bit_end.length, 1);
 
         boolean changed = curNum != bit_end.length;
-        
+
         // remove excess attributes
         while (curNum > bit_end.length) {
             curNum--;
@@ -286,10 +286,10 @@ class SplitterAttributes extends AbstractAttributeSet {
             bit_end[i] = dflt[i];
             attrs.add(attr);
         }
-        
+
         if (changed) fireAttributeListChanged();
     }
-    
+
     static byte[] computeDistribution(int fanout, int bits, int order) {
         byte[] ret = new byte[bits];
         if (order >= 0) {

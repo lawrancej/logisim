@@ -35,7 +35,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class ProjectCircuitActions {
     private ProjectCircuitActions() { }
-    
+
     public static void doAddCircuit(Project proj) {
         String name = promptForCircuitName(proj.getFrame(), proj.getLogisimFile(), "");
         if (name != null) {
@@ -78,7 +78,7 @@ public class ProjectCircuitActions {
             @Override
             public void windowLostFocus(WindowEvent arg0) { }
         });
-        
+
         while (true) {
             field.selectAll();
             dlog.pack();
@@ -134,7 +134,7 @@ public class ProjectCircuitActions {
             proj.doAction(LogisimFileActions.removeCircuit(circuit));
         }
     }
-    
+
     public static void doAnalyze(Project proj, Circuit circuit) {
         Map<Instance, String> pinNames = Analyze.getPinLabels(circuit);
         ArrayList<String> inputNames = new ArrayList<String>();
@@ -164,31 +164,31 @@ public class ProjectCircuitActions {
             analyzeError(proj, _("analyzeTooManyOutputsError","" + AnalyzerModel.MAX_OUTPUTS));
             return;
         }
-        
+
         Analyzer analyzer = AnalyzerManager.getAnalyzer();
         analyzer.getModel().setCurrentCircuit(proj, circuit);
         configureAnalyzer(proj, circuit, analyzer, pinNames, inputNames, outputNames);
         analyzer.setVisible(true);
         analyzer.toFront();
     }
-    
+
     private static void configureAnalyzer(Project proj, Circuit circuit,
             Analyzer analyzer, Map<Instance, String> pinNames,
             ArrayList<String> inputNames, ArrayList<String> outputNames) {
         analyzer.getModel().setVariables(inputNames, outputNames);
-        
+
         // If there are no inputs, we stop with that tab selected
         if (inputNames.size() == 0) {
             analyzer.setSelectedTab(Analyzer.INPUTS_TAB);
             return;
         }
-        
+
         // If there are no outputs, we stop with that tab selected
         if (outputNames.size() == 0) {
             analyzer.setSelectedTab(Analyzer.OUTPUTS_TAB);
             return;
         }
-        
+
         // Attempt to show the corresponding expression
         try {
             Analyze.computeExpression(analyzer.getModel(), circuit, pinNames);
@@ -199,12 +199,12 @@ public class ProjectCircuitActions {
                     _("analyzeNoExpressionTitle"),
                     JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
         // As a backup measure, we compute a truth table.
         Analyze.computeTable(analyzer.getModel(), proj, circuit, pinNames);
         analyzer.setSelectedTab(Analyzer.TABLE_TAB);
     }
-        
+
     private static void analyzeError(Project proj, String message) {
         JOptionPane.showMessageDialog(proj.getFrame(), message,
             _("analyzeErrorTitle"),

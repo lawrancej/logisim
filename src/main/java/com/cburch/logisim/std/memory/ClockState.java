@@ -8,18 +8,18 @@ import com.cburch.logisim.instance.StdAttr;
 
 class ClockState implements Cloneable {
     private Value lastClock;
-    
+
     public ClockState() {
         lastClock = Value.FALSE;
     }
-    
+
     @Override
     public ClockState clone() {
         try {
             return (ClockState) super.clone();
         } catch (CloneNotSupportedException e) { return null; }
     }
-        
+
     public boolean updateClock(Value newClock, Object trigger) {
         Value oldClock = lastClock;
         lastClock = newClock;

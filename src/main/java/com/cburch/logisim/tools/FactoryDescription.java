@@ -29,7 +29,7 @@ public class FactoryDescription {
         }
         return Arrays.asList(tools);
     }
-    
+
     private String name;
     private StringGetter displayName;
     private String iconName;
@@ -39,7 +39,7 @@ public class FactoryDescription {
     private boolean factoryLoadAttempted;
     private ComponentFactory factory;
     private StringGetter toolTip;
-    
+
     public FactoryDescription(String name, StringGetter displayName,
             String iconName, String factoryClassName) {
         this(name, displayName, factoryClassName);
@@ -47,7 +47,7 @@ public class FactoryDescription {
         this.iconLoadAttempted = false;
         this.icon = null;
     }
-    
+
     public FactoryDescription(String name, StringGetter displayName,
             Icon icon, String factoryClassName) {
         this(name, displayName, factoryClassName);
@@ -55,7 +55,7 @@ public class FactoryDescription {
         this.iconLoadAttempted = true;
         this.icon = icon;
     }
-    
+
     public FactoryDescription(String name, StringGetter displayName,
             String factoryClassName) {
         this.name = name;
@@ -68,19 +68,19 @@ public class FactoryDescription {
         this.factory = null;
         this.toolTip = null;
     }
-    
+
     public String getName() {
         return name;
     }
-    
+
     public String getDisplayName() {
         return displayName.toString();
     }
-    
+
     public boolean isFactoryLoaded() {
         return factoryLoadAttempted;
     }
-    
+
     public Icon getIcon() {
         Icon ret = icon;
         if (ret != null || iconLoadAttempted) {
@@ -92,7 +92,7 @@ public class FactoryDescription {
             return ret;
         }
     }
-    
+
     public ComponentFactory getFactory(Class<? extends Library> libraryClass) {
         ComponentFactory ret = factory;
         if (factory != null || factoryLoadAttempted) {
@@ -133,12 +133,12 @@ public class FactoryDescription {
             return null;
         }
     }
-    
+
     public FactoryDescription setToolTip(StringGetter getter) {
         toolTip = getter;
         return this;
     }
-    
+
     public String getToolTip() {
         StringGetter getter = toolTip;
         return getter == null ? null : getter.toString();

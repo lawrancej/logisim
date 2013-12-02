@@ -24,11 +24,11 @@ class SimulationExplorer extends JPanel
     private Project project;
     private SimulationTreeModel model;
     private JTree tree;
-    
+
     SimulationExplorer(Project proj, MenuListener menu) {
         super(new BorderLayout());
         this.project = proj;
-        
+
         SimulationToolbarModel toolbarModel = new SimulationToolbarModel(proj, menu);
         Toolbar toolbar = new Toolbar(toolbarModel);
         add(toolbar, BorderLayout.NORTH);
@@ -63,7 +63,7 @@ class SimulationExplorer extends JPanel
             }
         }
     }
-    
+
     //
     // MouseListener methods
     //

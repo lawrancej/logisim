@@ -14,14 +14,14 @@ import com.cburch.logisim.util.GraphicsUtil;
 
 class PainterDin {
     private PainterDin() { }
-    
+
     static final int AND = 0;
     static final int OR = 1;
     static final int XOR = 2;
     static final int XNOR = 3;
-    
+
     private static HashMap<Integer,int[]> orLenArrays = new HashMap<Integer,int[]>();
-    
+
     static void paintAnd(InstancePainter painter, int width, int height,
             boolean drawBubble) {
         paint(painter, width, height, drawBubble, AND);
@@ -127,7 +127,7 @@ class PainterDin {
                 }
             }
         }
-        
+
         AbstractGate factory = hasBubble ? NorGate.FACTORY : OrGate.FACTORY;
         boolean printView = painter.isPrintView() && painter.getInstance() != null;
         GraphicsUtil.switchToWidth(g, 2);

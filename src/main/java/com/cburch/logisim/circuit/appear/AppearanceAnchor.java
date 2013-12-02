@@ -27,18 +27,18 @@ public class AppearanceAnchor extends AppearanceElement {
         = Attributes.forDirection("facing", __("appearanceFacingAttr"));
     static final List<Attribute<?>> ATTRIBUTES
         = UnmodifiableList.decorate(Arrays.asList(new Attribute<?>[] { FACING }));
-    
+
     private static final int RADIUS = 3;
     private static final int INDICATOR_LENGTH = 8;
     private static final Color SYMBOL_COLOR = new Color(0, 128, 0);
-    
+
     private Direction facing;
-    
+
     public AppearanceAnchor(Location location) {
         super(location);
         facing = Direction.EAST;
     }
-    
+
     @Override
     public boolean matches(CanvasObject other) {
         if (other instanceof AppearanceAnchor) {
@@ -58,7 +58,7 @@ public class AppearanceAnchor extends AppearanceElement {
     public String getDisplayName() {
         return _("circuitAnchor");
     }
-    
+
     @Override
     public Element toSvgElement(Document doc) {
         Location loc = getLocation();
@@ -74,12 +74,12 @@ public class AppearanceAnchor extends AppearanceElement {
     public Direction getFacing() {
         return facing;
     }
-    
+
     @Override
     public List<Attribute<?>> getAttributes() {
         return ATTRIBUTES;
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public <V> V getValue(Attribute<V> attr) {
@@ -89,7 +89,7 @@ public class AppearanceAnchor extends AppearanceElement {
             return super.getValue(attr);
         }
     }
-    
+
     @Override
     protected void updateValue(Attribute<?> attr, Object value) {
         if (attr == FACING) {
@@ -110,7 +110,7 @@ public class AppearanceAnchor extends AppearanceElement {
         Location e1 = location.translate(facing, RADIUS + INDICATOR_LENGTH);
         g.drawLine(e0.getX(), e0.getY(), e1.getX(), e1.getY());
     }
-    
+
     @Override
     public Bounds getBounds() {
         Bounds bds = super.getBounds(RADIUS);
@@ -135,7 +135,7 @@ public class AppearanceAnchor extends AppearanceElement {
             }
         }
     }
-    
+
     @Override
     public List<Handle> getHandles(HandleGesture gesture) {
         Location c = getLocation();

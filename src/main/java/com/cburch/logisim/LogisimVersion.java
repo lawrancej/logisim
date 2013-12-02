@@ -9,7 +9,7 @@ package com.cburch.logisim;
  */
 public class LogisimVersion implements Comparable<LogisimVersion> {
     private static final int FINAL_REVISION = Integer.MAX_VALUE / 4;
-    
+
     /**
      * Creates a new LogisimVersion object without a revision number
      * @param major
@@ -32,7 +32,7 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
     public static LogisimVersion get(int major, int minor, int release, int revision) {
         return new LogisimVersion(major, minor, release, revision);
     }
-    
+
     /**
      * Breaks up a single string containing the version number into several integers.
      * Uses "." as delimiter.
@@ -53,13 +53,13 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
         } catch (NumberFormatException e) { }
         return new LogisimVersion(major, minor, release, revision);
     }
-    
+
     private int major;
     private int minor;
     private int release;
     private int revision;
     private String repr;
-    
+
     /**
      * Logisim version number constructor. Versions have the form: major.minor.release.revision
      * @param major
@@ -74,7 +74,7 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
         this.revision = revision;
         this.repr = null;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (other instanceof LogisimVersion) {
@@ -85,7 +85,7 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
             return false;
         }
     }
-    
+
     @Override
     public int compareTo(LogisimVersion other) {
         int ret = this.major - other.major;
@@ -96,7 +96,7 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
         if (ret != 0) return ret;
         return this.revision - other.revision;
     }
-    
+
     /**
      * converts version number into a string
      * @return ret

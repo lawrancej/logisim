@@ -29,7 +29,7 @@ public class Adder extends InstanceFactory {
     private static final int OUT   = 2;
     private static final int C_IN  = 3;
     private static final int C_OUT = 4;
-    
+
     public Adder() {
         super("Adder", __("adderComponent"));
         setAttributes(new Attribute[] {
@@ -71,7 +71,7 @@ public class Adder extends InstanceFactory {
         state.setPort(OUT,   outs[0], delay);
         state.setPort(C_OUT, outs[1], delay);
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         Graphics g = painter.getGraphics();

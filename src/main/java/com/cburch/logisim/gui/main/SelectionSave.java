@@ -11,7 +11,7 @@ import com.cburch.logisim.comp.Component;
 class SelectionSave {
     public static SelectionSave create(Selection sel) {
         SelectionSave save = new SelectionSave();
-        
+
         Collection<Component> lifted = sel.getFloatingComponents();
         if (!lifted.isEmpty()) {
             save.floating = lifted.toArray(new Component[lifted.size()]);
@@ -21,23 +21,23 @@ class SelectionSave {
         if (!selected.isEmpty()) {
             save.anchored = selected.toArray(new Component[selected.size()]);
         }
-        
+
         return save;
     }
-    
+
     private Component[] floating;
     private Component[] anchored;
-    
+
     private SelectionSave() { }
-    
+
     public Component[] getFloatingComponents() {
         return floating;
     }
-    
+
     public Component[] getAnchoredComponents() {
         return anchored;
     }
-    
+
     public boolean isSame(Selection sel) {
         return isSame(floating, sel.getFloatingComponents())
             && isSame(anchored, sel.getAnchoredComponents());
@@ -53,7 +53,7 @@ class SelectionSave {
             return false;
         }
     }
-    
+
     @Override
     public int hashCode() {
         int ret = 0;
@@ -65,7 +65,7 @@ class SelectionSave {
         }
         return ret;
     }
-    
+
     private static boolean isSame(Component[] save, Collection<Component> sel) {
         if (save == null) {
             return sel.isEmpty();
@@ -73,7 +73,7 @@ class SelectionSave {
             return toSet(save).equals(sel);
         }
     }
-    
+
     private static boolean isSame(Component[] a, Component[] b) {
         if (a == null || a.length == 0) {
             return b == null || b.length == 0;
@@ -85,7 +85,7 @@ class SelectionSave {
             return toSet(a).equals(toSet(b));
         }
     }
-    
+
     private static HashSet<Component> toSet(Component[] comps) {
         HashSet<Component> ret = new HashSet<Component>(comps.length);
         for (Component c : comps) ret.add(c);

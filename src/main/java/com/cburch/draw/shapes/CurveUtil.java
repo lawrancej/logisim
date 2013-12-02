@@ -7,13 +7,13 @@ import com.cburch.logisim.data.Bounds;
 
 public class CurveUtil {
     private CurveUtil() { }
-    
+
     /**
      * getBounds and findNearestPoint are based translated from the ActionScript
      * of Olivier Besson's Bezier class for collision detection. Code from:
      *   http://blog.gludion.com/2009/08/distance-to-quadratic-bezier-curve.html
      */
-    
+
     // a value we consider "small enough" to equal it to zero:
     // (this is used for double solutions in 2nd or 3d degree equation)
     private static final double zeroMax = 0.0000001;
@@ -22,15 +22,15 @@ public class CurveUtil {
     public static Bounds getBounds(double[] p0, double[] p1, double[] p2) {
         double[] A = computeA(p0, p1);
         double[] B = computeB(p0, p1, p2);
-        
+
         // rough evaluation of bounds:
         double xMin = Math.min(p0[0], Math.min(p1[0], p2[0]));
         double xMax = Math.max(p0[0], Math.max(p1[0], p2[0]));
         double yMin = Math.min(p0[1], Math.min(p1[1], p2[1]));
         double yMax = Math.max(p0[1], Math.max(p1[1], p2[1]));
-        
+
         // more accurate evaluation:
-        // see Andree Michelle for a faster but less readable method 
+        // see Andree Michelle for a faster but less readable method
         if (xMin == p1[0] || xMax == p1[0]) {
             double u = -A[0] / B[0]; // u where getTan(u)[0] == 0
             u = (1 - u) * (1 - u) * p0[0] + 2 * u * (1 - u) * p1[0] + u * u * p2[0];
@@ -43,24 +43,24 @@ public class CurveUtil {
             if (yMin == p1[1]) yMin = u;
             else yMax = u;
         }
-        
+
         int x = (int) xMin;
         int y = (int) yMin;
         int w = (int) Math.ceil(xMax) - x;
         int h = (int) Math.ceil(yMax) - y;
         return Bounds.create(x, y, w, h);
     }
-    
+
     private static double[] computeA(double[] p0, double[] p1) {
         return new double[] { p1[0] - p0[0], p1[1] - p0[1] };
     }
-    
+
     private static double[] computeB(double[] p0, double[] p1, double[] p2) {
         return new double[] {
                 p0[0] - 2 * p1[0] + p2[0],
                 p0[1] - 2 * p1[1] + p2[1] };
     }
-    
+
     // returns { t:Number, pos:Point, dist:Number, nor:Point }
     // (costs about 80 multiplications+additions)
     // note: p0 and p2 are endpoints, p1 is control point
@@ -68,7 +68,7 @@ public class CurveUtil {
             double[] p0, double[] p1, double[] p2) {
         double[] A = computeA(p0, p1);
         double[] B = computeB(p0, p1, p2);
-        
+
         // a temporary util vect = p0 - (x,y)
         double[] pos = { p0[0] - q[0], p0[1] - q[1] };
         // search points P of bezier curve with PM.(dP / dt) = 0
@@ -79,7 +79,7 @@ public class CurveUtil {
         double d = pos[0] * A[0] + pos[1] * A[1];
         double[] roots = solveCubic(a, b, c, d);
         if (roots == null) return null;
-        
+
         // find the closest point:
         double tMin = Double.MAX_VALUE;
         double dist2Min = Double.MAX_VALUE;
@@ -93,7 +93,7 @@ public class CurveUtil {
             } else {
                 t = 1;
             }
-            
+
             getPos(pos, t, p0, p1, p2);
             double lx = q[0] - pos[0];
             double ly = q[1] - pos[1];
@@ -106,14 +106,14 @@ public class CurveUtil {
                 posMin[1] = pos[1];
             }
         }
-        
+
         if (tMin == Double.MAX_VALUE) {
             return null;
         } else {
             return posMin;
         }
     }
-    
+
     private static void getPos(double[] result, double t,
             double[] p0, double[] p1, double[] p2) {
         double a = (1 - t) * (1 - t);
@@ -122,7 +122,7 @@ public class CurveUtil {
         result[0] = a * p0[0] + b * p1[0] + c * p2[0];
         result[1] = a * p0[1] + b * p1[1] + c * p2[1];
     }
-    
+
     // a local duplicate & optimized version of com.gludion.utils.MathUtils.thirdDegreeEquation(a,b,c,d):Object
     //WARNING: s2, s3 may be non - null if count = 1.
     // use only result["s"+i] where i <= count
@@ -208,22 +208,22 @@ public class CurveUtil {
         double dx = mid[0] - end0[0];
         double dy = mid[1] - end0[1];
         double d0 = Math.sqrt(dx * dx + dy * dy);
-        
+
         dx = mid[0] - end1[0];
         dy = mid[1] - end1[1];
         double d1 = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (d0 < zeroMax || d1 < zeroMax) {
             return new double[] { (end0[0] + end1[0]) / 2,
                     (end0[1] + end1[1]) / 2 };
         }
-        
+
         double t = d0 / (d0 + d1);
         double u = 1.0 - t;
         double t2 = t * t;
         double u2 = u * u;
         double den = 2 * t * u;
-        
+
         double xNum = mid[0] - u2 * end0[0] - t2 * end1[0];
         double yNum = mid[1] - u2 * end0[1] - t2 * end1[1];
         return new double[] { xNum / den, yNum / den };

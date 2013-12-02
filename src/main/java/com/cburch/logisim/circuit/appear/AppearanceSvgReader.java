@@ -39,7 +39,7 @@ public class AppearanceSvgReader {
             return SvgReader.createShape(elt);
         }
     }
-    
+
     private static Location getLocation(Element elt) {
         double x = Double.parseDouble(elt.getAttribute("x"));
         double y = Double.parseDouble(elt.getAttribute("y"));

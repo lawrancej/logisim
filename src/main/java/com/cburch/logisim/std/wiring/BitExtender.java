@@ -38,7 +38,7 @@ public class BitExtender extends InstanceFactory {
                 new AttributeOption("sign", "sign", __("extenderSignType")),
                 new AttributeOption("input", "input", __("extenderInputType")),
             });
-    
+
     public static final BitExtender FACTORY = new BitExtender();
 
     public BitExtender() {
@@ -55,7 +55,7 @@ public class BitExtender extends InstanceFactory {
                 new BitWidthConfigurator(ATTR_IN_WIDTH, 1, Value.MAX_WIDTH, 0)));
         setOffsetBounds(Bounds.create(-40, -20, 40, 40));
     }
-    
+
     //
     // graphics methods
     //
@@ -66,7 +66,7 @@ public class BitExtender extends InstanceFactory {
         int asc = fm.getAscent();
 
         painter.drawBounds();
-        
+
         String s0;
         String type = getType(painter.getAttributeSet());
         if (type.equals("zero")) s0 = _("extenderZeroLabel");
@@ -83,14 +83,14 @@ public class BitExtender extends InstanceFactory {
                 GraphicsUtil.H_CENTER, GraphicsUtil.V_BASELINE);
         GraphicsUtil.drawText(g, s1, x, y1,
                 GraphicsUtil.H_CENTER, GraphicsUtil.V_BASELINE);
-        
+
         BitWidth w0 = painter.getAttributeValue(ATTR_OUT_WIDTH);
         BitWidth w1 = painter.getAttributeValue(ATTR_IN_WIDTH);
         painter.drawPort(0, "" + w0.getWidth(), Direction.WEST);
         painter.drawPort(1, "" + w1.getWidth(), Direction.EAST);
         if (type.equals("input")) painter.drawPort(2);
     }
-    
+
     //
     // methods for instances
     //
@@ -109,7 +109,7 @@ public class BitExtender extends InstanceFactory {
             instance.fireInvalidated();
         }
     }
-    
+
     private void configurePorts(Instance instance) {
         Port p0 = new Port(0, 0, Port.OUTPUT, ATTR_OUT_WIDTH);
         Port p1 = new Port(-40, 0, Port.INPUT, ATTR_IN_WIDTH);
@@ -138,12 +138,12 @@ public class BitExtender extends InstanceFactory {
         } else {
             extend = Value.FALSE;
         }
-        
+
         Value out = in.extendWidth(wout.getWidth(), extend);
         state.setPort(0, out, 1);
     }
 
-    
+
     private String getType(AttributeSet attrs) {
         AttributeOption topt = attrs.getValue(ATTR_TYPE);
         return (String) topt.getValue();

@@ -24,51 +24,51 @@ class CircuitChange {
             Collection<Component> oldComponents) {
         return new CircuitChange(circuit, CLEAR, oldComponents);
     }
-    
+
     public static CircuitChange add(Circuit circuit, Component comp) {
         return new CircuitChange(circuit, ADD, comp);
     }
-    
+
     public static CircuitChange addAll(Circuit circuit,
             Collection<? extends Component> comps) {
         return new CircuitChange(circuit, ADD_ALL, comps);
     }
-    
+
     public static CircuitChange remove(Circuit circuit, Component comp) {
         return new CircuitChange(circuit, REMOVE, comp);
     }
-    
+
     public static CircuitChange removeAll(Circuit circuit,
             Collection<? extends Component> comps) {
         return new CircuitChange(circuit, REMOVE_ALL, comps);
     }
-    
+
     public static CircuitChange replace(Circuit circuit,
             ReplacementMap replMap) {
         return new CircuitChange(circuit, REPLACE, null, null, null, replMap);
     }
-    
+
     public static CircuitChange set(Circuit circuit, Component comp,
             Attribute<?> attr, Object value) {
         return new CircuitChange(circuit, SET, comp, attr, null, value);
     }
-    
+
     public static CircuitChange set(Circuit circuit, Component comp,
             Attribute<?> attr, Object oldValue, Object newValue) {
         return new CircuitChange(circuit, SET, comp, attr, oldValue, newValue);
     }
-    
+
     public static CircuitChange setForCircuit(Circuit circuit,
             Attribute<?> attr, Object v) {
         return new CircuitChange(circuit, SET_FOR_CIRCUIT, null, attr, null, v);
     }
-    
+
     public static CircuitChange setForCircuit(Circuit circuit,
             Attribute<?> attr, Object oldValue, Object newValue) {
         return new CircuitChange(circuit, SET_FOR_CIRCUIT, null, attr, oldValue,
                 newValue);
     }
-    
+
     private Circuit circuit;
     private int type;
     private Component comp;
@@ -96,31 +96,31 @@ class CircuitChange {
         this.oldValue = oldValue;
         this.newValue = newValue;
     }
-    
+
     public Circuit getCircuit() {
         return circuit;
     }
-    
+
     public int getType() {
         return type;
     }
-    
+
     public Component getComponent() {
         return comp;
     }
-    
+
     public Attribute<?> getAttribute() {
         return attr;
     }
-    
+
     public Object getOldValue() {
         return oldValue;
     }
-    
+
     public Object getNewValue() {
         return newValue;
     }
-    
+
     CircuitChange getReverseChange() {
         switch (type) {
         case CLEAR:
@@ -144,7 +144,7 @@ class CircuitChange {
             throw new IllegalArgumentException("unknown change type " + type);
         }
     }
-    
+
     void execute(CircuitMutator mutator, ReplacementMap prevReplacements) {
         switch (type) {
         case CLEAR: mutator.clear(circuit); prevReplacements.reset(); break;
@@ -170,7 +170,7 @@ class CircuitChange {
         default: throw new IllegalArgumentException("unknown change type " + type);
         }
     }
-    
+
     boolean concernsSupercircuit() {
         switch (type) {
         case CLEAR:

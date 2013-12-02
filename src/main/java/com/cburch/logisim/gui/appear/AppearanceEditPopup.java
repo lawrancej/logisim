@@ -14,8 +14,8 @@ import com.cburch.logisim.gui.menu.LogisimMenuItem;
 public class AppearanceEditPopup extends EditPopup implements EditHandler.Listener {
     private AppearanceCanvas canvas;
     private EditHandler handler;
-    private Map<LogisimMenuItem, Boolean> enabled; 
-    
+    private Map<LogisimMenuItem, Boolean> enabled;
+
     public AppearanceEditPopup(AppearanceCanvas canvas) {
         super(true);
         this.canvas = canvas;
@@ -25,7 +25,7 @@ public class AppearanceEditPopup extends EditPopup implements EditHandler.Listen
         handler.computeEnabled();
         initialize();
     }
-    
+
     @Override
     public void enableChanged(EditHandler handler, LogisimMenuItem action,
             boolean value) {

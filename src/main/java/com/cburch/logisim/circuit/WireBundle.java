@@ -88,11 +88,11 @@ class WireBundle {
         }
         return ret;
     }
-    
+
     void addPullValue(Value val) {
         pullValue = pullValue.combine(val);
     }
-    
+
     Value getPullValue() {
         return pullValue;
     }

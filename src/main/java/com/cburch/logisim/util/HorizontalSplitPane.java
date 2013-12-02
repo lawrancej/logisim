@@ -26,15 +26,15 @@ public class HorizontalSplitPane extends JPanel {
         implements MouseListener, MouseMotionListener {
         private boolean dragging = false;
         private int curValue;
-        
+
         Dragbar() {
             addMouseListener(this);
             addMouseMotionListener(this);
         }
-        
+
         abstract int getDragValue(MouseEvent e);
         abstract void setDragValue(int value);
-        
+
         @Override
         public void paintComponent(Graphics g) {
             if (dragging) {
@@ -42,10 +42,10 @@ public class HorizontalSplitPane extends JPanel {
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
         }
-        
+
         @Override
         public void mouseClicked(MouseEvent e) { }
-        
+
         @Override
         public void mousePressed(MouseEvent e) {
             if (!dragging) {
@@ -54,7 +54,7 @@ public class HorizontalSplitPane extends JPanel {
                 repaint();
             }
         }
-        
+
         @Override
         public void mouseReleased(MouseEvent e) {
             if (dragging) {
@@ -64,13 +64,13 @@ public class HorizontalSplitPane extends JPanel {
                 repaint();
             }
         }
-        
+
         @Override
         public void mouseEntered(MouseEvent e) { }
-        
+
         @Override
         public void mouseExited(MouseEvent e) { }
-        
+
         @Override
         public void mouseDragged(MouseEvent e) {
             if (dragging) {
@@ -78,12 +78,12 @@ public class HorizontalSplitPane extends JPanel {
                 if (newValue != curValue) setDragValue(newValue);
             }
         }
-        
+
         @Override
         public void mouseMoved(MouseEvent e) { }
     }
 
-    
+
     private class MyLayout implements LayoutManager {
         @Override
         public void addLayoutComponent(String name, Component comp) { }
@@ -136,17 +136,17 @@ public class HorizontalSplitPane extends JPanel {
                     maxWidth, 2 * DRAG_TOLERANCE);
         }
     }
-    
+
     private class MyDragbar extends Dragbar {
         MyDragbar() {
             setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
         }
-        
+
         @Override
         int getDragValue(MouseEvent e) {
             return getY() + e.getY() - HorizontalSplitPane.this.getInsets().top;
         }
-    
+
         @Override
         void setDragValue(int value) {
             Insets in = HorizontalSplitPane.this.getInsets();
@@ -159,11 +159,11 @@ public class HorizontalSplitPane extends JPanel {
     private JComponent comp1;
     private MyDragbar dragbar;
     private double fraction;
-    
+
     public HorizontalSplitPane(JComponent comp0, JComponent comp1) {
         this(comp0, comp1, 0.5);
     }
-    
+
     public HorizontalSplitPane(JComponent comp0, JComponent comp1,
             double fraction) {
         this.comp0 = comp0;
@@ -176,11 +176,11 @@ public class HorizontalSplitPane extends JPanel {
         add(comp0);
         add(comp1);
     }
-    
+
     public double getFraction() {
         return fraction;
     }
-    
+
     public void setFraction(double value) {
         if (value < 0.0) value = 0.0;
         if (value > 1.0) value = 1.0;

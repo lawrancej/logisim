@@ -10,7 +10,7 @@ import com.cburch.logisim.data.AttributeSet;
 
 public abstract class NumericConfigurator<V> implements KeyConfigurator, Cloneable {
     private static final int MAX_TIME_KEY_LASTS = 800;
-    
+
     private Attribute<V> attr;
     private int minValue;
     private int maxValue;
@@ -18,11 +18,11 @@ public abstract class NumericConfigurator<V> implements KeyConfigurator, Cloneab
     private int radix;
     private int modsEx;
     private long whenTyped;
-    
+
     public NumericConfigurator(Attribute<V> attr, int min, int max, int modifiersEx) {
         this(attr, min, max, modifiersEx, 10);
     }
-    
+
     public NumericConfigurator(Attribute<V> attr, int min, int max,
             int modifiersEx, int radix) {
         this.attr = attr;
@@ -33,7 +33,7 @@ public abstract class NumericConfigurator<V> implements KeyConfigurator, Cloneab
         this.curValue = 0;
         this.whenTyped = 0;
     }
-    
+
     @Override
     public NumericConfigurator<V> clone() {
         try {
@@ -47,17 +47,17 @@ public abstract class NumericConfigurator<V> implements KeyConfigurator, Cloneab
             return null;
         }
     }
-    
+
     protected int getMinimumValue(AttributeSet attrs) {
         return minValue;
     }
-    
+
     protected int getMaximumValue(AttributeSet attrs) {
         return maxValue;
     }
-    
+
     protected abstract V createValue(int value);
-    
+
     @Override
     public KeyConfigurationResult keyEventReceived(KeyConfigurationEvent event) {
         if (event.getType() == KeyConfigurationEvent.KEY_TYPED) {
@@ -86,7 +86,7 @@ public abstract class NumericConfigurator<V> implements KeyConfigurator, Cloneab
                 event.consume();
                 whenTyped = now;
                 curValue = val;
-    
+
                 if (val >= min) {
                     Object valObj = createValue(val);
                     return new KeyConfigurationResult(event, attr, valObj);

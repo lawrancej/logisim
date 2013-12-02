@@ -11,28 +11,28 @@ class ValueLog {
     private Value[] log;
     private short curSize;
     private short firstIndex;
-    
+
     public ValueLog() {
         log = new Value[LOG_SIZE];
         curSize = 0;
         firstIndex = 0;
     }
-    
+
     public int size() {
         return curSize;
     }
-    
+
     public Value get(int index) {
         int i = firstIndex + index;
         if (i >= LOG_SIZE) i -= LOG_SIZE;
         return log[i];
     }
-    
+
     public Value getLast() {
         return curSize < LOG_SIZE ? (curSize == 0 ? null : log[curSize - 1])
                 : (firstIndex == 0 ? log[curSize - 1] : log[firstIndex - 1]);
     }
-    
+
     public void append(Value val) {
         if (curSize < LOG_SIZE) {
             log[curSize] = val;

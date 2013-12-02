@@ -28,7 +28,7 @@ import com.cburch.logisim.util.Icons;
 public class PolyTool extends AbstractTool {
     // how close we need to be to the start point to count as "closing the loop"
     private static final int CLOSE_TOLERANCE = 2;
-    
+
     private boolean closed; // whether we are drawing polygons or polylines
     private DrawingAttributeSet attrs;
     private boolean active;
@@ -36,14 +36,14 @@ public class PolyTool extends AbstractTool {
     private boolean mouseDown;
     private int lastMouseX;
     private int lastMouseY;
-    
+
     public PolyTool(boolean closed, DrawingAttributeSet attrs) {
         this.closed = closed;
         this.attrs = attrs;
         active = false;
         locations = new ArrayList<Location>();
     }
-    
+
     @Override
     public Icon getIcon() {
         if (closed) {
@@ -52,7 +52,7 @@ public class PolyTool extends AbstractTool {
             return Icons.getIcon("drawplin.svg");
         }
     }
-    
+
     @Override
     public List<Attribute<?>> getAttributes() {
         return DrawAttr.getFillAttributes(attrs.getValue(DrawAttr.PAINT_TYPE));
@@ -62,14 +62,14 @@ public class PolyTool extends AbstractTool {
     public Cursor getCursor(Canvas canvas) {
         return Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
     }
-    
+
     @Override
     public void toolDeselected(Canvas canvas) {
         CanvasObject add = commit(canvas);
         canvas.toolGestureComplete(this, add);
         repaintArea(canvas);
     }
-    
+
     @Override
     public void mousePressed(Canvas canvas, MouseEvent e) {
         int mx = e.getX();
@@ -97,12 +97,12 @@ public class PolyTool extends AbstractTool {
         active = canvas.getModel() != null;
         repaintArea(canvas);
     }
-    
+
     @Override
     public void mouseDragged(Canvas canvas, MouseEvent e) {
         updateMouse(canvas, e.getX(), e.getY(), e.getModifiersEx());
     }
-    
+
     @Override
     public void mouseReleased(Canvas canvas, MouseEvent e) {
         if (active) {
@@ -120,7 +120,7 @@ public class PolyTool extends AbstractTool {
             }
         }
     }
-    
+
     @Override
     public void keyPressed(Canvas canvas, KeyEvent e) {
         int code = e.getKeyCode();
@@ -129,7 +129,7 @@ public class PolyTool extends AbstractTool {
             updateMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
         }
     }
-    
+
     @Override
     public void keyReleased(Canvas canvas, KeyEvent e) {
         keyPressed(canvas, e);
@@ -150,7 +150,7 @@ public class PolyTool extends AbstractTool {
             }
         }
     }
-    
+
     private CanvasObject commit(Canvas canvas) {
         if (!active) return null;
         CanvasObject add = null;
@@ -168,7 +168,7 @@ public class PolyTool extends AbstractTool {
         locs.clear();
         return add;
     }
-    
+
     private void updateMouse(Canvas canvas, int mx, int my, int mods) {
         lastMouseX = mx;
         lastMouseY = my;
@@ -189,7 +189,7 @@ public class PolyTool extends AbstractTool {
                 lastY = canvas.snapY(lastY);
                 newLast = Location.create(lastX, lastY);
             }
-            
+
             if (!newLast.equals(last)) {
                 locations.set(index, newLast);
                 repaintArea(canvas);
@@ -200,7 +200,7 @@ public class PolyTool extends AbstractTool {
     private void repaintArea(Canvas canvas) {
         canvas.repaint();
     }
-    
+
     @Override
     public void draw(Canvas canvas, Graphics g) {
         if (active) {

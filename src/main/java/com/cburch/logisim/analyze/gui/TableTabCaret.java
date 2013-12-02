@@ -36,7 +36,7 @@ class TableTabCaret {
     private int cursorCol;
     private int markRow;
     private int markCol;
-    
+
     TableTabCaret(TableTab table) {
         this.table = table;
         cursorRow = 0;
@@ -48,7 +48,7 @@ class TableTabCaret {
         table.addMouseMotionListener(listener);
         table.addKeyListener(listener);
         table.addFocusListener(listener);
-        
+
         InputMap imap = table.getInputMap();
         ActionMap amap = table.getActionMap();
         AbstractAction nullAction = new AbstractAction() {
@@ -67,19 +67,19 @@ class TableTabCaret {
         imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_END, 0), nullKey);
         imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), nullKey);
     }
-    
+
     int getCursorRow() { return cursorRow; }
     int getCursorCol() { return cursorCol; }
     int getMarkRow() { return markRow; }
     int getMarkCol() { return markCol; }
-    
+
     void selectAll() {
         table.requestFocus();
         TruthTable model = table.getTruthTable();
         setCursor(model.getRowCount(), model.getInputColumnCount() + model.getOutputColumnCount(), false);
         setCursor(0, 0, true);
     }
-    
+
     private void setCursor(int row, int col, boolean keepMark) {
         TruthTable model = table.getTruthTable();
         int rows = model.getRowCount();
@@ -88,7 +88,7 @@ class TableTabCaret {
         if (col < 0) col = 0;
         if (row >= rows) row = rows - 1;
         if (col >= cols) col = cols - 1;
-        
+
         if (row == cursorRow && col == cursorCol
                 && (keepMark || (row == markRow && col == markCol))) {
             ; // nothing is changing, so do nothing
@@ -112,7 +112,7 @@ class TableTabCaret {
                 markRow = row;
                 markCol = col;
             }
-            
+
             int x0 = table.getX(c0);
             int x1 = table.getX(c1) + table.getCellWidth();
             int y0 = table.getY(r0);
@@ -129,7 +129,7 @@ class TableTabCaret {
         }
         table.scrollRectToVisible(new Rectangle(cx, cy, cw, ch));
     }
-    
+
     private void expose(int row, int col) {
         if (row >= 0) {
             int x0 = table.getX(0);
@@ -139,12 +139,12 @@ class TableTabCaret {
                 (x1 - x0) + 4, table.getCellHeight() + 4);
         }
     }
-    
+
     void paintBackground(Graphics g) {
         if (cursorRow >= 0 && cursorCol >= 0
                 && (cursorRow != markRow || cursorCol != markCol)) {
             g.setColor(SELECT_COLOR);
-            
+
             int r0 = cursorRow;
             int c0 = cursorCol;
             int r1 = markRow;
@@ -158,7 +158,7 @@ class TableTabCaret {
             g.fillRect(x0, y0, x1 - x0, y1 - y0);
         }
     }
-    
+
     void paintForeground(Graphics g) {
         if (!table.isFocusOwner()) return;
         if (cursorRow >= 0 && cursorCol >= 0) {
@@ -172,10 +172,10 @@ class TableTabCaret {
 
     private class Listener implements MouseListener, MouseMotionListener,
             KeyListener, FocusListener, TruthTableListener {
-    
+
         @Override
         public void mouseClicked(MouseEvent e) { }
-    
+
         @Override
         public void mousePressed(MouseEvent e) {
             table.requestFocus();
@@ -183,33 +183,33 @@ class TableTabCaret {
             int col = table.getColumn(e);
             setCursor(row, col, (e.getModifiers() & InputEvent.SHIFT_MASK) != 0);
         }
-    
+
         @Override
         public void mouseReleased(MouseEvent e) {
             mouseDragged(e);
         }
-    
+
         @Override
         public void mouseEntered(MouseEvent e) { }
-    
+
         @Override
         public void mouseExited(MouseEvent e) { }
-    
+
         @Override
         public void mouseDragged(MouseEvent e) {
             int row = table.getRow(e);
             int col = table.getColumn(e);
             setCursor(row, col, true);
         }
-    
+
         @Override
         public void mouseMoved(MouseEvent e) { }
-        
+
         @Override
         public void keyTyped(KeyEvent e) {
             int mask = e.getModifiers();
             if ((mask & ~InputEvent.SHIFT_MASK) != 0) return;
-    
+
             char c = e.getKeyChar();
             Entry newEntry = null;
             switch (c) {
@@ -258,7 +258,7 @@ class TableTabCaret {
                 }
             }
         }
-    
+
         @Override
         public void keyPressed(KeyEvent e) {
             if (cursorRow < 0) return;
@@ -293,15 +293,15 @@ class TableTabCaret {
                 break;
             }
         }
-    
+
         @Override
         public void keyReleased(KeyEvent e) { }
-    
+
         @Override
         public void focusGained(FocusEvent e) {
             if (cursorRow >= 0) expose(cursorRow, cursorCol);
         }
-    
+
         @Override
         public void focusLost(FocusEvent e) {
             if (cursorRow >= 0) expose(cursorRow, cursorCol);

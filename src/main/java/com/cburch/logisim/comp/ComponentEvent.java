@@ -11,7 +11,7 @@ public class ComponentEvent {
     public ComponentEvent(Component source) {
         this(source, null, null);
     }
-    
+
     public ComponentEvent(Component source, Object oldData, Object newData) {
         this.source = source;
         this.oldData = oldData;

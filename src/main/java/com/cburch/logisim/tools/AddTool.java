@@ -41,7 +41,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class AddTool extends Tool {
     private static int INVALID_COORD = Integer.MIN_VALUE;
-    
+
     private static int SHOW_NONE    = 0;
     private static int SHOW_GHOST   = 1;
     private static int SHOW_ADD     = 2;
@@ -74,7 +74,7 @@ public class AddTool extends Tool {
     private Action lastAddition;
     private boolean keyHandlerTried;
     private KeyConfigurator keyHandler;
-    
+
     public AddTool(Class<? extends Library> base, FactoryDescription description) {
         this.descriptionBase = base;
         this.description = description;
@@ -106,7 +106,7 @@ public class AddTool extends Tool {
         this.attrs = (AttributeSet) base.attrs.clone();
         attrs.addAttributeListener(new MyAttributeListener());
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (!(other instanceof AddTool)) return false;
@@ -118,13 +118,13 @@ public class AddTool extends Tool {
             return this.factory.equals(o.factory);
         }
     }
-    
+
     @Override
     public int hashCode() {
         FactoryDescription desc = description;
         return desc != null ? desc.hashCode() : factory.hashCode();
     }
-    
+
     @Override
     public boolean sharesSource(Tool other) {
         if (!(other instanceof AddTool)) return false;
@@ -137,7 +137,7 @@ public class AddTool extends Tool {
             return this.description.equals(o.description);
         }
     }
-    
+
     public ComponentFactory getFactory(boolean forceLoad) {
         return forceLoad ? getFactory() : factory;
     }
@@ -201,13 +201,13 @@ public class AddTool extends Tool {
     public AttributeSet getAttributeSet() {
         return attrs;
     }
-    
+
     @Override
     public boolean isAllDefaultValues(AttributeSet attrs, LogisimVersion ver) {
         return this.attrs == attrs && attrs instanceof FactoryAttributes
             && !((FactoryAttributes) attrs).isFactoryInstantiated();
     }
-    
+
     @Override
     public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
         return getFactory().getDefaultAttributeValue(attr, ver);
@@ -228,7 +228,7 @@ public class AddTool extends Tool {
             source.drawGhost(context, Color.BLACK, x, y, getBaseAttributes());
         }
     }
-    
+
     private AttributeSet getBaseAttributes() {
         AttributeSet ret = attrs;
         if (ret instanceof FactoryAttributes) {
@@ -338,12 +338,12 @@ public class AddTool extends Tool {
             ComponentFactory source = getFactory();
             if (source == null) return;
             Component c = source.createComponent(loc, attrsCopy);
-            
+
             if (circ.hasConflict(c)) {
                 canvas.setErrorMessage(__("exclusiveError"));
                 return;
             }
-            
+
             Bounds bds = c.getBounds(g);
             if (bds.getX() < 0 || bds.getY() < 0) {
                 canvas.setErrorMessage(__("negativeCoordError"));
@@ -365,7 +365,7 @@ public class AddTool extends Tool {
         } else if (state == SHOW_ADD_NO) {
             setState(canvas, SHOW_NONE);
         }
-        
+
         Project proj = canvas.getProject();
         Tool next = determineNext(proj);
         if (next != null) {
@@ -377,7 +377,7 @@ public class AddTool extends Tool {
             if (added != null) canvas.getSelection().add(added);
         }
     }
-    
+
     private Tool determineNext(Project proj) {
         String afterAdd = AppPreferences.ADD_AFTER.get();
         if (afterAdd.equals(AppPreferences.ADD_AFTER_UNCHANGED)) {
@@ -391,7 +391,7 @@ public class AddTool extends Tool {
             }
         }
     }
-    
+
     @Override
     public void keyPressed(Canvas canvas, KeyEvent event) {
         processKeyEvent(canvas, event, KeyConfigurationEvent.KEY_PRESSED);
@@ -410,17 +410,17 @@ public class AddTool extends Tool {
             }
         }
     }
-    
+
     @Override
     public void keyReleased(Canvas canvas, KeyEvent event) {
         processKeyEvent(canvas, event, KeyConfigurationEvent.KEY_RELEASED);
     }
-    
+
     @Override
     public void keyTyped(Canvas canvas, KeyEvent event) {
         processKeyEvent(canvas, event, KeyConfigurationEvent.KEY_TYPED);
     }
-    
+
     private void processKeyEvent(Canvas canvas, KeyEvent event, int type) {
         KeyConfigurator handler = keyHandler;
         if (!keyHandlerTried) {
@@ -441,7 +441,7 @@ public class AddTool extends Tool {
             }
         }
     }
-    
+
     private void setFacing(Canvas canvas, Direction facing) {
         ComponentFactory source = getFactory();
         if (source == null) return;
@@ -465,7 +465,7 @@ public class AddTool extends Tool {
                 return;
             }
         }
-        
+
         ComponentFactory source = getFactory();
         if (source != null) {
             AttributeSet base = getBaseAttributes();

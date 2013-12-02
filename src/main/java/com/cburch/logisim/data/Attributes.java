@@ -21,15 +21,15 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Attributes {
     private Attributes() { }
-    
+
     private static class ConstantGetter implements StringGetter {
         private String str;
         public ConstantGetter(String str) { this.str = str; }
         @Override
         public String toString() { return str; }
     }
-    private static StringGetter getter(String s) { return new ConstantGetter(s); } 
-    
+    private static StringGetter getter(String s) { return new ConstantGetter(s); }
+
     //
     // methods with display name == standard name
     //
@@ -82,11 +82,11 @@ public class Attributes {
     public static Attribute<Location> forLocation(String name) {
         return forLocation(name, getter(name));
     }
-    
+
     public static Attribute<Color> forColor(String name) {
         return forColor(name, getter(name));
     }
-    
+
     //
     // methods with internationalization support
     //
@@ -139,7 +139,7 @@ public class Attributes {
     public static Attribute<Location> forLocation(String name, StringGetter disp) {
         return new LocationAttribute(name, disp);
     }
-    
+
     public static Attribute<Color> forColor(String name, StringGetter disp) {
         return new ColorAttribute(name, disp);
     }
@@ -258,7 +258,7 @@ public class Attributes {
             } else {
                 return Integer.valueOf((int) Long.parseLong(value, 10));
             }
-            
+
         }
     }
 
@@ -381,7 +381,7 @@ public class Attributes {
             return new FontChooser(value);
         }
     }
-    
+
     private static class FontChooser extends JFontChooser
             implements JInputComponent {
         FontChooser(Font initial) {
@@ -398,7 +398,7 @@ public class Attributes {
             setSelectedFont((Font) value);
         }
     }
-    
+
     private static class LocationAttribute extends Attribute<Location> {
         public LocationAttribute(String name, StringGetter desc) {
             super(name, desc);
@@ -445,7 +445,7 @@ public class Attributes {
             return new ColorChooser(init);
         }
     }
-    
+
     private static class ColorChooser extends ColorPicker
             implements JInputComponent {
         ColorChooser(Color initial) {

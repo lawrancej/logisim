@@ -32,17 +32,17 @@ import static com.cburch.logisim.util.LocaleString.*;
 class BuildCircuitButton extends JButton {
     private static class ProjectItem {
         Project project;
-        
+
         ProjectItem(Project project) {
             this.project = project;
         }
-        
+
         @Override
         public String toString() {
             return project.getLogisimFile().getDisplayName();
         }
     }
-    
+
     private class DialogPanel extends JPanel {
         private JLabel projectLabel = new JLabel();
         private JComboBox project;
@@ -50,7 +50,7 @@ class BuildCircuitButton extends JButton {
         private JTextField name = new JTextField(10);
         private JCheckBox twoInputs = new JCheckBox();
         private JCheckBox nands = new JCheckBox();
-        
+
         DialogPanel() {
             List<Project> projects = Projects.getOpenProjects();
             Object[] options = new Object[projects.size()];
@@ -69,13 +69,13 @@ class BuildCircuitButton extends JButton {
             } else if (initialSelection != null) {
                 project.setSelectedItem(initialSelection);
             }
-            
+
             Circuit defaultCircuit = model.getCurrentCircuit();
             if (defaultCircuit != null) {
                 name.setText(defaultCircuit.getName());
                 name.selectAll();
             }
-            
+
             VariableList outputs = model.getOutputs();
             boolean enableNands = true;
             for (int i = 0; i < outputs.size(); i++) {
@@ -84,13 +84,13 @@ class BuildCircuitButton extends JButton {
                 if (expr != null && expr.containsXor()) { enableNands = false; break; }
             }
             nands.setEnabled(enableNands);
-            
+
             GridBagLayout gb = new GridBagLayout();
             GridBagConstraints gc = new GridBagConstraints();
             setLayout(gb);
             gc.anchor = GridBagConstraints.LINE_START;
             gc.fill = GridBagConstraints.NONE;
-            
+
               gc.gridx = 0;
               gc.gridy = 0;
             gb.setConstraints(projectLabel, gc); add(projectLabel);
@@ -105,14 +105,14 @@ class BuildCircuitButton extends JButton {
             gb.setConstraints(twoInputs, gc); add(twoInputs);
               gc.gridy++;
             gb.setConstraints(nands, gc); add(nands);
-            
+
             projectLabel.setText(_("buildProjectLabel"));
             nameLabel.setText(_("buildNameLabel"));
             twoInputs.setText(_("buildTwoInputsLabel"));
             nands.setText(_("buildNandsLabel"));
         }
     }
-    
+
     private class MyListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -121,7 +121,7 @@ class BuildCircuitButton extends JButton {
             boolean twoInputs = false;
             boolean useNands = false;
             boolean replace = false;
-            
+
             boolean ok = false;
             while (!ok) {
                 DialogPanel dlog = new DialogPanel();
@@ -129,7 +129,7 @@ class BuildCircuitButton extends JButton {
                         dlog, _("buildDialogTitle"), JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if (action != JOptionPane.OK_OPTION) return;
-                                
+
                 ProjectItem projectItem = (ProjectItem) dlog.project.getSelectedItem();
                 if (projectItem == null) {
                     JOptionPane.showMessageDialog(parent, _("buildNeedProjectError"),
@@ -137,14 +137,14 @@ class BuildCircuitButton extends JButton {
                     continue;
                 }
                 dest = projectItem.project;
-                
+
                 name = dlog.name.getText().trim();
                 if (name.equals("")) {
                     JOptionPane.showMessageDialog(parent, _("buildNeedCircuitError"),
                             _("buildDialogErrorTitle"), JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
-                
+
                 if (dest.getLogisimFile().getCircuit(name) != null) {
                     int choice = JOptionPane.showConfirmDialog(parent,
                             _("buildConfirmReplaceMessage", name),
@@ -154,16 +154,16 @@ class BuildCircuitButton extends JButton {
                     }
                     replace = true;
                 }
-                
+
                 twoInputs = dlog.twoInputs.isSelected();
                 useNands = dlog.nands.isSelected();
                 ok = true;
             }
-            
+
             performAction(dest, name, replace, twoInputs, useNands);
         }
     }
-    
+
     private MyListener myListener = new MyListener();
     private JFrame parent;
     private AnalyzerModel model;
@@ -173,11 +173,11 @@ class BuildCircuitButton extends JButton {
         this.model = model;
         addActionListener(myListener);
     }
-    
+
     void localeChanged() {
         setText(_("buildCircuitButton"));
     }
-    
+
     private void performAction(Project dest, String name, boolean replace,
             final boolean twoInputs, final boolean useNands) {
         if (replace) {

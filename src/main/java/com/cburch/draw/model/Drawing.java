@@ -23,23 +23,23 @@ public class Drawing implements CanvasModel {
     private EventSourceWeakSupport<CanvasModelListener> listeners;
     private ArrayList<CanvasObject> canvasObjects;
     private DrawingOverlaps overlaps;
-    
+
     public Drawing() {
         listeners = new EventSourceWeakSupport<CanvasModelListener>();
         canvasObjects = new ArrayList<CanvasObject>();
         overlaps = new DrawingOverlaps();
     }
-    
+
     @Override
     public void addCanvasModelListener(CanvasModelListener l) {
         listeners.add(l);
     }
-    
+
     @Override
     public void removeCanvasModelListener(CanvasModelListener l) {
         listeners.remove(l);
     }
-    
+
     protected boolean isChangeAllowed(CanvasModelEvent e) {
         return true;
     }
@@ -63,19 +63,19 @@ public class Drawing implements CanvasModel {
             dup.dispose();
         }
     }
-    
+
     @Override
     public List<CanvasObject> getObjectsFromTop() {
         ArrayList<CanvasObject> ret = new ArrayList<CanvasObject>(getObjectsFromBottom());
         Collections.reverse(ret);
         return ret;
     }
-    
+
     @Override
     public List<CanvasObject> getObjectsFromBottom() {
         return Collections.unmodifiableList(canvasObjects);
     }
-    
+
     @Override
     public Collection<CanvasObject> getObjectsIn(Bounds bds) {
         ArrayList<CanvasObject> ret = null;
@@ -91,7 +91,7 @@ public class Drawing implements CanvasModel {
             return ret;
         }
     }
-    
+
     @Override
     public Collection<CanvasObject> getObjectsOverlapping(CanvasObject shape) {
         return overlaps.getObjectsOverlapping(shape);
@@ -113,7 +113,7 @@ public class Drawing implements CanvasModel {
     public void addObjects(Map<? extends CanvasObject, Integer> shapes) {
         addObjectsHelp(shapes);
     }
-    
+
     private void addObjectsHelp(Map<? extends CanvasObject, Integer> shapes) {
         // this is separate method so that subclass can call super.add to either
         // of the add methods, and it won't get redirected into the subclass
@@ -129,7 +129,7 @@ public class Drawing implements CanvasModel {
             fireChanged(e);
         }
     }
-    
+
     @Override
     public void removeObjects(Collection<? extends CanvasObject> shapes) {
         List<CanvasObject> found = restrict(shapes);
@@ -142,7 +142,7 @@ public class Drawing implements CanvasModel {
             fireChanged(e);
         }
     }
-    
+
     @Override
     public void translateObjects(Collection<? extends CanvasObject> shapes,
             int dx, int dy) {
@@ -156,7 +156,7 @@ public class Drawing implements CanvasModel {
             fireChanged(e);
         }
     }
-    
+
     @Override
     public void reorderObjects(List<ReorderRequest> requests) {
         boolean hasEffect = false;
@@ -206,7 +206,7 @@ public class Drawing implements CanvasModel {
             fireChanged(e);
         }
     }
-    
+
     @Override
     public Handle deleteHandle(Handle handle) {
         CanvasModelEvent e = CanvasModelEvent.forDeleteHandle(this, handle);
@@ -220,7 +220,7 @@ public class Drawing implements CanvasModel {
             return null;
         }
     }
-    
+
     @Override
     public void setAttributeValues(Map<AttributeMapKey, Object> values) {
         HashMap<AttributeMapKey, Object> oldValues;

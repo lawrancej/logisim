@@ -28,12 +28,12 @@ public class Tty extends InstanceFactory {
     private static final int CK = 1;
     private static final int WE = 2;
     private static final int IN = 3;
-    
+
     private static final int BORDER = 5;
     private static final int ROW_HEIGHT = 15;
-    private static final int COL_WIDTH = 7; 
+    private static final int COL_WIDTH = 7;
     private static final Color DEFAULT_BACKGROUND = new Color(0, 0, 0, 64);
-    
+
     private static final Font DEFAULT_FONT = new Font("monospaced", Font.PLAIN, 12);
 
     private static final Attribute<Integer> ATTR_COLUMNS
@@ -53,7 +53,7 @@ public class Tty extends InstanceFactory {
                 Color.BLACK, DEFAULT_BACKGROUND
             });
         setIconName("tty.svg");
-        
+
         Port[] ps = new Port[4];
         ps[CLR] = new Port(20,  10, Port.INPUT, 1);
         ps[CK]  = new Port( 0,   0, Port.INPUT, 1);
@@ -65,7 +65,7 @@ public class Tty extends InstanceFactory {
         ps[IN].setToolTip(__("ttyInputTip"));
         setPorts(ps);
     }
-    
+
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
         int rows = getRowCount(attrs.getValue(ATTR_ROWS));
@@ -97,7 +97,7 @@ public class Tty extends InstanceFactory {
         Value clock = circState.getPort(CK);
         Value enable = circState.getPort(WE);
         Value in = circState.getPort(IN);
-        
+
         synchronized(state) {
             Value lastClock = state.setLastClock(clock);
             if (clear == Value.TRUE) {
@@ -142,7 +142,7 @@ public class Tty extends InstanceFactory {
         painter.drawPort(CLR);
         painter.drawPort(WE);
         painter.drawPort(IN);
-        
+
         int rows = getRowCount(painter.getAttributeValue(ATTR_ROWS));
         int cols = getColumnCount(painter.getAttributeValue(ATTR_COLUMNS));
 
@@ -198,17 +198,17 @@ public class Tty extends InstanceFactory {
         }
         return ret;
     }
-    
+
     public void sendToStdout(InstanceState state) {
         TtyState tty = getTtyState(state);
         tty.setSendStdout(true);
     }
-    
+
     private static int getRowCount(Object val) {
         if (val instanceof Integer) return ((Integer) val).intValue();
         else return 4;
     }
-    
+
     private static int getColumnCount(Object val) {
         if (val instanceof Integer) return ((Integer) val).intValue();
         else return 16;

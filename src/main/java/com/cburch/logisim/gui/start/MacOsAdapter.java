@@ -16,7 +16,7 @@ import com.cburch.logisim.gui.prefs.PreferencesFrame;
 import com.cburch.logisim.proj.ProjectActions;
 
 class MacOsAdapter { //MAC extends ApplicationAdapter {
-    
+
     private static class MyListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
@@ -41,7 +41,7 @@ class MacOsAdapter { //MAC extends ApplicationAdapter {
             }
         }
     }
-    
+
     static void addListeners(boolean added) {
         MyListener myListener = new MyListener();
         if (!added) MRJAdapter.addOpenDocumentListener(myListener);
@@ -50,7 +50,7 @@ class MacOsAdapter { //MAC extends ApplicationAdapter {
         MRJAdapter.addQuitApplicationListener(myListener);
         MRJAdapter.addAboutListener(myListener);
     }
-    
+
     public static void register() {
         //MAC Application.getApplication().addApplicationListener(new MacOsAdapter());
     }

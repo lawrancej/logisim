@@ -13,7 +13,7 @@ import com.cburch.logisim.tools.Tool;
 public class ProjectExplorerToolNode extends ProjectExplorerModel.Node<Tool>
         implements CircuitListener {
     private Circuit circuit;
-    
+
     public ProjectExplorerToolNode(ProjectExplorerModel model, Tool tool) {
         super(model, tool);
         if (tool instanceof AddTool) {
@@ -24,11 +24,11 @@ public class ProjectExplorerToolNode extends ProjectExplorerModel.Node<Tool>
             }
         }
     }
-    
+
     @Override ProjectExplorerToolNode create(Tool userObject) {
         return new ProjectExplorerToolNode(getModel(), userObject);
     }
-    
+
     @Override void decommission() {
         if (circuit != null) {
             circuit.removeCircuitListener(this);

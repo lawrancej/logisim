@@ -46,7 +46,7 @@ public class SelectionActions {
             return new Anchor(sel, numAnchor);
         }
     }
-    
+
     // clears the selection, anchoring all floating elements in selection
     public static Action drop(Selection sel, Collection<Component> comps) {
         HashSet<Component> floating = new HashSet<Component>(sel.getFloatingComponents());
@@ -71,7 +71,7 @@ public class SelectionActions {
             return new Drop(sel, toDrop, numDrop);
         }
     }
-    
+
     public static Action dropAll(Selection sel) {
         return drop(sel, sel.getComponents());
     }
@@ -79,7 +79,7 @@ public class SelectionActions {
     public static Action clear(Selection sel) {
         return new Delete(sel);
     }
-    
+
     public static Action duplicate(Selection sel) {
         return new Duplicate(sel);
     }
@@ -96,18 +96,18 @@ public class SelectionActions {
         HashMap<Component, Component> replacements = getReplacementMap(proj);
         return new Paste(sel, replacements);
     }
-    
+
     public static Action translate(Selection sel, int dx, int dy, ReplacementMap repl) {
         return new Translate(sel, dx, dy, repl);
     }
-    
+
     private static class Drop extends Action {
         private Selection sel;
         private Component[] drops;
         private int numDrops;
         private SelectionSave before;
         private CircuitTransaction xnReverse;
-        
+
         Drop(Selection sel, Collection<Component> toDrop, int numDrops) {
             this.sel = sel;
             this.drops = new Component[toDrop.size()];
@@ -143,7 +143,7 @@ public class SelectionActions {
             Action last;
             if (other instanceof JoinedAction) last = ((JoinedAction) other).getLastAction();
             else last = other;
-            
+
             SelectionSave otherAfter = null;
             if (last instanceof Paste) {
                 otherAfter = ((Paste) last).after;
@@ -153,13 +153,13 @@ public class SelectionActions {
             return otherAfter != null && otherAfter.equals(this.before);
         }
     }
-    
+
     private static class Anchor extends Action {
         private Selection sel;
         private int numAnchor;
         private SelectionSave before;
         private CircuitTransaction xnReverse;
-        
+
         Anchor(Selection sel, int numAnchor) {
             this.sel = sel;
             this.before = SelectionSave.create(sel);
@@ -191,7 +191,7 @@ public class SelectionActions {
             Action last;
             if (other instanceof JoinedAction) last = ((JoinedAction) other).getLastAction();
             else last = other;
-            
+
             SelectionSave otherAfter = null;
             if (last instanceof Paste) {
                 otherAfter = ((Paste) last).after;
@@ -315,24 +315,24 @@ public class SelectionActions {
             Clipboard.set(oldClip);
         }
     }
-    
+
     private static HashMap<Component, Component> getReplacementMap(Project proj) {
         HashMap<Component, Component> replMap;
         replMap = new HashMap<Component, Component>();
-        
+
         LogisimFile file = proj.getLogisimFile();
         ArrayList<Library> libs = new ArrayList<Library>();
         libs.add(file);
         libs.addAll(file.getLibraries());
-        
-        ArrayList<String> dropped = null; 
+
+        ArrayList<String> dropped = null;
         Clipboard clip = Clipboard.get();
         Collection<Component> comps = clip.getComponents();
         HashMap<ComponentFactory, ComponentFactory> factoryReplacements;
         factoryReplacements = new HashMap<ComponentFactory, ComponentFactory>();
         for (Component comp : comps) {
             if (comp instanceof Wire) continue;
-            
+
             ComponentFactory compFactory = comp.getFactory();
             ComponentFactory copyFactory = findComponentFactory(compFactory, libs, false);
             if (factoryReplacements.containsKey(compFactory)) {
@@ -363,7 +363,7 @@ public class SelectionActions {
                     factoryReplacements.put(compFactory, copyFactory);
                 }
             }
-            
+
             if (copyFactory == null) {
                 replMap.put(comp, null);
             } else if (copyFactory != compFactory) {
@@ -373,7 +373,7 @@ public class SelectionActions {
                 replMap.put(comp, copy);
             }
         }
-        
+
         if (dropped != null) {
             Collections.sort(dropped);
             StringBuilder droppedStr = new StringBuilder();
@@ -392,7 +392,7 @@ public class SelectionActions {
                     if (curCount > 1) {
                         droppedStr.append(" \u00d7 " + curCount);
                     }
-                    
+
                     curName = nextName;
                     curCount = 1;
                 }
@@ -408,10 +408,10 @@ public class SelectionActions {
                     _("pasteDropTitle"),
                     JOptionPane.WARNING_MESSAGE);
         }
-        
+
         return replMap;
     }
-    
+
     private static ComponentFactory findComponentFactory(ComponentFactory factory,
             ArrayList<Library> libs, boolean acceptNameMatch) {
         String name = factory.getName();
@@ -440,7 +440,7 @@ public class SelectionActions {
         private Selection sel;
         private CircuitTransaction xnReverse;
         private SelectionSave after;
-        private HashMap<Component,Component> componentReplacements; 
+        private HashMap<Component,Component> componentReplacements;
 
         Paste(Selection sel, HashMap<Component, Component> replacements) {
             this.sel = sel;
@@ -468,7 +468,7 @@ public class SelectionActions {
                 xnReverse = null;
             }
         }
-        
+
         private Collection<Component> computeAdditions(Collection<Component> comps) {
             HashMap<Component, Component> replMap = componentReplacements;
             ArrayList<Component> toAdd = new ArrayList<Component>(comps.size());
@@ -485,7 +485,7 @@ public class SelectionActions {
             }
             return toAdd;
         }
-        
+
         @Override
         public void undo(Project proj) {
             if (xnReverse != null) {
@@ -501,7 +501,7 @@ public class SelectionActions {
         private ReplacementMap replacements;
         private SelectionSave before;
         private CircuitTransaction xnReverse;
-        
+
         Translate(Selection sel, int dx, int dy, ReplacementMap replacements) {
             this.sel = sel;
             this.dx = dx;
@@ -539,7 +539,7 @@ public class SelectionActions {
             Action last;
             if (other instanceof JoinedAction) last = ((JoinedAction) other).getLastAction();
             else last = other;
-            
+
             SelectionSave otherAfter = null;
             if (last instanceof Paste) {
                 otherAfter = ((Paste) last).after;

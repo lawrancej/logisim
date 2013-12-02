@@ -36,7 +36,7 @@ public class Startup {
     static void doPrint(File file) {
         if (startupTemp != null) startupTemp.doPrintFile(file);
     }
-    
+
     private void doOpenFile(File file) {
         if (initialized) {
             ProjectActions.doOpen(null, null, file);
@@ -54,7 +54,7 @@ public class Startup {
             filesToPrint.add(file);
         }
     }
-    
+
     private static void registerHandler() {
         try {
             Class<?> needed1 = Class.forName("com.apple.eawt.Application");
@@ -71,7 +71,7 @@ public class Startup {
             } catch (Throwable t2) { }
         }
     }
-    
+
     // based on command line
     boolean isTty;
     private File templFile = null;
@@ -82,7 +82,7 @@ public class Startup {
     private File loadFile;
     private HashMap<File,File> substitutions = new HashMap<File,File>();
     private int ttyFormat = 0;
-    
+
     // from other sources
     private boolean initialized = false;
     private SplashScreen monitor = null;
@@ -92,19 +92,19 @@ public class Startup {
         this.isTty = isTty;
         this.showSplash = !isTty;
     }
-    
+
     List<File> getFilesToOpen() {
         return filesToOpen;
     }
-    
+
     File getLoadFile() {
         return loadFile;
     }
-    
+
     int getTtyFormat() {
         return ttyFormat;
     }
-    
+
     Map<File,File> getSubstitutions() {
         return Collections.unmodifiableMap(substitutions);
     }
@@ -120,7 +120,7 @@ public class Startup {
                 return;
             }
         }
-        
+
         // kick off the progress monitor
         // (The values used for progress values are based on a single run where
         // I loaded a large file.)
@@ -133,7 +133,7 @@ public class Startup {
                 showSplash = false;
             }
         }
-        
+
         // pre-load the two basic component libraries, just so that the time
         // taken is shown separately in the progress bar.
         if (showSplash) monitor.setProgress(SplashScreen.LIBRARIES);
@@ -148,7 +148,7 @@ public class Startup {
 
         // load in template
         loadTemplate(templLoader, templFile, templEmpty);
-        
+
         // now that the splash screen is almost gone, we do some last-minute
         // interface initialization
         if (showSplash) monitor.setProgress(SplashScreen.GUI_INIT);
@@ -165,7 +165,7 @@ public class Startup {
         // if user has double-clicked a file to open, we'll
         // use that as the file to open now.
         initialized = true;
-        
+
         // load file
         if (filesToOpen.isEmpty()) {
             ProjectActions.doNew(monitor, true);
@@ -236,24 +236,24 @@ public class Startup {
                 isClearPreferences = true;
             }
         }
-        
+
         if (!isTty) {
             // we're using the GUI: Set up the Look&Feel to match the platform
             System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Logisim");
             System.setProperty("apple.laf.useScreenMenuBar", "true");
-            
+
             LocaleManager.setReplaceAccents(false);
-    
+
             // Initialize graphics acceleration if appropriate
             AppPreferences.handleGraphicsAcceleration();
         }
-        
+
         Startup ret = new Startup(isTty);
         startupTemp = ret;
         if (!isTty) {
             registerHandler();
         }
-        
+
         if (isClearPreferences) {
             AppPreferences.clear();
         }

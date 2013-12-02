@@ -22,14 +22,14 @@ class SelectionItem implements AttributeListener, CircuitListener {
     private int radix = 2;
     private String shortDescriptor;
     private String longDescriptor;
-    
+
     public SelectionItem(Model model, Component[] path, Component comp, Object option) {
         this.model = model;
         this.path = path;
         this.comp = comp;
         this.option = option;
         computeDescriptors();
-        
+
         if (path != null) {
             model.getCircuitState().getCircuit().addCircuitListener(this);
             for (int i = 0; i < path.length; i++) {
@@ -40,10 +40,10 @@ class SelectionItem implements AttributeListener, CircuitListener {
         }
         comp.getAttributeSet().addAttributeListener(this);
     }
-    
+
     private boolean computeDescriptors() {
         boolean changed = false;
-        
+
         Loggable log = (Loggable) comp.getFeature(Loggable.class);
         String newShort = log.getLogName(option);
         if (newShort == null || newShort.equals("")) {
@@ -76,40 +76,40 @@ class SelectionItem implements AttributeListener, CircuitListener {
             changed = true;
             longDescriptor = newLong;
         }
-        
+
         return changed;
     }
-    
+
     public Component[] getPath() {
         return path;
     }
-    
+
     public Component getComponent() {
         return comp;
     }
-    
+
     public Object getOption() {
         return option;
     }
-    
+
     public int getRadix() {
         return radix;
     }
-    
+
     public void setRadix(int value) {
         radix = value;
         model.fireSelectionChanged(new ModelEvent());
     }
-    
+
     public String toShortString() {
         return shortDescriptor;
     }
-    
+
     @Override
     public String toString() {
         return longDescriptor;
     }
-    
+
     public Value fetchValue(CircuitState root) {
         CircuitState cur = root;
         for (int i = 0; i < path.length; i++) {
@@ -148,12 +148,12 @@ class SelectionItem implements AttributeListener, CircuitListener {
                 }
             }
             if (circComp == null) return;
-            
+
             if (action == CircuitEvent.ACTION_REMOVE
                     && event.getData() != circComp) {
                 return;
             }
-            
+
             int index = model.getSelection().indexOf(this);
             if (index < 0) return;
             model.getSelection().remove(index);

@@ -91,7 +91,7 @@ public class TransmissionGate extends InstanceFactory {
         }
         instance.setPorts(ports);
     }
-    
+
     @Override
     public Object getInstanceFeature(final Instance instance, Object key) {
         if (key == WireRepair.class) {
@@ -111,7 +111,7 @@ public class TransmissionGate extends InstanceFactory {
         return Bounds.create(0, -20, 40, 40).rotate(Direction.WEST, facing, 0,
                 0);
     }
-    
+
     @Override
     public boolean contains(Location loc, AttributeSet attrs) {
         if (super.contains(loc, attrs)) {
@@ -127,7 +127,7 @@ public class TransmissionGate extends InstanceFactory {
     public void propagate(InstanceState state) {
         state.setPort(OUTPUT, computeOutput(state), 1);
     }
-    
+
     private Value computeOutput(InstanceState state) {
         BitWidth width = state.getAttributeValue(StdAttr.WIDTH);
         Value input = state.getPort(INPUT);
@@ -181,7 +181,7 @@ public class TransmissionGate extends InstanceFactory {
         g.rotate(radians, bds.getX() + 20, bds.getY() + 20);
         g.translate(bds.getX(), bds.getY());
         GraphicsUtil.switchToWidth(g, Wire.WIDTH);
-        
+
         Color gate0 = g.getColor();
         Color gate1 = gate0;
         Color input = gate0;
@@ -194,15 +194,15 @@ public class TransmissionGate extends InstanceFactory {
             output = painter.getPort(OUTPUT).getColor();
             platform = computeOutput(painter).getColor();
         }
-        
+
         g.setColor(flip ? input : output);
         g.drawLine(0, 20, 11, 20);
         g.drawLine(11, 13, 11, 27);
-        
+
         g.setColor(flip ? output : input);
         g.drawLine(29, 20, 40, 20);
         g.drawLine(29, 13, 29, 27);
-        
+
         g.setColor(gate0);
         g.drawLine(20, 35, 20, 40);
         GraphicsUtil.switchToWidth(g, 1);

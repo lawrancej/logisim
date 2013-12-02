@@ -58,7 +58,7 @@ public class Counter extends InstanceFactory {
         setInstancePoker(RegisterPoker.class);
         setInstanceLogger(RegisterLogger.class);
         setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
-        
+
         Port[] ps = new Port[7];
         ps[OUT] = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
         ps[IN]  = new Port(-30,   0, Port.INPUT, StdAttr.WIDTH);
@@ -76,12 +76,12 @@ public class Counter extends InstanceFactory {
         ps[CARRY].setToolTip(__("counterCarryTip"));
         setPorts(ps);
     }
-    
+
     @Override
     public AttributeSet createAttributeSet() {
         return new CounterAttributes();
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         Bounds bds = instance.getBounds();
@@ -139,7 +139,7 @@ public class Counter extends InstanceFactory {
                 }
             } else if (ld) { // trigger, enable = 0, load = 1: should load
                 Value in = state.getPort(IN);
-                newVal = in.isFullyDefined() ? in.toIntValue() : 0; 
+                newVal = in.isFullyDefined() ? in.toIntValue() : 0;
                 if (newVal > max) newVal &= max;
             } else { // trigger, enable = 0, load = 0: no change
                 newVal = oldVal;
@@ -159,7 +159,7 @@ public class Counter extends InstanceFactory {
             }
             */
         }
-        
+
         data.value = newValue.toIntValue();
         state.setPort(OUT, newValue, DELAY);
         state.setPort(CARRY, carry ? Value.TRUE : Value.FALSE, DELAY);

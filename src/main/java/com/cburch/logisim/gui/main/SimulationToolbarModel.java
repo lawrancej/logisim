@@ -26,10 +26,10 @@ class SimulationToolbarModel extends AbstractToolbarModel
     private LogisimToolbarItem tickEnable;
     private LogisimToolbarItem tickStep;
     private List<ToolbarItem> items;
-    
+
     public SimulationToolbarModel(Project project, MenuListener menu) {
         this.project = project;
-        
+
         simEnable = new LogisimToolbarItem(menu, "simplay.svg", LogisimMenuBar.SIMULATE_ENABLE,
                 __("simulateEnableStepsTip"));
         simStep = new LogisimToolbarItem(menu, "simstep.svg", LogisimMenuBar.SIMULATE_STEP,
@@ -38,14 +38,14 @@ class SimulationToolbarModel extends AbstractToolbarModel
                 __("simulateEnableTicksTip"));
         tickStep = new LogisimToolbarItem(menu, "simtstep.svg", LogisimMenuBar.TICK_STEP,
                 __("simulateTickTip"));
-        
+
         items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {
                 simEnable,
                 simStep,
                 tickEnable,
                 tickStep,
             }));
-        
+
         menu.getMenuBar().addEnableListener(this);
         stateChanged(null);
     }
@@ -54,7 +54,7 @@ class SimulationToolbarModel extends AbstractToolbarModel
     public List<ToolbarItem> getItems() {
         return items;
     }
-    
+
     @Override
     public boolean isSelected(ToolbarItem item) {
         return false;
@@ -72,7 +72,7 @@ class SimulationToolbarModel extends AbstractToolbarModel
     //
     @Override
     public void stateChanged(ChangeEvent e) {
-        Simulator sim = project.getSimulator(); 
+        Simulator sim = project.getSimulator();
         boolean running = sim != null && sim.isRunning();
         boolean ticking = sim != null && sim.isTicking();
         simEnable.setIcon(running ? "simstop.svg" : "simplay.svg");

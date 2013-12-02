@@ -20,11 +20,11 @@ import static com.cburch.logisim.util.LocaleString._;
 
 class TableTabClip implements ClipboardOwner {
     private static final DataFlavor binaryFlavor = new DataFlavor(Data.class, "Binary data");
-    
+
     private static class Data implements Transferable, Serializable {
         private String[] headers;
         private String[][] contents;
-        
+
         Data(String[] headers, String[][] contents) {
             this.headers = headers;
             this.contents = contents;
@@ -58,17 +58,17 @@ class TableTabClip implements ClipboardOwner {
                 }
                 return buf.toString();
             } else {
-                throw new UnsupportedFlavorException(flavor); 
+                throw new UnsupportedFlavorException(flavor);
             }
         }
     }
-    
+
     private TableTab table;
-    
+
     TableTabClip(TableTab table) {
         this.table = table;
     }
-    
+
     public void copy() {
         TableTabCaret caret = table.getCaret();
         int c0 = caret.getCursorCol();
@@ -77,7 +77,7 @@ class TableTabClip implements ClipboardOwner {
         int r1 = caret.getMarkRow();
         if (c1 < c0) { int t = c0; c0 = c1; c1 = t; }
         if (r1 < r0) { int t = r0; r0 = r1; r1 = t; }
-        
+
         TruthTable t = table.getTruthTable();
         int inputs = t.getInputColumnCount();
         String[] header = new String[c1 - c0 + 1];
@@ -98,17 +98,17 @@ class TableTabClip implements ClipboardOwner {
                 }
             }
         }
-        
+
         Clipboard clip = table.getToolkit().getSystemClipboard();
         clip.setContents(new Data(header, contents), this);
     }
-    
+
     public boolean canPaste() {
         Clipboard clip = table.getToolkit().getSystemClipboard();
         Transferable xfer = clip.getContents(this);
         return xfer.isDataFlavorSupported(binaryFlavor);
     }
-    
+
     public void paste() {
         Clipboard clip = table.getToolkit().getSystemClipboard();
         Transferable xfer;
@@ -208,7 +208,7 @@ class TableTabClip implements ClipboardOwner {
         } else {
             if (r0 > r1) { int t = r0; r0 = r1; r1 = t; }
             if (c0 > c1) { int t = c0; c0 = c1; c1 = t; }
-            
+
             if (r1 - r0 + 1 != entries.length
                     || c1 - c0 + 1 != entries[0].length) {
                 JOptionPane.showMessageDialog(table.getRootPane(),
@@ -227,7 +227,7 @@ class TableTabClip implements ClipboardOwner {
             }
         }
     }
-    
+
     @Override
     public void lostOwnership(Clipboard clip, Transferable transfer) { }
 

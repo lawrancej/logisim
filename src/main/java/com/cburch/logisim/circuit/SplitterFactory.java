@@ -46,7 +46,7 @@ public class SplitterFactory extends AbstractComponentFactory {
     public AttributeSet createAttributeSet() {
         return new SplitterAttributes();
     }
-    
+
     @Override
     public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
         if (attr == SplitterAttributes.ATTR_APPEARANCE) {

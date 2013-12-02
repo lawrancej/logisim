@@ -43,11 +43,11 @@ public class SubcircuitFactory extends InstanceFactory {
     private class CircuitFeature implements StringGetter, MenuExtender, ActionListener {
         private Instance instance;
         private Project proj;
-        
+
         public CircuitFeature(Instance instance) {
             this.instance = instance;
         }
-        
+
         @Override
         public String toString() {
             return source.getName();
@@ -87,7 +87,7 @@ public class SubcircuitFactory extends InstanceFactory {
     public Circuit getSubcircuit() {
         return source;
     }
-    
+
     @Override
     public String getName() {
         return source.getName();
@@ -105,7 +105,7 @@ public class SubcircuitFactory extends InstanceFactory {
         Bounds bds = source.getAppearance().getOffsetBounds();
         return bds.rotate(defaultFacing, facing, 0, 0);
     }
-    
+
     @Override
     public boolean contains(Location loc, AttributeSet attrs) {
         if (super.contains(loc, attrs)) {
@@ -127,7 +127,7 @@ public class SubcircuitFactory extends InstanceFactory {
     public AttributeSet createAttributeSet() {
         return new CircuitAttributes(source);
     }
-    
+
     //
     // methods for configuring instances
     //
@@ -135,12 +135,12 @@ public class SubcircuitFactory extends InstanceFactory {
     public void configureNewInstance(Instance instance) {
         CircuitAttributes attrs = (CircuitAttributes) instance.getAttributeSet();
         attrs.setSubcircuit(instance);
-        
+
         instance.addAttributeListener();
         computePorts(instance);
         // configureLabel(instance); already done in computePorts
     }
-    
+
     @Override
     public void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.FACING) {
@@ -149,13 +149,13 @@ public class SubcircuitFactory extends InstanceFactory {
             configureLabel(instance);
         }
     }
-    
+
     @Override
     public Object getInstanceFeature(Instance instance, Object key) {
         if (key == MenuExtender.class) return new CircuitFeature(instance);
         return super.getInstanceFeature(instance, key);
     }
-    
+
     void computePorts(Instance instance) {
         Direction facing = instance.getAttributeValue(StdAttr.FACING);
         Map<Location, Instance> portLocs = source.getAppearance().getPortOffsets(facing);
@@ -170,24 +170,24 @@ public class SubcircuitFactory extends InstanceFactory {
             BitWidth width = pin.getAttributeValue(StdAttr.WIDTH);
             ports[i] = new Port(loc.getX(), loc.getY(), type, width);
             pins[i] = pin;
-            
+
             String label = pin.getAttributeValue(StdAttr.LABEL);
             if (label != null && label.length() > 0) {
                 ports[i].setToolTip(StringUtil.constantGetter(label));
             }
         }
-        
+
         CircuitAttributes attrs = (CircuitAttributes) instance.getAttributeSet();
         attrs.setPinInstances(pins);
         instance.setPorts(ports);
         instance.recomputeBounds();
         configureLabel(instance); // since this affects the circuit's bounds
     }
-    
+
     private void configureLabel(Instance instance) {
         Bounds bds = instance.getBounds();
         Direction loc = instance.getAttributeValue(CircuitAttributes.LABEL_LOCATION_ATTR);
-        
+
         int x = bds.getX() + bds.getWidth() / 2;
         int y = bds.getY() + bds.getHeight() / 2;
         int ha = GraphicsUtil.H_CENTER;
@@ -214,11 +214,11 @@ public class SubcircuitFactory extends InstanceFactory {
     public CircuitState getSubstate(CircuitState superState, Instance instance) {
         return getSubstate(createInstanceState(superState, instance));
     }
-    
+
     public CircuitState getSubstate(CircuitState superState, Component comp) {
         return getSubstate(createInstanceState(superState, comp));
     }
-    
+
     private CircuitState getSubstate(InstanceState instanceState) {
         CircuitState subState = (CircuitState) instanceState.getData();
         if (subState == null) {
@@ -251,10 +251,10 @@ public class SubcircuitFactory extends InstanceFactory {
             }
         }
     }
-    
+
     //
     // user interface features
-    //    
+    //
     @Override
     public void paintGhost(InstancePainter painter) {
         Graphics g = painter.getGraphics();
@@ -277,7 +277,7 @@ public class SubcircuitFactory extends InstanceFactory {
         paintBase(painter, painter.getGraphics());
         painter.drawPorts();
     }
-    
+
     private void paintBase(InstancePainter painter, Graphics g) {
         CircuitAttributes attrs = (CircuitAttributes) painter.getAttributeSet();
         Direction facing = attrs.getFacing();
@@ -289,7 +289,7 @@ public class SubcircuitFactory extends InstanceFactory {
         g.translate(-loc.getX(), -loc.getY());
         painter.drawLabel();
     }
-    
+
     private void drawCircuitLabel(InstancePainter painter, Bounds bds,
             Direction facing, Direction defaultFacing) {
         AttributeSet staticAttrs = source.getStaticAttributes();
@@ -307,7 +307,7 @@ public class SubcircuitFactory extends InstanceFactory {
                 else if (c == '\\') backs = true;
                 back = label.indexOf('\\', back + 2);
             }
-            
+
             int x = bds.getX() + bds.getWidth() / 2;
             int y = bds.getY() + bds.getHeight() / 2;
             Graphics g = painter.getGraphics().create();
@@ -322,7 +322,7 @@ public class SubcircuitFactory extends InstanceFactory {
             } else {
                 FontMetrics fm = g.getFontMetrics();
                 int height = fm.getHeight();
-                y = y - (height * lines - fm.getLeading()) / 2 + fm.getAscent(); 
+                y = y - (height * lines - fm.getLeading()) / 2 + fm.getAscent();
                 back = label.indexOf('\\');
                 while (back >= 0 && back <= label.length() - 2) {
                     char c = label.charAt(back + 1);

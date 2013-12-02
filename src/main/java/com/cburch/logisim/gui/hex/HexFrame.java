@@ -40,12 +40,12 @@ public class HexFrame extends LFrame {
             super(_("hexFrameMenuItem"), false);
             LocaleManager.addLocaleListener(this);
         }
-        
+
         @Override
         public JFrame getJFrame(boolean create) {
             return HexFrame.this;
         }
-        
+
         @Override
         public void localeChanged() {
             setText(_("hexFrameMenuItem"));
@@ -55,7 +55,7 @@ public class HexFrame extends LFrame {
     private class MyListener
             implements ActionListener, LocaleListener {
         private File lastFile = null;
-        
+
         @Override
         public void actionPerformed(ActionEvent event) {
             Object src = event.getSource();
@@ -93,7 +93,7 @@ public class HexFrame extends LFrame {
                 HexFrame.this.processWindowEvent(e);
             }
         }
-        
+
         @Override
         public void localeChanged() {
             setTitle(_("hexFrameTitle"));
@@ -102,15 +102,15 @@ public class HexFrame extends LFrame {
             close.setText(_("closeButton"));
         }
     }
-    
+
     private class EditListener implements ActionListener, ChangeListener {
         private Clip clip = null;
-        
+
         private Clip getClip() {
             if (clip == null) clip = new Clip(editor);
             return clip;
         }
-        
+
         private void register(LogisimMenuBar menubar) {
             menubar.addActionListener(LogisimMenuBar.CUT, this);
             menubar.addActionListener(LogisimMenuBar.COPY, this);
@@ -119,7 +119,7 @@ public class HexFrame extends LFrame {
             menubar.addActionListener(LogisimMenuBar.SELECT_ALL, this);
             enableItems(menubar);
         }
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             Object src = e.getSource();
@@ -136,7 +136,7 @@ public class HexFrame extends LFrame {
                 editor.selectAll();
             }
         }
-        
+
         private void enableItems(LogisimMenuBar menubar) {
             boolean sel = editor.selectionExists();
             boolean clip = true; //TODO editor.clipboardExists();
@@ -167,7 +167,7 @@ public class HexFrame extends LFrame {
 
         LogisimMenuBar menubar = new LogisimMenuBar(this, proj);
         setJMenuBar(menubar);
-        
+
         this.model = model;
         this.editor = new HexEditor(model);
 
@@ -178,7 +178,7 @@ public class HexFrame extends LFrame {
         open.addActionListener(myListener);
         save.addActionListener(myListener);
         close.addActionListener(myListener);
-        
+
         Dimension pref = editor.getPreferredSize();
         JScrollPane scroll = new JScrollPane(editor,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
@@ -194,7 +194,7 @@ public class HexFrame extends LFrame {
         LocaleManager.addLocaleListener(myListener);
         myListener.localeChanged();
         pack();
-        
+
         Dimension size = getSize();
         Dimension screen = getToolkit().getScreenSize();
         if (size.width > screen.width || size.height > screen.height) {
@@ -207,7 +207,7 @@ public class HexFrame extends LFrame {
         editor.getCaret().setDot(0, false);
         editListener.register(menubar);
     }
-    
+
     @Override
     public void setVisible(boolean value) {
         if (value && !isVisible()) {

@@ -12,7 +12,7 @@ import com.cburch.logisim.util.Cache;
  */
 public class Location implements Comparable<Location> {
     private static final Cache cache = new Cache();
-    
+
     private final int hashCode;
     private final int x;
     private final int y;
@@ -30,11 +30,11 @@ public class Location implements Comparable<Location> {
     public int getY() {
         return y;
     }
-    
+
     public int manhattanDistanceTo(Location o) {
         return Math.abs(o.x - this.x) + Math.abs(o.y - this.y);
     }
-    
+
     public int manhattanDistanceTo(int x, int y) {
         return Math.abs(x - this.x) + Math.abs(y - this.y);
     }
@@ -43,11 +43,11 @@ public class Location implements Comparable<Location> {
         if (dx == 0 && dy == 0) return this;
         return Location.create(x + dx, y + dy);
     }
-    
+
     public Location translate(Direction dir, int dist) {
         return translate(dir, dist, 0);
     }
-    
+
     public Location translate(Direction dir, int dist, int right) {
         if (dist == 0 && right == 0) return this;
         if (dir == Direction.EAST) return Location.create(x + dist, y + right);
@@ -56,14 +56,14 @@ public class Location implements Comparable<Location> {
         if (dir == Direction.NORTH) return Location.create(x + right, y - dist);
         return Location.create(x + dist, y + right);
     }
-    
+
     // rotates this around (xc,yc) assuming that this is facing in the
     // from direction and the returned bounds should face in the to direction.
     public Location rotate(Direction from, Direction to, int xc, int yc) {
         int degrees = to.toDegrees() - from.toDegrees();
         while (degrees >= 360) degrees -= 360;
         while (degrees < 0) degrees += 360;
-        
+
         int dx = x - xc;
         int dy = y - yc;
         if (degrees == 90) {

@@ -40,7 +40,7 @@ public class TextTool extends Tool {
             caretCreatingText = false;
             caret = null;
         }
-        
+
         @Override
         public void editingStopped(CaretEvent e) {
             if (e.getCaret() != caret) {
@@ -49,7 +49,7 @@ public class TextTool extends Tool {
             }
             caret.removeCaretListener(this);
             caretCircuit.removeCircuitListener(this);
-            
+
             String val = caret.getText();
             boolean isEmpty = (val == null || val.equals(""));
             Action a;
@@ -84,7 +84,7 @@ public class TextTool extends Tool {
             caretComponent = null;
             caretCreatingText = false;
             caret = null;
-            
+
             if (a != null) proj.doAction(a);
         }
 
@@ -121,12 +121,12 @@ public class TextTool extends Tool {
     public TextTool() {
         attrs = Text.FACTORY.createAttributeSet();
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other instanceof TextTool;
     }
-    
+
     @Override
     public int hashCode() {
         return TextTool.class.hashCode();

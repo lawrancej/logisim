@@ -56,7 +56,7 @@ public class Loader implements LibraryLoader {
             return _("jarFileFilter");
         }
     }
-    
+
     // fixed
     private Component parent;
     private Builtin builtin = new Builtin();
@@ -70,15 +70,15 @@ public class Loader implements LibraryLoader {
         this.parent = parent;
         clear();
     }
-    
+
     public Builtin getBuiltin() {
         return builtin;
     }
-    
+
     public void setParent(Component value) {
         parent = value;
     }
-    
+
     private File getSubstitution(File source) {
         File ret = substitutions.get(source);
         return ret == null ? source : ret;
@@ -117,7 +117,7 @@ public class Loader implements LibraryLoader {
         filesOpening.clear();
         mainFile = null;
     }
-    
+
     public LogisimFile openLogisimFile(File file, Map<File,File> substitutions)
             throws LoadFailedException {
         this.substitutions = substitutions;
@@ -138,7 +138,7 @@ public class Loader implements LibraryLoader {
             throw new LoadFailedException(e.getMessage(), e.isShown());
         }
     }
-    
+
     public LogisimFile openLogisimFile(InputStream reader)
             throws LoadFailedException, IOException {
         LogisimFile ret = null;
@@ -160,16 +160,16 @@ public class Loader implements LibraryLoader {
         }
         return ret;
     }
-    
+
     public Library loadJarLibrary(File file, String className) {
         File actual = getSubstitution(file);
         return LibraryManager.instance.loadJarLibrary(this, actual, className);
     }
-    
+
     public void reload(LoadedLibrary lib) {
         LibraryManager.instance.reload(this, lib);
     }
-    
+
     public boolean save(LogisimFile file, File dest) {
         Library reference = LibraryManager.instance.findReference(file, dest);
         if (reference != null) {
@@ -179,10 +179,10 @@ public class Loader implements LibraryLoader {
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
+
         File backup = determineBackupName(dest);
         boolean backupCreated = backup != null && dest.renameTo(backup);
-        
+
         FileOutputStream fwrite = null;
         try {
             try {
@@ -220,7 +220,7 @@ public class Loader implements LibraryLoader {
                 }
             }
         }
-        
+
         if (!dest.exists() || dest.length() == 0) {
             if (backupCreated && backup != null && backup.exists()) {
                 recoverBackup(backup, dest);
@@ -233,13 +233,13 @@ public class Loader implements LibraryLoader {
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
+
         if (backupCreated && backup.exists()) {
             backup.delete();
         }
         return true;
     }
-    
+
     private static File determineBackupName(File base) {
         File dir = base.getParentFile();
         String name = base.getName();
@@ -253,7 +253,7 @@ public class Loader implements LibraryLoader {
         }
         return null;
     }
-    
+
     private static void recoverBackup(File backup, File dest) {
         if (backup != null && backup.exists()) {
             if (dest.exists()) dest.delete();
@@ -263,7 +263,7 @@ public class Loader implements LibraryLoader {
 
     //
     // methods for LibraryManager
-    //  
+    //
     LogisimFile loadLogisimFile(File request) throws LoadFailedException {
         File actual = getSubstitution(request);
         for (File fileOpening : filesOpening) {
@@ -295,10 +295,10 @@ public class Loader implements LibraryLoader {
         // a custom-written class ZipClassLoader instead. The ZipClassLoader
         // is based on something downloaded off a forum, and I'm not as sure
         // that it works as well. It certainly does more file accesses.
-        
+
         // Anyway, here's the line for this new version:
         ZipClassLoader loader = new ZipClassLoader(actual);
-        
+
         // And here's the code that was present up until 2.1.8, and which I
         // know to work well except for the closing-files bit. If necessary, we
         // can revert by deleting the above declaration and reinstating the below.
@@ -313,7 +313,7 @@ public class Loader implements LibraryLoader {
         }
         URLClassLoader loader = new URLClassLoader(new URL[] { url });
         */
-        
+
         // load library class from loader
         Class<?> retClass;
         try {
@@ -324,7 +324,7 @@ public class Loader implements LibraryLoader {
         if (!(Library.class.isAssignableFrom(retClass))) {
             throw new LoadFailedException(_("jarClassNotLibraryError", className));
         }
-        
+
         // instantiate library
         Library ret;
         try {
@@ -359,7 +359,7 @@ public class Loader implements LibraryLoader {
                 description = init + " " + description;
             }
         }
-        
+
         if (description.contains("\n") || description.length() > 60) {
             int lines = 1;
             for (int pos = description.indexOf('\n'); pos >= 0;
@@ -372,8 +372,8 @@ public class Loader implements LibraryLoader {
             textArea.setEditable(false);
             textArea.setText(description);
             textArea.setCaretPosition(0);
-            
-            JScrollPane scrollPane = new JScrollPane(textArea);        
+
+            JScrollPane scrollPane = new JScrollPane(textArea);
             scrollPane.setPreferredSize(new Dimension(350, 150));
             JOptionPane.showMessageDialog(parent, scrollPane,
                     _("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);

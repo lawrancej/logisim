@@ -11,13 +11,13 @@ public class JoinedConfigurator implements KeyConfigurator, Cloneable {
     public static JoinedConfigurator create(KeyConfigurator[] configs) {
         return new JoinedConfigurator(configs);
     }
-    
+
     private KeyConfigurator[] handlers;
-    
+
     private JoinedConfigurator(KeyConfigurator[] handlers) {
         this.handlers = handlers;
     }
-    
+
     @Override
     public JoinedConfigurator clone() {
         JoinedConfigurator ret;
@@ -34,7 +34,7 @@ public class JoinedConfigurator implements KeyConfigurator, Cloneable {
         }
         return ret;
     }
-    
+
     @Override
     public KeyConfigurationResult keyEventReceived(KeyConfigurationEvent event) {
         KeyConfigurator[] hs = handlers;

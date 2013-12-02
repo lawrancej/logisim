@@ -22,10 +22,10 @@ class ExplorerToolbarModel extends AbstractToolbarModel
     private LogisimToolbarItem itemLayout;
     private LogisimToolbarItem itemAppearance;
     private List<ToolbarItem> items;
-    
+
     public ExplorerToolbarModel(Frame frame, MenuListener menu) {
         this.frame = frame;
-        
+
         itemToolbox = new LogisimToolbarItem(menu, "projtool.svg",
                 LogisimMenuBar.VIEW_TOOLBOX, __("projectViewToolboxTip"));
         itemSimulation = new LogisimToolbarItem(menu, "projsim.svg",
@@ -34,7 +34,7 @@ class ExplorerToolbarModel extends AbstractToolbarModel
                 LogisimMenuBar.EDIT_LAYOUT, __("projectEditLayoutTip"));
         itemAppearance = new LogisimToolbarItem(menu, "projapp.svg",
                 LogisimMenuBar.EDIT_APPEARANCE, __("projectEditAppearanceTip"));
-        
+
         items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {
                 itemToolbox,
                 itemSimulation,
@@ -42,7 +42,7 @@ class ExplorerToolbarModel extends AbstractToolbarModel
                 itemLayout,
                 itemAppearance,
             }));
-        
+
         menu.addEnabledListener(this);
     }
 
@@ -50,7 +50,7 @@ class ExplorerToolbarModel extends AbstractToolbarModel
     public List<ToolbarItem> getItems() {
         return items;
     }
-    
+
     @Override
     public boolean isSelected(ToolbarItem item) {
         if (item == itemLayout) {

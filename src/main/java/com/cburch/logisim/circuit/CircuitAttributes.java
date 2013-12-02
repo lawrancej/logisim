@@ -24,19 +24,19 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class CircuitAttributes extends AbstractAttributeSet {
     public static final Attribute<String> NAME_ATTR
         = Attributes.forString("circuit", __("circuitName"));
-    
+
     public static final Attribute<Direction> LABEL_LOCATION_ATTR
         = Attributes.forDirection("labelloc", __("circuitLabelLocAttr"));
 
     public static final Attribute<String> CIRCUIT_LABEL_ATTR
         = Attributes.forString("clabel", __("circuitLabelAttr"));
-    
+
     public static final Attribute<Direction> CIRCUIT_LABEL_FACING_ATTR
         = Attributes.forDirection("clabelup", __("circuitLabelDirAttr"));
-    
+
     public static final Attribute<Font> CIRCUIT_LABEL_FONT_ATTR
         = Attributes.forFont("clabelfont", __("circuitLabelFontAttr"));
-    
+
     private static final Attribute<?>[] STATIC_ATTRS = {
         NAME_ATTR, CIRCUIT_LABEL_ATTR, CIRCUIT_LABEL_FACING_ATTR, CIRCUIT_LABEL_FONT_ATTR,
     };
@@ -50,12 +50,12 @@ public class CircuitAttributes extends AbstractAttributeSet {
                 CircuitAttributes.NAME_ATTR, CIRCUIT_LABEL_ATTR,
                 CIRCUIT_LABEL_FACING_ATTR, CIRCUIT_LABEL_FONT_ATTR,
             });
-    
+
     private static class StaticListener implements AttributeListener {
         private Circuit source;
-        
+
         private StaticListener(Circuit s) { source = s; }
-        
+
         @Override
         public void attributeListChanged(AttributeEvent e) { }
 
@@ -66,7 +66,7 @@ public class CircuitAttributes extends AbstractAttributeSet {
             }
         }
     }
-    
+
     private class MyListener implements AttributeListener, CircuitAppearanceListener {
         @Override
         public void attributeListChanged(AttributeEvent e) { }
@@ -77,7 +77,7 @@ public class CircuitAttributes extends AbstractAttributeSet {
             Attribute<Object> a = (Attribute<Object>) e.getAttribute();
             fireAttributeValueChanged(a, e.getValue());
         }
-        
+
         @Override
         public void circuitAppearanceChanged(CircuitAppearanceEvent e) {
             SubcircuitFactory factory;
@@ -91,7 +91,7 @@ public class CircuitAttributes extends AbstractAttributeSet {
             subcircInstance.fireInvalidated();
         }
     }
-    
+
     static AttributeSet createBaseAttrs(Circuit source, String name) {
         AttributeSet ret = AttributeSets.fixedSet(STATIC_ATTRS, STATIC_DEFAULTS);
         ret.setValue(CircuitAttributes.NAME_ATTR, name);
@@ -107,7 +107,7 @@ public class CircuitAttributes extends AbstractAttributeSet {
     private Font labelFont;
     private MyListener listener;
     private Instance[] pinInstances;
-    
+
     public CircuitAttributes(Circuit source) {
         this.source = source;
         subcircInstance = null;
@@ -117,7 +117,7 @@ public class CircuitAttributes extends AbstractAttributeSet {
         labelFont = StdAttr.DEFAULT_LABEL_FONT;
         pinInstances = new Instance[0];
     }
-    
+
     void setSubcircuit(Instance value) {
         subcircInstance = value;
         if (subcircInstance != null && listener == null) {
@@ -126,15 +126,15 @@ public class CircuitAttributes extends AbstractAttributeSet {
             source.getAppearance().addCircuitAppearanceListener(listener);
         }
     }
-    
+
     Instance[] getPinInstances() {
         return pinInstances;
     }
-    
+
     void setPinInstances(Instance[] value) {
         pinInstances = value;
     }
-    
+
     public Direction getFacing() {
         return facing;
     }
@@ -145,7 +145,7 @@ public class CircuitAttributes extends AbstractAttributeSet {
         other.subcircInstance = null;
         other.listener = null;
     }
-    
+
     @Override
     public boolean isToSave(Attribute<?> attr) {
         Attribute<?>[] statics = STATIC_ATTRS;

@@ -44,7 +44,7 @@ public class Register extends InstanceFactory {
         setIconName("register.svg");
         setInstancePoker(RegisterPoker.class);
         setInstanceLogger(RegisterLogger.class);
-        
+
         Port[] ps = new Port[5];
         ps[OUT] = new Port(  0,  0, Port.OUTPUT, StdAttr.WIDTH);
         ps[IN]  = new Port(-30,  0, Port.INPUT, StdAttr.WIDTH);
@@ -58,7 +58,7 @@ public class Register extends InstanceFactory {
         ps[EN].setToolTip(__("registerEnableTip"));
         setPorts(ps);
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         Bounds bds = instance.getBounds();
@@ -84,7 +84,7 @@ public class Register extends InstanceFactory {
         } else if (triggered && state.getPort(EN) != Value.FALSE) {
             Value in = state.getPort(IN);
             if (in.isFullyDefined()) data.value = in.toIntValue();
-        } 
+        }
 
         state.setPort(OUT, Value.createKnown(dataWidth, data.value), DELAY);
     }

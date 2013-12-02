@@ -8,14 +8,14 @@ import java.util.Map;
 
 class Assignments {
     private Map<String,Boolean> map = new HashMap<String,Boolean>();
-    
+
     public Assignments() { }
-    
+
     public boolean get(String variable) {
         Boolean value = map.get(variable);
         return value != null ? value.booleanValue() : false;
     }
-    
+
     public void put(String variable, boolean value) {
         map.put(variable, Boolean.valueOf(value));
     }

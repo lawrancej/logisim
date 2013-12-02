@@ -31,7 +31,7 @@ class XnorGate extends AbstractGate {
     protected String getRectangularLabel(AttributeSet attrs) {
         return XorGate.FACTORY.getRectangularLabel(attrs);
     }
-    
+
     @Override
     public void paintIconShaped(InstancePainter painter) {
         Graphics g = painter.getGraphics();

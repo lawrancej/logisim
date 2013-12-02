@@ -20,7 +20,7 @@ public class EditableLabelField extends JTextField {
                 BorderFactory.createLineBorder(Color.BLACK),
                 BorderFactory.createEmptyBorder(1, 1, 1, 1)));
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(getBackground());

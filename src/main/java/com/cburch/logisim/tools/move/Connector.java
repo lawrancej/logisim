@@ -22,13 +22,13 @@ class Connector {
     private static final int MAX_SECONDS = 10;
     private static final int MAX_ORDERING_TRIES = 10;
     private static final int MAX_SEARCH_ITERATIONS = 20000;
-    
+
     private Connector() { }
-    
+
     static final String ALLOW_NEITHER = "neither";
     static final String ALLOW_VERTICAL = "vert";
     static final String ALLOW_HORIZONTAL = "horz";
-    
+
     static MoveResult computeWires(MoveRequest req) {
         MoveGesture gesture = req.getMoveGesture();
         int dx = req.getDeltaX();
@@ -51,7 +51,7 @@ class Connector {
             initNodes.put(conn, connNodes);
         }
 
-        
+
         MoveResult bestResult = null;
         int tries;
         switch (baseConnects.size()) {
@@ -76,7 +76,7 @@ class Connector {
             } else {
                 Collections.shuffle(connects);
             }
-            
+
             MoveResult candidate = tryList(req, gesture, connects, dx, dy,
                 pathLocs, initNodes, stopTime);
             if (candidate == null) {
@@ -104,7 +104,7 @@ class Connector {
         }
         return bestResult;
     }
-    
+
     private static ArrayList<ConnectionData> pruneImpossible(
             ArrayList<ConnectionData> connects, AvoidanceMap avoid, int dx, int dy) {
         ArrayList<Wire> pathWires = new ArrayList<Wire>();
@@ -113,7 +113,7 @@ class Connector {
                 pathWires.add(w);
             }
         }
-        
+
         ArrayList<ConnectionData> impossible = new ArrayList<ConnectionData>();
         for (Iterator<ConnectionData> it = connects.iterator(); it.hasNext(); ) {
             ConnectionData conn = it.next();
@@ -134,7 +134,7 @@ class Connector {
         }
         return impossible;
     }
-    
+
     /** Creates a list of the connections to make, sorted according to their
      * location. If, for example, we are moving an east-facing AND gate
      * southeast, then we prefer to connect the inputs from the top down to
@@ -155,7 +155,7 @@ class Connector {
             }
         });
     }
-    
+
     private static void processConnection(ConnectionData conn, int dx, int dy,
             HashSet<Location> connLocs, ArrayList<SearchNode> connNodes,
             AvoidanceMap selAvoid) {
@@ -165,12 +165,12 @@ class Connector {
             Direction preferred = conn.getDirection();
             if (preferred == null) {
                 if (Math.abs(dx) > Math.abs(dy)) {
-                    preferred = dx > 0 ? Direction.EAST : Direction.WEST; 
+                    preferred = dx > 0 ? Direction.EAST : Direction.WEST;
                 } else {
                     preferred = dy > 0 ? Direction.SOUTH : Direction.NORTH;
                 }
             }
-            
+
             connLocs.add(cur);
             connNodes.add(new SearchNode(conn, cur, preferred, dest));
         }
@@ -198,7 +198,7 @@ class Connector {
             }
         }
     }
-    
+
     private static MoveResult tryList(MoveRequest req,
             MoveGesture gesture, ArrayList<ConnectionData> connects,
             int dx, int dy, HashMap<ConnectionData,Set<Location>> pathLocs,
@@ -232,7 +232,7 @@ class Connector {
         }
         return new MoveResult(req, replacements, unconnected, totalDistance);
     }
-    
+
     private static SearchNode findShortestPath(List<SearchNode> nodes,
             Set<Location> pathLocs, AvoidanceMap avoid) {
         PriorityQueue<SearchNode> q = new PriorityQueue<SearchNode>(nodes);
@@ -310,7 +310,7 @@ class Connector {
         }
         return null;
     }
-    
+
     private static ArrayList<Location> convertToPath(SearchNode last) {
         SearchNode next = last;
         SearchNode prev = last.getPrevious();
@@ -329,7 +329,7 @@ class Connector {
         Collections.reverse(ret);
         return ret;
     }
-    
+
     private static void processPath(ArrayList<Location> path, ConnectionData conn,
             AvoidanceMap avoid, ReplacementMap repl, Set<Location> unmarkable) {
         Iterator<Location> pathIt = path.iterator();

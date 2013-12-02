@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 
 /**
  * HexEditor is a GUI component for editing Hex values.
- * 
+ *
  * @author Carl Burch
  *
  */
@@ -34,39 +34,39 @@ public class HexEditor extends JComponent implements Scrollable {
                     getWidth(), measures.toY(start + numBytes) + measures.getCellHeight());
         }
     }
-    
+
     private HexModel model;
     private Listener listener;
     private Measures measures;
     private Caret caret;
     private Highlighter highlighter;
-    
+
     public HexEditor(HexModel model) {
         this.model = model;
         this.listener = new Listener();
         this.measures = new Measures(this);
         this.caret = new Caret(this);
         this.highlighter = new Highlighter(this);
-        
+
         setOpaque(true);
         setBackground(Color.WHITE);
         if (model != null) model.addHexModelListener(listener);
-        
+
         measures.recompute();
     }
-    
+
     Measures getMeasures() { return measures; }
-    
+
     Highlighter getHighlighter() { return highlighter; }
-    
+
     public HexModel getModel() {
         return model;
     }
-    
+
     public Caret getCaret() {
         return caret;
     }
-    
+
     public Object addHighlight(int start, int end, Color color) {
         return highlighter.add(start, end, color);
     }
@@ -74,7 +74,7 @@ public class HexEditor extends JComponent implements Scrollable {
     public void removeHighlight(Object tag) {
         highlighter.remove(tag);
     }
-    
+
     public void setModel(HexModel value) {
         if (model == value) return;
         if (model != null) model.removeHexModelListener(listener);
@@ -84,7 +84,7 @@ public class HexEditor extends JComponent implements Scrollable {
         if (model != null) model.addHexModelListener(listener);
         measures.recompute();
     }
-    
+
     public void scrollAddressToVisible(int start, int end) {
         if (start < 0 || end < 0) return;
         int x0 = measures.toX(start);
@@ -98,32 +98,32 @@ public class HexEditor extends JComponent implements Scrollable {
             scrollRectToVisible(new Rectangle(x0, y0, x1 - x0, (y1 + h) - y0));
         }
     }
-    
+
     @Override
     public void setFont(Font value) {
         super.setFont(value);
         measures.recompute();
     }
-    
+
     @Override
     public void setBounds(int x, int y, int width, int height) {
         super.setBounds(x, y, width, height);
         measures.widthChanged();
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         measures.ensureComputed(g);
-        
+
         Rectangle clip = g.getClipBounds();
         if (isOpaque()) {
             g.setColor(getBackground());
             g.fillRect(clip.x, clip.y, clip.width, clip.height);
         }
-        
+
         long addr0 = model.getFirstOffset();
         long addr1 = model.getLastOffset();
-        
+
         long xaddr0 = measures.toAddress(0, clip.y);
         if (xaddr0 == addr0) xaddr0 = measures.getBaseAddress(model);
         long xaddr1 = measures.toAddress(getWidth(), clip.y + clip.height) + 1;
@@ -159,7 +159,7 @@ public class HexEditor extends JComponent implements Scrollable {
 
         caret.paintForeground(g, xaddr0, xaddr1);
     }
-    
+
     private String toHex(long value, int chars) {
         String ret = Long.toHexString(value);
         int retLen = ret.length();
@@ -175,19 +175,19 @@ public class HexEditor extends JComponent implements Scrollable {
             return ret.substring(retLen - chars);
         }
     }
-    
+
     //
     // selection methods
     //
     public boolean selectionExists() {
         return caret.getMark() >= 0 && caret.getDot() >= 0;
     }
-    
+
     public void selectAll() {
         caret.setDot(model.getLastOffset(), false);
         caret.setDot(0, true);
     }
-    
+
     public void delete() {
         long p0 = caret.getMark();
         long p1 = caret.getDot();

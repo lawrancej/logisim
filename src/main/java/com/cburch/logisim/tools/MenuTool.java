@@ -96,12 +96,12 @@ public class MenuTool extends Tool {
     }
 
     public MenuTool() { }
-    
+
     @Override
     public boolean equals(Object other) {
         return other instanceof MenuTool;
     }
-    
+
     @Override
     public int hashCode() {
         return MenuTool.class.hashCode();

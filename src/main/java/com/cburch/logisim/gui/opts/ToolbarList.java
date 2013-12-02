@@ -26,7 +26,7 @@ import com.cburch.logisim.tools.Tool;
 class ToolbarList extends JList {
     private static class ToolIcon implements Icon {
         private Tool tool;
-        
+
         ToolIcon(Tool tool) {
             this.tool = tool;
         }
@@ -48,7 +48,7 @@ class ToolbarList extends JList {
             return 20;
         }
     }
-    
+
     private static class ListRenderer extends DefaultListCellRenderer {
         @Override
         public Component getListCellRendererComponent(JList list, Object value,
@@ -75,7 +75,7 @@ class ToolbarList extends JList {
             return ret;
         }
     }
-    
+
     private class Model extends AbstractListModel
             implements ToolbarListener, AttributeListener, PropertyChangeListener {
         @Override
@@ -99,7 +99,7 @@ class ToolbarList extends JList {
         public void attributeValueChanged(AttributeEvent e) {
             repaint();
         }
-        
+
         @Override
         public void propertyChange(PropertyChangeEvent event) {
             if (AppPreferences.GATE_SHAPE.isSource(event)) {
@@ -110,7 +110,7 @@ class ToolbarList extends JList {
 
     private ToolbarData base;
     private Model model;
-    
+
     public ToolbarList(ToolbarData base) {
         this.base = base;
         this.model = new Model();
@@ -118,12 +118,12 @@ class ToolbarList extends JList {
         setModel(model);
         setCellRenderer(new ListRenderer());
         setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+
         AppPreferences.GATE_SHAPE.addPropertyChangeListener(model);
         base.addToolbarListener(model);
         base.addToolAttributeListener(model);
     }
-    
+
     public void localeChanged() {
         model.toolbarChanged();
     }

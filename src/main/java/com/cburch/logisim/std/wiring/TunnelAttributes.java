@@ -30,7 +30,7 @@ class TunnelAttributes extends AbstractAttributeSet {
     private int labelY;
     private int labelHAlign;
     private int labelVAlign;
-    
+
     public TunnelAttributes() {
         facing = Direction.WEST;
         width = BitWidth.ONE;
@@ -43,24 +43,24 @@ class TunnelAttributes extends AbstractAttributeSet {
     Direction getFacing() {
         return facing;
     }
-    
+
     String getLabel() {
         return label;
     }
-    
+
     Font getFont() {
         return labelFont;
     }
-    
+
     Bounds getOffsetBounds() {
         return offsetBounds;
     }
-    
+
     int getLabelX() { return labelX; }
     int getLabelY() { return labelY; }
     int getLabelHAlign() { return labelHAlign; }
     int getLabelVAlign() { return labelVAlign; }
-    
+
     boolean setOffsetBounds(Bounds value) {
         Bounds old = offsetBounds;
         boolean same = old == null ? value == null : old.equals(value);

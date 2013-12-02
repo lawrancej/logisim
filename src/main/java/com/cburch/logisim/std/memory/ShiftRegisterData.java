@@ -13,25 +13,25 @@ class ShiftRegisterData extends ClockState implements InstanceData {
     private BitWidth width;
     private Value[] vs;
     private int vsPos;
-    
+
     public ShiftRegisterData(BitWidth width, int len) {
         this.width = width;
         this.vs = new Value[len];
         Arrays.fill(this.vs, Value.createKnown(width, 0));
         this.vsPos = 0;
     }
-    
+
     @Override
     public ShiftRegisterData clone() {
         ShiftRegisterData ret = (ShiftRegisterData) super.clone();
         ret.vs = this.vs.clone();
         return ret;
     }
-    
+
     public int getLength() {
         return vs.length;
     }
-    
+
     public void setDimensions(BitWidth newWidth, int newLength) {
         Value[] v = vs;
         BitWidth oldWidth = width;
@@ -61,25 +61,25 @@ class ShiftRegisterData extends ClockState implements InstanceData {
             width = newWidth;
         }
     }
-    
+
     public void clear() {
         Arrays.fill(vs, Value.createKnown(width, 0));
         vsPos = 0;
     }
-    
+
     public void push(Value v) {
         int pos = vsPos;
         vs[pos] = v;
         vsPos = pos >= vs.length - 1 ? 0 : pos + 1;
     }
-    
+
     public Value get(int index) {
         int i = vsPos + index;
         Value[] v = vs;
         if (i >= v.length) i -= v.length;
         return v[i];
     }
-    
+
     public void set(int index, Value val) {
         int i = vsPos + index;
         Value[] v = vs;

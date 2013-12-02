@@ -14,7 +14,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class AttrTableCircuitModel extends AttributeSetTableModel {
     private Project proj;
     private Circuit circ;
-    
+
     public AttrTableCircuitModel(Project proj, Circuit circ) {
         super(circ.getStaticAttributes());
         this.proj = proj;
@@ -25,7 +25,7 @@ public class AttrTableCircuitModel extends AttributeSetTableModel {
     public String getTitle() {
         return _("circuitAttrTitle", circ.getName());
     }
-    
+
     @Override
     public void setValueRequested(Attribute<Object> attr, Object value)
             throws AttrTableSetException {

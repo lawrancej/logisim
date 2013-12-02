@@ -22,11 +22,11 @@ class SplitterParameters {
     private int valign;
 
     SplitterParameters(SplitterAttributes attrs) {
-        
+
         Object appear = attrs.appear;
         int fanout = attrs.fanout;
         Direction facing = attrs.facing;
-        
+
         int justify;
         if (appear == SplitterAttributes.APPEAR_CENTER || appear == SplitterAttributes.APPEAR_LEGACY) {
             justify = 0;
@@ -70,55 +70,55 @@ class SplitterParameters {
             valign = m * justify < 0 ? GraphicsUtil.V_TOP : GraphicsUtil.V_BASELINE;
         }
     }
-    
+
     public int getEnd0X() {
         return dxEnd0;
     }
-    
+
     public int getEnd0Y() {
         return dyEnd0;
     }
-    
+
     public int getEndToEndDeltaX() {
         return ddxEnd;
     }
-    
+
     public int getEndToEndDeltaY() {
         return ddyEnd;
     }
-    
+
     public int getEndToSpineDeltaX() {
         return dxEndSpine;
     }
-    
-    public int getEndToSpineDeltaY() { 
+
+    public int getEndToSpineDeltaY() {
         return dyEndSpine;
     }
-    
+
     public int getSpine0X() {
         return dxSpine0;
     }
-    
+
     public int getSpine0Y() {
         return dySpine0;
     }
-    
+
     public int getSpine1X() {
         return dxSpine1;
     }
-    
+
     public int getSpine1Y() {
         return dySpine1;
     }
-    
+
     public int getTextAngle() {
         return textAngle;
     }
-    
+
     public int getTextHorzAlign() {
         return halign;
     }
-    
+
     public int getTextVertAlign() {
         return valign;
     }

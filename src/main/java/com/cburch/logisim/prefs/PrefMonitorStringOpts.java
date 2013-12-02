@@ -10,7 +10,7 @@ class PrefMonitorStringOpts extends AbstractPrefMonitor<String> {
     private String[] opts;
     private String value;
     private String dflt;
-    
+
     PrefMonitorStringOpts(String name, String[] opts, String dflt) {
         super(name);
         this.opts = opts;
@@ -20,12 +20,12 @@ class PrefMonitorStringOpts extends AbstractPrefMonitor<String> {
         set(prefs.get(name, dflt));
         prefs.addPreferenceChangeListener(this);
     }
-    
+
     @Override
     public String get() {
         return value;
     }
-    
+
     @Override
     public void set(String newValue) {
         String oldValue = value;
@@ -54,7 +54,7 @@ class PrefMonitorStringOpts extends AbstractPrefMonitor<String> {
             }
         }
     }
-    
+
     private static boolean isSame(String a, String b) {
         return a == null ? b == null : a.equals(b);
     }

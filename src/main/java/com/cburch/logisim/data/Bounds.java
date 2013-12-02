@@ -57,7 +57,7 @@ public class Bounds {
         return x == other.x && y == other.y
             && wid == other.wid && ht == other.ht;
     }
-    
+
     @Override
     public int hashCode() {
         int ret = 31 * x + y;
@@ -86,11 +86,11 @@ public class Bounds {
     public int getHeight() {
         return ht;
     }
-    
+
     public int getCenterX() {
         return x + wid / 2;
     }
-    
+
     public int getCenterY() {
         return y + ht / 2;
     }
@@ -111,7 +111,7 @@ public class Bounds {
     public boolean contains(int px, int py) {
         return contains(px, py, 0);
     }
-    
+
     public boolean contains(int px, int py, int allowedError) {
         return px >= x - allowedError && px < x + wid + allowedError
             && py >= y - allowedError && py < y + ht + allowedError;
@@ -221,7 +221,7 @@ public class Bounds {
         int degrees = to.toDegrees() - from.toDegrees();
         while (degrees >= 360) degrees -= 360;
         while (degrees < 0) degrees += 360;
-        
+
         int dx = x - xc;
         int dy = y - yc;
         if (degrees == 90) {
@@ -234,7 +234,7 @@ public class Bounds {
             return this;
         }
     }
-    
+
     public Bounds intersect(Bounds other) {
         int x0 = this.x;
         int y0 = this.y;

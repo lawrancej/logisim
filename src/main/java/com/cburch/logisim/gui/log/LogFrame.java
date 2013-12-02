@@ -43,12 +43,12 @@ public class LogFrame extends LFrame {
             project.addProjectListener(this);
             project.addLibraryListener(this);
         }
-        
+
         @Override
         public JFrame getJFrame(boolean create) {
             return LogFrame.this;
         }
-        
+
         @Override
         public void localeChanged() {
             String title = project.getLogisimFile().getDisplayName();
@@ -61,7 +61,7 @@ public class LogFrame extends LFrame {
                 localeChanged();
             }
         }
-        
+
         @Override
         public void libraryChanged(LibraryEvent event) {
             if (event.getAction() == LibraryEvent.SET_NAME) {
@@ -82,7 +82,7 @@ public class LogFrame extends LFrame {
                 LogFrame.this.processWindowEvent(e);
             }
         }
-        
+
         @Override
         public void projectChanged(ProjectEvent event) {
             int action = event.getAction();
@@ -93,7 +93,7 @@ public class LogFrame extends LFrame {
                 setTitle(computeTitle(curModel, project));
             }
         }
-        
+
         @Override
         public void libraryChanged(LibraryEvent event) {
             int action = event.getAction();
@@ -101,7 +101,7 @@ public class LogFrame extends LFrame {
                 setTitle(computeTitle(curModel, project));
             }
         }
-        
+
         @Override
         public void localeChanged() {
             setTitle(computeTitle(curModel, project));
@@ -125,14 +125,14 @@ public class LogFrame extends LFrame {
         @Override
         public void simulatorStateChanged(SimulatorEvent e) { }
     }
-    
+
     private Project project;
     private Simulator curSimulator = null;
     private Model curModel;
     private Map<CircuitState,Model> modelMap = new HashMap<CircuitState,Model>();
     private MyListener myListener = new MyListener();
     private WindowMenuManager windowManager;
-    
+
     private LogPanel[] panels;
     private JTabbedPane tabbedPane;
     private JButton close = new JButton();
@@ -145,7 +145,7 @@ public class LogFrame extends LFrame {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setJMenuBar(new LogisimMenuBar(this, project));
         setSimulator(project.getSimulator(), project.getCircuitState());
-        
+
         panels = new LogPanel[] {
                 new SelectionPanel(this),
                 new ScrollPanel(this),
@@ -170,15 +170,15 @@ public class LogFrame extends LFrame {
         myListener.localeChanged();
         pack();
     }
-    
+
     public Project getProject() {
         return project;
     }
-    
+
     Model getModel() {
         return curModel;
     }
-    
+
     private void setSimulator(Simulator value, CircuitState state) {
         if ((value == null) == (curModel == null)) {
             if (value == null || value.getCircuitState() == curModel.getCircuitState()) return;
@@ -211,7 +211,7 @@ public class LogFrame extends LFrame {
             }
         }
     }
-    
+
     @Override
     public void setVisible(boolean value) {
         if (value) {
@@ -219,11 +219,11 @@ public class LogFrame extends LFrame {
         }
         super.setVisible(value);
     }
-    
+
     LogPanel[] getPrefPanels() {
         return panels;
     }
-    
+
     private static String computeTitle(Model data, Project proj) {
         String name = data == null ? "???" : data.getCircuitState().getCircuit().getName();
         return _("logFrameTitle", name, proj.getLogisimFile().getDisplayName());

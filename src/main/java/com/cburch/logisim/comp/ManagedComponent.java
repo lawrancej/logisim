@@ -91,7 +91,7 @@ public abstract class ManagedComponent extends AbstractComponent {
         }
         return bounds;
     }
-    
+
     protected void recomputeBounds() {
         bounds = null;
     }
@@ -100,7 +100,7 @@ public abstract class ManagedComponent extends AbstractComponent {
     public List<EndData> getEnds() {
         return endsView;
     }
-    
+
     public int getEndCount() {
         return ends.size();
     }
@@ -122,11 +122,11 @@ public abstract class ManagedComponent extends AbstractComponent {
     public void setBounds(Bounds bounds) {
         this.bounds = bounds;
     }
-    
+
     public void setAttributeSet(AttributeSet value) {
         attrs = value;
     }
-    
+
     public void removeEnd(int index) {
         ends.remove(index);
     }
@@ -151,7 +151,7 @@ public abstract class ManagedComponent extends AbstractComponent {
     public void setEnd(int i, Location end, BitWidth width, int type, boolean exclusive) {
         setEnd(i, new EndData(end, width, type, exclusive));
     }
-    
+
     public void setEnds(EndData[] newEnds) {
         List<EndData> oldEnds = ends;
         int minLen = Math.min(oldEnds.size(), newEnds.length);
@@ -193,7 +193,7 @@ public abstract class ManagedComponent extends AbstractComponent {
                 bounds.getWidth() + 10, bounds.getHeight() + 10);
         }
     }
-    
+
     @Override
     public Object getFeature(Object key) {
         return null;

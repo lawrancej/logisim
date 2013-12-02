@@ -32,7 +32,7 @@ class TextFieldCaret implements Caret, TextFieldListener {
         this.oldText = field.getText();
         this.curText = field.getText();
         this.pos = pos;
-        
+
         field.addTextFieldListener(this);
     }
     public TextFieldCaret(TextField field, Graphics g, int x, int y) {
@@ -258,7 +258,7 @@ class TextFieldCaret implements Caret, TextFieldListener {
         }
         pos = curText.length();
     }
-    
+
     @Override
     public void textChanged(TextFieldEvent e) {
         curText = field.getText();

@@ -28,9 +28,9 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 abstract class AbstractFlipFlop extends InstanceFactory {
     private static final int STD_PORTS = 6;
-    
+
     private Attribute<AttributeOption> triggerAttribute;
-    
+
     protected AbstractFlipFlop(String name, String iconName, StringGetter desc,
             int numInputs, boolean allowLevelTriggers) {
         super(name, desc);
@@ -44,8 +44,8 @@ abstract class AbstractFlipFlop extends InstanceFactory {
         setOffsetBounds(Bounds.create(-40, -10, 40, 40));
         setInstancePoker(Poker.class);
         setInstanceLogger(Logger.class);
-        
-        Port[] ps = new Port[numInputs + STD_PORTS]; 
+
+        Port[] ps = new Port[numInputs + STD_PORTS];
         if (numInputs == 1) {
             ps[0] = new Port(-40, 20, Port.INPUT, 1);
             ps[1] = new Port(-40,  0, Port.INPUT, 1);
@@ -77,7 +77,7 @@ abstract class AbstractFlipFlop extends InstanceFactory {
 
     protected abstract Value computeValue(Value[] inputs,
             Value curValue);
-    
+
     //
     // concrete methods not intended to be overridden
     //
@@ -102,7 +102,7 @@ abstract class AbstractFlipFlop extends InstanceFactory {
         int n = getPorts().size() - STD_PORTS;
         Object triggerType = state.getAttributeValue(triggerAttribute);
         boolean triggered = data.updateClock(state.getPort(n), triggerType);
-        
+
         if (state.getPort(n + 3) == Value.TRUE) { // clear requested
             changed |= data.curValue != Value.FALSE;
             data.curValue = Value.FALSE;
@@ -146,7 +146,7 @@ abstract class AbstractFlipFlop extends InstanceFactory {
                 g.setColor(Color.BLACK);
             }
         }
-        
+
         int n = getPorts().size() - STD_PORTS;
         g.setColor(Color.GRAY);
         painter.drawPort(n + 3, "0", Direction.SOUTH);
@@ -186,7 +186,7 @@ abstract class AbstractFlipFlop extends InstanceFactory {
         public void mousePressed(InstanceState state, MouseEvent e) {
             isPressed = isInside(state, e);
         }
-        
+
         @Override
         public void mouseReleased(InstanceState state, MouseEvent e) {
             if (isPressed && isInside(state, e)) {

@@ -39,7 +39,7 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
         setBits(contents.getLogLength(), contents.getWidth());
         contents.addHexModelListener(this);
     }
-    
+
     @Override
     public MemState clone() {
         try {
@@ -49,7 +49,7 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
             return ret;
         } catch (CloneNotSupportedException e) { return null; }
     }
-    
+
     //
     // methods for accessing the address bits
     //
@@ -75,7 +75,7 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
         long maxScroll = Math.max(0, newLast + 1 - (ROWS - 1) * columns);
         if (curScroll > maxScroll) curScroll = maxScroll;
     }
-    
+
     public MemContents getContents() {
         return contents;
     }
@@ -86,47 +86,47 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
     int getAddrBits() {
         return contents.getLogLength();
     }
-    
+
     int getDataBits() {
         return contents.getWidth();
     }
-    
+
     long getLastAddress() {
         return (1L << contents.getLogLength()) - 1;
     }
-    
+
     boolean isValidAddr(long addr) {
         int addrBits = contents.getLogLength();
         return addr >>> addrBits == 0;
     }
-    
+
     int getRows() {
         return ROWS;
     }
-    
+
     int getColumns() {
         return columns;
     }
-    
+
     //
     // methods for manipulating cursor and scroll location
     //
     long getCursor() {
         return cursorLoc;
     }
-    
+
     long getCurrent() {
         return curAddr;
     }
-    
+
     long getScroll() {
         return curScroll;
     }
-    
+
     void setCursor(long value) {
         cursorLoc = isValidAddr(value) ? value : -1L;
     }
-    
+
     void setCurrent(long value) {
         curAddr = isValidAddr(value) ? value : -1L;
     }
@@ -150,7 +150,7 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
         if (addr < 0) addr = 0;
         curScroll = addr;
     }
-    
+
     //
     // graphical methods
     //
@@ -158,19 +158,19 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
         int addrBits = getAddrBits();
         int boxX = addrBits <= 12 ? ENTRY_XOFFS12 : ENTRY_XOFFS32;
         int boxW = addrBits <= 12 ? TABLE_WIDTH12 : TABLE_WIDTH32;
-        
+
         // See if outside box
         if (x < boxX || x >= boxX + boxW || y <= ENTRY_YOFFS
                 || y >= ENTRY_YOFFS + ROWS * ENTRY_HEIGHT) {
             return -1;
         }
-    
+
         int col = (x - boxX) / (boxW / columns);
         int row = (y - ENTRY_YOFFS) / ENTRY_HEIGHT;
         long ret = (curScroll / columns * columns) + columns * row + col;
         return isValidAddr(ret) ? ret : getLastAddress();
     }
-    
+
     public Bounds getBounds(long addr, Bounds bds) {
         int addrBits = getAddrBits();
         int boxX = bds.getX() + (addrBits <= 12 ? ENTRY_XOFFS12 : ENTRY_XOFFS32);
@@ -194,7 +194,7 @@ class MemState implements InstanceData, Cloneable, HexModelListener {
         int boxY = topY + ENTRY_YOFFS;
         int boxW = addrBits <= 12 ? TABLE_WIDTH12 : TABLE_WIDTH32;
         int boxH = ROWS * ENTRY_HEIGHT;
-        
+
         GraphicsUtil.switchToWidth(g, 1);
         g.drawRect(boxX, boxY, boxW, boxH);
         int entryWidth = boxW / columns;

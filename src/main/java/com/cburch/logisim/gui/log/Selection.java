@@ -11,7 +11,7 @@ class Selection {
     private CircuitState root;
     private Model model;
     private ArrayList<SelectionItem> components;
-    
+
     public Selection(CircuitState root, Model model) {
         this.root = root;
         this.model = model;
@@ -24,29 +24,29 @@ class Selection {
     public CircuitState getCircuitState() {
         return root;
     }
-    
+
     public int size() {
         return components.size();
     }
-    
+
     public SelectionItem get(int index) {
         return components.get(index);
     }
-    
+
     public int indexOf(SelectionItem value) {
         return components.indexOf(value);
     }
-    
+
     public void add(SelectionItem item) {
         components.add(item);
         model.fireSelectionChanged(new ModelEvent());
     }
-    
+
     public void remove(int index) {
         components.remove(index);
         model.fireSelectionChanged(new ModelEvent());
     }
-    
+
     public void move(int fromIndex, int toIndex) {
         if (fromIndex == toIndex) return;
         SelectionItem o = components.remove(fromIndex);

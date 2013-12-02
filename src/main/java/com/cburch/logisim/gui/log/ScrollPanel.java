@@ -10,7 +10,7 @@ import javax.swing.ScrollPaneConstants;
 
 class ScrollPanel extends LogPanel {
     private TablePanel table;
-    
+
     public ScrollPanel(LogFrame frame) {
         super(frame);
         this.table = new TablePanel(frame);
@@ -21,7 +21,7 @@ class ScrollPanel extends LogPanel {
         setLayout(new BorderLayout());
         add(pane);
     }
-    
+
     @Override
     public String getTitle() {
         return table.getTitle();

@@ -17,15 +17,15 @@ public class AnalyzeException extends Exception {
             super(_("analyzeConflictError"));
         }
     }
-    
+
     public static class CannotHandle extends AnalyzeException {
         public CannotHandle(String reason) {
             super(_("analyzeCannotHandleError", reason));
         }
     }
-    
+
     public AnalyzeException() { }
-    
+
     public AnalyzeException(String message) {
         super(message);
     }

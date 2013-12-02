@@ -34,12 +34,12 @@ public class LineTool extends AbstractTool {
     private Location mouseEnd;
     private int lastMouseX;
     private int lastMouseY;
-    
+
     public LineTool(DrawingAttributeSet attrs) {
         this.attrs = attrs;
         active = false;
     }
-    
+
     @Override
     public Icon getIcon() {
         return Icons.getIcon("drawline.svg");
@@ -49,18 +49,18 @@ public class LineTool extends AbstractTool {
     public Cursor getCursor(Canvas canvas) {
         return Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
     }
-    
+
     @Override
     public List<Attribute<?>> getAttributes() {
         return DrawAttr.ATTRS_STROKE;
     }
-    
+
     @Override
     public void toolDeselected(Canvas canvas) {
         active = false;
         repaintArea(canvas);
     }
-    
+
     @Override
     public void mousePressed(Canvas canvas, MouseEvent e) {
         int x = e.getX();
@@ -78,12 +78,12 @@ public class LineTool extends AbstractTool {
         active = canvas.getModel() != null;
         repaintArea(canvas);
     }
-    
+
     @Override
     public void mouseDragged(Canvas canvas, MouseEvent e) {
         updateMouse(canvas, e.getX(), e.getY(), e.getModifiersEx());
     }
-    
+
     @Override
     public void mouseReleased(Canvas canvas, MouseEvent e) {
         if (active) {
@@ -104,7 +104,7 @@ public class LineTool extends AbstractTool {
             canvas.toolGestureComplete(this, add);
         }
     }
-    
+
     @Override
     public void keyPressed(Canvas canvas, KeyEvent e) {
         int code = e.getKeyCode();
@@ -112,12 +112,12 @@ public class LineTool extends AbstractTool {
             updateMouse(canvas, lastMouseX, lastMouseY, e.getModifiersEx());
         }
     }
-    
+
     @Override
     public void keyReleased(Canvas canvas, KeyEvent e) {
         keyPressed(canvas, e);
     }
-    
+
     private void updateMouse(Canvas canvas, int mx, int my, int mods) {
         if (active) {
             boolean shift = (mods & InputEvent.SHIFT_DOWN_MASK) != 0;
@@ -127,7 +127,7 @@ public class LineTool extends AbstractTool {
             } else {
                 newEnd = Location.create(mx, my);
             }
-            
+
             if ((mods & InputEvent.CTRL_DOWN_MASK) != 0) {
                 int x = newEnd.getX();
                 int y = newEnd.getY();
@@ -135,7 +135,7 @@ public class LineTool extends AbstractTool {
                 y = canvas.snapY(y);
                 newEnd = Location.create(x, y);
             }
-            
+
             if (!newEnd.equals(mouseEnd)) {
                 mouseEnd = newEnd;
                 repaintArea(canvas);
@@ -148,7 +148,7 @@ public class LineTool extends AbstractTool {
     private void repaintArea(Canvas canvas) {
         canvas.repaint();
     }
-    
+
     @Override
     public void draw(Canvas canvas, Graphics g) {
         if (active) {
@@ -158,7 +158,7 @@ public class LineTool extends AbstractTool {
             g.drawLine(start.getX(), start.getY(), end.getX(), end.getY());
         }
     }
-    
+
     static Location snapTo4Cardinals(Location from, int mx, int my) {
         int px = from.getX();
         int py = from.getY();

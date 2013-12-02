@@ -29,7 +29,7 @@ public class Poly extends FillableCanvasObject {
     private GeneralPath path;
     private double[] lens;
     private Bounds bounds;
-    
+
     public Poly(boolean closed, List<Location> locations) {
         Handle[] hs = new Handle[locations.size()];
         int i = -1;
@@ -37,12 +37,12 @@ public class Poly extends FillableCanvasObject {
             i++;
             hs[i] = new Handle(this, loc.getX(), loc.getY());
         }
-        
+
         this.closed = closed;
         handles = hs;
         recomputeBounds();
     }
-    
+
     @Override
     public Poly clone() {
         Poly ret = (Poly) super.clone();
@@ -73,7 +73,7 @@ public class Poly extends FillableCanvasObject {
             return false;
         }
     }
-    
+
     @Override
     public int matchesHashCode() {
         int ret = super.matchesHashCode();
@@ -84,7 +84,7 @@ public class Poly extends FillableCanvasObject {
         }
         return ret;
     }
-    
+
     @Override
     public String getDisplayName() {
         if (closed) {
@@ -93,7 +93,7 @@ public class Poly extends FillableCanvasObject {
             return _("shapePolyline");
         }
     }
-    
+
     @Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createPoly(doc, this);
@@ -103,7 +103,7 @@ public class Poly extends FillableCanvasObject {
     public List<Attribute<?>> getAttributes() {
         return DrawAttr.getFillAttributes(getPaintType());
     }
-    
+
     @Override
     public final boolean contains(Location loc, boolean assumeFilled) {
         Object type = getPaintType();
@@ -124,10 +124,10 @@ public class Poly extends FillableCanvasObject {
             int width = getStrokeWidth();
             PolyUtil.ClosestResult result = PolyUtil.getClosestPoint(loc,
                     closed, handles);
-            return result.getDistanceSq() < (width * width) / 4; 
+            return result.getDistanceSq() < (width * width) / 4;
         }
     }
-    
+
     @Override
     public final Location getRandomPoint(Bounds bds, Random rand) {
         if (getPaintType() == DrawAttr.PAINT_STROKE) {
@@ -170,12 +170,12 @@ public class Poly extends FillableCanvasObject {
             }
         }
     }
-    
+
     @Override
     public Bounds getBounds() {
         return bounds;
     }
-    
+
     @Override
     public void translate(int dx, int dy) {
         Handle[] hs = handles;
@@ -185,11 +185,11 @@ public class Poly extends FillableCanvasObject {
         }
         setHandles(is);
     }
-    
+
     public boolean isClosed() {
         return closed;
     }
-    
+
     @Override
     public List<Handle> getHandles(HandleGesture gesture) {
         Handle[] hs = handles;
@@ -234,7 +234,7 @@ public class Poly extends FillableCanvasObject {
             return UnmodifiableList.decorate(Arrays.asList(ret));
         }
     }
-    
+
     @Override
     public boolean canMoveHandle(Handle handle) {
         return true;
@@ -253,7 +253,7 @@ public class Poly extends FillableCanvasObject {
         setHandles(is);
         return ret;
     }
-    
+
     @Override
     public Handle canInsertHandle(Location loc) {
         PolyUtil.ClosestResult result = PolyUtil.getClosestPoint(loc, closed,
@@ -271,7 +271,7 @@ public class Poly extends FillableCanvasObject {
             return null;
         }
     }
-    
+
     @Override
     public Handle canDeleteHandle(Location loc) {
         int minHandles = closed ? 3 : 2;
@@ -292,7 +292,7 @@ public class Poly extends FillableCanvasObject {
             return null;
         }
     }
-    
+
     @Override
     public void insertHandle(Handle desired, Handle previous) {
         Location loc = desired.getLocation();
@@ -323,7 +323,7 @@ public class Poly extends FillableCanvasObject {
         }
         setHandles(is);
     }
-    
+
     @Override
     public Handle deleteHandle(Handle handle) {
         Handle[] hs = handles;
@@ -347,7 +347,7 @@ public class Poly extends FillableCanvasObject {
         setHandles(is);
         return previous;
     }
-    
+
     @Override
     public void paint(Graphics g, HandleGesture gesture) {
         List<Handle> hs = getHandles(gesture);

@@ -11,11 +11,11 @@ import com.cburch.logisim.prefs.PrefMonitor;
 
 public class BasicZoomModel implements ZoomModel {
     private double[] zoomOptions;
-    
+
     private PropertyChangeSupport support;
     private double zoomFactor;
     private boolean showGrid;
-    
+
     public BasicZoomModel(PrefMonitor<Boolean> gridPref,
             PrefMonitor<Double> zoomPref, double[] zoomOpts) {
         zoomOptions = zoomOpts;

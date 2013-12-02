@@ -38,7 +38,7 @@ class ComponentSelector extends JTree {
         private CircuitState circuitState;
         private Component subcircComp;
         private ArrayList<TreeNode> children;
-        
+
         public CircuitNode(CircuitNode parent, CircuitState circuitState,
                 Component subcircComp) {
             this.parent = parent;
@@ -48,7 +48,7 @@ class ComponentSelector extends JTree {
             circuitState.getCircuit().addCircuitListener(this);
             computeChildren();
         }
-        
+
         @Override
         public String toString() {
             if (subcircComp != null) {
@@ -126,7 +126,7 @@ class ComponentSelector extends JTree {
                 }
             }
         }
-        
+
         // returns true if changed
         private boolean computeChildren() {
             ArrayList<TreeNode> newChildren = new ArrayList<TreeNode>();
@@ -166,7 +166,7 @@ class ComponentSelector extends JTree {
                 }
                 newChildren.add(toAdd);
             }
-            
+
             if (!children.equals(newChildren)) {
                 children = newChildren;
                 return true;
@@ -174,7 +174,7 @@ class ComponentSelector extends JTree {
                 return false;
             }
         }
-        
+
         @Override
         public int compare(Component a, Component b) {
             if (a != b) {
@@ -186,17 +186,17 @@ class ComponentSelector extends JTree {
             return a.getLocation().toString().compareTo(b.getLocation().toString());
         }
     }
-    
+
     private class ComponentNode implements TreeNode {
         private CircuitNode parent;
         private Component comp;
         private OptionNode[] opts;
-        
+
         public ComponentNode(CircuitNode parent, Component comp) {
             this.parent = parent;
             this.comp = comp;
             this.opts = null;
-            
+
             Loggable log = (Loggable) comp.getFeature(Loggable.class);
             if (log != null) {
                 Object[] opts = log.getLogOptions(parent.circuitState);
@@ -208,7 +208,7 @@ class ComponentSelector extends JTree {
                 }
             }
         }
-        
+
         @Override
         public String toString() {
             Loggable log = (Loggable) comp.getFeature(Loggable.class);
@@ -257,16 +257,16 @@ class ComponentSelector extends JTree {
             return Collections.enumeration(Arrays.asList(opts));
         }
     }
-    
+
     private class OptionNode implements TreeNode {
         private ComponentNode parent;
         private Object option;
-        
+
         public OptionNode(ComponentNode parent, Object option) {
             this.parent = parent;
             this.option = option;
         }
-        
+
         @Override
         public String toString() {
             return option.toString();
@@ -307,7 +307,7 @@ class ComponentSelector extends JTree {
             return Collections.enumeration(Collections.emptySet());
         }
     }
-    
+
     private class MyCellRenderer extends DefaultTreeCellRenderer {
         @Override
         public java.awt.Component getTreeCellRendererComponent(JTree tree,
@@ -327,9 +327,9 @@ class ComponentSelector extends JTree {
             return ret;
         }
     }
-    
+
     private Model logModel;
-    
+
     public ComponentSelector(Model logModel) {
         DefaultTreeModel model = new DefaultTreeModel(null);
         model.setAsksAllowsChildren(false);
@@ -338,10 +338,10 @@ class ComponentSelector extends JTree {
         setLogModel(logModel);
         setCellRenderer(new MyCellRenderer());
     }
-    
+
     public void setLogModel(Model value) {
         this.logModel = value;
-        
+
         DefaultTreeModel model = (DefaultTreeModel) getModel();
         CircuitNode curRoot = (CircuitNode) model.getRoot();
         CircuitState state = logModel == null ? null : logModel.getCircuitState();
@@ -354,11 +354,11 @@ class ComponentSelector extends JTree {
             model.setRoot(curRoot);
         }
     }
-    
+
     public List<SelectionItem> getSelectedItems() {
         TreePath[] sel = getSelectionPaths();
         if (sel == null || sel.length == 0) return Collections.emptyList();
-        
+
         ArrayList<SelectionItem> ret = new ArrayList<SelectionItem>();
         for (int i = 0; i < sel.length; i++) {
             TreePath path = sel[i];
@@ -389,11 +389,11 @@ class ComponentSelector extends JTree {
         }
         return ret.size() == 0 ? null : ret;
     }
-    
+
     public boolean hasSelectedItems() {
         TreePath[] sel = getSelectionPaths();
         if (sel == null || sel.length == 0) return false;
-        
+
         for (int i = 0; i < sel.length; i++) {
             Object last = sel[i].getLastPathComponent();
             if (last instanceof OptionNode) {
@@ -404,7 +404,7 @@ class ComponentSelector extends JTree {
         }
         return false;
     }
-    
+
     public void localeChanged() {
         repaint();
     }

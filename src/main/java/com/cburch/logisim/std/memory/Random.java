@@ -27,7 +27,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class Random extends InstanceFactory {
     private static final Attribute<Integer> ATTR_SEED
         = Attributes.forInteger("seed", __("randomSeedAttr"));
-    
+
     private static final int OUT = 0;
     private static final int CK  = 1;
     private static final int NXT = 2;
@@ -47,7 +47,7 @@ public class Random extends InstanceFactory {
         setOffsetBounds(Bounds.create(-30, -20, 30, 40));
         setIconName("random.svg");
         setInstanceLogger(Logger.class);
-        
+
         Port[] ps = new Port[4];
         ps[OUT] = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
         ps[CK]  = new Port(-30, -10, Port.INPUT, 1);
@@ -59,7 +59,7 @@ public class Random extends InstanceFactory {
         ps[RST].setToolTip(__("randomResetTip"));
         setPorts(ps);
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         Bounds bds = instance.getBounds();
@@ -84,7 +84,7 @@ public class Random extends InstanceFactory {
             data.reset(state.getAttributeValue(ATTR_SEED));
         } else if (triggered && state.getPort(NXT) != Value.FALSE) {
             data.step();
-        } 
+        }
 
         state.setPort(OUT, Value.createKnown(dataWidth, data.value), 4);
     }
@@ -126,7 +126,7 @@ public class Random extends InstanceFactory {
             }
         }
     }
-    
+
     private static class StateData extends ClockState implements InstanceData {
         private final static long multiplier = 0x5DEECE66DL;
         private final static long addend = 0xBL;
@@ -135,11 +135,11 @@ public class Random extends InstanceFactory {
         private long initSeed;
         private long curSeed;
         private int value;
-    
+
         public StateData(Object seed) {
             reset(seed);
         }
-        
+
         void reset(Object seed) {
             long start = seed instanceof Integer ? ((Integer) seed).intValue() : 0;
             if (start == 0) {
@@ -155,7 +155,7 @@ public class Random extends InstanceFactory {
             this.curSeed = start;
             this.value = (int) start;
         }
-        
+
         void step() {
             long v = curSeed;
             v = (v * multiplier + addend) & mask;
@@ -163,14 +163,14 @@ public class Random extends InstanceFactory {
             value = (int) (v >> 12);
         }
     }
-    
+
     public static class Logger extends InstanceLogger {
         @Override
         public String getLogName(InstanceState state, Object option) {
             String ret = state.getAttributeValue(StdAttr.LABEL);
             return ret != null && !ret.equals("") ? ret : null;
         }
-    
+
         @Override
         public Value getLogValue(InstanceState state, Object option) {
             BitWidth dataWidth = state.getAttributeValue(StdAttr.WIDTH);

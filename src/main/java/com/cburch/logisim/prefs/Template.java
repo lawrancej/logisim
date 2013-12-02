@@ -20,7 +20,7 @@ public class Template {
         buf.append("</project>");
         return new Template(buf.toString());
     }
-    
+
     public static Template create(InputStream in) {
         InputStreamReader reader = new InputStreamReader(in);
         char[] buf = new char[4096];
@@ -36,13 +36,13 @@ public class Template {
         }
         return new Template(dest.toString());
     }
-    
+
     private String contents;
-    
+
     private Template(String contents) {
         this.contents = contents;
     }
-    
+
     public InputStream createStream() {
         try {
             return new ByteArrayInputStream(contents.getBytes("UTF-8"));

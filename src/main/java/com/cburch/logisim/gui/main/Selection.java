@@ -36,14 +36,14 @@ public class Selection extends SelectionBase {
     public static interface Listener {
         public void selectionChanged(Selection.Event event);
     }
-    
+
     private class MyListener implements ProjectListener, CircuitListener {
         private WeakHashMap<Action,SelectionSave> savedSelections;
-        
+
         MyListener() {
             savedSelections = new WeakHashMap<Action,SelectionSave>();
         }
-        
+
         @Override
         public void projectChanged(ProjectEvent event) {
             int type = event.getAction();
@@ -84,14 +84,14 @@ public class Selection extends SelectionBase {
                 }
             }
         }
-        
+
         @Override
         public void circuitChanged(CircuitEvent event) {
             if (event.getAction() == CircuitEvent.TRANSACTION_DONE) {
                 Circuit circuit = event.getCircuit();
                 ReplacementMap repl = event.getResult().getReplacementMap(circuit);
                 boolean change = false;
-                
+
                 ArrayList<Component> oldAnchored;
                 oldAnchored = new ArrayList<Component>(getComponents());
                 for (Component comp : oldAnchored) {
@@ -109,12 +109,12 @@ public class Selection extends SelectionBase {
                         }
                     }
                 }
-                
+
                 if (change) {
                     fireSelectionChanged();
                 }
             }
-        }       
+        }
     }
 
     private MyListener myListener;
@@ -123,7 +123,7 @@ public class Selection extends SelectionBase {
 
     public Selection(Project proj, Canvas canvas) {
         super(proj);
-        
+
         myListener = new MyListener();
         attrs = new SelectionAttributes(canvas, this);
         proj.addProjectListener(myListener);
@@ -136,7 +136,7 @@ public class Selection extends SelectionBase {
     public boolean isEmpty() {
         return selected.isEmpty() && lifted.isEmpty();
     }
-    
+
     public AttributeSet getAttributeSet() {
         return attrs;
     }
@@ -152,11 +152,11 @@ public class Selection extends SelectionBase {
     public Set<Component> getComponents() {
         return unionSet;
     }
-    
+
     public Collection<Component> getAnchoredComponents() {
         return selected;
     }
-    
+
     public Collection<Component> getFloatingComponents() {
         return lifted;
     }
@@ -206,7 +206,7 @@ public class Selection extends SelectionBase {
         for (Component c : lifted) {
             if (!hidden.contains(c)) {
                 Location loc = c.getLocation();
-    
+
                 Graphics g_new = g.create();
                 context.setGraphics(g_new);
                 c.getFactory().drawGhost(context, Color.GRAY,
@@ -251,7 +251,7 @@ public class Selection extends SelectionBase {
         }
         context.setGraphics(g);
     }
-    
+
     @Override
     public void print() {
         System.err.println(" isVisible: " + isVisible); //OK

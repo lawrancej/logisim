@@ -55,7 +55,7 @@ public class Text extends InstanceFactory {
         setIconName("text.svg");
         setShouldSnap(false);
     }
-    
+
     @Override
     public AttributeSet createAttributeSet() {
         return new TextAttributes();
@@ -80,7 +80,7 @@ public class Text extends InstanceFactory {
     private Bounds estimateBounds(TextAttributes attrs) {
         // TODO - you can imagine being more clever here
         String text = attrs.getText();
-        if (text == null || text.length() == 0) return Bounds.EMPTY_BOUNDS; 
+        if (text == null || text.length() == 0) return Bounds.EMPTY_BOUNDS;
         int size = attrs.getFont().getSize();
         int h = size;
         int w = size * text.length() / 2;
@@ -113,14 +113,14 @@ public class Text extends InstanceFactory {
         TextAttributes attrs = (TextAttributes) painter.getAttributeSet();
         String text = attrs.getText();
         if (text == null || text.equals("")) return;
-        
+
         int halign = attrs.getHorizontalAlign();
         int valign = attrs.getVerticalAlign();
         Graphics g = painter.getGraphics();
         Font old = g.getFont();
         g.setFont(attrs.getFont());
         GraphicsUtil.drawText(g, text, 0, 0, halign, valign);
-        
+
         String textTrim = text.endsWith(" ") ? text.substring(0, text.length() - 1) : text;
         Bounds newBds;
         if (textTrim.equals("")) {
@@ -134,7 +134,7 @@ public class Text extends InstanceFactory {
             Instance instance = painter.getInstance();
             if (instance != null) instance.recomputeBounds();
         }
-                
+
         g.setFont(old);
     }
 
@@ -158,20 +158,20 @@ public class Text extends InstanceFactory {
         configureLabel(instance);
         instance.addAttributeListener();
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == ATTR_HALIGN || attr == ATTR_VALIGN) {
             configureLabel(instance);
         }
     }
-    
+
     private void configureLabel(Instance instance) {
         TextAttributes attrs = (TextAttributes) instance.getAttributeSet();
         Location loc = instance.getLocation();
         instance.setTextField(ATTR_TEXT, ATTR_FONT, loc.getX(), loc.getY(),
                 attrs.getHorizontalAlign(), attrs.getVerticalAlign());
-    }      
+    }
 
     @Override
     public void propagate(InstanceState state) { }

@@ -18,12 +18,12 @@ import com.cburch.logisim.util.StringUtil;
  * of the code relevant to state, though, appears in CounterData class. */
 class SimpleGrayCounter extends InstanceFactory {
     private static final BitWidth BIT_WIDTH = BitWidth.create(4);
-    
+
     // Again, notice how we don't have any instance variables related to an
     // individual instance's state. We can't put that here, because only one
     // SimpleGrayCounter object is ever created, and its job is to manage all
     // instances that appear in any circuits.
-    
+
     public SimpleGrayCounter() {
         super("Gray Counter (Simple)");
         setOffsetBounds(Bounds.create(-30, -15, 30, 30));
@@ -44,7 +44,7 @@ class SimpleGrayCounter extends InstanceFactory {
         boolean trigger = cur.updateClock(state.getPort(0));
         if (trigger) cur.setValue(GrayIncrementer.nextGray(cur.getValue()));
         state.setPort(1, cur.getValue(), 9);
-        
+
         // (You might be tempted to determine the counter's current value
         // via state.getPort(1). This is erroneous, though, because another
         // component may be pushing a value onto the same point, which would
@@ -57,7 +57,7 @@ class SimpleGrayCounter extends InstanceFactory {
         painter.drawBounds();
         painter.drawClock(0, Direction.EAST); // draw a triangle on port 0
         painter.drawPort(1); // draw port 1 as just a dot
-        
+
         // Display the current counter value centered within the rectangle.
         // However, if the context says not to show state (as when generating
         // printer output), then skip this.

@@ -37,7 +37,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class AppearanceEditHandler extends EditHandler
         implements SelectionListener, PropertyChangeListener, CanvasModelListener {
     private AppearanceCanvas canvas;
-    
+
     AppearanceEditHandler(AppearanceCanvas canvas) {
         this.canvas = canvas;
         canvas.getSelection().addSelectionListener(this);
@@ -45,7 +45,7 @@ public class AppearanceEditHandler extends EditHandler
         if (model != null) model.addCanvasModelListener(this);
         canvas.addPropertyChangeListener(Canvas.MODEL_PROPERTY, this);
     }
-    
+
     @Override
     public void computeEnabled() {
         Project proj = canvas.getProject();
@@ -67,7 +67,7 @@ public class AppearanceEditHandler extends EditHandler
                     canvas.getModel());
             int zmin = Integer.MAX_VALUE;
             int zmax = Integer.MIN_VALUE;
-            int count = 0; 
+            int count = 0;
             for (Map.Entry<CanvasObject, Integer> entry : zs.entrySet()) {
                 if (!(entry.getKey() instanceof AppearanceElement)) {
                     count++;
@@ -96,7 +96,7 @@ public class AppearanceEditHandler extends EditHandler
             canAddCtrl = o.canInsertHandle(handle.getLocation()) != null;
             canRemCtrl = o.canDeleteHandle(handle.getLocation()) != null;
         }
-        
+
         setEnabled(LogisimMenuBar.CUT, selHasRemovable && canChange);
         setEnabled(LogisimMenuBar.COPY, !selEmpty);
         setEnabled(LogisimMenuBar.PASTE, canChange && clipExists);
@@ -110,21 +110,21 @@ public class AppearanceEditHandler extends EditHandler
         setEnabled(LogisimMenuBar.ADD_CONTROL, canAddCtrl);
         setEnabled(LogisimMenuBar.REMOVE_CONTROL, canRemCtrl);
     }
-    
+
     @Override
     public void cut() {
         if (!canvas.getSelection().isEmpty()) {
             canvas.getProject().doAction(ClipboardActions.cut(canvas));
         }
     }
-    
+
     @Override
     public void copy() {
         if (!canvas.getSelection().isEmpty()) {
             canvas.getProject().doAction(ClipboardActions.copy(canvas));
         }
     }
-    
+
     @Override
     public void paste() {
         ClipboardContents clip = Clipboard.get();
@@ -134,10 +134,10 @@ public class AppearanceEditHandler extends EditHandler
             add.add(o.clone());
         }
         if (add.isEmpty()) return;
-        
+
         // find how far we have to translate shapes so that at least one of the
         // pasted shapes doesn't match what's already in the model
-        Collection<CanvasObject> raw = canvas.getModel().getObjectsFromBottom(); 
+        Collection<CanvasObject> raw = canvas.getModel().getObjectsFromBottom();
         MatchingSet<CanvasObject> cur = new MatchingSet<CanvasObject>(raw);
         int dx = 0;
         while (true) {
@@ -150,24 +150,24 @@ public class AppearanceEditHandler extends EditHandler
                 }
             }
             if (!allMatch) break;
-            
+
             // otherwise translate everything by 10 pixels and repeat test
             for (CanvasObject o : add) {
                 o.translate(10, 10);
             }
             dx += 10;
         }
-        
+
         Location anchorLocation = clip.getAnchorLocation();
         if (anchorLocation != null && dx != 0) {
             anchorLocation = anchorLocation.translate(dx, dx);
         }
-            
+
         canvas.getProject().doAction(new SelectionAction(canvas,
                 __("pasteClipboardAction"), null, add, add,
                 anchorLocation, clip.getAnchorFacing()));
     }
-    
+
     @Override
     public void delete() {
         Selection sel = canvas.getSelection();
@@ -188,14 +188,14 @@ public class AppearanceEditHandler extends EditHandler
                 }
             }
         }
-        
+
         if (!remove.isEmpty()) {
             canvas.getProject().doAction(new SelectionAction(canvas,
                 __("deleteSelectionAction"), remove, null, select,
                 anchorLocation, anchorFacing));
         }
     }
-    
+
     @Override
     public void duplicate() {
         Selection sel = canvas.getSelection();
@@ -212,21 +212,21 @@ public class AppearanceEditHandler extends EditHandler
                 select.add(o);
             }
         }
-        
+
         if (!clones.isEmpty()) {
             canvas.getProject().doAction(new SelectionAction(canvas,
                 __("duplicateSelectionAction"), null, clones, select,
                 null, null));
         }
     }
-    
+
     @Override
     public void selectAll() {
         Selection sel = canvas.getSelection();
         sel.setSelected(canvas.getModel().getObjectsFromBottom(), true);
         canvas.repaint();
     }
-    
+
     @Override
     public void raise() {
         ModelReorderAction act = ModelReorderAction.createRaise(canvas.getModel(),
@@ -235,7 +235,7 @@ public class AppearanceEditHandler extends EditHandler
             canvas.doAction(act);
         }
     }
-    
+
     @Override
     public void lower() {
         ModelReorderAction act = ModelReorderAction.createLower(canvas.getModel(),
@@ -244,7 +244,7 @@ public class AppearanceEditHandler extends EditHandler
             canvas.doAction(act);
         }
     }
-    
+
     @Override
     public void raiseTop() {
         ModelReorderAction act = ModelReorderAction.createRaiseTop(canvas.getModel(),
@@ -253,7 +253,7 @@ public class AppearanceEditHandler extends EditHandler
             canvas.doAction(act);
         }
     }
-    
+
     @Override
     public void lowerBottom() {
         ModelReorderAction act = ModelReorderAction.createLowerBottom(canvas.getModel(),
@@ -269,7 +269,7 @@ public class AppearanceEditHandler extends EditHandler
         Handle handle = sel.getSelectedHandle();
         canvas.doAction(new ModelInsertHandleAction(canvas.getModel(), handle));
     }
-    
+
     @Override
     public void removeControlPoint() {
         Selection sel = canvas.getSelection();

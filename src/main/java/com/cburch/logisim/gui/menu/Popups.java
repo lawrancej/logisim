@@ -116,7 +116,7 @@ public class Popups {
             addSeparator();
             add(main); main.addActionListener(this);
             add(remove); remove.addActionListener(this);
-            
+
             boolean canChange = proj.getLogisimFile().contains(circuit);
             LogisimFile file = proj.getLogisimFile();
             if (circuit == proj.getCurrentCircuit()) {
@@ -152,19 +152,19 @@ public class Popups {
             }
         }
     }
-    
+
     public static JPopupMenu forCircuit(Project proj, AddTool tool, Circuit circ) {
         return new CircuitPopup(proj, tool, circ);
     }
-    
+
     public static JPopupMenu forTool(Project proj, Tool tool) {
         return null;
     }
-    
+
     public static JPopupMenu forProject(Project proj) {
         return new ProjectPopup(proj);
     }
-    
+
     public static JPopupMenu forLibrary(Project proj, Library lib, boolean isTop) {
         return new LibraryPopup(proj, lib, isTop);
     }

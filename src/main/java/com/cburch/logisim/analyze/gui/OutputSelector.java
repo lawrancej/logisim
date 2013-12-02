@@ -62,7 +62,7 @@ class OutputSelector {
                 if (prototypeValue == null || variable.length() > prototypeValue.length()) {
                     computePrototypeValue();
                 }
-                
+
                 index = source.indexOf(variable);
                 fireIntervalAdded(this, index, index);
                 if (select.getSelectedItem() == null) {
@@ -101,42 +101,42 @@ class OutputSelector {
     private JLabel label = new JLabel();
     private JComboBox select = new JComboBox();
     private String prototypeValue = null;
-    
+
     public OutputSelector(AnalyzerModel model) {
         this.source = model.getOutputs();
-        
+
         Model listModel = new Model();
         select.setModel(listModel);
         source.addVariableListListener(listModel);
     }
-    
+
     public JPanel createPanel() {
         JPanel ret = new JPanel();
         ret.add(label);
         ret.add(select);
         return ret;
     }
-    
+
     public JLabel getLabel() {
         return label;
     }
-    
+
     public JComboBox getComboBox() {
         return select;
     }
-    
+
     void localeChanged() {
         label.setText(_("outputSelectLabel"));
     }
-    
+
     public void addItemListener(ItemListener l) {
         select.addItemListener(l);
     }
-    
+
     public void removeItemListener(ItemListener l) {
         select.removeItemListener(l);
     }
-    
+
     public String getSelectedOutput() {
         String value = (String) select.getSelectedItem();
         if (value != null && !source.contains(value)) {
@@ -149,7 +149,7 @@ class OutputSelector {
         }
         return value;
     }
-    
+
     private void computePrototypeValue() {
         String newValue;
         if (source.isEmpty()) {

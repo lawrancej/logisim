@@ -25,7 +25,7 @@ class GrayIncrementer extends InstanceFactory {
     /** The constructor configures the factory. */
     GrayIncrementer() {
         super("Gray Code Incrementer");
-        
+
         /* This is how we can set up the attributes for GrayIncrementers. In
          * this case, there is just one attribute - the width - whose default
          * is 4. The StdAttr class defines several commonly occurring
@@ -35,7 +35,7 @@ class GrayIncrementer extends InstanceFactory {
          * and modify them all at once. */
         setAttributes(new Attribute[] { StdAttr.WIDTH },
                 new Object[] { BitWidth.create(4) });
-        
+
         /* The "offset bounds" is the location of the bounding rectangle
          * relative to the mouse location. Here, we're choosing the component to
          * be 30x30, and we're anchoring it relative to its primary output
@@ -43,7 +43,7 @@ class GrayIncrementer extends InstanceFactory {
          * east edge. Thus, the top left corner of the bounding box is 30 pixels
          * west and 15 pixels north of the mouse location. */
         setOffsetBounds(Bounds.create(-30, -15, 30, 30));
-        
+
         /* The ports are locations where wires can be connected to this
          * component. Each port object says where to find the port relative to
          * the component's anchor location, then whether the port is an
@@ -66,11 +66,11 @@ class GrayIncrementer extends InstanceFactory {
         // the setPorts invocation above, the component's input was included at
         // index 0 in the parameter array, so we use 0 as the parameter below.
         Value in = state.getPort(0);
-        
+
         // Now compute the output. We've farmed this out to a helper method,
         // since the same logic is needed for the library's other components.
         Value out = nextGray(in);
-        
+
         // Finally we propagate the output into the circuit. The first parameter
         // is 1 because in our list of ports (configured by invocation of
         // setPorts above) the output is at index 1. The second parameter is the
@@ -90,7 +90,7 @@ class GrayIncrementer extends InstanceFactory {
         painter.drawRectangle(painter.getBounds(), "G+1");
         painter.drawPorts();
     }
-    
+
     /** Computes the next gray value in the sequence after prev. This static
      * method just does some bit twiddling; it doesn't have much to do with
      * Logisim except that it manipulates Value and BitWidth objects. */

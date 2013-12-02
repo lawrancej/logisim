@@ -26,15 +26,15 @@ public class ToolAttributeAction extends Action {
     public static Action create(KeyConfigurationResult results) {
         return new ToolAttributeAction(results);
     }
-    
+
     private KeyConfigurationResult config;
     private Map<Attribute<?>,Object> oldValues;
-    
+
     private ToolAttributeAction(KeyConfigurationResult config) {
         this.config = config;
         this.oldValues = new HashMap<Attribute<?>,Object>(2);
     }
-    
+
     @Override
     public String getName() {
         return _("changeToolAttrAction");
@@ -53,7 +53,7 @@ public class ToolAttributeAction extends Action {
         }
         this.oldValues = oldValues;
     }
-    
+
     @Override
     public void undo(Project proj) {
         AttributeSet attrs = config.getEvent().getAttributeSet();

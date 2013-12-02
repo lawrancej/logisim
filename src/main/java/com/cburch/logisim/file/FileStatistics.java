@@ -26,7 +26,7 @@ public class FileStatistics {
         private int simpleCount;
         private int uniqueCount;
         private int recursiveCount;
-        
+
         private Count(ComponentFactory factory) {
             this.library = null;
             this.factory = factory;
@@ -34,28 +34,28 @@ public class FileStatistics {
             this.uniqueCount = 0;
             this.recursiveCount = 0;
         }
-        
+
         public Library getLibrary() {
             return library;
         }
-        
+
         public ComponentFactory getFactory() {
             return factory;
         }
-        
+
         public int getSimpleCount() {
             return simpleCount;
         }
-        
+
         public int getUniqueCount() {
             return uniqueCount;
         }
-        
+
         public int getRecursiveCount() {
             return recursiveCount;
         }
     }
-    
+
     public static FileStatistics compute(LogisimFile file, Circuit circuit) {
         Set<Circuit> include = new HashSet<Circuit>(file.getCircuits());
         Map<Circuit,Map<ComponentFactory,Count>> countMap;
@@ -66,7 +66,7 @@ public class FileStatistics {
         return new FileStatistics(countList, getTotal(countList, include),
                 getTotal(countList, null));
     }
-    
+
     private static Map<ComponentFactory,Count> doRecursiveCount(Circuit circuit,
             Set<Circuit> include,
             Map<Circuit,Map<ComponentFactory,Count>> countMap) {
@@ -97,10 +97,10 @@ public class FileStatistics {
                 }
             }
         }
-        
+
         return counts;
     }
-    
+
     private static Map<ComponentFactory,Count> doSimpleCount(Circuit circuit) {
         Map<ComponentFactory,Count> counts;
         counts = new HashMap<ComponentFactory,Count>();
@@ -115,7 +115,7 @@ public class FileStatistics {
         }
         return counts;
     }
-    
+
     private static void doUniqueCounts(Map<ComponentFactory,Count> counts,
             Map<Circuit,Map<ComponentFactory,Count>> circuitCounts) {
         for (Count count : counts.values()) {
@@ -130,7 +130,7 @@ public class FileStatistics {
             count.uniqueCount = unique;
         }
     }
-    
+
     private static List<Count> sortCounts(Map<ComponentFactory,Count> counts,
             LogisimFile file) {
         List<Count> ret = new ArrayList<Count>();
@@ -156,7 +156,7 @@ public class FileStatistics {
         }
         return ret;
     }
-    
+
     private static Count getTotal(List<Count> counts, Set<Circuit> exclude) {
         Count ret = new Count(null);
         for (Count count : counts) {
@@ -173,26 +173,26 @@ public class FileStatistics {
         }
         return ret;
     }
-    
+
     private List<Count> counts;
     private Count totalWithout;
     private Count totalWith;
-    
+
     private FileStatistics(List<Count> counts, Count totalWithout,
             Count totalWith) {
         this.counts = Collections.unmodifiableList(counts);
         this.totalWithout = totalWithout;
         this.totalWith = totalWith;
     }
-    
+
     public List<Count> getCounts() {
         return counts;
     }
-    
+
     public Count getTotalWithoutSubcircuits() {
         return totalWithout;
     }
-    
+
     public Count getTotalWithSubcircuits() {
         return totalWith;
     }

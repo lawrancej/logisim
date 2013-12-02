@@ -19,7 +19,7 @@ public class CanvasActionAdapter extends com.cburch.logisim.proj.Action {
     private Circuit circuit;
     private Action canvasAction;
     private boolean wasDefault;
-    
+
     public CanvasActionAdapter(Circuit circuit, Action action) {
         this.circuit = circuit;
         this.canvasAction = action;
@@ -51,7 +51,7 @@ public class CanvasActionAdapter extends com.cburch.logisim.proj.Action {
         }
         circuit.getAppearance().setDefaultAppearance(wasDefault);
     }
-    
+
     private boolean affectsPorts() {
         if (canvasAction instanceof ModelAction) {
             for (CanvasObject o : ((ModelAction) canvasAction).getObjects()) {
@@ -62,14 +62,14 @@ public class CanvasActionAdapter extends com.cburch.logisim.proj.Action {
         }
         return false;
     }
-    
+
     private class ActionTransaction extends CircuitTransaction {
         private boolean forward;
-        
+
         ActionTransaction(boolean forward) {
             this.forward = forward;
         }
-        
+
         @Override
         protected Map<Circuit, Integer> getAccessedCircuits() {
             Map<Circuit, Integer> accessMap = new HashMap<Circuit, Integer>();
@@ -87,6 +87,6 @@ public class CanvasActionAdapter extends com.cburch.logisim.proj.Action {
                 canvasAction.undo();
             }
         }
-        
+
     }
 }

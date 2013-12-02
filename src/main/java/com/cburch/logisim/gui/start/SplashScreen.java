@@ -28,10 +28,10 @@ public class SplashScreen extends JWindow implements ActionListener {
     public static final int FILE_LOAD = 7;
     public static final int PROJECT_CREATE = 8;
     public static final int FRAME_CREATE = 9;
-    
+
     private static final int PROGRESS_MAX = 3568;
     private static final boolean PRINT_TIMES = false;
-    
+
     private static class Marker {
         int count;
         String message;
@@ -65,7 +65,7 @@ public class SplashScreen extends JWindow implements ActionListener {
         imagePanel.setBorder(null);
 
         progress.setStringPainted(true);
-        
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(close);
         close.addActionListener(this);
@@ -77,7 +77,7 @@ public class SplashScreen extends JWindow implements ActionListener {
         contents.add(progress, BorderLayout.CENTER);
         contents.add(buttonPanel, BorderLayout.SOUTH);
         contents.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        
+
         Color bg = imagePanel.getBackground();
         contents.setBackground(bg);
         buttonPanel.setBackground(bg);
@@ -105,7 +105,7 @@ public class SplashScreen extends JWindow implements ActionListener {
             }
         }
     }
-    
+
     @Override
     public void setVisible(boolean value) {
         if (value) {
@@ -129,7 +129,7 @@ public class SplashScreen extends JWindow implements ActionListener {
         }
         markers = null;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();

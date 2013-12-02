@@ -40,7 +40,7 @@ class GateAttributes extends AbstractAttributeSet {
     public static final Attribute<AttributeOption> ATTR_XOR
         = Attributes.forOption("xor", __("xorBehaviorAttr"),
                 new AttributeOption[] { XOR_ONE, XOR_ODD });
-    
+
     static final AttributeOption OUTPUT_01
         = new AttributeOption("01", __("gateOutput01"));
     static final AttributeOption OUTPUT_0Z
@@ -50,7 +50,7 @@ class GateAttributes extends AbstractAttributeSet {
     public static final Attribute<AttributeOption> ATTR_OUTPUT
         = Attributes.forOption("out", __("gateOutputAttr"),
             new AttributeOption[] { OUTPUT_01, OUTPUT_0Z, OUTPUT_Z1 });
-    
+
 
     Direction facing = Direction.EAST;
     BitWidth width = BitWidth.ONE;
@@ -61,7 +61,7 @@ class GateAttributes extends AbstractAttributeSet {
     AttributeOption xorBehave;
     String label = "";
     Font labelFont = StdAttr.DEFAULT_LABEL_FONT;
-    
+
     GateAttributes(boolean isXor) {
         xorBehave = isXor ? XOR_ONE : null;
     }

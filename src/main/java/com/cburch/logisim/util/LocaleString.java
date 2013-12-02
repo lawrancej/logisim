@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 /**
  * Given a string, return the locale-specific translation.
  * This class is analogous to GNU gettext.
- * 
+ *
  * @author Joey Lawrance
  *
  */

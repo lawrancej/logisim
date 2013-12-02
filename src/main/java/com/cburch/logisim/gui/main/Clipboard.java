@@ -13,28 +13,28 @@ import com.cburch.logisim.util.PropertyChangeWeakSupport;
 
 class Clipboard {
     public static final String contentsProperty = "contents";
-    
+
     private static Clipboard current = null;
     private static PropertyChangeWeakSupport propertySupport = new PropertyChangeWeakSupport(Clipboard.class);
-    
+
     public static boolean isEmpty() {
         return current == null || current.components.isEmpty();
     }
-    
+
     public static Clipboard get() {
         return current;
     }
-    
+
     public static void set(Selection value, AttributeSet oldAttrs) {
         set(new Clipboard(value, oldAttrs));
     }
-    
+
     public static void set(Clipboard value) {
         Clipboard old = current;
         current = value;
         propertySupport.firePropertyChange(contentsProperty, old, current);
     }
-    
+
     //
     // PropertyChangeSource methods
     //
@@ -57,7 +57,7 @@ class Clipboard {
     private HashSet<Component> components;
     private AttributeSet oldAttrs;
     private AttributeSet newAttrs;
-    
+
     private Clipboard(Selection sel, AttributeSet viewAttrs) {
         components = new HashSet<Component>();
         oldAttrs = null;
@@ -74,19 +74,19 @@ class Clipboard {
             }
         }
     }
-    
+
     public Collection<Component> getComponents() {
         return components;
     }
-    
+
     public AttributeSet getOldAttributeSet() {
         return oldAttrs;
     }
-    
+
     public AttributeSet getNewAttributeSet() {
         return newAttrs;
     }
-    
+
     void setOldAttributeSet(AttributeSet value) {
         oldAttrs = value;
     }

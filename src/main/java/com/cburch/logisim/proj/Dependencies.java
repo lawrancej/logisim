@@ -60,7 +60,7 @@ public class Dependencies {
                 if (comp.getFactory() instanceof SubcircuitFactory) {
                     SubcircuitFactory factory = (SubcircuitFactory) comp.getFactory();
                     boolean found = false;
-                    for (Component o : e.getCircuit().getNonWires()) { 
+                    for (Component o : e.getCircuit().getNonWires()) {
                         if (o.getFactory() == factory) {
                             found = true;
                             break;

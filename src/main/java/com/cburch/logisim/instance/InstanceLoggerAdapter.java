@@ -11,7 +11,7 @@ class InstanceLoggerAdapter implements Loggable {
     private InstanceComponent comp;
     private InstanceLogger logger;
     private InstanceStateImpl state;
-    
+
     public InstanceLoggerAdapter(InstanceComponent comp, Class<? extends InstanceLogger> loggerClass) {
         try {
             this.comp = comp;
@@ -22,7 +22,7 @@ class InstanceLoggerAdapter implements Loggable {
             logger = null;
         }
     }
-    
+
     private void handleError(Throwable t, Class<? extends InstanceLogger> loggerClass) {
         String className = loggerClass.getName();
         System.err.println("error while instantiating logger " + className //OK
@@ -59,7 +59,7 @@ class InstanceLoggerAdapter implements Loggable {
             return Value.UNKNOWN;
         }
     }
-    
+
     private void updateState(CircuitState circuitState) {
         if (state.getCircuitState() != circuitState) {
             state.repurpose(circuitState, comp);

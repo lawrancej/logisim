@@ -7,15 +7,15 @@ import javax.swing.tree.TreePath;
 
 public class ProjectExplorerEvent {
     private TreePath path;
-    
+
     public ProjectExplorerEvent(TreePath path) {
         this.path = path;
     }
-    
+
     public TreePath getTreePath() {
         return path;
     }
-    
+
     public Object getTarget() {
         return path == null ? null : path.getLastPathComponent();
     }

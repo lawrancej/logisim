@@ -19,7 +19,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class SevenSegment extends InstanceFactory {
     static Bounds[] SEGMENTS = null;
     static Color DEFAULT_OFF = new Color(220, 220, 220);
-    
+
     public SevenSegment() {
         super("7-Segment Display", __("sevenSegmentComponent"));
         setAttributes(new Attribute[] { Io.ATTR_ON_COLOR, Io.ATTR_OFF_COLOR,
@@ -55,19 +55,19 @@ public class SevenSegment extends InstanceFactory {
             data.setValue(value);
         }
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         drawBase(painter);
     }
-    
+
     static void drawBase(InstancePainter painter) {
         ensureSegments();
         InstanceDataSingleton data = (InstanceDataSingleton) painter.getData();
         int summ = (data == null ? 0 : ((Integer) data.getValue()).intValue());
         Boolean active = painter.getAttributeValue(Io.ATTR_ACTIVE);
         int desired = active == null || active.booleanValue() ? 1 : 0;
-        
+
         Bounds bds = painter.getBounds();
         int x = bds.getX() + 5;
         int y = bds.getY();
@@ -96,7 +96,7 @@ public class SevenSegment extends InstanceFactory {
         }
         painter.drawPorts();
     }
-    
+
     static void ensureSegments() {
         if (SEGMENTS == null) {
             SEGMENTS = new Bounds[] {

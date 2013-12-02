@@ -72,7 +72,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
 
     LogisimFile(Loader loader) {
         this.loader = loader;
-        
+
         name = _("defaultProjectName");
         if (Projects.windowNamed(name)) {
             for (int i = 2; true; i++) {
@@ -90,7 +90,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
     //
     @Override
     public String getName() { return name; }
-    
+
     @Override
     public boolean isDirty() { return dirty; }
 
@@ -125,7 +125,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         }
         return null;
     }
-    
+
     public boolean contains(Circuit circ) {
         for (AddTool tool : tools) {
             SubcircuitFactory factory = (SubcircuitFactory) tool.getFactory();
@@ -133,7 +133,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         }
         return false;
     }
-    
+
     public List<Circuit> getCircuits() {
         List<Circuit> ret = new ArrayList<Circuit>(tools.size());
         for (AddTool tool : tools) {
@@ -142,7 +142,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         }
         return ret;
     }
-    
+
     public AddTool getAddTool(Circuit circ) {
         for (AddTool tool : tools) {
             SubcircuitFactory factory = (SubcircuitFactory) tool.getFactory();
@@ -188,7 +188,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
     public void addMessage(String msg) {
         messages.addLast(msg);
     }
-    
+
     public void setDirty(boolean value) {
         if (dirty != value) {
             dirty = value;
@@ -204,7 +204,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
     public void addCircuit(Circuit circuit) {
         addCircuit(circuit, tools.size());
     }
-    
+
     public void addCircuit(Circuit circuit, int index) {
         AddTool tool = new AddTool(circuit.getSubcircuitFactory());
         tools.add(index, tool);
@@ -229,7 +229,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
             fireEvent(LibraryEvent.REMOVE_TOOL, circuitTool);
         }
     }
-    
+
     public void moveCircuit(AddTool tool, int index) {
         int oldIndex = tools.indexOf(tool);
         if (oldIndex < 0) {
@@ -251,7 +251,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         libraries.remove(lib);
         fireEvent(LibraryEvent.REMOVE_LIBRARY, lib);
     }
-    
+
     public String getUnloadLibraryMessage(Library lib) {
         HashSet<ComponentFactory> factories = new HashSet<ComponentFactory>();
         for (Tool tool : lib.getTools()) {
@@ -259,7 +259,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
                 factories.add(((AddTool) tool).getFactory());
             }
         }
-        
+
         for (Circuit circuit : getCircuits()) {
             for (Component comp : circuit.getNonWires()) {
                 if (factories.contains(comp.getFactory())) {
@@ -268,7 +268,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
                 }
             }
         }
-        
+
         ToolbarData tb = options.getToolbarData();
         MouseMappings mm = options.getMouseMappings();
         for (Tool t : lib.getTools()) {
@@ -279,7 +279,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
                 return _("unloadMappingError");
             }
         }
-        
+
         return null;
     }
 
@@ -328,7 +328,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
             return null;
         }
     }
-    
+
     Tool findTool(Tool query) {
         for (Library lib : getLibraries()) {
             Tool ret = findTool(lib, query);
@@ -336,7 +336,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         }
         return null;
     }
-    
+
     private Tool findTool(Library lib, Tool query) {
         for (Tool tool : lib.getTools()) {
             if (tool.equals(query)) return tool;
@@ -366,7 +366,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         } finally {
             in.close();
         }
-        
+
         if (firstExcept != null) {
             // We'll now try to do it using a reader. This is to work around
             // Logisim versions prior to 2.5.1, when files were not saved using
@@ -382,10 +382,10 @@ public class LogisimFile extends Library implements LibraryEventSource {
                 } catch (Throwable t) { }
             }
         }
-        
+
         return null;
     }
-    
+
     public static LogisimFile load(InputStream in, Loader loader)
             throws IOException {
         try {
@@ -422,7 +422,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         in.mark(first.length - 1);
         in.read(first);
         in.reset();
-        
+
         int lineBreak = first.length;
         for (int i = 0; i < lineBreak; i++) {
             if (first[i] == '\n') {

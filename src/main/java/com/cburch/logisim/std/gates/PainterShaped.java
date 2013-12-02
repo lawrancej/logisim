@@ -20,7 +20,7 @@ import com.cburch.logisim.util.GraphicsUtil;
  * PainterShaped actually renders gates onto the screen.
  *
  */
-public class PainterShaped {    
+public class PainterShaped {
     private static final GeneralPath PATH_NARROW;
     private static final GeneralPath PATH_MEDIUM;
     private static final GeneralPath PATH_WIDE;
@@ -28,7 +28,7 @@ public class PainterShaped {
     private static final GeneralPath SHIELD_NARROW;
     private static final GeneralPath SHIELD_MEDIUM;
     private static final GeneralPath SHIELD_WIDE;
-    
+
     static {
         PATH_NARROW = new GeneralPath();
         PATH_NARROW.moveTo(0, 0);
@@ -36,42 +36,42 @@ public class PainterShaped {
         PATH_NARROW.quadTo(-22,   0, -30,  15);
         PATH_NARROW.quadTo(-10,  15,   0,   0);
         PATH_NARROW.closePath();
-        
+
         PATH_MEDIUM = new GeneralPath();
         PATH_MEDIUM.moveTo(0, 0);
         PATH_MEDIUM.quadTo(-20, -25, -50, -25);
         PATH_MEDIUM.quadTo(-37,   0, -50,  25);
         PATH_MEDIUM.quadTo(-20,  25,   0,   0);
         PATH_MEDIUM.closePath();
-        
+
         PATH_WIDE = new GeneralPath();
         PATH_WIDE.moveTo(0, 0);
         PATH_WIDE.quadTo(-25, -35, -70, -35);
         PATH_WIDE.quadTo(-50,   0, -70,  35);
         PATH_WIDE.quadTo(-25,  35,   0,   0);
         PATH_WIDE.closePath();
-        
+
         SHIELD_NARROW = new GeneralPath();
         SHIELD_NARROW.moveTo(-30, -15);
         SHIELD_NARROW.quadTo(-22,   0, -30,  15);
-        
+
         SHIELD_MEDIUM = new GeneralPath();
         SHIELD_MEDIUM.moveTo(-50, -25);
         SHIELD_MEDIUM.quadTo(-37,   0, -50,  25);
-        
+
         SHIELD_WIDE = new GeneralPath();
         SHIELD_WIDE.moveTo(-70, -35);
         SHIELD_WIDE.quadTo(-50,   0, -70,  35);
     }
 
     private PainterShaped() { }
-    
+
     private static HashMap<Integer,int[]> INPUT_LENGTHS = new HashMap<Integer,int[]>();
-    
+
     static void paintAnd(InstancePainter painter, int width, int height) {
         Graphics g = painter.getGraphics();
         GraphicsUtil.switchToWidth(g, 2);
-        int[] xp = new int[] { -width / 2, -width + 1, -width + 1, -width / 2 }; 
+        int[] xp = new int[] { -width / 2, -width + 1, -width + 1, -width / 2 };
         int[] yp = new int[] { -width / 2, -width / 2, width / 2, width / 2 };
         GraphicsUtil.drawCenteredArc(g, -width / 2, 0, width / 2, -90, 180);
 
@@ -80,11 +80,11 @@ public class PainterShaped {
             g.drawLine(-width + 1, -height / 2, -width + 1, height / 2);
         }
     }
-    
+
     static void paintOr(InstancePainter painter, int width, int height) {
         Graphics g = painter.getGraphics();
-        GraphicsUtil.switchToWidth(g, 2);        
-        
+        GraphicsUtil.switchToWidth(g, 2);
+
         GeneralPath path;
         if (width < 40) {
             path = PATH_NARROW;
@@ -98,7 +98,7 @@ public class PainterShaped {
             paintShield(g, 0, width, height);
         }
     }
-    
+
     static void paintNot(InstancePainter painter) {
         Graphics g = painter.getGraphics();
         GraphicsUtil.switchToWidth(g, 2);
@@ -123,7 +123,7 @@ public class PainterShaped {
             g.drawOval(-9, -4, 9, 9);
         }
     }
-    
+
     static void paintXor(InstancePainter painter, int width, int height) {
         Graphics g = painter.getGraphics();
         //paintOr(painter, width - 10, width - 10);
@@ -138,7 +138,7 @@ public class PainterShaped {
         g.translate(-xlate, 0);
 
     }
-    
+
     private static GeneralPath computeShield(int width, int height) {
         GeneralPath base;
         if (width < 40) {
@@ -154,7 +154,7 @@ public class PainterShaped {
         } else { // we need to add wings
             int wingHeight = (height - width) / 2;
             int dx = Math.min(20, wingHeight / 4);
-            
+
             GeneralPath path = new GeneralPath();
             path.moveTo(-width, -height / 2);
             path.quadTo(-width + dx, -(width + height) / 4, -width, -width / 2);
@@ -171,7 +171,7 @@ public class PainterShaped {
         Direction facing = attrs.facing;
         int inputs = attrs.inputs;
         int negated = attrs.negated;
-        
+
         int[] lengths = getInputLineLengths(attrs, factory);
         if (painter.getInstance() == null) { // drawing ghost - negation bubbles only
             for (int i = 0; i < inputs; i++) {
@@ -210,7 +210,7 @@ public class PainterShaped {
             }
         }
     }
-    
+
     private static int[] getInputLineLengths(GateAttributes attrs, AbstractGate factory) {
         int inputs = attrs.inputs;
         int mainHeight = ((Integer) attrs.size.getValue()).intValue();
@@ -219,7 +219,7 @@ public class PainterShaped {
         if (ret != null) {
             return (int[]) ret;
         }
-        
+
         Direction facing = attrs.facing;
         if (facing != Direction.EAST) {
             attrs = (GateAttributes) attrs.clone();
@@ -233,7 +233,7 @@ public class PainterShaped {
         Location locn = OrGate.FACTORY.getInputOffset(attrs, inputs - 1);
         int totalHeight = 10 + loc0.manhattanDistanceTo(locn);
         if (totalHeight < width) totalHeight = width;
-        
+
         GeneralPath path = computeShield(width, totalHeight);
         for (int i = 0; i < inputs; i++) {
             Location loci = OrGate.FACTORY.getInputOffset(attrs, i);
@@ -246,7 +246,7 @@ public class PainterShaped {
             if (iters >= 15) iters = 0;
             lengths[i] = iters;
         }
-        
+
         return lengths;
     }
 }

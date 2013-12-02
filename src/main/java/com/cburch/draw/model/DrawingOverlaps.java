@@ -15,12 +15,12 @@ import java.util.Set;
 class DrawingOverlaps {
     private Map<CanvasObject, List<CanvasObject>> map;
     private Set<CanvasObject> untested;
-    
+
     public DrawingOverlaps() {
         map = new HashMap<CanvasObject, List<CanvasObject>>();
         untested = new HashSet<CanvasObject>();
     }
-    
+
     public Collection<CanvasObject> getObjectsOverlapping(CanvasObject o) {
         ensureUpdated();
 
@@ -31,7 +31,7 @@ class DrawingOverlaps {
             return Collections.unmodifiableList(ret);
         }
     }
-    
+
     private void ensureUpdated() {
         for (CanvasObject o : untested) {
             ArrayList<CanvasObject> over = new ArrayList<CanvasObject>();
@@ -45,7 +45,7 @@ class DrawingOverlaps {
         }
         untested.clear();
     }
-    
+
     private void addOverlap(CanvasObject a, CanvasObject b) {
         List<CanvasObject> alist = map.get(a);
         if (alist == null) {
@@ -56,11 +56,11 @@ class DrawingOverlaps {
             alist.add(b);
         }
     }
-    
+
     public void addShape(CanvasObject shape) {
         untested.add(shape);
     }
-    
+
     public void removeShape(CanvasObject shape) {
         untested.remove(shape);
         List<CanvasObject> mapped = map.remove(shape);
@@ -73,12 +73,12 @@ class DrawingOverlaps {
             }
         }
     }
-    
+
     public void invalidateShape(CanvasObject shape) {
         removeShape(shape);
         untested.add(shape);
     }
-    
+
     public void invalidateShapes(Collection<? extends CanvasObject> shapes) {
         for (CanvasObject o : shapes) {
             invalidateShape(o);

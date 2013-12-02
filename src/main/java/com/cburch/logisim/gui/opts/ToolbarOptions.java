@@ -42,7 +42,7 @@ class ToolbarOptions extends OptionsPanel {
                 doAddTool(tool);
             }
         }
-        
+
         @Override
         public void moveRequested(ProjectExplorerEvent event, AddTool dragged, AddTool target) { }
         @Override
@@ -74,7 +74,7 @@ class ToolbarOptions extends OptionsPanel {
         public void valueChanged(ListSelectionEvent event) {
             computeEnabled();
         }
-        
+
         private void computeEnabled() {
             int index = list.getSelectedIndex();
             addTool.setEnabled(explorer.getSelectedTool() != null);
@@ -82,13 +82,13 @@ class ToolbarOptions extends OptionsPanel {
             moveDown.setEnabled(index >= 0 && index < list.getModel().getSize() - 1);
             remove.setEnabled(index >= 0);
         }
-        
+
         private void doAddTool(Tool tool) {
             if (tool != null) {
                 getProject().doAction(ToolbarActions.addTool(getOptions().getToolbarData(), tool));
             }
         }
-        
+
         private void doMove(int delta) {
             int oldIndex = list.getSelectedIndex();
             int newIndex = oldIndex + delta;
@@ -100,9 +100,9 @@ class ToolbarOptions extends OptionsPanel {
             }
         }
     }
-    
+
     private Listener listener = new Listener();
-    
+
     private ProjectExplorer explorer;
     private JButton addTool;
     private JButton addSeparator;
@@ -110,7 +110,7 @@ class ToolbarOptions extends OptionsPanel {
     private JButton moveDown;
     private JButton remove;
     private ToolbarList list;
-    
+
     public ToolbarOptions(OptionsFrame window) {
         super(window);
         explorer = new ProjectExplorer(getProject());
@@ -130,7 +130,7 @@ class ToolbarOptions extends OptionsPanel {
         middle.add(moveDown);
         middle.add(remove);
         middleLayout.setRowWeight(4, 1.0);
-        
+
         explorer.setListener(listener);
         addTool.addActionListener(listener);
         addSeparator.addActionListener(listener);
@@ -139,7 +139,7 @@ class ToolbarOptions extends OptionsPanel {
         remove.addActionListener(listener);
         list.addListSelectionListener(listener);
         listener.computeEnabled();
-        
+
         GridBagLayout gridbag = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
         setLayout(gridbag);
@@ -171,7 +171,7 @@ class ToolbarOptions extends OptionsPanel {
     public String getHelpText() {
         return _("toolbarHelp");
     }
-    
+
     @Override
     public void localeChanged() {
         addTool.setText(_("toolbarAddTool"));

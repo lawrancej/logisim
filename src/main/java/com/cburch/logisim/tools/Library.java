@@ -19,7 +19,7 @@ public abstract class Library {
     public String toString() { return getName(); }
 
     public String getDisplayName() { return getName(); }
-    
+
     public boolean isDirty() { return false; }
 
     public List<Library> getLibraries() {
@@ -43,7 +43,7 @@ public abstract class Library {
         }
         return false;
     }
-    
+
     public int indexOf(ComponentFactory query) {
         int index = -1;
         for (Tool obj : getTools()) {
@@ -55,7 +55,7 @@ public abstract class Library {
         }
         return -1;
     }
-    
+
     public boolean contains(ComponentFactory query) {
         return indexOf(query) >= 0;
     }

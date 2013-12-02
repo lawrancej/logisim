@@ -5,11 +5,11 @@ package com.cburch.logisim.instance;
 
 public class InstanceDataSingleton implements InstanceData, Cloneable {
     private Object value;
-    
+
     public InstanceDataSingleton(Object value) {
         this.value = value;
     }
-    
+
     @Override
     public InstanceDataSingleton clone() {
         try {
@@ -18,11 +18,11 @@ public class InstanceDataSingleton implements InstanceData, Cloneable {
             return null;
         }
     }
-    
+
     public Object getValue() {
         return value;
     }
-    
+
     public void setValue(Object value) {
         this.value = value;
     }

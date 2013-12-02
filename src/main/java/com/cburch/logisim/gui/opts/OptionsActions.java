@@ -22,7 +22,7 @@ class OptionsActions {
             return null;
         }
     }
-    
+
     public static Action setMapping(MouseMappings mm, Integer mods,
             Tool tool) {
         return new SetMapping(mm, mods, tool);
@@ -31,7 +31,7 @@ class OptionsActions {
     public static Action removeMapping(MouseMappings mm, Integer mods) {
         return new RemoveMapping(mm, mods);
     }
-    
+
     private static class SetAction extends Action {
         private AttributeSet attrs;
         private Attribute<Object> attr;

@@ -22,16 +22,16 @@ import com.cburch.logisim.instance.StdAttr;
 class PortManager {
     private CircuitAppearance appearance;
     private boolean doingUpdate;
-    
+
     PortManager(CircuitAppearance appearance) {
         this.appearance = appearance;
         this.doingUpdate = false;
     }
-    
+
     void updatePorts() {
         appearance.recomputePorts();
     }
-    
+
     void updatePorts(Set<Instance> adds, Set<Instance> removes,
             Map<Instance, Instance> replaces, Collection<Instance> allPins) {
         if (appearance.isDefaultAppearance()) {
@@ -47,7 +47,7 @@ class PortManager {
             }
         }
     }
-    
+
     private void performUpdate(Set<Instance> adds, Set<Instance> removes,
             Map<Instance, Instance> replaces, Collection<Instance> allPins) {
         // Find the current objects corresponding to pins
@@ -59,10 +59,10 @@ class PortManager {
                 AppearancePort port = (AppearancePort) o;
                 oldObjects.put(port.getPin(), port);
             } else if (o instanceof AppearanceAnchor) {
-                anchor = (AppearanceAnchor) o; 
+                anchor = (AppearanceAnchor) o;
             }
         }
-        
+
         // ensure we have the anchor in the circuit
         if (anchor == null) {
             for (CanvasObject o : DefaultAppearance.build(allPins)) {
@@ -82,7 +82,7 @@ class PortManager {
         portRemoves = new ArrayList<AppearancePort>(removes.size());
         ArrayList<AppearancePort> portAdds;
         portAdds = new ArrayList<AppearancePort>(adds.size());
-        
+
         // handle removals
         for (Instance pin : removes) {
             AppearancePort port = oldObjects.remove(pin);
@@ -117,7 +117,7 @@ class PortManager {
         // Now update the appearance
         appearance.replaceAutomatically(portRemoves, portAdds);
     }
-    
+
     private static Location computeDefaultLocation(CircuitAppearance appear,
             Instance pin, Map<Instance, AppearancePort> others) {
         // Determine which locations are being used in canvas, and look for
@@ -133,12 +133,12 @@ class PortManager {
                 sameWay.add(pin2);
             }
         }
-        
+
         // if at least one faces the same way, place pin relative to that
         if (sameWay.size() > 0) {
             sameWay.add(pin);
             DefaultAppearance.sortPinList(sameWay, facing);
-            boolean isFirst = false; 
+            boolean isFirst = false;
             Instance neighbor = null; // (preferably previous in map)
             for (Instance p : sameWay) {
                 if (p == pin) {
@@ -171,7 +171,7 @@ class PortManager {
             } while (usedLocs.contains(loc));
             return loc;
         }
-        
+
         // otherwise place it on the boundary of the bounding rectangle
         Bounds bds = appear.getAbsoluteBounds();
         int x;

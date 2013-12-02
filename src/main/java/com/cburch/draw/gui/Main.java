@@ -29,7 +29,7 @@ public class Main {
         showFrame(model, "Drawing 1");
         showFrame(model, "Drawing 2");
     }
-    
+
     private static void showFrame(Drawing model, String title) {
         JFrame frame = new JFrame(title);
         DrawingAttributeSet attrs = new DrawingAttributeSet();
@@ -38,7 +38,7 @@ public class Main {
         Toolbar toolbar = new Toolbar(canvas, attrs);
         canvas.setModel(model, new UndoLogDispatcher(new UndoLog()));
         canvas.setTool(toolbar.getDefaultTool());
-        
+
         AttrTable table = new AttrTable(frame);
         AttrTableDrawManager manager = new AttrTableDrawManager(canvas, table, attrs);
         manager.attributesSelected();

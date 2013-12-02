@@ -49,7 +49,7 @@ public class GraphicsUtil {
         int ascent = mets.getAscent();
         int descent = mets.getDescent();
         int height = ascent + descent;
-        
+
         Rectangle ret = new Rectangle(x, y, width, height);
         switch (halign) {
             case H_CENTER: ret.translate(-(width / 2), 0); break;

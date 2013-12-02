@@ -30,7 +30,7 @@ class SelectionAction extends Action {
     private Direction anchorNewFacing;
     private Location anchorOldLocation;
     private Direction anchorOldFacing;
-    
+
     public SelectionAction(AppearanceCanvas canvas, StringGetter displayName,
             Collection<CanvasObject> toRemove, Collection<CanvasObject> toAdd,
             Collection<CanvasObject> newSelection, Location anchorLocation,
@@ -50,7 +50,7 @@ class SelectionAction extends Action {
     public String getName() {
         return displayName.toString();
     }
-    
+
     @Override
     public void doIt(Project proj) {
         Selection sel = canvas.getSelection();
@@ -72,7 +72,7 @@ class SelectionAction extends Action {
         sel.setSelected(newSelection, true);
         canvas.repaint();
     }
-    
+
     private AppearanceAnchor findAnchor(CanvasModel canvasModel) {
         for (Object o : canvasModel.getObjectsFromTop()) {
             if (o instanceof AppearanceAnchor) {
@@ -81,7 +81,7 @@ class SelectionAction extends Action {
         }
         return null;
     }
-    
+
     @Override
     public void undo(Project proj) {
         AppearanceAnchor anchor = findAnchor(canvasModel);

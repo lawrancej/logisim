@@ -13,7 +13,7 @@ import javax.swing.JRootPane;
 class DefaultRegistry {
     private class MyListener implements FocusListener {
         JButton defaultButton;
-        
+
         MyListener(JButton defaultButton) {
             this.defaultButton = defaultButton;
         }
@@ -29,14 +29,14 @@ class DefaultRegistry {
             if (currentDefault == defaultButton) rootPane.setDefaultButton(null);
         }
     }
-    
+
     private JRootPane rootPane;
-    
+
     public DefaultRegistry(JRootPane rootPane) {
         this.rootPane = rootPane;
         rootPane.setDefaultButton(null);
     }
-    
+
     public void registerDefaultButton(JComponent comp, JButton button) {
         comp.addFocusListener(new MyListener(button));
     }

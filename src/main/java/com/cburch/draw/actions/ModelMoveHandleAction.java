@@ -15,12 +15,12 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class ModelMoveHandleAction extends ModelAction {
     private HandleGesture gesture;
     private Handle newHandle;
-    
+
     public ModelMoveHandleAction(CanvasModel model, HandleGesture gesture) {
         super(model);
         this.gesture = gesture;
     }
-    
+
     public Handle getNewHandle() {
         return newHandle;
     }
@@ -34,12 +34,12 @@ public class ModelMoveHandleAction extends ModelAction {
     public String getName() {
         return _("actionMoveHandle");
     }
-    
+
     @Override
     void doSub(CanvasModel model) {
         newHandle = model.moveHandle(gesture);
     }
-    
+
     @Override
     void undoSub(CanvasModel model) {
         Handle oldHandle = gesture.getHandle();

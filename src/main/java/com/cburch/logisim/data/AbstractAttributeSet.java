@@ -8,9 +8,9 @@ import java.util.List;
 
 public abstract class AbstractAttributeSet implements Cloneable, AttributeSet {
     private ArrayList<AttributeListener> listeners = null;
-    
+
     public AbstractAttributeSet() { }
-    
+
     @Override
     public Object clone() {
         AbstractAttributeSet ret;
@@ -23,7 +23,7 @@ public abstract class AbstractAttributeSet implements Cloneable, AttributeSet {
         this.copyInto(ret);
         return ret;
     }
-    
+
     @Override
     public void addAttributeListener(AttributeListener l) {
         if (listeners == null) listeners = new ArrayList<AttributeListener>();

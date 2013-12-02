@@ -29,7 +29,7 @@ class OddParityGate extends AbstractGate {
     public void paintIconShaped(InstancePainter painter) {
         paintIconRectangular(painter);
     }
-    
+
     @Override
     public void paintIconRectangular(InstancePainter painter) {
         Graphics g = painter.getGraphics();

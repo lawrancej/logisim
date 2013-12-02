@@ -5,16 +5,16 @@ package com.cburch.logisim.file;
 
 public class LoadFailedException extends Exception {
     private boolean shown;
-    
+
     LoadFailedException(String desc) {
         this(desc, false);
     }
-    
+
     LoadFailedException(String desc, boolean shown) {
         super(desc);
         this.shown = shown;
     }
-    
+
     public boolean isShown() {
         return shown;
     }

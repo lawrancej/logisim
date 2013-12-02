@@ -49,7 +49,7 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
     public static Wire create(Location e0, Location e1) {
         return (Wire) cache.get(new Wire(e0, e1));
     }
-    
+
     private class EndList extends AbstractList<EndData> {
         @Override
         public EndData get(int i) {
@@ -83,14 +83,14 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
             }
         }
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (!(other instanceof Wire)) return false;
         Wire w = (Wire) other;
         return w.e0.equals(this.e0) && w.e1.equals(this.e1);
     }
-    
+
     @Override
     public int hashCode() {
         return e0.hashCode() * 31 + e1.hashCode();
@@ -213,14 +213,14 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
         g.drawLine(e0.getX(), e0.getY(),
             e1.getX(), e1.getY());
     }
-    
+
     @Override
     public Object getFeature(Object key) {
         if (key == CustomHandles.class) return this;
         return null;
     }
 
-    
+
     //
     // AttributeSet methods
     //
@@ -286,7 +286,7 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
     public Location getOtherEnd(Location loc) {
         return (loc.equals(e0) ? e1 : e0);
     }
-    
+
     public boolean sharesEnd(Wire other) {
         return this.e0.equals(other.e0) || this.e1.equals(other.e0)
             || this.e0.equals(other.e1) || this.e1.equals(other.e1);
@@ -315,16 +315,16 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
             }
         }
     }
-    
+
     public boolean isParallel(Wire other) {
         return this.is_x_equal == other.is_x_equal;
     }
-    
+
     @Override
     public Iterator<Location> iterator() {
         return new WireIterator(e0, e1);
     }
-    
+
     @Override
     public void drawHandles(ComponentDrawContext context) {
         context.drawHandle(e0);

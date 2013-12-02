@@ -7,21 +7,21 @@ import com.cburch.logisim.data.Location;
 
 public class LineUtil {
     private LineUtil() { }
-    
+
     // a value we consider "small enough" to equal it to zero:
     // (this is used for double solutions in 2nd or 3d degree equation)
     private static final double zeroMax = 0.0000001;
-    
+
     public static double distanceSquared(double x0, double y0, double x1, double y1) {
         double dx = x1 - x0;
         double dy = y1 - y0;
         return dx * dx + dy * dy;
     }
-    
+
     public static double distance(double x0, double y0, double x1, double y1) {
         return Math.sqrt(distanceSquared(x0, y0, x1, y1));
     }
-    
+
     public static double ptDistSqSegment(double x0, double y0,
             double x1, double y1, double xq, double yq) {
         double dx = x1 - x0;

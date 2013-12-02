@@ -35,7 +35,7 @@ public class Wiring extends Library {
         new AddTool(Clock.FACTORY),
         new AddTool(Constant.FACTORY),
     };
-    
+
     private static FactoryDescription[] DESCRIPTIONS = {
         new FactoryDescription("Power", __("powerComponent"),
                 "power.svg", "Power"),

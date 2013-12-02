@@ -23,19 +23,19 @@ class AvoidanceMap {
     }
 
     private final HashMap<Location,String> avoid;
-    
+
     private AvoidanceMap(HashMap<Location,String> map) {
         avoid = map;
     }
-    
+
     public AvoidanceMap cloneMap() {
         return new AvoidanceMap(new HashMap<Location,String>(avoid));
     }
-    
+
     public Object get(Location loc) {
         return avoid.get(loc);
     }
-    
+
     public void markAll(Collection<Component> elements, int dx, int dy) {
         // first we go through the components, saying that we should not
         // intersect with any point that lies within a component
@@ -47,7 +47,7 @@ class AvoidanceMap {
             }
         }
     }
-    
+
     public void markComponent(Component comp, int dx, int dy) {
         HashMap<Location,String> avoid = this.avoid;
         boolean translated = dx != 0 || dy != 0;
@@ -78,7 +78,7 @@ class AvoidanceMap {
             }
         }
     }
-    
+
     public void markWire(Wire w, int dx, int dy) {
         HashMap<Location,String> avoid = this.avoid;
         boolean translated = dx != 0 || dy != 0;
@@ -112,11 +112,11 @@ class AvoidanceMap {
             throw new RuntimeException("diagonal wires not supported");
         }
     }
-    
+
     public void unmarkLocation(Location loc) {
         avoid.remove(loc);
     }
-    
+
     public void unmarkWire(Wire w, Location deletedEnd, Set<Location> unmarkable) {
         Location loc0 = w.getEnd0();
         Location loc1 = w.getEnd1();
@@ -149,7 +149,7 @@ class AvoidanceMap {
             throw new RuntimeException("diagonal wires not supported");
         }
     }
-    
+
     public void print(PrintStream stream) {
         ArrayList<Location> list = new ArrayList<Location>(avoid.keySet());
         Collections.sort(list);

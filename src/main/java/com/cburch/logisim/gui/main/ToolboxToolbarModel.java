@@ -20,7 +20,7 @@ class ToolboxToolbarModel extends AbstractToolbarModel
     private LogisimToolbarItem itemDown;
     private LogisimToolbarItem itemDelete;
     private List<ToolbarItem> items;
-    
+
     public ToolboxToolbarModel(MenuListener menu) {
         itemAdd = new LogisimToolbarItem(menu, "projadd.svg", LogisimMenuBar.ADD_CIRCUIT,
                 __("projectAddCircuitTip"));
@@ -30,14 +30,14 @@ class ToolboxToolbarModel extends AbstractToolbarModel
                 __("projectMoveCircuitDownTip"));
         itemDelete = new LogisimToolbarItem(menu, "projdel.svg", LogisimMenuBar.REMOVE_CIRCUIT,
                 __("projectRemoveCircuitTip"));
-        
+
         items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {
                 itemAdd,
                 itemUp,
                 itemDown,
                 itemDelete,
             }));
-        
+
         menu.addEnabledListener(this);
     }
 
@@ -45,7 +45,7 @@ class ToolboxToolbarModel extends AbstractToolbarModel
     public List<ToolbarItem> getItems() {
         return items;
     }
-    
+
     @Override
     public boolean isSelected(ToolbarItem item) {
         return false;

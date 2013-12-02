@@ -29,7 +29,7 @@ class CounterData implements InstanceData, Cloneable {
 
     /** The last clock input value observed. */
     private Value lastClock;
-    
+
     /** The current value emitted by the counter. */
     private Value value;
 
@@ -49,19 +49,19 @@ class CounterData implements InstanceData, Cloneable {
         try { return super.clone(); }
         catch (CloneNotSupportedException e) { return null; }
     }
-    
+
     /** Updates the last clock observed, returning true if triggered. */
     public boolean updateClock(Value value) {
         Value old = lastClock;
         lastClock = value;
         return old == Value.FALSE && value == Value.TRUE;
     }
-    
+
     /** Returns the current value emitted by the counter. */
     public Value getValue() {
         return value;
     }
-    
+
     /** Updates the current value emitted by the counter. */
     public void setValue(Value value) {
         this.value = value;

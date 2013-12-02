@@ -16,7 +16,7 @@ public interface ExpressionComputer {
      * determine the expressions coming into the component,
      * and it should place any output expressions into
      * the component.
-     * 
+     *
      * If, in fact, no valid expression exists for the component,
      * it throws <code>UnsupportedOperationException</code>.
      */

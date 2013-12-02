@@ -23,16 +23,16 @@ import com.cburch.logisim.instance.StdAttr;
 
 class DefaultAppearance {
     private static final int OFFS = 50;
-    
+
     private DefaultAppearance() { }
-    
+
     private static class CompareLocations implements Comparator<Instance> {
         private boolean byX;
-        
+
         CompareLocations(boolean byX) {
             this.byX = byX;
         }
-        
+
         @Override
         public int compare(Instance a, Instance b) {
             Location aloc = a.getLocation();
@@ -64,7 +64,7 @@ class DefaultAppearance {
         }
     }
 
-    
+
     public static List<CanvasObject> build(Collection<Instance> pins) {
         Map<Direction,List<Instance>> edge;
         edge = new HashMap<Direction,List<Instance>>();
@@ -78,7 +78,7 @@ class DefaultAppearance {
             List<Instance> e = edge.get(pinEdge);
             e.add(pin);
         }
-        
+
         for (Map.Entry<Direction, List<Instance>> entry : edge.entrySet()) {
             sortPinList(entry.getValue(), entry.getKey());
         }
@@ -94,7 +94,7 @@ class DefaultAppearance {
         int offsSouth = computeOffset(numSouth, numNorth, maxHorz);
         int offsEast = computeOffset(numEast, numWest, maxVert);
         int offsWest = computeOffset(numWest, numEast, maxVert);
-        
+
         int width = computeDimension(maxVert, maxHorz);
         int height = computeDimension(maxHorz, maxVert);
 
@@ -117,11 +117,11 @@ class DefaultAppearance {
             ax = 0;
             ay = 0;
         }
-        
+
         // place rectangle so anchor is on the grid
         int rx = OFFS + (9 - (ax + 9) % 10);
         int ry = OFFS + (9 - (ay + 9) % 10);
-        
+
         Location e0 = Location.create(rx + (width - 8) / 2, ry + 1);
         Location e1 = Location.create(rx + (width + 8) / 2, ry + 1);
         Location ct = Location.create(rx + width / 2, ry + 11);
@@ -145,7 +145,7 @@ class DefaultAppearance {
         ret.add(new AppearanceAnchor(Location.create(rx + ax, ry + ay)));
         return ret;
     }
-    
+
     private static int computeDimension(int maxThis, int maxOthers) {
         if (maxThis < 3) {
             return 30;
@@ -172,7 +172,7 @@ class DefaultAppearance {
         }
         return maxOffs + 10 * ((maxThis - numFacing) / 2);
     }
-    
+
     private static void placePins(List<CanvasObject> dest, List<Instance> pins,
             int x, int y, int dx, int dy) {
         for (Instance pin : pins) {

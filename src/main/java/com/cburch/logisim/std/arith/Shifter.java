@@ -38,11 +38,11 @@ public class Shifter extends InstanceFactory {
         = Attributes.forOption("shift", __("shifterShiftAttr"),
                 new AttributeOption[] { SHIFT_LOGICAL_LEFT, SHIFT_LOGICAL_RIGHT,
                     SHIFT_ARITHMETIC_RIGHT, SHIFT_ROLL_LEFT, SHIFT_ROLL_RIGHT });
-    
+
     private static final int IN0   = 0;
     private static final int IN1   = 1;
     private static final int OUT   = 2;
-    
+
     public Shifter() {
         super("Shifter", __("shifterComponent"));
         setAttributes(new Attribute[] {
@@ -54,25 +54,25 @@ public class Shifter extends InstanceFactory {
         setOffsetBounds(Bounds.create(-40, -20, 40, 40));
         setIconName("shifter.svg");
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         configurePorts(instance);
         instance.addAttributeListener();
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.WIDTH) {
             configurePorts(instance);
         }
     }
-    
+
     private void configurePorts(Instance instance) {
         BitWidth dataWid = instance.getAttributeValue(StdAttr.WIDTH);
         int data = dataWid == null ? 32 : dataWid.getWidth();
         int shift = 1;
-        while ((1 << shift) < data) shift++; 
+        while ((1 << shift) < data) shift++;
 
         Port[] ps = new Port[3];
         ps[IN0]   = new Port(-40, -10, Port.INPUT,  data);
@@ -149,7 +149,7 @@ public class Shifter extends InstanceFactory {
         int delay = dataWidth.getWidth() * (3 * Adder.PER_DELAY);
         state.setPort(OUT, vy, delay);
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         Graphics g = painter.getGraphics();
@@ -186,7 +186,7 @@ public class Shifter extends InstanceFactory {
             drawArrow(g, x, y, 4);
         }
     }
-    
+
     private void drawArrow(Graphics g, int x, int y, int d) {
         int[] px = { x + d, x, x + d };
         int[] py = { y + d, y, y - d };

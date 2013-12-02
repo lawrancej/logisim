@@ -27,7 +27,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class BitAdder extends InstanceFactory {
     static final Attribute<Integer> NUM_INPUTS
         = Attributes.forIntegerRange("inputs", __("gateInputsAttr"), 1, 32);
-    
+
     public BitAdder() {
         super("BitAdder", __("bitAdderComponent"));
         setAttributes(new Attribute[] {
@@ -40,7 +40,7 @@ public class BitAdder extends InstanceFactory {
                 new BitWidthConfigurator(StdAttr.WIDTH)));
         setIconName("bitadder.svg");
     }
-    
+
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
         int inputs = attrs.getValue(NUM_INPUTS).intValue();
@@ -48,13 +48,13 @@ public class BitAdder extends InstanceFactory {
         int y = inputs < 4 ? 20 : (((inputs - 1) / 2) * 10 + 5);
         return Bounds.create(-40, -y, 40, h);
     }
-    
+
     @Override
     protected void configureNewInstance(Instance instance) {
         configurePorts(instance);
         instance.addAttributeListener();
     }
-    
+
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
         if (attr == StdAttr.WIDTH) {
@@ -64,7 +64,7 @@ public class BitAdder extends InstanceFactory {
             instance.recomputeBounds();
         }
     }
-    
+
     private void configurePorts(Instance instance) {
         BitWidth inWidth = instance.getAttributeValue(StdAttr.WIDTH);
         int inputs = instance.getAttributeValue(NUM_INPUTS).intValue();
@@ -88,7 +88,7 @@ public class BitAdder extends InstanceFactory {
         }
         instance.setPorts(ps);
     }
-    
+
     private int computeOutputBits(int width, int inputs) {
         int maxBits = width * inputs;
         int outWidth = 1;
@@ -119,7 +119,7 @@ public class BitAdder extends InstanceFactory {
         for (int i = minCount + 1; i <= maxCount; i++) {
             unknownMask |= (minCount ^ i);
         }
-        
+
         Value[] out = new Value[computeOutputBits(width, inputs)];
         for (int i = 0; i < out.length; i++) {
             if (((unknownMask >> i) & 1) != 0) {
@@ -134,13 +134,13 @@ public class BitAdder extends InstanceFactory {
         int delay = out.length * Adder.PER_DELAY;
         state.setPort(0, Value.create(out), delay);
     }
-    
+
     @Override
     public void paintInstance(InstancePainter painter) {
         Graphics g = painter.getGraphics();
         painter.drawBounds();
         painter.drawPorts();
-        
+
         GraphicsUtil.switchToWidth(g, 2);
         Location loc = painter.getLocation();
         int x = loc.getX() - 10;

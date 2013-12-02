@@ -16,25 +16,25 @@ class ProjectExplorerModel extends DefaultTreeModel implements ProjectListener {
         ProjectExplorerModel model;
         int oldIndex;
         int newIndex;
-        
+
         Node(ProjectExplorerModel model, T userObject) {
             super(userObject);
             this.model = model;
         }
-        
+
         ProjectExplorerModel getModel() {
             return model;
         }
-        
+
         abstract Node<T> create(T userObject);
-        
+
         public T getValue() {
             @SuppressWarnings("unchecked") T val = (T) getUserObject();
             return val;
         }
-        
+
         abstract void decommission();
-        
+
         void fireNodeChanged() {
             Node<?> parent = (Node<?>) this.getParent();
             if (parent == null) {
@@ -45,15 +45,15 @@ class ProjectExplorerModel extends DefaultTreeModel implements ProjectListener {
                 model.fireTreeNodesChanged(this, parent.getPath(), indices, items);
             }
         }
-        
+
         void fireNodesChanged(int[] indices, Node<?>[] children) {
             model.fireTreeNodesChanged(model, this.getPath(), indices, children);
         }
-        
+
         void fireNodesInserted(int[] indices, Node<?>[] children) {
             model.fireTreeNodesInserted(model, this.getPath(), indices, children);
         }
-        
+
         void fireNodesRemoved(int[] indices, Node<?>[] children) {
             model.fireTreeNodesRemoved(model, this.getPath(), indices, children);
         }
@@ -62,16 +62,16 @@ class ProjectExplorerModel extends DefaultTreeModel implements ProjectListener {
             model.fireStructureChanged();
         }
     }
-    
+
     private Project proj;
-    
+
     ProjectExplorerModel(Project proj) {
         super(null);
         this.proj = proj;
         setRoot(new ProjectExplorerLibraryNode(this, proj.getLogisimFile()));
         proj.addProjectListener(this);
     }
-    
+
     public void setProject(Project value) {
         Project old = proj;
         if (old != null) {
@@ -84,7 +84,7 @@ class ProjectExplorerModel extends DefaultTreeModel implements ProjectListener {
             setLogisimFile(value.getLogisimFile());
         }
     }
-    
+
     private void setLogisimFile(LogisimFile file) {
         Node<?> oldRoot = (Node<?>) getRoot();
         oldRoot.decommission();
@@ -95,7 +95,7 @@ class ProjectExplorerModel extends DefaultTreeModel implements ProjectListener {
         }
         fireStructureChanged();
     }
-    
+
     void fireStructureChanged() {
         Node<?> root = (Node<?>) getRoot();
         if (root != null) {

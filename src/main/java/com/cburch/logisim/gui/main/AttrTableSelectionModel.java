@@ -21,14 +21,14 @@ class AttrTableSelectionModel extends AttributeSetTableModel
         implements Selection.Listener {
     private Project project;
     private Frame frame;
-    
+
     public AttrTableSelectionModel(Project project, Frame frame) {
         super(frame.getCanvas().getSelection().getAttributeSet());
         this.project = project;
         this.frame = frame;
         frame.getCanvas().getSelection().addListener(this);
     }
-    
+
     @Override
     public String getTitle() {
         ComponentFactory wireFactory = null;
@@ -36,7 +36,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
         int factoryCount = 0;
         int totalCount = 0;
         boolean variousFound = false;
-        
+
         Selection selection = frame.getCanvas().getSelection();
         for (Component comp : selection.getComponents()) {
             ComponentFactory fact = comp.getFactory();
@@ -57,7 +57,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
                 totalCount++;
             }
         }
-        
+
         if (factory == null) {
             factory = wireFactory;
         }

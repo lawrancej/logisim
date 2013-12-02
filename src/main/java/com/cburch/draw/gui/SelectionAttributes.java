@@ -54,7 +54,7 @@ public class SelectionAttributes extends AbstractAttributeSet {
                 fireAttributeListChanged();
             }
         }
-        
+
         private void computeAttributeList(Set<AttributeSet> attrsSet) {
             Set<Attribute<?>> attrSet = new LinkedHashSet<Attribute<?>>();
             Iterator<AttributeSet> sit = attrsSet.iterator();
@@ -111,14 +111,14 @@ public class SelectionAttributes extends AbstractAttributeSet {
             }
         }
     }
-    
+
     private Selection selection;
     private Listener listener;
     private Map<AttributeSet, CanvasObject> selected;
     private Attribute<?>[] selAttrs;
     private Object[] selValues;
     private List<Attribute<?>> attrsView;
-    
+
     public SelectionAttributes(Selection selection) {
         this.selection = selection;
         this.listener = new Listener();
@@ -126,11 +126,11 @@ public class SelectionAttributes extends AbstractAttributeSet {
         this.selAttrs = new Attribute<?>[0];
         this.selValues = new Object[0];
         this.attrsView = Collections.unmodifiableList(Arrays.asList(selAttrs));
-        
+
         selection.addSelectionListener(listener);
         listener.selectionChanged(null);
     }
-    
+
     public Iterable<Map.Entry<AttributeSet, CanvasObject>> entries() {
         Set<Map.Entry<AttributeSet, CanvasObject>> raw = selected.entrySet();
         ArrayList<Map.Entry<AttributeSet, CanvasObject>> ret;
@@ -183,7 +183,7 @@ public class SelectionAttributes extends AbstractAttributeSet {
             }
         }
     }
-    
+
     private static Object getSelectionValue(Attribute<?> attr,
             Set<AttributeSet> sel) {
         Object ret = null;

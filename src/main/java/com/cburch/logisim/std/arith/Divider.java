@@ -37,7 +37,7 @@ public class Divider extends InstanceFactory {
         setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
         setOffsetBounds(Bounds.create(-40, -20, 40, 40));
         setIconName("divider.svg");
-        
+
         Port[] ps = new Port[5];
         ps[IN0]   = new Port(-40, -10, Port.INPUT,  StdAttr.WIDTH);
         ps[IN1]   = new Port(-40,  10, Port.INPUT,  StdAttr.WIDTH);

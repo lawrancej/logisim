@@ -25,7 +25,7 @@ public class Value {
     public static final Color ERROR_COLOR = new Color(192, 0, 0);
     public static final Color WIDTH_ERROR_COLOR = new Color(255, 123, 0);
     public static final Color MULTI_COLOR = Color.BLACK;
-    
+
     private static final Cache cache = new Cache();
 
     public static Value create(Value[] values) {
@@ -90,7 +90,7 @@ public class Value {
             return ret;
         }
     }
-    
+
     public static Value repeat(Value base, int bits) {
         if (base.getWidth() != 1) {
             throw new IllegalArgumentException("first parameter must be one bit");
@@ -199,7 +199,7 @@ public class Value {
             && this.value == other.value;
         return ret;
     }
-    
+
     @Override
     public int hashCode() {
         int ret = width;
@@ -233,7 +233,7 @@ public class Value {
             return ret.toString();
         }
     }
-    
+
     public String toOctalString() {
         if (width <= 1) {
             return toString();
@@ -257,7 +257,7 @@ public class Value {
             return new String(c);
         }
     }
-    
+
     public String toHexString() {
         if (width <= 1) {
             return toString();
@@ -281,12 +281,12 @@ public class Value {
             return new String(c);
         }
     }
-    
+
     public String toDecimalString(boolean signed) {
         if (width == 0) return "-";
         if (isErrorValue()) return _("valueError");
         if (!isFullyDefined()) return _("valueUnknown");
-        
+
         int value = toIntValue();
         if (signed) {
             if (width < 32 && (value >> (width - 1)) != 0) {
@@ -297,7 +297,7 @@ public class Value {
             return "" + (value & 0xFFFFFFFFL);
         }
     }
-    
+
     public String toDisplayString(int radix) {
         switch (radix) {
         case 2:  return toDisplayString();

@@ -14,24 +14,24 @@ public class PolyUtil {
         private Location loc;
         private Handle prevHandle;
         private Handle nextHandle;
-        
+
         public double getDistanceSq() {
             return dist;
         }
-        
+
         public Location getLocation() {
             return loc;
         }
-        
+
         public Handle getPreviousHandle() {
             return prevHandle;
         }
-        
+
         public Handle getNextHandle() {
             return nextHandle;
         }
     }
-    
+
     public static ClosestResult getClosestPoint(Location loc, boolean closed,
             Handle[] hs) {
         int xq = loc.getX();
