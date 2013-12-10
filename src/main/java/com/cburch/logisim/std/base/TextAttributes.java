@@ -28,7 +28,7 @@ class TextAttributes extends AbstractAttributeSet {
 	public TextAttributes() {
 		text = "";
 		font = StdAttr.DEFAULT_LABEL_FONT;
-		halign = Text.ATTR_HALIGN.parse("center");
+		halign = Text.ATTR_HALIGN.parse("left");
 		valign = Text.ATTR_VALIGN.parse("base");
 		offsetBounds = null;
 	}
