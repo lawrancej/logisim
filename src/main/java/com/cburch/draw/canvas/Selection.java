@@ -235,7 +235,9 @@ public class Selection {
 			HandleGesture gesture = event.getHandleGesture();
 			if (gesture.getHandle().equals(selectedHandle)) {
 				setHandleSelected(gesture.getResultingHandle());
+
 			}
+			break;
 		}
 	}
 }
