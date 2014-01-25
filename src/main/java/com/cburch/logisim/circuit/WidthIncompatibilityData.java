@@ -38,6 +38,11 @@ public class WidthIncompatibilityData {
 	}
 
 	@Override
+	public int hashCode() {
+		return this.size();
+	}
+
+	@Override
 	public boolean equals(Object other) {
 		if (!(other instanceof WidthIncompatibilityData)) return false;
 		if (this == other) return true;

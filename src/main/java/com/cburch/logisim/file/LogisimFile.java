@@ -356,10 +356,10 @@ public class LogisimFile extends Library implements LibraryEventSource {
 	public static LogisimFile load(File file, Loader loader)
 			throws IOException {
 		InputStream in = new FileInputStream(file);
-		Throwable firstExcept = null;
+		Exception firstExcept = null;
 		try {
 			return loadSub(in, loader);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			firstExcept = t;
 		} finally {
 			in.close();
@@ -372,12 +372,12 @@ public class LogisimFile extends Library implements LibraryEventSource {
 			try {
 				in = new ReaderInputStream(new FileReader(file), "UTF8");
 				return loadSub(in, loader);
-			} catch (Throwable t) {
+			} catch (Exception t) {
 				loader.showError(_("xmlFormatError", firstExcept.toString()));
 			} finally {
 				try {
 					in.close();
-				} catch (Throwable t) { }
+				} catch (Exception t) { }
 			}
 		}
 		

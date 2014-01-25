@@ -4,6 +4,8 @@ build
 .gradle
 .project
 .classpath
+*sonar*.properties
+.sonar
 .settings
 bin
 /nbproject/private/
