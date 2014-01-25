@@ -63,6 +63,10 @@ public class Direction implements AttributeOptionInterface {
 	public int hashCode() {
 		return id;
 	}
+
+	public boolean equals( Direction other ) {
+		return this.id == other.id;
+	}
 	
 	public double toRadians() {
 		if (this == Direction.EAST) return 0.0;

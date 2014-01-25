@@ -204,20 +204,20 @@ public class Loader implements LibraryLoader {
 				_("fileSaveErrorTitle"),
 				JOptionPane.ERROR_MESSAGE);
 			return false;
-		} finally {
-			if (fwrite != null) {
-				try {
-					fwrite.close();
-				} catch (IOException e) {
-					if (backupCreated) recoverBackup(backup, dest);
-					if (dest.exists() && dest.length() == 0) dest.delete();
-					JOptionPane.showMessageDialog(parent,
-						_("fileSaveCloseError",
-							e.toString()),
-						_("fileSaveErrorTitle"),
-						JOptionPane.ERROR_MESSAGE);
-					return false;
-				}
+		}
+
+		if (fwrite != null) {
+			try {
+				fwrite.close();
+			} catch (IOException e) {
+				if (backupCreated) recoverBackup(backup, dest);
+				if (dest.exists() && dest.length() == 0) dest.delete();
+				JOptionPane.showMessageDialog(parent,
+					_("fileSaveCloseError",
+						e.toString()),
+					_("fileSaveErrorTitle"),
+					JOptionPane.ERROR_MESSAGE);
+				return false;
 			}
 		}
 		

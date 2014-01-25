@@ -112,7 +112,7 @@ public class Simulator {
 								try {
 									exceptionEncountered = false;
 									propagator.propagate();
-								} catch (Throwable thr) {
+								} catch (Exception thr) {
 									thr.printStackTrace();
 									exceptionEncountered = true;
 									setIsRunning(false);
@@ -138,7 +138,7 @@ public class Simulator {
 							try {
 								stepPoints.clear();
 								propagator.step(stepPoints);
-							} catch (Throwable thr) {
+							} catch (Exception thr) {
 								thr.printStackTrace();
 								exceptionEncountered = true;
 							}

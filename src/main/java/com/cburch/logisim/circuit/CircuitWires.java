@@ -530,9 +530,10 @@ class CircuitWires {
 					computeBundleMap(ret);
 					bundleMap = ret;
 					break;
-				} catch (Throwable t) {
+				} catch (Exception e) {
 					if (tries == 0) {
-						t.printStackTrace();
+						e.printStackTrace();
+						System.err.println( e.getLocalizedMessage() );
 						bundleMap = ret;
 					}
 				}

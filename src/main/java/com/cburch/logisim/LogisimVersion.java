@@ -2,6 +2,7 @@
  * com.cburch.logisim.Main source code and at www.cburch.com/logisim/. */
 
 package com.cburch.logisim;
+
 /**
  * Handles everything involving Logisim's version number
  * @author Carl Burch, Ryan Steinmetz
@@ -50,7 +51,10 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
 			if (parts.length >= 2) minor = Integer.parseInt(parts[1]);
 			if (parts.length >= 3) release = Integer.parseInt(parts[2]);
 			if (parts.length >= 4) revision = Integer.parseInt(parts[3]);
-		} catch (NumberFormatException e) { }
+		} catch (NumberFormatException e) {
+			System.out.println( "Something went wrong when parsing the version string:\n" );
+			e.printStackTrace();
+		}
 		return new LogisimVersion(major, minor, release, revision);
 	}
 	
@@ -75,6 +79,14 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
 		this.repr = null;
 	}
 	
+	@Override
+	public int hashCode() {
+		return this.major
+			 + this.minor
+			 + this.release
+			 + this.revision;
+	}
+
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof LogisimVersion) {
