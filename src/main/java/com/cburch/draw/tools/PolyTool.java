@@ -47,9 +47,9 @@ public class PolyTool extends AbstractTool {
 	@Override
 	public Icon getIcon() {
 		if (closed) {
-			return Icons.getIcon("drawpoly.gif");
+			return Icons.getIcon("drawpoly.svg");
 		} else {
-			return Icons.getIcon("drawplin.gif");
+			return Icons.getIcon("drawplin.svg");
 		}
 	}
 	

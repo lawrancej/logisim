@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.swing.Icon;
 
+import com.cburch.draw.tools.SVGIcon;
 import com.cburch.logisim.LogisimVersion;
 import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.Expressions;
@@ -40,7 +41,7 @@ import com.cburch.logisim.util.StringGetter;
 
 abstract class AbstractGate extends InstanceFactory {
 	private String[] iconNames = new String[3];
-	private Icon[] icons = new Icon[3];
+	private SVGIcon[] icons = new SVGIcon[3];
 	private int bonusWidth = 0;
 	private boolean negateOutput = false;
 	private boolean isXor = false;
@@ -230,8 +231,8 @@ abstract class AbstractGate extends InstanceFactory {
 		iconNames[2] = din;
 	}
 	
-	private Icon getIcon(int type) {
-		Icon ret = icons[type];
+	private SVGIcon getIcon(int type) {
+		SVGIcon ret = icons[type];
 		if (ret != null) {
 			return ret;
 		} else {

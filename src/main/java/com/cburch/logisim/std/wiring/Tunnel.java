@@ -34,7 +34,7 @@ public class Tunnel extends InstanceFactory {
 
 	public Tunnel() {
 		super("Tunnel", __("tunnelComponent"));
-		setIconName("tunnel.gif");
+		setIconName("tunnel.svg");
 		setFacingAttribute(StdAttr.FACING);
 		setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
 	}

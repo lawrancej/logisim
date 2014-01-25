@@ -45,9 +45,9 @@ class NotGate extends InstanceFactory {
 			new AttributeOption[] { SIZE_NARROW, SIZE_WIDE });
 
 	private static final String RECT_LABEL = "1";
-	private static final Icon toolIcon = Icons.getIcon("notGate.gif");
-	private static final Icon toolIconRect = Icons.getIcon("notGateRect.gif");
-	private static final Icon toolIconDin = Icons.getIcon("dinNotGate.gif");
+	private static final Icon toolIcon = Icons.getIcon("notGate.svg");
+	private static final Icon toolIconRect = Icons.getIcon("notGateRect.svg");
+	private static final Icon toolIconDin = Icons.getIcon("dinNotGate.svg");
 
 	public static InstanceFactory FACTORY = new NotGate();
 

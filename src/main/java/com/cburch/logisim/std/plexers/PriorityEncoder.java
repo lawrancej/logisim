@@ -36,7 +36,7 @@ public class PriorityEncoder extends InstanceFactory {
 				Direction.EAST, BitWidth.create(3), Plexers.DISABLED_FLOATING
 			});
 		setKeyConfigurator(new BitWidthConfigurator(Plexers.ATTR_SELECT, 1, 5, 0));
-		setIconName("priencod.gif");
+		setIconName("priencod.svg");
 		setFacingAttribute(StdAttr.FACING);
 	}
 	

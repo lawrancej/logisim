@@ -59,7 +59,7 @@ public class SelectTool extends Tool {
 	private static final int IDLE = 0;
 	private static final int MOVING = 1;
 	private static final int RECT_SELECT = 2;
-	private static final Icon toolIcon = Icons.getIcon("select.gif");
+	private static final Icon toolIcon = Icons.getIcon("select.svg");
 
 	private static final Color COLOR_UNMATCHED = new Color(192, 0, 0);
 	private static final Color COLOR_COMPUTING = new Color(96, 192, 96);

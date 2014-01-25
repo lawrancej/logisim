@@ -22,7 +22,7 @@ class OddParityGate extends AbstractGate {
 	private OddParityGate() {
 		super("Odd Parity", __("oddParityComponent"));
 		setRectangularLabel("2k+1");
-		setIconNames("parityOddGate.gif");
+		setIconNames("parityOddGate.svg");
 	}
 
 	@Override

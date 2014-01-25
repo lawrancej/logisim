@@ -21,7 +21,7 @@ import com.cburch.logisim.util.StringGetter;
 import com.cburch.logisim.util.StringUtil;
 
 public abstract class AbstractComponentFactory implements ComponentFactory {
-	private static final Icon toolIcon = Icons.getIcon("subcirc.gif");
+	private static final Icon toolIcon = Icons.getIcon("subcirc.svg");
 
 	private AttributeSet defaultSet;
 	

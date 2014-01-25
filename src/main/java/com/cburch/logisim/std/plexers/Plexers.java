@@ -51,15 +51,15 @@ public class Plexers extends Library {
 	
 	private static FactoryDescription[] DESCRIPTIONS = {
 		new FactoryDescription("Multiplexer", __("multiplexerComponent"),
-				"multiplexer.gif", "Multiplexer"),
+				"multiplexer.svg", "Multiplexer"),
 		new FactoryDescription("Demultiplexer", __("demultiplexerComponent"),
-				"demultiplexer.gif", "Demultiplexer"),
+				"demultiplexer.svg", "Demultiplexer"),
 		new FactoryDescription("Decoder", __("decoderComponent"),
-				"decoder.gif", "Decoder"),
+				"decoder.svg", "Decoder"),
 		new FactoryDescription("Priority Encoder", __("priorityEncoderComponent"),
-				"priencod.gif", "PriorityEncoder"),
+				"priencod.svg", "PriorityEncoder"),
 		new FactoryDescription("BitSelector", __("bitSelectorComponent"),
-				"bitSelector.gif", "BitSelector"),
+				"bitSelector.svg", "BitSelector"),
 	};
 
 	private List<Tool> tools = null;

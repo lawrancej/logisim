@@ -38,15 +38,15 @@ public class Wiring extends Library {
 	
 	private static FactoryDescription[] DESCRIPTIONS = {
 		new FactoryDescription("Power", __("powerComponent"),
-				"power.gif", "Power"),
+				"power.svg", "Power"),
 		new FactoryDescription("Ground", __("groundComponent"),
-				"ground.gif", "Ground"),
+				"ground.svg", "Ground"),
 		new FactoryDescription("Transistor", __("transistorComponent"),
-				"trans0.gif", "Transistor"),
+				"trans0.svg", "Transistor"),
 		new FactoryDescription("Transmission Gate", __("transmissionGateComponent"),
-				"transmis.gif", "TransmissionGate"),
+				"transmis.svg", "TransmissionGate"),
 		new FactoryDescription("Bit Extender", __("extenderComponent"),
-				"extender.gif", "BitExtender"),
+				"extender.svg", "BitExtender"),
 	};
 
 	private List<Tool> tools = null;

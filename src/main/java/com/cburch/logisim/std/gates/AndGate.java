@@ -3,7 +3,11 @@
 
 package com.cburch.logisim.std.gates;
 
+import static com.cburch.logisim.util.LocaleString.__;
+
 import java.awt.Graphics;
+
+import org.apache.batik.swing.JSVGCanvas;
 
 import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.Expressions;
@@ -11,7 +15,6 @@ import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString.*;
 
 class AndGate extends AbstractGate {
 	public static AndGate FACTORY = new AndGate();
@@ -19,7 +22,7 @@ class AndGate extends AbstractGate {
 	private AndGate() {
 		super("AND Gate", __("andGateComponent"));
 		setRectangularLabel("&");
-		setIconNames("andGate.gif", "andGateRect.gif", "dinAndGate.gif");
+		setIconNames("/logisim/icons/andGate.svg", "/logisim/icons/andGateRect.svg", "/logisim/icons/dinAndGate.svg");
 	}
 
 	@Override

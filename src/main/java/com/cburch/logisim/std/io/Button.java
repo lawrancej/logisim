@@ -41,7 +41,7 @@ public class Button extends InstanceFactory {
 				StdAttr.DEFAULT_LABEL_FONT, Color.BLACK
 			});
 		setFacingAttribute(StdAttr.FACING);
-		setIconName("button.gif");
+		setIconName("button.svg");
 		setPorts(new Port[] { new Port(0, 0, Port.OUTPUT, 1) });
 		setInstancePoker(Poker.class);
 		setInstanceLogger(Logger.class);

@@ -60,7 +60,8 @@ public class SplashScreen extends JWindow implements ActionListener {
 	long startTime = System.currentTimeMillis();
 
 	public SplashScreen() {
-		JPanel imagePanel = About.getImagePanel();
+		JPanel imagePanel = new JPanel();
+		imagePanel.add(About.createComponents());
 		imagePanel.setBorder(null);
 
 		progress.setStringPainted(true);

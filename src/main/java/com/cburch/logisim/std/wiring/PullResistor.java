@@ -40,8 +40,8 @@ public class PullResistor extends InstanceFactory {
 
 	public static final PullResistor FACTORY = new PullResistor();
 	
-	private static final Icon ICON_SHAPED = Icons.getIcon("pullshap.gif");
-	private static final Icon ICON_RECTANGULAR = Icons.getIcon("pullrect.gif");
+	private static final Icon ICON_SHAPED = Icons.getIcon("pullshap.svg");
+	private static final Icon ICON_RECTANGULAR = Icons.getIcon("pullrect.svg");
 
 	public PullResistor() {
 		super("Pull Resistor", __("pullComponent"));

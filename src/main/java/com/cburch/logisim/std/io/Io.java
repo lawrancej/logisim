@@ -39,21 +39,21 @@ public class Io extends Library {
 	
 	private static FactoryDescription[] DESCRIPTIONS = {
 		new FactoryDescription("Button", __("buttonComponent"),
-				"button.gif", "Button"),
+				"button.svg", "Button"),
 		new FactoryDescription("Joystick", __("joystickComponent"),
-				"joystick.gif", "Joystick"),
+				"joystick.svg", "Joystick"),
 		new FactoryDescription("Keyboard", __("keyboardComponent"),
-				"keyboard.gif", "Keyboard"),
+				"keyboard.svg", "Keyboard"),
 		new FactoryDescription("LED", __("ledComponent"),
-				"led.gif", "Led"),
+				"led.svg", "Led"),
 		new FactoryDescription("7-Segment Display", __("sevenSegmentComponent"),
-				"7seg.gif", "SevenSegment"),
+				"7seg.svg", "SevenSegment"),
 		new FactoryDescription("Hex Digit Display", __("hexDigitComponent"),
-				"hexdig.gif", "HexDigit"),
+				"hexdig.svg", "HexDigit"),
 		new FactoryDescription("DotMatrix", __("dotMatrixComponent"),
-				"dotmat.gif", "DotMatrix"),
+				"dotmat.svg", "DotMatrix"),
 		new FactoryDescription("TTY", __("ttyComponent"),
-				"tty.gif", "Tty"),
+				"tty.svg", "Tty"),
 	};
 
 	private List<Tool> tools = null;

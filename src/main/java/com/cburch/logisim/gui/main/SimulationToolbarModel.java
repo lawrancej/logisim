@@ -30,13 +30,13 @@ class SimulationToolbarModel extends AbstractToolbarModel
 	public SimulationToolbarModel(Project project, MenuListener menu) {
 		this.project = project;
 		
-		simEnable = new LogisimToolbarItem(menu, "simplay.png", LogisimMenuBar.SIMULATE_ENABLE,
+		simEnable = new LogisimToolbarItem(menu, "simplay.svg", LogisimMenuBar.SIMULATE_ENABLE,
 				__("simulateEnableStepsTip"));
-		simStep = new LogisimToolbarItem(menu, "simstep.png", LogisimMenuBar.SIMULATE_STEP,
+		simStep = new LogisimToolbarItem(menu, "simstep.svg", LogisimMenuBar.SIMULATE_STEP,
 				__("simulateStepTip"));
-		tickEnable = new LogisimToolbarItem(menu, "simtplay.png", LogisimMenuBar.TICK_ENABLE,
+		tickEnable = new LogisimToolbarItem(menu, "simtplay.svg", LogisimMenuBar.TICK_ENABLE,
 				__("simulateEnableTicksTip"));
-		tickStep = new LogisimToolbarItem(menu, "simtstep.png", LogisimMenuBar.TICK_STEP,
+		tickStep = new LogisimToolbarItem(menu, "simtstep.svg", LogisimMenuBar.TICK_STEP,
 				__("simulateTickTip"));
 		
 		items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {
@@ -74,10 +74,10 @@ class SimulationToolbarModel extends AbstractToolbarModel
 		Simulator sim = project.getSimulator(); 
 		boolean running = sim != null && sim.isRunning();
 		boolean ticking = sim != null && sim.isTicking();
-		simEnable.setIcon(running ? "simstop.png" : "simplay.png");
+		simEnable.setIcon(running ? "simstop.svg" : "simplay.svg");
 		simEnable.setToolTip(running ? __("simulateDisableStepsTip")
 				: __("simulateEnableStepsTip"));
-		tickEnable.setIcon(ticking ? "simtstop.png" : "simtplay.png");
+		tickEnable.setIcon(ticking ? "simtstop.svg" : "simtplay.svg");
 		tickEnable.setToolTip(ticking ? __("simulateDisableTicksTip")
 				: __("simulateEnableTicksTip"));
 		fireToolbarAppearanceChanged();
