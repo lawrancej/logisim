@@ -8,4 +8,5 @@ build
 .sonar
 .settings
 bin
+*.class
 /nbproject/private/
