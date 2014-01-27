@@ -148,6 +148,11 @@ public class Selection extends SelectionBase {
     }
 
     @Override
+	public int hashCode() {
+		return ( this.isVisible ? 12 : 25 );
+	}
+
+	@Override
     public boolean equals(Object other) {
         if (!(other instanceof Selection)) {
             return false;

@@ -283,7 +283,7 @@ public class SvgReader {
                         String repl = opacity.substring(0, comma) + "."
                             + opacity.substring(comma + 1);
                         x = Double.parseDouble(repl);
-                    } catch (Exception t) {
+					} catch (NumberFormatException ex) {
                         throw e;
                     }
                 } else {

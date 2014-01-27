@@ -114,7 +114,7 @@ class TableTabClip implements ClipboardOwner {
         Transferable xfer;
         try {
             xfer = clip.getContents(this);
-        } catch (Exception t) {
+        } catch (IllegalStateException|ArrayIndexOutOfBoundsException e ) {
             // I don't know - the above was observed to throw an odd ArrayIndexOutOfBounds
             // exception on a Linux computer using Sun's Java 5 JVM
             JOptionPane.showMessageDialog(table.getRootPane(),

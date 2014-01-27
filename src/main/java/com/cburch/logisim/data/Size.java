@@ -22,6 +22,11 @@ public class Size {
     }
 
     @Override
+	public int hashCode() {
+		return wid + ht;
+	}
+
+	@Override
     public boolean equals(Object other_obj) {
         if (!(other_obj instanceof Size)) {
             return false;
