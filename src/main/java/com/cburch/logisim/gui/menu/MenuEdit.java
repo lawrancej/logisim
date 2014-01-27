@@ -17,6 +17,7 @@ import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class MenuEdit extends Menu {
     private class MyListener implements ProjectListener, ActionListener {
         @Override

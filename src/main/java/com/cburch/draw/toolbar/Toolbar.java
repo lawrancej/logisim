@@ -9,6 +9,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Toolbar extends JPanel {
     public static final Object VERTICAL = new Object();
     public static final Object HORIZONTAL = new Object();

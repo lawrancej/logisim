@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+@SuppressWarnings("serial")
 public class CardPanel extends JPanel {
     private ArrayList<ChangeListener> listeners;
     private String current;

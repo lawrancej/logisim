@@ -5,6 +5,7 @@ package com.cburch.logisim.analyze.model;
 
 import com.cburch.logisim.util.StringGetter;
 
+@SuppressWarnings("serial")
 public  class ParserException extends Exception {
     private StringGetter message;
     private int start;

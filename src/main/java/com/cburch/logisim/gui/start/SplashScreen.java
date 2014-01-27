@@ -17,6 +17,7 @@ import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
 import static com.cburch.logisim.util.LocaleString._;
 
+@SuppressWarnings("serial")
 public class SplashScreen extends JWindow implements ActionListener {
     public static final int LIBRARIES = 0;
     public static final int TEMPLATE_CREATE = 1;

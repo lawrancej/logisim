@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBoxMenuItem;
 
+@SuppressWarnings("serial")
 class MenuItemCheckImpl extends JCheckBoxMenuItem implements MenuItem {
     private MenuItemHelper helper;
 

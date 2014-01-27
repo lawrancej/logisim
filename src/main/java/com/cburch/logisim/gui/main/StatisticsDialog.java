@@ -27,6 +27,7 @@ import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.util.TableSorter;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class StatisticsDialog extends JDialog implements ActionListener {
     public static void show(JFrame parent, LogisimFile file, Circuit circuit) {
         FileStatistics stats = FileStatistics.compute(file, circuit);

@@ -43,6 +43,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class ExportImage {
     private static final int SLIDER_DIVISIONS = 6;
 
@@ -73,8 +74,8 @@ class ExportImage {
         if (action != JOptionPane.OK_OPTION) {
             return;
         }
+        List<Circuit> circuits = list.getSelectedValuesList();
 
-        List<Circuit> circuits = list.getSelectedCircuits();
         double scale = options.getScale();
         boolean printerView = options.getPrinterView();
         if (circuits.isEmpty()) {

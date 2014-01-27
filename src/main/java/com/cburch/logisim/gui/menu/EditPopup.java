@@ -12,6 +12,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public abstract class EditPopup extends JPopupMenu {
     private class Listener implements ActionListener {
         @Override

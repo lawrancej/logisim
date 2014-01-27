@@ -28,6 +28,7 @@ import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import static com.cburch.logisim.util.LocaleString._;
 
+@SuppressWarnings("serial")
 public class Analyzer extends LFrame {
     // used by circuit analysis to select the relevant tab automatically.
     public static final int INPUTS_TAB = 0;

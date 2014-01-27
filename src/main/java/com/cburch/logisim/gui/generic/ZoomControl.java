@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class ZoomControl extends JPanel {
     private class SpinnerModel extends AbstractSpinnerModel
             implements PropertyChangeListener {

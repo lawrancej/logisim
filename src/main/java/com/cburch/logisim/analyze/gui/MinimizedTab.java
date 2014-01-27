@@ -25,9 +25,9 @@ import com.cburch.logisim.analyze.model.OutputExpressionsEvent;
 import com.cburch.logisim.analyze.model.OutputExpressionsListener;
 import static com.cburch.logisim.util.LocaleString._;
 
+@SuppressWarnings("serial")
 class MinimizedTab extends AnalyzerTab {
-    private static class FormatModel extends AbstractListModel
-            implements ComboBoxModel {
+    private static class FormatModel extends AbstractListModel<String> implements ComboBoxModel<String> {
         static int getFormatIndex(int choice) {
             switch (choice) {
             case AnalyzerModel.FORMAT_PRODUCT_OF_SUMS: return 1;
@@ -63,7 +63,7 @@ class MinimizedTab extends AnalyzerTab {
         }
 
         @Override
-        public Object getElementAt(int index) {
+        public String getElementAt(int index) {
             return choices[index];
         }
 
@@ -120,16 +120,16 @@ class MinimizedTab extends AnalyzerTab {
     private OutputSelector selector;
     private KarnaughMapPanel karnaughMap;
     private JLabel formatLabel = new JLabel();
-    private JComboBox formatChoice = new JComboBox(new FormatModel());
+    private JComboBox<String> formatChoice = new JComboBox<String>(new FormatModel());
     private ExpressionView minimizedExpr = new ExpressionView();
     private JButton setAsExpr = new JButton();
 
     private MyListener myListener = new MyListener();
-    private AnalyzerModel model;
+//	private AnalyzerModel model;
     private OutputExpressions outputExprs;
 
     public MinimizedTab(AnalyzerModel model) {
-        this.model = model;
+//		this.model = model;
         this.outputExprs = model.getOutputExpressions();
         outputExprs.addOutputExpressionsListener(myListener);
 
@@ -175,7 +175,7 @@ class MinimizedTab extends AnalyzerTab {
     }
 
     private void addRow(GridBagLayout gb, GridBagConstraints gc,
-            JLabel label, JComboBox choice) {
+        JLabel label, JComboBox<String> choice) {
         Insets oldInsets = gc.insets;
         gc.weightx = 0.0;
         gc.gridx = 0;

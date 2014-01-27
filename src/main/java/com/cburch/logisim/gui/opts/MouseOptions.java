@@ -43,8 +43,10 @@ import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.InputEventUtil;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class MouseOptions extends OptionsPanel {
     private class AddArea extends JPanel {
+
         public AddArea() {
             setPreferredSize(new Dimension(75, 60));
             setMinimumSize(new Dimension(75, 60));

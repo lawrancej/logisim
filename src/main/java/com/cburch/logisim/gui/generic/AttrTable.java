@@ -42,6 +42,7 @@ import java.util.EventObject;
 import java.util.LinkedList;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class AttrTable extends JPanel implements LocaleListener {
     private static final AttrTableModel NULL_ATTR_MODEL = new NullAttrModel();
 

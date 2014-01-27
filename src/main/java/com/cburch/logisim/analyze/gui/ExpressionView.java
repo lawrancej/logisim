@@ -16,6 +16,7 @@ import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.ExpressionVisitor;
 import static com.cburch.logisim.util.LocaleString._;
 
+@SuppressWarnings("serial")
 class ExpressionView extends JPanel {
     private static final int BADNESS_IDENT_BREAK = 10000;
     private static final int BADNESS_BEFORE_SPACE = 500;

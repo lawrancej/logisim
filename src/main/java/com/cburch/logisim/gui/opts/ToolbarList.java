@@ -23,6 +23,7 @@ import com.cburch.logisim.file.ToolbarData.ToolbarListener;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.tools.Tool;
 
+@SuppressWarnings("serial")
 class ToolbarList extends JList {
     private static class ToolIcon implements Icon {
         private Tool tool;

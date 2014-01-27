@@ -17,6 +17,7 @@ import org.apache.batik.swing.svg.SVGDocumentLoaderAdapter;
 
 import com.cburch.logisim.Main;
 
+@SuppressWarnings("serial")
 public class About {
     static final int IMAGE_BORDER = 10;
     static final int IMAGE_WIDTH = 380;

@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+@SuppressWarnings("serial")
 public class CanvasModelEvent extends EventObject {
     public static final int ACTION_ADDED = 0;
     public static final int ACTION_REMOVED = 1;

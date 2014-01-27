@@ -22,36 +22,17 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Library;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class ProjectLibraryActions {
     private ProjectLibraryActions() { }
 
-    private static class BuiltinOption {
-        Library lib;
-        BuiltinOption(Library lib) { this.lib = lib; }
-        @Override
-        public String toString() { return lib.getDisplayName(); }
-    }
-
-    private static class LibraryJList extends JList {
+    private static class LibraryJList extends JList<Library> {
         LibraryJList(List<Library> libraries) {
-            ArrayList<BuiltinOption> options = new ArrayList<BuiltinOption>();
-            for (Library lib : libraries) {
-                options.add(new BuiltinOption(lib));
-            }
-            setListData(options.toArray());
+            setListData(libraries.toArray(new Library[]{}));
         }
 
         Library[] getSelectedLibraries() {
-            Object[] selected = getSelectedValues();
-            if (selected != null && selected.length > 0) {
-                Library[] libs = new Library[selected.length];
-                for (int i = 0; i < selected.length; i++) {
-                    libs[i] = ((BuiltinOption) selected[i]).lib;
-                }
-                return libs;
-            } else {
-                return null;
-            }
+            return this.getSelectedValuesList().toArray(new Library[]{});
         }
     }
 

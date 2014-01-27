@@ -13,6 +13,7 @@ import javax.swing.event.ListSelectionListener;
 
 import com.cburch.logisim.prefs.AppPreferences;
 
+@SuppressWarnings("serial")
 class LocaleSelector extends JList
             implements LocaleListener, ListSelectionListener {
     private static class LocaleOption implements Runnable {

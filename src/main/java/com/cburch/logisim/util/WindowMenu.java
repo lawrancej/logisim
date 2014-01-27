@@ -21,6 +21,7 @@ import javax.swing.WindowConstants;
 
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class WindowMenu extends JMenu {
     private class MyListener implements LocaleListener, ActionListener {
         @Override

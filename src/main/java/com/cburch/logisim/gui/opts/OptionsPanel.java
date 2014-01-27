@@ -11,6 +11,7 @@ import com.cburch.logisim.file.LogisimFile;
 import com.cburch.logisim.file.Options;
 import com.cburch.logisim.proj.Project;
 
+@SuppressWarnings("serial")
 abstract class OptionsPanel extends JPanel {
     private OptionsFrame optionsFrame;
 

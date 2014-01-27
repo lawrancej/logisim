@@ -15,6 +15,7 @@ import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.undo.Action;
 
 
+@SuppressWarnings("serial")
 public class Canvas extends JComponent {
     public static final String TOOL_PROPERTY = "tool";
     public static final String MODEL_PROPERTY = "model";

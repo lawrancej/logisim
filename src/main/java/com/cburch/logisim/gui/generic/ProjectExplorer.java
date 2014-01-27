@@ -44,6 +44,7 @@ import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 
+@SuppressWarnings("serial")
 public class ProjectExplorer extends JTree implements LocaleListener {
     private static final String DIRTY_MARKER = "*";
 

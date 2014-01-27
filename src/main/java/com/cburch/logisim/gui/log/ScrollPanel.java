@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+@SuppressWarnings("serial")
 class ScrollPanel extends LogPanel {
     private TablePanel table;
 

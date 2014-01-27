@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
-import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
 import javax.swing.JMenuItem;
 
@@ -26,6 +25,7 @@ import com.cburch.logisim.proj.Project;
 import java.util.Collection;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class MenuTool extends Tool {
     private class MenuComponent extends JPopupMenu
             implements ActionListener {
@@ -88,10 +88,6 @@ public class MenuTool extends Tool {
             } else if (src == copy) {
                 proj.doAction(SelectionActions.copy(sel));
             }
-        }
-
-        public void show(JComponent parent, int x, int y) {
-            super.show(this, x, y);
         }
     }
 

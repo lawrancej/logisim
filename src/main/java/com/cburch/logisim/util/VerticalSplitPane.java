@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class VerticalSplitPane extends JPanel {
     private class MyLayout implements LayoutManager {
         @Override

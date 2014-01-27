@@ -36,6 +36,7 @@ import com.cburch.logisim.proj.Project;
 
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class Print {
     private Print() { }
 
@@ -57,8 +58,8 @@ public class Print {
         if (action != JOptionPane.OK_OPTION) {
             return;
         }
+        List<Circuit> circuits = list.getSelectedValuesList();
 
-        List<Circuit> circuits = list.getSelectedCircuits();
         if (circuits.isEmpty()) {
             return;
         }

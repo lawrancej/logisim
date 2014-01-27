@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class EditableLabelField extends JTextField {
     static final int FIELD_BORDER = 2;
 

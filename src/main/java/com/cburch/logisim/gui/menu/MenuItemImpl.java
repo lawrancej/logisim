@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
+@SuppressWarnings("serial")
 class MenuItemImpl extends JMenuItem implements MenuItem {
     private MenuItemHelper helper;
 

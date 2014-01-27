@@ -19,6 +19,7 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectEvent;
 import com.cburch.logisim.proj.ProjectListener;
 
+@SuppressWarnings("serial")
 class SimulationExplorer extends JPanel
         implements ProjectListener, MouseListener {
     private Project project;

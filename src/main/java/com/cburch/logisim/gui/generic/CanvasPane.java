@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import com.cburch.logisim.util.MacCompatibility;
 
+@SuppressWarnings("serial")
 public class CanvasPane extends JScrollPane {
     private class Listener implements ComponentListener, PropertyChangeListener {
 

@@ -32,6 +32,7 @@ import com.cburch.logisim.analyze.model.ParserException;
 import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString._;
 
+@SuppressWarnings("serial")
 class ExpressionTab extends AnalyzerTab implements TabInterface {
     private class MyListener extends AbstractAction
             implements DocumentListener,

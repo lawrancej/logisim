@@ -18,6 +18,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class HorizontalSplitPane extends JPanel {
     static final int DRAG_TOLERANCE = 3;
     private static final Color DRAG_COLOR = new Color(0, 0, 0, 128);

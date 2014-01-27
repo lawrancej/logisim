@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import com.cburch.logisim.proj.Project;
 
+@SuppressWarnings("serial")
 abstract class LogPanel extends JPanel {
     private LogFrame logFrame;
 

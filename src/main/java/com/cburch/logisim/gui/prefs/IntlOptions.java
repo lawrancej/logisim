@@ -16,6 +16,7 @@ import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.util.LocaleManager;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class IntlOptions extends OptionsPanel {
     private static class RestrictedLabel extends JLabel {
         @Override

@@ -8,6 +8,7 @@ import java.util.EventObject;
 
 import com.cburch.draw.model.CanvasObject;
 
+@SuppressWarnings("serial")
 public class SelectionEvent extends EventObject {
     public static final int ACTION_ADDED = 0;
     public static final int ACTION_REMOVED = 1;

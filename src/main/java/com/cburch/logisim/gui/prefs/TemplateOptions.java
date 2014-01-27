@@ -31,6 +31,7 @@ import com.cburch.logisim.prefs.Template;
 import com.cburch.logisim.util.JFileChoosers;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class TemplateOptions extends OptionsPanel {
     private class MyListener implements ActionListener, PropertyChangeListener {
         @Override

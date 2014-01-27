@@ -32,6 +32,7 @@ import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.util.Icons;
 
+@SuppressWarnings("serial")
 public class TextTool extends AbstractTool {
     private class FieldListener extends AbstractAction implements AttributeListener {
         @Override

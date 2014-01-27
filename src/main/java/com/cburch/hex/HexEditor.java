@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
  * @author Carl Burch
  *
  */
+@SuppressWarnings("serial")
 public class HexEditor extends JComponent implements Scrollable {
     private class Listener implements HexModelListener {
         @Override

@@ -28,6 +28,7 @@ import com.cburch.logisim.proj.Project;
 import java.util.ArrayList;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class MenuSimulate extends Menu {
     private class TickFrequencyChoice extends JRadioButtonMenuItem
             implements ActionListener {

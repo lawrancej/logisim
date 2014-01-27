@@ -22,6 +22,7 @@ import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.util.GraphicsUtil;
 
+@SuppressWarnings("serial")
 public class LayoutThumbnail extends JComponent {
     private static final int BORDER = 10;
 

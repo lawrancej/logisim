@@ -24,6 +24,7 @@ import com.cburch.logisim.data.Value;
 import com.cburch.logisim.util.JFileChoosers;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class FilePanel extends LogPanel {
     private class Listener implements ActionListener, ModelListener {
         @Override

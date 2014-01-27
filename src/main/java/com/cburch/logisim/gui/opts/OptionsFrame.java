@@ -28,6 +28,7 @@ import com.cburch.logisim.util.LocaleManager;
 import static com.cburch.logisim.util.LocaleString.*;
 import com.cburch.logisim.util.WindowMenuItemManager;
 
+@SuppressWarnings("serial")
 public class OptionsFrame extends LFrame {
     private class WindowMenuManager extends WindowMenuItemManager
             implements LocaleListener {

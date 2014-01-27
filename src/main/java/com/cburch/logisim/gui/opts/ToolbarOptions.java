@@ -26,6 +26,7 @@ import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.TableLayout;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 class ToolbarOptions extends OptionsPanel {
     private class Listener
             implements ProjectExplorerListener, ActionListener, ListSelectionListener {

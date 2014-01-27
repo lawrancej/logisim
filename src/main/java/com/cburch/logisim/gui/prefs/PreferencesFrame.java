@@ -22,6 +22,7 @@ import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.WindowMenuItemManager;
 import static com.cburch.logisim.util.LocaleString.*;
 
+@SuppressWarnings("serial")
 public class PreferencesFrame extends LFrame {
     private static WindowMenuManager MENU_MANAGER = null;
 
