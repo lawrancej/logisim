@@ -20,6 +20,8 @@ public class ProjectEvent {
 	public static final int UNDO_START          = 8; // undo about to start
 	public static final int UNDO_COMPLETE       = 9; // undo has completed
 	public static final int REPAINT_REQUEST     = 10; // canvas should be repainted
+	public static final int REDO_START			= 11;
+	public static final int REDO_COMPLETE		= 12;
 
 	private int action;
 	private Project proj;

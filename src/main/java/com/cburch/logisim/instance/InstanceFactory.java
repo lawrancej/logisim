@@ -37,6 +37,7 @@ import com.cburch.logisim.util.StringUtil;
  * relation between <em>classes</em> and <em>instances</em> in Java. Normally,
  * there is only one ComponentFactory created for any particular category.
  */
+@SuppressWarnings("deprecation")
 public abstract class InstanceFactory extends AbstractComponentFactory {
 	private String name;
 	private StringGetter displayName;

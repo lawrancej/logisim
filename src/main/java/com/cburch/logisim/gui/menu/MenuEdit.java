@@ -21,26 +21,61 @@ class MenuEdit extends Menu {
 		public void projectChanged(ProjectEvent e) {
 			Project proj = menubar.getProject();
 			Action last = proj == null ? null : proj.getLastAction();
-			if (last == null) {
-				undo.setText(_("editCantUndoItem"));
-				undo.setEnabled(false);
-			} else {
-				undo.setText(_("editUndoItem", last.getName()));
-				undo.setEnabled(true);
+			if( last == null )
+			{
+				undo.setText( _( "editCantUndoItem" ) );
+				undo.setEnabled( false );
 			}
+			else
+			{
+				undo.setText( _( "editUndoItem", last.getName() ) );
+				undo.setEnabled( true );
+			}
+
+			// If there is a project open...
+			if( proj != null )
+				// And you CAN redo an undo...
+				if( proj.getCanRedo() )
+				{
+					// Get that action
+					Action lastRedo = proj.getLastRedoAction();
+
+					// Set the detailed, localized text
+
+					redo.setText( _( "editRedoItem", lastRedo.getName() ) );
+					
+					// Set it to enabled
+					redo.setEnabled( true );
+				}
+				else
+				{	// If there is no project...
+					// Let them know they can't redo anything
+					redo.setText( _( "editCantRedoItem" ) );
+
+					// And disable the button
+					redo.setEnabled( false );
+				}
 		}
 
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			Project proj = menubar.getProject();
-			if (src == undo) {
-				if (proj != null) proj.undoAction();
+			if( src == undo )
+			{
+				if( proj != null )
+					proj.undoAction();
+			}
+			else if( src == redo )
+			{
+				if (proj != null )
+					proj.redoAction();
 			}
 		}
 	}
 
 	private LogisimMenuBar menubar;
 	private JMenuItem undo  = new JMenuItem();
+	private JMenuItem redo  = new JMenuItem();
 	private MenuItemImpl cut    = new MenuItemImpl(this, LogisimMenuBar.CUT);
 	private MenuItemImpl copy   = new MenuItemImpl(this, LogisimMenuBar.COPY);
 	private MenuItemImpl paste  = new MenuItemImpl(this, LogisimMenuBar.PASTE);
@@ -61,6 +96,8 @@ class MenuEdit extends Menu {
 		int menuMask = getToolkit().getMenuShortcutKeyMask();
 		undo.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_Z, menuMask));
+		redo.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_Y, menuMask));
 		cut.setAccelerator(KeyStroke.getKeyStroke(
 			KeyEvent.VK_X, menuMask));
 		copy.setAccelerator(KeyStroke.getKeyStroke(
@@ -83,6 +120,7 @@ class MenuEdit extends Menu {
 				KeyEvent.VK_DOWN, menuMask | KeyEvent.SHIFT_DOWN_MASK));
 
 		add(undo);
+		add(redo);
 		addSeparator();
 		add(cut);
 		add(copy);
@@ -104,9 +142,11 @@ class MenuEdit extends Menu {
 		if (proj != null) {
 			proj.addProjectListener(myListener);
 			undo.addActionListener(myListener);
+			redo.addActionListener( myListener );
 		}
 
 		undo.setEnabled(false);
+		redo.setEnabled(false);
 		menubar.registerItem(LogisimMenuBar.CUT, cut);
 		menubar.registerItem(LogisimMenuBar.COPY, copy);
 		menubar.registerItem(LogisimMenuBar.PASTE, paste);

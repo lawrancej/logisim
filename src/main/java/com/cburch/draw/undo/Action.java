@@ -8,8 +8,12 @@ public abstract class Action {
 
 	public abstract String getName();
 
+	/** Redo
+	 */
 	public abstract void doIt();
 
+	/** Undo
+	 */
 	public abstract void undo();
 
 	public boolean shouldAppendTo(Action other) { return false; }
