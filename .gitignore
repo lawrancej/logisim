@@ -10,3 +10,4 @@ build
 bin
 *.class
 /nbproject/private/
+.externalToolBuilders
