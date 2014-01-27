@@ -35,4 +35,7 @@ The build script recognizes the following commands:
 	gradle eclipse   # Build Eclipse configuration
 	gradle createExe # Build logisim executable
 	gradle run       # Run logisim from gradle
+	gradle sonar     # Examine problems using Sonar
+
+See the status of what everybody's working on using the [Logisim Trello Board](https://trello.com/b/GYyiVOWH/logisim).
 
