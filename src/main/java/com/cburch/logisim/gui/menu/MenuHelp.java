@@ -18,118 +18,124 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 class MenuHelp extends JMenu implements ActionListener {
-	private LogisimMenuBar menubar;
-	private JMenuItem tutorial = new JMenuItem();
-	private JMenuItem guide = new JMenuItem();
-	private JMenuItem library = new JMenuItem();
-	private JMenuItem about = new JMenuItem();
-	private HelpSet helpSet;
-	private String helpSetUrl = "";
-	private JHelp helpComponent;
-	private LFrame helpFrame;
+    private LogisimMenuBar menubar;
+    private JMenuItem tutorial = new JMenuItem();
+    private JMenuItem guide = new JMenuItem();
+    private JMenuItem library = new JMenuItem();
+    private JMenuItem about = new JMenuItem();
+    private HelpSet helpSet;
+    private String helpSetUrl = "";
+    private JHelp helpComponent;
+    private LFrame helpFrame;
 
-	public MenuHelp(LogisimMenuBar menubar) {
-		this.menubar = menubar;
+    public MenuHelp(LogisimMenuBar menubar) {
+        this.menubar = menubar;
 
-		tutorial.addActionListener(this);
-		guide.addActionListener(this);
-		library.addActionListener(this);
-		about.addActionListener(this);
+        tutorial.addActionListener(this);
+        guide.addActionListener(this);
+        library.addActionListener(this);
+        about.addActionListener(this);
 
-		add(tutorial);
-		add(guide);
-		add(library);
-		if (!MacCompatibility.isAboutAutomaticallyPresent()) {
-			addSeparator();
-			add(about);
-		}
-	}
+        add(tutorial);
+        add(guide);
+        add(library);
+        if (!MacCompatibility.isAboutAutomaticallyPresent()) {
+            addSeparator();
+            add(about);
+        }
+    }
 
-	public void localeChanged() {
-		this.setText(_("helpMenu"));
-		if (helpFrame != null) {
-			helpFrame.setTitle(_("helpWindowTitle"));
-		}
-		tutorial.setText(_("helpTutorialItem"));
-		guide.setText(_("helpGuideItem"));
-		library.setText(_("helpLibraryItem"));
-		about.setText(_("helpAboutItem"));
-		if (helpFrame != null) {
-			helpFrame.setLocale(Locale.getDefault());
-			loadBroker();
-		}
-	}
+    public void localeChanged() {
+        this.setText(_("helpMenu"));
+        if (helpFrame != null) {
+            helpFrame.setTitle(_("helpWindowTitle"));
+        }
+        tutorial.setText(_("helpTutorialItem"));
+        guide.setText(_("helpGuideItem"));
+        library.setText(_("helpLibraryItem"));
+        about.setText(_("helpAboutItem"));
+        if (helpFrame != null) {
+            helpFrame.setLocale(Locale.getDefault());
+            loadBroker();
+        }
+    }
 
-	public void actionPerformed(ActionEvent e) {
-		Object src = e.getSource();
-		if (src == guide) {
-			showHelp("guide");
-		} else if (src == tutorial) {
-			showHelp("tutorial");
-		} else if (src == library) {
-			showHelp("libs");
-		} else if (src == about) {
-			About.showAboutDialog(menubar.getParentWindow());
-		}
-	}
-	
-	private void loadBroker() {
-		String helpUrl = _("helpsetUrl");
-		if (helpUrl == null) helpUrl = "doc/doc_en.hs";
-		if (helpSet == null || helpFrame == null || !helpUrl.equals(helpSetUrl)) {
-			ClassLoader loader = MenuHelp.class.getClassLoader();
-			try {
-				URL hsURL = HelpSet.findHelpSet(loader, helpUrl);
-				if (hsURL == null) {
-					disableHelp();
-					JOptionPane.showMessageDialog(menubar.getParentWindow(),
-							_("helpNotFoundError"));
-					return;
-				}
-				helpSetUrl = helpUrl;
-				helpSet = new HelpSet(null, hsURL);
-				helpComponent = new JHelp(helpSet);
-				if (helpFrame == null) {
-					helpFrame = new LFrame();
-					helpFrame.setTitle(_("helpWindowTitle"));
-					helpFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-					helpFrame.getContentPane().add(helpComponent);
-					helpFrame.pack();
-				} else {
-					helpFrame.getContentPane().removeAll();
-					helpFrame.getContentPane().add(helpComponent);
-					helpComponent.revalidate();
-				}
-			} catch (Exception e) {
-				disableHelp();
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(menubar.getParentWindow(),
-						_("helpUnavailableError"));
-				return;
-			}
-		}
-	}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object src = e.getSource();
+        if (src == guide) {
+            showHelp("guide");
+        } else if (src == tutorial) {
+            showHelp("tutorial");
+        } else if (src == library) {
+            showHelp("libs");
+        } else if (src == about) {
+            About.showAboutDialog(menubar.getParentWindow());
+        }
+    }
 
-	private void showHelp(String target) {
-		loadBroker();
-		try {
-			helpComponent.setCurrentID(target);
-			helpFrame.toFront();
-			helpFrame.setVisible(true);
-		} catch (Exception e) {
-			disableHelp();
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(menubar.getParentWindow(),
-					_("helpDisplayError"));
-		}
-	}
+    private void loadBroker() {
+        String helpUrl = _("helpsetUrl");
+        if (helpUrl == null) {
+            helpUrl = "doc/doc_en.hs";
+        }
 
-	private void disableHelp() {
-		guide.setEnabled(false);
-		tutorial.setEnabled(false);
-		library.setEnabled(false);
-	}
+        if (helpSet == null || helpFrame == null || !helpUrl.equals(helpSetUrl)) {
+            ClassLoader loader = MenuHelp.class.getClassLoader();
+            try {
+                URL hsURL = HelpSet.findHelpSet(loader, helpUrl);
+                if (hsURL == null) {
+                    disableHelp();
+                    JOptionPane.showMessageDialog(menubar.getParentWindow(),
+                            _("helpNotFoundError"));
+                    return;
+                }
+                helpSetUrl = helpUrl;
+                helpSet = new HelpSet(null, hsURL);
+                helpComponent = new JHelp(helpSet);
+                if (helpFrame == null) {
+                    helpFrame = new LFrame();
+                    helpFrame.setTitle(_("helpWindowTitle"));
+                    helpFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+                    helpFrame.getContentPane().add(helpComponent);
+                    helpFrame.pack();
+                } else {
+                    helpFrame.getContentPane().removeAll();
+                    helpFrame.getContentPane().add(helpComponent);
+                    helpComponent.revalidate();
+                }
+            } catch (Exception e) {
+                disableHelp();
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(menubar.getParentWindow(),
+                        _("helpUnavailableError"));
+                return;
+            }
+        }
+    }
+
+    private void showHelp(String target) {
+        loadBroker();
+        try {
+            helpComponent.setCurrentID(target);
+            helpFrame.toFront();
+            helpFrame.setVisible(true);
+        } catch (Exception e) {
+            disableHelp();
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(menubar.getParentWindow(),
+                    _("helpDisplayError"));
+        }
+    }
+
+    private void disableHelp() {
+        guide.setEnabled(false);
+        tutorial.setEnabled(false);
+        library.setEnabled(false);
+    }
 }

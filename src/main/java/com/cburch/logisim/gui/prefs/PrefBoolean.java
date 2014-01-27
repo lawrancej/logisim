@@ -14,31 +14,33 @@ import com.cburch.logisim.prefs.PrefMonitor;
 import com.cburch.logisim.util.StringGetter;
 
 class PrefBoolean extends JCheckBox
-		implements ActionListener, PropertyChangeListener {
-	private PrefMonitor<Boolean> pref;
-	private StringGetter title;
-	
-	PrefBoolean(PrefMonitor<Boolean> pref, StringGetter title) {
-		super(title.toString());
-		this.pref = pref;
-		this.title = title;
-		
-		addActionListener(this);
-		pref.addPropertyChangeListener(this);
-		setSelected(pref.getBoolean());
-	}
-	
-	void localeChanged() {
-		setText(title.toString());
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-		pref.setBoolean(this.isSelected());
-	}
-	
-	public void propertyChange(PropertyChangeEvent event) {
-		if (pref.isSource(event)) {
-			setSelected(pref.getBoolean());
-		}
-	}
+        implements ActionListener, PropertyChangeListener {
+    private PrefMonitor<Boolean> pref;
+    private StringGetter title;
+
+    PrefBoolean(PrefMonitor<Boolean> pref, StringGetter title) {
+        super(title.toString());
+        this.pref = pref;
+        this.title = title;
+
+        addActionListener(this);
+        pref.addPropertyChangeListener(this);
+        setSelected(pref.getBoolean());
+    }
+
+    void localeChanged() {
+        setText(title.toString());
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        pref.setBoolean(this.isSelected());
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent event) {
+        if (pref.isSource(event)) {
+            setSelected(pref.getBoolean());
+        }
+    }
 }

@@ -19,65 +19,66 @@ import javax.swing.JButton;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public abstract class JDialogOk extends JDialog {
-	private class MyListener extends WindowAdapter
-			implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			Object src = e.getSource();
-			if (src == ok) {
-				okClicked();
-				dispose();
-			} else if (src == cancel) {
-				cancelClicked();
-				dispose();
-			}
-		}
+    private class MyListener extends WindowAdapter
+            implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object src = e.getSource();
+            if (src == ok) {
+                okClicked();
+                dispose();
+            } else if (src == cancel) {
+                cancelClicked();
+                dispose();
+            }
+        }
 
-		@Override
-		public void windowClosing(WindowEvent e) {
-			JDialogOk.this.removeWindowListener(this);
-			cancelClicked();
-			dispose();
-		}
-	}
+        @Override
+        public void windowClosing(WindowEvent e) {
+            JDialogOk.this.removeWindowListener(this);
+            cancelClicked();
+            dispose();
+        }
+    }
 
-	private JPanel contents = new JPanel(new BorderLayout());
-	protected JButton ok = new JButton(_("dlogOkButton"));
-	protected JButton cancel = new JButton(_("dlogCancelButton"));
+    private JPanel contents = new JPanel(new BorderLayout());
+    protected JButton ok = new JButton(_("dlogOkButton"));
+    protected JButton cancel = new JButton(_("dlogCancelButton"));
 
-	public JDialogOk(Dialog parent, String title, boolean model) {
-		super(parent, title, true);
-		configure();
-	}
+    public JDialogOk(Dialog parent, String title, boolean model) {
+        super(parent, title, true);
+        configure();
+    }
 
-	public JDialogOk(Frame parent, String title, boolean model) {
-		super(parent, title, true);
-		configure();
-	}
+    public JDialogOk(Frame parent, String title, boolean model) {
+        super(parent, title, true);
+        configure();
+    }
 
-	private void configure() {
-		MyListener listener = new MyListener();
-		this.addWindowListener(listener);
-		ok.addActionListener(listener);
-		cancel.addActionListener(listener);
+    private void configure() {
+        MyListener listener = new MyListener();
+        this.addWindowListener(listener);
+        ok.addActionListener(listener);
+        cancel.addActionListener(listener);
 
-		Box buttons = Box.createHorizontalBox();
-		buttons.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		buttons.add(Box.createHorizontalGlue());
-		buttons.add(ok);
-		buttons.add(Box.createHorizontalStrut(10));
-		buttons.add(cancel);
-		buttons.add(Box.createHorizontalGlue());
+        Box buttons = Box.createHorizontalBox();
+        buttons.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        buttons.add(Box.createHorizontalGlue());
+        buttons.add(ok);
+        buttons.add(Box.createHorizontalStrut(10));
+        buttons.add(cancel);
+        buttons.add(Box.createHorizontalGlue());
 
-		Container pane = super.getContentPane();
-		pane.add(contents, BorderLayout.CENTER);
-		pane.add(buttons, BorderLayout.SOUTH);
-	}
+        Container pane = super.getContentPane();
+        pane.add(contents, BorderLayout.CENTER);
+        pane.add(buttons, BorderLayout.SOUTH);
+    }
 
-	@Override
-	public Container getContentPane() { return contents; }
+    @Override
+    public Container getContentPane() { return contents; }
 
-	public abstract void okClicked();
+    public abstract void okClicked();
 
-	public void cancelClicked() { }
+    public void cancelClicked() { }
 
 }

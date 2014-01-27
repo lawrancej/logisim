@@ -22,169 +22,180 @@ import com.cburch.logisim.data.AttributeListener;
 import com.cburch.logisim.instance.StdAttr;
 
 class SimulationTreeCircuitNode extends SimulationTreeNode
-		implements CircuitListener, AttributeListener, Comparator<Component> {
-	private static class CompareByName implements Comparator<Object> {
-		public int compare(Object a, Object b) {
-			return a.toString().compareToIgnoreCase(b.toString());
-		}
-	}
+        implements CircuitListener, AttributeListener, Comparator<Component> {
+    private static class CompareByName implements Comparator<Object> {
+        @Override
+        public int compare(Object a, Object b) {
+            return a.toString().compareToIgnoreCase(b.toString());
+        }
+    }
 
-	private SimulationTreeModel model;
-	private SimulationTreeCircuitNode parent;
-	private CircuitState circuitState;
-	private Component subcircComp;
-	private ArrayList<TreeNode> children;
-		
-	public SimulationTreeCircuitNode(SimulationTreeModel model,
-			SimulationTreeCircuitNode parent, CircuitState circuitState,
-			Component subcircComp) {
-		this.model = model;
-		this.parent = parent;
-		this.circuitState = circuitState;
-		this.subcircComp = subcircComp;
-		this.children = new ArrayList<TreeNode>();
-		circuitState.getCircuit().addCircuitListener(this);
-		if (subcircComp != null) {
-			subcircComp.getAttributeSet().addAttributeListener(this);
-		} else {
-			circuitState.getCircuit().getStaticAttributes().addAttributeListener(this);
-		}
-		computeChildren();
-	}
-	
-	public CircuitState getCircuitState() {
-		return circuitState;
-	}
-	
-	@Override
-	public ComponentFactory getComponentFactory() {
-		return circuitState.getCircuit().getSubcircuitFactory();
-	}
-	
-	@Override
-	public boolean isCurrentView(SimulationTreeModel model) {
-		return model.getCurrentView() == circuitState;
-	}
-	
-	@Override
-	public String toString() {
-		if (subcircComp != null) {
-			String label = subcircComp.getAttributeSet().getValue(StdAttr.LABEL);
-			if (label != null && !label.equals("")) {
-				return label;
-			}
-		}
-		String ret = circuitState.getCircuit().getName();
-		if (subcircComp != null) {
-			ret += subcircComp.getLocation();
-		}
-		return ret;
-	}
+    private SimulationTreeModel model;
+    private SimulationTreeCircuitNode parent;
+    private CircuitState circuitState;
+    private Component subcircComp;
+    private ArrayList<TreeNode> children;
 
-	@Override
-	public TreeNode getChildAt(int index) {
-		return children.get(index);
-	}
+    public SimulationTreeCircuitNode(SimulationTreeModel model,
+            SimulationTreeCircuitNode parent, CircuitState circuitState,
+            Component subcircComp) {
+        this.model = model;
+        this.parent = parent;
+        this.circuitState = circuitState;
+        this.subcircComp = subcircComp;
+        this.children = new ArrayList<TreeNode>();
+        circuitState.getCircuit().addCircuitListener(this);
+        if (subcircComp != null) {
+            subcircComp.getAttributeSet().addAttributeListener(this);
+        } else {
+            circuitState.getCircuit().getStaticAttributes().addAttributeListener(this);
+        }
+        computeChildren();
+    }
 
-	@Override
-	public int getChildCount() {
-		return children.size();
-	}
+    public CircuitState getCircuitState() {
+        return circuitState;
+    }
 
-	@Override
-	public TreeNode getParent() {
-		return parent;
-	}
+    @Override
+    public ComponentFactory getComponentFactory() {
+        return circuitState.getCircuit().getSubcircuitFactory();
+    }
 
-	@Override
-	public int getIndex(TreeNode node) {
-		return children.indexOf(node);
-	}
+    @Override
+    public boolean isCurrentView(SimulationTreeModel model) {
+        return model.getCurrentView() == circuitState;
+    }
 
-	@Override
-	public boolean getAllowsChildren() {
-		return true;
-	}
+    @Override
+    public String toString() {
+        if (subcircComp != null) {
+            String label = subcircComp.getAttributeSet().getValue(StdAttr.LABEL);
+            if (label != null && !label.equals("")) {
+                return label;
+            }
+        }
+        String ret = circuitState.getCircuit().getName();
+        if (subcircComp != null) {
+            ret += subcircComp.getLocation();
+        }
+        return ret;
+    }
 
-	@Override
-	public boolean isLeaf() {
-		return false;
-	}
+    @Override
+    public TreeNode getChildAt(int index) {
+        return children.get(index);
+    }
 
-	@Override
-	public Enumeration<TreeNode> children() {
-		return Collections.enumeration(children);
-	}
+    @Override
+    public int getChildCount() {
+        return children.size();
+    }
 
-	public void circuitChanged(CircuitEvent event) {
-		int action = event.getAction();
-		if (action == CircuitEvent.ACTION_SET_NAME) {
-			model.fireNodeChanged(this);
-		} else {
-			if (computeChildren()) {
-				model.fireStructureChanged(this);
-			}
-		}
-	}
-	
-	// returns true if changed
-	private boolean computeChildren() {
-		ArrayList<TreeNode> newChildren = new ArrayList<TreeNode>();
-		ArrayList<Component> subcircs = new ArrayList<Component>();
-		for (Component comp : circuitState.getCircuit().getNonWires()) {
-			if (comp.getFactory() instanceof SubcircuitFactory) {
-				subcircs.add(comp);
-			} else {
-				TreeNode toAdd = model.mapComponentToNode(comp);
-				if (toAdd != null) {
-					newChildren.add(toAdd);
-				}
-			}
-		}
-		Collections.sort(newChildren, new CompareByName());
-		Collections.sort(subcircs, this);
-		for (Component comp : subcircs) {
-			SubcircuitFactory factory = (SubcircuitFactory) comp.getFactory();
-			CircuitState state = factory.getSubstate(circuitState, comp);
-			SimulationTreeCircuitNode toAdd = null;
-			for (TreeNode o : children) {
-				if (o instanceof SimulationTreeCircuitNode) {
-					SimulationTreeCircuitNode n = (SimulationTreeCircuitNode) o;
-					if (n.circuitState == state) { toAdd = n; break; }
-				}
-			}
-			if (toAdd == null) {
-				toAdd = new SimulationTreeCircuitNode(model, this, state, comp);
-			}
-			newChildren.add(toAdd);
-		}
-		
-		if (!children.equals(newChildren)) {
-			children = newChildren;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public int compare(Component a, Component b) {
-		if (a != b) {
-			String aName = a.getFactory().getDisplayName();
-			String bName = b.getFactory().getDisplayName();
-			int ret = aName.compareToIgnoreCase(bName);
-			if (ret != 0) return ret;
-		}
-		return a.getLocation().toString().compareTo(b.getLocation().toString());
-	}
+    @Override
+    public TreeNode getParent() {
+        return parent;
+    }
 
-	//
-	// AttributeListener methods
-	public void attributeListChanged(AttributeEvent e) { }
+    @Override
+    public int getIndex(TreeNode node) {
+        return children.indexOf(node);
+    }
 
-	public void attributeValueChanged(AttributeEvent e) {
-		Object attr = e.getAttribute();
-		if (attr == CircuitAttributes.CIRCUIT_LABEL_ATTR || attr == StdAttr.LABEL) {
-			model.fireNodeChanged(this);
-		}
-	}
+    @Override
+    public boolean getAllowsChildren() {
+        return true;
+    }
+
+    @Override
+    public boolean isLeaf() {
+        return false;
+    }
+
+    @Override
+    public Enumeration<TreeNode> children() {
+        return Collections.enumeration(children);
+    }
+
+    @Override
+    public void circuitChanged(CircuitEvent event) {
+        int action = event.getAction();
+        if (action == CircuitEvent.ACTION_SET_NAME) {
+            model.fireNodeChanged(this);
+        } else {
+            if (computeChildren()) {
+                model.fireStructureChanged(this);
+            }
+        }
+    }
+
+    // returns true if changed
+    private boolean computeChildren() {
+        ArrayList<TreeNode> newChildren = new ArrayList<TreeNode>();
+        ArrayList<Component> subcircs = new ArrayList<Component>();
+        for (Component comp : circuitState.getCircuit().getNonWires()) {
+            if (comp.getFactory() instanceof SubcircuitFactory) {
+                subcircs.add(comp);
+            } else {
+                TreeNode toAdd = model.mapComponentToNode(comp);
+                if (toAdd != null) {
+                    newChildren.add(toAdd);
+                }
+            }
+        }
+        Collections.sort(newChildren, new CompareByName());
+        Collections.sort(subcircs, this);
+        for (Component comp : subcircs) {
+            SubcircuitFactory factory = (SubcircuitFactory) comp.getFactory();
+            CircuitState state = factory.getSubstate(circuitState, comp);
+            SimulationTreeCircuitNode toAdd = null;
+            for (TreeNode o : children) {
+                if (o instanceof SimulationTreeCircuitNode) {
+                    SimulationTreeCircuitNode n = (SimulationTreeCircuitNode) o;
+                    if (n.circuitState == state) {
+                        { toAdd = n;
+                    }
+ break; }
+                }
+            }
+            if (toAdd == null) {
+                toAdd = new SimulationTreeCircuitNode(model, this, state, comp);
+            }
+            newChildren.add(toAdd);
+        }
+
+        if (!children.equals(newChildren)) {
+            children = newChildren;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int compare(Component a, Component b) {
+        if (a != b) {
+            String aName = a.getFactory().getDisplayName();
+            String bName = b.getFactory().getDisplayName();
+            int ret = aName.compareToIgnoreCase(bName);
+            if (ret != 0) {
+                return ret;
+            }
+
+        }
+        return a.getLocation().toString().compareTo(b.getLocation().toString());
+    }
+
+    //
+    // AttributeListener methods
+    @Override
+    public void attributeListChanged(AttributeEvent e) { }
+
+    @Override
+    public void attributeValueChanged(AttributeEvent e) {
+        Object attr = e.getAttribute();
+        if (attr == CircuitAttributes.CIRCUIT_LABEL_ATTR || attr == StdAttr.LABEL) {
+            model.fireNodeChanged(this);
+        }
+    }
 }

@@ -7,11 +7,9 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
-
 public interface ToolbarItem {
-	public boolean isSelectable();
-	public void paintIcon(Component destination, Graphics g);
-	public String getToolTip();
-	public Dimension getDimension(Object orientation);
+    public boolean isSelectable();
+    public void paintIcon(Component destination, Graphics g);
+    public String getToolTip();
+    public Dimension getDimension(Object orientation);
 }

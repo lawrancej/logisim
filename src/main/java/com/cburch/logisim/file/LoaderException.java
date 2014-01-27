@@ -4,18 +4,18 @@
 package com.cburch.logisim.file;
 
 public class LoaderException extends RuntimeException {
-	private boolean shown;
-	
-	LoaderException(String desc) {
-		this(desc, false);
-	}
-	
-	LoaderException(String desc, boolean shown) {
-		super(desc);
-		this.shown = shown;
-	}
-	
-	public boolean isShown() {
-		return shown;
-	}
+    private boolean shown;
+
+    LoaderException(String desc) {
+        this(desc, false);
+    }
+
+    LoaderException(String desc, boolean shown) {
+        super(desc);
+        this.shown = shown;
+    }
+
+    public boolean isShown() {
+        return shown;
+    }
 }

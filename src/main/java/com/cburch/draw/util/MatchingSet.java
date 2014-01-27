@@ -11,87 +11,90 @@ import java.util.Iterator;
 import com.cburch.draw.model.CanvasObject;
 
 public class MatchingSet<E extends CanvasObject> extends AbstractSet<E> {
-	private static class Member<E extends CanvasObject> {
-		E value;
-		
-		public Member(E value) {
-			this.value = value;
-		}
-		
-		@Override
-		public boolean equals(Object other) {
-			@SuppressWarnings("unchecked")
-			Member<E> that = (Member<E>) other;
-			return this.value.matches(that.value);
-		}
-		
-		@Override
-		public int hashCode() {
-			return value.matchesHashCode();
-		}
-	}
-	
-	private static class MatchIterator<E extends CanvasObject> implements Iterator<E> {
-		private Iterator<Member<E>> it;
-		
-		MatchIterator(Iterator<Member<E>> it) {
-			this.it = it;
-		}
+    private static class Member<E extends CanvasObject> {
+        E value;
 
-		public boolean hasNext() {
-			return it.hasNext();
-		}
+        public Member(E value) {
+            this.value = value;
+        }
 
-		public E next() {
-			return it.next().value;
-		}
+        @Override
+        public boolean equals(Object other) {
+            @SuppressWarnings("unchecked")
+            Member<E> that = (Member<E>) other;
+            return this.value.matches(that.value);
+        }
 
-		public void remove() {
-			it.remove();
-		}
-		
-	}
-	
-	private HashSet<Member<E>> set;
-	
-	public MatchingSet() {
-		set = new HashSet<Member<E>>();
-	}
-	
-	public MatchingSet(Collection<E> initialContents) {
-		set = new HashSet<Member<E>>(initialContents.size());
-		for (E value : initialContents) {
-			set.add(new Member<E>(value));
-		}
-	}
-	
-	@Override
-	public boolean add(E value) {
-		return set.add(new Member<E>(value));
-	}
-	
-	@Override
-	public boolean remove(Object value) {
-		@SuppressWarnings("unchecked")
-		E eValue = (E) value;
-		return set.remove(new Member<E>(eValue));
-	}
-	
-	@Override
-	public boolean contains(Object value) {
-		@SuppressWarnings("unchecked")
-		E eValue = (E) value;
-		return set.contains(new Member<E>(eValue));
-	}
+        @Override
+        public int hashCode() {
+            return value.matchesHashCode();
+        }
+    }
 
-	@Override
-	public Iterator<E> iterator() {
-		return new MatchIterator<E>(set.iterator());
-	}
+    private static class MatchIterator<E extends CanvasObject> implements Iterator<E> {
+        private Iterator<Member<E>> it;
 
-	@Override
-	public int size() {
-		return set.size();
-	}
+        MatchIterator(Iterator<Member<E>> it) {
+            this.it = it;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return it.hasNext();
+        }
+
+        @Override
+        public E next() {
+            return it.next().value;
+        }
+
+        @Override
+        public void remove() {
+            it.remove();
+        }
+
+    }
+
+    private HashSet<Member<E>> set;
+
+    public MatchingSet() {
+        set = new HashSet<Member<E>>();
+    }
+
+    public MatchingSet(Collection<E> initialContents) {
+        set = new HashSet<Member<E>>(initialContents.size());
+        for (E value : initialContents) {
+            set.add(new Member<E>(value));
+        }
+    }
+
+    @Override
+    public boolean add(E value) {
+        return set.add(new Member<E>(value));
+    }
+
+    @Override
+    public boolean remove(Object value) {
+        @SuppressWarnings("unchecked")
+        E eValue = (E) value;
+        return set.remove(new Member<E>(eValue));
+    }
+
+    @Override
+    public boolean contains(Object value) {
+        @SuppressWarnings("unchecked")
+        E eValue = (E) value;
+        return set.contains(new Member<E>(eValue));
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new MatchIterator<E>(set.iterator());
+    }
+
+    @Override
+    public int size() {
+        return set.size();
+    }
 
 }

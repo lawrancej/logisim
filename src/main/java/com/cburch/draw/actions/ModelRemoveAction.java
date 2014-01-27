@@ -13,34 +13,34 @@ import com.cburch.draw.util.ZOrder;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelRemoveAction extends ModelAction {
-	private Map<CanvasObject, Integer> removed;
+    private Map<CanvasObject, Integer> removed;
 
-	public ModelRemoveAction(CanvasModel model, CanvasObject removed) {
-		this(model, Collections.singleton(removed));
-	}	
-	
-	public ModelRemoveAction(CanvasModel model, Collection<CanvasObject> removed) {
-		super(model);
-		this.removed = ZOrder.getZIndex(removed, model);
-	}
-	
-	@Override
-	public Collection<CanvasObject> getObjects() {
-		return Collections.unmodifiableSet(removed.keySet());
-	}
+    public ModelRemoveAction(CanvasModel model, CanvasObject removed) {
+        this(model, Collections.singleton(removed));
+    }
 
-	@Override
-	public String getName() {
-		return _("actionRemove", getShapesName(removed.keySet()));
-	}
-	
-	@Override
-	void doSub(CanvasModel model) {
-		model.removeObjects(removed.keySet());
-	}
-	
-	@Override
-	void undoSub(CanvasModel model) {
-		model.addObjects(removed);
-	}
+    public ModelRemoveAction(CanvasModel model, Collection<CanvasObject> removed) {
+        super(model);
+        this.removed = ZOrder.getZIndex(removed, model);
+    }
+
+    @Override
+    public Collection<CanvasObject> getObjects() {
+        return Collections.unmodifiableSet(removed.keySet());
+    }
+
+    @Override
+    public String getName() {
+        return _("actionRemove", getShapesName(removed.keySet()));
+    }
+
+    @Override
+    void doSub(CanvasModel model) {
+        model.removeObjects(removed.keySet());
+    }
+
+    @Override
+    void undoSub(CanvasModel model) {
+        model.addObjects(removed);
+    }
 }

@@ -5,5 +5,6 @@ package com.cburch.logisim.util;
 
 @Deprecated
 public interface StringGetter {
-	public String toString();
+    @Override
+    public String toString();
 }

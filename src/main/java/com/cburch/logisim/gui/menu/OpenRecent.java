@@ -22,91 +22,93 @@ import com.cburch.logisim.proj.ProjectActions;
 import static com.cburch.logisim.util.LocaleString.*;
 
 class OpenRecent extends JMenu implements PropertyChangeListener {
-	private static final int MAX_ITEM_LENGTH = 50;
-	
-	private class RecentItem extends JMenuItem implements ActionListener {
-		private File file;
-		
-		RecentItem(File file) {
-			super(getFileText(file));
-			this.file = file;
-			setEnabled(file != null);
-			addActionListener(this);
-		}
-		
-		public void actionPerformed(ActionEvent event) {
-			Project proj = menubar.getProject();
-			Component par = proj == null ? null : proj.getFrame().getCanvas();
-			ProjectActions.doOpen(par, proj, file);
-		}
-	}
-	
-	private LogisimMenuBar menubar;
-	private List<RecentItem> recentItems;
-	
-	OpenRecent(LogisimMenuBar menubar) {
-		this.menubar = menubar;
-		this.recentItems = new ArrayList<RecentItem>();
-		AppPreferences.addPropertyChangeListener(AppPreferences.RECENT_PROJECTS, this);
-		renewItems();
-	}
-	
-	private void renewItems() {
-		for (int index = recentItems.size() - 1; index >= 0; index--) {
-			RecentItem item = recentItems.get(index);
-			remove(item);
-		}
-		recentItems.clear();
-		
-		List<File> files = AppPreferences.getRecentFiles();
-		if (files.isEmpty()) {
-			recentItems.add(new RecentItem(null));
-		} else {
-			for (File file : files) {
-				recentItems.add(new RecentItem(file));
-			}
-		}
-		
-		for (RecentItem item : recentItems) {
-			add(item);
-		}
-	}
-	
-	private static String getFileText(File file) {
-		if (file == null) {
-			return _("fileOpenRecentNoChoices");
-		} else {
-			String ret;
-			try {
-				ret = file.getCanonicalPath();
-			} catch (IOException e) {
-				ret = file.toString();
-			}
-			if (ret.length() <= MAX_ITEM_LENGTH) {
-				return ret;
-			} else {
-				ret = ret.substring(ret.length() - MAX_ITEM_LENGTH + 3);
-				int splitLoc = ret.indexOf(File.separatorChar);
-				if (splitLoc >= 0) {
-					ret = ret.substring(splitLoc);
-				}
-				return "..." + ret;
-			}
-		}
-	}
-	
-	void localeChanged() {
-		setText(_("fileOpenRecentItem"));
-		for (RecentItem item : recentItems) {
-			if (item.file == null) {
-				item.setText(_("fileOpenRecentNoChoices"));
-			}
-		}
-	}
+    private static final int MAX_ITEM_LENGTH = 50;
 
-	public void propertyChange(PropertyChangeEvent event) {
-		if (event.getPropertyName().equals(AppPreferences.RECENT_PROJECTS)) {
-			renewItems();
-		}
-	}
+    private class RecentItem extends JMenuItem implements ActionListener {
+        private File file;
+
+        RecentItem(File file) {
+            super(getFileText(file));
+            this.file = file;
+            setEnabled(file != null);
+            addActionListener(this);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            Project proj = menubar.getProject();
+            Component par = proj == null ? null : proj.getFrame().getCanvas();
+            ProjectActions.doOpen(par, proj, file);
+        }
+    }
+
+    private LogisimMenuBar menubar;
+    private List<RecentItem> recentItems;
+
+    OpenRecent(LogisimMenuBar menubar) {
+        this.menubar = menubar;
+        this.recentItems = new ArrayList<RecentItem>();
+        AppPreferences.addPropertyChangeListener(AppPreferences.RECENT_PROJECTS, this);
+        renewItems();
+    }
+
+    private void renewItems() {
+        for (int index = recentItems.size() - 1; index >= 0; index--) {
+            RecentItem item = recentItems.get(index);
+            remove(item);
+        }
+        recentItems.clear();
+
+        List<File> files = AppPreferences.getRecentFiles();
+        if (files.isEmpty()) {
+            recentItems.add(new RecentItem(null));
+        } else {
+            for (File file : files) {
+                recentItems.add(new RecentItem(file));
+            }
+        }
+
+        for (RecentItem item : recentItems) {
+            add(item);
+        }
+    }
+
+    private static String getFileText(File file) {
+        if (file == null) {
+            return _("fileOpenRecentNoChoices");
+        } else {
+            String ret;
+            try {
+                ret = file.getCanonicalPath();
+            } catch (IOException e) {
+                ret = file.toString();
+            }
+            if (ret.length() <= MAX_ITEM_LENGTH) {
+                return ret;
+            } else {
+                ret = ret.substring(ret.length() - MAX_ITEM_LENGTH + 3);
+                int splitLoc = ret.indexOf(File.separatorChar);
+                if (splitLoc >= 0) {
+                    ret = ret.substring(splitLoc);
+                }
+                return "..." + ret;
+            }
+        }
+    }
+
+    void localeChanged() {
+        setText(_("fileOpenRecentItem"));
+        for (RecentItem item : recentItems) {
+            if (item.file == null) {
+                item.setText(_("fileOpenRecentNoChoices"));
+            }
+        }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent event) {
+        if (event.getPropertyName().equals(AppPreferences.RECENT_PROJECTS)) {
+            renewItems();
+        }
+    }
 }

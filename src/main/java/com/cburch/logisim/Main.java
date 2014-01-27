@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2012, Carl Burch.
- * 
+ *
  * This file is part of the Logisim source code. The latest
  * version is available at http://www.cburch.com/logisim/.
  *
@@ -24,21 +24,21 @@ import com.cburch.logisim.gui.start.Startup;
 
 /**
  * Main entry point into Logisim.
- * 
+ *
  * @version 2.7.2
  * @author Carl Burch
  */
 public class Main {
-	public static final LogisimVersion VERSION = LogisimVersion.get(2, 7, 2);
-	public static final String VERSION_NAME = VERSION.toString();
-	public static final int COPYRIGHT_YEAR = 2012;
+    public static final LogisimVersion VERSION = LogisimVersion.get(2, 7, 2);
+    public static final String VERSION_NAME = VERSION.toString();
+    public static final int COPYRIGHT_YEAR = 2012;
 
-	public static void main(String[] args) {
-		Startup startup = Startup.parseArgs(args);
-		if (startup == null) {
-			System.exit(0);
-		} else {
-			startup.run();
-		}
-	}
+    public static void main(String[] args) {
+        Startup startup = Startup.parseArgs(args);
+        if (startup == null) {
+            System.exit(0);
+        } else {
+            startup.run();
+        }
+    }
 }

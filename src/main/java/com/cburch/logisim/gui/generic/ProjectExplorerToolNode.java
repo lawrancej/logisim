@@ -11,37 +11,38 @@ import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Tool;
 
 public class ProjectExplorerToolNode extends ProjectExplorerModel.Node<Tool>
-		implements CircuitListener {
-	private Circuit circuit;
-	
-	public ProjectExplorerToolNode(ProjectExplorerModel model, Tool tool) {
-		super(model, tool);
-		if (tool instanceof AddTool) {
-			Object factory = ((AddTool) tool).getFactory();
-			if (factory instanceof SubcircuitFactory) {
-				circuit = ((SubcircuitFactory) factory).getSubcircuit();
-				circuit.addCircuitListener(this);
-			}
-		}
-	}
-	
-	@Override ProjectExplorerToolNode create(Tool userObject) {
-		return new ProjectExplorerToolNode(getModel(), userObject);
-	}
-	
-	@Override void decommission() {
-		if (circuit != null) {
-			circuit.removeCircuitListener(this);
-		}
-	}
+        implements CircuitListener {
+    private Circuit circuit;
 
-	public void circuitChanged(CircuitEvent event) {
-		int act = event.getAction();
-		if (act == CircuitEvent.ACTION_SET_NAME) {
-			fireStructureChanged();
-			// The following almost works - but the labels aren't made
-			// bigger, so you get "..." behavior with longer names.
-			// fireNodesChanged(findPath(this));
-		}
-	}
+    public ProjectExplorerToolNode(ProjectExplorerModel model, Tool tool) {
+        super(model, tool);
+        if (tool instanceof AddTool) {
+            Object factory = ((AddTool) tool).getFactory();
+            if (factory instanceof SubcircuitFactory) {
+                circuit = ((SubcircuitFactory) factory).getSubcircuit();
+                circuit.addCircuitListener(this);
+            }
+        }
+    }
+
+    @Override ProjectExplorerToolNode create(Tool userObject) {
+        return new ProjectExplorerToolNode(getModel(), userObject);
+    }
+
+    @Override void decommission() {
+        if (circuit != null) {
+            circuit.removeCircuitListener(this);
+        }
+    }
+
+    @Override
+    public void circuitChanged(CircuitEvent event) {
+        int act = event.getAction();
+        if (act == CircuitEvent.ACTION_SET_NAME) {
+            fireStructureChanged();
+            // The following almost works - but the labels aren't made
+            // bigger, so you get "..." behavior with longer names.
+            // fireNodesChanged(findPath(this));
+        }
+    }
 }

@@ -12,44 +12,44 @@ import com.cburch.logisim.tools.Tool;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Memory extends Library {
-	protected static final int DELAY = 5;
-	
-	private static FactoryDescription[] DESCRIPTIONS = {
-		new FactoryDescription("D Flip-Flop", __("dFlipFlopComponent"),
-				"dFlipFlop.svg", "DFlipFlop"),
-		new FactoryDescription("T Flip-Flop", __("tFlipFlopComponent"),
-				"tFlipFlop.svg", "TFlipFlop"),
-		new FactoryDescription("J-K Flip-Flop", __("jkFlipFlopComponent"),
-				"jkFlipFlop.svg", "JKFlipFlop"),
-		new FactoryDescription("S-R Flip-Flop", __("srFlipFlopComponent"),
-				"srFlipFlop.svg", "SRFlipFlop"),
-		new FactoryDescription("Register", __("registerComponent"),
-				"register.svg", "Register"),
-		new FactoryDescription("Counter", __("counterComponent"),
-				"counter.svg", "Counter"),
-		new FactoryDescription("Shift Register", __("shiftRegisterComponent"),
-				"shiftreg.svg", "ShiftRegister"),
-		new FactoryDescription("Random", __("randomComponent"),
-				"random.svg", "Random"),
-		new FactoryDescription("RAM", __("ramComponent"), "ram.svg", "Ram"),
-		new FactoryDescription("ROM", __("romComponent"), "rom.svg", "Rom"),
-	};
-	
-	private List<Tool> tools = null;
+    protected static final int DELAY = 5;
 
-	public Memory() { }
+    private static FactoryDescription[] DESCRIPTIONS = {
+        new FactoryDescription("D Flip-Flop", __("dFlipFlopComponent"),
+                "dFlipFlop.svg", "DFlipFlop"),
+        new FactoryDescription("T Flip-Flop", __("tFlipFlopComponent"),
+                "tFlipFlop.svg", "TFlipFlop"),
+        new FactoryDescription("J-K Flip-Flop", __("jkFlipFlopComponent"),
+                "jkFlipFlop.svg", "JKFlipFlop"),
+        new FactoryDescription("S-R Flip-Flop", __("srFlipFlopComponent"),
+                "srFlipFlop.svg", "SRFlipFlop"),
+        new FactoryDescription("Register", __("registerComponent"),
+                "register.svg", "Register"),
+        new FactoryDescription("Counter", __("counterComponent"),
+                "counter.svg", "Counter"),
+        new FactoryDescription("Shift Register", __("shiftRegisterComponent"),
+                "shiftreg.svg", "ShiftRegister"),
+        new FactoryDescription("Random", __("randomComponent"),
+                "random.svg", "Random"),
+        new FactoryDescription("RAM", __("ramComponent"), "ram.svg", "Ram"),
+        new FactoryDescription("ROM", __("romComponent"), "rom.svg", "Rom"),
+    };
 
-	@Override
-	public String getName() { return "Memory"; }
+    private List<Tool> tools = null;
 
-	@Override
-	public String getDisplayName() { return _("memoryLibrary"); }
+    public Memory() { }
 
-	@Override
-	public List<Tool> getTools() {
-		if (tools == null) {
-			tools = FactoryDescription.getTools(Memory.class, DESCRIPTIONS);
-		}
-		return tools;
-	}
+    @Override
+    public String getName() { return "Memory"; }
+
+    @Override
+    public String getDisplayName() { return _("memoryLibrary"); }
+
+    @Override
+    public List<Tool> getTools() {
+        if (tools == null) {
+            tools = FactoryDescription.getTools(Memory.class, DESCRIPTIONS);
+        }
+        return tools;
+    }
 }

@@ -7,8 +7,6 @@ import static com.cburch.logisim.util.LocaleString.__;
 
 import java.awt.Graphics;
 
-import org.apache.batik.swing.JSVGCanvas;
-
 import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.Expressions;
 import com.cburch.logisim.data.Value;
@@ -18,55 +16,55 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.tools.WireRepairData;
 
 class OrGate extends AbstractGate {
-	public static OrGate FACTORY = new OrGate();
+    public static OrGate FACTORY = new OrGate();
 
-	private OrGate() {
-		super("OR Gate", __("orGateComponent"));
-		setRectangularLabel("\u2265" + "1");
-		setIconNames("orGate.svg", "orGateRect.svg", "dinOrGate.svg");
-		setPaintInputLines(true);
-	}
+    private OrGate() {
+        super("OR Gate", __("orGateComponent"));
+        setRectangularLabel("\u2265" + "1");
+        setIconNames("orGate.svg", "orGateRect.svg", "dinOrGate.svg");
+        setPaintInputLines(true);
+    }
 
-	@Override
-	public void paintIconShaped(InstancePainter painter) {
-		Graphics g = painter.getGraphics();
-		//g.drawImage(image.createImage(image.getWidth(), image.getHeight()), image.getWidth(), image.getHeight(), null);
-	}
+    @Override
+    public void paintIconShaped(InstancePainter painter) {
+        Graphics g = painter.getGraphics();
+        //g.drawImage(image.createImage(image.getWidth(), image.getHeight()), image.getWidth(), image.getHeight(), null);
+    }
 
-	@Override
-	protected void paintShape(InstancePainter painter, int width, int height) {
-		Graphics g = painter.getGraphics();
-		//g.drawImage(image.createImage(image.getWidth(), image.getHeight()), image.getWidth(), image.getHeight(), null);
-		PainterShaped.paintOr(painter, width, height);
-	}
+    @Override
+    protected void paintShape(InstancePainter painter, int width, int height) {
+        Graphics g = painter.getGraphics();
+        //g.drawImage(image.createImage(image.getWidth(), image.getHeight()), image.getWidth(), image.getHeight(), null);
+        PainterShaped.paintOr(painter, width, height);
+    }
 
-	@Override
-	protected void paintDinShape(InstancePainter painter, int width, int height,
-			int inputs) {
-		PainterDin.paintOr(painter, width, height, false);
-	}
+    @Override
+    protected void paintDinShape(InstancePainter painter, int width, int height,
+            int inputs) {
+        PainterDin.paintOr(painter, width, height, false);
+    }
 
-	@Override
-	protected Value computeOutput(Value[] inputs, int numInputs,
-			InstanceState state) {
-		return GateFunctions.computeOr(inputs, numInputs);
-	}
+    @Override
+    protected Value computeOutput(Value[] inputs, int numInputs,
+            InstanceState state) {
+        return GateFunctions.computeOr(inputs, numInputs);
+    }
 
-	@Override
-	protected boolean shouldRepairWire(Instance instance, WireRepairData data) {
-		boolean ret = !data.getPoint().equals(instance.getLocation());
-		return ret;
-	}
+    @Override
+    protected boolean shouldRepairWire(Instance instance, WireRepairData data) {
+        boolean ret = !data.getPoint().equals(instance.getLocation());
+        return ret;
+    }
 
-	@Override
-	protected Expression computeExpression(Expression[] inputs, int numInputs) {
-		Expression ret = inputs[0];
-		for (int i = 1; i < numInputs; i++) {
-			ret = Expressions.or(ret, inputs[i]);
-		}
-		return ret;
-	}
+    @Override
+    protected Expression computeExpression(Expression[] inputs, int numInputs) {
+        Expression ret = inputs[0];
+        for (int i = 1; i < numInputs; i++) {
+            ret = Expressions.or(ret, inputs[i]);
+        }
+        return ret;
+    }
 
-	@Override
-	protected Value getIdentity() { return Value.FALSE; }
+    @Override
+    protected Value getIdentity() { return Value.FALSE; }
 }

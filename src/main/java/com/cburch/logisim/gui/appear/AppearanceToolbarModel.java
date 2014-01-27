@@ -24,67 +24,68 @@ import com.cburch.draw.tools.TextTool;
 import com.cburch.draw.tools.ToolbarToolItem;
 
 class AppearanceToolbarModel extends AbstractToolbarModel
-		implements PropertyChangeListener {
-	private Canvas canvas;
-	private List<ToolbarItem> items;
-	
-	public AppearanceToolbarModel(AbstractTool selectTool, Canvas canvas,
-			DrawingAttributeSet attrs) {
-		this.canvas = canvas;
-		
-		AbstractTool[] tools = {
-				selectTool,
-				new TextTool(attrs),
-				new LineTool(attrs),
-				new CurveTool(attrs),
-				new PolyTool(false, attrs),
-				new RectangleTool(attrs),
-				new RoundRectangleTool(attrs),
-				new OvalTool(attrs),
-				new PolyTool(true, attrs),
-			};
+        implements PropertyChangeListener {
+    private Canvas canvas;
+    private List<ToolbarItem> items;
 
-		ArrayList<ToolbarItem> rawItems = new ArrayList<ToolbarItem>();
-		for (AbstractTool tool : tools) {
-			rawItems.add(new ToolbarToolItem(tool));
-		}
-		items = Collections.unmodifiableList(rawItems);
-		canvas.addPropertyChangeListener(Canvas.TOOL_PROPERTY, this);
-	}
-	
-	AbstractTool getFirstTool() {
-		ToolbarToolItem item = (ToolbarToolItem) items.get(0);
-		return item.getTool();
-	}
+    public AppearanceToolbarModel(AbstractTool selectTool, Canvas canvas,
+            DrawingAttributeSet attrs) {
+        this.canvas = canvas;
 
-	@Override
-	public List<ToolbarItem> getItems() {
-		return items;
-	}
-	
-	@Override
-	public boolean isSelected(ToolbarItem item) {
-		if (item instanceof ToolbarToolItem) {
-			AbstractTool tool = ((ToolbarToolItem) item).getTool();
-			return canvas != null && tool == canvas.getTool();
-		} else {
-			return false;
-		}
-	}
+        AbstractTool[] tools = {
+                selectTool,
+                new TextTool(attrs),
+                new LineTool(attrs),
+                new CurveTool(attrs),
+                new PolyTool(false, attrs),
+                new RectangleTool(attrs),
+                new RoundRectangleTool(attrs),
+                new OvalTool(attrs),
+                new PolyTool(true, attrs),
+            };
 
-	@Override
-	public void itemSelected(ToolbarItem item) {
-		if (item instanceof ToolbarToolItem) {
-			AbstractTool tool = ((ToolbarToolItem) item).getTool();
-			canvas.setTool(tool);
-			fireToolbarAppearanceChanged();
-		}
-	}
+        ArrayList<ToolbarItem> rawItems = new ArrayList<ToolbarItem>();
+        for (AbstractTool tool : tools) {
+            rawItems.add(new ToolbarToolItem(tool));
+        }
+        items = Collections.unmodifiableList(rawItems);
+        canvas.addPropertyChangeListener(Canvas.TOOL_PROPERTY, this);
+    }
 
-	public void propertyChange(PropertyChangeEvent e) {
-		String prop = e.getPropertyName();
-		if (Canvas.TOOL_PROPERTY.equals(prop)) {
-			fireToolbarAppearanceChanged();
-		}
-	}
+    AbstractTool getFirstTool() {
+        ToolbarToolItem item = (ToolbarToolItem) items.get(0);
+        return item.getTool();
+    }
+
+    @Override
+    public List<ToolbarItem> getItems() {
+        return items;
+    }
+
+    @Override
+    public boolean isSelected(ToolbarItem item) {
+        if (item instanceof ToolbarToolItem) {
+            AbstractTool tool = ((ToolbarToolItem) item).getTool();
+            return canvas != null && tool == canvas.getTool();
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void itemSelected(ToolbarItem item) {
+        if (item instanceof ToolbarToolItem) {
+            AbstractTool tool = ((ToolbarToolItem) item).getTool();
+            canvas.setTool(tool);
+            fireToolbarAppearanceChanged();
+        }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent e) {
+        String prop = e.getPropertyName();
+        if (Canvas.TOOL_PROPERTY.equals(prop)) {
+            fireToolbarAppearanceChanged();
+        }
+    }
 }

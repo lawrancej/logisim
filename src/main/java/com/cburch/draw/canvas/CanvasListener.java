@@ -4,6 +4,7 @@
 package com.cburch.draw.canvas;
 
 import java.awt.Cursor;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -17,112 +18,159 @@ import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Location;
 
 class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
-		CanvasModelListener {
-	private Canvas canvas;
-	private CanvasTool tool;
-	
-	public CanvasListener(Canvas canvas) {
-		this.canvas = canvas;
-		tool = null;
-	}
-	
-	public CanvasTool getTool() {
-		return tool;
-	}
-	
-	public void setTool(CanvasTool value) {
-		CanvasTool oldValue = tool;
-		if (value != oldValue) {
-			tool = value;
-			if (oldValue != null) oldValue.toolDeselected(canvas);
-			if (value != null) {
-				value.toolSelected(canvas);
-				canvas.setCursor(value.getCursor(canvas));
-			} else {
-				canvas.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			}
-		}
-	}
+        CanvasModelListener {
+    private Canvas canvas;
+    private CanvasTool tool;
 
-	public void mouseMoved(MouseEvent e) {
-		if (tool != null) tool.mouseMoved(canvas, e);
-	}
+    public CanvasListener(Canvas canvas) {
+        this.canvas = canvas;
+        tool = null;
+    }
 
-	public void mousePressed(MouseEvent e) {
-		canvas.requestFocus();
-		if (e.isPopupTrigger()) {
-			handlePopupTrigger(e);
-		} else if (e.getButton() == 1) {
-			if (tool != null) tool.mousePressed(canvas, e);
-		}
-	}
+    public CanvasTool getTool() {
+        return tool;
+    }
 
-	public void mouseDragged(MouseEvent e) {
-		if (isButton1(e)) {
-			if (tool != null) tool.mouseDragged(canvas, e);
-		} else {
-			if (tool != null) tool.mouseMoved(canvas, e);
-		}
-	}
+    public void setTool(CanvasTool value) {
+        CanvasTool oldValue = tool;
+        if (value != oldValue) {
+            tool = value;
+            if (oldValue != null) {
+                oldValue.toolDeselected(canvas);
+            }
 
-	public void mouseReleased(MouseEvent e) {
-		if (e.isPopupTrigger()) {
-			if (tool != null) tool.cancelMousePress(canvas);
-			handlePopupTrigger(e);
-		} else if (e.getButton() == 1) {
-			if (tool != null) tool.mouseReleased(canvas, e);
-		}
-	}
+            if (value != null) {
+                value.toolSelected(canvas);
+                canvas.setCursor(value.getCursor(canvas));
+            } else {
+                canvas.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            }
+        }
+    }
 
-	public void mouseClicked(MouseEvent e) { }
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        if (tool != null) {
+            tool.mouseMoved(canvas, e);
+        }
 
-	public void mouseEntered(MouseEvent e) {
-		if (tool != null) tool.mouseEntered(canvas, e);
-	}
+    }
 
-	public void mouseExited(MouseEvent e) {
-		if (tool != null) tool.mouseExited(canvas, e);
-	}
+    @Override
+    public void mousePressed(MouseEvent e) {
+        canvas.requestFocus();
+        if (e.isPopupTrigger()) {
+            handlePopupTrigger(e);
+        } else if (e.getButton() == 1) {
+            if (tool != null) {
+                tool.mousePressed(canvas, e);
+            }
 
-	public void keyPressed(KeyEvent e) {
-		if (tool != null) tool.keyPressed(canvas, e);
-	}
+        }
+    }
 
-	public void keyReleased(KeyEvent e) {
-		if (tool != null) tool.keyReleased(canvas, e);
-	}
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if (isButton1(e)) {
+            if (tool != null) {
+                tool.mouseDragged(canvas, e);
+            }
 
-	public void keyTyped(KeyEvent e) {
-		if (tool != null) tool.keyTyped(canvas, e);
-	}
+        } else {
+            if (tool != null) {
+                tool.mouseMoved(canvas, e);
+            }
 
-	public void modelChanged(CanvasModelEvent event) {
-		canvas.getSelection().modelChanged(event);
-		canvas.repaint();
-	}
-	
-	private boolean isButton1(MouseEvent e) {
-		return (e.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) != 0;
-	}
-	
-	private void handlePopupTrigger(MouseEvent e) {
-		Location loc = Location.create(e.getX(), e.getY());
-		List<CanvasObject> objects = canvas.getModel().getObjectsFromTop();
-		CanvasObject clicked = null;
-		for (CanvasObject o : objects) {
-			if (o.contains(loc, false)) {
-				clicked = o;
-				break;
-			}
-		}
-		if (clicked == null) {
-			for (CanvasObject o : objects) {
-				if (o.contains(loc, true)) {
-					clicked = o;
-					break;
-				}
-			}
-		}
-		canvas.showPopupMenu(e, clicked);
-	}
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        if (e.isPopupTrigger()) {
+            if (tool != null) {
+                tool.cancelMousePress(canvas);
+            }
+
+            handlePopupTrigger(e);
+        } else if (e.getButton() == 1) {
+            if (tool != null) {
+                tool.mouseReleased(canvas, e);
+            }
+
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) { }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        if (tool != null) {
+            tool.mouseEntered(canvas, e);
+        }
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        if (tool != null) {
+            tool.mouseExited(canvas, e);
+        }
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (tool != null) {
+            tool.keyPressed(canvas, e);
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (tool != null) {
+            tool.keyReleased(canvas, e);
+        }
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (tool != null) {
+            tool.keyTyped(canvas, e);
+        }
+
+    }
+
+    @Override
+    public void modelChanged(CanvasModelEvent event) {
+        canvas.getSelection().modelChanged(event);
+        canvas.repaint();
+    }
+
+    private boolean isButton1(MouseEvent e) {
+        return (e.getModifiersEx() & InputEvent.BUTTON1_DOWN_MASK) != 0;
+    }
+
+    private void handlePopupTrigger(MouseEvent e) {
+        Location loc = Location.create(e.getX(), e.getY());
+        List<CanvasObject> objects = canvas.getModel().getObjectsFromTop();
+        CanvasObject clicked = null;
+        for (CanvasObject o : objects) {
+            if (o.contains(loc, false)) {
+                clicked = o;
+                break;
+            }
+        }
+        if (clicked == null) {
+            for (CanvasObject o : objects) {
+                if (o.contains(loc, true)) {
+                    clicked = o;
+                    break;
+                }
+            }
+        }
+        canvas.showPopupMenu(e, clicked);
+    }
 }

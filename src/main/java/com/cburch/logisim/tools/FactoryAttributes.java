@@ -14,116 +14,128 @@ import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.AttributeSets;
 
 class FactoryAttributes implements AttributeSet, AttributeListener, Cloneable {
-	private Class<? extends Library> descBase;
-	private FactoryDescription desc;
-	private ComponentFactory factory;
-	private AttributeSet baseAttrs;
-	private ArrayList<AttributeListener> listeners;
-	
-	public FactoryAttributes(Class<? extends Library> descBase,
-			FactoryDescription desc) {
-		this.descBase = descBase;
-		this.desc = desc;
-		this.factory = null;
-		this.baseAttrs = null;
-		this.listeners = new ArrayList<AttributeListener>();
-	}
-	
-	public FactoryAttributes(ComponentFactory factory) {
-		this.descBase = null;
-		this.desc = null;
-		this.factory = factory;
-		this.baseAttrs = null;
-		this.listeners = new ArrayList<AttributeListener>();
-	}
-	
-	boolean isFactoryInstantiated() {
-		return baseAttrs != null;
-	}
-	
-	AttributeSet getBase() {
-		AttributeSet ret = baseAttrs;
-		if (ret == null) {
-			ComponentFactory fact = factory;
-			if (fact == null) {
-				fact = desc.getFactory(descBase);
-				factory = fact;
-			}
-			if (fact == null) {
-				ret = AttributeSets.EMPTY;
-			} else {
-				ret = fact.createAttributeSet();
-				ret.addAttributeListener(this);
-			}
-			baseAttrs = ret;
-		}
-		return ret;
-	}
+    private Class<? extends Library> descBase;
+    private FactoryDescription desc;
+    private ComponentFactory factory;
+    private AttributeSet baseAttrs;
+    private ArrayList<AttributeListener> listeners;
 
-	public void addAttributeListener(AttributeListener l) {
-		listeners.add(l);
-	}
+    public FactoryAttributes(Class<? extends Library> descBase,
+            FactoryDescription desc) {
+        this.descBase = descBase;
+        this.desc = desc;
+        this.factory = null;
+        this.baseAttrs = null;
+        this.listeners = new ArrayList<AttributeListener>();
+    }
 
-	public void removeAttributeListener(AttributeListener l) {
-		listeners.remove(l);
-	}
-	
-	@Override
-	public AttributeSet clone() {
-		return (AttributeSet) getBase().clone();
-	}
+    public FactoryAttributes(ComponentFactory factory) {
+        this.descBase = null;
+        this.desc = null;
+        this.factory = factory;
+        this.baseAttrs = null;
+        this.listeners = new ArrayList<AttributeListener>();
+    }
 
-	public boolean containsAttribute(Attribute<?> attr) {
-		return getBase().containsAttribute(attr);
-	}
+    boolean isFactoryInstantiated() {
+        return baseAttrs != null;
+    }
 
-	public Attribute<?> getAttribute(String name) {
-		return getBase().getAttribute(name);
-	}
+    AttributeSet getBase() {
+        AttributeSet ret = baseAttrs;
+        if (ret == null) {
+            ComponentFactory fact = factory;
+            if (fact == null) {
+                fact = desc.getFactory(descBase);
+                factory = fact;
+            }
+            if (fact == null) {
+                ret = AttributeSets.EMPTY;
+            } else {
+                ret = fact.createAttributeSet();
+                ret.addAttributeListener(this);
+            }
+            baseAttrs = ret;
+        }
+        return ret;
+    }
 
-	public List<Attribute<?>> getAttributes() {
-		return getBase().getAttributes();
-	}
+    @Override
+    public void addAttributeListener(AttributeListener l) {
+        listeners.add(l);
+    }
 
-	public <V> V getValue(Attribute<V> attr) {
-		return getBase().getValue(attr);
-	}
+    @Override
+    public void removeAttributeListener(AttributeListener l) {
+        listeners.remove(l);
+    }
 
-	public boolean isReadOnly(Attribute<?> attr) {
-		return getBase().isReadOnly(attr);
-	}
-	
-	public boolean isToSave(Attribute<?> attr) {
-		return getBase().isToSave(attr);
-	}
+    @Override
+    public AttributeSet clone() {
+        return (AttributeSet) getBase().clone();
+    }
 
-	public void setReadOnly(Attribute<?> attr, boolean value) {
-		getBase().setReadOnly(attr, value);
-	}
+    @Override
+    public boolean containsAttribute(Attribute<?> attr) {
+        return getBase().containsAttribute(attr);
+    }
 
-	public <V> void setValue(Attribute<V> attr, V value) {
-		getBase().setValue(attr, value);
-	}
+    @Override
+    public Attribute<?> getAttribute(String name) {
+        return getBase().getAttribute(name);
+    }
 
-	public void attributeListChanged(AttributeEvent baseEvent) {
-		AttributeEvent e = null;
-		for (AttributeListener l : listeners) {
-			if (e == null) {
-				e = new AttributeEvent(this, baseEvent.getAttribute(),
-						baseEvent.getValue());
-			}
-			l.attributeListChanged(e);
-		}
-	}
+    @Override
+    public List<Attribute<?>> getAttributes() {
+        return getBase().getAttributes();
+    }
 
-	public void attributeValueChanged(AttributeEvent baseEvent) {
-		AttributeEvent e = null;
-		for (AttributeListener l : listeners) {
-			if (e == null) {
-				e = new AttributeEvent(this, baseEvent.getAttribute(),
-						baseEvent.getValue());
-			}
-			l.attributeValueChanged(e);
-		}
-	}
+    @Override
+    public <V> V getValue(Attribute<V> attr) {
+        return getBase().getValue(attr);
+    }
+
+    @Override
+    public boolean isReadOnly(Attribute<?> attr) {
+        return getBase().isReadOnly(attr);
+    }
+
+    @Override
+    public boolean isToSave(Attribute<?> attr) {
+        return getBase().isToSave(attr);
+    }
+
+    @Override
+    public void setReadOnly(Attribute<?> attr, boolean value) {
+        getBase().setReadOnly(attr, value);
+    }
+
+    @Override
+    public <V> void setValue(Attribute<V> attr, V value) {
+        getBase().setValue(attr, value);
+    }
+
+    @Override
+    public void attributeListChanged(AttributeEvent baseEvent) {
+        AttributeEvent e = null;
+        for (AttributeListener l : listeners) {
+            if (e == null) {
+                e = new AttributeEvent(this, baseEvent.getAttribute(),
+                        baseEvent.getValue());
+            }
+            l.attributeListChanged(e);
+        }
+    }
+
+    @Override
+    public void attributeValueChanged(AttributeEvent baseEvent) {
+        AttributeEvent e = null;
+        for (AttributeListener l : listeners) {
+            if (e == null) {
+                e = new AttributeEvent(this, baseEvent.getAttribute(),
+                        baseEvent.getValue());
+            }
+            l.attributeValueChanged(e);
+        }
+    }
 }

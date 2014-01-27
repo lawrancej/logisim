@@ -10,45 +10,45 @@ import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class DurationAttribute extends Attribute<Integer> {
-	private int min;
-	private int max;
-	
-	public DurationAttribute(String name, StringGetter disp, int min, int max) {
-		super(name, disp);
-		this.min = min;
-		this.max = max;
-	}
+    private int min;
+    private int max;
 
-	@Override
-	public Integer parse(String value) {
-		try {
-			Integer ret = Integer.valueOf(value);
-			if (ret.intValue() < min) {
-				throw new NumberFormatException(_("durationSmallMessage", "" + min));
-			} else if (ret.intValue() > max) {
-				throw new NumberFormatException(_("durationLargeMessage", "" + max));
-			}
-			return ret;
-		} catch (NumberFormatException e) {
-			throw new NumberFormatException(_("freqInvalidMessage"));
-		}
-	}
+    public DurationAttribute(String name, StringGetter disp, int min, int max) {
+        super(name, disp);
+        this.min = min;
+        this.max = max;
+    }
 
-	@Override
-	public String toDisplayString(Integer value) {
-		if (value.equals(Integer.valueOf(1))) {
-			return _("clockDurationOneValue");
-		} else {
-			return _("clockDurationValue",
-					value.toString());
-		}
-	}
+    @Override
+    public Integer parse(String value) {
+        try {
+            Integer ret = Integer.valueOf(value);
+            if (ret.intValue() < min) {
+                throw new NumberFormatException(_("durationSmallMessage", "" + min));
+            } else if (ret.intValue() > max) {
+                throw new NumberFormatException(_("durationLargeMessage", "" + max));
+            }
+            return ret;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(_("freqInvalidMessage"));
+        }
+    }
 
-	@Override
-	public java.awt.Component getCellEditor(Integer value) {
-		JTextField field = new JTextField();
-		field.setText(value.toString());
-		return field;
-	}
+    @Override
+    public String toDisplayString(Integer value) {
+        if (value.equals(Integer.valueOf(1))) {
+            return _("clockDurationOneValue");
+        } else {
+            return _("clockDurationValue",
+                    value.toString());
+        }
+    }
+
+    @Override
+    public java.awt.Component getCellEditor(Integer value) {
+        JTextField field = new JTextField();
+        field.setText(value.toString());
+        return field;
+    }
 
 }

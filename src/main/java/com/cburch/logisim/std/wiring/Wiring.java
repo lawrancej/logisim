@@ -18,57 +18,57 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Wiring extends Library {
 
-	static final AttributeOption GATE_TOP_LEFT
-		= new AttributeOption("tl", __("wiringGateTopLeftOption"));
-	static final AttributeOption GATE_BOTTOM_RIGHT
-		= new AttributeOption("br", __("wiringGateBottomRightOption"));
-	static final Attribute<AttributeOption> ATTR_GATE = Attributes.forOption("gate",
-			__("wiringGateAttr"),
-			new AttributeOption[] { GATE_TOP_LEFT, GATE_BOTTOM_RIGHT });
+    static final AttributeOption GATE_TOP_LEFT
+        = new AttributeOption("tl", __("wiringGateTopLeftOption"));
+    static final AttributeOption GATE_BOTTOM_RIGHT
+        = new AttributeOption("br", __("wiringGateBottomRightOption"));
+    static final Attribute<AttributeOption> ATTR_GATE = Attributes.forOption("gate",
+            __("wiringGateAttr"),
+            new AttributeOption[] { GATE_TOP_LEFT, GATE_BOTTOM_RIGHT });
 
-	private static Tool[] ADD_TOOLS = {
-		new AddTool(SplitterFactory.instance),
-		new AddTool(Pin.FACTORY),
-		new AddTool(Probe.FACTORY),
-		new AddTool(Tunnel.FACTORY),
-		new AddTool(PullResistor.FACTORY),
-		new AddTool(Clock.FACTORY),
-		new AddTool(Constant.FACTORY),
-	};
-	
-	private static FactoryDescription[] DESCRIPTIONS = {
-		new FactoryDescription("Power", __("powerComponent"),
-				"power.svg", "Power"),
-		new FactoryDescription("Ground", __("groundComponent"),
-				"ground.svg", "Ground"),
-		new FactoryDescription("Transistor", __("transistorComponent"),
-				"trans0.svg", "Transistor"),
-		new FactoryDescription("Transmission Gate", __("transmissionGateComponent"),
-				"transmis.svg", "TransmissionGate"),
-		new FactoryDescription("Bit Extender", __("extenderComponent"),
-				"extender.svg", "BitExtender"),
-	};
+    private static Tool[] ADD_TOOLS = {
+        new AddTool(SplitterFactory.instance),
+        new AddTool(Pin.FACTORY),
+        new AddTool(Probe.FACTORY),
+        new AddTool(Tunnel.FACTORY),
+        new AddTool(PullResistor.FACTORY),
+        new AddTool(Clock.FACTORY),
+        new AddTool(Constant.FACTORY),
+    };
 
-	private List<Tool> tools = null;
+    private static FactoryDescription[] DESCRIPTIONS = {
+        new FactoryDescription("Power", __("powerComponent"),
+                "power.svg", "Power"),
+        new FactoryDescription("Ground", __("groundComponent"),
+                "ground.svg", "Ground"),
+        new FactoryDescription("Transistor", __("transistorComponent"),
+                "trans0.svg", "Transistor"),
+        new FactoryDescription("Transmission Gate", __("transmissionGateComponent"),
+                "transmis.svg", "TransmissionGate"),
+        new FactoryDescription("Bit Extender", __("extenderComponent"),
+                "extender.svg", "BitExtender"),
+    };
 
-	public Wiring() { }
+    private List<Tool> tools = null;
 
-	@Override
-	public String getName() { return "Wiring"; }
+    public Wiring() { }
 
-	@Override
-	public String getDisplayName() { return _("wiringLibrary"); }
+    @Override
+    public String getName() { return "Wiring"; }
 
-	@Override
-	public List<Tool> getTools() {
-		if (tools == null) {
-			List<Tool> ret = new ArrayList<Tool>(ADD_TOOLS.length + DESCRIPTIONS.length);
-			for (Tool a : ADD_TOOLS) {
-				ret.add(a);
-			}
-			ret.addAll(FactoryDescription.getTools(Wiring.class, DESCRIPTIONS));
-			tools = ret;
-		}
-		return tools;
-	}
+    @Override
+    public String getDisplayName() { return _("wiringLibrary"); }
+
+    @Override
+    public List<Tool> getTools() {
+        if (tools == null) {
+            List<Tool> ret = new ArrayList<Tool>(ADD_TOOLS.length + DESCRIPTIONS.length);
+            for (Tool a : ADD_TOOLS) {
+                ret.add(a);
+            }
+            ret.addAll(FactoryDescription.getTools(Wiring.class, DESCRIPTIONS));
+            tools = ret;
+        }
+        return tools;
+    }
 }

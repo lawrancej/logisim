@@ -12,29 +12,29 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 
 class ClipboardContents {
-	static final ClipboardContents EMPTY
-		= new ClipboardContents(Collections.<CanvasObject>emptySet(), null, null);
-	
-	private Collection<CanvasObject> onClipboard;
-	private Location anchorLocation;
-	private Direction anchorFacing;
-	
-	public ClipboardContents(Collection<CanvasObject> onClipboard,
-			Location anchorLocation, Direction anchorFacing) {
-		this.onClipboard = Collections.unmodifiableList(new ArrayList<CanvasObject>(onClipboard));
-		this.anchorLocation = anchorLocation;
-		this.anchorFacing = anchorFacing;
-	}
-	
-	public Collection<CanvasObject> getElements() {
-		return onClipboard;
-	}
-	
-	public Location getAnchorLocation() {
-		return anchorLocation;
-	}
-	
-	public Direction getAnchorFacing() {
-		return anchorFacing;
-	}
+    static final ClipboardContents EMPTY
+        = new ClipboardContents(Collections.<CanvasObject>emptySet(), null, null);
+
+    private Collection<CanvasObject> onClipboard;
+    private Location anchorLocation;
+    private Direction anchorFacing;
+
+    public ClipboardContents(Collection<CanvasObject> onClipboard,
+            Location anchorLocation, Direction anchorFacing) {
+        this.onClipboard = Collections.unmodifiableList(new ArrayList<CanvasObject>(onClipboard));
+        this.anchorLocation = anchorLocation;
+        this.anchorFacing = anchorFacing;
+    }
+
+    public Collection<CanvasObject> getElements() {
+        return onClipboard;
+    }
+
+    public Location getAnchorLocation() {
+        return anchorLocation;
+    }
+
+    public Direction getAnchorFacing() {
+        return anchorFacing;
+    }
 }

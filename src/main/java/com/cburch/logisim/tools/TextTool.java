@@ -24,267 +24,286 @@ import com.cburch.logisim.std.base.Text;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class TextTool extends Tool {
-	private class MyListener
-			implements CaretListener, CircuitListener {
-		public void editingCanceled(CaretEvent e) {
-			if (e.getCaret() != caret) {
-				e.getCaret().removeCaretListener(this);
-				return;
-			}
-			caret.removeCaretListener(this);
-			caretCircuit.removeCircuitListener(this);
+    private class MyListener
+            implements CaretListener, CircuitListener {
+        @Override
+        public void editingCanceled(CaretEvent e) {
+            if (e.getCaret() != caret) {
+                e.getCaret().removeCaretListener(this);
+                return;
+            }
+            caret.removeCaretListener(this);
+            caretCircuit.removeCircuitListener(this);
 
-			caretCircuit = null;
-			caretComponent = null;
-			caretCreatingText = false;
-			caret = null;
-		}
-		
-		public void editingStopped(CaretEvent e) {
-			if (e.getCaret() != caret) {
-				e.getCaret().removeCaretListener(this);
-				return;
-			}
-			caret.removeCaretListener(this);
-			caretCircuit.removeCircuitListener(this);
-			
-			String val = caret.getText();
-			boolean isEmpty = (val == null || val.equals(""));
-			Action a;
-			Project proj = caretCanvas.getProject();
-			if (caretCreatingText) {
-				if (!isEmpty) {
-					CircuitMutation xn = new CircuitMutation(caretCircuit);
-					xn.add(caretComponent);
-					a = xn.toAction(__("addComponentAction",
-							Text.FACTORY.getDisplayGetter()));
-				} else {
-					a = null; // don't add the blank text field
-				}
-			} else {
-				if (isEmpty && caretComponent.getFactory() instanceof Text) {
-					CircuitMutation xn = new CircuitMutation(caretCircuit);
-					xn.add(caretComponent);
-					a = xn.toAction(__("removeComponentAction",
-							Text.FACTORY.getDisplayGetter()));
-				} else {
-					Object obj = caretComponent.getFeature(TextEditable.class);
-					if (obj == null) { // should never happen
-						a = null;
-					} else {
-						TextEditable editable = (TextEditable) obj;
-						a = editable.getCommitAction(caretCircuit, e.getOldText(), e.getText());
-					}
-				}
-			}
+            caretCircuit = null;
+            caretComponent = null;
+            caretCreatingText = false;
+            caret = null;
+        }
 
-			caretCircuit = null;
-			caretComponent = null;
-			caretCreatingText = false;
-			caret = null;
-			
-			if (a != null) proj.doAction(a);
-		}
+        @Override
+        public void editingStopped(CaretEvent e) {
+            if (e.getCaret() != caret) {
+                e.getCaret().removeCaretListener(this);
+                return;
+            }
+            caret.removeCaretListener(this);
+            caretCircuit.removeCircuitListener(this);
 
-		public void circuitChanged(CircuitEvent event) {
-			if (event.getCircuit() != caretCircuit) {
-				event.getCircuit().removeCircuitListener(this);
-				return;
-			}
-			int action = event.getAction();
-			if (action == CircuitEvent.ACTION_REMOVE) {
-				if (event.getData() == caretComponent) {
-					caret.cancelEditing();
-				}
-			} else if (action == CircuitEvent.ACTION_CLEAR) {
-				if (caretComponent != null) {
-					caret.cancelEditing();
-				}
-			}
-		}
-	}
+            String val = caret.getText();
+            boolean isEmpty = (val == null || val.equals(""));
+            Action a;
+            Project proj = caretCanvas.getProject();
+            if (caretCreatingText) {
+                if (!isEmpty) {
+                    CircuitMutation xn = new CircuitMutation(caretCircuit);
+                    xn.add(caretComponent);
+                    a = xn.toAction(__("addComponentAction",
+                            Text.FACTORY.getDisplayGetter()));
+                } else {
+                    // don't add the blank text field
+                    a = null;
+                }
+            } else {
+                if (isEmpty && caretComponent.getFactory() instanceof Text) {
+                    CircuitMutation xn = new CircuitMutation(caretCircuit);
+                    xn.add(caretComponent);
+                    a = xn.toAction(__("removeComponentAction",
+                            Text.FACTORY.getDisplayGetter()));
+                } else {
+                    Object obj = caretComponent.getFeature(TextEditable.class);
+                    // should never happen
+                    if (obj == null) {
+                        a = null;
+                    } else {
+                        TextEditable editable = (TextEditable) obj;
+                        a = editable.getCommitAction(caretCircuit, e.getOldText(), e.getText());
+                    }
+                }
+            }
 
-	private static Cursor cursor
-		= Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
+            caretCircuit = null;
+            caretComponent = null;
+            caretCreatingText = false;
+            caret = null;
 
-	private MyListener listener = new MyListener();
-	private AttributeSet attrs;
-	private Caret caret = null;
-	private boolean caretCreatingText = false;
-	private Canvas caretCanvas = null;
-	private Circuit caretCircuit = null;
-	private Component caretComponent = null;
+            if (a != null) {
+                proj.doAction(a);
+            }
 
-	public TextTool() {
-		attrs = Text.FACTORY.createAttributeSet();
-	}
-	
-	@Override
-	public boolean equals(Object other) {
-		return other instanceof TextTool;
-	}
-	
-	@Override
-	public int hashCode() {
-		return TextTool.class.hashCode();
-	}
+        }
 
-	@Override
-	public String getName() {
-		return "Text Tool";
-	}
+        @Override
+        public void circuitChanged(CircuitEvent event) {
+            if (event.getCircuit() != caretCircuit) {
+                event.getCircuit().removeCircuitListener(this);
+                return;
+            }
+            int action = event.getAction();
+            if (action == CircuitEvent.ACTION_REMOVE) {
+                if (event.getData() == caretComponent) {
+                    caret.cancelEditing();
+                }
+            } else if (action == CircuitEvent.ACTION_CLEAR) {
+                if (caretComponent != null) {
+                    caret.cancelEditing();
+                }
+            }
+        }
+    }
 
-	@Override
-	public String getDisplayName() {
-		return _("textTool");
-	}
+    private static Cursor cursor
+        = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
 
-	@Override
-	public String getDescription() {
-		return _("textToolDesc");
-	}
+    private MyListener listener = new MyListener();
+    private AttributeSet attrs;
+    private Caret caret = null;
+    private boolean caretCreatingText = false;
+    private Canvas caretCanvas = null;
+    private Circuit caretCircuit = null;
+    private Component caretComponent = null;
 
-	@Override
-	public AttributeSet getAttributeSet() {
-		return attrs;
-	}
+    public TextTool() {
+        attrs = Text.FACTORY.createAttributeSet();
+    }
 
-	@Override
-	public void paintIcon(ComponentDrawContext c, int x, int y) {
-		Text.FACTORY.paintIcon(c, x, y, null);
-	}
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof TextTool;
+    }
 
-	@Override
-	public void draw(Canvas canvas, ComponentDrawContext context) {
-		if (caret != null) caret.draw(context.getGraphics());
-	}
+    @Override
+    public int hashCode() {
+        return TextTool.class.hashCode();
+    }
 
-	@Override
-	public void deselect(Canvas canvas) {
-		if (caret != null) {
-			caret.stopEditing();
-			caret = null;
-		}
-	}
+    @Override
+    public String getName() {
+        return "Text Tool";
+    }
 
-	@Override
-	public void mousePressed(Canvas canvas, Graphics g, MouseEvent e) {
-		Project proj = canvas.getProject();
-		Circuit circ = canvas.getCircuit();
+    @Override
+    public String getDisplayName() {
+        return _("textTool");
+    }
 
-		if (!proj.getLogisimFile().contains(circ)) {
-			if (caret != null) caret.cancelEditing();
-			canvas.setErrorMessage(__("cannotModifyError"));
-			return;
-		}
+    @Override
+    public String getDescription() {
+        return _("textToolDesc");
+    }
 
-		// Maybe user is clicking within the current caret.
-		if (caret != null) {
-			if (caret.getBounds(g).contains(e.getX(), e.getY())) { // Yes
-				caret.mousePressed(e);
-				proj.repaintCanvas();
-				return;
-			} else { // No. End the current caret.
-				caret.stopEditing();
-			}
-		}
-		// caret will be null at this point
+    @Override
+    public AttributeSet getAttributeSet() {
+        return attrs;
+    }
 
-		// Otherwise search for a new caret.
-		int x = e.getX();
-		int y = e.getY();
-		Location loc = Location.create(x, y);
-		ComponentUserEvent event = new ComponentUserEvent(canvas, x, y);
+    @Override
+    public void paintIcon(ComponentDrawContext c, int x, int y) {
+        Text.FACTORY.paintIcon(c, x, y, null);
+    }
 
-		// First search in selection.
-		for (Component comp : proj.getSelection().getComponentsContaining(loc, g)) {
-			TextEditable editable = (TextEditable) comp.getFeature(TextEditable.class);
-			if (editable != null) {
-				caret = editable.getTextCaret(event);
-				if (caret != null) {
-					proj.getFrame().viewComponentAttributes(circ, comp);
-					caretComponent = comp;
-					caretCreatingText = false;
-					break;
-				}
-			}
-		}
+    @Override
+    public void draw(Canvas canvas, ComponentDrawContext context) {
+        if (caret != null) {
+            caret.draw(context.getGraphics());
+        }
 
-		// Then search in circuit
-		if (caret == null) {
-			for (Component comp : circ.getAllContaining(loc, g)) {
-				TextEditable editable = (TextEditable) comp.getFeature(TextEditable.class);
-				if (editable != null) {
-					caret = editable.getTextCaret(event);
-					if (caret != null) {
-						proj.getFrame().viewComponentAttributes(circ, comp);
-						caretComponent = comp;
-						caretCreatingText = false;
-						break;
-					}
-				}
-			}
-		}
+    }
 
-		// if nothing found, create a new label
-		if (caret == null) {
-			if (loc.getX() < 0 || loc.getY() < 0) return;
-			AttributeSet copy = (AttributeSet) attrs.clone();
-			caretComponent = Text.FACTORY.createComponent(loc, copy);
-			caretCreatingText = true;
-			TextEditable editable = (TextEditable) caretComponent.getFeature(TextEditable.class);
-			if (editable != null) {
-				caret = editable.getTextCaret(event);
-				proj.getFrame().viewComponentAttributes(circ, caretComponent);
-			}
-		}
+    @Override
+    public void deselect(Canvas canvas) {
+        if (caret != null) {
+            caret.stopEditing();
+            caret = null;
+        }
+    }
 
-		if (caret != null) {
-			caretCanvas = canvas;
-			caretCircuit = canvas.getCircuit();
-			caret.addCaretListener(listener);
-			caretCircuit.addCircuitListener(listener);
-		}
-		proj.repaintCanvas();
-	}
+    @Override
+    public void mousePressed(Canvas canvas, Graphics g, MouseEvent e) {
+        Project proj = canvas.getProject();
+        Circuit circ = canvas.getCircuit();
 
-	@Override
-	public void mouseDragged(Canvas canvas, Graphics g, MouseEvent e) {
-		//TODO: enhance label editing
-	}
+        if (!proj.getLogisimFile().contains(circ)) {
+            if (caret != null) {
+                caret.cancelEditing();
+            }
 
-	@Override
-	public void mouseReleased(Canvas canvas, Graphics g, MouseEvent e) {
-		//TODO: enhance label editing
-	}
+            canvas.setErrorMessage(__("cannotModifyError"));
+            return;
+        }
 
-	@Override
-	public void keyPressed(Canvas canvas, KeyEvent e) {
-		if (caret != null) {
-			caret.keyPressed(e);
-			canvas.getProject().repaintCanvas();
-		}
-	}
+        // Maybe user is clicking within the current caret.
+        if (caret != null) {
+            // Yes
+            if (caret.getBounds(g).contains(e.getX(), e.getY())) {
+                caret.mousePressed(e);
+                proj.repaintCanvas();
+                return;
+            // No. End the current caret.
+            } else {
+                caret.stopEditing();
+            }
+        }
+        // caret will be null at this point
 
-	@Override
-	public void keyReleased(Canvas canvas, KeyEvent e) {
-		if (caret != null) {
-			caret.keyReleased(e);
-			canvas.getProject().repaintCanvas();
-		}
-	}
+        // Otherwise search for a new caret.
+        int x = e.getX();
+        int y = e.getY();
+        Location loc = Location.create(x, y);
+        ComponentUserEvent event = new ComponentUserEvent(canvas, x, y);
 
-	@Override
-	public void keyTyped(Canvas canvas, KeyEvent e) {
-		if (caret != null) {
-			caret.keyTyped(e);
-			canvas.getProject().repaintCanvas();
-		}
-	}
+        // First search in selection.
+        for (Component comp : proj.getSelection().getComponentsContaining(loc, g)) {
+            TextEditable editable = (TextEditable) comp.getFeature(TextEditable.class);
+            if (editable != null) {
+                caret = editable.getTextCaret(event);
+                if (caret != null) {
+                    proj.getFrame().viewComponentAttributes(circ, comp);
+                    caretComponent = comp;
+                    caretCreatingText = false;
+                    break;
+                }
+            }
+        }
 
-	@Override
-	public Cursor getCursor() {
-		return cursor;
-	}
+        // Then search in circuit
+        if (caret == null) {
+            for (Component comp : circ.getAllContaining(loc, g)) {
+                TextEditable editable = (TextEditable) comp.getFeature(TextEditable.class);
+                if (editable != null) {
+                    caret = editable.getTextCaret(event);
+                    if (caret != null) {
+                        proj.getFrame().viewComponentAttributes(circ, comp);
+                        caretComponent = comp;
+                        caretCreatingText = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // if nothing found, create a new label
+        if (caret == null) {
+            if (loc.getX() < 0 || loc.getY() < 0) {
+                return;
+            }
+
+            AttributeSet copy = (AttributeSet) attrs.clone();
+            caretComponent = Text.FACTORY.createComponent(loc, copy);
+            caretCreatingText = true;
+            TextEditable editable = (TextEditable) caretComponent.getFeature(TextEditable.class);
+            if (editable != null) {
+                caret = editable.getTextCaret(event);
+                proj.getFrame().viewComponentAttributes(circ, caretComponent);
+            }
+        }
+
+        if (caret != null) {
+            caretCanvas = canvas;
+            caretCircuit = canvas.getCircuit();
+            caret.addCaretListener(listener);
+            caretCircuit.addCircuitListener(listener);
+        }
+        proj.repaintCanvas();
+    }
+
+    @Override
+    public void mouseDragged(Canvas canvas, Graphics g, MouseEvent e) {
+        //TODO: enhance label editing
+    }
+
+    @Override
+    public void mouseReleased(Canvas canvas, Graphics g, MouseEvent e) {
+        //TODO: enhance label editing
+    }
+
+    @Override
+    public void keyPressed(Canvas canvas, KeyEvent e) {
+        if (caret != null) {
+            caret.keyPressed(e);
+            canvas.getProject().repaintCanvas();
+        }
+    }
+
+    @Override
+    public void keyReleased(Canvas canvas, KeyEvent e) {
+        if (caret != null) {
+            caret.keyReleased(e);
+            canvas.getProject().repaintCanvas();
+        }
+    }
+
+    @Override
+    public void keyTyped(Canvas canvas, KeyEvent e) {
+        if (caret != null) {
+            caret.keyTyped(e);
+            canvas.getProject().repaintCanvas();
+        }
+    }
+
+    @Override
+    public Cursor getCursor() {
+        return cursor;
+    }
 }
 

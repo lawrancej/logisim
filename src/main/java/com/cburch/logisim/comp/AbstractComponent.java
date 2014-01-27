@@ -11,49 +11,68 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 
 public abstract class AbstractComponent implements Component {
-	protected AbstractComponent() { }
+    protected AbstractComponent() { }
 
-	//
-	// basic information methods
-	//
-	public abstract ComponentFactory getFactory();
+    //
+    // basic information methods
+    //
+    @Override
+    public abstract ComponentFactory getFactory();
 
-	//
-	// location/extent methods
-	//
-	public abstract Location getLocation();
+    //
+    // location/extent methods
+    //
+    @Override
+    public abstract Location getLocation();
 
-	public abstract Bounds getBounds();
+    @Override
+    public abstract Bounds getBounds();
 
-	public Bounds getBounds(Graphics g) { return getBounds(); }
+    @Override
+    public Bounds getBounds(Graphics g) { return getBounds(); }
 
-	public boolean contains(Location pt) {
-		Bounds bds = getBounds();
-		if (bds == null) return false;
-		return bds.contains(pt, 1);
-	}
+    @Override
+    public boolean contains(Location pt) {
+        Bounds bds = getBounds();
+        if (bds == null) {
+            return false;
+        }
 
-	public boolean contains(Location pt, Graphics g) {
-		Bounds bds = getBounds(g);
-		if (bds == null) return false;
-		return bds.contains(pt, 1);
-	}
+        return bds.contains(pt, 1);
+    }
 
-	//
-	// propagation methods
-	//
-	public abstract List<EndData> getEnds();
+    @Override
+    public boolean contains(Location pt, Graphics g) {
+        Bounds bds = getBounds(g);
+        if (bds == null) {
+            return false;
+        }
 
-	public EndData getEnd(int index) {
-		return getEnds().get(index);
-	}
+        return bds.contains(pt, 1);
+    }
 
-	public boolean endsAt(Location pt) {
-		for (EndData data : getEnds()) {
-			if (data.getLocation().equals(pt)) return true;
-		}
-		return false;
-	}
+    //
+    // propagation methods
+    //
+    @Override
+    public abstract List<EndData> getEnds();
 
-	public abstract void propagate(CircuitState state);
+    @Override
+    public EndData getEnd(int index) {
+        return getEnds().get(index);
+    }
+
+    @Override
+    public boolean endsAt(Location pt) {
+        for (EndData data : getEnds()) {
+            if (data.getLocation().equals(pt)) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    @Override
+    public abstract void propagate(CircuitState state);
 }

@@ -4,7 +4,8 @@
 package com.cburch.logisim.data;
 
 public interface AttributeOptionInterface {
-	public Object getValue();
-	public String toString();
-	public String toDisplayString();
+    public Object getValue();
+    @Override
+    public String toString();
+    public String toDisplayString();
 }
