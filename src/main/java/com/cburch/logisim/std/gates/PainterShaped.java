@@ -126,7 +126,7 @@ public class PainterShaped {
 
     static void paintXor(InstancePainter painter, int width, int height) {
         Graphics g = painter.getGraphics();
-        //paintOr(painter, width - 10, width - 10);
+        paintOr(painter, width - 10, width - 10);
         paintShield(g, -10, width - 10, height);
     }
 

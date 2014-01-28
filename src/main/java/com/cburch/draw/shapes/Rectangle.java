@@ -45,10 +45,10 @@ public class Rectangle extends Rectangular {
         return _("shapeRect");
     }
 
-    @Override
+    /*@Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createRectangle(doc, this);
-    }
+    }*/
 
     @Override
     public List<Attribute<?>> getAttributes() {

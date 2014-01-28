@@ -67,10 +67,10 @@ public class Line extends AbstractCanvasObject {
         return ret;
     }
 
-    @Override
+    /*@Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createLine(doc, this);
-    }
+    }*/
 
     public Location getEnd0() {
         return Location.create(x0, y0);

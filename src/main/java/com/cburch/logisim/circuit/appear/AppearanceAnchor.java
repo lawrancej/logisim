@@ -59,7 +59,7 @@ public class AppearanceAnchor extends AppearanceElement {
         return _("circuitAnchor");
     }
 
-    @Override
+    /*@Override
     public Element toSvgElement(Document doc) {
         Location loc = getLocation();
         Element ret = doc.createElement("circ-anchor");
@@ -69,7 +69,7 @@ public class AppearanceAnchor extends AppearanceElement {
         ret.setAttribute("height", "" + 2 * RADIUS);
         ret.setAttribute("facing", facing.toString());
         return ret;
-    }
+    }*/
 
     public Direction getFacing() {
         return facing;

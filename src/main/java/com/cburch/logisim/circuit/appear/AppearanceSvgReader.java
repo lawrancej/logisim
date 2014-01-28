@@ -8,7 +8,6 @@ import java.util.Map;
 import org.w3c.dom.Element;
 
 import com.cburch.draw.model.AbstractCanvasObject;
-import com.cburch.draw.shapes.SvgReader;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.Instance;
@@ -36,7 +35,8 @@ public class AppearanceSvgReader {
                 return new AppearancePort(loc, pin);
             }
         } else {
-            return SvgReader.createShape(elt);
+            //return SvgReader.createShape(elt);
+            return null;
         }
     }
 

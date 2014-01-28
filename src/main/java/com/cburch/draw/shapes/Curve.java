@@ -54,10 +54,10 @@ public class Curve extends FillableCanvasObject {
         return ret;
     }
 
-    @Override
+    /*@Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createCurve(doc, this);
-    }
+    }*/
 
     public Location getEnd0() {
         return p0;

@@ -62,10 +62,10 @@ public class Text extends AbstractCanvasObject {
         return label.hashCode();
     }
 
-    @Override
+    /*@Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createText(doc, this);
-    }
+    }*/
 
     public Location getLocation() {
         return Location.create(label.getX(), label.getY());

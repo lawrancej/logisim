@@ -39,7 +39,7 @@ public abstract class AbstractCanvasObject
 
     @Override
     public abstract String getDisplayName();
-    public abstract Element toSvgElement(Document doc);
+    //public abstract Element toSvgElement(Document doc);
     @Override
     public abstract boolean matches(CanvasObject other);
     @Override

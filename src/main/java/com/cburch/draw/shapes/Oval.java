@@ -35,10 +35,10 @@ public class Oval extends Rectangular {
         return super.matchesHashCode();
     }
 
-    @Override
+    /*@Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createOval(doc, this);
-    }
+    }*/
 
     @Override
     public String getDisplayName() {

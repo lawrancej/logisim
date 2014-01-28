@@ -37,7 +37,7 @@ class NorGate extends AbstractGate {
 
     @Override
     protected void paintShape(InstancePainter painter, int width, int height) {
-        //PainterShaped.paintOr(painter, width, height);
+        PainterShaped.paintOr(painter, width, height);
     }
 
     @Override

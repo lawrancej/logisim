@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="dinAndGate.svg">
+   sodipodi:docname="dinNandGate.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,17 +24,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="17.360249"
+     inkscape:zoom="45.435027"
      inkscape:cx="5.8839558"
      inkscape:cy="7.7490858"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="784"
-     inkscape:window-height="821"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -52,12 +52,6 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-1036.3622)">
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.24912107px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 4.8167793,1037.9717 0,12.7675 3.1734503,-0.4466 1.437797,-0.8814 0.9336804,-1.043 0.764233,-1.0567 0.388937,-1.4008 -0.0038,-3.4576 -0.385187,-1.3669 -0.542183,-0.8079 -0.938563,-0.8389 -1.481472,-0.7132 -1.3878609,-0.3941 z"
-       id="path4479"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccccccccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1.13641119px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 11.887466,1044.0551 4.172857,0 z"
@@ -83,5 +77,11 @@
        sodipodi:ry="1.3536673"
        d="m 11.69338,7.5611811 a 1.1808586,1.3536673 0 1 1 -2.3617169,0 1.1808586,1.3536673 0 1 1 2.3617169,0 z"
        transform="translate(0,1036.535)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.24912107px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 4.7162087,1037.5978 0,12.7675 c 3.2461083,-0.012 6.0936633,-1.1294 6.6980973,-4.8285 0.110063,-0.8111 0.107941,-2.6524 -0.0038,-3.4576 -0.63404,-3.5165 -4.2648697,-4.064 -6.6942973,-4.4814 z"
+       id="path4479"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
   </g>
 </svg>

@@ -44,10 +44,10 @@ public class RoundRectangle extends Rectangular {
         return _("shapeRoundRect");
     }
 
-    @Override
+    /*@Override
     public Element toSvgElement(Document doc) {
         return SvgCreator.createRoundRectangle(doc, this);
-    }
+    }*/
 
     @Override
     public List<Attribute<?>> getAttributes() {

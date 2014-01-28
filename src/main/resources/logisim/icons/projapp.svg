@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="projadd.svg">
+   sodipodi:docname="projapp.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="26.070765"
-     inkscape:cx="8.6661589"
-     inkscape:cy="7.4847381"
+     inkscape:zoom="65.584268"
+     inkscape:cx="7.4687175"
+     inkscape:cy="13.665152"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -61,10 +61,10 @@
        y="1036.9014" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 5.2932855,1036.981 0.2301322,1.0357 0.6343435,0.7593 0.5742347,0.3331 0.8243609,0.135 0.8246997,-0.2493 0.7538502,-0.3214 0.4137426,-0.8269 0.1557074,-0.7504"
+       d="m 5.2932855,1036.981 c 0,0 -0.00507,0.6495 0.077657,0.9595 0.066352,0.2487 0.1725546,0.4942 0.3293923,0.6983 0.1769486,0.2302 0.4073243,0.4294 0.6657201,0.5618 0.2754676,0.1412 0.5918403,0.2044 0.9005987,0.2265 0.3266421,0.023 0.662341,-0.011 0.9771753,-0.1015 0.2905692,-0.083 0.5968931,-0.1883 0.8148404,-0.3977 0.2715472,-0.2609 0.4201393,-0.6362 0.5357231,-0.9946 0.086869,-0.2694 0.1099647,-0.8419 0.1099647,-0.8419"
        id="path3041"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccc" />
+       sodipodi:nodetypes="caaaaaaac" />
     <path
        style="fill:#00ff00;stroke:#00ff00;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 13.501714,1045.9182 0,-2.9151"
