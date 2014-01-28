@@ -3,6 +3,8 @@
 
 package com.cburch.logisim;
 
+import org.slf4j.*;
+
 /**
  * Handles everything involving Logisim's version number
  * @author Carl Burch, Ryan Steinmetz
@@ -10,6 +12,8 @@ package com.cburch.logisim;
  */
 public class LogisimVersion implements Comparable<LogisimVersion> {
     private static final int FINAL_REVISION = Integer.MAX_VALUE / 4;
+
+    private static final Logger logger = LoggerFactory.getLogger( LogisimVersion.class );
 
     /**
      * Creates a new LogisimVersion object without a revision number
@@ -64,8 +68,7 @@ public class LogisimVersion implements Comparable<LogisimVersion> {
             }
 
         } catch (NumberFormatException e) {
-            System.out.println( "Something went wrong when parsing the version string:\n" );
-            e.printStackTrace();
+            logger.warn( "Something went wrong when parsing the version string." );
         }
 
         return new LogisimVersion(major, minor, release, revision);

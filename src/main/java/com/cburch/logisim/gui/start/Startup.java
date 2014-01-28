@@ -13,6 +13,9 @@ import java.io.File;
 
 import javax.swing.UIManager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cburch.logisim.Main;
 import com.cburch.logisim.file.LoadFailedException;
 import com.cburch.logisim.file.Loader;
@@ -25,10 +28,16 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.MacCompatibility;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
+/**
+ * A class to encapsulate the startup process
+ */
 public class Startup {
     private static Startup startupTemp = null;
+
+    private static final Logger logger = LoggerFactory.getLogger( Startup.class );
 
     static void doOpen(File file) {
         if (startupTemp != null) {
@@ -76,11 +85,14 @@ public class Startup {
             MacOsAdapter.register();
             MacOsAdapter.addListeners(true);
         } catch (ClassNotFoundException e) {
+            logger.warn( "Failed to register handler: " + e.getLocalizedMessage() );
             return;
         } catch (Exception t) {
             try {
                 MacOsAdapter.addListeners(false);
-            } catch (Exception t2) { }
+            } catch (Exception t2) { 
+                logger.warn( "Failed to register MacOS adapters" );
+            }
         }
     }
 
@@ -121,15 +133,19 @@ public class Startup {
         return Collections.unmodifiableMap(substitutions);
     }
 
+    /**
+     * Starts splash screen and launches Logisim
+     */
     public void run() {
         if (isTty) {
             try {
                 TtyInterface.run(this);
                 return;
-            } catch (Exception t) {
-                t.printStackTrace();
+            } catch (Exception e) {
+                logger.error( "Logisim failed to start.\nException: "
+                    + e.getLocalizedMessage() );
+                e.printStackTrace();
                 System.exit(-1);
-                return;
             }
         }
 
@@ -140,9 +156,10 @@ public class Startup {
             try {
                 monitor = new SplashScreen();
                 monitor.setVisible(true);
-            } catch (Exception t) {
+            } catch (Exception e) {
                 monitor = null;
                 showSplash = false;
+                logger.warn( "Not showing the splash screen, for some reason" );
             }
         }
 
@@ -158,7 +175,7 @@ public class Startup {
         if (count < 0) {
             // this will never happen, but the optimizer doesn't know that...
             //OK
-            System.err.println("FATAL ERROR - no components");
+            logger.error( "FATAL - no components were found");
             System.exit(-1);
         }
 
@@ -199,7 +216,8 @@ public class Startup {
                     ProjectActions.doOpen(monitor, fileToOpen, substitutions);
                 } catch (LoadFailedException ex) {
                     //OK
-                    System.err.println(fileToOpen.getName() + ": " + ex.getMessage());
+                    logger.error( "Could not open " 
+                        + fileToOpen.getName() + ": " + ex.getMessage() );
                     System.exit(-1);
                 }
                 if (first) {
@@ -227,12 +245,12 @@ public class Startup {
             }
         }
         //OK
-        System.err.println(_("invalidLocaleError"));
+        logger.warn(_("invalidLocaleError"));
         //OK
-        System.err.println(_("invalidLocaleOptionsHeader"));
+        logger.warn(_("invalidLocaleOptionsHeader"));
         for (int i = 0; i < opts.length; i++) {
             //OK
-            System.err.println("   " + opts[i].toString());
+            logger.warn("   " + opts[i].toString());
         }
         System.exit(-1);
     }
@@ -254,8 +272,8 @@ public class Startup {
     }
     /**
      * Parses the command-line arguments to com.cburch.logisim.Main
-     * @param args
-     * @return A Startup object
+     * @param args command line arguments
+     * @return A Startup object or null if it fails
      */
     public static Startup parseArgs(String[] args) {
         // see whether we'll be using any graphics
@@ -303,7 +321,7 @@ public class Startup {
                     String[] fmts = args[i].split(",");
                     if (fmts.length == 0) {
                         //OK
-                        System.err.println(_("ttyFormatError"));
+                        logger.warn(_("ttyFormatError"));
                     }
                     for (int j = 0; j < fmts.length; j++) {
                         String fmt = fmts[j].trim();
@@ -333,7 +351,7 @@ public class Startup {
                     File b = new File(args[i + 2]);
                     if (ret.substitutions.containsKey(a)) {
                         //OK
-                        System.err.println(_("argDuplicateSubstitutionError"));
+                        logger.error(_("argDuplicateSubstitutionError"));
                         return null;
                     } else {
                         ret.substitutions.put(a, b);
@@ -341,7 +359,7 @@ public class Startup {
                     }
                 } else {
                     //OK
-                    System.err.println(_("argTwoSubstitutionError"));
+                    logger.error(_("argTwoSubstitutionError"));
                     return null;
                 }
             } else if (arg.equals("-load")) {
@@ -349,26 +367,26 @@ public class Startup {
                     i++;
                     if (ret.loadFile != null) {
                         //OK
-                        System.err.println(_("loadMultipleError"));
+                        logger.warn(_("loadMultipleError"));
                     }
                     File f = new File(args[i]);
                     ret.loadFile = f;
                 } else {
                     //OK
-                    System.err.println(_("loadNeedsFileError"));
+                    logger.error(_("loadNeedsFileError"));
                     return null;
                 }
             } else if (arg.equals("-empty")) {
                 if (ret.templFile != null || ret.templEmpty || ret.templPlain) {
                     //OK
-                    System.err.println(_("argOneTemplateError"));
+                    logger.error(_("argOneTemplateError"));
                     return null;
                 }
                 ret.templEmpty = true;
             } else if (arg.equals("-plain")) {
                 if (ret.templFile != null || ret.templEmpty || ret.templPlain) {
                     //OK
-                    System.err.println(_("argOneTemplateError"));
+                    logger.error(_("argOneTemplateError"));
                     return null;
                 }
                 ret.templPlain = true;
@@ -389,7 +407,7 @@ public class Startup {
                     AppPreferences.GATE_SHAPE.set(AppPreferences.SHAPE_RECTANGULAR);
                 } else {
                     //OK
-                    System.err.println(_("argGatesOptionError"));
+                    logger.error(_("argGatesOptionError"));
                     System.exit(-1);
                 }
             } else if (arg.equals("-locale")) {
@@ -412,13 +430,13 @@ public class Startup {
                     AppPreferences.ACCENTS_REPLACE.setBoolean(true);
                 } else {
                     //OK
-                    System.err.println(_("argAccentsOptionError"));
+                    logger.error(_("argAccentsOptionError"));
                     System.exit(-1);
                 }
             } else if (arg.equals("-template")) {
                 if (ret.templFile != null || ret.templEmpty || ret.templPlain) {
                     //OK
-                    System.err.println(_("argOneTemplateError"));
+                    logger.error(_("argOneTemplateError"));
                     return null;
                 }
                 i++;
@@ -429,11 +447,11 @@ public class Startup {
                 ret.templFile = new File(args[i]);
                 if (!ret.templFile.exists()) {
                     //OK
-                    System.err.println(String.format(
+                    logger.warn(String.format(
                             _("templateMissingError"), args[i]));
                 } else if (!ret.templFile.canRead()) {
                     //OK
-                    System.err.println(String.format(
+                    logger.warn(String.format(
                             _("templateCannotReadError"), args[i]));
                 }
             } else if (arg.equals("-nosplash")) {
@@ -449,49 +467,36 @@ public class Startup {
         }
         if (ret.isTty && ret.filesToOpen.isEmpty()) {
             //OK
-            System.err.println(_("ttyNeedsFileError"));
+            logger.error(_("ttyNeedsFileError"));
             return null;
         }
         if (ret.loadFile != null && !ret.isTty) {
             //OK
-            System.err.println(_("loadNeedsTtyError"));
+            logger.error(_("loadNeedsTtyError"));
             return null;
         }
         return ret;
     }
 
+    /**
+     * Prints command line help functionality
+     */
     private static void printUsage() {
-        //OK
         System.err.println(String.format(_("argUsage"), Startup.class.getName()));
-        //OK
         System.err.println();
-        //OK
         System.err.println(_("argOptionHeader"));
-        //OK
         System.err.println("   " + _("argAccentsOption"));
-        //OK
         System.err.println("   " + _("argClearOption"));
-        //OK
         System.err.println("   " + _("argEmptyOption"));
-        //OK
         System.err.println("   " + _("argGatesOption"));
-        //OK
         System.err.println("   " + _("argHelpOption"));
-        //OK
         System.err.println("   " + _("argLoadOption"));
-        //OK
         System.err.println("   " + _("argLocaleOption"));
-        //OK
         System.err.println("   " + _("argNoSplashOption"));
-        //OK
         System.err.println("   " + _("argPlainOption"));
-        //OK
         System.err.println("   " + _("argSubOption"));
-        //OK
         System.err.println("   " + _("argTemplateOption"));
-        //OK
         System.err.println("   " + _("argTtyOption"));
-        //OK
         System.err.println("   " + _("argVersionOption"));
         System.exit(-1);
     }
