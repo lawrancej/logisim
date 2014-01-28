@@ -31,8 +31,8 @@ import com.cburch.logisim.util.GraphicsUtil;
 
 public class About {
 	static final int IMAGE_BORDER = 10;
-	static final int IMAGE_WIDTH = 380;
-	static final int IMAGE_HEIGHT = 284;
+	static final int IMAGE_WIDTH = 200;
+	static final int IMAGE_HEIGHT = 200;
 	protected static JSVGCanvas svgCanvas =new JSVGCanvas();
 	
 	public static JComponent createComponents() {

@@ -1,11 +1,13 @@
 package com.cburch.logisim.SVG;
 
 import java.awt.Dimension;
-import java.awt.Panel;
+import java.awt.Graphics;
+import java.awt.Point;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class Main extends Panel implements Runnable {
+public class Main extends JPanel implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 	private static final int WIDTH = 300;
@@ -20,8 +22,10 @@ public class Main extends Panel implements Runnable {
 	private boolean running = false;
 
 	public Main() {
+		setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		add(Image.createComponent("andGate.svg"));
+		setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		//add(Image.createComponent("andGate.svg"));
 	}
 
 	public static void main(String[] args) {
@@ -49,7 +53,6 @@ public class Main extends Panel implements Runnable {
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -60,7 +63,9 @@ public class Main extends Panel implements Runnable {
 		double ns = 1000000000.0 / 60.0;
 		double delta = 0.0;
 		int updates = 0;
+		int frames = 0;
 		long timer = System.currentTimeMillis();
+		
 		while (running) {
 			now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -70,23 +75,35 @@ public class Main extends Panel implements Runnable {
 				updates++;
 				update();
 			}
+			frames++;
+			render();
 			if ((System.currentTimeMillis() - timer) > 1000) {
 				timer += 1000;
-				frame.setTitle(TITLE + updates + " ups ");
+				frame.setTitle(TITLE + updates + " ups " + frames + " fps");
 				updates = 0;
+				frames = 0;
 			}
 		}
 		stop();
 	}
 
 	private void update() {
-		/*if(!(mouse.getCoords() == null)) {
-			add(Image.createComponent("andGate.svg"));
-			this.frame.pack();
-		}*/
+		if(!(mouse.getCoords() == null)) {
+			/*JPanel p = (JPanel) Image.createComponent("andGate.svg", mouse.getCoords());
+			p.setLayout(null);
+			p.setLocation(mouse.getCoords());
+			add(p);
+			frame.pack();*/
+		}
 	}
 
 	private void render() {
+		Graphics g = getGraphics();
+		java.awt.Image p;
+		p = Image.createComponent("andGate.svg", new Point(0,0));
+		g.drawImage(
+				Image.createComponent("andGate.svg", new Point(0,0))
+				, 0,0,50,50,null);
 	}
 
 }

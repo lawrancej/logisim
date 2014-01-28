@@ -1,8 +1,7 @@
 package com.cburch.logisim.SVG;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.Point;
 
 import javax.swing.JPanel;
 
@@ -12,19 +11,21 @@ import org.apache.batik.swing.svg.GVTTreeBuilderAdapter;
 import org.apache.batik.swing.svg.SVGDocumentLoaderAdapter;
 
 public class Image {
-	static final int IMAGE_BORDER = 10;
-	static final int IMAGE_WIDTH = 200;
-	static final int IMAGE_HEIGHT = 200;
 	protected static JSVGCanvas svgCanvas =new JSVGCanvas();
 	
-	public static Component createComponent(String name) {
+	public static java.awt.Image createComponent(String name, Point loc) {
 		svgCanvas.setURI(Image.class.getResource("/logisim/icons/" + name).toString());
 		svgCanvas.addSVGDocumentLoaderListener(new SVGDocumentLoaderAdapter() {});
 		svgCanvas.addGVTTreeBuilderListener(new GVTTreeBuilderAdapter() {});
 		svgCanvas.addGVTTreeRendererListener(new GVTTreeRendererAdapter() {});
-		JPanel p =new JPanel(new BorderLayout());
-		p.setPreferredSize(new Dimension(300 * 3, 300 *16/9 * 3));
-		p.add("Center", svgCanvas);
-		return p;
+		JPanel p =new JPanel();
+		p.setLayout(null);
+		p.setSize(50,50);
+		svgCanvas.setLayout(null);
+		svgCanvas.setLocation(loc);
+		svgCanvas.setSize(50, 50);
+		p.add(svgCanvas);
+		java.awt.Image img = svgCanvas.createImage(50, 50);
+		return img;
 	}
 }

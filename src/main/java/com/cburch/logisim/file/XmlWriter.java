@@ -197,10 +197,10 @@ class XmlWriter {
 			Element appear = doc.createElement("appear");
 			for (Object o : circuit.getAppearance().getObjectsFromBottom()) {
 				if (o instanceof AbstractCanvasObject) {
-					Element elt = ((AbstractCanvasObject) o).toSvgElement(doc);
+					/*Element elt = ((AbstractCanvasObject) o).toSvgElement(doc);
 					if (elt != null) {
 						appear.appendChild(elt);
-					}
+					}*/
 				}
 			}
 			ret.appendChild(appear);

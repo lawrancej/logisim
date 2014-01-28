@@ -37,7 +37,7 @@ public abstract class AbstractCanvasObject
 	}
 	
 	public abstract String getDisplayName();
-	public abstract Element toSvgElement(Document doc);
+	//public abstract Element toSvgElement(Document doc);
 	public abstract boolean matches(CanvasObject other);
 	public abstract int matchesHashCode();
 

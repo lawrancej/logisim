@@ -54,7 +54,7 @@ public class AppearancePort extends AppearanceElement {
 		return _("circuitPort");
 	}
 	
-	@Override
+	/*@Override
 	public Element toSvgElement(Document doc) {
 		Location loc = getLocation();
 		Location pinLoc = pin.getLocation();
@@ -66,7 +66,7 @@ public class AppearancePort extends AppearanceElement {
 		ret.setAttribute("height", "" + 2 * r);
 		ret.setAttribute("pin", "" + pinLoc.getX() + "," + pinLoc.getY());
 		return ret;
-	}
+	}*/
 	
 	public Instance getPin() {
 		return pin;

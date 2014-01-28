@@ -94,10 +94,10 @@ public class Poly extends FillableCanvasObject {
 		}
 	}
 	
-	@Override
+	/*@Override
 	public Element toSvgElement(Document doc) {
 		return SvgCreator.createPoly(doc, this);
-	}
+	}*/
 
 	@Override
 	public List<Attribute<?>> getAttributes() {

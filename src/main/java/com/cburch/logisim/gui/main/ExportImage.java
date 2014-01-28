@@ -3,13 +3,8 @@
 
 package com.cburch.logisim.gui.main;
 
-import com.cburch.logisim.circuit.Circuit;
-import com.cburch.logisim.circuit.CircuitState;
-import com.cburch.logisim.comp.ComponentDrawContext;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.file.Loader;
-import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.StringGetter;
+import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.__;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,6 +15,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -41,7 +41,20 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import org.apache.batik.dom.GenericDOMImplementation;
+import org.apache.batik.svggen.SVGGraphics2D;
+import org.apache.batik.svggen.SVGGraphics2DIOException;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+
+import com.cburch.logisim.circuit.Circuit;
+import com.cburch.logisim.circuit.CircuitState;
+import com.cburch.logisim.comp.ComponentDrawContext;
+import com.cburch.logisim.data.Bounds;
+import com.cburch.logisim.file.Loader;
+import com.cburch.logisim.proj.Project;
+import com.cburch.logisim.util.StringGetter;
 
 class ExportImage {
 	private static final int SLIDER_DIVISIONS = 6;
@@ -49,6 +62,7 @@ class ExportImage {
 	private static final int FORMAT_GIF = 0;
 	private static final int FORMAT_PNG = 1;
 	private static final int FORMAT_JPG = 2;
+	private static final int FORMAT_SVG = 3;
 	
 	private static final int BORDER_SIZE = 5;
 
@@ -90,6 +104,11 @@ class ExportImage {
 		case FORMAT_JPG:
 			filter = new ImageFileFilter(fmt, __("exportJpgFilter"),
 				new String[] { "jpg", "jpeg", "jpe", "jfi", "jfif", "jfi" });
+			break;
+		case FORMAT_SVG:
+			filter = null;
+			filter = new ImageFileFilter(fmt, __("exportSvgFilter"),
+				new String[] { "svg" });
 			break;
 		default:
 			System.err.println("unexpected format; aborted"); //OK
@@ -157,6 +176,7 @@ class ExportImage {
 		JRadioButton formatPng;
 		JRadioButton formatGif;
 		JRadioButton formatJpg;
+		JRadioButton formatSvg;
 		GridBagLayout gridbag;
 		GridBagConstraints gbc;
 		Dimension curScaleDim;
@@ -166,10 +186,12 @@ class ExportImage {
 			formatPng = new JRadioButton("PNG");
 			formatGif = new JRadioButton("GIF");
 			formatJpg = new JRadioButton("JPEG");
+			formatSvg = new JRadioButton("SVG");
 			ButtonGroup bgroup = new ButtonGroup();
 			bgroup.add(formatPng);
 			bgroup.add(formatGif);
 			bgroup.add(formatJpg);
+			bgroup.add(formatSvg);
 			formatPng.setSelected(true);
 
 			slider = new JSlider(JSlider.HORIZONTAL,
@@ -209,6 +231,7 @@ class ExportImage {
 			formatsPanel.add(formatPng);
 			formatsPanel.add(formatGif);
 			formatsPanel.add(formatJpg);
+			formatsPanel.add(formatSvg);
 			addGb(formatsPanel);
 			
 			gbc.gridy++;
@@ -235,6 +258,7 @@ class ExportImage {
 		int getImageFormat() {
 			if (formatGif.isSelected()) return FORMAT_GIF;
 			if (formatJpg.isSelected()) return FORMAT_JPG;
+			if (formatSvg.isSelected()) return FORMAT_SVG;
 			return FORMAT_PNG;
 		}
 
@@ -311,7 +335,67 @@ class ExportImage {
 			int height = (int) Math.round(bds.getHeight() * scale);
 			BufferedImage img = new BufferedImage(width, height,
 					BufferedImage.TYPE_INT_RGB);
-			Graphics base = img.getGraphics();
+			
+			File where;
+			if (dest.isDirectory()) {
+				where = new File(dest, circuit.getName() + filter.extensions[0]);
+			} else if (filter.accept(dest)) {
+				where = dest;
+			} else {
+				String newName = dest.getName() + filter.extensions[0];
+				where = new File(dest.getParentFile(), newName);
+			}
+			
+			if(filter.type == FORMAT_SVG) {
+				DOMImplementation domImpl =
+					      GenericDOMImplementation.getDOMImplementation();
+
+					    // Create an instance of org.w3c.dom.Document.
+					    String svgNS = "http://www.w3.org/2000/svg";
+					    Document document = domImpl.createDocument(svgNS, "svg", null);
+
+					    // Create an instance of the SVG Generator.
+					    SVGGraphics2D svgGenerator = new SVGGraphics2D(document);
+
+					    paint(svgGenerator, bds, circuit, width, height);
+
+					    // Finally, stream out SVG to the standard output using
+					    // UTF-8 encoding.
+					    boolean useCSS = true; // we want to use CSS style attributes
+						try {
+							FileOutputStream stream = new FileOutputStream(where);
+							Writer out = new OutputStreamWriter(stream, "UTF-8");
+							svgGenerator.stream(out, useCSS);
+						} catch (UnsupportedEncodingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SVGGraphics2DIOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			} else {
+				paint(img.getGraphics(), bds, circuit, width, height);
+			}
+
+			try {
+				switch (filter.type) {
+				case FORMAT_GIF: ImageIO.write(img, "GIF", where); break;
+				case FORMAT_PNG: ImageIO.write(img, "PNG", where); break;
+				case FORMAT_JPG: ImageIO.write(img, "JPEG", where); break;
+				}
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(frame,
+						_("couldNotCreateFile"));
+				monitor.close();
+				return;
+			}
+			monitor.close();
+		}
+		
+		private void paint(Graphics base, Bounds bds, Circuit circuit, int width, int height) {
 			Graphics g = base.create();
 			g.setColor(Color.white);
 			g.fillRect(0, 0, width, height);
@@ -329,30 +413,7 @@ class ExportImage {
 			ComponentDrawContext context = new ComponentDrawContext(canvas,
 					circuit, circuitState, base, g, printerView);
 			circuit.draw(context, null);
-
-			File where;
-			if (dest.isDirectory()) {
-				where = new File(dest, circuit.getName() + filter.extensions[0]);
-			} else if (filter.accept(dest)) {
-				where = dest;
-			} else {
-				String newName = dest.getName() + filter.extensions[0];
-				where = new File(dest.getParentFile(), newName);
-			}
-			try {
-				switch (filter.type) {
-				case FORMAT_GIF: ImageIO.write(img, "GIF", where); break;
-				case FORMAT_PNG: ImageIO.write(img, "PNG", where); break;
-				case FORMAT_JPG: ImageIO.write(img, "JPEG", where); break;
-				}
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(frame,
-						_("couldNotCreateFile"));
-				monitor.close();
-				return;
-			}
 			g.dispose();
-			monitor.close();
 		}
 	}
 }
