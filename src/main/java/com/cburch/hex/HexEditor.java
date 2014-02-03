@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
  * HexEditor is a GUI component for editing Hex values.
  *
  * @author Carl Burch
- *
  */
 @SuppressWarnings("serial")
 public class HexEditor extends JComponent implements Scrollable {
@@ -32,7 +31,8 @@ public class HexEditor extends JComponent implements Scrollable {
         public void bytesChanged(HexModel source, long start, long numBytes,
                 int[] oldValues) {
             repaint(0, measures.toY(start),
-                    getWidth(), measures.toY(start + numBytes) + measures.getCellHeight());
+                    getWidth(), measures.toY(start + numBytes) +
+                        measures.getCellHeight());
         }
     }
 
@@ -42,6 +42,10 @@ public class HexEditor extends JComponent implements Scrollable {
     private Caret caret;
     private Highlighter highlighter;
 
+    /**
+     * Constructs a hex editor object, based on a model
+     * @param model The model to base the editor on
+     */
     public HexEditor(HexModel model) {
         this.model = model;
         this.listener = new Listener();
@@ -49,12 +53,14 @@ public class HexEditor extends JComponent implements Scrollable {
         this.caret = new Caret(this);
         this.highlighter = new Highlighter(this);
 
+        // Nick A: change the font here
+        this.setFont( new Font( "Dialog", Font.PLAIN, 16 ) );
+
         setOpaque(true);
         setBackground(Color.WHITE);
         if (model != null) {
             model.addHexModelListener(listener);
         }
-
 
         measures.recompute();
     }
@@ -63,22 +69,45 @@ public class HexEditor extends JComponent implements Scrollable {
 
     Highlighter getHighlighter() { return highlighter; }
 
+    /**
+     * Return the editor's base model
+     * @return the model
+     */
     public HexModel getModel() {
         return model;
     }
 
+    /**
+     * Get the caret object (cursor)
+     * @return the caret object
+     */
     public Caret getCaret() {
         return caret;
     }
 
+    /**
+     * Extends the current highlighted regions.
+     * @param start where to begin
+     * @param end where to end
+     * @param color the color of the highlight
+     * @return the highlighted region's handle
+     */
     public Object addHighlight(int start, int end, Color color) {
         return highlighter.add(start, end, color);
     }
 
+    /**
+     * Removes the highlighted region.
+     * @param tag the highlighted object
+     */
     public void removeHighlight(Object tag) {
         highlighter.remove(tag);
     }
 
+    /**
+     * Sets the model, if one doesn't exist or wants to be changed
+     * @param value the new model
+     */
     public void setModel(HexModel value) {
         if (model == value) {
             return;
@@ -98,6 +127,11 @@ public class HexEditor extends JComponent implements Scrollable {
         measures.recompute();
     }
 
+    /**
+     * Scroll to the visible address (location of the caret).
+     * @param start where to begin
+     * @param end where to end
+     */
     public void scrollAddressToVisible(int start, int end) {
         if (start < 0 || end < 0) {
             return;
@@ -115,18 +149,33 @@ public class HexEditor extends JComponent implements Scrollable {
         }
     }
 
+    /**
+     * Sets the current font and updates metrics
+     * @param value the new font object
+     */
     @Override
     public void setFont(Font value) {
         super.setFont(value);
         measures.recompute();
     }
 
+    /**
+     * Sets the bounds of the hex fields.
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param width the width to adjust the metrics by
+     * @param height the height to adjust the metrics by
+     */
     @Override
     public void setBounds(int x, int y, int width, int height) {
         super.setBounds(x, y, width, height);
         measures.widthChanged();
     }
 
+    /**
+     * Repaints the objects
+     * @param g the graphics handle
+     */
     @Override
     protected void paintComponent(Graphics g) {
         measures.ensureComputed(g);
@@ -153,6 +202,7 @@ public class HexEditor extends JComponent implements Scrollable {
         FontMetrics baseFm = g.getFontMetrics(baseFont);
         Font labelFont = baseFont.deriveFont(Font.ITALIC);
         FontMetrics labelFm = g.getFontMetrics(labelFont);
+
         int cols = measures.getColumnCount();
         int baseX = measures.getBaseX();
         int baseY = measures.toY(xaddr0) + baseFm.getAscent() + baseFm.getLeading() / 2;
@@ -161,6 +211,7 @@ public class HexEditor extends JComponent implements Scrollable {
         int labelChars = measures.getLabelChars();
         int cellWidth = measures.getCellWidth();
         int cellChars = measures.getCellChars();
+
         for(long a = xaddr0; a < xaddr1; a += cols, baseY += dy) {
             String label = toHex(a, labelChars);
             g.setFont(labelFont);
@@ -179,6 +230,12 @@ public class HexEditor extends JComponent implements Scrollable {
         caret.paintForeground(g, xaddr0, xaddr1);
     }
 
+    /**
+     * Convert a value to hex
+     * @param value the long value
+     * @param chars the characters value
+     * @return the converted hex string
+     */
     private String toHex(long value, int chars) {
         String ret = Long.toHexString(value);
         int retLen = ret.length();
@@ -198,15 +255,26 @@ public class HexEditor extends JComponent implements Scrollable {
     //
     // selection methods
     //
+
+    /**
+     * Is there a selection?
+     * @return if it exists
+     */
     public boolean selectionExists() {
         return caret.getMark() >= 0 && caret.getDot() >= 0;
     }
 
+    /**
+     * Select every hex editor
+     */
     public void selectAll() {
         caret.setDot(model.getLastOffset(), false);
         caret.setDot(0, true);
     }
 
+    /**
+     * Clear the selection
+     */
     public void delete() {
         long p0 = caret.getMark();
         long p1 = caret.getDot();
@@ -223,11 +291,20 @@ public class HexEditor extends JComponent implements Scrollable {
     //
     // Scrollable methods
     //
+
+    /**
+     * Returns the preferred size of the viewport
+     * @return the dimensions object
+     */
     @Override
     public Dimension getPreferredScrollableViewportSize() {
         return getPreferredSize();
     }
 
+    /**
+     * Get the increment in which to scroll
+     * @return the scrolling increment
+     */
     @Override
     public int getScrollableUnitIncrement(Rectangle vis,
             int orientation, int direction) {
@@ -247,6 +324,9 @@ public class HexEditor extends JComponent implements Scrollable {
         }
     }
 
+    /**
+     * Get the block increment so we don't scroll in the middle of one
+     */
     @Override
     public int getScrollableBlockIncrement(Rectangle vis,
             int orientation, int direction) {
