@@ -197,6 +197,10 @@ public class HexEditor extends JComponent implements Scrollable {
         long xaddr1 = measures.toAddress(getWidth(), clip.y + clip.height) + 1;
         highlighter.paint(g, xaddr0, xaddr1);
 
+        int newSize = (int)(Math.log10(clip.width*clip.height)*4);
+
+        this.setFont( new Font( "Dialog", Font.PLAIN, newSize ) );
+
         g.setColor(getForeground());
         Font baseFont = g.getFont();
         FontMetrics baseFm = g.getFontMetrics(baseFont);
