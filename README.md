@@ -37,5 +37,8 @@ The build script recognizes the following commands:
 	gradle run       # Run logisim from gradle
 	gradle sonar     # Examine problems using Sonar
 
+To examine problems with Sonar, you need to download and run SonarQube (the server) first.
+The server must be in a path without spaces in it, so don't put it in Program Files.
+Then, you can run gradle sonar and go to [Sonar's page](http://localhost:9000).
 See the status of what everybody's working on using the [Logisim Trello Board](https://trello.com/b/GYyiVOWH/logisim).
 
