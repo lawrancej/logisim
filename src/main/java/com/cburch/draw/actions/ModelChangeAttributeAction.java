@@ -43,7 +43,9 @@ public class ModelChangeAttributeAction extends ModelAction {
 			for (AttributeMapKey key : newValues.keySet()) {
 				Attribute<?> at = key.getAttribute();
 				if (found) {
-					if (a == null ? at != null : !a.equals(at)) { a = null; break; }
+					if (a == null ? at != null : !a.equals(at)) { 
+						a = null; break; 
+						}
 				} else {
 					found = true;
 					a = at;
