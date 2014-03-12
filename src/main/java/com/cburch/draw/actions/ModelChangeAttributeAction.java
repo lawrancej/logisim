@@ -44,9 +44,9 @@ public class ModelChangeAttributeAction extends ModelAction {
                 Attribute<?> at = key.getAttribute();
                 if (found) {
                     if (a == null ? at != null : !a.equals(at)) {
-                        { a = null;
+                        a = null;
+                        break;
                     }
- break; }
                 } else {
                     found = true;
                     a = at;
