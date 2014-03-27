@@ -59,6 +59,8 @@ dependencies {
     // Logging does nothing (use for release builds)
     //'org.slf4j:slf4j-nop:1.7.5',
 
+	'com.itextpdf:itextpdf:5.5.0',
+
     // Local dependencies convention: ./libs/*.jar
     fileTree(dir: 'libs', include: '*.jar')
 

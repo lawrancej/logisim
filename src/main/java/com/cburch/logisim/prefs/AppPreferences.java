@@ -14,9 +14,7 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
-
-import javax.swing.JFrame;
-
+import javax.swing.*;
 import com.cburch.logisim.Main;
 import com.cburch.logisim.circuit.RadixOption;
 import com.cburch.logisim.data.Direction;
@@ -151,6 +149,8 @@ public class AppPreferences {
     public static final PrefMonitor<String> DIALOG_DIRECTORY
         = create(new PrefMonitorString("dialogDirectory", ""));
 
+    public static final PrefMonitor<String> LOOK_AND_FEEL = create(new PrefMonitorString("lookAndFeel", UIManager.getSystemLookAndFeelClassName()));
+    
     //
     // methods for accessing preferences
     //

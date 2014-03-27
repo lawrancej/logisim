@@ -309,7 +309,7 @@ public class Startup {
         }
 
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel(AppPreferences.LOOK_AND_FEEL.get());
         } catch (Exception ex) { }
 
         // parse arguments
