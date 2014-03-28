@@ -11,3 +11,4 @@ bin
 *.class
 /nbproject/private/
 .externalToolBuilders
+*.orig
