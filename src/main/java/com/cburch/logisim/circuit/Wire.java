@@ -30,7 +30,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public final class Wire implements Component, AttributeSet, CustomHandles,
         Iterable<Location> {
     /** Stroke width when drawing wires. */
-    public static final int WIDTH = 3;
+    public static final int WIDTH = 1;
 
     public static final AttributeOption VALUE_HORZ
         = new AttributeOption("horz", __("wireDirectionHorzOption"));

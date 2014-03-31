@@ -99,6 +99,7 @@ public class GraphicsUtil {
         }
 
         Rectangle bd = getTextBounds(g, text, x, y, halign, valign);
+        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
         g.drawString(text, bd.x, bd.y + g.getFontMetrics().getAscent());
     }
     static public void drawCenteredText(Graphics g, String text,

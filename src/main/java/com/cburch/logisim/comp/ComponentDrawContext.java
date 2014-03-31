@@ -3,10 +3,7 @@
 
 package com.cburch.logisim.comp;
 
-import java.awt.Color;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-
+import java.awt.*;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.WireSet;
@@ -137,17 +134,11 @@ public class ComponentDrawContext {
         GraphicsUtil.switchToWidth(g, 2);
         g.drawRect(x, y, width, height);
         if (label != null && !label.equals("")) {
+            g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
             FontMetrics fm = base.getFontMetrics(g.getFont());
             int lwid = fm.stringWidth(label);
-            // centered at top edge
-            if (height > 20) {
-                g.drawString(label, x + (width - lwid) / 2,
-                    y + 2 + fm.getAscent());
-            // centered overall
-            } else {
-                g.drawString(label, x + (width - lwid) / 2,
-                    y + (height + fm.getAscent()) / 2 - 1);
-            }
+            g.drawString(label, x + (width - lwid) / 2,
+                y + (height + fm.getAscent()) / 2 - 1);
         }
     }
 
@@ -199,6 +190,7 @@ public class ComponentDrawContext {
         } else {
             g.setColor(Color.BLACK);
         }
+
         g.fillOval(x - PIN_OFFS, y - PIN_OFFS, PIN_RAD, PIN_RAD);
         g.setColor(curColor);
         if (dir == Direction.EAST) {
