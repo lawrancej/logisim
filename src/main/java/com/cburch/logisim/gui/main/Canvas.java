@@ -4,70 +4,23 @@
 package com.cburch.logisim.gui.main;
 
 import static com.cburch.logisim.util.LocaleString._;
-
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.beans.*;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
-
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JViewport;
-import javax.swing.event.MouseInputListener;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
-
-import com.cburch.logisim.circuit.Circuit;
-import com.cburch.logisim.circuit.CircuitEvent;
-import com.cburch.logisim.circuit.CircuitListener;
-import com.cburch.logisim.circuit.CircuitState;
-import com.cburch.logisim.circuit.Propagator;
-import com.cburch.logisim.circuit.SimulatorEvent;
-import com.cburch.logisim.circuit.SimulatorListener;
-import com.cburch.logisim.circuit.SubcircuitFactory;
-import com.cburch.logisim.circuit.WidthIncompatibilityData;
-import com.cburch.logisim.circuit.WireSet;
+import javax.swing.*;
+import javax.swing.event.*;
+import com.cburch.logisim.circuit.*;
+import com.cburch.logisim.comp.*;
 import com.cburch.logisim.comp.Component;
-import com.cburch.logisim.comp.ComponentUserEvent;
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeEvent;
-import com.cburch.logisim.data.AttributeListener;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Location;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.file.LibraryEvent;
-import com.cburch.logisim.file.LibraryListener;
-import com.cburch.logisim.file.LogisimFile;
-import com.cburch.logisim.file.MouseMappings;
-import com.cburch.logisim.file.Options;
-import com.cburch.logisim.gui.generic.CanvasPane;
-import com.cburch.logisim.gui.generic.CanvasPaneContents;
-import com.cburch.logisim.gui.generic.GridPainter;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.file.*;
+import com.cburch.logisim.gui.generic.*;
 import com.cburch.logisim.prefs.AppPreferences;
-import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.proj.ProjectEvent;
-import com.cburch.logisim.proj.ProjectListener;
-import com.cburch.logisim.tools.AddTool;
-import com.cburch.logisim.tools.EditTool;
-import com.cburch.logisim.tools.Library;
-import com.cburch.logisim.tools.Tool;
-import com.cburch.logisim.tools.ToolTipMaker;
-import com.cburch.logisim.util.GraphicsUtil;
-import com.cburch.logisim.util.LocaleListener;
-import com.cburch.logisim.util.LocaleManager;
-import com.cburch.logisim.util.StringGetter;
+import com.cburch.logisim.proj.*;
+import com.cburch.logisim.tools.*;
+import com.cburch.logisim.util.*;
 
 @SuppressWarnings("serial")
 public class Canvas extends JPanel
@@ -755,6 +708,10 @@ public class Canvas extends JPanel
     }
     @Override
     public void paintComponent(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+            RenderingHints.VALUE_ANTIALIAS_ON);
+      
         inPaint = true;
         try {
             super.paintComponent(g);
