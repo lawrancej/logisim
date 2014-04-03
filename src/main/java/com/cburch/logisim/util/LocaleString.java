@@ -2,8 +2,9 @@ package com.cburch.logisim.util;
 
 import java.util.HashMap;
 import java.util.Locale;
-
 import javax.swing.JComponent;
+import org.slf4j.*;
+import com.cburch.logisim.gui.start.Startup;
 
 /**
  * Given a string, return the locale-specific translation.
@@ -13,6 +14,9 @@ import javax.swing.JComponent;
  *
  */
 public class LocaleString {
+  
+    private static final Logger logger = LoggerFactory.getLogger( LocaleString.class );
+  
     private static LocaleString self = null;
     private String[] sections = ("analyze circuit data draw file gui hex " +
             "log menu opts prefs proj start std tools util").split(" ");
@@ -48,13 +52,28 @@ public class LocaleString {
         return getUtilLocaleManager().createLocaleSelector();
     }
     public static String _(String s) {
+        LocaleManager localeManager = getInstance().sourceMap.get(s);
+        if (localeManager == null) {
+          logger.error("Could not get string \"" + s + "\".");
+          return s;
+        }
         return getInstance().sourceMap.get(s).get(s);
     }
     public static String _(String key, String... arg) {
         return String.format(_(key), (Object[])arg);
     }
-    public static StringGetter __(String s) {
-        return getInstance().sourceMap.get(s).getter(s);
+    public static StringGetter __(final String s) {
+        LocaleManager localeManager = getInstance().sourceMap.get(s);
+        if (localeManager == null) {
+          logger.error("Could not get string \"" + s + "\".");
+          return new StringGetter() {
+            @Override
+            public String toString() {
+              return s;
+            }
+          };
+        }
+        return localeManager.getter(s);
     }
     public static StringGetter __(String key, String arg) {
         return getInstance().sourceMap.get(key).getter(key, arg);
