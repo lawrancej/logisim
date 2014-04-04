@@ -3,6 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'launch4j'
 apply plugin: 'sonar-runner'
+apply plugin: 'grain'
 
 mainClassName = "com.cburch.logisim.Main"
 version = '2.7.2'
@@ -29,8 +30,14 @@ buildscript {
         classpath \
         'edu.sc.seis:gradle-launch4j:1.0.5',
         'net.sourceforge.nekohtml:nekohtml:1.9.18',
-        'javax.help:javahelp:2.0.05'
+        'javax.help:javahelp:2.0.05',
+        'com.sysgears.grain:grain-gradle-plugin:0.2.0'
     }
+}
+
+task grainInstall(type: com.sysgears.grain.gradle.GrainInstallTask) {
+    theme = 'template' // theme to install, can be 'template', 'octopress', etc.
+    version = '0.4.2'  // theme version
 }
 
 repositories {
