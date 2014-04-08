@@ -97,10 +97,18 @@ abstract class Rectangular extends FillableCanvasObject {
             int newY1 = y1 == hy ? y1 + dy : y1;
             if (gesture.isShiftDown()) {
                 if (gesture.isAltDown()) {
-                    if (x0 == hx) newX1 -= dx;
-                    if (x1 == hx) newX0 -= dx;
-                    if (y0 == hy) newY1 -= dy;
-                    if (y1 == hy) newY0 -= dy;
+                    if (x0 == hx) {
+                    	newX1 -= dx;
+                    }
+                    if (x1 == hx) {
+                    	newX0 -= dx;
+                    }
+                    if (y0 == hy) {
+                    	newY1 -= dy;
+                    }
+                    if (y1 == hy) {
+                    	newY0 -= dy;
+                    }
 
                     int w = Math.abs(newX1 - newX0);
                     int h = Math.abs(newY1 - newY0);
@@ -137,10 +145,18 @@ abstract class Rectangular extends FillableCanvasObject {
                 }
             } else {
                 if (gesture.isAltDown()) {
-                    if (x0 == hx) newX1 -= dx;
-                    if (x1 == hx) newX0 -= dx;
-                    if (y0 == hy) newY1 -= dy;
-                    if (y1 == hy) newY0 -= dy;
+                    if (x0 == hx) {
+                    	newX1 -= dx;
+                    }
+                    if (x1 == hx) {
+                    	newX0 -= dx;
+                    }
+                    if (y0 == hy) {
+                    	newY1 -= dy;
+                    }
+                    if (y1 == hy) {
+                    	newY0 -= dy;
+                    }
                 } else {
                     // already handled
                     ;
@@ -175,10 +191,18 @@ abstract class Rectangular extends FillableCanvasObject {
             }
             int hx = h.getX();
             int hy = h.getY();
-            if (hx < x0) x0 = hx;
-            if (hx > x1) x1 = hx;
-            if (hy < y0) y0 = hy;
-            if (hy > y1) y1 = hy;
+            if (hx < x0) {
+            	x0 = hx;
+            }
+            if (hx > x1) {
+            	x1 = hx;
+            }
+            if (hy < y0) {
+            	y0 = hy;
+            }
+            if (hy > y1) {
+            	y1 = hy;
+            }
         }
         bounds = Bounds.create(x0, y0, x1 - x0, y1 - y0);
         return result;
@@ -197,8 +221,16 @@ abstract class Rectangular extends FillableCanvasObject {
             int y0 = p0.getY();
             int x1 = p1.getX();
             int y1 = p1.getY();
-            if (x1 < x0) { int t = x0; x0 = x1; x1 = t; }
-            if (y1 < y0) { int t = y0; y0 = y1; y1 = t; }
+            if (x1 < x0) { 
+            	int t = x0; 
+            	x0 = x1; 
+            	x1 = t; 
+            }
+            if (y1 < y0) { 
+            	int t = y0; 
+            	y0 = y1; 
+            	y1 = t; 
+            }
 
             draw(g, x0, y0, x1 - x0, y1 - y0);
         }

@@ -33,7 +33,7 @@ public class PolyTool extends AbstractTool {
     private boolean closed;
     private DrawingAttributeSet attrs;
     private boolean active;
-    private ArrayList<Location> locations;
+    private List<Location> locations;
     private boolean mouseDown;
     private int lastMouseX;
     private int lastMouseY;
@@ -90,11 +90,11 @@ public class PolyTool extends AbstractTool {
         }
 
         Location loc = Location.create(mx, my);
-        ArrayList<Location> locs = locations;
+        List<Location> locs = locations;
         if (!active) {
-            { locs.clear();
+            locs.clear();
+            locs.add(loc); 
         }
- locs.add(loc); }
         locs.add(loc);
 
         mouseDown = true;
@@ -164,7 +164,7 @@ public class PolyTool extends AbstractTool {
 
         CanvasObject add = null;
         active = false;
-        ArrayList<Location> locs = locations;
+        List<Location> locs = locations;
         for(int i = locs.size() - 2; i >= 0; i--) {
             if (locs.get(i).equals(locs.get(i + 1))) {
                 locs.remove(i);

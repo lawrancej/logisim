@@ -85,6 +85,8 @@ public class CurveTool extends AbstractTool {
             curCurve = new Curve(end0, end1, Location.create(mx, my));
             state = CONTROL_DRAG;
             break;
+        default:
+        	break;
         }
         repaintArea(canvas);
     }
@@ -194,6 +196,8 @@ public class CurveTool extends AbstractTool {
                 curCurve = ret;
             }
             break;
+        default:
+        	break;
         }
         return ret;
     }
@@ -217,6 +221,8 @@ public class CurveTool extends AbstractTool {
         case CONTROL_DRAG:
             ((Graphics2D) g).draw(curCurve.getCurve2D());
             break;
+        default:
+        	break;
         }
     }
 }

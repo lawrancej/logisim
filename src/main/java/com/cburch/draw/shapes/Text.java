@@ -10,9 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections15.list.UnmodifiableList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.AbstractCanvasObject;
 import com.cburch.draw.model.Handle;
@@ -61,12 +58,7 @@ public class Text extends AbstractCanvasObject {
     public int matchesHashCode() {
         return label.hashCode();
     }
-
-    /*@Override
-    public Element toSvgElement(Document doc) {
-        return SvgCreator.createText(doc, this);
-    }*/
-
+    
     public Location getLocation() {
         return Location.create(label.getX(), label.getY());
     }

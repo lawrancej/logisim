@@ -89,9 +89,9 @@ public class DrawAttr {
     }
 
     public static List<Attribute<?>> getFillAttributes(AttributeOption paint) {
-        if (paint == PAINT_STROKE) {
+        if (paint.equals(PAINT_STROKE)) {
             return ATTRS_FILL_STROKE;
-        } else if (paint == PAINT_FILL) {
+        } else if (paint.equals(PAINT_FILL)) {
             return ATTRS_FILL_FILL;
         } else {
             return ATTRS_FILL_BOTH;
@@ -99,9 +99,9 @@ public class DrawAttr {
     }
 
     public static List<Attribute<?>> getRoundRectAttributes(AttributeOption paint) {
-        if (paint == PAINT_STROKE) {
+        if (paint.equals(PAINT_STROKE)) {
             return ATTRS_RRECT_STROKE;
-        } else if (paint == PAINT_FILL) {
+        } else if (paint.equals(PAINT_FILL)) {
             return ATTRS_RRECT_FILL;
         } else {
             return ATTRS_RRECT_BOTH;

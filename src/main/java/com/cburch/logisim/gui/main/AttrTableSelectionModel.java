@@ -40,7 +40,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
         Selection selection = frame.getCanvas().getSelection();
         for (Component comp : selection.getComponents()) {
             ComponentFactory fact = comp.getFactory();
-            if (fact == factory) {
+            if (fact.equals(factory)) {
                 factoryCount++;
             } else if (comp instanceof Wire) {
                 wireFactory = fact;

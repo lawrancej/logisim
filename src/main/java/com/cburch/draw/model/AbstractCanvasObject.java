@@ -18,9 +18,6 @@ import java.awt.Graphics;
 import java.util.List;
 import java.util.Random;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 public abstract class AbstractCanvasObject
         implements AttributeSet, CanvasObject, Cloneable {
     private static final int OVERLAP_TRIES = 50;

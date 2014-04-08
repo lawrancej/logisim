@@ -66,9 +66,9 @@ class AttrTableSelectionModel extends AttributeSetTableModel
     public void setValueRequested(Attribute<Object> attr, Object value)
             throws AttrTableSetException {
         SelectionAttributes attrs = (SelectionAttributes) getAttributeSet();
-        HashMap<AttributeMapKey, Object> oldVals;
+        Map<AttributeMapKey, Object> oldVals;
         oldVals = new HashMap<AttributeMapKey, Object>();
-        HashMap<AttributeMapKey, Object> newVals;
+        Map<AttributeMapKey, Object> newVals;
         newVals = new HashMap<AttributeMapKey, Object>();
         for (Map.Entry<AttributeSet, CanvasObject> ent : attrs.entries()) {
             AttributeMapKey key = new AttributeMapKey(attr, ent.getValue());

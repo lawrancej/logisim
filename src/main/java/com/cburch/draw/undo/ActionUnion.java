@@ -18,7 +18,9 @@ class ActionUnion extends Action {
     }
 
     @Override
-    public String getName() { return first.getName(); }
+    public String getName() {
+    	return first.getName(); 
+    }
 
     @Override
     public void doIt() {

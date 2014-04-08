@@ -133,7 +133,7 @@ public class SelectionAttributes extends AbstractAttributeSet {
 
     public Iterable<Map.Entry<AttributeSet, CanvasObject>> entries() {
         Set<Map.Entry<AttributeSet, CanvasObject>> raw = selected.entrySet();
-        ArrayList<Map.Entry<AttributeSet, CanvasObject>> ret;
+        List<Map.Entry<AttributeSet, CanvasObject>> ret;
         ret = new ArrayList<Map.Entry<AttributeSet, CanvasObject>>(raw);
         return ret;
     }
@@ -152,15 +152,14 @@ public class SelectionAttributes extends AbstractAttributeSet {
         return attrsView;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public <V> V getValue(Attribute<V> attr) {
         Attribute<?>[] attrs = this.selAttrs;
         Object[] values = this.selValues;
         for (int i = 0; i < attrs.length; i++) {
             if (attrs[i] == attr) {
-                @SuppressWarnings("unchecked")
-                V ret = (V) values[i];
-                return ret;
+                return (V) values[i];
             }
         }
         return null;
@@ -192,9 +191,6 @@ public class SelectionAttributes extends AbstractAttributeSet {
                 Object val = attrs.getValue(attr);
                 if (ret == null) {
                     ret = val;
-                } else if (val != null && val.equals(ret)) {
-                    // keep on, making sure everything else matches
-                    ;
                 } else {
                     return null;
                 }

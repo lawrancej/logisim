@@ -7,9 +7,6 @@ import java.awt.Graphics;
 import java.util.List;
 import java.util.Random;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
@@ -43,11 +40,6 @@ public class RoundRectangle extends Rectangular {
     public String getDisplayName() {
         return _("shapeRoundRect");
     }
-
-    /*@Override
-    public Element toSvgElement(Document doc) {
-        return SvgCreator.createRoundRectangle(doc, this);
-    }*/
 
     @Override
     public List<Attribute<?>> getAttributes() {

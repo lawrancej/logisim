@@ -21,7 +21,7 @@ import com.cburch.logisim.util.EventSourceWeakSupport;
 
 public class Drawing implements CanvasModel {
     private EventSourceWeakSupport<CanvasModelListener> listeners;
-    private ArrayList<CanvasObject> canvasObjects;
+    private List<CanvasObject> canvasObjects;
     private DrawingOverlaps overlaps;
 
     public Drawing() {
@@ -66,7 +66,7 @@ public class Drawing implements CanvasModel {
 
     @Override
     public List<CanvasObject> getObjectsFromTop() {
-        ArrayList<CanvasObject> ret = new ArrayList<CanvasObject>(getObjectsFromBottom());
+        List<CanvasObject> ret = new ArrayList<CanvasObject>(getObjectsFromBottom());
         Collections.reverse(ret);
         return ret;
     }
@@ -78,7 +78,7 @@ public class Drawing implements CanvasModel {
 
     @Override
     public Collection<CanvasObject> getObjectsIn(Bounds bds) {
-        ArrayList<CanvasObject> ret = null;
+        List<CanvasObject> ret = null;
         for (CanvasObject shape : getObjectsFromBottom()) {
             if (bds.contains(shape.getBounds())) {
                 if (ret == null) {
@@ -102,7 +102,7 @@ public class Drawing implements CanvasModel {
 
     @Override
     public void addObjects(int index, Collection<? extends CanvasObject> shapes) {
-        LinkedHashMap<CanvasObject, Integer> indexes;
+        Map<CanvasObject, Integer> indexes;
         indexes = new LinkedHashMap<CanvasObject, Integer>();
         int i = index;
         for (CanvasObject shape : shapes) {
@@ -226,7 +226,7 @@ public class Drawing implements CanvasModel {
 
     @Override
     public void setAttributeValues(Map<AttributeMapKey, Object> values) {
-        HashMap<AttributeMapKey, Object> oldValues;
+        Map<AttributeMapKey, Object> oldValues;
         oldValues = new HashMap<AttributeMapKey, Object>();
         for (AttributeMapKey key : values.keySet()) {
             @SuppressWarnings("unchecked")
@@ -261,9 +261,9 @@ public class Drawing implements CanvasModel {
         }
     }
 
-    private ArrayList<CanvasObject> restrict(
+    private List<CanvasObject> restrict(
             Collection<? extends CanvasObject> shapes) {
-        ArrayList<CanvasObject> ret;
+        List<CanvasObject> ret;
         ret = new ArrayList<CanvasObject>(shapes.size());
         for (CanvasObject shape : shapes) {
             if (canvasObjects.contains(shape)) {

@@ -73,10 +73,10 @@ public class Toolbar extends JPanel {
     public void setOrientation(Object value) {
         int axis;
         String position;
-        if (value == HORIZONTAL) {
+        if (value.equals(HORIZONTAL)) {
             axis = BoxLayout.X_AXIS;
             position = BorderLayout.LINE_START;
-        } else if (value == VERTICAL) {
+        } else if (value.equals(VERTICAL)) {
             axis = BoxLayout.Y_AXIS;
             position = BorderLayout.NORTH;
         } else {

@@ -17,7 +17,9 @@ import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 
 public class ZOrder {
-    private ZOrder() { }
+    private ZOrder() {
+    	
+    }
 
     public static int getZIndex(CanvasObject query, CanvasModel model) {
         // returns 0 for bottommost element, large number for topmost
@@ -59,7 +61,7 @@ public class ZOrder {
     private static <E extends CanvasObject> List<E> sortXFirst(
             Collection<E> objects, CanvasModel model, Collection<CanvasObject> objs) {
         Set<E> set = toSet(objects);
-        ArrayList<E> ret = new ArrayList<E>(objects.size());
+        List<E> ret = new ArrayList<E>(objects.size());
         for (CanvasObject o : objs) {
             if (set.contains(o)) {
                 @SuppressWarnings("unchecked")

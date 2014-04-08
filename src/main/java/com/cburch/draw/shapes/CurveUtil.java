@@ -6,7 +6,9 @@ package com.cburch.draw.shapes;
 import com.cburch.logisim.data.Bounds;
 
 public class CurveUtil {
-    private CurveUtil() { }
+    private CurveUtil() {
+    	
+    }
 
     /**
      * getBounds and findNearestPoint are based translated from the ActionScript
@@ -37,9 +39,7 @@ public class CurveUtil {
             u = (1 - u) * (1 - u) * p0[0] + 2 * u * (1 - u) * p1[0] + u * u * p2[0];
             if (xMin == p1[0]) {
                 xMin = u;
-            }
-
-            else {
+            } else {
                 xMax = u;
             }
 
@@ -50,9 +50,7 @@ public class CurveUtil {
             u = (1 - u) * (1 - u) * p0[1] + 2 * u * (1 - u) * p1[1] + u * u * p2[1];
             if (yMin == p1[1]) {
                 yMin = u;
-            }
-
-            else {
+            } else {
                 yMax = u;
             }
 
@@ -75,7 +73,7 @@ public class CurveUtil {
                 p0[1] - 2 * p1[1] + p2[1] };
     }
 
-    // returns { t:Number, pos:Point, dist:Number, nor:Point }
+    // returns t:Number, pos:Point, dist:Number, nor:Point 
     // (costs about 80 multiplications+additions)
     // note: p0 and p2 are endpoints, p1 is control point
     public static double[] findNearestPoint(double[] q,
@@ -178,9 +176,7 @@ public class CurveUtil {
                 double u;
                 if (q < 0) {
                     u = Math.pow( -q / 2, 1. / 3);
-                }
-
-                else {
+                } else {
                     u = -Math.pow( q / 2, 1. / 3);
                 }
 
@@ -189,7 +185,7 @@ public class CurveUtil {
                     -u + offset };
             }
         } else if (Math.abs(b) > zeroMax) {
-            // a = 0, then actually a 2nd degree equation:
+            // a equals 0 then actually a 2nd degree equation:
             // form : ax2 + bx + c = 0;
             a = b;
             b = c;

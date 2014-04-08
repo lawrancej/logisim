@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.collections15.list.UnmodifiableList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.AbstractCanvasObject;
 import com.cburch.draw.model.Handle;
@@ -66,11 +63,6 @@ public class Line extends AbstractCanvasObject {
         ret = ret * 31 + strokeColor.hashCode();
         return ret;
     }
-
-    /*@Override
-    public Element toSvgElement(Document doc) {
-        return SvgCreator.createLine(doc, this);
-    }*/
 
     public Location getEnd0() {
         return Location.create(x0, y0);

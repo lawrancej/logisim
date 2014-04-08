@@ -7,7 +7,9 @@ import com.cburch.draw.model.Handle;
 import com.cburch.logisim.data.Location;
 
 public class PolyUtil {
-    private PolyUtil() { }
+    private PolyUtil() {
+    	
+    }
 
     public static class ClosestResult {
         private double dist;

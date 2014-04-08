@@ -10,9 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections15.list.UnmodifiableList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
 import com.cburch.draw.model.HandleGesture;
@@ -53,11 +50,6 @@ public class Curve extends FillableCanvasObject {
         ret = ret * 31 + super.matchesHashCode();
         return ret;
     }
-
-    /*@Override
-    public Element toSvgElement(Document doc) {
-        return SvgCreator.createCurve(doc, this);
-    }*/
 
     public Location getEnd0() {
         return p0;

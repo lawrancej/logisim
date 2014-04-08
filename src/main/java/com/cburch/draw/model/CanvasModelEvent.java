@@ -9,7 +9,9 @@ import java.util.Collections;
 import java.util.EventObject;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @SuppressWarnings("serial")
 public class CanvasModelEvent extends EventObject {
@@ -127,7 +129,7 @@ public class CanvasModelEvent extends EventObject {
             Map<AttributeMapKey, Object> newValues) {
         this(source, action, Collections.<CanvasObject>emptySet());
 
-        HashSet<CanvasObject> affected;
+        Set<CanvasObject> affected;
         affected = new HashSet<CanvasObject>(newValues.size());
         for (AttributeMapKey key : newValues.keySet()) {
             affected.add(key.getObject());
@@ -157,7 +159,7 @@ public class CanvasModelEvent extends EventObject {
             Collection<ReorderRequest> requests) {
         this(source, action, Collections.<CanvasObject>emptySet());
 
-        ArrayList<CanvasObject> affected;
+        List<CanvasObject> affected;
         affected = new ArrayList<CanvasObject>(requests.size());
         for (ReorderRequest r : requests) {
             affected.add(r.getObject());
@@ -176,7 +178,7 @@ public class CanvasModelEvent extends EventObject {
         if (ret == null) {
             Map<AttributeMapKey, Object> newVals = newValues;
             if (newVals != null) {
-                HashSet<CanvasObject> keys = new HashSet<CanvasObject>();
+                Set<CanvasObject> keys = new HashSet<CanvasObject>();
                 for (AttributeMapKey key : newVals.keySet()) {
                     keys.add(key.getObject());
                 }

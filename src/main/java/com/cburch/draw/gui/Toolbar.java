@@ -8,8 +8,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseMotionListener;
-
 import javax.swing.Icon;
 import javax.swing.JComponent;
 
@@ -131,7 +129,7 @@ class Toolbar extends JComponent {
                     icon.paintIcon(this, g, x, y);
                 }
 
-                if (tool == current) {
+                if (tool.equals(current)) {
                     GraphicsUtil.switchToWidth(g, 2);
                     g.setColor(Color.black);
                     g.drawRect(x - 1, y - 1, ICON_WIDTH + 2, ICON_HEIGHT + 2);
