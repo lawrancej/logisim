@@ -12,3 +12,6 @@ bin
 /nbproject/private/
 .externalToolBuilders
 *.orig
+src/site/output
+src/site/tmp
+src/site/crash.log

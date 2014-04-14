@@ -1,0 +1,122 @@
+---
+title: Related links
+---
+
+Related links
+-------------
+
+Libraries
+~~~~~~~~~
+
+This section contains libraries of components that can be imported into
+Logisim. If you have your own library of components that you think would
+be useful to others, I'll be happy to post a link here to a hosting Web
+site or to the library itself.
+
+link:download/7400-lib.zip[7400 series Logisim library from Ben Oztalay]
+(link:download/7400-lib.zip[ZIP],
+link:download/7400-lib.circ[uncompressed])
+
+A set of Logisim circuits corresponding to a large number of 7400-series
+chips, produced by Ben Oztalay. The pin layout matches the 7400 IC
+layouts. (2011, released into public domain).
+
+link:download/7400-series-rev1.zip[7400 series Logisim library from
+Technological Services Company]
+(link:download/7400-series-rev1.zip[ZIP],
+link:download/7400-series-rev1.circ[uncompressed])
+
+A set of Logisim circuits corresponding to a large number of 7400-series
+chips, produced by Technological Services Company. The pin layout has
+inputs on the left, outputs on the right. (Copyright 2005, released
+under the GPL).
+
+link:download/gray-1.0.jar[Gray Counter example] (JAR)
+
+The JAR library described in the _Logisim User's Guide_ for version
+2.3.0 and later.
+
+link:download/incr-1.1.jar[Incrementer example] (JAR)
+
+The outdated JAR library described in the _Logisim User's Guide_ prior
+to version 2.3.0. Compatible with versions Logisim 2.0 Beta 20 and
+later. The class name is `com.cburch.incr.Components`.
+
+Free graphical tools
+~~~~~~~~~~~~~~~~~~~~
+
+My hope is that some day some other software developers out there will
+create something that in my view renders Logisim irrelevant. So I
+occasionally browse the competition to see whether that day has come.
+Here's a list of links, and you can judge for yourself.
+
+* http://www.spsu.edu/cs/faculty/bbrown/circuits/howto.html[Digital
+Works 2.0] is Windows freeware. It is a fairly complete package, but it
+is no longer under development. I no longer know where one can download
+a copy. _18 Jul 2007_.
+*
+http://tams-www.informatik.uni-hamburg.de/applets/hades/webdemos/index.html[HADES]
+is a Java-based tool, which is available at no cost but does not appear
+to be open-source. The simulation and library functionality is quite
+extensive, but the interface is on the awkward side. _18 Jul 2007_
+* http://www.cs.mtu.edu/~pop/jlsp/bin/JLS.html[JLS] is a Java-based tool
+that is available at no cost from the author but is not open-source or
+freeware. It doesn't simulate circuits as you build them, but its
+simulation capabilities are more extensive than Logisim's. _18 Jul 2007_
+* link:index.html[Logisim] is an open source Java tool. Of course, I
+think it's the best choice. _18 Jul 2007_
+* http://www.softronix.com/logic.html[MultiMedia Logic] is open source
+Windows software; It doesn't seem to support hierarchical circuits or
+wire bundling, so it's quite limited as far as designing CPU-scale
+circuits, but it does provide a fun set of I/O components. _18 Jul 2007_
+* http://www.tkgate.org/index.html[TkGate] is open source software. It's
+probably the most legitimate no-cost competitor to Logisim: It's
+simulation facilities seem quite sound, though the interface strikes me
+as rather awkward. It requires tcl/tk to run; it can run on Windows if
+you have Cygwin installed. _18 Jul 2007_
+* http://math.hws.edu/TMCM/java/xLogicCircuits/[xLogicCircuits] is my
+favorite among the bare-bones Java applets. It has some utility if
+you're spending one or two weeks introducing students to the subject.
+_18 Jul 2007_
+* Other alternatives I have investigated, but which don't yet seem have
+much to recommend them:
+** http://www.a-rostin.de/klogic/[KLogic], open source Linux
+** http://www.tetzl.de/java_logic_simulator.html[LogicSim], open source
+Java
+** http://web.mit.edu/ara/www/ds.html[Digital Simulator], closed source
+shareware, free for education
+
+You might also find my more exhaustive link:links-2002.html[outdated
+list] useful. Maybe.
+
+Commercial graphical tools
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* http://www.matrixmultimedia.com[Digital Works 3.0] is a commercial
+Windows product; I have not tried it, but presumably it is more thorough
+than Digital Works 2.0, which was already good. It does not seem to be
+under active development. _18 Jul 2007_
+* http://www.logicworks5.com[LogicWorks] is a Windows-specific
+commercial product also, but it seems more likely to receive continuing
+support. I have not tried it, but it seems like a thorough system. It
+includes some support for incorporating VHDL specifications. _18 Jul
+2007_
+* Others:
+** http://www.research-systems.com/easysim/easysim.htm[EasySim],
+commercial Windows
+** http://home.arcor.de/khloch/locad/index.htm[LOCAD], commercial(?)
+Windows, in German
+
+Text-based tools
+~~~~~~~~~~~~~~~~
+
+* http://www.icarus.com/eda/verilog/[Icarus Verilog], the dominant
+open-source Verilog compiler
+* Others:
+** http://www.soe.ucsc.edu/~elm/Software/Esim/[esim], source available
+but license unclear, uses custom language
+** http://www.cs.uiowa.edu/~jones/logicsim/[Iowa Logic Specification
+Language], open source, uses custom language
+** https://sourceforge.net/projects/veriwell/[VeriWell], open source,
+uses Verilog
+

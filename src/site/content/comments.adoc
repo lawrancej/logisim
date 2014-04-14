@@ -1,0 +1,10 @@
+---
+title: Comments
+---
+
+Comments
+--------
+
+If you find Logisim useful, _especially_ in a class you teach, mailto:lawrancej@wit.edu[please e-mail me].
+
+I welcome bug reports, feature requests, and questions at https://github.com/lawrancej/logisim/issues[Logisim's issue tracker].

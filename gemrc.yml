@@ -1,0 +1,4 @@
+gem: --no-rdoc --no-ri
+gemhome: ./build/gems
+gempath:
+  - ./build/gems

@@ -1,0 +1,51 @@
+---
+title: Download Logisim
+---
+
+Download Logisim
+----------------
+
+Logisim should run on any platform supporting Java, version 5 or later.
+
+1.  Logisim requires Java 5 or later. If you do not already have it on
+your computer, Java is available from `java.sun.com`.
+2.  Download Logisim from
+http://sourceforge.net/projects/circuit/[Logisim's SourceForge.net
+page]. You will three choices of which release to download.
+* A `.jar` file - runs on any platform, though not necessarily
+conveniently.
+* A MacOS `.tar.gz` file
+* A Windows `.exe` file
++
+If you use MacOS or Windows, I would recommend using the release
+specific to your platform.
+3.  To execute the program:
+* _With the generic `.jar` file:_ On Windows and MacOS systems, you will
+likely be able to start Logisim by double-clicking the JAR file. If that
+doesn't work, or if you use Linux or Solaris, you can type
+```java -jar logisim-XX.jar`'' at the command line.
+* _With the MacOS X version:_ Once the downloaded `.tar.gz` version is
+uncompressed (this will likely happen automatically), just double-click
+the Logisim icon to start. You may want to place the icon into the
+Applications folder.
+* _With the Windows version:_ Just double-click the Logisim icon. You
+may want to create a shortcut on the desktop and/or in the Start menu to
+make starting Logisim easier.
+
+If you find Logisim useful, please link:comments.html[send me a
+comment]!
+
+Copyright and authorship
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Copyright (c) 2005, Carl Burch.
+
+Logisim is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your
+option) any later version.
+
+Logisim is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the link:gpl.html[GNU General
+Public License] for more details.

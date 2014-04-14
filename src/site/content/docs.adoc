@@ -1,0 +1,37 @@
+---
+title: Documentation
+---
+
+Documentation
+-------------
+
+Official 2.7.x documentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+_link:docs/2.7/en/html/guide/tutorial/index.html[Beginner's Tutorial]_
+ +
+_link:docs/2.7/en/html/guide/index.html[The Guide to Being a Logisim
+User]_  +
+_link:docs/2.7/en/html/libs/index.html[Library Reference]_
+
+Unofficial 2.1.x documentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+http://www.youtube.com/watch?v=xcusC8ns0kM[A user-created video guide on
+YouTube]
+
+ +
+http://www.youtube.com/watch?v=M2qJ1pv3hf0[YouTube video demonstrating a
+particularly neat project: Conway's Game of Life]
+
+Peer-reviewed papers
+~~~~~~~~~~~~~~~~~~~~
+
+``http://www.cburch.com/pub/b_logisim.abs.html[*Logisim: A graphical
+system for logic circuit design and simulation*].'' _Journal of
+Educational Resources in Computing_ _2_:1, 2002, pages 5-16.
+
+``http://www.cburch.com/pub/bz_socs.abs.html[*Science of Computing Suite
+(SOCS): Resources for a Breadth-First Introduction*].'' With Lynn
+Ziegler. _Technical Symposium on Computer Science Education_ (SIGCSE),
+2004.

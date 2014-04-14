@@ -4,6 +4,12 @@ apply plugin: 'application'
 apply plugin: 'launch4j'
 apply plugin: 'sonar-runner'
 
+import org.jruby.Main as JRuby
+
+project.ext {
+    gemsDir = './build/gems'
+}
+
 mainClassName = "com.cburch.logisim.Main"
 version = '2.7.2'
 description = 'Logisim: Logic Simulator'
@@ -29,7 +35,8 @@ buildscript {
         classpath \
         'edu.sc.seis:gradle-launch4j:1.0.5',
         'net.sourceforge.nekohtml:nekohtml:1.9.18',
-        'javax.help:javahelp:2.0.05'
+        'javax.help:javahelp:2.0.05',
+        'org.jruby:jruby:1.7.11'
     }
 }
 
@@ -38,6 +45,14 @@ repositories {
     maven {
         url 'http://nexus.gephi.org/nexus/content/repositories/public'
     }
+}
+
+sourceSets {
+  main {
+    resources {
+      srcDir "${project.gemsDir}"
+    }
+  }
 }
 
 dependencies {
@@ -107,3 +122,41 @@ processResources << {
         }
     }
 }
+
+task gems << {
+    def configSettings = '--config-file gemrc.yml'
+    if(!hasGem("nanoc") || !hasGem("nanoc-asciidoctor") || !hasGem("adsf"))
+      runJRuby("gem install nanoc nanoc-asciidoctor adsf $configSettings")
+}
+
+def hasGem(gemName) {
+  new File("${project.gemsDir}/gems").list().find {it.startsWith(gemName) } != null
+}
+
+def runJRuby(cmdArg) {
+  def cmd = "-S $cmdArg"
+  println "Running JRuby: $cmd"
+  Thread.currentThread().setContextClassLoader(JRuby.class.classLoader)
+  JRuby.main("$cmd".split())
+}
+
+configurations {
+    jruby
+}
+dependencies {
+    jruby "org.jruby:jruby:1.7.11"
+}
+
+task compileSite (type: JavaExec, dependsOn: gems) {
+    args '-S', 'nanoc'
+}
+task view (type: JavaExec, dependsOn: compileSite) {
+    args '-S', 'nanoc', 'view'
+}
+
+[compileSite, view].each { task ->
+    task.classpath configurations.jruby, sourceSets.main.runtimeClasspath
+    task.workingDir = "src/site"
+    task.main = 'org.jruby.Main'
+}
+

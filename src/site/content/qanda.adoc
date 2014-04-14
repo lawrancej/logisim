@@ -1,0 +1,76 @@
+---
+title: Questions and answers
+---
+
+Questions and answers
+---------------------
+
+link:#pronounce[How do you pronounce Logisim?]  +
+link:#source[Can I get a copy of the source code?]  +
+link:#publish[Can I place a copy of the JAR file on a Web page for my
+students to download?]  +
+link:#textbook[I'd like to include your software with a textbook I'm
+publishing. Is that OK?]  +
+link:#sluggish[Why is Logisim so darn slow?]  +
+link:#gripe[Add feature _X_ now!]
+
+How do you pronounce Logisim?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+LODJ-uh-sim. I've heard people pronounce it LOG-ism, and that's just
+wrong.
+
+Can I get a copy of the source code?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The source code is available under the link:gpl.html[GNU Public
+License], and it is included in the distributed JAR file within the
+`src` subdirectory.
+
+Can I place a copy of the JAR file on a Web page for my students to download?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+First: Please let me know that you are using the program for your class.
+The more schools that contact me about using Logisim, the easier it will
+be for me to get support at my college to continue developing it.
+link:usage.html[Schools using Logisim].
+
+But to answer your question: That would absolutely be OK per the terms
+of Logisim's license (the link:gpl.html[GNU Public License]).
+
+I'd like to include your software with a textbook I'm publishing. Is that OK?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Of course; that usage would fall within the link:gpl.html[GPL], so
+technically you don't have to ask. But if it's a textbook that is used
+widely, I encourage you to contact me to discuss how Logisim can be
+altered to complement the textbook better.
+
+Why is Logisim so darn slow?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Actually, even though I use a low-power computer with a rather slow
+processor, I haven't noticed problems with Logisim's speed. (I would
+admit that startup is a bit sluggish, though.)
+
+To the extent that Logisim is sluggish, you may be inclined to blame the
+Java environment; but you'd be wrong. Inasmuch as it is slow, it is
+because I lack the time or incentive to make it fast. There are all
+sorts of places where the program does horribly efficient things, like
+repainting the whole circuit every time you move the mouse, or
+allocating memory in many more situations than necessary. I haven't
+noticed that this inefficiency causes speed problems, and so I've
+concentrated on adding features instead of worrying over what appears to
+be a non-problem.
+
+Add feature _X_ now!
+^^^^^^^^^^^^^^^^^^^^
+
+Ok, first of all, this is a *Q&A* page, and that's not a question or an
+answer.
+
+Please remember that you aren't paying for Logisim. If you'd like to pay
+me at reasonable rates, I'll be happy to entertain demands. In the
+meantime, please reciprocate my generosity in releasing the program by
+politely wording suggestions for improvements. And thanks for the
+suggestion!
