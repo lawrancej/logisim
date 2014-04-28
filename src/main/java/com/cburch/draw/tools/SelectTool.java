@@ -274,6 +274,8 @@ public class SelectTool extends AbstractTool {
                 selection.setSelected(clicked, !selected.contains(clicked));
             }
             break;
+        default:
+        	break;
         }
         selection.clearDrawsSuppressed();
         repaintArea(canvas);
@@ -467,8 +469,16 @@ public class SelectTool extends AbstractTool {
                 int y0 = start.getY();
                 int x1 = end.getX();
                 int y1 = end.getY();
-                if (x1 < x0) { int t = x0; x0 = x1; x1 = t; }
-                if (y1 < y0) { int t = y0; y0 = y1; y1 = t; }
+                if (x1 < x0) { 
+                	int t = x0; 
+                	x0 = x1; 
+                	x1 = t; 
+                }
+                if (y1 < y0) { 
+                	int t = y0; 
+                	y0 = y1; 
+                	y1 = t; 
+                }
 
                 // make the region that's not being selected darker
                 int w = canvas.getWidth();
@@ -484,6 +494,8 @@ public class SelectTool extends AbstractTool {
                 g.drawRect(x0, y0, x1 - x0, y1 - y0);
             }
             break;
+        default:
+        	break;
         }
     }
 
@@ -491,7 +503,9 @@ public class SelectTool extends AbstractTool {
             boolean assumeFilled) {
         Location loc = Location.create(x, y);
         for (CanvasObject o : model.getObjectsFromTop()) {
-            if (o.contains(loc, assumeFilled)) return o;
+            if (o.contains(loc, assumeFilled)) {
+            	return o;
+            }
         }
         return null;
     }

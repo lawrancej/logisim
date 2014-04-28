@@ -7,6 +7,7 @@ import java.util.AbstractSet;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import com.cburch.draw.model.CanvasObject;
 
@@ -55,7 +56,7 @@ public class MatchingSet<E extends CanvasObject> extends AbstractSet<E> {
 
     }
 
-    private HashSet<Member<E>> set;
+    private Set<Member<E>> set;
 
     public MatchingSet() {
         set = new HashSet<Member<E>>();

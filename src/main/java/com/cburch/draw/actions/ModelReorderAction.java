@@ -136,8 +136,8 @@ public class ModelReorderAction extends ModelAction {
         }
     }
 
-    private ArrayList<ReorderRequest> requests;
-    private ArrayList<CanvasObject> objects;
+    private List<ReorderRequest> requests;
+    private List<CanvasObject> objects;
     private int type;
 
     public ModelReorderAction(CanvasModel model, List<ReorderRequest> requests) {
@@ -148,7 +148,7 @@ public class ModelReorderAction extends ModelAction {
             objects.add(r.getObject());
         }
         // 0 = mixed/unknown, -1 = to greater index, 1 = to smaller index
-        int type = 0;
+        int typeIndex = 0;
         for (ReorderRequest r : requests) {
             int thisType;
             int from = r.getFromIndex();
@@ -160,14 +160,14 @@ public class ModelReorderAction extends ModelAction {
             } else {
                 thisType = 0;
             }
-            if (type == 2) {
-                type = thisType;
-            } else if (type != thisType) {
-                type = 0;
+            if (typeIndex == 2) {
+                typeIndex = thisType;
+            } else if (typeIndex != thisType) {
+                typeIndex = 0;
                 break;
             }
         }
-        this.type = type;
+        this.type = typeIndex;
     }
 
     public List<ReorderRequest> getReorderRequests() {
@@ -197,7 +197,7 @@ public class ModelReorderAction extends ModelAction {
 
     @Override
     void undoSub(CanvasModel model) {
-        ArrayList<ReorderRequest> inv = new ArrayList<ReorderRequest>(requests.size());
+        List<ReorderRequest> inv = new ArrayList<ReorderRequest>(requests.size());
         for (int i = requests.size() - 1; i >= 0; i--) {
             ReorderRequest r = requests.get(i);
             inv.add(new ReorderRequest(r.getObject(), r.getToIndex(),

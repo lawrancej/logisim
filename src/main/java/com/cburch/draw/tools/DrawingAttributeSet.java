@@ -176,7 +176,8 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
         return true;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public <V> V getValue(Attribute<V> attr) {
         Iterator<Attribute<?>> ait = attrs.iterator();
         Iterator<Object> vit = values.iterator();
@@ -184,9 +185,7 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
             Object a = ait.next();
             Object v = vit.next();
             if (a.equals(attr)) {
-                @SuppressWarnings("unchecked")
-                V ret = (V) v;
-                return ret;
+                return (V) v;
             }
         }
         return null;
@@ -220,7 +219,6 @@ public class DrawingAttributeSet implements AttributeSet, Cloneable {
 
     public <E extends CanvasObject> E applyTo(E drawable) {
         AbstractCanvasObject d = (AbstractCanvasObject) drawable;
-        // use a for(i...) loop since the attribute list may change as we go on
         for (int i = 0; i < d.getAttributes().size(); i++) {
             Attribute<?> attr = d.getAttributes().get(i);
             @SuppressWarnings("unchecked")

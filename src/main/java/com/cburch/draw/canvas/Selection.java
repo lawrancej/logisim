@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.cburch.draw.model.CanvasModelEvent;
@@ -22,10 +24,10 @@ public class Selection {
     private static final String TRANSLATING = "translating";
     private static final String HIDDEN = "hidden";
 
-    private ArrayList<SelectionListener> listeners;
-    private HashSet<CanvasObject> selected;
+    private List<SelectionListener> listeners;
+    private Set<CanvasObject> selected;
     private Set<CanvasObject> selectedView;
-    private HashMap<CanvasObject, String> suppressed;
+    private Map<CanvasObject, String> suppressed;
     private Set<CanvasObject> suppressedView;
     private Handle selectedHandle;
     private HandleGesture curHandleGesture;
@@ -73,7 +75,7 @@ public class Selection {
 
     public void clearSelected() {
         if (!selected.isEmpty()) {
-            ArrayList<CanvasObject> oldSelected;
+            List<CanvasObject> oldSelected;
             oldSelected = new ArrayList<CanvasObject>(selected);
             selected.clear();
             suppressed.clear();
@@ -99,7 +101,7 @@ public class Selection {
                 fireChanged(SelectionEvent.ACTION_ADDED, added);
             }
         } else {
-            ArrayList<CanvasObject> removed;
+            List<CanvasObject> removed;
             removed = new ArrayList<CanvasObject>(shapes.size());
             for (CanvasObject shape : shapes) {
                 if (selected.remove(shape)) {
@@ -119,9 +121,9 @@ public class Selection {
     }
 
     public void toggleSelected(Collection<CanvasObject> shapes) {
-        ArrayList<CanvasObject> added;
+        List<CanvasObject> added;
         added = new ArrayList<CanvasObject>(shapes.size());
-        ArrayList<CanvasObject> removed;
+        List<CanvasObject> removed;
         removed = new ArrayList<CanvasObject>(shapes.size());
         for (CanvasObject shape : shapes) {
             if (selected.contains(shape)) {
@@ -216,9 +218,9 @@ public class Selection {
 
     public void drawSuppressed(Graphics g, CanvasObject shape) {
         String state = suppressed.get(shape);
-        if (state == MOVING_HANDLE) {
+        if (state.equals(MOVING_HANDLE)) {
             shape.paint(g, curHandleGesture);
-        } else if (state == TRANSLATING) {
+        } else if (state.equals(TRANSLATING)) {
             g.translate(moveDx, moveDy);
             shape.paint(g, null);
         }
@@ -249,6 +251,8 @@ public class Selection {
                 setHandleSelected(gesture.getResultingHandle());
 
             }
+			break;
+		default:
 			break;
         }
     }

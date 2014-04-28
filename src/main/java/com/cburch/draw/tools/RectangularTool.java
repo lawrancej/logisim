@@ -165,11 +165,6 @@ abstract class RectangularTool extends AbstractTool {
 
     private void repaintArea(Canvas canvas, Bounds bds) {
         canvas.repaint();
-        /* The below doesn't work because Java doesn't deal correctly with stroke
-         * widths that go outside the clip area
-        canvas.repaintCanvasCoords(bds.getX() - 10, bds.getY() - 10,
-                bds.getWidth() + 20, bds.getHeight() + 20);
-         */
     }
 
     @Override

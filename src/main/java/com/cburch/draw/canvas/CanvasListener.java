@@ -61,10 +61,8 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
         canvas.requestFocus();
         if (e.isPopupTrigger()) {
             handlePopupTrigger(e);
-        } else if (e.getButton() == 1) {
-            if (tool != null) {
+        } else if (e.getButton() == 1 && tool != null) {
                 tool.mousePressed(canvas, e);
-            }
 
         }
     }
@@ -92,16 +90,15 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
             }
 
             handlePopupTrigger(e);
-        } else if (e.getButton() == 1) {
-            if (tool != null) {
+        } else if (e.getButton() == 1 && tool != null) {
                 tool.mouseReleased(canvas, e);
-            }
-
         }
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) { }
+    public void mouseClicked(MouseEvent e) { 
+    	
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) {

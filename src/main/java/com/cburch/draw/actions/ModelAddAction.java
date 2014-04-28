@@ -6,13 +6,15 @@ package com.cburch.draw.actions;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelAddAction extends ModelAction {
-    private ArrayList<CanvasObject> added;
+    private List<CanvasObject> added;
     private int addIndex;
 
     public ModelAddAction(CanvasModel model, CanvasObject added) {

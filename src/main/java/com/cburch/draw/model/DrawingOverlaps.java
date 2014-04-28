@@ -34,7 +34,7 @@ class DrawingOverlaps {
 
     private void ensureUpdated() {
         for (CanvasObject o : untested) {
-            ArrayList<CanvasObject> over = new ArrayList<CanvasObject>();
+            List<CanvasObject> over = new ArrayList<CanvasObject>();
             for (CanvasObject o2 : map.keySet()) {
                 if (o != o2 && o.overlaps(o2)) {
                     over.add(o2);

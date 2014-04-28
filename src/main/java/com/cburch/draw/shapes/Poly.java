@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.collections15.list.UnmodifiableList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
 import com.cburch.draw.model.HandleGesture;
@@ -96,11 +93,6 @@ public class Poly extends FillableCanvasObject {
             return _("shapePolyline");
         }
     }
-
-    /*@Override
-    public Element toSvgElement(Document doc) {
-        return SvgCreator.createPoly(doc, this);
-    }*/
 
     @Override
     public List<Attribute<?>> getAttributes() {
@@ -379,9 +371,7 @@ public class Poly extends FillableCanvasObject {
         if (setForStroke(g)) {
             if (closed) {
                 g.drawPolygon(xs, ys, xs.length);
-            }
-
-            else {
+            } else {
                 g.drawPolyline(xs, ys, xs.length);
             }
 

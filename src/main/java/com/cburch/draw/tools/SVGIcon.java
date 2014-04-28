@@ -23,8 +23,8 @@ public class SVGIcon implements Icon {
 
 	private String path;
 	private GraphicsNode svgIcon = null;
-	private final int HEIGHT = 16;
-	private final int WIDTH = 16;
+	private final static int HEIGHT = 16;
+	private final static int WIDTH = 16;
 
     public SVGIcon(String path) {
         try {
@@ -48,13 +48,11 @@ public class SVGIcon implements Icon {
 
     @Override
     public int getIconHeight() {
-        //return (int)svgIcon.getPrimitiveBounds().getHeight();
         return HEIGHT;
     }
 
     @Override
     public int getIconWidth() {
-        //return (int)svgIcon.getPrimitiveBounds().getWidth();
         return WIDTH;
     }
 
@@ -66,9 +64,6 @@ public class SVGIcon implements Icon {
 
     @Override
     public void paintIcon(Component arg0, Graphics g, int x, int y) {
-/*        Graphics2D g2 = (Graphics2D) g.create();
-        arg0.paint(getGraphics());
-        g.drawImage(canvas.createImage(canvas.getWidth(), canvas.getHeight()), x, y, arg0);*/
         paintSvgIcon((Graphics2D)g,x,y,1,1);
     }
 

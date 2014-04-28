@@ -7,9 +7,6 @@ import java.awt.Graphics;
 import java.util.List;
 import java.util.Random;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
@@ -34,11 +31,6 @@ public class Oval extends Rectangular {
     public int matchesHashCode() {
         return super.matchesHashCode();
     }
-
-    /*@Override
-    public Element toSvgElement(Document doc) {
-        return SvgCreator.createOval(doc, this);
-    }*/
 
     @Override
     public String getDisplayName() {

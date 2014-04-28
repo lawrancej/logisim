@@ -7,9 +7,6 @@ import java.awt.Graphics;
 import java.util.List;
 import java.util.Random;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Bounds;
@@ -44,11 +41,6 @@ public class Rectangle extends Rectangular {
     public String getDisplayName() {
         return _("shapeRect");
     }
-
-    /*@Override
-    public Element toSvgElement(Document doc) {
-        return SvgCreator.createRectangle(doc, this);
-    }*/
 
     @Override
     public List<Attribute<?>> getAttributes() {
@@ -92,7 +84,11 @@ public class Rectangle extends Rectangular {
 
     @Override
     public void draw(Graphics g, int x, int y, int w, int h) {
-        if (setForFill(g)) g.fillRect(x, y, w, h);
-        if (setForStroke(g)) g.drawRect(x, y, w, h);
+        if (setForFill(g)) {
+        	g.fillRect(x, y, w, h);
+        }
+        if (setForStroke(g)) {
+        	g.drawRect(x, y, w, h);
+        }
     }
 }

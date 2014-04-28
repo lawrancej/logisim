@@ -6,11 +6,13 @@ package com.cburch.draw.actions;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import com.cburch.draw.model.AttributeMapKey;
 import com.cburch.draw.model.CanvasModel;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Attribute;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class ModelChangeAttributeAction extends ModelAction {
@@ -28,7 +30,7 @@ public class ModelChangeAttributeAction extends ModelAction {
 
     @Override
     public Collection<CanvasObject> getObjects() {
-        HashSet<CanvasObject> ret = new HashSet<CanvasObject>();
+        Set<CanvasObject> ret = new HashSet<CanvasObject>();
         for (AttributeMapKey key : newValues.keySet()) {
             ret.add(key.getObject());
         }
@@ -46,7 +48,7 @@ public class ModelChangeAttributeAction extends ModelAction {
                     if (a == null ? at != null : !a.equals(at)) {
                         a = null;
                         break;
-                    }
+                   }
                 } else {
                     found = true;
                     a = at;

@@ -46,7 +46,6 @@ public class Canvas extends JComponent {
 
     public void toolGestureComplete(CanvasTool tool, CanvasObject created) {
         // nothing to do - subclass may override
-        ;
     }
 
     protected JPopupMenu showPopupMenu(MouseEvent e, CanvasObject clicked) {
@@ -69,7 +68,7 @@ public class Canvas extends JComponent {
 
     public void setModel(CanvasModel value, ActionDispatcher dispatcher) {
         CanvasModel oldValue = model;
-        if (oldValue != value) {
+        if (!oldValue.equals(value)) {
             if (oldValue != null) {
                 oldValue.removeCanvasModelListener(listener);
             }
@@ -88,7 +87,7 @@ public class Canvas extends JComponent {
 
     public void setTool(CanvasTool value) {
         CanvasTool oldValue = listener.getTool();
-        if (value != oldValue) {
+        if (!value.equals(oldValue)) {
             listener.setTool(value);
             firePropertyChange(TOOL_PROPERTY, oldValue, value);
         }
@@ -124,11 +123,11 @@ public class Canvas extends JComponent {
     }
 
     protected void paintForeground(Graphics g) {
-        CanvasModel model = this.model;
+        CanvasModel cModel = this.model;
         CanvasTool tool = listener.getTool();
-        if (model != null) {
+        if (cModel != null) {
             Graphics dup = g.create();
-            model.paint(g, selection);
+            cModel.paint(g, selection);
             dup.dispose();
         }
         if (tool != null) {

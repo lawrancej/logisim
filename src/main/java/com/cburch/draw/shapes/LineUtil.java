@@ -6,7 +6,9 @@ package com.cburch.draw.shapes;
 import com.cburch.logisim.data.Location;
 
 public class LineUtil {
-    private LineUtil() { }
+    private LineUtil() {
+    	
+    }
 
     // a value we consider "small enough" to equal it to zero:
     // (this is used for double solutions in 2nd or 3d degree equation)
@@ -69,13 +71,9 @@ public class LineUtil {
         if (isSegment) {
             if (num < 0) {
                 u = 0;
-            }
-
-            else if (num < len2) {
+            } else if (num < len2) {
                 u = num / len2;
-            }
-
-            else {
+            } else {
                 u = 1;
             }
 
@@ -115,6 +113,8 @@ public class LineUtil {
             // going southwest
             case 7:
                 return Location.create(px - d45, py + d45);
+            default:
+            	break;
             }
         }
         // should never happen

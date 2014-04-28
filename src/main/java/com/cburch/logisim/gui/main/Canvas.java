@@ -350,9 +350,7 @@ public class Canvas extends JPanel
             for (Tool o : opts) {
                 if (ret == null && o != null) {
                     ret = o;
-                }
-
-                else if (o instanceof EditTool) {
+                }    else if (o instanceof EditTool) {
                     ret = o;
                 }
 
@@ -786,7 +784,7 @@ public class Canvas extends JPanel
 
     private void computeViewportContents() {
         Set<WidthIncompatibilityData> exceptions = proj.getCurrentCircuit().getWidthIncompatibilityData();
-        if (exceptions == null || exceptions.size() == 0) {
+        if (exceptions == null || exceptions.isEmpty()) {
             viewport.setWidthMessage(null);
             return;
         }
@@ -851,9 +849,7 @@ public class Canvas extends JPanel
                 } else if (isSouth) {
                     if (isEast) {
                             viewport.setSoutheast(true);
-                    }
-
-                    else if (isWest) {
+                    }    else if (isWest) {
                            viewport.setSouthwest(true);
                     }
 
@@ -864,9 +860,7 @@ public class Canvas extends JPanel
                 } else {
                     if (isEast) {
                             viewport.setEast(true);
-                    }
-
-                    else if (isWest) {
+                    }    else if (isWest) {
                            viewport.setWest(true);
                     }
 

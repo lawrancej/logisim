@@ -48,7 +48,7 @@ public class UndoLog {
     // accessor methods
     //
     public Action getUndoAction() {
-        if (undoLog.size() == 0) {
+        if (undoLog.isEmpty()) {
             return null;
         } else {
             return undoLog.getLast();
@@ -56,7 +56,7 @@ public class UndoLog {
     }
 
     public Action getRedoAction() {
-        if (redoLog.size() == 0) {
+        if (redoLog.isEmpty()) {
             return null;
         } else {
             return redoLog.getLast();
@@ -108,7 +108,7 @@ public class UndoLog {
     }
 
     public void undoAction() {
-        if (undoLog.size() > 0) {
+        if (!undoLog.isEmpty()) {
             Action action = undoLog.removeLast();
             if (action.isModification()) {
                 --modCount;

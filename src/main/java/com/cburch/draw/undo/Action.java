@@ -16,7 +16,9 @@ public abstract class Action {
 	 */
     public abstract void undo();
 
-    public boolean shouldAppendTo(Action other) { return false; }
+    public boolean shouldAppendTo(Action other) {
+    	return false; 
+    	}
 
     public Action append(Action other) {
         return new ActionUnion(this, other);
