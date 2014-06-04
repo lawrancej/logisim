@@ -16,21 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.List;
 import javax.imageio.ImageIO;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
-import javax.swing.ProgressMonitor;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
@@ -51,9 +37,7 @@ import com.itextpdf.awt.DefaultFontMapper.BaseFontParameters;
 import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfWriter;
- 
+import com.itextpdf.text.pdf.*;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import com.cburch.logisim.circuit.Circuit;
@@ -398,7 +382,12 @@ class ExportImage {
               PdfWriter writer = PdfWriter.getInstance(document, stream);
               document.open();
               PdfContentByte cb = writer.getDirectContent();
-              PdfGraphics2D pdfGraphics = new PdfGraphics2D(cb, width, height);
+              DefaultFontMapper fontMapper = new DefaultFontMapper();
+              BaseFontParameters fontParameters = new BaseFontParameters("LiberationSans-Regular.ttf");
+              fontParameters.encoding = BaseFont.IDENTITY_H;
+              fontMapper.putName("Dialog.plain", fontParameters);
+              fontMapper.putName("SansSerif.plain", fontParameters);
+              PdfGraphics2D pdfGraphics = new PdfGraphics2D(cb, width, height, fontMapper);
               paint(pdfGraphics, bds, circuit, width, height);
               pdfGraphics.dispose();
               document.close();
@@ -421,8 +410,11 @@ class ExportImage {
             }
     
           } catch (Exception e) {
-            JOptionPane.showMessageDialog(frame,
-                _("couldNotCreateFile"));
+            StringWriter writer = new StringWriter();
+            e.printStackTrace(new PrintWriter(writer));
+            String stackTrace = writer.toString();
+            JTextArea textArea = new JTextArea( _("couldNotCreateFile") + "\n" + stackTrace);
+            JOptionPane.showMessageDialog(frame, textArea);
             monitor.close();
             return;
           }
