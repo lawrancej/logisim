@@ -31,9 +31,9 @@ import com.cburch.logisim.util.GraphicsUtil;
 
 @SuppressWarnings("serial")
 public class About {
-	static final int IMAGE_BORDER = 10;
 	static final int IMAGE_WIDTH = 200;
 	static final int IMAGE_HEIGHT = 200;
+	static final Dimension DIMENSION = new Dimension(IMAGE_WIDTH, IMAGE_HEIGHT);
 	protected static JSVGCanvas svgCanvas =new JSVGCanvas();
 	
 	public static JComponent createComponents() {
@@ -48,7 +48,7 @@ public class About {
 
 	public static void showAboutDialog(JFrame owner) {
 		JPanel panel = new JPanel(new BorderLayout());
-		panel.add(createComponents());
+		panel.add("Center", createComponents());
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
 		JOptionPane.showMessageDialog(owner, panel,
