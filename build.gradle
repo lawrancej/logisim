@@ -7,6 +7,7 @@ apply plugin: 'sonar-runner'
 mainClassName = "com.cburch.logisim.Main"
 version = '2.7.2'
 description = 'Logisim: Logic Simulator'
+test.scanForTestClasses = false
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.8'
