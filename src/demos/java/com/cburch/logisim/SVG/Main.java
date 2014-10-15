@@ -17,7 +17,6 @@ public class Main extends JPanel implements Runnable {
 
 	private Thread thread;
 	private JFrame frame;
-	private Mouse mouse;
 
 	private boolean running = false;
 
@@ -31,10 +30,8 @@ public class Main extends JPanel implements Runnable {
 	public static void main(String[] args) {
 		Main test = new Main();
 		test.frame = new JFrame(TITLE);
-		test.mouse = new Mouse();
 		test.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		test.frame.getContentPane().add(test);
-		test.frame.addMouseListener(test.mouse);
 		test.frame.pack();
 		test.frame.setFocusable(true);
 		test.frame.setLocationRelativeTo(null);
@@ -86,24 +83,15 @@ public class Main extends JPanel implements Runnable {
 		}
 		stop();
 	}
-
-	private void update() {
-		if(!(mouse.getCoords() == null)) {
-			/*JPanel p = (JPanel) Image.createComponent("andGate.svg", mouse.getCoords());
-			p.setLayout(null);
-			p.setLocation(mouse.getCoords());
-			add(p);
-			frame.pack();*/
-		}
+	
+	public void update() {
 	}
 
-	private void render() {
-		Graphics g = getGraphics();
+	public void render() {
+		/*Graphics g = getGraphics();
 		java.awt.Image p;
-		p = Image.createComponent("andGate.svg", new Point(0,0));
-		g.drawImage(
-				Image.createComponent("andGate.svg", new Point(0,0))
-				, 0,0,50,50,null);
+		p = Image.createComponent("/drawing.svg", new Point(0,0));
+		g.drawImage(Image.createComponent("/drawing.svg", new Point(0,0)), 0,0,50,50,null);*/
 	}
 
 }
