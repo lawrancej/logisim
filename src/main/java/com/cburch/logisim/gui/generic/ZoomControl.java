@@ -7,6 +7,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.KeyEventPostProcessor;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
@@ -16,6 +19,7 @@ import javax.swing.AbstractSpinnerModel;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 @SuppressWarnings("serial")
@@ -43,6 +47,8 @@ public class ZoomControl extends JPanel {
             }
             return null;
         }
+        
+        
 
         @Override
         public Object getValue() {
@@ -142,6 +148,7 @@ public class ZoomControl extends JPanel {
     private JSpinner spinner;
     private SpinnerModel spinnerModel;
     private GridIcon grid;
+    private boolean pressed = false;
 
     public ZoomControl(ZoomModel model) {
         super(new BorderLayout());
@@ -150,6 +157,26 @@ public class ZoomControl extends JPanel {
         spinnerModel = new SpinnerModel();
         spinner = new JSpinner();
         spinner.setModel(spinnerModel);
+        //Zooming with CTRL+/-
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(new KeyEventPostProcessor() {
+        	
+        	public boolean postProcessKeyEvent(KeyEvent e) {
+                if (!pressed && e.isControlDown()){
+                	if (e.getKeyCode() == KeyEvent.VK_EQUALS) {
+                		spinnerModel.setValue(spinnerModel.getNextValue());
+                    	pressed = true;
+                	}
+                    else if (e.getKeyCode() == KeyEvent.VK_MINUS) {
+                    	spinnerModel.setValue(spinnerModel.getPreviousValue());
+                    	pressed = true;
+                    }
+                			
+                }
+                else
+                	pressed = false;
+                return true;
+            }
+        });
         this.add(spinner, BorderLayout.CENTER);
 
         grid = new GridIcon();
