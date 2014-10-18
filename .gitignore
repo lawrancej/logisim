@@ -1,14 +1,21 @@
 target
 reports
-build
+build/
+bin/
 .gradle
 .project
 .classpath
 *sonar*.properties
 .sonar
 .settings
-bin
 *.class
 /nbproject/private/
 .externalToolBuilders
 *.orig
+
+# Temp files
+*~
+#*#
+
+# OS specific
+Thumbs.db
