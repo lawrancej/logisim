@@ -95,10 +95,10 @@ public class TableLayout implements LayoutManager2 {
             int[] prefCol = new int[colCount];
             int[] prefRow = new int[contents.size()];
             int height = 0;
-            for (int i = 0; i < prefRow.length; i++) {
+            for (int i = 0; i < prefRow.length; ++i) {
                 Component[] row = contents.get(i);
                 int rowHeight = 0;
-                for (int j = 0; j < row.length; j++) {
+                for (int j = 0; j < row.length; ++j) {
                     if (row[j] != null) {
                         Dimension dim = row[j].getPreferredSize();
                         if (dim.height > rowHeight) {
@@ -115,7 +115,7 @@ public class TableLayout implements LayoutManager2 {
                 height += rowHeight;
             }
             int width = 0;
-            for (int i = 0; i < prefCol.length; i++) {
+            for (int i = 0; i < prefCol.length; ++i) {
                 width += prefCol[i];
             }
             this.prefs = new Dimension(width, height);
@@ -174,10 +174,10 @@ public class TableLayout implements LayoutManager2 {
         double y = y0;
         int i = -1;
         for (Component[] row : contents) {
-            i++;
+            ++i;
             int yRound = (int) (y + 0.5);
             int x = x0;
-            for (int j = 0; j < row.length; j++) {
+            for (int j = 0; j < row.length; ++j) {
                 Component comp = row[j];
                 if (comp != null) {
                     row[j].setBounds(x, yRound, prefCol[j], prefRow[i]);

@@ -229,9 +229,8 @@ public class Clock extends InstanceFactory {
             state.sending = desired;
             Instance.getInstanceFor(comp).fireInvalidated();
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     //

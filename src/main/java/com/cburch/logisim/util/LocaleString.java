@@ -2,9 +2,11 @@ package com.cburch.logisim.util;
 
 import java.util.HashMap;
 import java.util.Locale;
+
 import javax.swing.JComponent;
-import org.slf4j.*;
-import com.cburch.logisim.gui.start.Startup;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Given a string, return the locale-specific translation.

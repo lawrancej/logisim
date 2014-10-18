@@ -56,11 +56,11 @@ public class ModelChangeAttributeAction extends ModelAction {
             }
             attr = a;
         }
+        
         if (a == null) {
             return _("actionChangeAttributes");
-        } else {
-            return _("actionChangeAttribute", a.getDisplayName());
         }
+        return _("actionChangeAttribute", a.getDisplayName());
     }
 
     @Override

@@ -66,9 +66,12 @@ public class Constant extends InstanceFactory {
         @Override
         @SuppressWarnings("unchecked")
         public <V> V getValue(Attribute<V> attr) {
-            if (attr == StdAttr.FACING) return (V) facing;
-            if (attr == StdAttr.WIDTH) return (V) width;
-            if (attr == ATTR_VALUE) return (V) Integer.valueOf(value.toIntValue());
+            if (attr == StdAttr.FACING)
+            	return (V) facing;
+            if (attr == StdAttr.WIDTH)
+            	return (V) width;
+            if (attr == ATTR_VALUE)
+            	return (V) Integer.valueOf(value.toIntValue());
             return null;
         }
 

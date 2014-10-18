@@ -206,8 +206,7 @@ public class HorizontalSplitPane extends JPanel {
         if (value < 0.0) {
             value = 0.0;
         }
-
-        if (value > 1.0) {
+        else if (value > 1.0) {
             value = 1.0;
         }
 

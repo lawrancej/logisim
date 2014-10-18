@@ -93,9 +93,8 @@ public class InputEventUtil {
                 ret.append(it.next());
             }
             return ret.toString();
-        } else {
-            return "";
         }
+        return "";
     }
 
     public static int fromDisplayString(String str) {
@@ -104,27 +103,27 @@ public class InputEventUtil {
         while (toks.hasMoreTokens()) {
             String s = toks.nextToken();
             if (s.equals(_("ctrlMod"))) {
-                          ret |= InputEvent.CTRL_DOWN_MASK;
+            	ret |= InputEvent.CTRL_DOWN_MASK;
             }
 
             else if (s.equals(_("altMod"))) {
-                      ret |= InputEvent.ALT_DOWN_MASK;
+            	ret |= InputEvent.ALT_DOWN_MASK;
             }
 
             else if (s.equals(_("shiftMod"))) {
-                    ret |= InputEvent.SHIFT_DOWN_MASK;
+            	ret |= InputEvent.SHIFT_DOWN_MASK;
             }
 
             else if (s.equals(_("button1Mod"))) {
-                  ret |= InputEvent.BUTTON1_DOWN_MASK;
+            	ret |= InputEvent.BUTTON1_DOWN_MASK;
             }
 
             else if (s.equals(_("button2Mod"))) {
-                  ret |= InputEvent.BUTTON2_DOWN_MASK;
+            	ret |= InputEvent.BUTTON2_DOWN_MASK;
             }
 
             else if (s.equals(_("button3Mod"))) {
-                  ret |= InputEvent.BUTTON3_DOWN_MASK;
+            	ret |= InputEvent.BUTTON3_DOWN_MASK;
             }
 
             else {
@@ -176,9 +175,8 @@ public class InputEventUtil {
                 ret.append(it.next());
             }
             return ret.toString();
-        } else {
-            return "";
         }
+        return "";
     }
 
     public static String toKeyDisplayString(int mods) {
@@ -209,8 +207,7 @@ public class InputEventUtil {
                 ret.append(it.next());
             }
             return ret.toString();
-        } else {
-            return "";
         }
+        return "";
     }
 }

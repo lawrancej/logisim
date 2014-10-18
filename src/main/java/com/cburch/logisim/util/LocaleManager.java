@@ -18,7 +18,8 @@ public class LocaleManager {
     // static members
     private static final String SETTINGS_NAME = "settings";
     private static ArrayList<LocaleManager> managers = new ArrayList<LocaleManager>();
-
+    
+    // TODO StringGetter is deprecated
     private static class LocaleGetter implements StringGetter {
         private LocaleManager source;
         private String key;

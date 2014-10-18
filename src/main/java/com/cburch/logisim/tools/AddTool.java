@@ -137,11 +137,11 @@ public class AddTool extends Tool {
         AddTool o = (AddTool) other;
         if (this.sourceLoadAttempted && o.sourceLoadAttempted) {
             return this.factory.equals(o.factory);
-        } else if (this.description == null) {
-            return o.description == null;
-        } else {
-            return this.description.equals(o.description);
         }
+        if (this.description == null) {
+            return o.description == null;
+        }
+        return this.description.equals(o.description);
     }
 
     public ComponentFactory getFactory(boolean forceLoad) {
@@ -152,17 +152,17 @@ public class AddTool extends Tool {
         ComponentFactory ret = factory;
         if (ret != null || sourceLoadAttempted) {
             return ret;
-        } else {
-            ret = description.getFactory(descriptionBase);
-            if (ret != null) {
-                AttributeSet base = getBaseAttributes();
-                Boolean value = (Boolean) ret.getFeature(ComponentFactory.SHOULD_SNAP, base);
-                shouldSnap = value == null ? true : value.booleanValue();
-            }
-            factory = ret;
-            sourceLoadAttempted = true;
-            return ret;
         }
+
+        ret = description.getFactory(descriptionBase);
+        if (ret != null) {
+        	AttributeSet base = getBaseAttributes();
+        	Boolean value = (Boolean) ret.getFeature(ComponentFactory.SHOULD_SNAP, base);
+        	shouldSnap = value == null ? true : value.booleanValue();
+        }
+        factory = ret;
+        sourceLoadAttempted = true;
+        return ret;
     }
 
     @Override
@@ -533,7 +533,7 @@ public class AddTool extends Tool {
             } else {
                 state = SHOW_NONE;
             }
-        } else{
+        } else {
             state = value;
         }
     }

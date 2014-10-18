@@ -285,7 +285,7 @@ public class TableSorter extends AbstractTableModel {
         if (modelToView == null) {
             int n = getViewToModel().length;
             modelToView = new int[n];
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; ++i) {
                 modelToView[modelIndex(i)] = i;
             }
         }
@@ -361,6 +361,7 @@ public class TableSorter extends AbstractTableModel {
                 } else {
                     comparison = getComparator(column).compare(o1, o2);
                 }
+                
                 if (comparison != 0) {
                     return directive.direction == DESCENDING ? -comparison : comparison;
                 }

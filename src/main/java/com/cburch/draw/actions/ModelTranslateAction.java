@@ -52,9 +52,8 @@ public class ModelTranslateAction extends ModelAction {
         if (other instanceof ModelTranslateAction) {
             ModelTranslateAction o = (ModelTranslateAction) other;
             return this.moved.equals(o.moved);
-        } else {
-            return false;
         }
+        return false;
     }
 
     @Override

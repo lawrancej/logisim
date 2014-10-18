@@ -55,22 +55,21 @@ class WindowMenuManager {
         if (currentManager == null) {
             setNullItems(false);
         }
- else {
-     currentManager.setSelected(false);
- }
+        else {
+        	currentManager.setSelected(false);
+        }
 
         currentManager = value;
         if (currentManager == null) {
-            setNullItems(true);
+        	setNullItems(true);
         }
- else {
-     currentManager.setSelected(true);
- }
+        else {
+        	currentManager.setSelected(true);
+        }
 
         if (doEnable) {
-            enableAll();
+        	enableAll();
         }
-
     }
 
     static void unsetCurrentManager(WindowMenuItemManager value) {

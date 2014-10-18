@@ -278,10 +278,7 @@ public class EditTool extends Tool {
         if (x >= 0) {
             return updateLocation(canvas, x, lastRawY, e.getModifiersEx());
         }
-
-        else {
-            return false;
-        }
+        return false;
 
     }
 
@@ -307,38 +304,38 @@ public class EditTool extends Tool {
         // already computed
         if (lastX == snapx && lastY == snapy && modsSame) {
             return wireLoc != NULL_LOCATION;
-        } else {
-            Location snap = Location.create(snapx, snapy);
-            if (modsSame) {
-                Object o = cache.get(snap);
-                if (o != null) {
-                    lastX = snapx;
-                    lastY = snapy;
-                    canvas.repaint();
-                    boolean ret = ((Boolean) o).booleanValue();
-                    wireLoc = ret ? snap : NULL_LOCATION;
-                    return ret;
-                }
-            } else {
-                cache.clear();
-            }
-
-            boolean ret = isEligible && isWiringPoint(canvas, snap, mods);
-            wireLoc = ret ? snap : NULL_LOCATION;
-            cache.put(snap, Boolean.valueOf(ret));
-            int toRemove = cache.size() - CACHE_MAX_SIZE;
-            Iterator<Location> it = cache.keySet().iterator();
-            while (it.hasNext() && toRemove > 0) {
-                it.next();
-                it.remove();
-                toRemove--;
-            }
-
-            lastX = snapx;
-            lastY = snapy;
-            canvas.repaint();
-            return ret;
         }
+
+        Location snap = Location.create(snapx, snapy);
+        if (modsSame) {
+        	Object o = cache.get(snap);
+        	if (o != null) {
+        		lastX = snapx;
+        		lastY = snapy;
+        		canvas.repaint();
+        		boolean ret = ((Boolean) o).booleanValue();
+        		wireLoc = ret ? snap : NULL_LOCATION;
+        		return ret;
+        	}
+        } else {
+        	cache.clear();
+        }
+
+        boolean ret = isEligible && isWiringPoint(canvas, snap, mods);
+        wireLoc = ret ? snap : NULL_LOCATION;
+        cache.put(snap, Boolean.valueOf(ret));
+        int toRemove = cache.size() - CACHE_MAX_SIZE;
+        Iterator<Location> it = cache.keySet().iterator();
+        while (it.hasNext() && toRemove > 0) {
+        	it.next();
+        	it.remove();
+        	--toRemove;
+        }
+
+        lastX = snapx;
+        lastY = snapy;
+        canvas.repaint();
+        return ret;
     }
 
     private boolean isWiringPoint(Canvas canvas, Location loc, int modsEx) {
@@ -354,7 +351,6 @@ public class EditTool extends Tool {
                         if (w.contains(loc) && !w.endsAt(loc)) {
                             return select;
                         }
-
                     }
                 }
             }
@@ -368,10 +364,9 @@ public class EditTool extends Tool {
 
 
         for (Wire w : circ.getWires()) {
-            if (w.contains(loc)) {
-                { return wiring;
-            }
- }
+        	if (w.contains(loc)) {
+        		return wiring;
+        	}
         }
         return select;
     }
@@ -415,7 +410,7 @@ public class EditTool extends Tool {
             }
 
             else {
-                                        select.keyPressed(canvas, e);
+            	select.keyPressed(canvas, e);
             }
 
             break;
@@ -425,7 +420,7 @@ public class EditTool extends Tool {
             }
 
             else {
-                                        select.keyPressed(canvas, e);
+            	select.keyPressed(canvas, e);
             }
 
             break;
@@ -435,11 +430,12 @@ public class EditTool extends Tool {
             }
 
             else {
-                                        select.keyPressed(canvas, e);
+            	select.keyPressed(canvas, e);
             }
 
             break;
-        case KeyEvent.VK_ALT:   updateLocation(canvas, e); e.consume(); break;
+        case KeyEvent.VK_ALT:
+        	updateLocation(canvas, e); e.consume(); break;
         default:
             select.keyPressed(canvas, e);
         }

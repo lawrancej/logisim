@@ -54,7 +54,7 @@ class LocaleSelector extends JList
         setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         DefaultListModel model = new DefaultListModel();
         items = new LocaleOption[locales.length];
-        for (int i = 0; i < locales.length; i++) {
+        for (int i = 0; i < locales.length; ++i) {
             items[i] = new LocaleOption(locales[i]);
             model.addElement(items[i]);
         }
@@ -69,7 +69,7 @@ class LocaleSelector extends JList
     public void localeChanged() {
         Locale current = LocaleManager.getLocale();
         LocaleOption sel = null;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < items.length; ++i) {
             items[i].update(current);
             if (current.equals(items[i].locale)) {
                 sel = items[i];

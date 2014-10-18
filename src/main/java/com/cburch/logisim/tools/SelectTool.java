@@ -242,11 +242,11 @@ public class SelectTool extends Tool {
                 setState(proj, MOVING);
                 proj.repaintCanvas();
                 return;
-            } else {
-                Action act = SelectionActions.drop(sel, in_sel);
-                if (act != null) {
-                    proj.doAction(act);
-                }
+            }
+            
+            Action act = SelectionActions.drop(sel, in_sel);
+            if (act != null) {
+            	proj.doAction(act);
             }
         }
 
@@ -327,11 +327,7 @@ public class SelectTool extends Tool {
     private boolean shouldConnect(Canvas canvas, int modsEx) {
         boolean shiftReleased = (modsEx & InputEvent.SHIFT_DOWN_MASK) == 0;
         boolean dflt = AppPreferences.MOVE_KEEP_CONNECT.getBoolean();
-        if (shiftReleased) {
-            return dflt;
-        } else {
-            return !dflt;
-        }
+        return shiftReleased ? dflt : !dflt;
     }
 
     @Override
