@@ -73,7 +73,6 @@ public class SelectTool extends Tool {
 
         @Override
         public void requestSatisfied(MoveGesture gesture, int dx, int dy) {
-        	System.out.println("called");
             clearCanvasMessage(canvas, dx, dy);
         }
     }
@@ -550,7 +549,6 @@ public class SelectTool extends Tool {
         Object getter = canvas.getErrorMessage();
         if (getter instanceof ComputingMessage) {
             ComputingMessage msg = (ComputingMessage) getter;
-            System.out.println("the truth " + msg.dx + " , " + dx);
             if (msg.dx == dx && msg.dy == dy) {
                 canvas.setErrorMessage(null, 0, 0);
                 canvas.repaint();
