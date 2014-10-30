@@ -9,9 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections15.list.UnmodifiableList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
 import com.cburch.draw.model.HandleGesture;
@@ -51,7 +48,7 @@ public class AppearancePort extends AppearanceElement {
 
     @Override
     public String getDisplayName() {
-        return _("circuitPort");
+        return getFromLocale("circuitPort");
     }
 
     /*@Override

@@ -38,8 +38,6 @@ import com.cburch.logisim.tools.move.MoveGesture;
 import com.cburch.logisim.tools.move.MoveRequestListener;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -75,6 +73,7 @@ public class SelectTool extends Tool {
 
         @Override
         public void requestSatisfied(MoveGesture gesture, int dx, int dy) {
+        	System.out.println("called");
             clearCanvasMessage(canvas, dx, dy);
         }
     }
@@ -121,12 +120,12 @@ public class SelectTool extends Tool {
 
     @Override
     public String getDisplayName() {
-        return _("selectTool");
+        return getFromLocale("selectTool");
     }
 
     @Override
     public String getDescription() {
-        return _("selectToolDesc");
+        return getFromLocale("selectToolDesc");
     }
 
     @Override
@@ -311,7 +310,7 @@ public class SelectTool extends Tool {
             if (dx != 0 || dy != 0) {
                 boolean queued = gesture.enqueueRequest(dx, dy);
                 if (queued) {
-                    canvas.setErrorMessage(new ComputingMessage(dx, dy), COLOR_COMPUTING);
+                    canvas.setErrorMessage(getFromLocale("moveWorkingMsg"), dx, dy, COLOR_COMPUTING);
                     // maybe CPU scheduled led the request to be satisfied
                     // just before the "if(queued)" statement. In any case, it
                     // doesn't hurt to check to ensure the message belongs.
@@ -344,9 +343,9 @@ public class SelectTool extends Tool {
             int dy = curDy;
             if (dx != 0 || dy != 0) {
                 if (!proj.getLogisimFile().contains(canvas.getCircuit())) {
-                    canvas.setErrorMessage(__("cannotModifyError"));
+                    canvas.setErrorMessage(getFromLocale("cannotModifyError"), dx, dy);
                 } else if (proj.getSelection().hasConflictWhenMoved(dx, dy)) {
-                    canvas.setErrorMessage(__("exclusiveError"));
+                    canvas.setErrorMessage(getFromLocale("exclusiveError"), dx, dy);
                 } else {
                     boolean connect = shouldConnect(canvas, e.getModifiersEx());
                     drawConnections = false;
@@ -357,7 +356,7 @@ public class SelectTool extends Tool {
                             gesture = new MoveGesture(new MoveRequestHandler(canvas),
                                     canvas.getCircuit(), canvas.getSelection().getAnchoredComponents());
                         }
-                        canvas.setErrorMessage(new ComputingMessage(dx, dy), COLOR_COMPUTING);
+                        canvas.setErrorMessage(getFromLocale("moveWorkingMsg"), dx, dy, COLOR_COMPUTING);
                         MoveResult result = gesture.forceRequest(dx, dy);
                         clearCanvasMessage(canvas, dx, dy);
                         repl = result.getReplacementMap();
@@ -459,7 +458,7 @@ public class SelectTool extends Tool {
             }
             if (!results.isEmpty()) {
                 SetAttributeAction act = new SetAttributeAction(canvas.getCircuit(),
-                        __("changeComponentAttributesAction"));
+                        getFromLocale("changeComponentAttributesAction"));
                 for (KeyConfigurationResult result : results) {
                     Component comp = (Component) result.getEvent().getData();
                     Map<Attribute<?>,Object> newValues = result.getAttributeValues();
@@ -551,14 +550,15 @@ public class SelectTool extends Tool {
         Object getter = canvas.getErrorMessage();
         if (getter instanceof ComputingMessage) {
             ComputingMessage msg = (ComputingMessage) getter;
+            System.out.println("the truth " + msg.dx + " , " + dx);
             if (msg.dx == dx && msg.dy == dy) {
-                canvas.setErrorMessage(null);
+                canvas.setErrorMessage(null, 0, 0);
                 canvas.repaint();
             }
         }
     }
 
-    private static class ComputingMessage implements StringGetter {
+    public static class ComputingMessage {
         private int dx;
         private int dy;
 
@@ -566,7 +566,7 @@ public class SelectTool extends Tool {
 
         @Override
         public String toString() {
-            return _("moveWorkingMsg");
+            return getFromLocale("moveWorkingMsg");
         }
     }
 }

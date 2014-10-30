@@ -39,8 +39,8 @@ class TemplateOptions extends OptionsPanel {
             Object src = event.getSource();
             if (src == templateButton) {
                 JFileChooser chooser = JFileChoosers.create();
-                chooser.setDialogTitle(_("selectDialogTitle"));
-                chooser.setApproveButtonText(_("selectDialogButton"));
+                chooser.setDialogTitle(getFromLocale("selectDialogTitle"));
+                chooser.setApproveButtonText(getFromLocale("selectDialogButton"));
                 int action = chooser.showOpenDialog(getPreferencesFrame());
                 if (action == JFileChooser.APPROVE_OPTION) {
                     File file = chooser.getSelectedFile();
@@ -58,8 +58,8 @@ class TemplateOptions extends OptionsPanel {
                     } catch (LoaderException ex) {
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(getPreferencesFrame(),
-                                String.format(_("templateErrorMessage"), ex.toString()),
-                                _("templateErrorTitle"),
+                                String.format(getFromLocale("templateErrorMessage"), ex.toString()),
+                                getFromLocale("templateErrorTitle"),
                                 JOptionPane.ERROR_MESSAGE);
                     } finally {
                         try {
@@ -180,19 +180,19 @@ class TemplateOptions extends OptionsPanel {
 
     @Override
     public String getTitle() {
-        return _("templateTitle");
+        return getFromLocale("templateTitle");
     }
 
     @Override
     public String getHelpText() {
-        return _("templateHelp");
+        return getFromLocale("templateHelp");
     }
 
     @Override
     public void localeChanged() {
-        plain.setText(_("templatePlainOption"));
-        empty.setText(_("templateEmptyOption"));
-        custom.setText(_("templateCustomOption"));
-        templateButton.setText(_("templateSelectButton"));
+        plain.setText(getFromLocale("templatePlainOption"));
+        empty.setText(getFromLocale("templateEmptyOption"));
+        custom.setText(getFromLocale("templateCustomOption"));
+        templateButton.setText(getFromLocale("templateSelectButton"));
     }
 }

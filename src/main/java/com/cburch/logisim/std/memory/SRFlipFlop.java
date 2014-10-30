@@ -9,7 +9,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class SRFlipFlop extends AbstractFlipFlop {
     public SRFlipFlop() {
         super("S-R Flip-Flop", "srFlipFlop.svg",
-                __("srFlipFlopComponent"), 2, true);
+                getFromLocale("srFlipFlopComponent"), 2, true);
     }
 
     @Override

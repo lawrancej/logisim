@@ -16,43 +16,43 @@ import com.cburch.logisim.tools.Tool;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Io extends Library {
-    static final AttributeOption LABEL_CENTER = new AttributeOption("center", "center", __("ioLabelCenter"));
+    static final AttributeOption LABEL_CENTER = new AttributeOption("center", "center", getFromLocale("ioLabelCenter"));
 
     static final Attribute<Color> ATTR_COLOR = Attributes.forColor("color",
-            __("ioColorAttr"));
+            getFromLocale("ioColorAttr"));
     static final Attribute<Color> ATTR_ON_COLOR
-        = Attributes.forColor("color", __("ioOnColor"));
+        = Attributes.forColor("color", getFromLocale("ioOnColor"));
     static final Attribute<Color> ATTR_OFF_COLOR
-        = Attributes.forColor("offcolor", __("ioOffColor"));
+        = Attributes.forColor("offcolor", getFromLocale("ioOffColor"));
     static final Attribute<Color> ATTR_BACKGROUND
-        = Attributes.forColor("bg", __("ioBackgroundColor"));
+        = Attributes.forColor("bg", getFromLocale("ioBackgroundColor"));
     static final Attribute<Object> ATTR_LABEL_LOC = Attributes.forOption("labelloc",
-            __("ioLabelLocAttr"),
+            getFromLocale("ioLabelLocAttr"),
             new Object[] { LABEL_CENTER, Direction.NORTH, Direction.SOUTH,
                 Direction.EAST, Direction.WEST });
     static final Attribute<Color> ATTR_LABEL_COLOR = Attributes.forColor("labelcolor",
-            __("ioLabelColorAttr"));
+            getFromLocale("ioLabelColorAttr"));
     static final Attribute<Boolean> ATTR_ACTIVE = Attributes.forBoolean("active",
-            __("ioActiveAttr"));
+            getFromLocale("ioActiveAttr"));
 
     static final Color DEFAULT_BACKGROUND = new Color(255, 255, 255, 0);
 
     private static FactoryDescription[] DESCRIPTIONS = {
-        new FactoryDescription("Button", __("buttonComponent"),
+        new FactoryDescription("Button", getFromLocale("buttonComponent"),
                 "button.svg", "Button"),
-        new FactoryDescription("Joystick", __("joystickComponent"),
+        new FactoryDescription("Joystick", getFromLocale("joystickComponent"),
                 "joystick.svg", "Joystick"),
-        new FactoryDescription("Keyboard", __("keyboardComponent"),
+        new FactoryDescription("Keyboard", getFromLocale("keyboardComponent"),
                 "keyboard.svg", "Keyboard"),
-        new FactoryDescription("LED", __("ledComponent"),
+        new FactoryDescription("LED", getFromLocale("ledComponent"),
                 "led.svg", "Led"),
-        new FactoryDescription("7-Segment Display", __("sevenSegmentComponent"),
+        new FactoryDescription("7-Segment Display", getFromLocale("sevenSegmentComponent"),
                 "7seg.svg", "SevenSegment"),
-        new FactoryDescription("Hex Digit Display", __("hexDigitComponent"),
+        new FactoryDescription("Hex Digit Display", getFromLocale("hexDigitComponent"),
                 "hexdig.svg", "HexDigit"),
-        new FactoryDescription("DotMatrix", __("dotMatrixComponent"),
+        new FactoryDescription("DotMatrix", getFromLocale("dotMatrixComponent"),
                 "dotmat.svg", "DotMatrix"),
-        new FactoryDescription("TTY", __("ttyComponent"),
+        new FactoryDescription("TTY", getFromLocale("ttyComponent"),
                 "tty.svg", "Tty"),
     };
 
@@ -64,7 +64,7 @@ public class Io extends Library {
     public String getName() { return "I/O"; }
 
     @Override
-    public String getDisplayName() { return _("ioLibrary"); }
+    public String getDisplayName() { return getFromLocale("ioLibrary"); }
 
     @Override
     public List<Tool> getTools() {

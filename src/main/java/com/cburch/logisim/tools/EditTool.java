@@ -108,12 +108,12 @@ public class EditTool extends Tool {
 
     @Override
     public String getDisplayName() {
-        return _("editTool");
+        return getFromLocale("editTool");
     }
 
     @Override
     public String getDescription() {
-        return _("editToolDesc");
+        return getFromLocale("editToolDesc");
     }
 
     @Override
@@ -459,7 +459,7 @@ public class EditTool extends Tool {
             final Circuit circuit = canvas.getCircuit();
             final Selection sel = canvas.getSelection();
             SetAttributeAction act = new SetAttributeAction(circuit,
-                    __("selectionRefaceAction"));
+                    getFromLocale("selectionRefaceAction"));
             for (Component comp : sel.getComponents()) {
                 if (!(comp instanceof Wire)) {
                     Attribute<Direction> attr = getFacingAttribute(comp);

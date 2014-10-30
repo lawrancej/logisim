@@ -46,7 +46,7 @@ class ToolbarActions {
 
         @Override
         public String getName() {
-            return _("toolbarAddAction");
+            return getFromLocale("toolbarAddAction");
         }
 
         @Override
@@ -73,7 +73,7 @@ class ToolbarActions {
 
         @Override
         public String getName() {
-            return _("toolbarRemoveAction");
+            return getFromLocale("toolbarRemoveAction");
         }
 
         @Override
@@ -104,7 +104,7 @@ class ToolbarActions {
 
         @Override
         public String getName() {
-            return _("toolbarMoveAction");
+            return getFromLocale("toolbarMoveAction");
         }
 
         @Override
@@ -152,7 +152,7 @@ class ToolbarActions {
 
         @Override
         public String getName() {
-            return _("toolbarInsertSepAction");
+            return getFromLocale("toolbarInsertSepAction");
         }
 
         @Override
@@ -177,7 +177,7 @@ class ToolbarActions {
 
         @Override
         public String getName() {
-            return _("toolbarRemoveSepAction");
+            return getFromLocale("toolbarRemoveSepAction");
         }
 
         @Override

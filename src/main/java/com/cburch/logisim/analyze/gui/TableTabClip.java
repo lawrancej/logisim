@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 import com.cburch.logisim.analyze.model.Entry;
 import com.cburch.logisim.analyze.model.TruthTable;
-import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 class TableTabClip implements ClipboardOwner {
@@ -119,8 +119,8 @@ class TableTabClip implements ClipboardOwner {
             // I don't know - the above was observed to throw an odd ArrayIndexOutOfBounds
             // exception on a Linux computer using Sun's Java 5 JVM
             JOptionPane.showMessageDialog(table.getRootPane(),
-                    _("clipPasteSupportedError"),
-                    _("clipPasteErrorTitle"),
+                    getFromLocale("clipPasteSupportedError"),
+                    getFromLocale("clipPasteErrorTitle"),
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -181,8 +181,8 @@ class TableTabClip implements ClipboardOwner {
             }
         } else {
             JOptionPane.showMessageDialog(table.getRootPane(),
-                _("clipPasteSupportedError"),
-                _("clipPasteErrorTitle"),
+                getFromLocale("clipPasteSupportedError"),
+                getFromLocale("clipPasteErrorTitle"),
                 JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -201,8 +201,8 @@ class TableTabClip implements ClipboardOwner {
             if (r0 + entries.length > rows
                     || c0 + entries[0].length > inputs + outputs) {
                 JOptionPane.showMessageDialog(table.getRootPane(),
-                        _("clipPasteEndError"),
-                        _("clipPasteErrorTitle"),
+                        getFromLocale("clipPasteEndError"),
+                        getFromLocale("clipPasteErrorTitle"),
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -213,8 +213,8 @@ class TableTabClip implements ClipboardOwner {
             if (r1 - r0 + 1 != entries.length
                     || c1 - c0 + 1 != entries[0].length) {
                 JOptionPane.showMessageDialog(table.getRootPane(),
-                        _("clipPasteSizeError"),
-                        _("clipPasteErrorTitle"),
+                        getFromLocale("clipPasteSizeError"),
+                        getFromLocale("clipPasteErrorTitle"),
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }

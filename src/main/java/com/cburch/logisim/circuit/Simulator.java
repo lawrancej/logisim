@@ -213,7 +213,7 @@ public class Simulator {
 
     public void tick() {
         ticker.tickOnce();
-    }
+    	}
 
     public void step() {
         synchronized(manager) {

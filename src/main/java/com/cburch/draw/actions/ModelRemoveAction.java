@@ -31,7 +31,7 @@ public class ModelRemoveAction extends ModelAction {
 
     @Override
     public String getName() {
-        return _("actionRemove", getShapesName(removed.keySet()));
+        return getFromLocale("actionRemove", getShapesName(removed.keySet()));
     }
 
     @Override

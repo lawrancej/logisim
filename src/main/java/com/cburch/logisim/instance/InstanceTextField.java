@@ -130,7 +130,7 @@ public class InstanceTextField implements AttributeListener, TextFieldListener,
     public Action getCommitAction(Circuit circuit, String oldText,
             String newText) {
         SetAttributeAction act = new SetAttributeAction(circuit,
-                __("changeLabelAction"));
+                getFromLocale("changeLabelAction"));
         act.set(comp, labelAttr, newText);
         return act;
     }

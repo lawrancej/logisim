@@ -3,7 +3,7 @@
 
 package com.cburch.logisim.std.gates;
 
-import static com.cburch.logisim.util.LocaleString.__;
+import static com.cburch.logisim.util.LocaleString.*;
 
 import java.awt.Graphics;
 
@@ -19,7 +19,7 @@ class OrGate extends AbstractGate {
     public static OrGate FACTORY = new OrGate();
 
     private OrGate() {
-        super("OR Gate", __("orGateComponent"));
+        super("OR Gate", getFromLocale("orGateComponent"));
         setRectangularLabel("\u2265" + "1");
         setIconNames("orGate.svg", "orGateRect.svg", "dinOrGate.svg");
         setPaintInputLines(true);

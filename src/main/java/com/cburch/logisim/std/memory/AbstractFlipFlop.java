@@ -23,7 +23,6 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 abstract class AbstractFlipFlop extends InstanceFactory {
@@ -31,7 +30,7 @@ abstract class AbstractFlipFlop extends InstanceFactory {
 
     private Attribute<AttributeOption> triggerAttribute;
 
-    protected AbstractFlipFlop(String name, String iconName, StringGetter desc,
+    protected AbstractFlipFlop(String name, String iconName, String desc,
             int numInputs, boolean allowLevelTriggers) {
         super(name, desc);
         setIconName(iconName);
@@ -61,12 +60,12 @@ abstract class AbstractFlipFlop extends InstanceFactory {
         ps[numInputs + 3] = new Port(-10, 30, Port.INPUT,  1);
         ps[numInputs + 4] = new Port(-30, 30, Port.INPUT,  1);
         ps[numInputs + 5] = new Port(-20, 30, Port.INPUT,  1);
-        ps[numInputs].setToolTip(__("flipFlopClockTip"));
-        ps[numInputs + 1].setToolTip(__("flipFlopQTip"));
-        ps[numInputs + 2].setToolTip(__("flipFlopNotQTip"));
-        ps[numInputs + 3].setToolTip(__("flipFlopResetTip"));
-        ps[numInputs + 4].setToolTip(__("flipFlopPresetTip"));
-        ps[numInputs + 5].setToolTip(__("flipFlopEnableTip"));
+        ps[numInputs].setToolTip(getFromLocale("flipFlopClockTip"));
+        ps[numInputs + 1].setToolTip(getFromLocale("flipFlopQTip"));
+        ps[numInputs + 2].setToolTip(getFromLocale("flipFlopNotQTip"));
+        ps[numInputs + 3].setToolTip(getFromLocale("flipFlopResetTip"));
+        ps[numInputs + 4].setToolTip(getFromLocale("flipFlopPresetTip"));
+        ps[numInputs + 5].setToolTip(getFromLocale("flipFlopEnableTip"));
         setPorts(ps);
     }
 
@@ -148,7 +147,7 @@ abstract class AbstractFlipFlop extends InstanceFactory {
         g.setColor(Color.GRAY);
         painter.drawPort(n + 3, "0", Direction.SOUTH);
         painter.drawPort(n + 4, "1", Direction.SOUTH);
-        painter.drawPort(n + 5, _("memEnableLabel"), Direction.SOUTH);
+        painter.drawPort(n + 5, getFromLocale("memEnableLabel"), Direction.SOUTH);
         g.setColor(Color.BLACK);
         for (int i = 0; i < n; i++) {
             painter.drawPort(i, getInputName(i), Direction.EAST);

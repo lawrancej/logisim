@@ -26,7 +26,7 @@ public class ModelInsertHandleAction extends ModelAction {
 
     @Override
     public String getName() {
-        return _("actionInsertHandle");
+        return getFromLocale("actionInsertHandle");
     }
 
     @Override

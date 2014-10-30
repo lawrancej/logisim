@@ -27,18 +27,18 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Counter extends InstanceFactory {
     static final AttributeOption ON_GOAL_WRAP = new AttributeOption("wrap",
-            "wrap", __("counterGoalWrap"));
+            "wrap", getFromLocale("counterGoalWrap"));
     static final AttributeOption ON_GOAL_STAY = new AttributeOption("stay",
-            "stay", __("counterGoalStay"));
+            "stay", getFromLocale("counterGoalStay"));
     static final AttributeOption ON_GOAL_CONT = new AttributeOption("continue",
-            "continue", __("counterGoalContinue"));
+            "continue", getFromLocale("counterGoalContinue"));
     static final AttributeOption ON_GOAL_LOAD = new AttributeOption("load",
-            "load", __("counterGoalLoad"));
+            "load", getFromLocale("counterGoalLoad"));
 
     static final Attribute<Integer> ATTR_MAX = Attributes.forHexInteger("max",
-            __("counterMaxAttr"));
+            getFromLocale("counterMaxAttr"));
     static final Attribute<AttributeOption> ATTR_ON_GOAL = Attributes.forOption("ongoal",
-            __("counterGoalAttr"),
+            getFromLocale("counterGoalAttr"),
             new AttributeOption[] { ON_GOAL_WRAP, ON_GOAL_STAY, ON_GOAL_CONT,
                 ON_GOAL_LOAD });
 
@@ -52,7 +52,7 @@ public class Counter extends InstanceFactory {
     private static final int CARRY = 6;
 
     public Counter() {
-        super("Counter", __("counterComponent"));
+        super("Counter", getFromLocale("counterComponent"));
         setOffsetBounds(Bounds.create(-30, -20, 30, 40));
         setIconName("counter.svg");
         setInstancePoker(RegisterPoker.class);
@@ -67,13 +67,13 @@ public class Counter extends InstanceFactory {
         ps[LD]  = new Port(-30, -10, Port.INPUT, 1);
         ps[CT]  = new Port(-30,  10, Port.INPUT, 1);
         ps[CARRY] = new Port(0,  10, Port.OUTPUT, 1);
-        ps[OUT].setToolTip(__("counterQTip"));
-        ps[IN].setToolTip(__("counterDataTip"));
-        ps[CK].setToolTip(__("counterClockTip"));
-        ps[CLR].setToolTip(__("counterResetTip"));
-        ps[LD].setToolTip(__("counterLoadTip"));
-        ps[CT].setToolTip(__("counterEnableTip"));
-        ps[CARRY].setToolTip(__("counterCarryTip"));
+        ps[OUT].setToolTip(getFromLocale("counterQTip"));
+        ps[IN].setToolTip(getFromLocale("counterDataTip"));
+        ps[CK].setToolTip(getFromLocale("counterClockTip"));
+        ps[CLR].setToolTip(getFromLocale("counterResetTip"));
+        ps[LD].setToolTip(getFromLocale("counterLoadTip"));
+        ps[CT].setToolTip(getFromLocale("counterEnableTip"));
+        ps[CARRY].setToolTip(getFromLocale("counterCarryTip"));
         setPorts(ps);
     }
 
@@ -197,8 +197,8 @@ public class Counter extends InstanceFactory {
                 b = str.substring(split);
             }
         } else {
-            a = _("counterLabel");
-            b = _("registerWidthLabel", "" + widthVal.getWidth());
+            a = getFromLocale("counterLabel");
+            b = getFromLocale("registerWidthLabel", "" + widthVal.getWidth());
         }
 
         // draw boundary, label
@@ -217,7 +217,7 @@ public class Counter extends InstanceFactory {
         painter.drawPort(LD);
         painter.drawPort(CARRY);
         painter.drawPort(CLR, "0", Direction.SOUTH);
-        painter.drawPort(CT, _("counterEnableLabel"), Direction.EAST);
+        painter.drawPort(CT, getFromLocale("counterEnableLabel"), Direction.EAST);
         g.setColor(Color.BLACK);
         painter.drawClock(CK, Direction.NORTH);
 

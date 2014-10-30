@@ -33,14 +33,14 @@ public final class Wire implements Component, AttributeSet, CustomHandles,
     public static final int WIDTH = 1;
 
     public static final AttributeOption VALUE_HORZ
-        = new AttributeOption("horz", __("wireDirectionHorzOption"));
+        = new AttributeOption("horz", getFromLocale("wireDirectionHorzOption"));
     public static final AttributeOption VALUE_VERT
-        = new AttributeOption("vert", __("wireDirectionVertOption"));
+        = new AttributeOption("vert", getFromLocale("wireDirectionVertOption"));
     public static final Attribute<AttributeOption> dir_attr
-        = Attributes.forOption("direction", __("wireDirectionAttr"),
+        = Attributes.forOption("direction", getFromLocale("wireDirectionAttr"),
             new AttributeOption[] { VALUE_HORZ, VALUE_VERT });
     public static final Attribute<Integer> len_attr
-        = Attributes.forInteger("length", __("wireLengthAttr"));
+        = Attributes.forInteger("length", getFromLocale("wireLengthAttr"));
 
     private static final List<Attribute<?>> ATTRIBUTES
         = Arrays.asList(new Attribute<?>[] { dir_attr, len_attr });

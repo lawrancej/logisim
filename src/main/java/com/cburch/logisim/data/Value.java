@@ -384,11 +384,11 @@ public class Value {
         }
 
         if (isErrorValue()) {
-            return _("valueError");
+            return getFromLocale("valueError");
         }
 
         if (!isFullyDefined()) {
-            return _("valueUnknown");
+            return getFromLocale("valueUnknown");
         }
 
 
@@ -414,11 +414,11 @@ public class Value {
             }
 
             if (isErrorValue()) {
-                return _("valueError");
+                return getFromLocale("valueError");
             }
 
             if (!isFullyDefined()) {
-                return _("valueUnknown");
+                return getFromLocale("valueUnknown");
             }
 
             return Integer.toString(toIntValue(), radix);
@@ -430,11 +430,11 @@ public class Value {
         case 0: return "-";
         case 1:
             if (error != 0) {
-                       return _("valueErrorSymbol");
+                       return getFromLocale("valueErrorSymbol");
             }
 
             else if (unknown != 0) {
-                return _("valueUnknownSymbol");
+                return getFromLocale("valueUnknownSymbol");
             }
 
             else if (value != 0) {

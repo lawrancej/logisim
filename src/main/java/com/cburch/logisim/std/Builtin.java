@@ -37,7 +37,7 @@ public class Builtin extends Library {
     public String getName() { return "Builtin"; }
 
     @Override
-    public String getDisplayName() { return _("builtinLibrary"); }
+    public String getDisplayName() { return getFromLocale("builtinLibrary"); }
 
     @Override
     public List<Tool> getTools() { return Collections.emptyList(); }

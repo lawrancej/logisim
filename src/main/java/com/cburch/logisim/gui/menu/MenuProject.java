@@ -114,25 +114,25 @@ class MenuProject extends Menu {
     }
 
     public void localeChanged() {
-        setText(_("projectMenu"));
-        addCircuit.setText(_("projectAddCircuitItem"));
-        loadLibrary.setText(_("projectLoadLibraryItem"));
-        loadBuiltin.setText(_("projectLoadBuiltinItem"));
-        loadLogisim.setText(_("projectLoadLogisimItem"));
-        loadJar.setText(_("projectLoadJarItem"));
-        unload.setText(_("projectUnloadLibrariesItem"));
-        moveUp.setText(_("projectMoveCircuitUpItem"));
-        moveDown.setText(_("projectMoveCircuitDownItem"));
-        setAsMain.setText(_("projectSetAsMainItem"));
-        remove.setText(_("projectRemoveCircuitItem"));
-        revertAppearance.setText(_("projectRevertAppearanceItem"));
-        layout.setText(_("projectEditCircuitLayoutItem"));
-        appearance.setText(_("projectEditCircuitAppearanceItem"));
-        viewToolbox.setText(_("projectViewToolboxItem"));
-        viewSimulation.setText(_("projectViewSimulationItem"));
-        analyze.setText(_("projectAnalyzeCircuitItem"));
-        stats.setText(_("projectGetCircuitStatisticsItem"));
-        options.setText(_("projectOptionsItem"));
+        setText(getFromLocale("projectMenu"));
+        addCircuit.setText(getFromLocale("projectAddCircuitItem"));
+        loadLibrary.setText(getFromLocale("projectLoadLibraryItem"));
+        loadBuiltin.setText(getFromLocale("projectLoadBuiltinItem"));
+        loadLogisim.setText(getFromLocale("projectLoadLogisimItem"));
+        loadJar.setText(getFromLocale("projectLoadJarItem"));
+        unload.setText(getFromLocale("projectUnloadLibrariesItem"));
+        moveUp.setText(getFromLocale("projectMoveCircuitUpItem"));
+        moveDown.setText(getFromLocale("projectMoveCircuitDownItem"));
+        setAsMain.setText(getFromLocale("projectSetAsMainItem"));
+        remove.setText(getFromLocale("projectRemoveCircuitItem"));
+        revertAppearance.setText(getFromLocale("projectRevertAppearanceItem"));
+        layout.setText(getFromLocale("projectEditCircuitLayoutItem"));
+        appearance.setText(getFromLocale("projectEditCircuitAppearanceItem"));
+        viewToolbox.setText(getFromLocale("projectViewToolboxItem"));
+        viewSimulation.setText(getFromLocale("projectViewSimulationItem"));
+        analyze.setText(getFromLocale("projectAnalyzeCircuitItem"));
+        stats.setText(getFromLocale("projectGetCircuitStatisticsItem"));
+        options.setText(getFromLocale("projectOptionsItem"));
     }
 
     @Override

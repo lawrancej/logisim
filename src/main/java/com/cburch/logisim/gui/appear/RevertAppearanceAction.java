@@ -23,7 +23,7 @@ public class RevertAppearanceAction extends Action {
 
     @Override
     public String getName() {
-        return _("revertAppearanceAction");
+        return getFromLocale("revertAppearanceAction");
     }
 
     @Override

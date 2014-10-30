@@ -27,7 +27,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Multiplexer extends InstanceFactory {
     public Multiplexer() {
-        super("Multiplexer", __("multiplexerComponent"));
+        super("Multiplexer", getFromLocale("multiplexerComponent"));
         setAttributes(new Attribute[] {
                 StdAttr.FACING, Plexers.ATTR_SELECT_LOC, Plexers.ATTR_SELECT, StdAttr.WIDTH,
                 Plexers.ATTR_DISABLED, Plexers.ATTR_ENABLE
@@ -156,13 +156,13 @@ public class Multiplexer extends InstanceFactory {
         ps[ps.length - 1] = new Port(0, 0, Port.OUTPUT, data.getWidth());
 
         for (int i = 0; i < inputs; i++) {
-            ps[i].setToolTip(__("multiplexerInTip", "" + i));
+            ps[i].setToolTip(getFromLocale("multiplexerInTip", "" + i));
         }
-        ps[inputs].setToolTip(__("multiplexerSelectTip"));
+        ps[inputs].setToolTip(getFromLocale("multiplexerSelectTip"));
         if (enable) {
-            ps[inputs + 1].setToolTip(__("multiplexerEnableTip"));
+            ps[inputs + 1].setToolTip(getFromLocale("multiplexerEnableTip"));
         }
-        ps[ps.length - 1].setToolTip(__("multiplexerOutTip"));
+        ps[ps.length - 1].setToolTip(getFromLocale("multiplexerOutTip"));
 
         instance.setPorts(ps);
     }

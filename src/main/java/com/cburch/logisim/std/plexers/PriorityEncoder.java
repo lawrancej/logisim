@@ -29,7 +29,7 @@ public class PriorityEncoder extends InstanceFactory {
     private static final int GS = 3;
 
     public PriorityEncoder() {
-        super("Priority Encoder", __("priorityEncoderComponent"));
+        super("Priority Encoder", getFromLocale("priorityEncoderComponent"));
         setAttributes(new Attribute[] {
                 StdAttr.FACING, Plexers.ATTR_SELECT, Plexers.ATTR_DISABLED
             }, new Object[] {
@@ -105,12 +105,12 @@ public class PriorityEncoder extends InstanceFactory {
         }
 
         for (int i = 0; i < n; i++) {
-            ps[i].setToolTip(__("priorityEncoderInTip", "" + i));
+            ps[i].setToolTip(getFromLocale("priorityEncoderInTip", "" + i));
         }
-        ps[n + OUT].setToolTip(__("priorityEncoderOutTip"));
-        ps[n + EN_IN].setToolTip(__("priorityEncoderEnableInTip"));
-        ps[n + EN_OUT].setToolTip(__("priorityEncoderEnableOutTip"));
-        ps[n + GS].setToolTip(__("priorityEncoderGroupSignalTip"));
+        ps[n + OUT].setToolTip(getFromLocale("priorityEncoderOutTip"));
+        ps[n + EN_IN].setToolTip(getFromLocale("priorityEncoderEnableInTip"));
+        ps[n + EN_OUT].setToolTip(getFromLocale("priorityEncoderEnableOutTip"));
+        ps[n + GS].setToolTip(getFromLocale("priorityEncoderGroupSignalTip"));
 
         instance.setPorts(ps);
     }

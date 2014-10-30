@@ -64,12 +64,12 @@ class MouseOptions extends OptionsPanel {
             String label2;
             if (curTool == null) {
                 g.setColor(Color.GRAY);
-                label1 = _("mouseMapNone");
+                label1 = getFromLocale("mouseMapNone");
                 label2 = null;
             } else {
                 g.setColor(Color.BLACK);
-                label1 = _("mouseMapText");
-                label2 = _("mouseMapText2", curTool.getDisplayName());
+                label1 = getFromLocale("mouseMapText");
+                label2 = getFromLocale("mouseMapText2", curTool.getDisplayName());
             }
             FontMetrics fm = g.getFontMetrics();
             int x1 = (sz.width - fm.stringWidth(label1)) / 2;
@@ -302,17 +302,17 @@ class MouseOptions extends OptionsPanel {
 
     @Override
     public String getTitle() {
-        return _("mouseTitle");
+        return getFromLocale("mouseTitle");
     }
 
     @Override
     public String getHelpText() {
-        return _("mouseHelp");
+        return getFromLocale("mouseHelp");
     }
 
     @Override
     public void localeChanged() {
-        remove.setText(_("mouseRemoveButton"));
+        remove.setText(getFromLocale("mouseRemoveButton"));
         addArea.repaint();
     }
 

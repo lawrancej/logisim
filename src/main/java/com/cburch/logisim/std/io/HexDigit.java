@@ -18,7 +18,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class HexDigit extends InstanceFactory {
     public HexDigit() {
-        super("Hex Digit Display", __("hexDigitComponent"));
+        super("Hex Digit Display", getFromLocale("hexDigitComponent"));
         setAttributes(new Attribute[] { Io.ATTR_ON_COLOR, Io.ATTR_OFF_COLOR,
                     Io.ATTR_BACKGROUND },
                 new Object[] { new Color(240, 0, 0), SevenSegment.DEFAULT_OFF,

@@ -34,7 +34,7 @@ public class Oval extends Rectangular {
 
     @Override
     public String getDisplayName() {
-        return _("shapeOval");
+        return getFromLocale("shapeOval");
     }
 
     @Override

@@ -27,10 +27,10 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class BitSelector extends InstanceFactory {
     public static final Attribute<BitWidth> GROUP_ATTR
-        = Attributes.forBitWidth("group", __("bitSelectorGroupAttr"));
+        = Attributes.forBitWidth("group", getFromLocale("bitSelectorGroupAttr"));
 
     public BitSelector() {
-        super("BitSelector", __("bitSelectorComponent"));
+        super("BitSelector", getFromLocale("bitSelectorComponent"));
         setAttributes(new Attribute[] {
                 StdAttr.FACING, StdAttr.WIDTH, GROUP_ATTR
             }, new Object[] {
@@ -98,9 +98,9 @@ public class BitSelector extends InstanceFactory {
         ps[0] = new Port(0, 0, Port.OUTPUT, group.getWidth());
         ps[1] = new Port(inPt.getX(), inPt.getY(), Port.INPUT, data.getWidth());
         ps[2] = new Port(selPt.getX(), selPt.getY(), Port.INPUT, select.getWidth());
-        ps[0].setToolTip(__("bitSelectorOutputTip"));
-        ps[1].setToolTip(__("bitSelectorDataTip"));
-        ps[2].setToolTip(__("bitSelectorSelectTip"));
+        ps[0].setToolTip(getFromLocale("bitSelectorOutputTip"));
+        ps[1].setToolTip(getFromLocale("bitSelectorDataTip"));
+        ps[2].setToolTip(getFromLocale("bitSelectorSelectTip"));
         instance.setPorts(ps);
     }
 

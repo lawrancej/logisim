@@ -30,7 +30,7 @@ public class ModelEditTextAction extends ModelAction {
 
     @Override
     public String getName() {
-        return _("actionEditText");
+        return getFromLocale("actionEditText");
     }
 
     @Override

@@ -25,13 +25,13 @@ public class FontUtil {
     public static String toStyleDisplayString(int style) {
         switch (style) {
         case Font.PLAIN:
-            return _("fontPlainStyle");
+            return getFromLocale("fontPlainStyle");
         case Font.ITALIC:
-            return _("fontItalicStyle");
+            return getFromLocale("fontItalicStyle");
         case Font.BOLD:
-            return _("fontBoldStyle");
+            return getFromLocale("fontBoldStyle");
         case Font.BOLD | Font.ITALIC:
-            return _("fontBoldItalicStyle");
+            return getFromLocale("fontBoldItalicStyle");
         default:
             return "??";
         }

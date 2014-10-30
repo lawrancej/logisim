@@ -73,12 +73,12 @@ public class AttrTable extends JPanel implements LocaleListener {
         Object value;
 
         public MyDialog(Dialog parent, JInputComponent input) {
-            super(parent, _("attributeDialogTitle"), true);
+            super(parent, getFromLocale("attributeDialogTitle"), true);
             configure(input);
         }
 
         public MyDialog(Frame parent, JInputComponent input) {
-            super(parent, _("attributeDialogTitle"), true);
+            super(parent, getFromLocale("attributeDialogTitle"), true);
             configure(input);
         }
 
@@ -198,7 +198,7 @@ public class AttrTable extends JPanel implements LocaleListener {
                     attrModel.getRow(rowIndex).setValue(value);
                 } catch (AttrTableSetException e) {
                     JOptionPane.showMessageDialog(parent, e.getMessage(),
-                            _("attributeChangeInvalidTitle"),
+                            getFromLocale("attributeChangeInvalidTitle"),
                             JOptionPane.WARNING_MESSAGE);
                 }
             }
@@ -358,7 +358,7 @@ public class AttrTable extends JPanel implements LocaleListener {
                         row.setValue(retval);
                     } catch (AttrTableSetException e) {
                         JOptionPane.showMessageDialog(parent, e.getMessage(),
-                                _("attributeChangeInvalidTitle"),
+                                getFromLocale("attributeChangeInvalidTitle"),
                                 JOptionPane.WARNING_MESSAGE);
                     }
                     editor = new JLabel(row.getValue());

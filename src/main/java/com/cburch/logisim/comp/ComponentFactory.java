@@ -11,7 +11,6 @@ import com.cburch.logisim.data.AttributeDefaultProvider;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.util.StringGetter;
 
 /**
  * Represents a category of components that appear in a circuit. This class
@@ -26,7 +25,7 @@ public interface ComponentFactory extends AttributeDefaultProvider {
 
     public String getName();
     public String getDisplayName();
-    public StringGetter getDisplayGetter();
+    public String getDisplayGetter();
     public Component createComponent(Location loc, AttributeSet attrs);
     public Bounds getOffsetBounds(AttributeSet attrs);
     public AttributeSet createAttributeSet();

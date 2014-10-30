@@ -25,17 +25,17 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Shifter extends InstanceFactory {
     static final AttributeOption SHIFT_LOGICAL_LEFT
-        = new AttributeOption("ll", __("shiftLogicalLeft"));
+        = new AttributeOption("ll", getFromLocale("shiftLogicalLeft"));
     static final AttributeOption SHIFT_LOGICAL_RIGHT
-        = new AttributeOption("lr", __("shiftLogicalRight"));
+        = new AttributeOption("lr", getFromLocale("shiftLogicalRight"));
     static final AttributeOption SHIFT_ARITHMETIC_RIGHT
-        = new AttributeOption("ar", __("shiftArithmeticRight"));
+        = new AttributeOption("ar", getFromLocale("shiftArithmeticRight"));
     static final AttributeOption SHIFT_ROLL_LEFT
-        = new AttributeOption("rl", __("shiftRollLeft"));
+        = new AttributeOption("rl", getFromLocale("shiftRollLeft"));
     static final AttributeOption SHIFT_ROLL_RIGHT
-        = new AttributeOption("rr", __("shiftRollRight"));
+        = new AttributeOption("rr", getFromLocale("shiftRollRight"));
     static final Attribute<AttributeOption> ATTR_SHIFT
-        = Attributes.forOption("shift", __("shifterShiftAttr"),
+        = Attributes.forOption("shift", getFromLocale("shifterShiftAttr"),
                 new AttributeOption[] { SHIFT_LOGICAL_LEFT, SHIFT_LOGICAL_RIGHT,
                     SHIFT_ARITHMETIC_RIGHT, SHIFT_ROLL_LEFT, SHIFT_ROLL_RIGHT });
 
@@ -44,7 +44,7 @@ public class Shifter extends InstanceFactory {
     private static final int OUT   = 2;
 
     public Shifter() {
-        super("Shifter", __("shifterComponent"));
+        super("Shifter", getFromLocale("shifterComponent"));
         setAttributes(new Attribute[] {
                 StdAttr.WIDTH, ATTR_SHIFT
             }, new Object[] {
@@ -78,9 +78,9 @@ public class Shifter extends InstanceFactory {
         ps[IN0]   = new Port(-40, -10, Port.INPUT,  data);
         ps[IN1]   = new Port(-40,  10, Port.INPUT,  shift);
         ps[OUT]   = new Port(  0,   0, Port.OUTPUT, data);
-        ps[IN0].setToolTip(__("shifterInputTip"));
-        ps[IN1].setToolTip(__("shifterDistanceTip"));
-        ps[OUT].setToolTip(__("shifterOutputTip"));
+        ps[IN0].setToolTip(getFromLocale("shifterInputTip"));
+        ps[IN1].setToolTip(getFromLocale("shifterDistanceTip"));
+        ps[OUT].setToolTip(getFromLocale("shifterOutputTip"));
         instance.setPorts(ps);
     }
 

@@ -15,7 +15,6 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import com.bric.swing.ColorPicker;
 import com.cburch.logisim.util.FontUtil;
 import com.cburch.logisim.util.JInputComponent;
-import com.cburch.logisim.util.StringGetter;
 import com.connectina.swing.fontchooser.JFontChooser;
 import static com.cburch.logisim.util.LocaleString.*;
 
@@ -23,13 +22,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class Attributes {
     private Attributes() { }
 
-    private static class ConstantGetter implements StringGetter {
-        private String str;
-        public ConstantGetter(String str) { this.str = str; }
-        @Override
-        public String toString() { return str; }
-    }
-    private static StringGetter getter(String s) { return new ConstantGetter(s); }
+    private static String getter(String s) { return s; }
 
     //
     // methods with display name == standard name
@@ -91,62 +84,62 @@ public class Attributes {
     //
     // methods with internationalization support
     //
-    public static Attribute<String> forString(String name, StringGetter disp) {
+    public static Attribute<String> forString(String name, String disp) {
         return new StringAttribute(name, disp);
     }
 
-    public static <V> Attribute<V> forOption(String name, StringGetter disp,
+    public static <V> Attribute<V> forOption(String name, String disp,
             V[] vals) {
         return new OptionAttribute<V>(name, disp, vals);
     }
 
-    public static Attribute<Integer> forInteger(String name, StringGetter disp) {
+    public static Attribute<Integer> forInteger(String name, String disp) {
         return new IntegerAttribute(name, disp);
     }
 
-    public static Attribute<Integer> forHexInteger(String name, StringGetter disp) {
+    public static Attribute<Integer> forHexInteger(String name, String disp) {
         return new HexIntegerAttribute(name, disp);
     }
 
-    public static Attribute<Integer> forIntegerRange(String name, StringGetter disp,
+    public static Attribute<Integer> forIntegerRange(String name, String disp,
             int start, int end) {
         return new IntegerRangeAttribute(name, disp, start, end);
     }
 
-    public static Attribute<Double> forDouble(String name, StringGetter disp) {
+    public static Attribute<Double> forDouble(String name, String disp) {
         return new DoubleAttribute(name, disp);
     }
 
-    public static Attribute<Boolean> forBoolean(String name, StringGetter disp) {
+    public static Attribute<Boolean> forBoolean(String name, String disp) {
         return new BooleanAttribute(name, disp);
     }
 
-    public static Attribute<Direction> forDirection(String name, StringGetter disp) {
+    public static Attribute<Direction> forDirection(String name, String disp) {
         return new DirectionAttribute(name, disp);
     }
 
-    public static Attribute<BitWidth> forBitWidth(String name, StringGetter disp) {
+    public static Attribute<BitWidth> forBitWidth(String name, String disp) {
         return new BitWidth.Attribute(name, disp);
     }
 
-    public static Attribute<BitWidth> forBitWidth(String name, StringGetter disp, int min, int max) {
+    public static Attribute<BitWidth> forBitWidth(String name, String disp, int min, int max) {
         return new BitWidth.Attribute(name, disp, min, max);
     }
 
-    public static Attribute<Font> forFont(String name, StringGetter disp) {
+    public static Attribute<Font> forFont(String name, String disp) {
         return new FontAttribute(name, disp);
     }
 
-    public static Attribute<Location> forLocation(String name, StringGetter disp) {
+    public static Attribute<Location> forLocation(String name, String disp) {
         return new LocationAttribute(name, disp);
     }
 
-    public static Attribute<Color> forColor(String name, StringGetter disp) {
+    public static Attribute<Color> forColor(String name, String disp) {
         return new ColorAttribute(name, disp);
     }
 
     private static class StringAttribute extends Attribute<String> {
-        private StringAttribute(String name, StringGetter disp) {
+        private StringAttribute(String name, String disp) {
             super(name, disp);
         }
 
@@ -182,7 +175,7 @@ public class Attributes {
     private static class OptionAttribute<V> extends Attribute<V> {
         private V[] vals;
 
-        private OptionAttribute(String name, StringGetter disp,
+        private OptionAttribute(String name, String disp,
                 V[] vals) {
             super(name, disp);
             this.vals = vals;
@@ -224,7 +217,7 @@ public class Attributes {
     }
 
     private static class IntegerAttribute extends Attribute<Integer> {
-        private IntegerAttribute(String name, StringGetter disp) {
+        private IntegerAttribute(String name, String disp) {
             super(name, disp);
         }
 
@@ -235,7 +228,7 @@ public class Attributes {
     }
 
     private static class HexIntegerAttribute extends Attribute<Integer> {
-        private HexIntegerAttribute(String name, StringGetter disp) {
+        private HexIntegerAttribute(String name, String disp) {
             super(name, disp);
         }
 
@@ -270,7 +263,7 @@ public class Attributes {
     }
 
     private static class DoubleAttribute extends Attribute<Double> {
-        private DoubleAttribute(String name, StringGetter disp) {
+        private DoubleAttribute(String name, String disp) {
             super(name, disp);
         }
 
@@ -283,18 +276,18 @@ public class Attributes {
     private static class BooleanAttribute extends OptionAttribute<Boolean> {
         private static Boolean[] vals = { Boolean.TRUE, Boolean.FALSE };
 
-        private BooleanAttribute(String name, StringGetter disp) {
+        private BooleanAttribute(String name, String disp) {
             super(name, disp, vals);
         }
 
         @Override
         public String toDisplayString(Boolean value) {
             if (value.booleanValue()) {
-                return _("booleanTrueOption");
+                return getFromLocale("booleanTrueOption");
             }
 
             else {
-                return _("booleanFalseOption");
+                return getFromLocale("booleanFalseOption");
             }
 
         }
@@ -310,7 +303,7 @@ public class Attributes {
         Integer[] options = null;
         int start;
         int end;
-        private IntegerRangeAttribute(String name, StringGetter disp, int start, int end) {
+        private IntegerRangeAttribute(String name, String disp, int start, int end) {
             super(name, disp);
             this.start = start;
             this.end = end;
@@ -361,7 +354,7 @@ public class Attributes {
             Direction.WEST,
         };
 
-        public DirectionAttribute(String name, StringGetter disp) {
+        public DirectionAttribute(String name, String disp) {
             super(name, disp, vals);
         }
 
@@ -377,7 +370,7 @@ public class Attributes {
     }
 
     private static class FontAttribute extends Attribute<Font> {
-        private FontAttribute(String name, StringGetter disp) {
+        private FontAttribute(String name, String disp) {
             super(name, disp);
         }
 
@@ -428,7 +421,7 @@ public class Attributes {
     }
 
     private static class LocationAttribute extends Attribute<Location> {
-        public LocationAttribute(String name, StringGetter desc) {
+        public LocationAttribute(String name, String desc) {
             super(name, desc);
         }
         @Override
@@ -438,7 +431,7 @@ public class Attributes {
     }
 
     private static class ColorAttribute extends Attribute<Color> {
-        public ColorAttribute(String name, StringGetter desc) {
+        public ColorAttribute(String name, String desc) {
             super(name, desc);
         }
 

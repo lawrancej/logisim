@@ -21,7 +21,7 @@ public class Negator extends InstanceFactory {
     private static final int OUT   = 1;
 
     public Negator() {
-        super("Negator", __("negatorComponent"));
+        super("Negator", getFromLocale("negatorComponent"));
         setAttributes(new Attribute[] { StdAttr.WIDTH },
                     new Object[] { BitWidth.create(8) });
         setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
@@ -31,8 +31,8 @@ public class Negator extends InstanceFactory {
         Port[] ps = new Port[2];
         ps[IN]  = new Port(-40,  0, Port.INPUT,  StdAttr.WIDTH);
         ps[OUT] = new Port(  0,  0, Port.OUTPUT, StdAttr.WIDTH);
-        ps[IN].setToolTip(__("negatorInputTip"));
-        ps[OUT].setToolTip(__("negatorOutputTip"));
+        ps[IN].setToolTip(getFromLocale("negatorInputTip"));
+        ps[OUT].setToolTip(getFromLocale("negatorOutputTip"));
         setPorts(ps);
     }
 

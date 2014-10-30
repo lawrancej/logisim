@@ -35,12 +35,11 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.tools.MenuExtender;
 import com.cburch.logisim.util.GraphicsUtil;
-import com.cburch.logisim.util.StringGetter;
 import com.cburch.logisim.util.StringUtil;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class SubcircuitFactory extends InstanceFactory {
-    private class CircuitFeature implements StringGetter, MenuExtender, ActionListener {
+    private class CircuitFeature implements MenuExtender, ActionListener {
         private Instance instance;
         private Project proj;
 
@@ -57,7 +56,7 @@ public class SubcircuitFactory extends InstanceFactory {
         public void configureMenu(JPopupMenu menu, Project proj) {
             this.proj = proj;
             String name = instance.getFactory().getDisplayName();
-            String text = _("subcircuitViewItem", name);
+            String text = getFromLocale("subcircuitViewItem", name);
             JMenuItem item = new JMenuItem(text);
             item.addActionListener(this);
             menu.add(item);
@@ -86,7 +85,7 @@ public class SubcircuitFactory extends InstanceFactory {
         super("", null);
         this.source = source;
         setFacingAttribute(StdAttr.FACING);
-        setDefaultToolTip(new CircuitFeature(null));
+        setDefaultToolTip(null);
         setInstancePoker(SubcircuitPoker.class);
     }
 
@@ -100,7 +99,7 @@ public class SubcircuitFactory extends InstanceFactory {
     }
 
     @Override
-    public StringGetter getDisplayGetter() {
+    public String getDisplayGetter() {
         return StringUtil.constantGetter(source.getName());
     }
 

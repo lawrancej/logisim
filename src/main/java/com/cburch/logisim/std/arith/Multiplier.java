@@ -31,7 +31,7 @@ public class Multiplier extends InstanceFactory {
     private static final int C_OUT = 4;
 
     public Multiplier() {
-        super("Multiplier", __("multiplierComponent"));
+        super("Multiplier", getFromLocale("multiplierComponent"));
         setAttributes(new Attribute[] { StdAttr.WIDTH },
                 new Object[] { BitWidth.create(8) });
         setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
@@ -44,11 +44,11 @@ public class Multiplier extends InstanceFactory {
         ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
         ps[C_IN]  = new Port(-20, -20, Port.INPUT,  StdAttr.WIDTH);
         ps[C_OUT] = new Port(-20,  20, Port.OUTPUT, StdAttr.WIDTH);
-        ps[IN0].setToolTip(__("multiplierInputTip"));
-        ps[IN1].setToolTip(__("multiplierInputTip"));
-        ps[OUT].setToolTip(__("multiplierOutputTip"));
-        ps[C_IN].setToolTip(__("multiplierCarryInTip"));
-        ps[C_OUT].setToolTip(__("multiplierCarryOutTip"));
+        ps[IN0].setToolTip(getFromLocale("multiplierInputTip"));
+        ps[IN1].setToolTip(getFromLocale("multiplierInputTip"));
+        ps[OUT].setToolTip(getFromLocale("multiplierOutputTip"));
+        ps[C_IN].setToolTip(getFromLocale("multiplierCarryInTip"));
+        ps[C_OUT].setToolTip(getFromLocale("multiplierCarryOutTip"));
         setPorts(ps);
     }
 

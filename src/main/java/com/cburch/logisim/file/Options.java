@@ -12,16 +12,16 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Options {
     public static final AttributeOption GATE_UNDEFINED_IGNORE
-    = new AttributeOption("ignore", __("gateUndefinedIgnore"));
+    = new AttributeOption("ignore", getFromLocale("gateUndefinedIgnore"));
     public static final AttributeOption GATE_UNDEFINED_ERROR
-        = new AttributeOption("error", __("gateUndefinedError"));
+        = new AttributeOption("error", getFromLocale("gateUndefinedError"));
 
     public static final Attribute<Integer> sim_limit_attr
-        = Attributes.forInteger("simlimit", __("simLimitOption"));
+        = Attributes.forInteger("simlimit", getFromLocale("simLimitOption"));
     public static final Attribute<Integer> sim_rand_attr
-        = Attributes.forInteger("simrand", __("simRandomOption"));
+        = Attributes.forInteger("simrand", getFromLocale("simRandomOption"));
     public static final Attribute<AttributeOption> ATTR_GATE_UNDEFINED
-        = Attributes.forOption("gateUndefined", __("gateUndefinedOption"),
+        = Attributes.forOption("gateUndefined", getFromLocale("gateUndefinedOption"),
                 new AttributeOption[] { GATE_UNDEFINED_IGNORE, GATE_UNDEFINED_ERROR });
 
     public static final Integer sim_rand_dflt = Integer.valueOf(32);

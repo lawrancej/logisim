@@ -97,7 +97,7 @@ public class HexFile {
                         leftValue = Long.parseLong(tok.substring(star + 1), 16);
                     }
                 } catch (NumberFormatException e) {
-                    throw new IOException(_("hexNumberFormatError"));
+                    throw new IOException(getFromLocale("hexNumberFormatError"));
                 }
 
                 int n = (int) Math.min(data.length - pos, leftCount);
@@ -141,7 +141,7 @@ public class HexFile {
                 if (cur != start + 1) out.write((cur - start) + "*");
                 out.write(Integer.toHexString(val));
             } catch (IOException e) {
-                throw new IOException(_("hexFileWriteError"));
+                throw new IOException(getFromLocale("hexFileWriteError"));
             }
             tokens++;
         }
@@ -154,7 +154,7 @@ public class HexFile {
         while (reader.hasNext()) {
             int[] values = reader.next();
             if (offs + values.length - 1 > dst.getLastOffset()) {
-                throw new IOException(_("hexFileSizeError"));
+                throw new IOException(getFromLocale("hexFileSizeError"));
             }
             dst.set(offs, values);
             offs += values.length;
@@ -189,12 +189,12 @@ public class HexFile {
         try {
             in = new BufferedReader(new FileReader(src));
         } catch (IOException e) {
-            throw new IOException(_("hexFileOpenError"));
+            throw new IOException(getFromLocale("hexFileOpenError"));
         }
         try {
             String header = in.readLine();
             if (!header.equals(RAW_IMAGE_HEADER)) {
-                throw new IOException(_("hexHeaderFormatError"));
+                throw new IOException(getFromLocale("hexHeaderFormatError"));
             }
             open(dst, in);
             try {
@@ -202,7 +202,7 @@ public class HexFile {
                 in = null;
                 oldIn.close();
             } catch (IOException e) {
-                throw new IOException(_("hexFileReadError"));
+                throw new IOException(getFromLocale("hexFileReadError"));
             }
         } finally {
             try {
@@ -216,20 +216,20 @@ public class HexFile {
         try {
             out = new FileWriter(dst);
         } catch (IOException e) {
-            throw new IOException(_("hexFileOpenError"));
+            throw new IOException(getFromLocale("hexFileOpenError"));
         }
         try {
             try {
                 out.write(RAW_IMAGE_HEADER + "\n");
             } catch (IOException e) {
-                throw new IOException(_("hexFileWriteError"));
+                throw new IOException(getFromLocale("hexFileWriteError"));
             }
             save(out, src);
         } finally {
             try {
                 out.close();
             } catch (IOException e) {
-                throw new IOException(_("hexFileWriteError"));
+                throw new IOException(getFromLocale("hexFileWriteError"));
             }
         }
     }

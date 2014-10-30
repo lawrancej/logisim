@@ -28,7 +28,7 @@ import javax.swing.event.ListSelectionListener;
 import com.cburch.logisim.analyze.model.VariableList;
 import com.cburch.logisim.analyze.model.VariableListEvent;
 import com.cburch.logisim.analyze.model.VariableListListener;
-import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 class VariableTab extends AnalyzerTab implements TabInterface {
@@ -229,11 +229,11 @@ class VariableTab extends AnalyzerTab implements TabInterface {
 
     @Override
     void localeChanged() {
-        remove.setText(_("variableRemoveButton"));
-        moveUp.setText(_("variableMoveUpButton"));
-        moveDown.setText(_("variableMoveDownButton"));
-        add.setText(_("variableAddButton"));
-        rename.setText(_("variableRenameButton"));
+        remove.setText(getFromLocale("variableRemoveButton"));
+        moveUp.setText(getFromLocale("variableMoveUpButton"));
+        moveDown.setText(getFromLocale("variableMoveDownButton"));
+        add.setText(getFromLocale("variableAddButton"));
+        rename.setText(getFromLocale("variableRenameButton"));
         validateInput();
     }
 
@@ -268,13 +268,13 @@ class VariableTab extends AnalyzerTab implements TabInterface {
             errorShown = false;
             ok = false;
         } else if (!Character.isJavaIdentifierStart(text.charAt(0))) {
-            error.setText(_("variableStartError"));
+            error.setText(getFromLocale("variableStartError"));
             ok = false;
         } else {
             for (int i = 1; i < text.length() && ok; i++) {
                 char c = text.charAt(i);
                 if (!Character.isJavaIdentifierPart(c)) {
-                    error.setText(_("variablePartError", "" + c));
+                    error.setText(getFromLocale("variablePartError", "" + c));
                     ok = false;
                 }
             }
@@ -283,14 +283,14 @@ class VariableTab extends AnalyzerTab implements TabInterface {
             for (int i = 0, n = data.size(); i < n && ok; i++) {
                 String other = data.get(i);
                 if (text.equals(other)) {
-                    error.setText(_("variableDuplicateError"));
+                    error.setText(getFromLocale("variableDuplicateError"));
                     ok = false;
                 }
             }
         }
         if (ok || !errorShown) {
             if (data.size() >= data.getMaximumSize()) {
-                error.setText(_("variableMaximumError", "" + data.getMaximumSize()));
+                error.setText(getFromLocale("variableMaximumError", "" + data.getMaximumSize()));
             } else {
                 error.setText(" ");
             }

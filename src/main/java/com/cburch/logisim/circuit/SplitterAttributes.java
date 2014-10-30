@@ -18,23 +18,23 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 class SplitterAttributes extends AbstractAttributeSet {
     public static final AttributeOption APPEAR_LEGACY
-        = new AttributeOption("legacy", __("splitterAppearanceLegacy"));
+        = new AttributeOption("legacy", getFromLocale("splitterAppearanceLegacy"));
     public static final AttributeOption APPEAR_LEFT
-        = new AttributeOption("left", __("splitterAppearanceLeft"));
+        = new AttributeOption("left", getFromLocale("splitterAppearanceLeft"));
     public static final AttributeOption APPEAR_RIGHT
-        = new AttributeOption("right", __("splitterAppearanceRight"));
+        = new AttributeOption("right", getFromLocale("splitterAppearanceRight"));
     public static final AttributeOption APPEAR_CENTER
-        = new AttributeOption("center", __("splitterAppearanceCenter"));
+        = new AttributeOption("center", getFromLocale("splitterAppearanceCenter"));
 
     public static final Attribute<AttributeOption> ATTR_APPEARANCE
-        = Attributes.forOption("appear", __("splitterAppearanceAttr"),
+        = Attributes.forOption("appear", getFromLocale("splitterAppearanceAttr"),
                 new AttributeOption[] { APPEAR_LEFT, APPEAR_RIGHT, APPEAR_CENTER,
                     APPEAR_LEGACY});
 
     public static final Attribute<BitWidth> ATTR_WIDTH
-        = Attributes.forBitWidth("incoming", __("splitterBitWidthAttr"));
+        = Attributes.forBitWidth("incoming", getFromLocale("splitterBitWidthAttr"));
     public static final Attribute<Integer> ATTR_FANOUT
-        = Attributes.forIntegerRange("fanout", __("splitterFanOutAttr"), 1, 32);
+        = Attributes.forIntegerRange("fanout", getFromLocale("splitterFanOutAttr"), 1, 32);
 
     private static final List<Attribute<?>> INIT_ATTRIBUTES
         = Arrays.asList(new Attribute<?>[] {
@@ -57,7 +57,7 @@ class SplitterAttributes extends AbstractAttributeSet {
         @Override
         public String toString() {
             if (value < 0) {
-                return _("splitterBitNone");
+                return getFromLocale("splitterBitNone");
             } else {
                 String ret = "" + value;
                 Direction noteDir;
@@ -81,7 +81,7 @@ class SplitterAttributes extends AbstractAttributeSet {
         BitOutOption[] options;
 
         private BitOutAttribute(int which, BitOutOption[] options) {
-            super("bit" + which, __("splitterBitAttr", "" + which));
+            super("bit" + which, getFromLocale("splitterBitAttr", "" + which));
             this.which = which;
             this.options = options;
         }
