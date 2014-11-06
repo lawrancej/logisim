@@ -1,88 +1,89 @@
 <html>
 <head>
-	<title>Opening Combinational Analysis</title>
+	<title>Ouvrir l'Analyse Combinatoire</title>
 </head>
 <body bgcolor="FFFFFF">
 
-<h1>Opening Combinational Analysis</h1>
+<h1>Ouvrir l'Analyse Combinatoire</h1>
 
-<p>The bulk of the Combinational Analysis module is accessed through
-a single window of that name allowing you to view truth tables and
-Boolean expressions. This window can be opened in two ways.</p>
+<p>L'essentiel du module d'Analyse Combinatoire est accessible par une seule
+	fenêtre du même nom qui vous permet de voir la table de vérité et les
+	expressions booléennes. Cette fenêtre s'ouvre de deux manières.</p>
 
-<h2>Via the Window menu</h2>
+<h2>Via le menu Window</h2>
 
-<p>Select Combinational Analysis, and the current Combinational Analysis
-window will appear. If you haven't viewed the window before,
-the opened window will represent no circuit at all.</p>
+<p>Sélectionnez l'analyse combinatoire et la fenêtre "Analyse Combinatoire"
+	apparaîtra. Si vous n'avez encore jamais vu cette fenêtre, cette dernière
+	ne représente aucun circuit.</p>
 
-<p>Only one Combinational Analysis window exists within Logisim,
-no matter how many projects are open.  There is no way to have two
-different analysis windows open at once.</p>
+<p>Il ne peut y avoir qu'une seule fenêtre "Analyse Combinatoire"
+	dans Logisim, quel que soit le nombre de projets ouverts. Il n'y a
+	aucun moyen d'ouvrir deux fenêtre "Analyse Combinatoire" en même temps.</p>
 
-<h2>Via the Project menu</h2>
+<h2>Via le menu Projet/h2>
 
-<p>From a window for editing circuits, you can also request that
-Logisim analyze the current circuit by selecting the Analyze Circuit
-option from the Project menu. Before Logisim opens the window, it
-will compute Boolean expressions and a truth table corresponding to
-the circuit and place them there for you to view.</p>
+<p>Depuis une fenêtre d'édition de circuit, il est aussi possible de 
+	demander à Logisim l'analyse du circuit courant en sélectionnant
+	l'option "Analyser le circuit" depuis le menu Projet.
+	Avant que Logisim ouvre la fenêtre, il va élaborer les expression 
+	booléennes et la table de vérité correspondante au circuit et les
+	afficher pour la visualisation.</p>
 
-<p>For the analysis to be successful, each input must be attached to an
-input pin, and each output must be attached to an output pin.
-Logisim will only analyze circuits with at most eight of each
-type, and all should be single-bit pins. Otherwise, you will see
-an error message and the window will not open.</p>
+<p>Pour qu'une analyse soir couronnée de succès, chaque entrée doit être
+	liée à un pin d'entrée et chaque sortie à un pin de sortie.
+	Logisim n'analysera que les circuits avec au plus huit entrées ou huit
+	sorties, et toutes devront être des pin simples. Dans le cas contraire,
+	vous verrez un message d'erreur et la fenêtre n'apparaîtra pas.</p>
 
-<p>In constructing Boolean expressions corresponding to a circuit,
-Logisim will first attempt to construct a Boolean expressions
-corresponding exactly to the gates in the circuit. But if the circuit
-uses some non-gate components (such as a multiplexer), or if the
-circuit is more than 100 levels deep (unlikely), then it will pop
-up a dialog box telling you that deriving Boolean expressions was
-impossible, and Logisim will instead derive the expressions based
-on the truth table, which will be derived by quietly trying each
-combination of inputs and reading the resulting outputs.</p>
+<p>Dans l'élaboration d'expressions booléennes correspondant à un circuit,
+	Logisim essayera d'abord de construire une expression booléenne
+	correspondant exactement aux portes logiques du circuit. Mais si le circuit
+	utilise des composants qui ne sont pas des portes logiques (comme par exemple
+	un multiplexeur), ou si le circuit a plus de 100 niveaux de profondeur
+	(imporbable), alors il affichera une boîte de dialogue pour vous avertir
+	qu'il n'est pas possible de dériver des expressions booléennes et 
+	Logisim va à la place dériver des expressions basées sur la table de vérité qui sera
+	elle-même dérivée en testant (silencieusement) chaque combinaison
+	en entrée et en lisant le résultat en sortie (méthode brute-force).</p>
 
-<p>After analyzing a circuit, there is no continuing relationship
-between the circuit and the Combinational Analysis window.  That is,
-changes to the circuit will not be reflected in the window, nor will
-changes to the Boolean expressions and/or truth table in the window be
-reflected in the circuit. Of course, you are always free to analyze a
-circuit again; and, as we will see later, you can replace the circuit
-with a circuit corresponding to what appears in the Combinational
-Analysis window.</p>
+<p>Après l'analyse du circuit, il n'y pas de liaison entre le circuit et 
+	l'analyse combinatoire. Ce qui veut dire que des changements dans le circuit
+	ne vont pas être reflétés dans la fenêtre et des changements dans les
+	expressions booléennes et/ou la table de vérité n'auront pas d'impact
+	sur le circuit.
+	Vous pouvez bien sûr toujours ré-analyser le circuit; et comme nous le verrons
+	plus tard, vous pouvez remplacer le circuit par un circuit correspondant 
+	à ce qui apparaît dans la fenêtre d'analyse combinatoire.</p>
 
 <h2>Limitations</h2>
 
-<p>Logisim will not attempt to detect sequential circuits: If you
-tell it to analyze a sequential circuit, it will still create a truth
-table and corresponding Boolean expressions, although these will
-not accurately summarize the circuit behavior.  (In fact, detecting
-sequential circuits is <em>provably impossible</em>, as it would
-amount to solving the Halting Problem.  Of course, you might hope
-that Logisim would make at least some attempt - perhaps look for
-flip-flops or cycles in the wires - but it does not.) As a result,
-the Combinational Analysis system should not be used indiscriminately:
-Only use it when you are indeed sure that the circuit you are analyzing
-is indeed combinational!</p>
+<p>Logisim n'essayera pas de détecter des circuits séquentiels: si vous
+	demandez l'analyse d'un circuit séquentiel, il créera une table de
+	vérité et les expressions booléennes correspondantes, bien que cela
+	ne reflétera pas correctement le comportement du circuit. (En fait la 
+	détection de circuits séquentiels peut être <em>prouvée comme impossible</em>),
+	comme cela reviendrait à résoudre le problème de l'arrêt.
+	Vous pouvez bien sûr espérer que Logisim fera quelques essais - mais ce
+	n'est pas le cas.) En conséquence, le système d'analyse combinatoire ne
+	devrait pas être utilisé sans discernement: ne l'utilisez que si vous
+	être sûrs que le circuit à analyser est vraiment combinatoire!</p>
 
-<p>Logisim will make a change to the original circuit that is perhaps
-unexpected: The Combinational Analysis system requires that each
-input and output have a unique name that conforming to the rules for
-Java identifiers.  (Roughly, each character must either a letter or a
-digit, and the first character must be a letter. No spaces allowed!)
-It attempts to use the pins' existing labels, and to use a list of
-defaults if no label exists. If an existing label doesn't follow the
-Java-identifier rule, then Logisim will attempt to extract a valid
-name from the label if at all possible.</p>
+<p>Logisim effectuera peut-être des changements inattendus au circuit original:
+	le système d'analyse combinatoire exige que chaque entrée et sortie ait un
+	nom unique qui soit conforme aux règles des identifiants Java. (En gros, chaque 
+	caractère doit être soir une lettre, soir un chiffre and le premier caractère
+	doit être une lettre. Les espaces ne sont pas autorisés!)
+	Il essaye d'utiliser les labels existants des pins and d'utiliser une
+	liste de valeurs par défaut si les labels n'existent pas. Si un seul label
+	ne respecte pas les règles des identifiants Java, alors Logisim essayera 
+	si possible d'inférer un label valide.</p>
 
-<p>Incidentally, the ordering of the inputs in the truth table will
-match their top-down ordering in the original circuit, with ties
-being broken in left-right order. (The same applies to the ordering
-of outputs.)</p>
+<p>Incidemment, l'ordre des entrées dans la table de vérité
+	correspondra à l'ordre descendant dans le circuit original, avec des 
+	liens découpés dans l'ordre gauche-droite. (Le même ordre s'applique
+	pour les </p>
 
-<p><strong>Next:</strong> <a href="table.html">Editing the truth table</a>.</p>
+<p><strong>Suivant:</strong> <a href="table.html">Editer la table de vérité</a>.</p>
 
 </body>
 </html>
