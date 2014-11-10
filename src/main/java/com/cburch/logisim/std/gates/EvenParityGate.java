@@ -14,7 +14,7 @@ class EvenParityGate extends AbstractGate {
     public static EvenParityGate FACTORY = new EvenParityGate();
 
     private EvenParityGate() {
-        super("Even Parity", __("evenParityComponent"));
+        super("Even Parity", getFromLocale("evenParityComponent"));
         setRectangularLabel("2k");
         setIconNames("parityEvenGate.svg");
     }

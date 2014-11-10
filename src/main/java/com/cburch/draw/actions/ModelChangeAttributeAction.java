@@ -57,9 +57,9 @@ public class ModelChangeAttributeAction extends ModelAction {
             attr = a;
         }
         if (a == null) {
-            return _("actionChangeAttributes");
+            return getFromLocale("actionChangeAttributes");
         } else {
-            return _("actionChangeAttribute", a.getDisplayName());
+            return getFromLocale("actionChangeAttribute", a.getDisplayName());
         }
     }
 

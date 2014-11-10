@@ -165,21 +165,21 @@ class ToolbarOptions extends OptionsPanel {
 
     @Override
     public String getTitle() {
-        return _("toolbarTitle");
+        return getFromLocale("toolbarTitle");
     }
 
     @Override
     public String getHelpText() {
-        return _("toolbarHelp");
+        return getFromLocale("toolbarHelp");
     }
 
     @Override
     public void localeChanged() {
-        addTool.setText(_("toolbarAddTool"));
-        addSeparator.setText(_("toolbarAddSeparator"));
-        moveUp.setText(_("toolbarMoveUp"));
-        moveDown.setText(_("toolbarMoveDown"));
-        remove.setText(_("toolbarRemove"));
+        addTool.setText(getFromLocale("toolbarAddTool"));
+        addSeparator.setText(getFromLocale("toolbarAddSeparator"));
+        moveUp.setText(getFromLocale("toolbarMoveUp"));
+        moveDown.setText(getFromLocale("toolbarMoveDown"));
+        remove.setText(getFromLocale("toolbarRemove"));
         list.localeChanged();
     }
 }

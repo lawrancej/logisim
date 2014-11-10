@@ -28,6 +28,7 @@ import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.Icons;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class PokeTool extends Tool {
@@ -117,7 +118,7 @@ public class PokeTool extends Tool {
 
     @Override
     public String getDisplayName() {
-        return _("pokeTool");
+        return getFromLocale("pokeTool");
     }
 
     private void removeCaret(boolean normal) {
@@ -127,9 +128,9 @@ public class PokeTool extends Tool {
             if (normal) {
                 caret.stopEditing();
             }
- else {
-     caret.cancelEditing();
- }
+            else {
+            	caret.cancelEditing();
+            }
 
             circ.removeCircuitListener(listener);
             pokedCircuit = null;
@@ -150,7 +151,7 @@ public class PokeTool extends Tool {
 
     @Override
     public String getDescription() {
-        return _("pokeToolDesc");
+        return getFromLocale("pokeToolDesc");
     }
 
     @Override

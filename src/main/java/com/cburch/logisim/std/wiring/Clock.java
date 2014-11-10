@@ -33,11 +33,11 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Clock extends InstanceFactory {
     public static final Attribute<Integer> ATTR_HIGH
-        = new DurationAttribute("highDuration", __("clockHighAttr"),
+        = new DurationAttribute("highDuration", getFromLocale("clockHighAttr"),
                 1, Integer.MAX_VALUE);
 
     public static final Attribute<Integer> ATTR_LOW
-        = new DurationAttribute("lowDuration", __("clockLowAttr"),
+        = new DurationAttribute("lowDuration", getFromLocale("clockLowAttr"),
                 1, Integer.MAX_VALUE);
 
     public static final Clock FACTORY = new Clock();
@@ -94,7 +94,7 @@ public class Clock extends InstanceFactory {
     }
 
     public Clock() {
-        super("Clock", __("clockComponent"));
+        super("Clock", getFromLocale("clockComponent"));
         setAttributes(new Attribute[] {
                     StdAttr.FACING, ATTR_HIGH, ATTR_LOW,
                     StdAttr.LABEL, Pin.ATTR_LABEL_LOC, StdAttr.LABEL_FONT

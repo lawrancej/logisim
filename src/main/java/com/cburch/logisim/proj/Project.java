@@ -8,8 +8,6 @@ import java.util.LinkedList;
 
 import javax.swing.JFileChooser;
 
-import javax.swing.JOptionPane;
-
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitListener;
 import com.cburch.logisim.circuit.CircuitState;

@@ -3,7 +3,7 @@
 
 package com.cburch.logisim.std.gates;
 
-import static com.cburch.logisim.util.LocaleString.__;
+import static com.cburch.logisim.util.LocaleString.*;
 
 import java.awt.Graphics;
 
@@ -18,7 +18,7 @@ class AndGate extends AbstractGate {
     public static AndGate FACTORY = new AndGate();
 
     private AndGate() {
-        super("AND Gate", __("andGateComponent"));
+        super("AND Gate", getFromLocale("andGateComponent"));
         setRectangularLabel("&");
         setIconNames("/logisim/icons/andGate.svg", "/logisim/icons/andGateRect.svg", "/logisim/icons/dinAndGate.svg");
     }

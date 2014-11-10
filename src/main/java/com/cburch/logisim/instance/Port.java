@@ -8,7 +8,6 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Location;
-import com.cburch.logisim.util.StringGetter;
 
 public class Port {
     public static final String INPUT = "input";
@@ -24,7 +23,7 @@ public class Port {
     private BitWidth widthFixed;
     private Attribute<BitWidth> widthAttr;
     private boolean exclude;
-    private StringGetter toolTip;
+    private String toolTip;
 
     public Port(int dx, int dy, String type, BitWidth bits) {
         this(dx, dy, type, bits, defaultExclusive(type));
@@ -63,12 +62,12 @@ public class Port {
         this.toolTip = null;
     }
 
-    public void setToolTip(StringGetter value) {
+    public void setToolTip(String value) {
         toolTip = value;
     }
 
     public String getToolTip() {
-        StringGetter getter = toolTip;
+        String getter = toolTip;
         return getter == null ? null : getter.toString();
     }
 

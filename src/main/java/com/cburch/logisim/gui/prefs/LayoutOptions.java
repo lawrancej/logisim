@@ -22,15 +22,15 @@ class LayoutOptions extends OptionsPanel {
 
         checks = new PrefBoolean[] {
                 new PrefBoolean(AppPreferences.PRINTER_VIEW,
-                        __("layoutPrinterView")),
+                        getFromLocale("layoutPrinterView")),
                 new PrefBoolean(AppPreferences.ATTRIBUTE_HALO,
-                        __("layoutAttributeHalo")),
+                        getFromLocale("layoutAttributeHalo")),
                 new PrefBoolean(AppPreferences.COMPONENT_TIPS,
-                        __("layoutShowTips")),
+                        getFromLocale("layoutShowTips")),
                 new PrefBoolean(AppPreferences.MOVE_KEEP_CONNECT,
-                        __("layoutMoveKeepConnect")),
+                        getFromLocale("layoutMoveKeepConnect")),
                 new PrefBoolean(AppPreferences.ADD_SHOW_GHOSTS,
-                        __("layoutAddShowGhosts")),
+                        getFromLocale("layoutAddShowGhosts")),
             };
 
         for (int i = 0; i < 2; i++) {
@@ -41,19 +41,19 @@ class LayoutOptions extends OptionsPanel {
             }
             if (i == 0) {
                 radix1 = new PrefOptionList(AppPreferences.POKE_WIRE_RADIX1,
-                        __("layoutRadix1"), items);
+                        getFromLocale("layoutRadix1"), items);
             } else {
                 radix2 = new PrefOptionList(AppPreferences.POKE_WIRE_RADIX2,
-                        __("layoutRadix2"), items);
+                        getFromLocale("layoutRadix2"), items);
             }
         }
         afterAdd = new PrefOptionList(AppPreferences.ADD_AFTER,
-                __("layoutAddAfter"),
+                getFromLocale("layoutAddAfter"),
                 new PrefOption[] {
                     new PrefOption(AppPreferences.ADD_AFTER_UNCHANGED,
-                            __("layoutAddAfterUnchanged")),
+                            getFromLocale("layoutAddAfterUnchanged")),
                     new PrefOption(AppPreferences.ADD_AFTER_EDIT,
-                            __("layoutAddAfterEdit")) });
+                            getFromLocale("layoutAddAfterEdit")) });
 
         JPanel panel = new JPanel(new TableLayout(2));
         panel.add(afterAdd.getJLabel());
@@ -72,12 +72,12 @@ class LayoutOptions extends OptionsPanel {
 
     @Override
     public String getTitle() {
-        return _("layoutTitle");
+        return getFromLocale("layoutTitle");
     }
 
     @Override
     public String getHelpText() {
-        return _("layoutHelp");
+        return getFromLocale("layoutHelp");
     }
 
     @Override

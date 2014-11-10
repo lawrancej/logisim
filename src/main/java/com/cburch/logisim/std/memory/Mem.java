@@ -30,7 +30,6 @@ import com.cburch.logisim.tools.MenuExtender;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 abstract class Mem extends InstanceFactory {
@@ -42,9 +41,9 @@ abstract class Mem extends InstanceFactory {
     // size. And second, I'd alter the MemContents class's PAGE_SIZE_BITS constant
     // to 14 so that its "page table" isn't quite so big.
     public static final Attribute<BitWidth> ADDR_ATTR = Attributes.forBitWidth(
-            "addrWidth", __("ramAddrWidthAttr"), 2, 24);
+            "addrWidth", getFromLocale("ramAddrWidthAttr"), 2, 24);
     public static final Attribute<BitWidth> DATA_ATTR = Attributes.forBitWidth(
-            "dataWidth", __("ramDataWidthAttr"));
+            "dataWidth", getFromLocale("ramDataWidthAttr"));
 
     // port-related constants
     static final int DATA = 0;
@@ -57,7 +56,7 @@ abstract class Mem extends InstanceFactory {
 
     private WeakHashMap<Instance,File> currentInstanceFiles;
 
-    Mem(String name, StringGetter desc, int extraPorts) {
+    Mem(String name, String desc, int extraPorts) {
         super(name, desc);
         currentInstanceFiles = new WeakHashMap<Instance,File>();
         setInstancePoker(MemPoker.class);
@@ -86,9 +85,9 @@ abstract class Mem extends InstanceFactory {
         ps[DATA] = new Port(   0,  0, Port.INOUT, DATA_ATTR);
         ps[ADDR] = new Port(-140,  0, Port.INPUT, ADDR_ATTR);
         ps[CS]   = new Port( -90, 40, Port.INPUT, 1);
-        ps[DATA].setToolTip(__("memDataTip"));
-        ps[ADDR].setToolTip(__("memAddrTip"));
-        ps[CS].setToolTip(__("memCSTip"));
+        ps[DATA].setToolTip(getFromLocale("memDataTip"));
+        ps[ADDR].setToolTip(getFromLocale("memAddrTip"));
+        ps[CS].setToolTip(getFromLocale("memCSTip"));
     }
 
     @Override
@@ -110,23 +109,23 @@ abstract class Mem extends InstanceFactory {
             String label;
             if (this instanceof Rom) {
                 if (addrBits >= 30) {
-                    label = _("romGigabyteLabel", "" + (bytes >>> 30));
+                    label = getFromLocale("romGigabyteLabel", "" + (bytes >>> 30));
                 } else if (addrBits >= 20) {
-                    label = _("romMegabyteLabel", "" + (bytes >> 20));
+                    label = getFromLocale("romMegabyteLabel", "" + (bytes >> 20));
                 } else if (addrBits >= 10) {
-                    label = _("romKilobyteLabel", "" + (bytes >> 10));
+                    label = getFromLocale("romKilobyteLabel", "" + (bytes >> 10));
                 } else {
-                    label = _("romByteLabel", "" + bytes);
+                    label = getFromLocale("romByteLabel", "" + bytes);
                 }
             } else {
                 if (addrBits >= 30) {
-                    label = _("ramGigabyteLabel", "" + (bytes >>> 30));
+                    label = getFromLocale("ramGigabyteLabel", "" + (bytes >>> 30));
                 } else if (addrBits >= 20) {
-                    label = _("ramMegabyteLabel", "" + (bytes >> 20));
+                    label = getFromLocale("ramMegabyteLabel", "" + (bytes >> 20));
                 } else if (addrBits >= 10) {
-                    label = _("ramKilobyteLabel", "" + (bytes >> 10));
+                    label = getFromLocale("ramKilobyteLabel", "" + (bytes >> 10));
                 } else {
-                    label = _("ramByteLabel", "" + bytes);
+                    label = getFromLocale("ramByteLabel", "" + bytes);
                 }
             }
             GraphicsUtil.drawCenteredText(g, label, bds.getX() + bds.getWidth()
@@ -134,10 +133,10 @@ abstract class Mem extends InstanceFactory {
         }
 
         // draw input and output ports
-        painter.drawPort(DATA, _("ramDataLabel"), Direction.WEST);
-        painter.drawPort(ADDR, _("ramAddrLabel"), Direction.EAST);
+        painter.drawPort(DATA, getFromLocale("ramDataLabel"), Direction.WEST);
+        painter.drawPort(ADDR, getFromLocale("ramAddrLabel"), Direction.EAST);
         g.setColor(Color.GRAY);
-        painter.drawPort(CS, _("ramCSLabel"), Direction.SOUTH);
+        painter.drawPort(CS, getFromLocale("ramCSLabel"), Direction.SOUTH);
     }
 
     File getCurrentImage(Instance instance) {

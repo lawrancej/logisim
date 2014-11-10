@@ -23,11 +23,11 @@ class WindowOptions extends OptionsPanel {
 
         checks = new PrefBoolean[] {
                 new PrefBoolean(AppPreferences.SHOW_TICK_RATE,
-                        __("windowTickRate")),
+                        getFromLocale("windowTickRate")),
             };
 
         toolbarPlacement = new PrefOptionList(AppPreferences.TOOLBAR_PLACEMENT,
-                __("windowToolbarLocation"),
+                getFromLocale("windowToolbarLocation"),
                 new PrefOption[] {
                     new PrefOption(Direction.NORTH.toString(),
                             Direction.NORTH.getDisplayGetter()),
@@ -38,9 +38,9 @@ class WindowOptions extends OptionsPanel {
                     new PrefOption(Direction.WEST.toString(),
                             Direction.WEST.getDisplayGetter()),
                     new PrefOption(AppPreferences.TOOLBAR_DOWN_MIDDLE,
-                            __("windowToolbarDownMiddle")),
+                            getFromLocale("windowToolbarDownMiddle")),
                     new PrefOption(AppPreferences.TOOLBAR_HIDDEN,
-                            __("windowToolbarHidden")) });
+                            getFromLocale("windowToolbarHidden")) });
 
         JPanel panel = new JPanel(new TableLayout(2));
         panel.add(toolbarPlacement.getJLabel());
@@ -54,12 +54,12 @@ class WindowOptions extends OptionsPanel {
         add(panel);
         
         lookAndFeel = new PrefOptionList(AppPreferences.LOOK_AND_FEEL,
-            __("lookAndFeel"),
+            getFromLocale("lookAndFeel"),
             new PrefOption[] {
-                new PrefOption(UIManager.getSystemLookAndFeelClassName(), __("systemLookAndFeel")),
-                new PrefOption(NimbusLookAndFeel.class.getName(), __("nimbusLookAndFeel")),
-                new PrefOption(MotifLookAndFeel.class.getName(), __("motifLookAndFeel")),
-                new PrefOption(MetalLookAndFeel.class.getName(), __("metalLookAndFeel")),
+                new PrefOption(UIManager.getSystemLookAndFeelClassName(), getFromLocale("systemLookAndFeel")),
+                new PrefOption(NimbusLookAndFeel.class.getName(), getFromLocale("nimbusLookAndFeel")),
+                new PrefOption(MotifLookAndFeel.class.getName(), getFromLocale("motifLookAndFeel")),
+                new PrefOption(MetalLookAndFeel.class.getName(), getFromLocale("metalLookAndFeel")),
                  });
         panel.add(lookAndFeel.getJLabel());
         panel.add(lookAndFeel.getJComboBox());
@@ -67,12 +67,12 @@ class WindowOptions extends OptionsPanel {
 
     @Override
     public String getTitle() {
-        return _("windowTitle");
+        return getFromLocale("windowTitle");
     }
 
     @Override
     public String getHelpText() {
-        return _("windowHelp");
+        return getFromLocale("windowHelp");
     }
 
     @Override

@@ -3,8 +3,7 @@
 
 package com.cburch.logisim.gui.main;
 
-import static com.cburch.logisim.util.LocaleString._;
-import static com.cburch.logisim.util.LocaleString.__;
+import static com.cburch.logisim.util.LocaleString.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -22,20 +21,10 @@ import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileFilter;
 import org.apache.batik.dom.GenericDOMImplementation;
 import org.apache.batik.svggen.SVGGraphics2D;
-import org.apache.batik.svggen.SVGGraphics2DIOException;
-import org.apache.fop.svg.PDFGraphics2D;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.Map.Entry;
- 
 import com.itextpdf.awt.DefaultFontMapper;
 import com.itextpdf.awt.DefaultFontMapper.BaseFontParameters;
 import com.itextpdf.awt.PdfGraphics2D;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.*;
 import org.w3c.dom.DOMImplementation;
@@ -46,7 +35,6 @@ import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.StringGetter;
 
 class ExportImage {
 	private static final int SLIDER_DIVISIONS = 6;
@@ -67,14 +55,14 @@ class ExportImage {
 		CircuitJList list = new CircuitJList(proj, true);
 		if (list.getModel().getSize() == 0) {
 			JOptionPane.showMessageDialog(proj.getFrame(),
-					_("exportEmptyCircuitsMessage"),
-					_("exportEmptyCircuitsTitle"),
+					getFromLocale("exportEmptyCircuitsMessage"),
+					getFromLocale("exportEmptyCircuitsTitle"),
 					JOptionPane.YES_NO_OPTION);
 			return;
 		}
 		OptionsPanel options = new OptionsPanel(list);
 		int action = JOptionPane.showConfirmDialog(frame,
-				options, _("exportImageSelect"),
+				options, getFromLocale("exportImageSelect"),
 				JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE);
 		if (action != JOptionPane.OK_OPTION) return;
@@ -87,25 +75,25 @@ class ExportImage {
 		int fmt = options.getImageFormat();
 		switch (options.getImageFormat()) {
 		case FORMAT_GIF:
-			filter = new ImageFileFilter(fmt, __("exportGifFilter"),
+			filter = new ImageFileFilter(fmt, getFromLocale("exportGifFilter"),
 				new String[] { "gif" });
 			break;
 		case FORMAT_PNG:
-			filter = new ImageFileFilter(fmt, __("exportPngFilter"),
+			filter = new ImageFileFilter(fmt, getFromLocale("exportPngFilter"),
 				new String[] { "png" });
 			break;
 		case FORMAT_JPG:
-			filter = new ImageFileFilter(fmt, __("exportJpgFilter"),
+			filter = new ImageFileFilter(fmt, getFromLocale("exportJpgFilter"),
 				new String[] { "jpg", "jpeg", "jpe", "jfi", "jfif", "jfi" });
 			break;
 		case FORMAT_SVG:
 			filter = null;
-			filter = new ImageFileFilter(fmt, __("exportSvgFilter"),
+			filter = new ImageFileFilter(fmt, getFromLocale("exportSvgFilter"),
 				new String[] { "svg" });
 			break;
         case FORMAT_PDF:
           filter = null;
-          filter = new ImageFileFilter(fmt, __("exportPdfFilter"),
+          filter = new ImageFileFilter(fmt, getFromLocale("exportPdfFilter"),
               new String[] { "pdf" });
           break;
 		default:
@@ -118,12 +106,12 @@ class ExportImage {
 		JFileChooser chooser = loader.createChooser();
 		if (circuits.size() > 1) {
 			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			chooser.setDialogTitle(_("exportImageDirectorySelect"));
+			chooser.setDialogTitle(getFromLocale("exportImageDirectorySelect"));
 		} else {
 			chooser.setFileFilter(filter);
-			chooser.setDialogTitle(_("exportImageFileSelect"));
+			chooser.setDialogTitle(getFromLocale("exportImageFileSelect"));
 		}
-		int returnVal = chooser.showDialog(frame, _("exportImageButton"));
+		int returnVal = chooser.showDialog(frame, getFromLocale("exportImageButton"));
 		if (returnVal != JFileChooser.APPROVE_OPTION) return;
 
 		// Determine whether destination is valid
@@ -132,8 +120,8 @@ class ExportImage {
 		if (dest.exists()) {
 			if (!dest.isDirectory()) {
 				int confirm = JOptionPane.showConfirmDialog(proj.getFrame(),
-					_("confirmOverwriteMessage"),
-					_("confirmOverwriteTitle"),
+					getFromLocale("confirmOverwriteMessage"),
+					getFromLocale("confirmOverwriteTitle"),
 					JOptionPane.YES_NO_OPTION);
 				if (confirm != JOptionPane.YES_OPTION) return;
 			}
@@ -142,8 +130,8 @@ class ExportImage {
 				boolean created = dest.mkdir();
 				if (!created) {
 					JOptionPane.showMessageDialog(proj.getFrame(),
-							_("exportNewDirectoryErrorMessage"),
-							_("exportNewDirectoryErrorTitle"),
+							getFromLocale("exportNewDirectoryErrorMessage"),
+							getFromLocale("exportNewDirectoryErrorTitle"),
 							JOptionPane.YES_NO_OPTION);
 					return;
 				}
@@ -152,7 +140,7 @@ class ExportImage {
 
 		// Create the progress monitor
 		ProgressMonitor monitor = new ProgressMonitor(frame,
-				_("exportImageProgress"),
+				getFromLocale("exportImageProgress"),
 				null,
 				0, 10000);
 		monitor.setMillisToDecideToPopup(100);
@@ -221,13 +209,13 @@ class ExportImage {
 			gbc.anchor = GridBagConstraints.NORTHWEST;
 			gbc.insets = new Insets(5, 0, 5, 0);
 			gbc.fill = GridBagConstraints.NONE;
-			addGb(new JLabel(_("labelCircuits") + " "));
+			addGb(new JLabel(getFromLocale("labelCircuits") + " "));
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			addGb(new JScrollPane(list));
 			gbc.fill = GridBagConstraints.NONE;
 			
 			gbc.gridy++;
-			addGb(new JLabel(_("labelImageFormat") + " "));
+			addGb(new JLabel(getFromLocale("labelImageFormat") + " "));
 			Box formatsPanel = new Box(BoxLayout.Y_AXIS);
 			formatsPanel.add(formatPng);
 			formatsPanel.add(formatGif);
@@ -237,12 +225,12 @@ class ExportImage {
 			addGb(formatsPanel);
 			
 			gbc.gridy++;
-			addGb(new JLabel(_("labelScale") + " "));
+			addGb(new JLabel(getFromLocale("labelScale") + " "));
 			addGb(slider);
 			addGb(curScale);
 			
 			gbc.gridy++;
-			addGb(new JLabel(_("labelPrinterView") + " "));
+			addGb(new JLabel(getFromLocale("labelPrinterView") + " "));
 			addGb(printerView);
 		}
 		
@@ -275,9 +263,9 @@ class ExportImage {
 	private static class ImageFileFilter extends FileFilter {
 		private int type;
 		private String[] extensions;
-		private StringGetter desc;
+		private String desc;
 		
-		private ImageFileFilter(int type, StringGetter desc, String[] exts) {
+		private ImageFileFilter(int type, String desc, String[] exts) {
 			this.type = type;
 			this.desc = desc;
 			extensions = new String[exts.length];
@@ -413,7 +401,7 @@ class ExportImage {
             StringWriter writer = new StringWriter();
             e.printStackTrace(new PrintWriter(writer));
             String stackTrace = writer.toString();
-            JTextArea textArea = new JTextArea( _("couldNotCreateFile") + "\n" + stackTrace);
+            JTextArea textArea = new JTextArea( getFromLocale("couldNotCreateFile") + "\n" + stackTrace);
             JOptionPane.showMessageDialog(frame, textArea);
             monitor.close();
             return;
@@ -431,7 +419,7 @@ class ExportImage {
 				((Graphics2D) g).translate(-bds.getX(), -bds.getY());
 			} else {
 				JOptionPane.showMessageDialog(frame,
-						_("couldNotCreateImage"));
+						getFromLocale("couldNotCreateImage"));
 				monitor.close();
 			}
 

@@ -27,7 +27,7 @@ public class ModelDeleteHandleAction extends ModelAction {
 
     @Override
     public String getName() {
-        return _("actionDeleteHandle");
+        return getFromLocale("actionDeleteHandle");
     }
 
     @Override

@@ -19,27 +19,12 @@ public class LocaleManager {
     private static final String SETTINGS_NAME = "settings";
     private static ArrayList<LocaleManager> managers = new ArrayList<LocaleManager>();
 
-    private static class LocaleGetter implements StringGetter {
-        private LocaleManager source;
-        private String key;
-
-        LocaleGetter(LocaleManager source, String key) {
-            this.source = source;
-            this.key = key;
-        }
-
-        @Override
-        public String toString() {
-            return source.get(key);
-        }
-    }
-
     private static ArrayList<LocaleListener> listeners = new ArrayList<LocaleListener>();
     private static boolean replaceAccents = false;
     private static HashMap<Character,String> repl = null;
     private static Locale curLocale = null;
 
-    public static Locale getLocale() {
+    public static Locale getFromLocale() {
         if (curLocale == null) {
             curLocale = Locale.getDefault();
         }
@@ -47,9 +32,9 @@ public class LocaleManager {
     }
 
     public static void setLocale(Locale loc) {
-        Locale cur = getLocale();
+        Locale cur = getFromLocale();
         if (!loc.equals(cur)) {
-            Locale[] opts = LocaleString.getUtilLocaleManager().getLocaleOptions();
+            Locale[] opts = LocaleString.getUtilLocaleManager().getFromLocaleOptions();
             Locale select = null;
             Locale backup = null;
             String locLang = loc.getLanguage();
@@ -170,7 +155,7 @@ public class LocaleManager {
             }
 
         } catch (java.util.MissingResourceException e) { }
-        Locale[] choices = getLocaleOptions();
+        Locale[] choices = getFromLocaleOptions();
         if (choices != null && choices.length > 0) {
             loadLocale(choices[0]);
         }
@@ -216,15 +201,15 @@ public class LocaleManager {
         return ret;
     }
 
-    public StringGetter getter(String key) {
-        return new LocaleGetter(this, key);
+    public String getter(String key) {
+        return get(key);
     }
 
-    public StringGetter getter(String key, String arg) {
+    public String getter(String key, String arg) {
         return StringUtil.formatter(getter(key), arg);
     }
 
-    public Locale[] getLocaleOptions() {
+    public Locale[] getFromLocaleOptions() {
         String locs = null;
         try {
             if (settings != null) {
@@ -260,9 +245,9 @@ public class LocaleManager {
     }
 
     public JComponent createLocaleSelector() {
-        Locale[] locales = getLocaleOptions();
+        Locale[] locales = getFromLocaleOptions();
         if (locales == null || locales.length == 0) {
-            Locale cur = getLocale();
+            Locale cur = getFromLocale();
             if (cur == null) {
                 cur = new Locale("en");
             }

@@ -35,7 +35,7 @@ public class PreferencesFrame extends LFrame {
         private PreferencesFrame window = null;
 
         WindowMenuManager() {
-            super(_("preferencesFrameMenuItem"), true);
+            super(getFromLocale("preferencesFrameMenuItem"), true);
             LocaleManager.addLocaleListener(this);
         }
 
@@ -52,7 +52,7 @@ public class PreferencesFrame extends LFrame {
 
         @Override
         public void localeChanged() {
-            setText(_("preferencesFrameMenuItem"));
+            setText(getFromLocale("preferencesFrameMenuItem"));
         }
     }
 
@@ -70,13 +70,13 @@ public class PreferencesFrame extends LFrame {
 
         @Override
         public void localeChanged() {
-            setTitle(_("preferencesFrameTitle"));
+            setTitle(getFromLocale("preferencesFrameTitle"));
             for (int i = 0; i < panels.length; i++) {
                 tabbedPane.setTitleAt(i, panels[i].getTitle());
                 tabbedPane.setToolTipTextAt(i, panels[i].getToolTipText());
                 panels[i].localeChanged();
             }
-            close.setText(_("closeButton"));
+            close.setText(getFromLocale("closeButton"));
         }
     }
 

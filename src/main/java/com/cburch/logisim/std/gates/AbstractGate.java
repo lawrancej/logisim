@@ -37,7 +37,6 @@ import com.cburch.logisim.tools.key.IntegerConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
 
 abstract class AbstractGate extends InstanceFactory {
     private String[] iconNames = new String[3];
@@ -48,11 +47,11 @@ abstract class AbstractGate extends InstanceFactory {
     private String rectLabel = "";
     private boolean paintInputLines;
 
-    protected AbstractGate(String name, StringGetter desc) {
+    protected AbstractGate(String name, String desc) {
         this(name, desc, false);
     }
 
-    protected AbstractGate(String name, StringGetter desc, boolean isXor) {
+    protected AbstractGate(String name, String desc, boolean isXor) {
         super(name, desc);
         this.isXor = isXor;
         setFacingAttribute(StdAttr.FACING);

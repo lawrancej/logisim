@@ -40,7 +40,7 @@ public class LogFrame extends LFrame {
     private class WindowMenuManager extends WindowMenuItemManager
             implements LocaleListener, ProjectListener, LibraryListener {
         WindowMenuManager() {
-            super(_("logFrameMenuItem"), false);
+            super(getFromLocale("logFrameMenuItem"), false);
             project.addProjectListener(this);
             project.addLibraryListener(this);
         }
@@ -53,7 +53,7 @@ public class LogFrame extends LFrame {
         @Override
         public void localeChanged() {
             String title = project.getLogisimFile().getDisplayName();
-            setText(_("logFrameMenuItem", title));
+            setText(getFromLocale("logFrameMenuItem", title));
         }
 
         @Override
@@ -111,7 +111,7 @@ public class LogFrame extends LFrame {
                 tabbedPane.setToolTipTextAt(i, panels[i].getToolTipText());
                 panels[i].localeChanged();
             }
-            close.setText(_("closeButton"));
+            close.setText(getFromLocale("closeButton"));
             windowManager.localeChanged();
         }
 
@@ -242,6 +242,6 @@ public class LogFrame extends LFrame {
 
     private static String computeTitle(Model data, Project proj) {
         String name = data == null ? "???" : data.getCircuitState().getCircuit().getName();
-        return _("logFrameTitle", name, proj.getLogisimFile().getDisplayName());
+        return getFromLocale("logFrameTitle", name, proj.getLogisimFile().getDisplayName());
     }
 }

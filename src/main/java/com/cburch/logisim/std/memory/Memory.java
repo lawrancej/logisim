@@ -15,24 +15,24 @@ public class Memory extends Library {
     protected static final int DELAY = 5;
 
     private static FactoryDescription[] DESCRIPTIONS = {
-        new FactoryDescription("D Flip-Flop", __("dFlipFlopComponent"),
+        new FactoryDescription("D Flip-Flop", getFromLocale("dFlipFlopComponent"),
                 "dFlipFlop.svg", "DFlipFlop"),
-        new FactoryDescription("T Flip-Flop", __("tFlipFlopComponent"),
+        new FactoryDescription("T Flip-Flop", getFromLocale("tFlipFlopComponent"),
                 "tFlipFlop.svg", "TFlipFlop"),
-        new FactoryDescription("J-K Flip-Flop", __("jkFlipFlopComponent"),
+        new FactoryDescription("J-K Flip-Flop", getFromLocale("jkFlipFlopComponent"),
                 "jkFlipFlop.svg", "JKFlipFlop"),
-        new FactoryDescription("S-R Flip-Flop", __("srFlipFlopComponent"),
+        new FactoryDescription("S-R Flip-Flop", getFromLocale("srFlipFlopComponent"),
                 "srFlipFlop.svg", "SRFlipFlop"),
-        new FactoryDescription("Register", __("registerComponent"),
+        new FactoryDescription("Register", getFromLocale("registerComponent"),
                 "register.svg", "Register"),
-        new FactoryDescription("Counter", __("counterComponent"),
+        new FactoryDescription("Counter", getFromLocale("counterComponent"),
                 "counter.svg", "Counter"),
-        new FactoryDescription("Shift Register", __("shiftRegisterComponent"),
+        new FactoryDescription("Shift Register", getFromLocale("shiftRegisterComponent"),
                 "shiftreg.svg", "ShiftRegister"),
-        new FactoryDescription("Random", __("randomComponent"),
+        new FactoryDescription("Random", getFromLocale("randomComponent"),
                 "random.svg", "Random"),
-        new FactoryDescription("RAM", __("ramComponent"), "ram.svg", "Ram"),
-        new FactoryDescription("ROM", __("romComponent"), "rom.svg", "Rom"),
+        new FactoryDescription("RAM", getFromLocale("ramComponent"), "ram.svg", "Ram"),
+        new FactoryDescription("ROM", getFromLocale("romComponent"), "rom.svg", "Rom"),
     };
 
     private List<Tool> tools = null;
@@ -43,7 +43,7 @@ public class Memory extends Library {
     public String getName() { return "Memory"; }
 
     @Override
-    public String getDisplayName() { return _("memoryLibrary"); }
+    public String getDisplayName() { return getFromLocale("memoryLibrary"); }
 
     @Override
     public List<Tool> getTools() {

@@ -31,7 +31,6 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.tools.TextEditable;
 import com.cburch.logisim.tools.ToolTipMaker;
 import com.cburch.logisim.util.EventSourceWeakSupport;
-import com.cburch.logisim.util.StringGetter;
 
 class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
     private EventSourceWeakSupport<ComponentListener> listeners;
@@ -324,7 +323,7 @@ class InstanceComponent implements Component, AttributeListener, ToolTipMaker {
                 return p.getToolTip();
             }
         }
-        StringGetter defaultTip = factory.getDefaultToolTip();
+        String defaultTip = factory.getDefaultToolTip();
         return defaultTip == null ? null : defaultTip.toString();
     }
 

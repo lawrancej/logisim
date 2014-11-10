@@ -6,8 +6,6 @@ package com.cburch.logisim.data;
 
 import javax.swing.JComboBox;
 
-import com.cburch.logisim.util.StringGetter;
-
 public class BitWidth implements Comparable<BitWidth> {
     public static final BitWidth UNKNOWN = new BitWidth(0);
     public static final BitWidth ONE = new BitWidth(1);
@@ -17,13 +15,13 @@ public class BitWidth implements Comparable<BitWidth> {
     static class Attribute extends com.cburch.logisim.data.Attribute<BitWidth> {
         private BitWidth[] choices;
 
-        public Attribute(String name, StringGetter disp) {
+        public Attribute(String name, String disp) {
             super(name, disp);
             ensurePrefab();
             choices = prefab;
         }
 
-        public Attribute(String name, StringGetter disp, int min, int max) {
+        public Attribute(String name, String disp, int min, int max) {
             super(name, disp);
             choices = new BitWidth[max - min + 1];
             for (int i = 0; i < choices.length; i++) {

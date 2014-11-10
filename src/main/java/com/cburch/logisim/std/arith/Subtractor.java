@@ -29,7 +29,7 @@ public class Subtractor extends InstanceFactory {
     private static final int B_OUT = 4;
 
     public Subtractor() {
-        super("Subtractor", __("subtractorComponent"));
+        super("Subtractor", getFromLocale("subtractorComponent"));
         setAttributes(new Attribute[] { StdAttr.WIDTH },
                 new Object[] { BitWidth.create(8) });
         setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
@@ -42,11 +42,11 @@ public class Subtractor extends InstanceFactory {
         ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
         ps[B_IN]  = new Port(-20, -20, Port.INPUT,  1);
         ps[B_OUT] = new Port(-20,  20, Port.OUTPUT, 1);
-        ps[IN0].setToolTip(__("subtractorMinuendTip"));
-        ps[IN1].setToolTip(__("subtractorSubtrahendTip"));
-        ps[OUT].setToolTip(__("subtractorOutputTip"));
-        ps[B_IN].setToolTip(__("subtractorBorrowInTip"));
-        ps[B_OUT].setToolTip(__("subtractorBorrowOutTip"));
+        ps[IN0].setToolTip(getFromLocale("subtractorMinuendTip"));
+        ps[IN1].setToolTip(getFromLocale("subtractorSubtrahendTip"));
+        ps[OUT].setToolTip(getFromLocale("subtractorOutputTip"));
+        ps[B_IN].setToolTip(getFromLocale("subtractorBorrowInTip"));
+        ps[B_OUT].setToolTip(getFromLocale("subtractorBorrowOutTip"));
         setPorts(ps);
     }
 

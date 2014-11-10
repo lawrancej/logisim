@@ -38,7 +38,7 @@ public class RoundRectangle extends Rectangular {
 
     @Override
     public String getDisplayName() {
-        return _("shapeRoundRect");
+        return getFromLocale("shapeRoundRect");
     }
 
     @Override

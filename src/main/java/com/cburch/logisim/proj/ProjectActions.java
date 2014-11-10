@@ -83,8 +83,8 @@ public class ProjectActions {
     }
 
     private static void displayException(Component parent, Exception ex) {
-        String msg = _("templateOpenError", ex.toString());
-        String ttl = _("templateOpenErrorTitle");
+        String msg = getFromLocale("templateOpenError", ex.toString());
+        String ttl = getFromLocale("templateOpenErrorTitle");
         JOptionPane.showMessageDialog(parent, msg, ttl, JOptionPane.ERROR_MESSAGE);
     }
 
@@ -205,15 +205,15 @@ public class ProjectActions {
             proj.getFrame().toFront();
             loader = proj.getLogisimFile().getLoader();
             if (proj.isFileDirty()) {
-                String message = _("openAlreadyMessage",
+                String message = getFromLocale("openAlreadyMessage",
                         proj.getLogisimFile().getName());
                 String[] options = {
-                        _("openAlreadyLoseChangesOption"),
-                        _("openAlreadyNewWindowOption"),
-                        _("openAlreadyCancelOption"),
+                        getFromLocale("openAlreadyLoseChangesOption"),
+                        getFromLocale("openAlreadyNewWindowOption"),
+                        getFromLocale("openAlreadyCancelOption"),
                     };
                 int result = JOptionPane.showOptionDialog(proj.getFrame(),
-                        message, _("openAlreadyTitle"), 0,
+                        message, getFromLocale("openAlreadyTitle"), 0,
                         JOptionPane.QUESTION_MESSAGE, null,
                         options, options[2]);
                 if (result == 0) {
@@ -251,8 +251,8 @@ public class ProjectActions {
         } catch (LoadFailedException ex) {
             if (!ex.isShown()) {
                 JOptionPane.showMessageDialog(parent,
-                    _("fileOpenError", ex.toString()),
-                    _("fileOpenErrorTitle"),
+                    getFromLocale("fileOpenError", ex.toString()),
+                    getFromLocale("fileOpenErrorTitle"),
                     JOptionPane.ERROR_MESSAGE);
             }
             return null;
@@ -293,12 +293,12 @@ public class ProjectActions {
                 f = new File(f.getParentFile(), old + circExt);
             } else {
                 String ext = old.substring(ext0);
-                String ttl = _("replaceExtensionTitle");
-                String msg = _("replaceExtensionMessage", ext);
+                String ttl = getFromLocale("replaceExtensionTitle");
+                String msg = getFromLocale("replaceExtensionMessage", ext);
                 Object[] options = {
-                        _("replaceExtensionReplaceOpt", ext),
-                        _("replaceExtensionAddOpt", circExt),
-                        _("replaceExtensionKeepOpt")
+                        getFromLocale("replaceExtensionReplaceOpt", ext),
+                        getFromLocale("replaceExtensionAddOpt", circExt),
+                        getFromLocale("replaceExtensionKeepOpt")
                     };
                 JOptionPane dlog = new JOptionPane(msg);
                 dlog.setMessageType(JOptionPane.QUESTION_MESSAGE);
@@ -317,8 +317,8 @@ public class ProjectActions {
 
         if (f.exists()) {
             int confirm = JOptionPane.showConfirmDialog(proj.getFrame(),
-                _("confirmOverwriteMessage"),
-                _("confirmOverwriteTitle"),
+                getFromLocale("confirmOverwriteMessage"),
+                getFromLocale("confirmOverwriteTitle"),
                 JOptionPane.YES_NO_OPTION);
             if (confirm != JOptionPane.YES_OPTION) {
                 return false;
@@ -359,7 +359,7 @@ public class ProjectActions {
         top.savePreferences();
 
         for (Project proj : new ArrayList<Project>(Projects.getOpenProjects())) {
-            if (!proj.confirmClose(_("confirmQuitTitle"))) {
+            if (!proj.confirmClose(getFromLocale("confirmQuitTitle"))) {
                 return;
             }
 

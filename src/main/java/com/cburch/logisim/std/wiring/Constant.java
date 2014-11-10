@@ -34,7 +34,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Constant extends InstanceFactory {
     public static final Attribute<Integer> ATTR_VALUE
-        = Attributes.forHexInteger("value", __("constantValueAttr"));
+        = Attributes.forHexInteger("value", getFromLocale("constantValueAttr"));
 
     public static InstanceFactory FACTORY = new Constant();
 
@@ -108,7 +108,7 @@ public class Constant extends InstanceFactory {
     }
 
     public Constant() {
-        super("Constant", __("constantComponent"));
+        super("Constant", getFromLocale("constantComponent"));
         setFacingAttribute(StdAttr.FACING);
         setKeyConfigurator(JoinedConfigurator.create(
                 new ConstantConfigurator(),

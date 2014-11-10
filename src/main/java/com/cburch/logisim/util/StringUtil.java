@@ -4,22 +4,12 @@
 package com.cburch.logisim.util;
 
 public class StringUtil {
-    public static StringGetter formatter(final StringGetter base, final String arg) {
-        return new StringGetter() {
-            @Override
-            public String toString() {
-                return String.format(base.toString(), arg);
-            }
-        };
+    public static String formatter(final String base, final String arg) {
+    	return String.format(base, arg);
     }
 
-    public static StringGetter constantGetter(final String value) {
-        return new StringGetter() {
-            @Override
-            public String toString() {
-                return value;
-            }
-        };
+    public static String constantGetter(final String value) {
+    	return value;
     }
 
     public static String toHexString(int bits, int value) {

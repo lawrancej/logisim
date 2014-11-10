@@ -31,7 +31,7 @@ public class Adder extends InstanceFactory {
     private static final int C_OUT = 4;
 
     public Adder() {
-        super("Adder", __("adderComponent"));
+        super("Adder", getFromLocale("adderComponent"));
         setAttributes(new Attribute[] {
                 StdAttr.WIDTH
             }, new Object[] {
@@ -47,11 +47,11 @@ public class Adder extends InstanceFactory {
         ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
         ps[C_IN]  = new Port(-20, -20, Port.INPUT,  1);
         ps[C_OUT] = new Port(-20,  20, Port.INPUT,  1);
-        ps[IN0].setToolTip(__("adderInputTip"));
-        ps[IN1].setToolTip(__("adderInputTip"));
-        ps[OUT].setToolTip(__("adderOutputTip"));
-        ps[C_IN].setToolTip(__("adderCarryInTip"));
-        ps[C_OUT].setToolTip(__("adderCarryOutTip"));
+        ps[IN0].setToolTip(getFromLocale("adderInputTip"));
+        ps[IN1].setToolTip(getFromLocale("adderInputTip"));
+        ps[OUT].setToolTip(getFromLocale("adderOutputTip"));
+        ps[C_IN].setToolTip(getFromLocale("adderCarryInTip"));
+        ps[C_OUT].setToolTip(getFromLocale("adderCarryOutTip"));
         setPorts(ps);
     }
 

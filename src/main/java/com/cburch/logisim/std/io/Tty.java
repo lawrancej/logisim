@@ -38,13 +38,13 @@ public class Tty extends InstanceFactory {
 
     private static final Attribute<Integer> ATTR_COLUMNS
         = Attributes.forIntegerRange("cols",
-            __("ttyColsAttr"), 1, 120);
+            getFromLocale("ttyColsAttr"), 1, 120);
     private static final Attribute<Integer> ATTR_ROWS
         = Attributes.forIntegerRange("rows",
-            __("ttyRowsAttr"), 1, 48);
+            getFromLocale("ttyRowsAttr"), 1, 48);
 
     public Tty() {
-        super("TTY", __("ttyComponent"));
+        super("TTY", getFromLocale("ttyComponent"));
         setAttributes(new Attribute[] {
                 ATTR_ROWS, ATTR_COLUMNS, StdAttr.EDGE_TRIGGER,
                 Io.ATTR_COLOR, Io.ATTR_BACKGROUND
@@ -59,10 +59,10 @@ public class Tty extends InstanceFactory {
         ps[CK]  = new Port( 0,   0, Port.INPUT, 1);
         ps[WE]  = new Port(10,  10, Port.INPUT, 1);
         ps[IN]  = new Port( 0, -10, Port.INPUT, 7);
-        ps[CLR].setToolTip(__("ttyClearTip"));
-        ps[CK].setToolTip(__("ttyClockTip"));
-        ps[WE].setToolTip(__("ttyEnableTip"));
-        ps[IN].setToolTip(__("ttyInputTip"));
+        ps[CLR].setToolTip(getFromLocale("ttyClearTip"));
+        ps[CK].setToolTip(getFromLocale("ttyClockTip"));
+        ps[WE].setToolTip(getFromLocale("ttyEnableTip"));
+        ps[IN].setToolTip(getFromLocale("ttyInputTip"));
         setPorts(ps);
     }
 
@@ -173,11 +173,11 @@ public class Tty extends InstanceFactory {
                 y += ROW_HEIGHT;
             }
         } else {
-            String str = _("ttyDesc", "" + rows, "" + cols);
+            String str = getFromLocale("ttyDesc", "" + rows, "" + cols);
             FontMetrics fm = g.getFontMetrics();
             int strWidth = fm.stringWidth(str);
             if (strWidth + BORDER > bds.getWidth()) {
-                str = _("ttyDescShort");
+                str = getFromLocale("ttyDescShort");
                 strWidth = fm.stringWidth(str);
             }
             int x = bds.getX() + (bds.getWidth() - strWidth) / 2;

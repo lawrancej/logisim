@@ -35,11 +35,11 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 class ControlledBuffer extends InstanceFactory {
     private static final AttributeOption RIGHT_HANDED
-        = new AttributeOption("right", __("controlledRightHanded"));
+        = new AttributeOption("right", getFromLocale("controlledRightHanded"));
     private static final AttributeOption LEFT_HANDED
-        = new AttributeOption("left", __("controlledLeftHanded"));
+        = new AttributeOption("left", getFromLocale("controlledLeftHanded"));
     private static final Attribute<AttributeOption> ATTR_CONTROL
-        = Attributes.forOption("control", __("controlledControlOption"),
+        = Attributes.forOption("control", getFromLocale("controlledControlOption"),
                 new AttributeOption[] { RIGHT_HANDED, LEFT_HANDED });
 
     public static ComponentFactory FACTORY_BUFFER = new ControlledBuffer(false);
@@ -52,8 +52,8 @@ class ControlledBuffer extends InstanceFactory {
 
     private ControlledBuffer(boolean isInverter) {
         super(isInverter ? "Controlled Inverter" : "Controlled Buffer",
-            isInverter ? __("controlledInverterComponent")
-                    : __("controlledBufferComponent"));
+            isInverter ? getFromLocale("controlledInverterComponent")
+                    : getFromLocale("controlledBufferComponent"));
         this.isInverter = isInverter;
         if (isInverter) {
             setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH,

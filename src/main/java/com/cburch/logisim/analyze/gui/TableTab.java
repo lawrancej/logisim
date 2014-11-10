@@ -19,7 +19,7 @@ import com.cburch.logisim.analyze.model.TruthTable;
 import com.cburch.logisim.analyze.model.TruthTableEvent;
 import com.cburch.logisim.analyze.model.TruthTableListener;
 import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 class TableTab extends JPanel implements TruthTablePanel, TabInterface {
@@ -140,7 +140,7 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
         int outputs = table.getOutputColumnCount();
         if (inputs == 0 && outputs == 0) {
             g.setFont(BODY_FONT);
-            GraphicsUtil.drawCenteredText(g, _("tableEmptyMessage"), sz.width / 2, sz.height / 2);
+            GraphicsUtil.drawCenteredText(g, getFromLocale("tableEmptyMessage"), sz.width / 2, sz.height / 2);
             return;
         }
 
@@ -158,14 +158,14 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
         int x = left;
         int y = top + headerMetric.getAscent() + 1;
         if (inputs == 0) {
-            x = paintHeader(_("tableNullHeader"), x, y, g, headerMetric);
+            x = paintHeader(getFromLocale("tableNullHeader"), x, y, g, headerMetric);
         } else {
             for (int i = 0; i < inputs; i++) {
                 x = paintHeader(table.getInputHeader(i), x, y, g, headerMetric);
             }
         }
         if (outputs == 0) {
-            x = paintHeader(_("tableNullHeader"), x, y, g, headerMetric);
+            x = paintHeader(getFromLocale("tableNullHeader"), x, y, g, headerMetric);
         } else {
             for (int i = 0; i < outputs; i++) {
                 x = paintHeader(table.getOutputHeader(i), x, y, g, headerMetric);
@@ -257,7 +257,7 @@ class TableTab extends JPanel implements TruthTablePanel, TabInterface {
             cellHeight = fm.getHeight();
             cellWidth = 24;
             if (inputs == 0 || outputs == 0) {
-                cellWidth = Math.max(cellWidth, fm.stringWidth(_("tableNullHeader")));
+                cellWidth = Math.max(cellWidth, fm.stringWidth(getFromLocale("tableNullHeader")));
             }
             for (int i = 0; i < inputs + outputs; i++) {
                 String header = i < inputs ? table.getInputHeader(i)

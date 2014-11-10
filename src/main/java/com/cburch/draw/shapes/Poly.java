@@ -88,9 +88,9 @@ public class Poly extends FillableCanvasObject {
     @Override
     public String getDisplayName() {
         if (closed) {
-            return _("shapePolygon");
+            return getFromLocale("shapePolygon");
         } else {
-            return _("shapePolyline");
+            return getFromLocale("shapePolyline");
         }
     }
 

@@ -35,7 +35,7 @@ public class Gates extends Library {
     public String getName() { return "Gates"; }
 
     @Override
-    public String getDisplayName() { return _("gatesLibrary"); }
+    public String getDisplayName() { return getFromLocale("gatesLibrary"); }
 
     @Override
     public List<Tool> getTools() {

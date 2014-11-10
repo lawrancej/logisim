@@ -47,7 +47,7 @@ public class ProjectCircuitActions {
 
     private static String promptForCircuitName(JFrame frame,
             Library lib, String initialValue) {
-        JLabel label = new JLabel(_("circuitNamePrompt"));
+        JLabel label = new JLabel(getFromLocale("circuitNamePrompt"));
         final JTextField field = new JTextField(15);
         field.setText(initialValue);
         JLabel error = new JLabel(" ");
@@ -68,7 +68,7 @@ public class ProjectCircuitActions {
         JOptionPane pane = new JOptionPane(panel, JOptionPane.QUESTION_MESSAGE,
                 JOptionPane.OK_CANCEL_OPTION);
         pane.setInitialValue(field);
-        JDialog dlog = pane.createDialog(frame, _("circuitNameDialogTitle"));
+        JDialog dlog = pane.createDialog(frame, getFromLocale("circuitNameDialogTitle"));
         dlog.addWindowFocusListener(new WindowFocusListener() {
             @Override
             public void windowGainedFocus(WindowEvent arg0) {
@@ -92,12 +92,12 @@ public class ProjectCircuitActions {
 
             String name = field.getText().trim();
             if (name.equals("")) {
-                error.setText(_("circuitNameMissingError"));
+                error.setText(getFromLocale("circuitNameMissingError"));
             } else {
                 if (lib.getTool(name) == null) {
                     return name;
                 } else {
-                    error.setText(_("circuitNameDuplicateError"));
+                    error.setText(getFromLocale("circuitNameDuplicateError"));
                 }
             }
         }
@@ -122,13 +122,13 @@ public class ProjectCircuitActions {
     public static void doRemoveCircuit(Project proj, Circuit circuit) {
         if (proj.getLogisimFile().getTools().size() == 1) {
             JOptionPane.showMessageDialog(proj.getFrame(),
-                    _("circuitRemoveLastError"),
-                    _("circuitRemoveErrorTitle"),
+                    getFromLocale("circuitRemoveLastError"),
+                    getFromLocale("circuitRemoveErrorTitle"),
                     JOptionPane.ERROR_MESSAGE);
         } else if (!proj.getDependencies().canRemove(circuit)) {
             JOptionPane.showMessageDialog(proj.getFrame(),
-                _("circuitRemoveUsedError"),
-                _("circuitRemoveErrorTitle"),
+                getFromLocale("circuitRemoveUsedError"),
+                getFromLocale("circuitRemoveErrorTitle"),
                 JOptionPane.ERROR_MESSAGE);
         } else {
             proj.doAction(LogisimFileActions.removeCircuit(circuit));
@@ -149,19 +149,19 @@ public class ProjectCircuitActions {
             }
             if (pin.getAttributeValue(StdAttr.WIDTH).getWidth() > 1) {
                 if (isInput) {
-                    analyzeError(proj, _("analyzeMultibitInputError"));
+                    analyzeError(proj, getFromLocale("analyzeMultibitInputError"));
                 } else {
-                    analyzeError(proj, _("analyzeMultibitOutputError"));
+                    analyzeError(proj, getFromLocale("analyzeMultibitOutputError"));
                 }
                 return;
             }
         }
         if (inputNames.size() > AnalyzerModel.MAX_INPUTS) {
-            analyzeError(proj, _("analyzeTooManyInputsError","" + AnalyzerModel.MAX_INPUTS));
+            analyzeError(proj, getFromLocale("analyzeTooManyInputsError","" + AnalyzerModel.MAX_INPUTS));
             return;
         }
         if (outputNames.size() > AnalyzerModel.MAX_OUTPUTS) {
-            analyzeError(proj, _("analyzeTooManyOutputsError","" + AnalyzerModel.MAX_OUTPUTS));
+            analyzeError(proj, getFromLocale("analyzeTooManyOutputsError","" + AnalyzerModel.MAX_OUTPUTS));
             return;
         }
 
@@ -196,7 +196,7 @@ public class ProjectCircuitActions {
             return;
         } catch (AnalyzeException ex) {
             JOptionPane.showMessageDialog(proj.getFrame(), ex.getMessage(),
-                    _("analyzeNoExpressionTitle"),
+                    getFromLocale("analyzeNoExpressionTitle"),
                     JOptionPane.INFORMATION_MESSAGE);
         }
 
@@ -207,7 +207,7 @@ public class ProjectCircuitActions {
 
     private static void analyzeError(Project proj, String message) {
         JOptionPane.showMessageDialog(proj.getFrame(), message,
-            _("analyzeErrorTitle"),
+            getFromLocale("analyzeErrorTitle"),
             JOptionPane.ERROR_MESSAGE);
         return;
     }

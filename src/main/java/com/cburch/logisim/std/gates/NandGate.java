@@ -17,7 +17,7 @@ class NandGate extends AbstractGate {
     public static NandGate FACTORY = new NandGate();
 
     private NandGate() {
-        super("NAND Gate", __("nandGateComponent"));
+        super("NAND Gate", getFromLocale("nandGateComponent"));
         setNegateOutput(true);
         setRectangularLabel(AndGate.FACTORY.getRectangularLabel(null));
         setIconNames("nandGate.svg", "nandGateRect.svg", "dinNandGate.svg");

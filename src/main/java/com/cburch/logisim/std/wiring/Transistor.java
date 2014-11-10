@@ -37,11 +37,11 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Transistor extends InstanceFactory {
     static final AttributeOption TYPE_P
-        = new AttributeOption("p", __("transistorTypeP"));
+        = new AttributeOption("p", getFromLocale("transistorTypeP"));
     static final AttributeOption TYPE_N
-        = new AttributeOption("n", __("transistorTypeN"));
+        = new AttributeOption("n", getFromLocale("transistorTypeN"));
     static final Attribute<AttributeOption> ATTR_TYPE
-        = Attributes.forOption("type", __("transistorTypeAttr"),
+        = Attributes.forOption("type", getFromLocale("transistorTypeAttr"),
                 new AttributeOption[] { TYPE_P, TYPE_N });
 
     static final int OUTPUT = 0;
@@ -52,7 +52,7 @@ public class Transistor extends InstanceFactory {
     private static final Icon ICON_P = Icons.getIcon("trans0.svg");
 
     public Transistor() {
-        super("Transistor", __("transistorComponent"));
+        super("Transistor", getFromLocale("transistorComponent"));
         setAttributes(
                 new Attribute[] { ATTR_TYPE, StdAttr.FACING,
                         Wiring.ATTR_GATE, StdAttr.WIDTH },

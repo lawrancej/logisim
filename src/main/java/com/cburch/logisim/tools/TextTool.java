@@ -58,7 +58,7 @@ public class TextTool extends Tool {
                 if (!isEmpty) {
                     CircuitMutation xn = new CircuitMutation(caretCircuit);
                     xn.add(caretComponent);
-                    a = xn.toAction(__("addComponentAction",
+                    a = xn.toAction(getFromLocale("addComponentAction",
                             Text.FACTORY.getDisplayGetter()));
                 } else {
                     // don't add the blank text field
@@ -68,7 +68,7 @@ public class TextTool extends Tool {
                 if (isEmpty && caretComponent.getFactory() instanceof Text) {
                     CircuitMutation xn = new CircuitMutation(caretCircuit);
                     xn.add(caretComponent);
-                    a = xn.toAction(__("removeComponentAction",
+                    a = xn.toAction(getFromLocale("removeComponentAction",
                             Text.FACTORY.getDisplayGetter()));
                 } else {
                     Object obj = caretComponent.getFeature(TextEditable.class);
@@ -144,12 +144,12 @@ public class TextTool extends Tool {
 
     @Override
     public String getDisplayName() {
-        return _("textTool");
+        return getFromLocale("textTool");
     }
 
     @Override
     public String getDescription() {
-        return _("textToolDesc");
+        return getFromLocale("textToolDesc");
     }
 
     @Override
@@ -188,7 +188,7 @@ public class TextTool extends Tool {
                 caret.cancelEditing();
             }
 
-            canvas.setErrorMessage(__("cannotModifyError"));
+            canvas.setErrorMessage(getFromLocale("cannotModifyError"), 0, 0);
             return;
         }
 

@@ -23,19 +23,19 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class CircuitAttributes extends AbstractAttributeSet {
     public static final Attribute<String> NAME_ATTR
-        = Attributes.forString("circuit", __("circuitName"));
+        = Attributes.forString("circuit", getFromLocale("circuitName"));
 
     public static final Attribute<Direction> LABEL_LOCATION_ATTR
-        = Attributes.forDirection("labelloc", __("circuitLabelLocAttr"));
+        = Attributes.forDirection("labelloc", getFromLocale("circuitLabelLocAttr"));
 
     public static final Attribute<String> CIRCUIT_LABEL_ATTR
-        = Attributes.forString("clabel", __("circuitLabelAttr"));
+        = Attributes.forString("clabel", getFromLocale("circuitLabelAttr"));
 
     public static final Attribute<Direction> CIRCUIT_LABEL_FACING_ATTR
-        = Attributes.forDirection("clabelup", __("circuitLabelDirAttr"));
+        = Attributes.forDirection("clabelup", getFromLocale("circuitLabelDirAttr"));
 
     public static final Attribute<Font> CIRCUIT_LABEL_FONT_ATTR
-        = Attributes.forFont("clabelfont", __("circuitLabelFontAttr"));
+        = Attributes.forFont("clabelfont", getFromLocale("circuitLabelFontAttr"));
 
     private static final Attribute<?>[] STATIC_ATTRS = {
         NAME_ATTR, CIRCUIT_LABEL_ATTR, CIRCUIT_LABEL_FACING_ATTR, CIRCUIT_LABEL_FONT_ATTR,

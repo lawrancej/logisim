@@ -16,10 +16,9 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.StringGetter;
 
 class SelectionAction extends Action {
-    private StringGetter displayName;
+    private String displayName;
     private AppearanceCanvas canvas;
     private CanvasModel canvasModel;
     private Map<CanvasObject, Integer> toRemove;
@@ -31,7 +30,7 @@ class SelectionAction extends Action {
     private Location anchorOldLocation;
     private Direction anchorOldFacing;
 
-    public SelectionAction(AppearanceCanvas canvas, StringGetter displayName,
+    public SelectionAction(AppearanceCanvas canvas, String displayName,
             Collection<CanvasObject> toRemove, Collection<CanvasObject> toAdd,
             Collection<CanvasObject> newSelection, Location anchorLocation,
             Direction anchorFacing) {

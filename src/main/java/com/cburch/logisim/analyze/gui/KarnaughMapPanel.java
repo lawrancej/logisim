@@ -24,7 +24,7 @@ import com.cburch.logisim.analyze.model.TruthTableEvent;
 import com.cburch.logisim.analyze.model.TruthTableListener;
 import com.cburch.logisim.analyze.model.VariableList;
 import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 class KarnaughMapPanel extends JPanel implements TruthTablePanel {
@@ -165,9 +165,9 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
 
         String message = null;
         if (output == null) {
-            message = _("karnaughNoOutputError");
+            message = getFromLocale("karnaughNoOutputError");
         } else if (table.getInputColumnCount() > MAX_VARS) {
-            message = _("karnaughTooManyInputsError");
+            message = getFromLocale("karnaughTooManyInputsError");
         }
         if (message != null) {
             if (g == null) {
@@ -214,9 +214,9 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
         Dimension sz = getSize();
         String message = null;
         if (output == null) {
-            message = _("karnaughNoOutputError");
+            message = getFromLocale("karnaughNoOutputError");
         } else if (inputCount > MAX_VARS) {
-            message = _("karnaughTooManyInputsError");
+            message = getFromLocale("karnaughTooManyInputsError");
         }
         if (message != null) {
             g.setFont(BODY_FONT);

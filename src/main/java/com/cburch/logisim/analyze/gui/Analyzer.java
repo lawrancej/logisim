@@ -26,7 +26,7 @@ import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
-import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 public class Analyzer extends LFrame {
@@ -40,18 +40,18 @@ public class Analyzer extends LFrame {
     private class MyListener implements LocaleListener {
         @Override
         public void localeChanged() {
-            Analyzer.this.setTitle(_("analyzerWindowTitle"));
-            tabbedPane.setTitleAt(INPUTS_TAB, _("inputsTab"));
-            tabbedPane.setTitleAt(OUTPUTS_TAB, _("outputsTab"));
-            tabbedPane.setTitleAt(TABLE_TAB, _("tableTab"));
-            tabbedPane.setTitleAt(EXPRESSION_TAB, _("expressionTab"));
-            tabbedPane.setTitleAt(MINIMIZED_TAB, _("minimizedTab"));
-            tabbedPane.setToolTipTextAt(INPUTS_TAB, _("inputsTabTip"));
-            tabbedPane.setToolTipTextAt(OUTPUTS_TAB, _("outputsTabTip"));
-            tabbedPane.setToolTipTextAt(TABLE_TAB, _("tableTabTip"));
-            tabbedPane.setToolTipTextAt(EXPRESSION_TAB, _("expressionTabTip"));
-            tabbedPane.setToolTipTextAt(MINIMIZED_TAB, _("minimizedTabTip"));
-            buildCircuit.setText(_("buildCircuitButton"));
+            Analyzer.this.setTitle(getFromLocale("analyzerWindowTitle"));
+            tabbedPane.setTitleAt(INPUTS_TAB, getFromLocale("inputsTab"));
+            tabbedPane.setTitleAt(OUTPUTS_TAB, getFromLocale("outputsTab"));
+            tabbedPane.setTitleAt(TABLE_TAB, getFromLocale("tableTab"));
+            tabbedPane.setTitleAt(EXPRESSION_TAB, getFromLocale("expressionTab"));
+            tabbedPane.setTitleAt(MINIMIZED_TAB, getFromLocale("minimizedTab"));
+            tabbedPane.setToolTipTextAt(INPUTS_TAB, getFromLocale("inputsTabTip"));
+            tabbedPane.setToolTipTextAt(OUTPUTS_TAB, getFromLocale("outputsTabTip"));
+            tabbedPane.setToolTipTextAt(TABLE_TAB, getFromLocale("tableTabTip"));
+            tabbedPane.setToolTipTextAt(EXPRESSION_TAB, getFromLocale("expressionTabTip"));
+            tabbedPane.setToolTipTextAt(MINIMIZED_TAB, getFromLocale("minimizedTabTip"));
+            buildCircuit.setText(getFromLocale("buildCircuitButton"));
             inputsPanel.localeChanged();
             outputsPanel.localeChanged();
             truthTablePanel.localeChanged();

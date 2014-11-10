@@ -47,11 +47,11 @@ class FilePanel extends LogPanel {
 
         private void computeEnableItems(Model model) {
             if (model.isFileEnabled()) {
-                enableLabel.setText(_("fileEnabled"));
-                enableButton.setText(_("fileDisableButton"));
+                enableLabel.setText(getFromLocale("fileEnabled"));
+                enableButton.setText(getFromLocale("fileDisableButton"));
             } else {
-                enableLabel.setText(_("fileDisabled"));
-                enableButton.setText(_("fileEnableButton"));
+                enableLabel.setText(getFromLocale("fileDisabled"));
+                enableButton.setText(getFromLocale("fileEnableButton"));
             }
         }
 
@@ -69,20 +69,20 @@ class FilePanel extends LogPanel {
                 File file = chooser.getSelectedFile();
                 if (file.exists() && (!file.canWrite() || file.isDirectory())) {
                     JOptionPane.showMessageDialog(getLogFrame(),
-                        _("fileCannotWriteMessage", file.getName()),
-                        _("fileCannotWriteTitle"),
+                        getFromLocale("fileCannotWriteMessage", file.getName()),
+                        getFromLocale("fileCannotWriteTitle"),
                         JOptionPane.OK_OPTION);
                     return;
                 }
                 if (file.exists() && file.length() > 0) {
                     String[] options = {
-                            _("fileOverwriteOption"),
-                            _("fileAppendOption"),
-                            _("fileCancelOption"),
+                            getFromLocale("fileOverwriteOption"),
+                            getFromLocale("fileAppendOption"),
+                            getFromLocale("fileCancelOption"),
                     };
                     int option = JOptionPane.showOptionDialog(getLogFrame(),
-                        _("fileExistsMessage", file.getName()),
-                        _("fileExistsTitle"),
+                        getFromLocale("fileExistsMessage", file.getName()),
+                        getFromLocale("fileExistsTitle"),
                         0, JOptionPane.QUESTION_MESSAGE, null,
                         options, options[0]);
                     if (option == 0) {
@@ -157,20 +157,20 @@ class FilePanel extends LogPanel {
 
     @Override
     public String getTitle() {
-        return _("fileTab");
+        return getFromLocale("fileTab");
     }
 
     @Override
     public String getHelpText() {
-        return _("fileHelp");
+        return getFromLocale("fileHelp");
     }
 
     @Override
     public void localeChanged() {
         listener.computeEnableItems(getModel());
-        fileLabel.setText(_("fileLabel") + " ");
-        selectButton.setText(_("fileSelectButton"));
-        headerCheckBox.setText(_("fileHeaderCheck"));
+        fileLabel.setText(getFromLocale("fileLabel") + " ");
+        selectButton.setText(getFromLocale("fileSelectButton"));
+        headerCheckBox.setText(getFromLocale("fileHeaderCheck"));
     }
 
     @Override

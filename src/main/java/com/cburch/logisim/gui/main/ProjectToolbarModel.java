@@ -29,17 +29,17 @@ class ProjectToolbarModel extends AbstractToolbarModel
         this.frame = frame;
 
         itemAdd = new LogisimToolbarItem(menu, "projadd.svg", LogisimMenuBar.ADD_CIRCUIT,
-                __("projectAddCircuitTip"));
+                getFromLocale("projectAddCircuitTip"));
         itemUp = new LogisimToolbarItem(menu, "projup.svg", LogisimMenuBar.MOVE_CIRCUIT_UP,
-                __("projectMoveCircuitUpTip"));
+                getFromLocale("projectMoveCircuitUpTip"));
         itemDown = new LogisimToolbarItem(menu, "projdown.svg", LogisimMenuBar.MOVE_CIRCUIT_DOWN,
-                __("projectMoveCircuitDownTip"));
+                getFromLocale("projectMoveCircuitDownTip"));
         itemDelete = new LogisimToolbarItem(menu, "projdel.svg", LogisimMenuBar.REMOVE_CIRCUIT,
-                __("projectRemoveCircuitTip"));
+                getFromLocale("projectRemoveCircuitTip"));
         itemLayout = new LogisimToolbarItem(menu, "projlayo.svg", LogisimMenuBar.EDIT_LAYOUT,
-                __("projectEditLayoutTip"));
+                getFromLocale("projectEditLayoutTip"));
         itemAppearance = new LogisimToolbarItem(menu, "projapp.svg", LogisimMenuBar.EDIT_APPEARANCE,
-                __("projectEditAppearanceTip"));
+                getFromLocale("projectEditAppearanceTip"));
 
         items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {
                 itemAdd,

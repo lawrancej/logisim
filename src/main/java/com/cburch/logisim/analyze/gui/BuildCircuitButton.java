@@ -111,10 +111,10 @@ class BuildCircuitButton extends JButton {
               gc.gridy++;
             gb.setConstraints(nands, gc); add(nands);
 
-            projectLabel.setText(_("buildProjectLabel"));
-            nameLabel.setText(_("buildNameLabel"));
-            twoInputs.setText(_("buildTwoInputsLabel"));
-            nands.setText(_("buildNandsLabel"));
+            projectLabel.setText(getFromLocale("buildProjectLabel"));
+            nameLabel.setText(getFromLocale("buildNameLabel"));
+            twoInputs.setText(getFromLocale("buildTwoInputsLabel"));
+            nands.setText(getFromLocale("buildNandsLabel"));
         }
     }
 
@@ -131,7 +131,7 @@ class BuildCircuitButton extends JButton {
             while (!ok) {
                 DialogPanel dlog = new DialogPanel();
                 int action = JOptionPane.showConfirmDialog(parent,
-                        dlog, _("buildDialogTitle"), JOptionPane.OK_CANCEL_OPTION,
+                        dlog, getFromLocale("buildDialogTitle"), JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if (action != JOptionPane.OK_OPTION) {
                     return;
@@ -140,23 +140,23 @@ class BuildCircuitButton extends JButton {
 
                 ProjectItem projectItem = (ProjectItem) dlog.project.getSelectedItem();
                 if (projectItem == null) {
-                    JOptionPane.showMessageDialog(parent, _("buildNeedProjectError"),
-                            _("buildDialogErrorTitle"), JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(parent, getFromLocale("buildNeedProjectError"),
+                            getFromLocale("buildDialogErrorTitle"), JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
                 dest = projectItem.project;
 
                 name = dlog.name.getText().trim();
                 if (name.equals("")) {
-                    JOptionPane.showMessageDialog(parent, _("buildNeedCircuitError"),
-                            _("buildDialogErrorTitle"), JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(parent, getFromLocale("buildNeedCircuitError"),
+                            getFromLocale("buildDialogErrorTitle"), JOptionPane.ERROR_MESSAGE);
                     continue;
                 }
 
                 if (dest.getLogisimFile().getCircuit(name) != null) {
                     int choice = JOptionPane.showConfirmDialog(parent,
-                            _("buildConfirmReplaceMessage", name),
-                            _("buildConfirmReplaceTitle"), JOptionPane.YES_NO_OPTION);
+                            getFromLocale("buildConfirmReplaceMessage", name),
+                            getFromLocale("buildConfirmReplaceTitle"), JOptionPane.YES_NO_OPTION);
                     if (choice != JOptionPane.YES_OPTION) {
                         continue;
                     }
@@ -183,7 +183,7 @@ class BuildCircuitButton extends JButton {
     }
 
     void localeChanged() {
-        setText(_("buildCircuitButton"));
+        setText(getFromLocale("buildCircuitButton"));
     }
 
     private void performAction(Project dest, String name, boolean replace,
@@ -199,7 +199,7 @@ class BuildCircuitButton extends JButton {
 
             CircuitMutation xn = CircuitBuilder.build(circuit, model, twoInputs,
                     useNands);
-            dest.doAction(xn.toAction(__("replaceCircuitAction")));
+            dest.doAction(xn.toAction(getFromLocale("replaceCircuitAction")));
         } else {
             // add the circuit
             Circuit circuit = new Circuit(name);

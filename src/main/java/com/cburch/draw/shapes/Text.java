@@ -77,7 +77,7 @@ public class Text extends AbstractCanvasObject {
 
     @Override
     public String getDisplayName() {
-        return _("shapeText");
+        return getFromLocale("shapeText");
     }
 
     @Override

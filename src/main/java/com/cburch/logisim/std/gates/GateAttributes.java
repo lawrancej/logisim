@@ -20,35 +20,35 @@ class GateAttributes extends AbstractAttributeSet {
     static final int DELAY = 1;
 
     static final AttributeOption SIZE_NARROW
-        = new AttributeOption(Integer.valueOf(30), __("gateSizeNarrowOpt"));
+        = new AttributeOption(Integer.valueOf(30), getFromLocale("gateSizeNarrowOpt"));
     static final AttributeOption SIZE_MEDIUM
-        = new AttributeOption(Integer.valueOf(50), __("gateSizeNormalOpt"));
+        = new AttributeOption(Integer.valueOf(50), getFromLocale("gateSizeNormalOpt"));
     static final AttributeOption SIZE_WIDE
-        = new AttributeOption(Integer.valueOf(70), __("gateSizeWideOpt"));
+        = new AttributeOption(Integer.valueOf(70), getFromLocale("gateSizeWideOpt"));
     public static final Attribute<AttributeOption> ATTR_SIZE
-        = Attributes.forOption("size", __("gateSizeAttr"),
+        = Attributes.forOption("size", getFromLocale("gateSizeAttr"),
             new AttributeOption[] { SIZE_NARROW, SIZE_MEDIUM, SIZE_WIDE });
 
     public static final Attribute<Integer> ATTR_INPUTS
-        = Attributes.forIntegerRange("inputs", __("gateInputsAttr"),
+        = Attributes.forIntegerRange("inputs", getFromLocale("gateInputsAttr"),
                 2, MAX_INPUTS);
 
     static final AttributeOption XOR_ONE
-        = new AttributeOption("1", __("xorBehaviorOne"));
+        = new AttributeOption("1", getFromLocale("xorBehaviorOne"));
     static final AttributeOption XOR_ODD
-        = new AttributeOption("odd", __("xorBehaviorOdd"));
+        = new AttributeOption("odd", getFromLocale("xorBehaviorOdd"));
     public static final Attribute<AttributeOption> ATTR_XOR
-        = Attributes.forOption("xor", __("xorBehaviorAttr"),
+        = Attributes.forOption("xor", getFromLocale("xorBehaviorAttr"),
                 new AttributeOption[] { XOR_ONE, XOR_ODD });
 
     static final AttributeOption OUTPUT_01
-        = new AttributeOption("01", __("gateOutput01"));
+        = new AttributeOption("01", getFromLocale("gateOutput01"));
     static final AttributeOption OUTPUT_0Z
-        = new AttributeOption("0Z", __("gateOutput0Z"));
+        = new AttributeOption("0Z", getFromLocale("gateOutput0Z"));
     static final AttributeOption OUTPUT_Z1
-        = new AttributeOption("Z1", __("gateOutputZ1"));
+        = new AttributeOption("Z1", getFromLocale("gateOutputZ1"));
     public static final Attribute<AttributeOption> ATTR_OUTPUT
-        = Attributes.forOption("out", __("gateOutputAttr"),
+        = Attributes.forOption("out", getFromLocale("gateOutputAttr"),
             new AttributeOption[] { OUTPUT_01, OUTPUT_0Z, OUTPUT_Z1 });
 
 

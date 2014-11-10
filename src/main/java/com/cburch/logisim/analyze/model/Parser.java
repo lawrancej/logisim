@@ -5,7 +5,6 @@ package com.cburch.logisim.analyze.model;
 
 import java.util.ArrayList;
 
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Parser {
@@ -21,7 +20,7 @@ public class Parser {
 
         for (Token token : tokens) {
             if (token.type == TOKEN_ERROR) {
-                throw token.error(__("invalidCharacterError", token.text));
+                throw token.error(getFromLocale("invalidCharacterError", token.text));
             } else if (token.type == TOKEN_IDENT) {
                 int index = model.getInputs().indexOf(token.text);
                 if (index < 0) {
@@ -36,7 +35,7 @@ public class Parser {
                     } else if (opText.equals("OR")) {
                         token.type = TOKEN_OR;
                     } else {
-                        throw token.error(__("badVariableName", token.text));
+                        throw token.error(getFromLocale("badVariableName", token.text));
                     }
                 }
             }
@@ -126,7 +125,7 @@ public class Parser {
             this.text = text;
         }
 
-        ParserException error(StringGetter message) {
+        ParserException error(String message) {
             return new ParserException(message, offset, length);
         }
     }
@@ -228,16 +227,16 @@ public class Parser {
             } else if (t.type == TOKEN_NOT) {
                 if (current != null) {
                     push(stack, current, Expression.AND_LEVEL,
-                        new Token(TOKEN_AND, t.offset, _("implicitAndOperator")));
+                        new Token(TOKEN_AND, t.offset, getFromLocale("implicitAndOperator")));
                 }
                 push(stack, null, Expression.NOT_LEVEL, t);
                 current = null;
             } else if (t.type == TOKEN_NOT_POSTFIX) {
-                throw t.error(__("unexpectedApostrophe"));
+                throw t.error(getFromLocale("unexpectedApostrophe"));
             } else if (t.type == TOKEN_LPAREN) {
                 if (current != null) {
                     push(stack, current, Expression.AND_LEVEL,
-                            new Token(TOKEN_AND, t.offset, 0, _("implicitAndOperator")));
+                            new Token(TOKEN_AND, t.offset, 0, getFromLocale("implicitAndOperator")));
                 }
                 push(stack, null, -2, t);
                 current = null;
@@ -245,7 +244,7 @@ public class Parser {
                 current = popTo(stack, -1, current);
                 // there had better be a LPAREN atop the stack now.
                 if (stack.isEmpty()) {
-                    throw t.error(__("lparenMissingError"));
+                    throw t.error(getFromLocale("lparenMissingError"));
                 }
                 pop(stack);
                 while (i + 1 < tokens.size() && tokens.get(i + 1).type == TOKEN_NOT_POSTFIX) {
@@ -255,7 +254,7 @@ public class Parser {
                 current = popTo(stack, Expression.AND_LEVEL, current);
             } else {
                 if (current == null) {
-                    throw t.error(__("missingLeftOperandError", t.text));
+                    throw t.error(getFromLocale("missingLeftOperandError", t.text));
                 }
                 int level = 0;
                 switch (t.type) {
@@ -270,7 +269,7 @@ public class Parser {
         current = popTo(stack, -1, current);
         if (!stack.isEmpty()) {
             Context top = pop(stack);
-            throw top.cause.error(__("rparenMissingError"));
+            throw top.cause.error(getFromLocale("rparenMissingError"));
         }
         return current;
     }
@@ -295,7 +294,7 @@ public class Parser {
         while (!stack.isEmpty() && peekLevel(stack) >= level) {
             Context top = pop(stack);
             if (current == null) {
-                throw top.cause.error(__("missingRightOperandError", top.cause.text));
+                throw top.cause.error(getFromLocale("missingRightOperandError", top.cause.text));
             }
 
             switch (top.level) {

@@ -118,8 +118,8 @@ public class SelectionActions {
 
         @Override
         public String getName() {
-            return numDrops == 1 ? _("dropComponentAction")
-                    : _("dropComponentsAction");
+            return numDrops == 1 ? getFromLocale("dropComponentAction")
+                    : getFromLocale("dropComponentsAction");
         }
 
         @Override
@@ -171,8 +171,8 @@ public class SelectionActions {
 
         @Override
         public String getName() {
-            return numAnchor == 1 ? _("dropComponentAction")
-                    : _("dropComponentsAction");
+            return numAnchor == 1 ? getFromLocale("dropComponentAction")
+                    : getFromLocale("dropComponentsAction");
         }
 
         @Override
@@ -218,7 +218,7 @@ public class SelectionActions {
 
         @Override
         public String getName() {
-            return _("deleteSelectionAction");
+            return getFromLocale("deleteSelectionAction");
         }
 
         @Override
@@ -247,7 +247,7 @@ public class SelectionActions {
 
         @Override
         public String getName() {
-            return _("duplicateSelectionAction");
+            return getFromLocale("duplicateSelectionAction");
         }
 
         @Override
@@ -278,7 +278,7 @@ public class SelectionActions {
 
         @Override
         public String getName() {
-            return _("cutSelectionAction");
+            return getFromLocale("cutSelectionAction");
         }
 
         @Override
@@ -307,7 +307,7 @@ public class SelectionActions {
 
         @Override
         public String getName() {
-            return _("copySelectionAction");
+            return getFromLocale("copySelectionAction");
         }
 
         @Override
@@ -351,13 +351,13 @@ public class SelectionActions {
                     }
                     dropped.add(compFactory.getDisplayName());
                 } else {
-                    String msg = _("pasteCloneQuery",
+                    String msg = getFromLocale("pasteCloneQuery",
                             compFactory.getName());
-                    Object[] opts = { _("pasteCloneReplace"),
-                            _("pasteCloneIgnore"),
-                            _("pasteCloneCancel") };
+                    Object[] opts = { getFromLocale("pasteCloneReplace"),
+                            getFromLocale("pasteCloneIgnore"),
+                            getFromLocale("pasteCloneCancel") };
                     int select = JOptionPane.showOptionDialog(proj.getFrame(),
-                            msg, _("pasteCloneTitle"), 0,
+                            msg, getFromLocale("pasteCloneTitle"), 0,
                             JOptionPane.QUESTION_MESSAGE, null, opts, opts[0]);
                     if (select == 0) {
                         copyFactory = candidate;
@@ -383,7 +383,7 @@ public class SelectionActions {
         if (dropped != null) {
             Collections.sort(dropped);
             StringBuilder droppedStr = new StringBuilder();
-            droppedStr.append(_("pasteDropMessage"));
+            droppedStr.append(getFromLocale("pasteDropMessage"));
             String curName = dropped.get(0);
             int curCount = 1;
             int lines = 1;
@@ -411,7 +411,7 @@ public class SelectionActions {
             area.setCaretPosition(0);
             JScrollPane areaPane = new JScrollPane(area);
             JOptionPane.showMessageDialog(proj.getFrame(), areaPane,
-                    _("pasteDropTitle"),
+                    getFromLocale("pasteDropTitle"),
                     JOptionPane.WARNING_MESSAGE);
         }
 
@@ -455,7 +455,7 @@ public class SelectionActions {
 
         @Override
         public String getName() {
-            return _("pasteClipboardAction");
+            return getFromLocale("pasteClipboardAction");
         }
 
         @Override
@@ -518,7 +518,7 @@ public class SelectionActions {
 
         @Override
         public String getName() {
-            return _("moveSelectionAction");
+            return getFromLocale("moveSelectionAction");
         }
 
         @Override

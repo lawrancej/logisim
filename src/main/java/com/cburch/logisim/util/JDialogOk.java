@@ -43,8 +43,8 @@ public abstract class JDialogOk extends JDialog {
     }
 
     private JPanel contents = new JPanel(new BorderLayout());
-    protected JButton ok = new JButton(_("dlogOkButton"));
-    protected JButton cancel = new JButton(_("dlogCancelButton"));
+    protected JButton ok = new JButton(getFromLocale("dlogOkButton"));
+    protected JButton cancel = new JButton(getFromLocale("dlogCancelButton"));
 
     public JDialogOk(Dialog parent, String title, boolean model) {
         super(parent, title, true);

@@ -237,7 +237,7 @@ public class Startup {
     }
 
     private static void setLocale(String lang) {
-        Locale[] opts = getLocaleOptions();
+        Locale[] opts = getFromLocaleOptions();
         for (int i = 0; i < opts.length; i++) {
             if (lang.equals(opts[i].toString())) {
                 LocaleManager.setLocale(opts[i]);
@@ -245,9 +245,9 @@ public class Startup {
             }
         }
         //OK
-        logger.warn(_("invalidLocaleError"));
+        logger.warn(getFromLocale("invalidLocaleError"));
         //OK
-        logger.warn(_("invalidLocaleOptionsHeader"));
+        logger.warn(getFromLocale("invalidLocaleOptionsHeader"));
         for (int i = 0; i < opts.length; i++) {
             //OK
             logger.warn("   " + opts[i].toString());
@@ -321,7 +321,7 @@ public class Startup {
                     String[] fmts = args[i].split(",");
                     if (fmts.length == 0) {
                         //OK
-                        logger.warn(_("ttyFormatError"));
+                        logger.warn(getFromLocale("ttyFormatError"));
                     }
                     for (int j = 0; j < fmts.length; j++) {
                         String fmt = fmts[j].trim();
@@ -337,12 +337,12 @@ public class Startup {
                             ret.ttyFormat |= TtyInterface.FORMAT_STATISTICS;
                         } else {
                             //OK
-                            System.err.println(_("ttyFormatError"));
+                            System.err.println(getFromLocale("ttyFormatError"));
                         }
                     }
                 } else {
                     //OK
-                    System.err.println(_("ttyFormatError"));
+                    System.err.println(getFromLocale("ttyFormatError"));
                     return null;
                 }
             } else if (arg.equals("-sub")) {
@@ -351,7 +351,7 @@ public class Startup {
                     File b = new File(args[i + 2]);
                     if (ret.substitutions.containsKey(a)) {
                         //OK
-                        logger.error(_("argDuplicateSubstitutionError"));
+                        logger.error(getFromLocale("argDuplicateSubstitutionError"));
                         return null;
                     } else {
                         ret.substitutions.put(a, b);
@@ -359,7 +359,7 @@ public class Startup {
                     }
                 } else {
                     //OK
-                    logger.error(_("argTwoSubstitutionError"));
+                    logger.error(getFromLocale("argTwoSubstitutionError"));
                     return null;
                 }
             } else if (arg.equals("-load")) {
@@ -367,26 +367,26 @@ public class Startup {
                     i++;
                     if (ret.loadFile != null) {
                         //OK
-                        logger.warn(_("loadMultipleError"));
+                        logger.warn(getFromLocale("loadMultipleError"));
                     }
                     File f = new File(args[i]);
                     ret.loadFile = f;
                 } else {
                     //OK
-                    logger.error(_("loadNeedsFileError"));
+                    logger.error(getFromLocale("loadNeedsFileError"));
                     return null;
                 }
             } else if (arg.equals("-empty")) {
                 if (ret.templFile != null || ret.templEmpty || ret.templPlain) {
                     //OK
-                    logger.error(_("argOneTemplateError"));
+                    logger.error(getFromLocale("argOneTemplateError"));
                     return null;
                 }
                 ret.templEmpty = true;
             } else if (arg.equals("-plain")) {
                 if (ret.templFile != null || ret.templEmpty || ret.templPlain) {
                     //OK
-                    logger.error(_("argOneTemplateError"));
+                    logger.error(getFromLocale("argOneTemplateError"));
                     return null;
                 }
                 ret.templPlain = true;
@@ -407,7 +407,7 @@ public class Startup {
                     AppPreferences.GATE_SHAPE.set(AppPreferences.SHAPE_RECTANGULAR);
                 } else {
                     //OK
-                    logger.error(_("argGatesOptionError"));
+                    logger.error(getFromLocale("argGatesOptionError"));
                     System.exit(-1);
                 }
             } else if (arg.equals("-locale")) {
@@ -430,13 +430,13 @@ public class Startup {
                     AppPreferences.ACCENTS_REPLACE.setBoolean(true);
                 } else {
                     //OK
-                    logger.error(_("argAccentsOptionError"));
+                    logger.error(getFromLocale("argAccentsOptionError"));
                     System.exit(-1);
                 }
             } else if (arg.equals("-template")) {
                 if (ret.templFile != null || ret.templEmpty || ret.templPlain) {
                     //OK
-                    logger.error(_("argOneTemplateError"));
+                    logger.error(getFromLocale("argOneTemplateError"));
                     return null;
                 }
                 i++;
@@ -448,11 +448,11 @@ public class Startup {
                 if (!ret.templFile.exists()) {
                     //OK
                     logger.warn(String.format(
-                            _("templateMissingError"), args[i]));
+                            getFromLocale("templateMissingError"), args[i]));
                 } else if (!ret.templFile.canRead()) {
                     //OK
                     logger.warn(String.format(
-                            _("templateCannotReadError"), args[i]));
+                            getFromLocale("templateCannotReadError"), args[i]));
                 }
             } else if (arg.equals("-nosplash")) {
                 ret.showSplash = false;
@@ -467,12 +467,12 @@ public class Startup {
         }
         if (ret.isTty && ret.filesToOpen.isEmpty()) {
             //OK
-            logger.error(_("ttyNeedsFileError"));
+            logger.error(getFromLocale("ttyNeedsFileError"));
             return null;
         }
         if (ret.loadFile != null && !ret.isTty) {
             //OK
-            logger.error(_("loadNeedsTtyError"));
+            logger.error(getFromLocale("loadNeedsTtyError"));
             return null;
         }
         return ret;
@@ -482,22 +482,22 @@ public class Startup {
      * Prints command line help functionality
      */
     private static void printUsage() {
-        System.err.println(String.format(_("argUsage"), Startup.class.getName()));
+        System.err.println(String.format(getFromLocale("argUsage"), Startup.class.getName()));
         System.err.println();
-        System.err.println(_("argOptionHeader"));
-        System.err.println("   " + _("argAccentsOption"));
-        System.err.println("   " + _("argClearOption"));
-        System.err.println("   " + _("argEmptyOption"));
-        System.err.println("   " + _("argGatesOption"));
-        System.err.println("   " + _("argHelpOption"));
-        System.err.println("   " + _("argLoadOption"));
-        System.err.println("   " + _("argLocaleOption"));
-        System.err.println("   " + _("argNoSplashOption"));
-        System.err.println("   " + _("argPlainOption"));
-        System.err.println("   " + _("argSubOption"));
-        System.err.println("   " + _("argTemplateOption"));
-        System.err.println("   " + _("argTtyOption"));
-        System.err.println("   " + _("argVersionOption"));
+        System.err.println(getFromLocale("argOptionHeader"));
+        System.err.println("   " + getFromLocale("argAccentsOption"));
+        System.err.println("   " + getFromLocale("argClearOption"));
+        System.err.println("   " + getFromLocale("argEmptyOption"));
+        System.err.println("   " + getFromLocale("argGatesOption"));
+        System.err.println("   " + getFromLocale("argHelpOption"));
+        System.err.println("   " + getFromLocale("argLoadOption"));
+        System.err.println("   " + getFromLocale("argLocaleOption"));
+        System.err.println("   " + getFromLocale("argNoSplashOption"));
+        System.err.println("   " + getFromLocale("argPlainOption"));
+        System.err.println("   " + getFromLocale("argSubOption"));
+        System.err.println("   " + getFromLocale("argTemplateOption"));
+        System.err.println("   " + getFromLocale("argTtyOption"));
+        System.err.println("   " + getFromLocale("argVersionOption"));
         System.exit(-1);
     }
 }

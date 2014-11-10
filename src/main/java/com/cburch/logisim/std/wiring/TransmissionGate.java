@@ -37,7 +37,7 @@ public class TransmissionGate extends InstanceFactory {
     static final int GATE1 = 3;
 
     public TransmissionGate() {
-        super("Transmission Gate", __("transmissionGateComponent"));
+        super("Transmission Gate", getFromLocale("transmissionGateComponent"));
         setIconName("transmis.svg");
         setAttributes(new Attribute[] { StdAttr.FACING, Wiring.ATTR_GATE, StdAttr.WIDTH },
                 new Object[] { Direction.EAST, Wiring.GATE_TOP_LEFT, BitWidth.ONE });

@@ -19,11 +19,11 @@ import static com.cburch.logisim.util.LocaleString.*;
 public class Wiring extends Library {
 
     static final AttributeOption GATE_TOP_LEFT
-        = new AttributeOption("tl", __("wiringGateTopLeftOption"));
+        = new AttributeOption("tl", getFromLocale("wiringGateTopLeftOption"));
     static final AttributeOption GATE_BOTTOM_RIGHT
-        = new AttributeOption("br", __("wiringGateBottomRightOption"));
+        = new AttributeOption("br", getFromLocale("wiringGateBottomRightOption"));
     static final Attribute<AttributeOption> ATTR_GATE = Attributes.forOption("gate",
-            __("wiringGateAttr"),
+            getFromLocale("wiringGateAttr"),
             new AttributeOption[] { GATE_TOP_LEFT, GATE_BOTTOM_RIGHT });
 
     private static Tool[] ADD_TOOLS = {
@@ -37,15 +37,15 @@ public class Wiring extends Library {
     };
 
     private static FactoryDescription[] DESCRIPTIONS = {
-        new FactoryDescription("Power", __("powerComponent"),
+        new FactoryDescription("Power", getFromLocale("powerComponent"),
                 "power.svg", "Power"),
-        new FactoryDescription("Ground", __("groundComponent"),
+        new FactoryDescription("Ground", getFromLocale("groundComponent"),
                 "ground.svg", "Ground"),
-        new FactoryDescription("Transistor", __("transistorComponent"),
+        new FactoryDescription("Transistor", getFromLocale("transistorComponent"),
                 "trans0.svg", "Transistor"),
-        new FactoryDescription("Transmission Gate", __("transmissionGateComponent"),
+        new FactoryDescription("Transmission Gate", getFromLocale("transmissionGateComponent"),
                 "transmis.svg", "TransmissionGate"),
-        new FactoryDescription("Bit Extender", __("extenderComponent"),
+        new FactoryDescription("Bit Extender", getFromLocale("extenderComponent"),
                 "extender.svg", "BitExtender"),
     };
 
@@ -57,7 +57,7 @@ public class Wiring extends Library {
     public String getName() { return "Wiring"; }
 
     @Override
-    public String getDisplayName() { return _("wiringLibrary"); }
+    public String getDisplayName() { return getFromLocale("wiringLibrary"); }
 
     @Override
     public List<Tool> getTools() {
