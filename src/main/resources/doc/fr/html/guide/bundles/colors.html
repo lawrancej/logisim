@@ -1,55 +1,54 @@
 <html>
 <head>
-	<title>Wire colors</title>
+	<title>Couleurs du câblage</title>
 </head>
 <body bgcolor="FFFFFF">
 
-<h1>Wire colors</h1>
+<h1>Couleurs du câblage</h1>
 
-<p>We are now in a position to summarize the full rainbow of
-colors that Logisim wires can take on. The following
-little circuit illustrates all of them at once.</p>
+<p>Nous sommes maintenant en mesure de résumer l'ensemble
+	de l'arc-en-ciel des couleurs que Logisim peut utiliser pour les câbles.
+	Le circuit suivant les illustre toutes.</p>
 <center><img src="../../../img-guide/bundles-colors.png"></center>
 
 <ul>
 
-<li><p><strong>Gray:</strong> The wire's bit width is unknown. This
-occurs because the wire is not attached to any components' inputs
-and outputs. (All inputs and outputs have a defined bit width.)</p></li>
+<li><p><strong>Gris:</strong> La largeur en bit du cablâge est
+	inconnue. Ceci arrive parce que le câble n'est attaché à 
+	aucune entrée ni sortie de composant. (Toutes les entrées et sorties ont
+	une largeur de bit définie.)</p></li>
 
-<li><p><strong>Blue:</strong> The wire carries a one-bit
-value, but nothing is driving a specific value onto the wire.
-We call this a <em>floating</em> bit; some people call it a
-<em>high-impedance</em> value.
-In this example, the component placing a value onto the wire is a three-state
-pin, so it can emit this floating value.</p>
+<li><p><strong>Bleu:</strong> Le câble transporte une valeur à un bit, mais rien
+	ne force une valeur spécifique sur le câble. Nous appelons ceci une un bit
+	<em>flotant</em>; certains l'appel une valeur de <em>haute impédence</em>.
+	Dans cet exemple, le composant qui envoie une valeur sur le câble est
+	un bit à trois états, il peut donc émettre cette valeur flottante.</p>
 
-<li><p><strong>Dark green:</strong> The wire is carrying a one-bit 0
-value.</p></li>
+<li><p><strong>Vert foncé:</strong> Le câble transporte une valeur à un bit de 0.</p></li>
 
-<li><p><strong>Bright green:</strong> The wire is carrying a one-bit 1
-value.</p></li>
+<li><p><strong>Vert clair:</strong> Le câble transporte une valeur à un bit de 1.</p></li>
 
-<li><p><strong>Black:</strong> The wire is carrying a multi-bit value.
-Some or all of the bits may not be specified.</p></li>
+<li><p><strong>Noir:</strong> Le câble transporte une valeur de plusieurs bits.
+Certains ou tous les bits peuvent être indéterminés.</p></li>
 
-<li><p><strong>Red:</strong> The wire is carrying an error value.
-This often arises because a gate cannot determine the proper output,
-perhaps because it has no inputs. It could also arise because two components
-are trying to send different values onto the wire;
-this is what happens in the above example,
-where one input pin places 0 onto the wire
-while another places 1 onto the same wire, causing a conflict.
-Multi-bit wires will turn red when any of the bits carried are error values.</p></li>
+<li><p><strong>Rouge:</strong> Le câble transporte une valeur d'erreur. Ceci arrive souvent
+	parce qu'une porte logique ne peut pas déterminer correctement sa sortie,
+	peut-être parce qu'elle ne reçoit aucune entrée. Ceci peut aussi arriver parce que deux
+	composants essayent d'envoyer deux valeurs différentes sur le câble.
+	The wire is carrying an error value; Ceci arrive dans l'exemple ci-dessus parce que l'un des
+	bits de sortie envoie 0 sur le câble et l'autre envoie 1 sur le même câble, ce qui
+	cause un conflit.
+	Les câbles multi-bit deviennent rouge quand l'un des bits transporte une valeur d'erreur.
+</p></li>
 
-<li><p><strong>Orange:</strong> The components attached to the wire do
-not agree in bit width. An orange wire is effectively "broken": It does
-not carry values between components. Here, we've attached a two-bit
-component to a one-bit component, so they are incompatible.</p></li>
+<li><p><strong>Orange:</strong> Les composants reliés au câble n'ont pas la 
+	même largeur de bits. Un câble orange est effectivement "cassé": il ne
+	transporte aucune valeur entre les composants. Ici nous avons relié un composant
+	à deux bits à un composant à un bit, ils sont donc incompatibles.</p></li>
 
 </ul>
 
-<p><strong>Next:</strong> <em><a href="../index.html">User's Guide</a></em>.</p>
+<p><strong>Suivant:</strong> <em><a href="../index.html">Guide Utilisateur</a></em>.</p>
 
 </body>
 </html>
