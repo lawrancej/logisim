@@ -1,100 +1,97 @@
 <html>
 <head>
-	<title>Creating expressions</title>
+	<title>Création d'expressions</title>
 </head>
 <body bgcolor="FFFFFF">
 
-<h1>Creating expressions</h1>
+<h1>Créer des expressions</h1>
 
-<p>For each output variable, the Combinational Analysis window
-maintains two structures - the relevant column of the truth table,
-and a Boolean expression - specifying how each output relates to its
-input. You can edit either the truth table or the expression; the other
-will automatically change as necessary to keep them consistent.</p>
+<p>Pour chaque variable de sortie, la fenêtre d'analyse combinatoire
+	maintient deux structures: la colonne concernée dans la table de vérité 
+	et une expression booléenne. Chaque structure définit comment la sortie 
+	dépend de ses entrées.
+	Vous pouvez éditer soit la table de vérité soit l'expression; l'un ou l'autre
+	sera automatiquement mis à jours pour rester consistant.</p>
 
-<p>As we will see on the next page, the Boolean expressions are
-particularly useful because the Combinational Analysis window will
-use these when told to build a circuit corresponding to the current
-state.</p>
+<p>Comme nous allons le voir sur la page suivante, les expressions booléennes sont 
+	particulièrement utiles dans la mesure ou la fenêtre d'analyse combinatoire utilisera
+	ses dernière quand il sera nécessaire d'élaborer le circuit correspondant à la
+	configuration courrante.</p>
 
-<p>You can view and edit the expressions using the window's last two
-tabs, the Expression tab and the Minimized tab.</p>
+<p>Vous pouvez voir et éditer les expressions en utilisant les deux derniers onglet
+	de la fenêtre: l'onglet expressions et l'onglet Karnaugh.</p>
 
-<h2>The Expression tab</h2>
+<h2>L'onglet expression</h2>
 
 <center><img src="../../../img-guide/analyze-expr.png"></center>
 
-<p>The Expression tab allows you to view and edit the current
-expression associated with each output variable. You can select the
-output expression you want to view and edit using the selector labeled
-"Output:" at the pane's top.</p>
+<p>L'onglet expression vous permet de visualiser et éditer l'expression courante
+	pour chaque variable de sortie. Vous pouvez sélectionner l'expression de sortie
+	en utilisant le sélecteur appelé "Sortie:" en haut du panneau.</p>
 
-<p>Just below the selector will appear the expression formatted in a
-particularly common notation, where an OR is represented as addition,
-an AND is represented as multiplication, and a NOT is denoted with a bar
-above the portion affected by the NOT.</p>
+<p>Juste en-dessous du sélecteur, l'expression apparaît dans un format d'usage commun,
+	ou un OR est représenté par une addition, un AND et représenté par une multiplication,
+	et un NOT est représenté par une barre au-dessus de la lettre.</p>
 
-<p>The text pane below this displays the same information in ASCII form.
-Here, a NOT is represented with a tilde ('~').</p>
+<p>Sur le même panneau en-dessous nous avons la même information en ASCII.
+	Dans ce contexte, le NOT est représenté par une vague ('~').</p>
 
-<p>You can edit the expression in the text pane and click the Enter
-button to make it take effect; doing this will also update the truth
-table to make it correspond. The Clear button clears the text pane,
-and the Revert button changes the pane back to representing the
-current expression.</p>
+<p>Vous pouvez éditer l'expression dans le panneau de texte et cliquer sur 
+	le bouton entrer pour la rendre effective. En faisant cela vous mettez à jours également
+	la table de vérité de manière correspondante.
+	Le bouton effacer vide le champ texte et le bouton revenir remet le texte qui correspond
+	à l'expression courrante.</p>
 
-<p>Note that your edited expression will be lost if you edit the truth table.</p>
+<p>Notez que votre expressions sera modifiée de manière irrémédiable si vous éditez la table de vérité.</p>
 
-<p>In addition to multiplication and addition standing for AND and OR, an expression
-you type may contain any of C/Java logical operators, as well as simply the words themselves.</p>
+<p>En plus des additions et multiplications représentant des AND et des OR,
+	une expression entrée peut contenir des opérateurs logiques C/JAVA ainsi que des mots.</p>
 <center><table>
-<tr><th>highest precedence</th><td align="center"><tt>~</tt> <tt>!</tt> <tt>'</tt></td> <th>NOT</th></tr>
+<tr><th>Priorité la plus haute</th><td align="center"><tt>~</tt> <tt>!</tt> <tt>'</tt></td> <th>NOT</th></tr>
 <tr><th></th><td align="center">(none) <tt>&amp;</tt> <tt>&amp;&amp;</tt></td> <th>AND</th></tr>
 <tr><th></th><td align="center"><tt>^</tt></td> <th>XOR</th></tr>
-<tr><th>lowest precedence</th><td align="center"><tt>+</tt> <tt>|</tt> <tt>||</tt></td> <th>OR</th></tr>
+<tr><th>Priorité la plus basse</th><td align="center"><tt>+</tt> <tt>|</tt> <tt>||</tt></td> <th>OR</th></tr>
 </table></center>
-<p>The following examples are all valid representations of the same expression. You could
-also mix the operators.</p>
+<p>Les exemples suivants sont tous des représentations valides de la même expression.
+	Il est d'ailleurs aussi possible de mélanger les opérateurs</p>
 <table>
 <tr><td><tt>a' (b + c)</tt></td></tr>
 <tr><td><tt>!a &amp;&amp; (b || c)</tt></td></tr>
 <tr><td><tt>NOT a AND (b OR c)</tt></td></tr>
 </table>
-<p>In general, parentheses within a sequence of ANDs (or ORs or
-XORs) do not matter. (In particular, when Logisim creates a
-corresponding circuit, it will ignore such parentheses.)</p>
+<p>En général, des parenthèses, dans une séquence de AND (ou de OR ou de XOR) n'ont aucun effet.
+	(En particulier, quand Logisim génère un circuit, il ignore ces parenthèses.</p>
 
-<h2>The Minimized tab</h2>
+<h2>L'onglet Karnaugh</h2>
 
 <center><img src="../../../img-guide/analyze-min.png"></center>
 
-<p>The final tab displays a minimized expression
-corresponding to a column of the truth table. You can select which
-output's minimized expression you want to view using the selector
-at top, and you can indicate whether you want to derive a sum-of-products
-expression or a product-of-sums expression using the selector below.</p>
+<p>Le dernier onglet affiche l'expression minimale d'une colonne de la table de vérité.
+	Vous pouvez sélectionner quelle sortie minimisée d'une colonne de la table vous 
+	souhaitez afficher avec le sélecteur en haut. Vous pouvez indiquer si vous souhaitez
+	produire une somme de produits ou un produit de sommes en utilisant le sélecteur en-bas.</p>
 
-<p>If there are four or fewer inputs, a Karnaugh map corresponding
-to the variable will appear below the selector. You can click the
-Karnaugh map to change the corresponding truth table values. The
-Karnaugh map will also display the currently selected terms for the
-minimized expression as solid semitransparent rounded rectangles.</p>
+<p>Si il y'a quatre ou moins de quatre entrée, la table de Karnaugh correspondante apparaîtra
+	au centre du panneau. Vous pouvez cliquer la table de Karnaugh pour changer les valeurs
+	correspondantes dans la table de vérité.
+	La table de Karnaugh affichera également les termes sélectionnés pour l'expression 
+	minimisée avec un rectangle arrondi superposé semi-transparent.</p>
 
-<p>Below this is the minimized expression itself, formatted as in the
-Expression tab's display. If there are more than four inputs,
-the Karnaugh map will not appear; but the minimized expression will
-still be computed. (Logisim uses the Quine-McCluskey algorithm to
-compute the minimized expression. This is equivalent to a Karnaugh map,
-but it applies to any number of input variables.)</p>
+<p>En dessous, vous trouverez l'expression minimisée elle-même, formaté de la même manière que 
+	dans l'onglet Expression.
+	Si il y'a plus de quatre entrées, la table de Karnaugh ne vas pas apparaître; mais
+	l'expression minimisée sera tout même affichée. (Logisim utilise l'algorithme de 
+	Quine-McCluskey pour élaborer l'expression minimisée. Ceci est équivalent à une table de 
+	Karnaugh, mais appliqué à un nombre quelconque de variable en entrée.)</p>
 
-<p>The Set As Expression button allows you to select the minimized
-expression as the expression corresponding to the variable. This will
-generally not be necessary, as edits to the truth table result in using
-the minimized expression for the changed column; but if you enter an
-expression through the Expression tab, this can be a convenient way
-to switch to the corresponding minimized expression.</p>
+<p>Le bouton "Définir comme expression" vous permet de définir l'expression
+	minimisée comme l'expression correspondant à la variable. Ceci ne sera 
+	habituellement pas nécessaire comme les modifications à la table de vérité
+	induisent l'expression minimisée pour la colonne en question; mais si vous
+	entrez une expression dans l'onglet Expression, alors c'est une possibilité 
+	intéressante de basculer dans l'expression minimisée correspondante.</p>
 
-<p><strong>Next:</strong> <a href="gen.html">Generating a circuit</a>.</p>
+<p><strong>Suivant:</strong> <a href="gen.html">Générer un circuit</a>.</p>
 
 </body>
 </html>

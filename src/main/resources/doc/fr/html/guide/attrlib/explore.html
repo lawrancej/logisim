@@ -1,93 +1,89 @@
 <html>
 <head>
-	<title>The explorer pane</title>
+	<title>Le panneau de navigation</title>
 </head>
 <body bgcolor="FFFFFF">
 
-<h1>The explorer pane</h1>
+<h1>Le panneau de navigation</h1>
 
-<p>Logisim organizes tools into <strong>libraries</strong>. They are displayed
-as folders in the explorer pane; to access a library's components, you have only
-to double-click the corresponding folder.
-Below, I have opened the Gates library and selected the NAND tool from
-it. You can see that Logisim now stands ready to add NAND gates into the
-circuit.</p>
+<p>Logisim organise les outils dans des <strong>librairies</strong>. Elles sont
+	affichées comme des dossier dans la panneau de navigation; pour accéder aux composants
+	d'une librairie, il faut d'abord double cliquer sur le dossier correspondant.
+	Ci-dessous vous voyez ouverte la librairie des Portes logiques and le porte
+	NAND sélectionnée. Vous voyez que Logisim est maintenant prêt à ajouter des portes
+	NAND dans le circuit.</p>
 <center><img src="../../../img-guide/attrlib-nand-select.png"></center>
-<p>If you look through the choices in the Gates library, you'll notice that
-there was no need for us to develop a XOR circuit earlier: It's built
-into Logisim.</p>
+<p>Si vous regarder le chois des portes logiques dans la librairie des portes logiques, 
+	vous remarquerez que n'avions pas le besoin de développer un circuit XOR auparavant:
+	c'est inclus dans Logisim.</p>
 
-<p>When you create a project, it automatically includes several libraries:</p>
+<p>Quand vous créez un projet, il inclut directement un certain nombre de librairies:</p>
 <ul>
 
-<li>Wiring: Components that interact directly with wires.</li>
+<li>Câblage: Les composants qui ont directement avoir avec le câblage.</li>
 
-<li>Gates: Components that perform simple logic functions.</li>
+<li>Les portes logiques: Les composants qui réalisent de simples fonctions logiques.</li>
 
-<li>Plexers: More complex combinational components, like multiplexers and
-decoders.</li>
+<li>PLexeurs: Des composants combinatoires plus complexes comme des multiplexeurs et des décodeurs.</li>
 
-<li>Arithmetic: Components that perform arithmetic.</li>
+<li>Arithmetique: Des composants qui effectuent des opérations arithmétiques.</li>
 
-<li>Memory: Components that remember data, like flip-flops, registers, and
-RAM.</li>
+<li>Mémoire: Des composant qui mémorisent des informations comme des bascules, des registres et de la RAM.</li>
 
-<li>I/O: Components that exist for the purpose of interacting with the
-user.</li>
+<li>I/O: Des composants qui sont là pour permettre des interactions avec l'utilisateur.</li>
 
-<li>Base: Tools that are integral to using Logisim, though you probably won't
-need to dig into this library very often.</li>
+<li>Base: Des outils qui sont intégré dans l'interface de Logisim, c'est pourquoi vous n'aurez
+	probablement pas besoin d'ouvrir cette librairie.</li>
 
 </ul>
 
-<p>Logisim allows you to add more libraries, too, using the Load Library submenu
-of the Project menu.
-You can see that Logisim has three categories of libraries.</p>
+<p>Logisim vous permet d'ajouter plus de librairies en utilisant le sous-menu
+	charger une librairie dans le menu Projet.
+	Vous pouvez voir que Logisim a trois catégories de librairies.</p>
 <ul>
 
-<li><strong>Built-in libraries</strong> are libraries that are
-distributed with Logisim. These are documented in the
-<em><a href="../../libs/index.html">Library Reference</a></em>.</p>
+<li><strong>Les librairies intégrées</strong> sont des librairies qui sont distribuées
+	avec Logisim. Ces dernières sont documentées dans
+<em><a href="../../libs/index.html">Librairie de référence</a></em>.</p>
 
-<li><strong>Logisim libraries</strong> are projects built
-within Logisim and saved to the disk as a Logisim project. You can develop a
-set of circuits in a single project (as described in the
-<a href="../subcirc/index.html">Subcircuits</a> section of this guide)
-and then use that set of circuits as a library for other projects.</p>
+<li><strong>Les librairies Logisim</strong> sont des projets construits dans 
+	Logisim et sauvegardées comme des projets logisim. Vous pouvez développer
+	un ensemble de circuits dans un seul projet (comme décrit dans la section
+<a href="../subcirc/index.html">Sous-circuit</a> de ce guide)
+et utiliser cet ensemble de circuit comme une librairie dans d'autres projets.</p>
 
-<li><strong>JAR libraries</strong> are libraries that are developed
-in Java but not distributed with Logisim.  You can download JAR
-libraries that others have written, or you can write your own as
-described in the <a href="../jar/index.html">JAR Libraries</a> section
-of this guide.  Developing a JAR library is much more difficult than
-developing a Logisim library, but the components can be much fancier,
-including things like attributes and interaction with the user.
-The built-in libraries (other than Base) were written using the same
-API as JAR libraries can use, so they aptly demonstrate the range of
-functionality that the JAR libraries can support.</p>
+<li><strong>Les librairies JAR</strong> qui sont des librairie qui sont développées
+	en Java mais ne sont pas distribuées avec Logisim. Vous pouvez télécharger une 
+	librairie écrite par quelqu'un d'autre, ou vous pouvez écrire votre
+	propre librairie comme expliqué dans la section <a href="../jar/index.html">Librairies Jar</a> de ce guide.  
+	Développer une librairie JAR est bien plus difficile que de développer une librairie Logisim, mais
+	le composant peut être bien plus riche en incluant des attributs et des
+	interactions avec l'utilisateur.
+	Les librairies intégrées (autres que Base) sont écrites en utilisant les 
+	mêmes API que les librairies JAR. Elles démontrent donc les possibilités,
+	en terme de fonctionnalité, qu'une librairie JAR peut supporter.</p>
 
-<p>Some JAR libraries are distributed without any information about
-which Java class to start with. When loading such a JAR, Logisim
-will prompt you to type a class name. This class name should be provided
-by whoever distributed the JAR file to you.</p>
+<p>Certaines des librairies JAR sont distribuées sans aucune information à propos
+	d'avec quelle classe Java il faut débuter. Quand un tel JAR est chargé, Logisim 
+	vous demandera alors d'indiquer un nom de classe. Ce nom de classe devrait
+	être fourni par celui qui distribue le fichier JAR.</p>
 
 </ul>
 
-<p>To remove a library, choose Unload Library... from the Project
-menu. Logisim will prevent you from unloading libraries that contain
-components used in a circuit, that appear in the toolbar, or that
-are mapped to a mouse button.</p>
+<p>Pour enlever une librairie, choisissez enelver Librairie ... depuis le 
+	menu Projet. Logisim vous empêchera d'enlever des librairies qui contiennent
+	des composant actuellement utilisées dans le circuit, qui apparaissent dans 
+	la barre d'outils ou qui sont liées au pointeur.</p>
 
-<p>Incidentally, a library technically contains tools, not
-components. Thus, in the Base library you'll find the Poke Tool
-(<img src="../../../icons/poke.gif">), the Edit Tool
-(<img src="../../../icons/select.gif">), and other tools that don't
-correspond directly to individual components.
-Most libraries, though, contain only tools for adding individual
-components; all built-in libraries other than the Base library
-are like this.</p>
+<p>Par ailleurs, une librairie contient en fait d'un point de vue technique des outils, 
+	et non des composants. Par conséquent, dans la librairie de base vous trouvez l'outil Pousser
+(<img src="../../../icons/poke.gif">), l'outil éditer
+(<img src="../../../icons/select.gif">), et d'autres outils qui ne
+correspondent pas directement à des composants particuliers.
+La plupart des librairies, contiennent malgré tout des outils pour ajouter 
+des composants; toutes les autres librairies que la librairie Base sont ainsi.</p>
 
-<p><strong>Next:</strong> <a href="attr.html">The attribute table</a>.</p>
+<p><strong>Suivant:</strong> <a href="attr.html">La table des attributs</a>.</p>
 
 </body>
 </html>

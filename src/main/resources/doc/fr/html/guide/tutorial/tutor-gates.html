@@ -1,67 +1,66 @@
 <html>
 <head>
-	<title>Tutorial: Adding gates</title>
+	<title>Tutoriel: Ajouter des portes logiques</title>
 </head>
 <body bgcolor="FFFFFF">
 
-<p><b>Next:</b> <a href="tutor-wires.html">Step 2: Adding wires</a></p>
+<p><b>Suivant:</b> <a href="tutor-wires.html">Etape 2: Ajouter des câbles</a></p>
 
-<h2>Step 1: Adding gates</h2>
+<h2>Etape 1: Ajouter des portes logiques</h2>
 
-<p>Recall that we're trying to build the following circuit in Logisim.</p>
+<p>Rappelez-vous que nous essayons de construire le circuit suivant dans Logisim.</p>
 <center><img src="../../../img-guide/tutorial-xor-circ.png"></center>
 
-<p>I suggest building a circuit by inserting the gates first as a sort of
-skeleton and then connecting them with wires later. The first thing we'll do
-is to add the two AND gates. Click on the AND tool in the toolbar
-(<img src="../../../icons/andGate.gif">, the
-next-to-last tool listed).
-Then click in the editing area where
-you want the first AND gate to go. Be sure to leave plenty of room
-for stuff on the left. Then click the AND tool again and place the second
-AND gate below it.</p>
+<p>Je suggère de construire le circuit en insérant d'abord les portes logiques
+	comme sorte de charpente et de les connecter ensuite avec des câbles.
+	La première chose que nous allons faire c'est d'ajouter deux portes AND (portes ET).
+	Cliquez sur l'outil AND dans la barre d'outils
+(<img src="../../../icons/andGate.gif">, l'avant dernier outil listé).
+Ensuite cliquez sur l'aire d'édition ou vous voulez placer la première porte logique AND.
+Faites attention à laisser suffisamment de place à gauche. Ensuite cliquez à nouveau sur 
+l'outil et placez la deuxième porte AND juste en dessous.</p>
 <center><img src="../../../img-guide/tutorial-shot-ands.png"></center>
-<p>Notice the five dots on the left side of the AND gate. These are spots
-where wires can be attached. It happens that we'll just use two of them
-for our XOR circuit; but for other circuits, you may find that having
-more than two wires going to an AND gate is useful.</p>
+<p>Prenez note des cinq point sur la partie gauche de la porte logique AND. Ce sont les
+	emplacements ou les câbles peuvent être connectés. Il se trouve que nous n'en 
+	utiliserons que deux pour notre circuit XOR; mais pour d'autres circuits, vous 
+	pourriez trouver utile d'avoir plus de deux câbles arrivant à une porte logique AND.</p>
 
-<p>Now add the other gates.  First click on the OR tool
+<p>Maintenant ajoutez les autres portes. D'abord cliquez sur l'outil OR
 (<img src="../../../icons/orGate.gif">);
-then click where you want it. And place the two NOT gates into the canvas
-using the NOT tool
+ensuite cliquez à l'endroit ou vous voulez placer votre porte. Placez ainsi
+les deux portes NOT sur la surface en utilisant l'outil NOT
 (<img src="../../../icons/notGate.gif">).</p>
 <center><img src="../../../img-guide/tutorial-shot-gates.png"></center>
-<p>I left a little space between the NOT gates and the AND gates; if you
-want to, though, you can put them up against each other and save
-yourself the effort of connecting them with a wire later.</p>
+<p>J'ai laissé un petit peu de place entre les portes NOT et les portes AND; si
+	vous le souhaitez, vous pouvez cependant les placer l'une contre l'autre et économiser
+	la peine d'avoir à les inter-connecter avec un câble plus tard.</p>
 
-<p>Now we want to add the two inputs <var>x</var> and <var>y</var> into
-the diagram. Select the Input tool
+<p>¨Maintenant nous voulons ajouter les deux entrées<var>x</var> et <var>y</var> dans notre
+	diagramme. Sélectionnez l'outil Entrée
 (<img src="../../../icons/pinInput.gif">),
-and place the pins down.
-You should also place an output pin next to the OR gate's output using
-the Output tool
+et déposer les pins (point d'entrée ou connecteur).
+Vous devez également placer un pin de sortie à côté de la sortie de la 
+porte logique OR en utilisant l'outil sortie.
 (<img src="../../../icons/pinOutputReversed.gif">).
-(Again, I'm leaving a bit of space between the OR gate and the output
-pin, but you might choose to place them right next to each other.)</p>
+(De nouveau, je laisse un petit peu d'espace entre la porte OR et le pin
+de sortie, mais vous pouvez choisir de les coller l'un à l'autre.)</p>
 <center><img src="../../../img-guide/tutorial-shot-comps.png"></center>
 
-<p>If you decide you don't like where you placed something, then you can
-select it using the Edit tool
+<p>Si vous n'êtes pas satisfait avec l'emplacement de quelque chose, vous pouvez
+	le sélectionner avec l'outil d'édition
 (<img src="../../../icons/select.gif">)
-and drag it to the desired spot. Or you can delete it altogether by selecting
-Delete from the Edit menu or pressing the Delete key.</p>
+et le déplacer à l'endroit souhaité. Ou vous pouvez le supprimer complètement en 
+sélectionnant l'outil effacer dans le menu Editer ou en pressant la touche effacer.</p>
 
-<p>As you place each component of the circuit, you'll notice that as soon as
-the component is placed, Logisim reverts to the Edit tool so that you can
-move the recently-placed component or (as we'll see soon) connect the component
-to others by creating wires. If you want to add a copy of the recently placed
-component, a shortcut is to press Control-D to duplicate the selection.
-(Some computers use another keys for menus, such as the Command key on
-Macintoshes. You would press that key with the D key.)</p>
+<p>Alors que vous disposez chaque composant du circuit, vous remarquerez qu'aussitôt que
+	le composant est placé, Logisim revient à l'outil d'édition de telle façon que vous 
+	puissiez déplacer le composant qui vient d'être placé ou (comme nous le verrons) connecter
+	le composant à d'autres en créant des câbles. Si vous voulez ajouter une copie du composant
+	nouvellement placé, il suffit de presser Control-D pour dupliquer la sélection.
+	(Certains systèmes utilisent d'autres touches, comme la touche commande sur les 
+	systèmes OSX. Il faut alors adapter).</p>
 
-<p><b>Next:</b> <a href="tutor-wires.html">Step 2: Adding wires</a></p>
+<p><b>Suivant:</b> <a href="tutor-wires.html">Etape 2: Ajouter des câbles</a></p>
 
 </body>
 </html>
