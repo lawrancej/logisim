@@ -100,12 +100,12 @@ public class Analyze {
 
             String defaultList;
             if (Pin.FACTORY.isInputPin(pin)) {
-                defaultList = _("defaultInputLabels");
+                defaultList = getFromLocale("defaultInputLabels");
                 if (defaultList.indexOf(",") < 0) {
                     defaultList = "a,b,c,d,e,f,g,h";
                 }
             } else {
-                defaultList = _("defaultOutputLabels");
+                defaultList = getFromLocale("defaultOutputLabels");
                 if (defaultList.indexOf(",") < 0) {
                     defaultList = "x,y,z,u,v,w,s,t";
                 }

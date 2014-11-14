@@ -23,19 +23,19 @@ public class AttrTableCircuitModel extends AttributeSetTableModel {
 
     @Override
     public String getTitle() {
-        return _("circuitAttrTitle", circ.getName());
+        return getFromLocale("circuitAttrTitle", circ.getName());
     }
 
     @Override
     public void setValueRequested(Attribute<Object> attr, Object value)
             throws AttrTableSetException {
         if (!proj.getLogisimFile().contains(circ)) {
-            String msg = _("cannotModifyCircuitError");
+            String msg = getFromLocale("cannotModifyCircuitError");
             throw new AttrTableSetException(msg);
         } else {
             CircuitMutation xn = new CircuitMutation(circ);
             xn.setForCircuit(attr, value);
-            proj.doAction(xn.toAction(__("changeCircuitAttrAction")));
+            proj.doAction(xn.toAction(getFromLocale("changeCircuitAttrAction")));
         }
     }
 }

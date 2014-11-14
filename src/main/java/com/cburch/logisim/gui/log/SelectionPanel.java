@@ -177,21 +177,21 @@ class SelectionPanel extends LogPanel {
 
     @Override
     public String getTitle() {
-        return _("selectionTab");
+        return getFromLocale("selectionTab");
     }
 
     @Override
     public String getHelpText() {
-        return _("selectionHelp");
+        return getFromLocale("selectionHelp");
     }
 
     @Override
     public void localeChanged() {
-        addTool.setText(_("selectionAdd"));
-        changeBase.setText(_("selectionChangeBase"));
-        moveUp.setText(_("selectionMoveUp"));
-        moveDown.setText(_("selectionMoveDown"));
-        remove.setText(_("selectionRemove"));
+        addTool.setText(getFromLocale("selectionAdd"));
+        changeBase.setText(getFromLocale("selectionChangeBase"));
+        moveUp.setText(getFromLocale("selectionMoveUp"));
+        moveDown.setText(getFromLocale("selectionMoveDown"));
+        remove.setText(getFromLocale("selectionRemove"));
         selector.localeChanged();
         list.localeChanged();
     }

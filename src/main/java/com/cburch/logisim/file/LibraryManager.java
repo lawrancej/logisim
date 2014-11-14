@@ -135,7 +135,7 @@ class LibraryManager {
         // Otherwise we'll have to decode it.
         int sep = desc.indexOf(desc_sep);
         if (sep < 0) {
-            loader.showError(_("fileDescriptorError", desc));
+            loader.showError(getFromLocale("fileDescriptorError", desc));
             return null;
         }
         String type = desc.substring(0, sep);
@@ -144,7 +144,7 @@ class LibraryManager {
         if (type.equals("")) {
             Library ret = loader.getBuiltin().getLibrary(name);
             if (ret == null) {
-                loader.showError(_("fileBuiltinMissingError", name));
+                loader.showError(getFromLocale("fileBuiltinMissingError", name));
                 return null;
             }
             return ret;
@@ -158,7 +158,7 @@ class LibraryManager {
             File toRead = loader.getFileFor(fileName, Loader.JAR_FILTER);
             return loadJarLibrary(loader, toRead, className);
         } else {
-            loader.showError(_("fileTypeError",
+            loader.showError(getFromLocale("fileTypeError",
                 type, desc));
             return null;
         }
@@ -207,7 +207,7 @@ class LibraryManager {
     public void reload(Loader loader, LoadedLibrary lib) {
         LibraryDescriptor descriptor = invMap.get(lib);
         if (descriptor == null) {
-            loader.showError(_("unknownLibraryFileError",
+            loader.showError(getFromLocale("unknownLibraryFileError",
                     lib.getDisplayName()));
         } else {
             try {
@@ -262,7 +262,7 @@ class LibraryManager {
             if (desc != null) {
                 return desc.toDescriptor(loader);
             } else {
-                throw new LoaderException(_("fileDescriptorUnknownError", lib.getDisplayName()));
+                throw new LoaderException(getFromLocale("fileDescriptorUnknownError", lib.getDisplayName()));
             }
         }
     }

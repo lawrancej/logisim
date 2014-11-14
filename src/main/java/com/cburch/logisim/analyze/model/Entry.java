@@ -3,15 +3,14 @@
 
 package com.cburch.logisim.analyze.model;
 
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Entry {
     public static final Entry ZERO = new Entry("0");
     public static final Entry ONE = new Entry("1");
     public static final Entry DONT_CARE = new Entry("x");
-    public static final Entry BUS_ERROR = new Entry(__("busError"));
-    public static final Entry OSCILLATE_ERROR = new Entry(__("oscillateError"));
+    public static final Entry BUS_ERROR = new Entry(getFromLocale("busError"), true);
+    public static final Entry OSCILLATE_ERROR = new Entry(getFromLocale("oscillateError"), true);
 
     public static Entry parse(String description) {
         if (ZERO.description.equals(description)) {
@@ -34,16 +33,16 @@ public class Entry {
     }
 
     private String description;
-    private StringGetter errorMessage;
+    private String errorMessage;
 
-    private Entry(String description) {
-        this.description = description;
-        this.errorMessage = null;
-    }
-
-    private Entry(StringGetter errorMessage) {
-        this.description = "!!";
-        this.errorMessage = errorMessage;
+    private Entry(String message, boolean... isError) {
+    	if (isError.length > 0 && isError[0]) {
+    		this.description = "!!";
+            this.errorMessage = message;
+    	} else {
+    		this.description = message;
+    		this.errorMessage = null;
+    	}
     }
 
     public String getDescription() {

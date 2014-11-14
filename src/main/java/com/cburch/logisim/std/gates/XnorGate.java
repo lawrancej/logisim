@@ -20,7 +20,7 @@ class XnorGate extends AbstractGate {
     public static XnorGate FACTORY = new XnorGate();
 
     private XnorGate() {
-        super("XNOR Gate", __("xnorGateComponent"), true);
+        super("XNOR Gate", getFromLocale("xnorGateComponent"), true);
         setNegateOutput(true);
         setAdditionalWidth(10);
         setIconNames("xnorGate.svg", "xnorGateRect.svg", "dinXnorGate.svg");

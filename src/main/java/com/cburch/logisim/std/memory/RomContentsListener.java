@@ -29,7 +29,7 @@ class RomContentsListener implements HexModelListener {
 
         @Override
         public String getName() {
-            return _("romChangeAction");
+            return getFromLocale("romChangeAction");
         }
 
         @Override

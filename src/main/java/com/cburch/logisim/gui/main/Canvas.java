@@ -3,14 +3,17 @@
 
 package com.cburch.logisim.gui.main;
 
-import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
 import java.util.*;
 import java.util.List;
+
 import javax.swing.*;
 import javax.swing.event.*;
+
 import com.cburch.logisim.circuit.*;
 import com.cburch.logisim.comp.*;
 import com.cburch.logisim.comp.Component;
@@ -20,6 +23,7 @@ import com.cburch.logisim.gui.generic.*;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.*;
 import com.cburch.logisim.tools.*;
+import com.cburch.logisim.tools.SelectTool.ComputingMessage;
 import com.cburch.logisim.util.*;
 
 @SuppressWarnings("serial")
@@ -101,7 +105,7 @@ public class Canvas extends JPanel
 
         @Override
         public void mousePressed(MouseEvent e) {
-            viewport.setErrorMessage(null, null);
+            viewport.setErrorMessage(null, 0, 0, null);
             proj.setStartupScreen(false);
             Canvas.this.requestFocus();
             drag_tool = getToolFor(e);
@@ -205,7 +209,7 @@ public class Canvas extends JPanel
         public void projectChanged(ProjectEvent event) {
             int act = event.getAction();
             if (act == ProjectEvent.ACTION_SET_CURRENT) {
-                viewport.setErrorMessage(null, null);
+                viewport.setErrorMessage(null, 0, 0, null);
                 if (painter.getHaloedComponent() != null) {
                     proj.getFrame().viewComponentAttributes(null, null);
                 }
@@ -223,7 +227,7 @@ public class Canvas extends JPanel
                     mappings = file.getOptions().getMouseMappings();
                 }
             } else if (act == ProjectEvent.ACTION_SET_TOOL) {
-                viewport.setErrorMessage(null, null);
+                viewport.setErrorMessage(null, 0, 0, null);
 
                 Tool t = event.getTool();
                 if (t == null) {
@@ -372,7 +376,9 @@ public class Canvas extends JPanel
     }
 
     private class MyViewport extends JViewport {
-        StringGetter errorMessage = null;
+        String errorMessage = null;
+        int dx = 0;
+        int dy = 0;
         Color errorColor = DEFAULT_ERROR_COLOR;
         String widthMessage = null;
         boolean isNorth = false;
@@ -386,9 +392,11 @@ public class Canvas extends JPanel
 
         MyViewport() { }
 
-        void setErrorMessage(StringGetter msg, Color color) {
+        void setErrorMessage(String msg, int dx, int dy, Color color) {
             if (errorMessage != msg) {
                 errorMessage = msg;
+                this.dx = dx;
+                this.dy = dy;
                 errorColor = color == null ? DEFAULT_ERROR_COLOR : color;
                 paintThread.requestRepaint();
             }
@@ -445,7 +453,7 @@ public class Canvas extends JPanel
                     getHeight() - 10);
             */
 
-            StringGetter message = errorMessage;
+            String message = errorMessage;
             if (message != null) {
                 g.setColor(errorColor);
                 paintString(g, message.toString());
@@ -454,13 +462,13 @@ public class Canvas extends JPanel
 
             if (proj.getSimulator().isOscillating()) {
                 g.setColor(DEFAULT_ERROR_COLOR);
-                paintString(g, _("canvasOscillationError"));
+                paintString(g, getFromLocale("canvasOscillationError"));
                 return;
             }
 
             if (proj.getSimulator().isExceptionEncountered()) {
                 g.setColor(DEFAULT_ERROR_COLOR);
-                paintString(g, _("canvasExceptionError"));
+                paintString(g, getFromLocale("canvasExceptionError"));
                 return;
             }
 
@@ -597,16 +605,16 @@ public class Canvas extends JPanel
 
     }
 
-    public StringGetter getErrorMessage() {
-        return viewport.errorMessage;
+    public ComputingMessage getErrorMessage() {
+        return new ComputingMessage(viewport.dx, viewport.dy);
     }
 
-    public void setErrorMessage(StringGetter message) {
-        viewport.setErrorMessage(message, null);
+    public void setErrorMessage(String message, int dx, int dy) {
+        viewport.setErrorMessage(message, dx, dy, null);
     }
 
-    public void setErrorMessage(StringGetter message, Color color) {
-        viewport.setErrorMessage(message, color);
+    public void setErrorMessage(String message, int dx, int dy, Color color) {
+        viewport.setErrorMessage(message, dx, dy, color);
     }
 
     //
@@ -764,7 +772,7 @@ public class Canvas extends JPanel
                     (int) (viewableBase.height / zoom));
         }
 
-        viewport.setWidthMessage(_("canvasWidthError")
+        viewport.setWidthMessage(getFromLocale("canvasWidthError")
                 + (exceptions.size() == 1 ? "" : " (" + exceptions.size() + ")"));
         for (WidthIncompatibilityData ex : exceptions) {
             // See whether any of the points are on the canvas.

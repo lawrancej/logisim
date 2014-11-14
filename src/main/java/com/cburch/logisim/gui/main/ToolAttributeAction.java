@@ -37,7 +37,7 @@ public class ToolAttributeAction extends Action {
 
     @Override
     public String getName() {
-        return _("changeToolAttrAction");
+        return getFromLocale("changeToolAttrAction");
     }
 
     @Override

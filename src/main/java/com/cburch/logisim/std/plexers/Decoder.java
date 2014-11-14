@@ -26,7 +26,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Decoder extends InstanceFactory {
     public Decoder() {
-        super("Decoder", __("decoderComponent"));
+        super("Decoder", getFromLocale("decoderComponent"));
         setAttributes(new Attribute[] {
                 StdAttr.FACING, Plexers.ATTR_SELECT_LOC, Plexers.ATTR_SELECT,
                 Plexers.ATTR_TRISTATE, Plexers.ATTR_DISABLED, Plexers.ATTR_ENABLE
@@ -156,11 +156,11 @@ public class Decoder extends InstanceFactory {
             ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
         }
         for (int i = 0; i < outputs; i++) {
-            ps[i].setToolTip(__("decoderOutTip", "" + i));
+            ps[i].setToolTip(getFromLocale("decoderOutTip", "" + i));
         }
-        ps[outputs].setToolTip(__("decoderSelectTip"));
+        ps[outputs].setToolTip(getFromLocale("decoderSelectTip"));
         if (enable) {
-            ps[outputs + 1].setToolTip(__("decoderEnableTip"));
+            ps[outputs + 1].setToolTip(getFromLocale("decoderEnableTip"));
         }
         instance.setPorts(ps);
     }

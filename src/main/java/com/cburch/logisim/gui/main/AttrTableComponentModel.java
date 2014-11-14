@@ -41,11 +41,11 @@ class AttrTableComponentModel extends AttributeSetTableModel {
     public void setValueRequested(Attribute<Object> attr, Object value)
             throws AttrTableSetException {
         if (!proj.getLogisimFile().contains(circ)) {
-            String msg = _("cannotModifyCircuitError");
+            String msg = getFromLocale("cannotModifyCircuitError");
             throw new AttrTableSetException(msg);
         } else {
             SetAttributeAction act = new SetAttributeAction(circ,
-                    __("changeAttributeAction"));
+                    getFromLocale("changeAttributeAction"));
             act.set(comp, attr, value);
             proj.doAction(act);
         }

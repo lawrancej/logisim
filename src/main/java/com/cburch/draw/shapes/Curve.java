@@ -70,7 +70,7 @@ public class Curve extends FillableCanvasObject {
 
     @Override
     public String getDisplayName() {
-        return _("shapeCurve");
+        return getFromLocale("shapeCurve");
     }
 
     @Override

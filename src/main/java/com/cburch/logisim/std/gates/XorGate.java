@@ -20,7 +20,7 @@ class XorGate extends AbstractGate {
     public static XorGate FACTORY = new XorGate();
 
     private XorGate() {
-        super("XOR Gate", __("xorGateComponent"), true);
+        super("XOR Gate", getFromLocale("xorGateComponent"), true);
         setAdditionalWidth(10);
         setIconNames("xorGate.svg", "xorGateRect.svg", "dinXorGate.svg");
         setPaintInputLines(true);

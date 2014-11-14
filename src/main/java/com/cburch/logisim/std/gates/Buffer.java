@@ -33,7 +33,7 @@ class Buffer extends InstanceFactory {
     public static InstanceFactory FACTORY = new Buffer();
 
     private Buffer() {
-        super("Buffer", __("bufferComponent"));
+        super("Buffer", getFromLocale("bufferComponent"));
         setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH,
                     GateAttributes.ATTR_OUTPUT, StdAttr.LABEL, StdAttr.LABEL_FONT },
                 new Object[] { Direction.EAST, BitWidth.ONE,

@@ -12,7 +12,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Template {
     public static Template createEmpty() {
-        String circName = _("newCircuitName");
+        String circName = getFromLocale("newCircuitName");
         StringBuilder buf = new StringBuilder();
         buf.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         buf.append("<project version=\"1.0\">");

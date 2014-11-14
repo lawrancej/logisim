@@ -166,7 +166,7 @@ public class Splitter extends ManagedComponent
         }
 
         if (end == 0) {
-            return _("splitterCombinedTip");
+            return getFromLocale("splitterCombinedTip");
         } else if (end > 0){
             int bits = 0;
             StringBuilder buf = new StringBuilder();
@@ -198,7 +198,7 @@ public class Splitter extends ManagedComponent
             case 1:  base = "splitterSplit1Tip"; break;
             default: base = "splitterSplitManyTip"; break;
             }
-            return _(base, buf.toString());
+            return getFromLocale(base, buf.toString());
         } else {
             return null;
         }

@@ -182,11 +182,11 @@ public class ModelReorderAction extends ModelAction {
     @Override
     public String getName() {
         if (type < 0) {
-            return _("actionRaise", getShapesName(objects));
+            return getFromLocale("actionRaise", getShapesName(objects));
         } else if (type > 0) {
-            return _("actionLower", getShapesName(objects));
+            return getFromLocale("actionLower", getShapesName(objects));
         } else {
-            return _("actionReorder", getShapesName(objects));
+            return getFromLocale("actionReorder", getShapesName(objects));
         }
     }
 

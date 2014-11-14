@@ -50,10 +50,10 @@ class MemMenu implements ActionListener, MenuExtender {
         }
 
         boolean enabled = circState != null;
-        edit = createItem(enabled, _("ramEditMenuItem"));
-        clear = createItem(enabled, _("ramClearMenuItem"));
-        load = createItem(enabled, _("ramLoadMenuItem"));
-        save = createItem(enabled, _("ramSaveMenuItem"));
+        edit = createItem(enabled, getFromLocale("ramEditMenuItem"));
+        clear = createItem(enabled, getFromLocale("ramClearMenuItem"));
+        load = createItem(enabled, getFromLocale("ramLoadMenuItem"));
+        save = createItem(enabled, getFromLocale("ramSaveMenuItem"));
 
         menu.addSeparator();
         menu.add(edit);
@@ -110,8 +110,8 @@ class MemMenu implements ActionListener, MenuExtender {
 
 
         int choice = JOptionPane.showConfirmDialog(frame,
-                _("ramConfirmClearMsg"),
-                _("ramConfirmClearTitle"),
+                getFromLocale("ramConfirmClearMsg"),
+                getFromLocale("ramConfirmClearTitle"),
                 JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
             s.getContents().clear();
@@ -125,7 +125,7 @@ class MemMenu implements ActionListener, MenuExtender {
             chooser.setSelectedFile(oldSelected);
         }
 
-        chooser.setDialogTitle(_("ramLoadDialogTitle"));
+        chooser.setDialogTitle(getFromLocale("ramLoadDialogTitle"));
         int choice = chooser.showOpenDialog(frame);
         if (choice == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
@@ -133,7 +133,7 @@ class MemMenu implements ActionListener, MenuExtender {
                 factory.loadImage(circState.getInstanceState(instance), f);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(frame, e.getMessage(),
-                        _("ramLoadErrorTitle"), JOptionPane.ERROR_MESSAGE);
+                        getFromLocale("ramLoadErrorTitle"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -147,7 +147,7 @@ class MemMenu implements ActionListener, MenuExtender {
             chooser.setSelectedFile(oldSelected);
         }
 
-        chooser.setDialogTitle(_("ramSaveDialogTitle"));
+        chooser.setDialogTitle(getFromLocale("ramSaveDialogTitle"));
         int choice = chooser.showSaveDialog(frame);
         if (choice == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
@@ -156,7 +156,7 @@ class MemMenu implements ActionListener, MenuExtender {
                 factory.setCurrentImage(instance, f);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(frame, e.getMessage(),
-                    _("ramSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
+                    getFromLocale("ramSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }

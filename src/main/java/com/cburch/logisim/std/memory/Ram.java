@@ -34,14 +34,14 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Ram extends Mem {
     static final AttributeOption BUS_COMBINED
-        = new AttributeOption("combined", __("ramBusSynchCombined"));
+        = new AttributeOption("combined", getFromLocale("ramBusSynchCombined"));
     static final AttributeOption BUS_ASYNCH
-        = new AttributeOption("asynch", __("ramBusAsynchCombined"));
+        = new AttributeOption("asynch", getFromLocale("ramBusAsynchCombined"));
     static final AttributeOption BUS_SEPARATE
-        = new AttributeOption("separate", __("ramBusSeparate"));
+        = new AttributeOption("separate", getFromLocale("ramBusSeparate"));
 
     static final Attribute<AttributeOption> ATTR_BUS = Attributes.forOption("bus",
-            __("ramBusAttr"),
+            getFromLocale("ramBusAttr"),
             new AttributeOption[] { BUS_COMBINED, BUS_ASYNCH, BUS_SEPARATE });
 
     private static Attribute<?>[] ATTRIBUTES = {
@@ -60,7 +60,7 @@ public class Ram extends Mem {
     private static Object[][] logOptions = new Object[9][];
 
     public Ram() {
-        super("RAM", __("ramComponent"), 3);
+        super("RAM", getFromLocale("ramComponent"), 3);
         setIconName("ram.svg");
         setInstanceLogger(Logger.class);
     }
@@ -104,20 +104,20 @@ public class Ram extends Mem {
 
         configureStandardPorts(instance, ps);
         ps[OE]  = new Port(-50, 40, Port.INPUT, 1);
-        ps[OE].setToolTip(__("ramOETip"));
+        ps[OE].setToolTip(getFromLocale("ramOETip"));
         ps[CLR] = new Port(-30, 40, Port.INPUT, 1);
-        ps[CLR].setToolTip(__("ramClrTip"));
+        ps[CLR].setToolTip(getFromLocale("ramClrTip"));
         if (!asynch) {
             ps[CLK] = new Port(-70, 40, Port.INPUT, 1);
-            ps[CLK].setToolTip(__("ramClkTip"));
+            ps[CLK].setToolTip(getFromLocale("ramClkTip"));
         }
         if (separate) {
             ps[WE] = new Port(-110, 40, Port.INPUT, 1);
-            ps[WE].setToolTip(__("ramWETip"));
+            ps[WE].setToolTip(getFromLocale("ramWETip"));
             ps[DIN] = new Port(-140, 20, Port.INPUT, DATA_ATTR);
-            ps[DIN].setToolTip(__("ramInTip"));
+            ps[DIN].setToolTip(getFromLocale("ramInTip"));
         } else {
-            ps[DATA].setToolTip(__("ramBusTip"));
+            ps[DATA].setToolTip(getFromLocale("ramBusTip"));
         }
         instance.setPorts(ps);
     }
@@ -230,13 +230,13 @@ public class Ram extends Mem {
             painter.drawClock(CLK, Direction.NORTH);
         }
 
-        painter.drawPort(OE, _("ramOELabel"), Direction.SOUTH);
-        painter.drawPort(CLR, _("ramClrLabel"), Direction.SOUTH);
+        painter.drawPort(OE, getFromLocale("ramOELabel"), Direction.SOUTH);
+        painter.drawPort(CLR, getFromLocale("ramClrLabel"), Direction.SOUTH);
 
         if (separate) {
-            painter.drawPort(WE, _("ramWELabel"), Direction.SOUTH);
+            painter.drawPort(WE, getFromLocale("ramWELabel"), Direction.SOUTH);
             painter.getGraphics().setColor(Color.BLACK);
-            painter.drawPort(DIN, _("ramDataLabel"), Direction.EAST);
+            painter.drawPort(DIN, getFromLocale("ramDataLabel"), Direction.EAST);
         }
     }
 
@@ -341,7 +341,7 @@ public class Ram extends Mem {
         @Override
         public String getLogName(InstanceState state, Object option) {
             if (option instanceof Integer) {
-                String disp = _("ramComponent");
+                String disp = getFromLocale("ramComponent");
                 Location loc = state.getInstance().getLocation();
                 return disp + loc + "[" + option + "]";
             } else {

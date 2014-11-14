@@ -16,16 +16,15 @@ import javax.swing.Icon;
 import com.cburch.draw.toolbar.ToolbarItem;
 import com.cburch.logisim.gui.menu.LogisimMenuItem;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
 
 class LogisimToolbarItem implements ToolbarItem {
     private MenuListener menu;
     private Icon icon;
     private LogisimMenuItem action;
-    private StringGetter toolTip;
+    private String toolTip;
 
     public LogisimToolbarItem(MenuListener menu, String iconName,
-            LogisimMenuItem action, StringGetter toolTip) {
+            LogisimMenuItem action, String toolTip) {
         this.menu = menu;
         this.icon = Icons.getIcon(iconName);
         this.action = action;
@@ -36,7 +35,7 @@ class LogisimToolbarItem implements ToolbarItem {
         this.icon = Icons.getIcon(iconName);
     }
 
-    public void setToolTip(StringGetter toolTip) {
+    public void setToolTip(String toolTip) {
         this.toolTip = toolTip;
     }
 

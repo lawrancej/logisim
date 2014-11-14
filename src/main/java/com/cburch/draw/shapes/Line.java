@@ -74,7 +74,7 @@ public class Line extends AbstractCanvasObject {
 
     @Override
     public String getDisplayName() {
-        return _("shapeLine");
+        return getFromLocale("shapeLine");
     }
 
     @Override

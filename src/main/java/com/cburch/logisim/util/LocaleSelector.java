@@ -41,7 +41,7 @@ class LocaleSelector extends JList
 
         @Override
         public void run() {
-            if (!LocaleManager.getLocale().equals(locale)) {
+            if (!LocaleManager.getFromLocale().equals(locale)) {
                 LocaleManager.setLocale(locale);
                 AppPreferences.LOCALE.set(locale.getLanguage());
             }
@@ -67,7 +67,7 @@ class LocaleSelector extends JList
 
     @Override
     public void localeChanged() {
-        Locale current = LocaleManager.getLocale();
+        Locale current = LocaleManager.getFromLocale();
         LocaleOption sel = null;
         for (int i = 0; i < items.length; i++) {
             items[i].update(current);

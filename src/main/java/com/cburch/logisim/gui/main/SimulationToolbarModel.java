@@ -31,13 +31,13 @@ class SimulationToolbarModel extends AbstractToolbarModel
         this.project = project;
 
         simEnable = new LogisimToolbarItem(menu, "simplay.svg", LogisimMenuBar.SIMULATE_ENABLE,
-                __("simulateEnableStepsTip"));
+                getFromLocale("simulateEnableStepsTip"));
         simStep = new LogisimToolbarItem(menu, "simstep.svg", LogisimMenuBar.SIMULATE_STEP,
-                __("simulateStepTip"));
+                getFromLocale("simulateStepTip"));
         tickEnable = new LogisimToolbarItem(menu, "simtplay.svg", LogisimMenuBar.TICK_ENABLE,
-                __("simulateEnableTicksTip"));
+                getFromLocale("simulateEnableTicksTip"));
         tickStep = new LogisimToolbarItem(menu, "simtstep.svg", LogisimMenuBar.TICK_STEP,
-                __("simulateTickTip"));
+                getFromLocale("simulateTickTip"));
 
         items = UnmodifiableList.decorate(Arrays.asList(new ToolbarItem[] {
                 simEnable,
@@ -76,11 +76,11 @@ class SimulationToolbarModel extends AbstractToolbarModel
         boolean running = sim != null && sim.isRunning();
         boolean ticking = sim != null && sim.isTicking();
         simEnable.setIcon(running ? "simstop.svg" : "simplay.svg");
-        simEnable.setToolTip(running ? __("simulateDisableStepsTip")
-                : __("simulateEnableStepsTip"));
+        simEnable.setToolTip(running ? getFromLocale("simulateDisableStepsTip")
+                : getFromLocale("simulateEnableStepsTip"));
         tickEnable.setIcon(ticking ? "simtstop.svg" : "simtplay.svg");
-        tickEnable.setToolTip(ticking ? __("simulateDisableTicksTip")
-                : __("simulateEnableTicksTip"));
+        tickEnable.setToolTip(ticking ? getFromLocale("simulateDisableTicksTip")
+                : getFromLocale("simulateEnableTicksTip"));
         fireToolbarAppearanceChanged();
     }
 }

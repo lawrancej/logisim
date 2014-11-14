@@ -51,7 +51,7 @@ public class Loader implements LibraryLoader {
 
         @Override
         public String getDescription() {
-            return _("logisimFileFilter");
+            return getFromLocale("logisimFileFilter");
         }
     }
 
@@ -64,7 +64,7 @@ public class Loader implements LibraryLoader {
 
         @Override
         public String getDescription() {
-            return _("jarFileFilter");
+            return getFromLocale("jarFileFilter");
         }
     }
 
@@ -256,8 +256,8 @@ public class Loader implements LibraryLoader {
         Library reference = LibraryManager.instance.findReference(file, dest);
         if (reference != null) {
             JOptionPane.showMessageDialog(parent,
-                    _("fileCircularError", reference.getDisplayName()),
-                    _("fileSaveErrorTitle"),
+                    getFromLocale("fileCircularError", reference.getDisplayName()),
+                    getFromLocale("fileSaveErrorTitle"),
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -291,9 +291,9 @@ public class Loader implements LibraryLoader {
             }
 
             JOptionPane.showMessageDialog(parent,
-                _("fileSaveError",
+                getFromLocale("fileSaveError",
                     e.toString()),
-                _("fileSaveErrorTitle"),
+                getFromLocale("fileSaveErrorTitle"),
                 JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -311,9 +311,9 @@ public class Loader implements LibraryLoader {
                 }
 
                 JOptionPane.showMessageDialog(parent,
-                    _("fileSaveCloseError",
+                    getFromLocale("fileSaveCloseError",
                         e.toString()),
-                    _("fileSaveErrorTitle"),
+                    getFromLocale("fileSaveErrorTitle"),
                     JOptionPane.ERROR_MESSAGE);
                 return false;
             }
@@ -326,8 +326,8 @@ public class Loader implements LibraryLoader {
                 dest.delete();
             }
             JOptionPane.showMessageDialog(parent,
-                    _("fileSaveZeroError"),
-                    _("fileSaveErrorTitle"),
+                    getFromLocale("fileSaveZeroError"),
+                    getFromLocale("fileSaveErrorTitle"),
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -385,8 +385,8 @@ public class Loader implements LibraryLoader {
         for (File fileOpening : filesOpening) {
             if (fileOpening.equals(actual)) {
                 logger.error( "An error occurred when opening the file.\n" 
-                    + _("logisimCircularError" ) );
-                throw new LoadFailedException(_("logisimCircularError",
+                    + getFromLocale("logisimCircularError" ) );
+                throw new LoadFailedException(getFromLocale("logisimCircularError",
                         toProjectName(actual)));
             }
         }
@@ -397,8 +397,8 @@ public class Loader implements LibraryLoader {
             ret = LogisimFile.load(actual, this);
         } catch (IOException e) {
             logger.error( "An error occurred when opening the file.\n" 
-                + _("logisimCircularError" ) );
-            throw new LoadFailedException(_("logisimLoadError",
+                + getFromLocale("logisimCircularError" ) );
+            throw new LoadFailedException(getFromLocale("logisimLoadError",
                     toProjectName(actual), e.toString()));
         } finally {
             filesOpening.pop();
@@ -446,11 +446,11 @@ public class Loader implements LibraryLoader {
             retClass = loader.loadClass(className);
         } catch (ClassNotFoundException e) {
             logger.error( "Class not found" );
-            throw new LoadFailedException(_("jarClassNotFoundError", className));
+            throw new LoadFailedException(getFromLocale("jarClassNotFoundError", className));
         }
         if (!(Library.class.isAssignableFrom(retClass))) {
             logger.error( "Class not library" );
-            throw new LoadFailedException(_("jarClassNotLibraryError", className));
+            throw new LoadFailedException(getFromLocale("jarClassNotLibraryError", className));
         }
 
         // instantiate library
@@ -459,7 +459,7 @@ public class Loader implements LibraryLoader {
             ret = (Library) retClass.newInstance();
         } catch (Exception e) {
             logger.error( "Class not library" );
-            throw new LoadFailedException(_("jarLibraryNotCreatedError", className));
+            throw new LoadFailedException(getFromLocale("jarLibraryNotCreatedError", className));
         }
         return ret;
     }
@@ -521,10 +521,10 @@ public class Loader implements LibraryLoader {
             JScrollPane scrollPane = new JScrollPane(textArea);
             scrollPane.setPreferredSize(new Dimension(350, 150));
             JOptionPane.showMessageDialog(parent, scrollPane,
-                    _("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
+                    getFromLocale("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(parent, description,
-                    _("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
+                    getFromLocale("fileErrorTitle"), JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -540,7 +540,7 @@ public class Loader implements LibraryLoader {
         String message = source.getMessage();
         while (message != null) {
             JOptionPane.showMessageDialog(parent,
-                message, _("fileMessageTitle"),
+                message, getFromLocale("fileMessageTitle"),
                 JOptionPane.INFORMATION_MESSAGE);
             message = source.getMessage();
         }
@@ -569,14 +569,14 @@ public class Loader implements LibraryLoader {
         while (!file.canRead()) {
             // It doesn't exist. Figure it out from the user.
             JOptionPane.showMessageDialog(parent,
-                _("fileLibraryMissingError",
+                getFromLocale("fileLibraryMissingError",
                     file.getName()));
             JFileChooser chooser = createChooser();
             chooser.setFileFilter(filter);
-            chooser.setDialogTitle(_("fileLibraryMissingTitle", file.getName()));
-            int action = chooser.showDialog(parent, _("fileLibraryMissingButton"));
+            chooser.setDialogTitle(getFromLocale("fileLibraryMissingTitle", file.getName()));
+            int action = chooser.showDialog(parent, getFromLocale("fileLibraryMissingButton"));
             if (action != JFileChooser.APPROVE_OPTION) {
-                throw new LoaderException(_("fileLoadCanceledError"));
+                throw new LoaderException(getFromLocale("fileLoadCanceledError"));
             }
             file = chooser.getSelectedFile();
         }

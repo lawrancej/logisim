@@ -21,7 +21,7 @@ public class AttrTableToolModel extends AttributeSetTableModel {
 
     @Override
     public String getTitle() {
-        return _("toolAttrTitle", tool.getDisplayName());
+        return getFromLocale("toolAttrTitle", tool.getDisplayName());
     }
 
     public Tool getTool() {

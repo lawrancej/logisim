@@ -65,7 +65,7 @@ public class LogisimFileActions {
 
         @Override
         public String getName() {
-            return _("addCircuitAction");
+            return getFromLocale("addCircuitAction");
         }
 
         @Override
@@ -89,7 +89,7 @@ public class LogisimFileActions {
 
         @Override
         public String getName() {
-            return _("removeCircuitAction");
+            return getFromLocale("removeCircuitAction");
         }
 
         @Override
@@ -116,7 +116,7 @@ public class LogisimFileActions {
 
         @Override
         public String getName() {
-            return _("moveCircuitAction");
+            return getFromLocale("moveCircuitAction");
         }
 
         @Override
@@ -154,9 +154,9 @@ public class LogisimFileActions {
         @Override
         public String getName() {
             if (libs.length == 1) {
-                return _("loadLibraryAction");
+                return getFromLocale("loadLibraryAction");
             } else {
-                return _("loadLibrariesAction");
+                return getFromLocale("loadLibrariesAction");
             }
         }
 
@@ -185,9 +185,9 @@ public class LogisimFileActions {
         @Override
         public String getName() {
             if (libs.length == 1) {
-                return _("unloadLibraryAction");
+                return getFromLocale("unloadLibraryAction");
             } else {
-                return _("unloadLibrariesAction");
+                return getFromLocale("unloadLibrariesAction");
             }
         }
 
@@ -216,7 +216,7 @@ public class LogisimFileActions {
 
         @Override
         public String getName() {
-            return _("setMainCircuitAction");
+            return getFromLocale("setMainCircuitAction");
         }
 
         @Override
@@ -255,7 +255,7 @@ public class LogisimFileActions {
 
         @Override
         public String getName() {
-            return _("revertDefaultsAction");
+            return getFromLocale("revertDefaultsAction");
         }
 
         @Override

@@ -63,14 +63,14 @@ class AttrTableSelectionModel extends AttributeSetTableModel
         }
 
         if (variousFound) {
-            return _("selectionVarious", "" + totalCount);
+            return getFromLocale("selectionVarious", "" + totalCount);
         } else if (factoryCount == 0) {
             String circName = frame.getCanvas().getCircuit().getName();
-            return _("circuitAttrTitle", circName);
+            return getFromLocale("circuitAttrTitle", circName);
         } else if (factoryCount == 1) {
-            return _("selectionOne", factory.getDisplayName());
+            return getFromLocale("selectionOne", factory.getDisplayName());
         } else {
-            return _("selectionMultiple", factory.getDisplayName(),
+            return getFromLocale("selectionMultiple", factory.getDisplayName(),
                     "" + factoryCount);
         }
     }
@@ -85,7 +85,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
             circuitModel.setValueRequested(attr, value);
         } else {
             SetAttributeAction act = new SetAttributeAction(circuit,
-                    __("selectionAttributeAction"));
+                    getFromLocale("selectionAttributeAction"));
             for (Component comp : selection.getComponents()) {
                 if (!(comp instanceof Wire)) {
                     act.set(comp, attr, value);

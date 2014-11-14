@@ -39,7 +39,7 @@ public class Base extends Library {
     public String getName() { return "Base"; }
 
     @Override
-    public String getDisplayName() { return _("baseLibrary"); }
+    public String getDisplayName() { return getFromLocale("baseLibrary"); }
 
     @Override
     public List<Tool> getTools() {

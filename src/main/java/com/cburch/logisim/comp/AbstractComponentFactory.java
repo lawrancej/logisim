@@ -17,7 +17,6 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
 import com.cburch.logisim.util.StringUtil;
 
 public abstract class AbstractComponentFactory implements ComponentFactory {
@@ -37,7 +36,7 @@ public abstract class AbstractComponentFactory implements ComponentFactory {
     @Override
     public String getDisplayName() { return getDisplayGetter().toString(); }
     @Override
-    public StringGetter getDisplayGetter() { return StringUtil.constantGetter(getName()); }
+    public String getDisplayGetter() { return StringUtil.constantGetter(getName()); }
     @Override
     public abstract Component createComponent(Location loc, AttributeSet attrs);
     @Override

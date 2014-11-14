@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
@@ -24,12 +27,14 @@ import com.cburch.logisim.circuit.SimulatorEvent;
 import com.cburch.logisim.circuit.SimulatorListener;
 import com.cburch.logisim.gui.log.LogFrame;
 import com.cburch.logisim.proj.Project;
+import com.cburch.logisim.util.CustomAction;
 
 import java.util.ArrayList;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 @SuppressWarnings("serial")
-class MenuSimulate extends Menu {
+public class MenuSimulate extends Menu {
     private class TickFrequencyChoice extends JRadioButtonMenuItem
             implements ActionListener {
         private double freq;
@@ -44,7 +49,6 @@ class MenuSimulate extends Menu {
             if (currentSim != null) {
                 currentSim.setTickFrequency(freq);
             }
-
         }
 
         public void localeChanged() {
@@ -56,7 +60,7 @@ class MenuSimulate extends Menu {
                 } else {
                     hzStr = "" + f;
                 }
-                setText(_("simulateTickFreqItem", hzStr));
+                setText(getFromLocale("simulateTickFreqItem", hzStr));
             } else {
                 String kHzStr;
                 double kf = Math.round(f / 100) / 10.0;
@@ -65,7 +69,7 @@ class MenuSimulate extends Menu {
                 } else {
                     kHzStr = "" + kf;
                 }
-                setText(_("simulateTickKFreqItem", kHzStr));
+                setText(getFromLocale("simulateTickKFreqItem", kHzStr));
             }
         }
     }
@@ -101,8 +105,7 @@ class MenuSimulate extends Menu {
         }
     }
 
-    private class MyListener implements ActionListener, SimulatorListener,
-            ChangeListener {
+    private class MyListener implements ActionListener, SimulatorListener, ChangeListener { 	
         @Override
         public void actionPerformed(ActionEvent e) {
             Object src = e.getSource();
@@ -227,7 +230,11 @@ class MenuSimulate extends Menu {
                 KeyEvent.VK_T, menuMask));
         ticksEnabled.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_K, menuMask));
-
+        InputMap im = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap am = this.getActionMap();
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "Space");
+        am.put("Space", new CustomAction("Space", this));
+        
         ButtonGroup bgroup = new ButtonGroup();
         for (int i = 0; i < tickFreqs.length; i++) {
             bgroup.add(tickFreqs[i]);
@@ -271,21 +278,28 @@ class MenuSimulate extends Menu {
 
         computeEnabled();
     }
+    
+    public void tick() {
+    	Project proj = menubar.getProject();
+        Simulator sim = proj == null ? null : proj.getSimulator();
+        if (sim != null)
+        	sim.tick();
+    }
 
     public void localeChanged() {
-        this.setText(_("simulateMenu"));
-        run.setText(_("simulateRunItem"));
-        reset.setText(_("simulateResetItem"));
-        step.setText(_("simulateStepItem"));
-        tickOnce.setText(_("simulateTickOnceItem"));
-        ticksEnabled.setText(_("simulateTickItem"));
-        tickFreq.setText(_("simulateTickFreqMenu"));
+        this.setText(getFromLocale("simulateMenu"));
+        run.setText(getFromLocale("simulateRunItem"));
+        reset.setText(getFromLocale("simulateResetItem"));
+        step.setText(getFromLocale("simulateStepItem"));
+        tickOnce.setText(getFromLocale("simulateTickOnceItem"));
+        ticksEnabled.setText(getFromLocale("simulateTickItem"));
+        tickFreq.setText(getFromLocale("simulateTickFreqMenu"));
         for (int i = 0; i < tickFreqs.length; i++) {
             tickFreqs[i].localeChanged();
         }
-        downStateMenu.setText(_("simulateDownStateMenu"));
-        upStateMenu.setText(_("simulateUpStateMenu"));
-        log.setText(_("simulateLogItem"));
+        downStateMenu.setText(getFromLocale("simulateDownStateMenu"));
+        upStateMenu.setText(getFromLocale("simulateUpStateMenu"));
+        log.setText(getFromLocale("simulateLogItem"));
     }
 
     public void setCurrentState(Simulator sim, CircuitState value) {

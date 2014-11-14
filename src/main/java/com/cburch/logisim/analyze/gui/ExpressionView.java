@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import com.cburch.logisim.analyze.model.Expression;
 import com.cburch.logisim.analyze.model.ExpressionVisitor;
-import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 class ExpressionView extends JPanel {
@@ -242,7 +242,7 @@ class ExpressionView extends JPanel {
                 lineY = new int[] { MINIMUM_HEIGHT };
             } else {
                 if (exprData.text.length() == 0) {
-                    lineText = new String[] { _("expressionEmpty") };
+                    lineText = new String[] { getFromLocale("expressionEmpty") };
                     lineNots = new ArrayList<ArrayList<NotData>>();
                     lineNots.add(new ArrayList<NotData>());
                 } else {

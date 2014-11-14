@@ -31,7 +31,7 @@ public class Register extends InstanceFactory {
     private static final int EN  = 4;
 
     public Register() {
-        super("Register", __("registerComponent"));
+        super("Register", getFromLocale("registerComponent"));
         setAttributes(new Attribute[] {
                 StdAttr.WIDTH, StdAttr.TRIGGER,
                 StdAttr.LABEL, StdAttr.LABEL_FONT
@@ -51,11 +51,11 @@ public class Register extends InstanceFactory {
         ps[CK]  = new Port(-20, 20, Port.INPUT, 1);
         ps[CLR] = new Port(-10, 20, Port.INPUT, 1);
         ps[EN]  = new Port(-30, 10, Port.INPUT, 1);
-        ps[OUT].setToolTip(__("registerQTip"));
-        ps[IN].setToolTip(__("registerDTip"));
-        ps[CK].setToolTip(__("registerClkTip"));
-        ps[CLR].setToolTip(__("registerClrTip"));
-        ps[EN].setToolTip(__("registerEnableTip"));
+        ps[OUT].setToolTip(getFromLocale("registerQTip"));
+        ps[IN].setToolTip(getFromLocale("registerDTip"));
+        ps[CK].setToolTip(getFromLocale("registerClkTip"));
+        ps[CLR].setToolTip(getFromLocale("registerClrTip"));
+        ps[EN].setToolTip(getFromLocale("registerEnableTip"));
         setPorts(ps);
     }
 
@@ -114,8 +114,8 @@ public class Register extends InstanceFactory {
                 b = str.substring(split);
             }
         } else {
-            a = _("registerLabel");
-            b = _("registerWidthLabel", "" + widthVal.getWidth());
+            a = getFromLocale("registerLabel");
+            b = getFromLocale("registerWidthLabel", "" + widthVal.getWidth());
         }
 
         // draw boundary, label
@@ -132,7 +132,7 @@ public class Register extends InstanceFactory {
         }
         g.setColor(Color.GRAY);
         painter.drawPort(CLR, "0", Direction.SOUTH);
-        painter.drawPort(EN, _("memEnableLabel"), Direction.EAST);
+        painter.drawPort(EN, getFromLocale("memEnableLabel"), Direction.EAST);
         g.setColor(Color.BLACK);
         painter.drawClock(CK, Direction.NORTH);
 

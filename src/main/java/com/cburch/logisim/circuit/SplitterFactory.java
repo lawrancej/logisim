@@ -24,7 +24,6 @@ import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.tools.key.KeyConfigurator;
 import com.cburch.logisim.tools.key.ParallelConfigurator;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class SplitterFactory extends AbstractComponentFactory {
@@ -38,8 +37,8 @@ public class SplitterFactory extends AbstractComponentFactory {
     public String getName() { return "Splitter"; }
 
     @Override
-    public StringGetter getDisplayGetter() {
-        return __("splitterComponent");
+    public String getDisplayGetter() {
+        return getFromLocale("splitterComponent");
     }
 
     @Override

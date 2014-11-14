@@ -144,10 +144,10 @@ class TickCounter implements SimulatorListener {
 
 
                 if (min >= 1000.0) {
-                    return _("tickRateKHz",
+                    return getFromLocale("tickRateKHz",
                             roundString(rate / 1000.0, min / 1000.0));
                 } else {
-                    return _("tickRateHz", roundString(rate, min));
+                    return getFromLocale("tickRateHz", roundString(rate, min));
                 }
             }
         }

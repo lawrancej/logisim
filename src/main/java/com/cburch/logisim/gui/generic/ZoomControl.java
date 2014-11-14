@@ -7,15 +7,22 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.AbstractSpinnerModel;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.KeyStroke;
+
+import com.cburch.logisim.util.CustomAction;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 @SuppressWarnings("serial")
@@ -43,7 +50,7 @@ public class ZoomControl extends JPanel {
             }
             return null;
         }
-
+        
         @Override
         public Object getValue() {
             double zoom = model.getZoomFactor();
@@ -92,7 +99,7 @@ public class ZoomControl extends JPanel {
 
         @Override
         public String getToolTipText(MouseEvent e) {
-            return _("zoomShowGrid");
+            return getFromLocale("zoomShowGrid");
         }
 
         private void update() {
@@ -143,6 +150,14 @@ public class ZoomControl extends JPanel {
     private SpinnerModel spinnerModel;
     private GridIcon grid;
 
+    public void zoomIn() {
+    	spinnerModel.setValue(spinnerModel.getNextValue());
+    }
+    
+    public void zoomOut() {
+    	spinnerModel.setValue(spinnerModel.getPreviousValue());
+    }
+    
     public ZoomControl(ZoomModel model) {
         super(new BorderLayout());
         this.model = model;
@@ -150,6 +165,20 @@ public class ZoomControl extends JPanel {
         spinnerModel = new SpinnerModel();
         spinner = new JSpinner();
         spinner.setModel(spinnerModel);
+        
+        //Zooming with CTRL+/-
+        InputMap im = this.getInputMap(ZoomControl.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap am = this.getActionMap();
+        int mask = getToolkit().getMenuShortcutKeyMask();
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_EQUALS, mask), "CTRL+");
+        am.put("CTRL+", new CustomAction("CTRL+", this));
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ADD, mask), "CTRL+");
+        am.put("CTRL+", new CustomAction("CTRL+", this));
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, mask), "CTRL-");
+        am.put("CTRL-", new CustomAction("CTRL-", this));
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_SUBTRACT, mask), "CTRL-");
+        am.put("CTRL-", new CustomAction("CTRL-", this));
+        
         this.add(spinner, BorderLayout.CENTER);
 
         grid = new GridIcon();

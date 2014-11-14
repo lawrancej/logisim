@@ -26,11 +26,11 @@ public class WindowMenu extends JMenu {
     private class MyListener implements LocaleListener, ActionListener {
         @Override
         public void localeChanged() {
-            WindowMenu.this.setText(_("windowMenu"));
-            minimize.setText(_("windowMinimizeItem"));
-            close.setText(_("windowCloseItem"));
+            WindowMenu.this.setText(getFromLocale("windowMenu"));
+            minimize.setText(getFromLocale("windowMinimizeItem"));
+            close.setText(getFromLocale("windowCloseItem"));
             zoom.setText(MacCompatibility.isQuitAutomaticallyPresent() ?
-                    _("windowZoomItemMac") : _("windowZoomItem"));
+                    getFromLocale("windowZoomItemMac") : getFromLocale("windowZoomItem"));
         }
 
         @Override

@@ -26,12 +26,12 @@ class MenuEdit extends Menu {
             Action last = proj == null ? null : proj.getLastAction();
 			if( last == null )
 			{
-				undo.setText( _( "editCantUndoItem" ) );
+				undo.setText( getFromLocale( "editCantUndoItem" ) );
 				undo.setEnabled( false );
 			}
 			else
 			{
-				undo.setText( _( "editUndoItem", last.getName() ) );
+				undo.setText( getFromLocale( "editUndoItem", last.getName() ) );
 				undo.setEnabled( true );
             }
 
@@ -45,7 +45,7 @@ class MenuEdit extends Menu {
 
 					// Set the detailed, localized text
 
-					redo.setText( _( "editRedoItem", lastRedo.getName() ) );
+					redo.setText( getFromLocale( "editRedoItem", lastRedo.getName() ) );
 					
 					// Set it to enabled
 					redo.setEnabled( true );
@@ -53,7 +53,7 @@ class MenuEdit extends Menu {
 				else
 				{	// If there is no project...
 					// Let them know they can't redo anything
-					redo.setText( _( "editCantRedoItem" ) );
+					redo.setText( getFromLocale( "editCantRedoItem" ) );
 
 					// And disable the button
 					redo.setEnabled( false );
@@ -167,20 +167,20 @@ class MenuEdit extends Menu {
     }
 
     public void localeChanged() {
-        this.setText(_("editMenu"));
+        this.setText(getFromLocale("editMenu"));
         myListener.projectChanged(null);
-        cut.setText(_("editCutItem"));
-        copy.setText(_("editCopyItem"));
-        paste.setText(_("editPasteItem"));
-        delete.setText(_("editClearItem"));
-        dup.setText(_("editDuplicateItem"));
-        selall.setText(_("editSelectAllItem"));
-        raise.setText(_("editRaiseItem"));
-        lower.setText(_("editLowerItem"));
-        raiseTop.setText(_("editRaiseTopItem"));
-        lowerBottom.setText(_("editLowerBottomItem"));
-        addCtrl.setText(_("editAddControlItem"));
-        remCtrl.setText(_("editRemoveControlItem"));
+        cut.setText(getFromLocale("editCutItem"));
+        copy.setText(getFromLocale("editCopyItem"));
+        paste.setText(getFromLocale("editPasteItem"));
+        delete.setText(getFromLocale("editClearItem"));
+        dup.setText(getFromLocale("editDuplicateItem"));
+        selall.setText(getFromLocale("editSelectAllItem"));
+        raise.setText(getFromLocale("editRaiseItem"));
+        lower.setText(getFromLocale("editLowerItem"));
+        raiseTop.setText(getFromLocale("editRaiseTopItem"));
+        lowerBottom.setText(getFromLocale("editLowerBottomItem"));
+        addCtrl.setText(getFromLocale("editAddControlItem"));
+        remCtrl.setText(getFromLocale("editRemoveControlItem"));
     }
 
     @Override

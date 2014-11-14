@@ -21,37 +21,37 @@ public class DrawAttr {
         = new Font("SansSerif", Font.PLAIN, 12);
 
     public static final AttributeOption ALIGN_LEFT
-        = new AttributeOption(Integer.valueOf(EditableLabel.LEFT), __("alignStart"));
+        = new AttributeOption(Integer.valueOf(EditableLabel.LEFT), getFromLocale("alignStart"));
     public static final AttributeOption ALIGN_CENTER
-        = new AttributeOption(Integer.valueOf(EditableLabel.CENTER), __("alignMiddle"));
+        = new AttributeOption(Integer.valueOf(EditableLabel.CENTER), getFromLocale("alignMiddle"));
     public static final AttributeOption ALIGN_RIGHT
-        = new AttributeOption(Integer.valueOf(EditableLabel.RIGHT), __("alignEnd"));
+        = new AttributeOption(Integer.valueOf(EditableLabel.RIGHT), getFromLocale("alignEnd"));
 
     public static final AttributeOption PAINT_STROKE
-        = new AttributeOption("stroke", __("paintStroke"));
+        = new AttributeOption("stroke", getFromLocale("paintStroke"));
     public static final AttributeOption PAINT_FILL
-        = new AttributeOption("fill", __("paintFill"));
+        = new AttributeOption("fill", getFromLocale("paintFill"));
     public static final AttributeOption PAINT_STROKE_FILL
-        = new AttributeOption("both", __("paintBoth"));
+        = new AttributeOption("both", getFromLocale("paintBoth"));
 
     public static final Attribute<Font> FONT
-        = Attributes.forFont("font", __("attrFont"));
+        = Attributes.forFont("font", getFromLocale("attrFont"));
     public static final Attribute<AttributeOption> ALIGNMENT
-        = Attributes.forOption("align", __("attrAlign"),
+        = Attributes.forOption("align", getFromLocale("attrAlign"),
             new AttributeOption[] { ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT });
     public static final Attribute<AttributeOption> PAINT_TYPE
-        = Attributes.forOption("paintType", __("attrPaint"),
+        = Attributes.forOption("paintType", getFromLocale("attrPaint"),
             new AttributeOption[] { PAINT_STROKE, PAINT_FILL, PAINT_STROKE_FILL });
     public static final Attribute<Integer> STROKE_WIDTH
-        = Attributes.forIntegerRange("stroke-width", __("attrStrokeWidth"), 1, 8);
+        = Attributes.forIntegerRange("stroke-width", getFromLocale("attrStrokeWidth"), 1, 8);
     public static final Attribute<Color> STROKE_COLOR
-        = Attributes.forColor("stroke", __("attrStroke"));
+        = Attributes.forColor("stroke", getFromLocale("attrStroke"));
     public static final Attribute<Color> FILL_COLOR
-        = Attributes.forColor("fill", __("attrFill"));
+        = Attributes.forColor("fill", getFromLocale("attrFill"));
     public static final Attribute<Color> TEXT_DEFAULT_FILL
-        = Attributes.forColor("fill", __("attrFill"));
+        = Attributes.forColor("fill", getFromLocale("attrFill"));
     public static final Attribute<Integer> CORNER_RADIUS
-        = Attributes.forIntegerRange("rx", __("attrRx"), 1, 1000);
+        = Attributes.forIntegerRange("rx", getFromLocale("attrRx"), 1, 1000);
 
     // for text
     public static final List<Attribute<?>> ATTRS_TEXT

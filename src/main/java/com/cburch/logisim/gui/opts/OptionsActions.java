@@ -49,7 +49,7 @@ class OptionsActions {
 
         @Override
         public String getName() {
-            return _("setOptionAction", attr.getDisplayName());
+            return getFromLocale("setOptionAction", attr.getDisplayName());
         }
 
         @Override
@@ -78,7 +78,7 @@ class OptionsActions {
 
         @Override
         public String getName() {
-            return _("addMouseMappingAction");
+            return getFromLocale("addMouseMappingAction");
         }
 
         @Override
@@ -105,7 +105,7 @@ class OptionsActions {
 
         @Override
         public String getName() {
-            return _("removeMouseMappingAction");
+            return getFromLocale("removeMouseMappingAction");
         }
 
         @Override

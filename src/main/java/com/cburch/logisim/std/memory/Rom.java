@@ -37,7 +37,7 @@ public class Rom extends Mem {
     private WeakHashMap<Instance,MemListener> memListeners;
 
     public Rom() {
-        super("ROM", __("romComponent"), 0);
+        super("ROM", getFromLocale("romComponent"), 0);
         setIconName("rom.svg");
         memListeners = new WeakHashMap<Instance,MemListener>();
     }
@@ -123,7 +123,7 @@ public class Rom extends Mem {
 
     private static class ContentsAttribute extends Attribute<MemContents> {
         public ContentsAttribute() {
-            super("contents", __("romContentsAttr"));
+            super("contents", getFromLocale("romContentsAttr"));
         }
 
         @Override
@@ -139,7 +139,7 @@ public class Rom extends Mem {
 
         @Override
         public String toDisplayString(MemContents value) {
-            return _("romContentsValue");
+            return getFromLocale("romContentsValue");
         }
 
         @Override
@@ -188,7 +188,7 @@ public class Rom extends Mem {
         MemContents contents;
 
         ContentsCell(Window source, MemContents contents) {
-            super(_("romContentsValue"));
+            super(getFromLocale("romContentsValue"));
             this.source = source;
             this.contents = contents;
             addMouseListener(this);

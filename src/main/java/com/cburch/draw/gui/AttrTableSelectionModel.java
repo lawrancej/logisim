@@ -53,11 +53,11 @@ class AttrTableSelectionModel extends AttributeSetTableModel
         if (firstObject == null) {
             return null;
         } else if (commonClass == null) {
-            return _("selectionVarious", "" + totalCount);
+            return getFromLocale("selectionVarious", "" + totalCount);
         } else if (commonCount == 1) {
-            return _("selectionOne", firstObject.getDisplayName());
+            return getFromLocale("selectionOne", firstObject.getDisplayName());
         } else {
-            return _("selectionMultiple", firstObject.getDisplayName(),
+            return getFromLocale("selectionMultiple", firstObject.getDisplayName(),
                     "" + commonCount);
         }
     }

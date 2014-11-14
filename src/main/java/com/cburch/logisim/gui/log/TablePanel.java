@@ -139,12 +139,12 @@ class TablePanel extends LogPanel {
 
     @Override
     public String getTitle() {
-        return _("tableTab");
+        return getFromLocale("tableTab");
     }
 
     @Override
     public String getHelpText() {
-        return _("tableHelp");
+        return getFromLocale("tableHelp");
     }
 
     @Override
@@ -202,7 +202,7 @@ class TablePanel extends LogPanel {
         int columns = sel.size();
         if (columns == 0) {
             g.setFont(BODY_FONT);
-            GraphicsUtil.drawCenteredText(g, _("tableEmptyMessage"), sz.width / 2, sz.height / 2);
+            GraphicsUtil.drawCenteredText(g, getFromLocale("tableEmptyMessage"), sz.width / 2, sz.height / 2);
             return;
         }
 

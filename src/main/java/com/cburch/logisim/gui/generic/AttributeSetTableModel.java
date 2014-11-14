@@ -70,11 +70,11 @@ public abstract class AttributeSetTableModel
                 }
                 setValueRequested(attr, value);
             } catch (ClassCastException e) {
-                String msg = _("attributeChangeInvalidError")
+                String msg = getFromLocale("attributeChangeInvalidError")
                     + ": " + e;
                 throw new AttrTableSetException(msg);
             } catch (NumberFormatException e) {
-                String msg = _("attributeChangeInvalidError");
+                String msg = getFromLocale("attributeChangeInvalidError");
                 String emsg = e.getMessage();
                 if (emsg != null && emsg.length() > 0) {
                     msg += ": " + emsg;

@@ -23,11 +23,11 @@ class ExperimentalOptions extends OptionsPanel {
         super(window);
 
         accel = new PrefOptionList(AppPreferences.GRAPHICS_ACCELERATION,
-            __("accelLabel"), new PrefOption[] {
-                new PrefOption(AppPreferences.ACCEL_DEFAULT, __("accelDefault")),
-                new PrefOption(AppPreferences.ACCEL_NONE, __("accelNone")),
-                new PrefOption(AppPreferences.ACCEL_OPENGL, __("accelOpenGL")),
-                new PrefOption(AppPreferences.ACCEL_D3D, __("accelD3D")),
+            getFromLocale("accelLabel"), new PrefOption[] {
+                new PrefOption(AppPreferences.ACCEL_DEFAULT, getFromLocale("accelDefault")),
+                new PrefOption(AppPreferences.ACCEL_NONE, getFromLocale("accelNone")),
+                new PrefOption(AppPreferences.ACCEL_OPENGL, getFromLocale("accelOpenGL")),
+                new PrefOption(AppPreferences.ACCEL_D3D, getFromLocale("accelD3D")),
             });
 
         JPanel accelPanel = new JPanel(new BorderLayout());
@@ -46,17 +46,17 @@ class ExperimentalOptions extends OptionsPanel {
 
     @Override
     public String getTitle() {
-        return _("experimentTitle");
+        return getFromLocale("experimentTitle");
     }
 
     @Override
     public String getHelpText() {
-        return _("experimentHelp");
+        return getFromLocale("experimentHelp");
     }
 
     @Override
     public void localeChanged() {
         accel.localeChanged();
-        accelRestart.setText(_("accelRestartLabel"));
+        accelRestart.setText(getFromLocale("accelRestartLabel"));
     }
 }

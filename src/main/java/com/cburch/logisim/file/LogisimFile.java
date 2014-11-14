@@ -49,12 +49,12 @@ public class LogisimFile extends Library implements LibraryEventSource {
             try {
                 file.write(out, file.loader);
             } catch (IOException e) {
-                file.loader.showError(_("fileDuplicateError", e.toString()));
+                file.loader.showError(getFromLocale("fileDuplicateError", e.toString()));
             }
             try {
                 out.close();
             } catch (IOException e) {
-                file.loader.showError(_("fileDuplicateError", e.toString()));
+                file.loader.showError(getFromLocale("fileDuplicateError", e.toString()));
             }
         }
     }
@@ -73,7 +73,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
     LogisimFile(Loader loader) {
         this.loader = loader;
 
-        name = _("defaultProjectName");
+        name = getFromLocale("defaultProjectName");
         if (Projects.windowNamed(name)) {
             for (int i = 2; true; i++) {
                 if (!Projects.windowNamed(name + " " + i)) {
@@ -278,7 +278,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         for (Circuit circuit : getCircuits()) {
             for (Component comp : circuit.getNonWires()) {
                 if (factories.contains(comp.getFactory())) {
-                    return _("unloadUsedError",
+                    return getFromLocale("unloadUsedError",
                             circuit.getName());
                 }
             }
@@ -288,10 +288,10 @@ public class LogisimFile extends Library implements LibraryEventSource {
         MouseMappings mm = options.getMouseMappings();
         for (Tool t : lib.getTools()) {
             if (tb.usesToolFromSource(t)) {
-                return _("unloadToolbarError");
+                return getFromLocale("unloadToolbarError");
             }
             if (mm.usesToolFromSource(t)) {
-                return _("unloadMappingError");
+                return getFromLocale("unloadMappingError");
             }
         }
 
@@ -319,7 +319,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
             loader.showError("internal error configuring parser");
         } catch (TransformerException e) {
             String msg = e.getMessage();
-            String err = _("xmlConversionError");
+            String err = getFromLocale("xmlConversionError");
             if (msg == null) {
                 err += ": " + msg;
             }
@@ -334,7 +334,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         try {
             reader.connect(writer);
         } catch (IOException e) {
-            newloader.showError(_("fileDuplicateError", e.toString()));
+            newloader.showError(getFromLocale("fileDuplicateError", e.toString()));
             try {
                 reader.close();
             } catch (IOException e1) {
@@ -345,7 +345,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         try {
             return LogisimFile.load(reader, newloader);
         } catch (IOException e) {
-            newloader.showError(_("fileDuplicateError", e.toString()));
+            newloader.showError(getFromLocale("fileDuplicateError", e.toString()));
             return null;
         }
     }
@@ -402,7 +402,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
                 in = new ReaderInputStream(new FileReader(file), "UTF8");
                 return loadSub(in, loader);
             } catch (Exception t) {
-                loader.showError(_("xmlFormatError", firstExcept.toString()));
+                loader.showError(getFromLocale("xmlFormatError", firstExcept.toString()));
             } finally {
                 try {
                     in.close();
@@ -418,7 +418,7 @@ public class LogisimFile extends Library implements LibraryEventSource {
         try {
             return loadSub(in, loader);
         } catch (SAXException e) {
-            loader.showError(_("xmlFormatError", e.toString()));
+            loader.showError(getFromLocale("xmlFormatError", e.toString()));
             return null;
         }
     }

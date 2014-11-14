@@ -24,34 +24,34 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Text extends InstanceFactory {
     public static Attribute<String> ATTR_TEXT = Attributes.forString("text",
-            __("textTextAttr"));
+            getFromLocale("textTextAttr"));
     public static Attribute<Font> ATTR_FONT = Attributes.forFont("font",
-        __("textFontAttr"));
+        getFromLocale("textFontAttr"));
     public static Attribute<AttributeOption> ATTR_HALIGN = Attributes.forOption("halign",
-        __("textHorzAlignAttr"), new AttributeOption[] {
+        getFromLocale("textHorzAlignAttr"), new AttributeOption[] {
             new AttributeOption(Integer.valueOf(TextField.H_LEFT),
-                "left", __("textHorzAlignLeftOpt")),
+                "left", getFromLocale("textHorzAlignLeftOpt")),
             new AttributeOption(Integer.valueOf(TextField.H_RIGHT),
-                "right", __("textHorzAlignRightOpt")),
+                "right", getFromLocale("textHorzAlignRightOpt")),
             new AttributeOption(Integer.valueOf(TextField.H_CENTER),
-                "center", __("textHorzAlignCenterOpt")),
+                "center", getFromLocale("textHorzAlignCenterOpt")),
         });
     public static Attribute<AttributeOption> ATTR_VALIGN = Attributes.forOption("valign",
-        __("textVertAlignAttr"), new AttributeOption[] {
+        getFromLocale("textVertAlignAttr"), new AttributeOption[] {
             new AttributeOption(Integer.valueOf(TextField.V_TOP),
-                "top", __("textVertAlignTopOpt")),
+                "top", getFromLocale("textVertAlignTopOpt")),
             new AttributeOption(Integer.valueOf(TextField.V_BASELINE),
-                "base", __("textVertAlignBaseOpt")),
+                "base", getFromLocale("textVertAlignBaseOpt")),
             new AttributeOption(Integer.valueOf(TextField.V_BOTTOM),
-                "bottom", __("textVertAlignBottomOpt")),
+                "bottom", getFromLocale("textVertAlignBottomOpt")),
             new AttributeOption(Integer.valueOf(TextField.H_CENTER),
-                "center", __("textVertAlignCenterOpt")),
+                "center", getFromLocale("textVertAlignCenterOpt")),
         });
 
     public static final Text FACTORY = new Text();
 
     private Text() {
-        super("Text", __("textComponent"));
+        super("Text", getFromLocale("textComponent"));
         setIconName("text.svg");
         setShouldSnap(false);
     }

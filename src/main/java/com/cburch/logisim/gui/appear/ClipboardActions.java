@@ -60,9 +60,9 @@ public class ClipboardActions extends Action {
     @Override
     public String getName() {
         if (remove) {
-            return _("cutSelectionAction");
+            return getFromLocale("cutSelectionAction");
         } else {
-            return _("copySelectionAction");
+            return getFromLocale("copySelectionAction");
         }
     }
 

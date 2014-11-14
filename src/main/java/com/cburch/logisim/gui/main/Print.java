@@ -45,14 +45,14 @@ public class Print {
         Frame frame = proj.getFrame();
         if (list.getModel().getSize() == 0) {
             JOptionPane.showMessageDialog(proj.getFrame(),
-                    _("printEmptyCircuitsMessage"),
-                    _("printEmptyCircuitsTitle"),
+                    getFromLocale("printEmptyCircuitsMessage"),
+                    getFromLocale("printEmptyCircuitsTitle"),
                     JOptionPane.YES_NO_OPTION);
             return;
         }
         ParmsPanel parmsPanel = new ParmsPanel(list);
         int action = JOptionPane.showConfirmDialog(frame,
-                parmsPanel, _("printParmsTitle"),
+                parmsPanel, getFromLocale("printParmsTitle"),
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
         if (action != JOptionPane.OK_OPTION) {
@@ -81,8 +81,8 @@ public class Print {
             job.print();
         } catch (PrinterException e) {
             JOptionPane.showMessageDialog(proj.getFrame(),
-                    _("printError", e.toString()),
-                    _("printErrorTitle"),
+                    getFromLocale("printError", e.toString()),
+                    getFromLocale("printErrorTitle"),
                     JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -114,21 +114,21 @@ public class Print {
             gbc.anchor = GridBagConstraints.NORTHWEST;
             gbc.insets = new Insets(5, 0, 5, 0);
             gbc.fill = GridBagConstraints.NONE;
-            addGb(new JLabel(_("labelCircuits") + " "));
+            addGb(new JLabel(getFromLocale("labelCircuits") + " "));
             gbc.fill = GridBagConstraints.HORIZONTAL;
             addGb(new JScrollPane(list));
             gbc.fill = GridBagConstraints.NONE;
 
             gbc.gridy++;
-            addGb(new JLabel(_("labelHeader") + " "));
+            addGb(new JLabel(getFromLocale("labelHeader") + " "));
             addGb(header);
 
             gbc.gridy++;
-            addGb(new JLabel(_("labelRotateToFit") + " "));
+            addGb(new JLabel(getFromLocale("labelRotateToFit") + " "));
             addGb(rotateToFit);
 
             gbc.gridy++;
-            addGb(new JLabel(_("labelPrinterView") + " "));
+            addGb(new JLabel(getFromLocale("labelPrinterView") + " "));
             addGb(printerView);
         }
 

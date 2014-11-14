@@ -10,7 +10,6 @@ import javax.swing.Icon;
 
 import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
 
 /** This class allows an object to be created holding all the information
  * essential to showing a ComponentFactory in the explorer window, but without
@@ -31,16 +30,16 @@ public class FactoryDescription {
     }
 
     private String name;
-    private StringGetter displayName;
+    private String displayName;
     private String iconName;
     private boolean iconLoadAttempted;
     private Icon icon;
     private String factoryClassName;
     private boolean factoryLoadAttempted;
     private ComponentFactory factory;
-    private StringGetter toolTip;
+    private String toolTip;
 
-    public FactoryDescription(String name, StringGetter displayName,
+    public FactoryDescription(String name, String displayName,
             String iconName, String factoryClassName) {
         this(name, displayName, factoryClassName);
         this.iconName = iconName;
@@ -48,7 +47,7 @@ public class FactoryDescription {
         this.icon = null;
     }
 
-    public FactoryDescription(String name, StringGetter displayName,
+    public FactoryDescription(String name, String displayName,
             Icon icon, String factoryClassName) {
         this(name, displayName, factoryClassName);
         this.iconName = "???";
@@ -56,7 +55,7 @@ public class FactoryDescription {
         this.icon = icon;
     }
 
-    public FactoryDescription(String name, StringGetter displayName,
+    public FactoryDescription(String name, String displayName,
             String factoryClassName) {
         this.name = name;
         this.displayName = displayName;
@@ -141,13 +140,13 @@ public class FactoryDescription {
         }
     }
 
-    public FactoryDescription setToolTip(StringGetter getter) {
+    public FactoryDescription setToolTip(String getter) {
         toolTip = getter;
         return this;
     }
 
     public String getToolTip() {
-        StringGetter getter = toolTip;
+        String getter = toolTip;
         return getter == null ? null : getter.toString();
     }
 }

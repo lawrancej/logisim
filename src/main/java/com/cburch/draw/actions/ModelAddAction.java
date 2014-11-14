@@ -45,7 +45,7 @@ public class ModelAddAction extends ModelAction {
 
     @Override
     public String getName() {
-        return _("actionAdd", getShapesName(added));
+        return getFromLocale("actionAdd", getShapesName(added));
     }
 
     @Override

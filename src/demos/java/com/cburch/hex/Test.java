@@ -9,6 +9,10 @@ import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
+import com.cburch.hex.HexEditor;
+import com.cburch.hex.HexModel;
+import com.cburch.hex.HexModelListener;
+
 /**
  * Tests Hex editor.
  * 

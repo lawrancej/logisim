@@ -37,7 +37,7 @@ class NegateAttribute extends Attribute<Boolean> {
 
     @Override
     public String getDisplayName() {
-        String ret = _("gateNegateAttr", "" + (index + 1));
+        String ret = getFromLocale("gateNegateAttr", "" + (index + 1));
         if (side != null) {
             ret += " (" + side.toVerticalDisplayString() + ")";
         }

@@ -1,6 +1,5 @@
 package com.cburch.logisim.SVG;
 
-import java.awt.Component;
 import java.awt.Point;
 
 import javax.swing.JPanel;

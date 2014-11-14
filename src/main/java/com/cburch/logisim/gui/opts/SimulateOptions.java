@@ -131,18 +131,18 @@ class SimulateOptions extends OptionsPanel {
 
     @Override
     public String getTitle() {
-        return _("simulateTitle");
+        return getFromLocale("simulateTitle");
     }
 
     @Override
     public String getHelpText() {
-        return _("simulateHelp");
+        return getFromLocale("simulateHelp");
     }
 
     @Override
     public void localeChanged() {
-        simLimitLabel.setText(_("simulateLimit"));
-        gateUndefinedLabel.setText(_("gateUndefined"));
-        simRandomness.setText(_("simulateRandomness"));
+        simLimitLabel.setText(getFromLocale("simulateLimit"));
+        gateUndefinedLabel.setText(getFromLocale("gateUndefined"));
+        simRandomness.setText(getFromLocale("simulateRandomness"));
     }
 }

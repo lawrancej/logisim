@@ -15,10 +15,9 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.StringGetter;
 
 public class SetAttributeAction extends Action {
-    private StringGetter nameGetter;
+    private String nameGetter;
     private Circuit circuit;
     private List<Component> comps;
     private List<Attribute<Object>> attrs;
@@ -26,7 +25,7 @@ public class SetAttributeAction extends Action {
     private List<Object> oldValues;
     private CircuitTransaction xnReverse;
 
-    public SetAttributeAction(Circuit circuit, StringGetter nameGetter) {
+    public SetAttributeAction(Circuit circuit, String nameGetter) {
         this.nameGetter = nameGetter;
         this.circuit = circuit;
         this.comps = new ArrayList<Component>();
