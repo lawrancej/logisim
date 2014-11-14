@@ -1,6 +1,7 @@
 target
 reports
 build
+launch4j
 .gradle
 .project
 .classpath
