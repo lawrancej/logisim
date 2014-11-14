@@ -37,7 +37,8 @@ The build script recognizes the following commands:
 	./gradlew sonar     # Examine problems using Sonar
 
 
-To build the executable for Windows, you must install [launch4j](http://launch4j.sourceforge.net/) and ensure it is in the system path.
+To build the executable for Windows, you must install [launch4j](http://launch4j.sourceforge.net/) and ensure it is in the system path or you could install
+launch4j just into the root of the project (build process will find it and it will be ignore by git).
 
 To examine problems with Sonar, you need to download [SonarQube](http://www.sonarqube.org/downloads/) (the server) first into a folder without spaces in it.
 Then, run SonarQube for your platform and run `gradlew sonar` and go to [Sonar's page](http://localhost:9000).
