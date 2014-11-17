@@ -3,7 +3,15 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'launch4j'
 apply plugin: 'sonar-runner'
-apply plugin: 'macAppBundle'
+
+if (System.properties['os.name'].toLowerCase().contains('mac')) {
+    apply plugin: 'macAppBundle'
+    
+    macAppBundle {
+        mainClassName = "com.cburch.logisim.Main"
+        icon = "LogisimApp.icns"
+    }
+}
 
 mainClassName = "com.cburch.logisim.Main"
 version = '2.7.2'
@@ -120,11 +128,4 @@ processResources << {
         }
     }
 }
-
-macAppBundle {
-    mainClassName = "com.cburch.logisim.Main"
-	icon = "LogisimApp.icns"
-}
-
-
 
