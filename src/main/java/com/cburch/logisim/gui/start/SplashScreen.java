@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
-import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 public class SplashScreen extends JWindow implements ActionListener {
@@ -43,22 +43,22 @@ public class SplashScreen extends JWindow implements ActionListener {
     }
 
     Marker[] markers = new Marker[] {
-            new Marker(377, _("progressLibraries")),
-            new Marker(990, _("progressTemplateCreate")),
-            new Marker(1002, _("progressTemplateOpen")),
-            new Marker(1002, _("progressTemplateLoad")),
-            new Marker(1470, _("progressTemplateClose")),
-            new Marker(1478, _("progressGuiInitialize")),
-            new Marker(2114, _("progressFileCreate")),
-            new Marker(2114, _("progressFileLoad")),
-            new Marker(2383, _("progressProjectCreate")),
-            new Marker(2519, _("progressFrameCreate")),
+            new Marker(377, getFromLocale("progressLibraries")),
+            new Marker(990, getFromLocale("progressTemplateCreate")),
+            new Marker(1002, getFromLocale("progressTemplateOpen")),
+            new Marker(1002, getFromLocale("progressTemplateLoad")),
+            new Marker(1470, getFromLocale("progressTemplateClose")),
+            new Marker(1478, getFromLocale("progressGuiInitialize")),
+            new Marker(2114, getFromLocale("progressFileCreate")),
+            new Marker(2114, getFromLocale("progressFileLoad")),
+            new Marker(2383, getFromLocale("progressProjectCreate")),
+            new Marker(2519, getFromLocale("progressFrameCreate")),
     };
     // for avoiding mutual recursion
     boolean inClose = false;
     JProgressBar progress = new JProgressBar(0, PROGRESS_MAX);
-    JButton close = new JButton(_("startupCloseButton"));
-    JButton cancel = new JButton(_("startupQuitButton"));
+    JButton close = new JButton(getFromLocale("startupCloseButton"));
+    JButton cancel = new JButton(getFromLocale("startupQuitButton"));
     long startTime = System.currentTimeMillis();
 
     public SplashScreen() {

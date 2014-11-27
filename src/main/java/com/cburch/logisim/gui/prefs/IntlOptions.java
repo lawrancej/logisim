@@ -35,15 +35,15 @@ class IntlOptions extends OptionsPanel {
 
         locale = createLocaleSelector();
         replAccents = new PrefBoolean(AppPreferences.ACCENTS_REPLACE,
-                __("intlReplaceAccents"));
+                getFromLocale("intlReplaceAccents"));
         gateShape = new PrefOptionList(AppPreferences.GATE_SHAPE,
-                __("intlGateShape"), new PrefOption[] {
+                getFromLocale("intlGateShape"), new PrefOption[] {
                     new PrefOption(AppPreferences.SHAPE_SHAPED,
-                            __("shapeShaped")),
+                            getFromLocale("shapeShaped")),
                     new PrefOption(AppPreferences.SHAPE_RECTANGULAR,
-                            __("shapeRectangular")),
+                            getFromLocale("shapeRectangular")),
                     new PrefOption(AppPreferences.SHAPE_DIN40700,
-                            __("shapeDIN40700")) });
+                            getFromLocale("shapeDIN40700")) });
 
         Box localePanel = new Box(BoxLayout.X_AXIS);
         localePanel.add(Box.createGlue());
@@ -68,18 +68,18 @@ class IntlOptions extends OptionsPanel {
 
     @Override
     public String getTitle() {
-        return _("intlTitle");
+        return getFromLocale("intlTitle");
     }
 
     @Override
     public String getHelpText() {
-        return _("intlHelp");
+        return getFromLocale("intlHelp");
     }
 
     @Override
     public void localeChanged() {
         gateShape.localeChanged();
-        localeLabel.setText(_("intlLocale") + " ");
+        localeLabel.setText(getFromLocale("intlLocale") + " ");
         replAccents.localeChanged();
         replAccents.setEnabled(LocaleManager.canReplaceAccents());
     }

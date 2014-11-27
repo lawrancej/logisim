@@ -30,7 +30,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Ground extends InstanceFactory {
     public Ground() {
-        super("Ground", __("groundComponent"));
+        super("Ground", getFromLocale("groundComponent"));
         setIconName("ground.svg");
         setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH },
                 new Object[] { Direction.SOUTH, BitWidth.ONE });

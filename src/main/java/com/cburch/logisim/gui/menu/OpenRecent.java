@@ -76,7 +76,7 @@ class OpenRecent extends JMenu implements PropertyChangeListener {
 
     private static String getFileText(File file) {
         if (file == null) {
-            return _("fileOpenRecentNoChoices");
+            return getFromLocale("fileOpenRecentNoChoices");
         } else {
             String ret;
             try {
@@ -98,10 +98,10 @@ class OpenRecent extends JMenu implements PropertyChangeListener {
     }
 
     void localeChanged() {
-        setText(_("fileOpenRecentItem"));
+        setText(getFromLocale("fileOpenRecentItem"));
         for (RecentItem item : recentItems) {
             if (item.file == null) {
-                item.setText(_("fileOpenRecentNoChoices"));
+                item.setText(getFromLocale("fileOpenRecentNoChoices"));
             }
         }
     }

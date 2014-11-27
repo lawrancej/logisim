@@ -92,7 +92,7 @@ class XmlReader {
             for (Element circElt : XmlIterator.forChildElements(elt, "circuit")) {
                 String name = circElt.getAttribute("name");
                 if (name == null || name.equals("")) {
-                    addError(_("circNameMissingError"), "C??");
+                    addError(getFromLocale("circNameMissingError"), "C??");
                 }
                 CircuitData circData = new CircuitData(circElt, new Circuit(name));
                 file.addCircuit(circData.circuit);
@@ -138,11 +138,11 @@ class XmlReader {
 
         private Library toLibrary(Element elt) {
             if (!elt.hasAttribute("name")) {
-                loader.showError(_("libNameMissingError"));
+                loader.showError(getFromLocale("libNameMissingError"));
                 return null;
             }
             if (!elt.hasAttribute("desc")) {
-                loader.showError(_("libDescMissingError"));
+                loader.showError(getFromLocale("libDescMissingError"));
                 return null;
             }
             String name = elt.getAttribute("name");
@@ -155,7 +155,7 @@ class XmlReader {
             libs.put(name, ret);
             for (Element sub_elt : XmlIterator.forChildElements(elt, "tool")) {
                 if (!sub_elt.hasAttribute("name")) {
-                    loader.showError(_("toolNameMissingError"));
+                    loader.showError(getFromLocale("toolNameMissingError"));
                 } else {
                     String tool_str = sub_elt.getAttribute("name");
                     Tool tool = ret.getTool(tool_str);
@@ -197,13 +197,13 @@ class XmlReader {
                 try {
                     AbstractCanvasObject m = AppearanceSvgReader.createShape(sub, pins);
                     if (m == null) {
-                        addError(_("fileAppearanceNotFound", sub.getTagName()),
+                        addError(getFromLocale("fileAppearanceNotFound", sub.getTagName()),
                                 context + "." + sub.getTagName());
                     } else {
                         shapes.add(m);
                     }
                 } catch (RuntimeException e) {
-                    addError(_("fileAppearanceError", sub.getTagName()),
+                    addError(getFromLocale("fileAppearanceError", sub.getTagName()),
                             context + "." + sub.getTagName());
                 }
             }
@@ -229,14 +229,14 @@ class XmlReader {
 
                 String mods_str = sub_elt.getAttribute("map");
                 if (mods_str == null || mods_str.equals("")) {
-                    loader.showError(_("mappingMissingError"));
+                    loader.showError(getFromLocale("mappingMissingError"));
                     continue;
                 }
                 int mods;
                 try {
                     mods = InputEventUtil.fromString(mods_str);
                 } catch (NumberFormatException e) {
-                    loader.showError(_("mappingBadError", mods_str));
+                    loader.showError(getFromLocale("mappingBadError", mods_str));
                     continue;
                 }
 
@@ -281,11 +281,11 @@ class XmlReader {
             Library lib = findLibrary(elt.getAttribute("lib"));
             String name = elt.getAttribute("name");
             if (name == null || name.equals("")) {
-                throw new XmlReaderException(_("toolNameMissing"));
+                throw new XmlReaderException(getFromLocale("toolNameMissing"));
             }
             Tool tool = lib.getTool(name);
             if (tool == null) {
-                throw new XmlReaderException(_("toolNotFound"));
+                throw new XmlReaderException(getFromLocale("toolNotFound"));
             }
             return tool;
         }
@@ -301,7 +301,7 @@ class XmlReader {
                         messages = new ArrayList<String>();
                     }
 
-                    messages.add(_("attrNameMissingError"));
+                    messages.add(getFromLocale("attrNameMissingError"));
                 } else {
                     String attrName = attrElt.getAttribute("name");
                     String attrVal;
@@ -351,7 +351,7 @@ class XmlReader {
                             messages = new ArrayList<String>();
                         }
 
-                        messages.add(_("attrValueInvalidError",
+                        messages.add(getFromLocale("attrValueInvalidError",
                             attrVal, attrName));
                     }
                 }
@@ -368,7 +368,7 @@ class XmlReader {
 
             Library ret = libs.get(lib_name);
             if (ret == null) {
-                throw new XmlReaderException(_("libMissingError", lib_name));
+                throw new XmlReaderException(getFromLocale("libMissingError", lib_name));
             } else {
                 return ret;
             }

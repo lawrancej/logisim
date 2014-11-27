@@ -5,14 +5,13 @@ package com.cburch.logisim.circuit;
 
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.StringGetter;
 
 public class CircuitAction extends Action {
-    private StringGetter name;
+    private String name;
     private CircuitTransaction forward;
     private CircuitTransaction reverse;
 
-    CircuitAction(StringGetter name, CircuitMutation forward) {
+    CircuitAction(String name, CircuitMutation forward) {
         this.name = name;
         this.forward = forward;
     }

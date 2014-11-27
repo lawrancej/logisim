@@ -31,7 +31,7 @@ public class Divider extends InstanceFactory {
     private static final int REM   = 4;
 
     public Divider() {
-        super("Divider", __("dividerComponent"));
+        super("Divider", getFromLocale("dividerComponent"));
         setAttributes(new Attribute[] { StdAttr.WIDTH },
                 new Object[] { BitWidth.create(8) });
         setKeyConfigurator(new BitWidthConfigurator(StdAttr.WIDTH));
@@ -44,11 +44,11 @@ public class Divider extends InstanceFactory {
         ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
         ps[UPPER] = new Port(-20, -20, Port.INPUT,  StdAttr.WIDTH);
         ps[REM]   = new Port(-20,  20, Port.OUTPUT, StdAttr.WIDTH);
-        ps[IN0].setToolTip(__("dividerDividendLowerTip"));
-        ps[IN1].setToolTip(__("dividerDivisorTip"));
-        ps[OUT].setToolTip(__("dividerOutputTip"));
-        ps[UPPER].setToolTip(__("dividerDividendUpperTip"));
-        ps[REM].setToolTip(__("dividerRemainderTip"));
+        ps[IN0].setToolTip(getFromLocale("dividerDividendLowerTip"));
+        ps[IN1].setToolTip(getFromLocale("dividerDivisorTip"));
+        ps[OUT].setToolTip(getFromLocale("dividerOutputTip"));
+        ps[UPPER].setToolTip(getFromLocale("dividerDividendUpperTip"));
+        ps[REM].setToolTip(getFromLocale("dividerRemainderTip"));
         setPorts(ps);
     }
 
@@ -78,8 +78,8 @@ public class Divider extends InstanceFactory {
         painter.drawPort(IN0);
         painter.drawPort(IN1);
         painter.drawPort(OUT);
-        painter.drawPort(UPPER, _("dividerUpperInput"),  Direction.NORTH);
-        painter.drawPort(REM, _("dividerRemainderOutput"), Direction.SOUTH);
+        painter.drawPort(UPPER, getFromLocale("dividerUpperInput"),  Direction.NORTH);
+        painter.drawPort(REM, getFromLocale("dividerRemainderOutput"), Direction.SOUTH);
 
         Location loc = painter.getLocation();
         int x = loc.getX();

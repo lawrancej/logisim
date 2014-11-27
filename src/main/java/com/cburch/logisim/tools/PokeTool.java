@@ -28,6 +28,7 @@ import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.util.Icons;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class PokeTool extends Tool {
@@ -117,19 +118,19 @@ public class PokeTool extends Tool {
 
     @Override
     public String getDisplayName() {
-        return _("pokeTool");
+        return getFromLocale("pokeTool");
     }
 
     private void removeCaret(boolean normal) {
         Circuit circ = pokedCircuit;
         Caret caret = pokeCaret;
         if (caret != null) {
-        	if (normal) {
-        		caret.stopEditing();
-        	}
-        	else {
-        		caret.cancelEditing();
-        	}
+            if (normal) {
+                caret.stopEditing();
+            }
+            else {
+            	caret.cancelEditing();
+            }
 
             circ.removeCircuitListener(listener);
             pokedCircuit = null;
@@ -150,7 +151,7 @@ public class PokeTool extends Tool {
 
     @Override
     public String getDescription() {
-        return _("pokeToolDesc");
+        return getFromLocale("pokeToolDesc");
     }
 
     @Override
@@ -263,6 +264,7 @@ public class PokeTool extends Tool {
             toolIcon.paintIcon(c.getDestination(), g, x + 2, y + 2);
         } else {
             g.setColor(java.awt.Color.black);
+            // TODO explain the values
             g.drawLine(x + 4, y +  2, x + 4, y + 17);
             g.drawLine(x + 4, y + 17, x + 1, y + 11);
             g.drawLine(x + 4, y + 17, x + 7, y + 11);
@@ -274,6 +276,8 @@ public class PokeTool extends Tool {
     }
 
     @Override
-    public Cursor getCursor() { return cursor; }
+    public Cursor getCursor() {
+    	return cursor;
+    }
 }
 

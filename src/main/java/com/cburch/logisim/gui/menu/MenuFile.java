@@ -92,17 +92,17 @@ class MenuFile extends Menu implements ActionListener {
     }
 
     public void localeChanged() {
-        this.setText(_("fileMenu"));
-        newi.setText(_("fileNewItem"));
-        open.setText(_("fileOpenItem"));
+        this.setText(getFromLocale("fileMenu"));
+        newi.setText(getFromLocale("fileNewItem"));
+        open.setText(getFromLocale("fileOpenItem"));
         openRecent.localeChanged();
-        close.setText(_("fileCloseItem"));
-        save.setText(_("fileSaveItem"));
-        saveAs.setText(_("fileSaveAsItem"));
-        exportImage.setText(_("fileExportImageItem"));
-        print.setText(_("filePrintItem"));
-        prefs.setText(_("filePreferencesItem"));
-        quit.setText(_("fileQuitItem"));
+        close.setText(getFromLocale("fileCloseItem"));
+        save.setText(getFromLocale("fileSaveItem"));
+        saveAs.setText(getFromLocale("fileSaveAsItem"));
+        exportImage.setText(getFromLocale("fileExportImageItem"));
+        print.setText(getFromLocale("filePrintItem"));
+        prefs.setText(getFromLocale("filePreferencesItem"));
+        quit.setText(getFromLocale("fileQuitItem"));
     }
 
     @Override

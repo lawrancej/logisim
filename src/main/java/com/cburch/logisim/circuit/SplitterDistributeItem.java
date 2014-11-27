@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 
 import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 @SuppressWarnings("serial")
@@ -38,11 +37,11 @@ class SplitterDistributeItem extends JMenuItem implements ActionListener {
         setText(toGetter().toString());
     }
 
-    private StringGetter toGetter() {
+    private String toGetter() {
         if (order > 0) {
-            return __("splitterDistributeAscending");
+            return getFromLocale("splitterDistributeAscending");
         } else {
-            return __("splitterDistributeDescending");
+            return getFromLocale("splitterDistributeDescending");
         }
     }
 

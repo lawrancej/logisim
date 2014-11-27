@@ -193,7 +193,7 @@ public class AddTool extends Tool {
             }
         }
         if (ret == null) {
-            ret = _("addToolText", getDisplayName());
+            ret = getFromLocale("addToolText", getDisplayName());
         }
         return ret;
     }
@@ -319,14 +319,14 @@ public class AddTool extends Tool {
         // verify the addition would be valid
         Circuit circ = canvas.getCircuit();
         if (!canvas.getProject().getLogisimFile().contains(circ)) {
-            canvas.setErrorMessage(__("cannotModifyError"));
+            canvas.setErrorMessage(getFromLocale("cannotModifyError"), 0, 0);
             return;
         }
         if (factory instanceof SubcircuitFactory) {
             SubcircuitFactory circFact = (SubcircuitFactory) factory;
             Dependencies depends = canvas.getProject().getDependencies();
             if (!depends.canAdd(circ, circFact.getSubcircuit())) {
-                canvas.setErrorMessage(__("circularError"));
+                canvas.setErrorMessage(getFromLocale("circularError"), 0, 0);
                 return;
             }
         }
@@ -376,20 +376,20 @@ public class AddTool extends Tool {
             Component c = source.createComponent(loc, attrsCopy);
 
             if (circ.hasConflict(c)) {
-                canvas.setErrorMessage(__("exclusiveError"));
+                canvas.setErrorMessage(getFromLocale("exclusiveError"), 0, 0);
                 return;
             }
 
             Bounds bds = c.getBounds(g);
             if (bds.getX() < 0 || bds.getY() < 0) {
-                canvas.setErrorMessage(__("negativeCoordError"));
+                canvas.setErrorMessage(getFromLocale("negativeCoordError"), 0, 0);
                 return;
             }
 
             try {
                 CircuitMutation mutation = new CircuitMutation(circ);
                 mutation.add(c);
-                Action action = mutation.toAction(__("addComponentAction", factory.getDisplayGetter()));
+                Action action = mutation.toAction(getFromLocale("addComponentAction", factory.getDisplayGetter()));
                 canvas.getProject().doAction(action);
                 lastAddition = action;
                 added = c;

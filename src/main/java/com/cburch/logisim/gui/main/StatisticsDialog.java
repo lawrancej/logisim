@@ -61,11 +61,11 @@ public class StatisticsDialog extends JDialog implements ActionListener {
         @Override
         public String getColumnName(int column) {
             switch (column) {
-            case 0: return _("statsComponentColumn");
-            case 1: return _("statsLibraryColumn");
-            case 2: return _("statsSimpleCountColumn");
-            case 3: return _("statsUniqueCountColumn");
-            case 4: return _("statsRecursiveCountColumn");
+            case 0: return getFromLocale("statsComponentColumn");
+            case 1: return getFromLocale("statsLibraryColumn");
+            case 2: return getFromLocale("statsSimpleCountColumn");
+            case 3: return getFromLocale("statsUniqueCountColumn");
+            case 4: return getFromLocale("statsRecursiveCountColumn");
             // should never happen
             default: return "??";
             }
@@ -91,9 +91,9 @@ public class StatisticsDialog extends JDialog implements ActionListener {
                 if (row < countsLen) {
                     return count.getFactory().getDisplayName();
                 } else if (row == countsLen) {
-                    return _("statsTotalWithout");
+                    return getFromLocale("statsTotalWithout");
                 } else {
-                    return _("statsTotalWith");
+                    return getFromLocale("statsTotalWith");
                 }
             case 1:
                 if (row < countsLen) {
@@ -156,17 +156,17 @@ public class StatisticsDialog extends JDialog implements ActionListener {
             StatisticsTableModel model) {
         super(parent, true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle(_("statsDialogTitle", circuitName));
+        setTitle(getFromLocale("statsDialogTitle", circuitName));
 
         JTable table = new StatisticsTable();
         TableSorter mySorter = new TableSorter(model, table.getTableHeader());
         Comparator<String> comp = new CompareString("",
-                _("statsTotalWithout"), _("statsTotalWith"));
+                getFromLocale("statsTotalWithout"), getFromLocale("statsTotalWith"));
         mySorter.setColumnComparator(String.class, comp);
         table.setModel(mySorter);
         JScrollPane tablePane = new JScrollPane(table);
 
-        JButton button = new JButton(_("statsCloseButton"));
+        JButton button = new JButton(getFromLocale("statsCloseButton"));
         button.addActionListener(this);
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(button);

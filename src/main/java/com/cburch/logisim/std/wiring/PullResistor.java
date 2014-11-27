@@ -31,11 +31,11 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class PullResistor extends InstanceFactory {
     public static final Attribute<AttributeOption> ATTR_PULL_TYPE
-        = Attributes.forOption("pull", __("pullTypeAttr"),
+        = Attributes.forOption("pull", getFromLocale("pullTypeAttr"),
                 new AttributeOption[] {
-                    new AttributeOption(Value.FALSE, "0", __("pullZeroType")),
-                    new AttributeOption(Value.TRUE,  "1", __("pullOneType")),
-                    new AttributeOption(Value.ERROR, "X", __("pullErrorType"))
+                    new AttributeOption(Value.FALSE, "0", getFromLocale("pullZeroType")),
+                    new AttributeOption(Value.TRUE,  "1", getFromLocale("pullOneType")),
+                    new AttributeOption(Value.ERROR, "X", getFromLocale("pullErrorType"))
             });
 
     public static final PullResistor FACTORY = new PullResistor();
@@ -44,7 +44,7 @@ public class PullResistor extends InstanceFactory {
     private static final Icon ICON_RECTANGULAR = Icons.getIcon("pullrect.svg");
 
     public PullResistor() {
-        super("Pull Resistor", __("pullComponent"));
+        super("Pull Resistor", getFromLocale("pullComponent"));
         setAttributes(new Attribute[] { StdAttr.FACING, ATTR_PULL_TYPE },
                 new Object[] { Direction.SOUTH, ATTR_PULL_TYPE.parse("0") });
         setFacingAttribute(StdAttr.FACING);

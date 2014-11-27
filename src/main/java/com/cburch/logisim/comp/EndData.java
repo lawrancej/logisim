@@ -6,8 +6,6 @@ package com.cburch.logisim.comp;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Location;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 public class EndData {
     public static final int INPUT_ONLY = 1;
     public static final int OUTPUT_ONLY = 2;

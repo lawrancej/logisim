@@ -21,7 +21,7 @@ public class SevenSegment extends InstanceFactory {
     static Color DEFAULT_OFF = new Color(220, 220, 220);
 
     public SevenSegment() {
-        super("7-Segment Display", __("sevenSegmentComponent"));
+        super("7-Segment Display", getFromLocale("sevenSegmentComponent"));
         setAttributes(new Attribute[] { Io.ATTR_ON_COLOR, Io.ATTR_OFF_COLOR,
                     Io.ATTR_BACKGROUND, Io.ATTR_ACTIVE },
                 new Object[] { new Color(240, 0, 0), DEFAULT_OFF,

@@ -32,8 +32,8 @@ public class MenuTool extends Tool {
         Project proj;
         Circuit circ;
         Component comp;
-        JMenuItem del = new JMenuItem(_("compDeleteItem"));
-        JMenuItem attrs = new JMenuItem(_("compShowAttrItem"));
+        JMenuItem del = new JMenuItem(getFromLocale("compDeleteItem"));
+        JMenuItem attrs = new JMenuItem(getFromLocale("compShowAttrItem"));
 
         MenuComponent(Project proj, Circuit circ, Component comp) {
             this.proj = proj;
@@ -53,7 +53,7 @@ public class MenuTool extends Tool {
                 Circuit circ = proj.getCurrentCircuit();
                 CircuitMutation xn = new CircuitMutation(circ);
                 xn.remove(comp);
-                proj.doAction(xn.toAction(__("removeComponentAction", comp.getFactory().getDisplayGetter())));
+                proj.doAction(xn.toAction(getFromLocale("removeComponentAction", comp.getFactory().getDisplayGetter())));
             } else if (src == attrs) {
                 proj.getFrame().viewComponentAttributes(circ, comp);
             }
@@ -63,9 +63,9 @@ public class MenuTool extends Tool {
     private class MenuSelection extends JPopupMenu
             implements ActionListener {
         Project proj;
-        JMenuItem del = new JMenuItem(_("selDeleteItem"));
-        JMenuItem cut = new JMenuItem(_("selCutItem"));
-        JMenuItem copy = new JMenuItem(_("selCopyItem"));
+        JMenuItem del = new JMenuItem(getFromLocale("selDeleteItem"));
+        JMenuItem cut = new JMenuItem(getFromLocale("selCutItem"));
+        JMenuItem copy = new JMenuItem(getFromLocale("selCopyItem"));
 
         MenuSelection(Project proj) {
             this.proj = proj;
@@ -107,10 +107,10 @@ public class MenuTool extends Tool {
     public String getName() { return "Menu Tool"; }
 
     @Override
-    public String getDisplayName() { return _("menuTool"); }
+    public String getDisplayName() { return getFromLocale("menuTool"); }
 
     @Override
-    public String getDescription() { return _("menuToolDesc"); }
+    public String getDescription() { return getFromLocale("menuToolDesc"); }
 
     @Override
     public void mousePressed(Canvas canvas, Graphics g, MouseEvent e) {

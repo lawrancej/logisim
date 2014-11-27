@@ -19,7 +19,7 @@ class NorGate extends AbstractGate {
     public static NorGate FACTORY = new NorGate();
 
     private NorGate() {
-        super("NOR Gate", __("norGateComponent"));
+        super("NOR Gate", getFromLocale("norGateComponent"));
         setNegateOutput(true);
         setRectangularLabel(OrGate.FACTORY.getRectangularLabel(null));
         setIconNames("norGate.svg", "norGateRect.svg", "dinNorGate.svg");

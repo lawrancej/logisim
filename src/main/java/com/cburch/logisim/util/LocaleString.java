@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import javax.swing.JComponent;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +12,6 @@ import org.slf4j.LoggerFactory;
  * This class is analogous to GNU gettext.
  *
  * @author Joey Lawrance
- *
  */
 public class LocaleString {
   
@@ -24,6 +22,7 @@ public class LocaleString {
             "log menu opts prefs proj start std tools util").split(" ");
     private HashMap<String,LocaleManager> sourceMap = new HashMap<String,LocaleManager>();
     private LocaleManager util;
+    
     private LocaleString() {
         for (String section : sections) {
             LocaleManager manager = new LocaleManager("logisim", section);
@@ -33,54 +32,40 @@ public class LocaleString {
             if (section.equals("util")) {
                 util = manager;
             }
-
         }
     }
+    
     protected static LocaleManager getUtilLocaleManager() {
         return getInstance().util;
     }
+    
     private static LocaleString getInstance() {
         if (self == null) {
             self = new LocaleString();
         }
         return self;
     }
+    
     // This shouldn't belong here
-    public static Locale[] getLocaleOptions() {
-        return getUtilLocaleManager().getLocaleOptions();
+    public static Locale[] getFromLocaleOptions() {
+        return getUtilLocaleManager().getFromLocaleOptions();
     }
+    
     // This shouldn't belong here
     public static JComponent createLocaleSelector() {
         return getUtilLocaleManager().createLocaleSelector();
     }
-    public static String _(String s) {
-        LocaleManager localeManager = getInstance().sourceMap.get(s);
+    
+    public static String getFromLocale(String str) {
+        LocaleManager localeManager = getInstance().sourceMap.get(str);
         if (localeManager == null) {
-          logger.error("Could not get string \"" + s + "\".");
-          return s;
+          logger.error("Could not get string \"" + str + "\".");
+          return str;
         }
-        return getInstance().sourceMap.get(s).get(s);
+        return getInstance().sourceMap.get(str).get(str);
     }
-    public static String _(String key, String... arg) {
-        return String.format(_(key), (Object[])arg);
-    }
-    public static StringGetter __(final String s) {
-        LocaleManager localeManager = getInstance().sourceMap.get(s);
-        if (localeManager == null) {
-          logger.error("Could not get string \"" + s + "\".");
-          return new StringGetter() {
-            @Override
-            public String toString() {
-              return s;
-            }
-          };
-        }
-        return localeManager.getter(s);
-    }
-    public static StringGetter __(String key, String arg) {
-        return getInstance().sourceMap.get(key).getter(key, arg);
-    }
-    public static StringGetter __(String key, StringGetter arg) {
-        return __(key, arg.toString());
+    
+    public static String getFromLocale(String key, String... arg) {
+        return String.format(getFromLocale(key), (Object[])arg);
     }
 }

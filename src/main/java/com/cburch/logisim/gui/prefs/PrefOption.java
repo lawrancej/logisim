@@ -5,13 +5,11 @@ package com.cburch.logisim.gui.prefs;
 
 import javax.swing.JComboBox;
 
-import com.cburch.logisim.util.StringGetter;
-
 class PrefOption {
     private Object value;
-    private StringGetter getter;
+    private String getter;
 
-    PrefOption(String value, StringGetter getter) {
+    PrefOption(String value, String getter) {
         this.value = value;
         this.getter = getter;
     }

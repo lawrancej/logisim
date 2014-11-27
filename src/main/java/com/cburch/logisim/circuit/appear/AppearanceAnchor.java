@@ -9,9 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections15.list.UnmodifiableList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
 import com.cburch.draw.model.HandleGesture;
@@ -24,7 +21,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class AppearanceAnchor extends AppearanceElement {
     public static final Attribute<Direction> FACING
-        = Attributes.forDirection("facing", __("appearanceFacingAttr"));
+        = Attributes.forDirection("facing", getFromLocale("appearanceFacingAttr"));
     static final List<Attribute<?>> ATTRIBUTES
         = UnmodifiableList.decorate(Arrays.asList(new Attribute<?>[] { FACING }));
 
@@ -56,7 +53,7 @@ public class AppearanceAnchor extends AppearanceElement {
 
     @Override
     public String getDisplayName() {
-        return _("circuitAnchor");
+        return getFromLocale("circuitAnchor");
     }
 
     /*@Override

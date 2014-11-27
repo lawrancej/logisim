@@ -22,8 +22,6 @@ import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
-import com.cburch.logisim.util.StringGetter;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
@@ -85,12 +83,12 @@ public class WiringTool extends Tool {
 
     @Override
     public String getDisplayName() {
-        return _("wiringTool");
+        return getFromLocale("wiringTool");
     }
 
     @Override
     public String getDescription() {
-        return _("wiringToolDesc");
+        return getFromLocale("wiringToolDesc");
     }
 
     private boolean computeMove(int newX, int newY) {
@@ -217,7 +215,7 @@ public class WiringTool extends Tool {
     public void mousePressed(Canvas canvas, Graphics g, MouseEvent e) {
         if (!canvas.getProject().getLogisimFile().contains(canvas.getCircuit())) {
             exists = false;
-            canvas.setErrorMessage(__("cannotModifyError"));
+            canvas.setErrorMessage(getFromLocale("cannotModifyError"), 0, 0);
             return;
         }
 
@@ -338,13 +336,13 @@ public class WiringTool extends Tool {
             if (ws.size() > 0) {
                 CircuitMutation mutation = new CircuitMutation(canvas.getCircuit());
                 mutation.addAll(ws);
-                StringGetter desc;
+                String desc;
                 if (ws.size() == 1) {
-                    desc = __("addWireAction");
+                    desc = getFromLocale("addWireAction");
                 }
 
                 else {
-                    desc = __("addWiresAction");
+                    desc = getFromLocale("addWiresAction");
                 }
 
                 Action act = mutation.toAction(desc);
@@ -417,24 +415,23 @@ public class WiringTool extends Tool {
     }
 
     private boolean performShortening(Canvas canvas, Location drag0, Location drag1) {
-        Wire shorten = willShorten(drag0, drag1);
-        if (shorten == null) {
-            return false;
-        }
-        
-        CircuitMutation xn = new CircuitMutation(canvas.getCircuit());
-        StringGetter actName;
-        Wire result = getShortenResult(shorten, drag0, drag1);
-        if (result == null) {
-        	xn.remove(shorten);
-        	actName = __("removeComponentAction",
-        			shorten.getFactory().getDisplayGetter());
-        } else {
-        	xn.replace(shorten, result);
-        	actName = __("shortenWireAction");
-        }
-        canvas.getProject().doAction(xn.toAction(actName));
-        return true;
+    	Wire shorten = willShorten(drag0, drag1);
+    	if (shorten == null) {
+    		return false;
+    	}
+    	
+    	CircuitMutation xn = new CircuitMutation(canvas.getCircuit());
+    	String actName;
+    	Wire result = getShortenResult(shorten, drag0, drag1);
+    	if (result == null) {
+    		xn.remove(shorten);
+    		actName = getFromLocale("removeComponentAction", shorten.getFactory().getDisplayGetter());
+    	} else {
+    		xn.replace(shorten, result);
+    		actName = getFromLocale("shortenWireAction");
+    	}
+    	canvas.getProject().doAction(xn.toAction(actName));
+    	return true;
     }
 
     @Override
@@ -455,6 +452,7 @@ public class WiringTool extends Tool {
             toolIcon.paintIcon(c.getDestination(), g, x + 2, y + 2);
         } else {
             g.setColor(java.awt.Color.black);
+            // TODO explain the values
             g.drawLine(x + 3, y + 13, x + 17, y + 7);
             g.fillOval(x + 1, y + 11, 5, 5);
             g.fillOval(x + 15, y + 5, 5, 5);
@@ -462,5 +460,7 @@ public class WiringTool extends Tool {
     }
 
     @Override
-    public Cursor getCursor() { return cursor; }
+    public Cursor getCursor() {
+    	return cursor;
+    }
 }

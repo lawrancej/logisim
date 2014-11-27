@@ -8,7 +8,6 @@ import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Value;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public abstract class RadixOption extends AttributeOption {
@@ -22,7 +21,7 @@ public abstract class RadixOption extends AttributeOption {
         RADIX_2, RADIX_8, RADIX_10_SIGNED, RADIX_10_UNSIGNED, RADIX_16
     };
     public static final Attribute<RadixOption> ATTRIBUTE
-        = Attributes.forOption("radix", __("radixAttr"), OPTIONS);
+        = Attributes.forOption("radix", getFromLocale("radixAttr"), OPTIONS);
 
     public static RadixOption decode(String value) {
         for (RadixOption opt : OPTIONS) {
@@ -34,15 +33,15 @@ public abstract class RadixOption extends AttributeOption {
     }
 
     private String saveName;
-    private StringGetter displayGetter;
+    private String displayGetter;
 
-    private RadixOption(String saveName, StringGetter displayGetter) {
+    private RadixOption(String saveName, String displayGetter) {
         super(saveName, displayGetter);
         this.saveName = saveName;
         this.displayGetter = displayGetter;
     }
 
-    public StringGetter getDisplayGetter() {
+    public String getDisplayGetter() {
         return displayGetter;
     }
 
@@ -68,7 +67,7 @@ public abstract class RadixOption extends AttributeOption {
 
     private static class Radix2 extends RadixOption {
         private Radix2() {
-            super("2", __("radix2"));
+            super("2", getFromLocale("radix2"));
         }
 
         @Override
@@ -94,7 +93,7 @@ public abstract class RadixOption extends AttributeOption {
 
     private static class Radix10Signed extends RadixOption {
         private Radix10Signed() {
-            super("10signed", __("radix10Signed"));
+            super("10signed", getFromLocale("radix10Signed"));
         }
 
         @Override
@@ -132,7 +131,7 @@ public abstract class RadixOption extends AttributeOption {
 
     private static class Radix10Unsigned extends RadixOption {
         private Radix10Unsigned() {
-            super("10unsigned", __("radix10Unsigned"));
+            super("10unsigned", getFromLocale("radix10Unsigned"));
         }
 
         @Override
@@ -159,7 +158,7 @@ public abstract class RadixOption extends AttributeOption {
 
     private static class Radix8 extends RadixOption {
         private Radix8() {
-            super("8", __("radix8"));
+            super("8", getFromLocale("radix8"));
         }
 
         @Override
@@ -180,7 +179,7 @@ public abstract class RadixOption extends AttributeOption {
 
     private static class Radix16 extends RadixOption {
         private Radix16() {
-            super("16", __("radix16"));
+            super("16", getFromLocale("radix16"));
         }
 
         @Override

@@ -34,7 +34,7 @@ public class ModelTranslateAction extends ModelAction {
 
     @Override
     public String getName() {
-        return _("actionTranslate", getShapesName(moved));
+        return getFromLocale("actionTranslate", getShapesName(moved));
     }
 
     @Override

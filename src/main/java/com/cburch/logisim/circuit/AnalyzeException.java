@@ -11,19 +11,19 @@ public class AnalyzeException extends Exception {
     public static class Circular extends AnalyzeException {
 
         public Circular() {
-            super(_("analyzeCircularError"));
+            super(getFromLocale("analyzeCircularError"));
         }
     }
 
     public static class Conflict extends AnalyzeException {
         public Conflict() {
-            super(_("analyzeConflictError"));
+            super(getFromLocale("analyzeConflictError"));
         }
     }
 
     public static class CannotHandle extends AnalyzeException {
         public CannotHandle(String reason) {
-            super(_("analyzeCannotHandleError", reason));
+            super(getFromLocale("analyzeCannotHandleError", reason));
         }
     }
 

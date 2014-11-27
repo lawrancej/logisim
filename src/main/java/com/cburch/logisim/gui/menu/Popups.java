@@ -29,14 +29,14 @@ public class Popups {
     private static class ProjectPopup extends JPopupMenu
             implements ActionListener {
         Project proj;
-        JMenuItem add = new JMenuItem(_("projectAddCircuitItem"));
-        JMenu load = new JMenu(_("projectLoadLibraryItem"));
-        JMenuItem loadBuiltin = new JMenuItem(_("projectLoadBuiltinItem"));
-        JMenuItem loadLogisim = new JMenuItem(_("projectLoadLogisimItem"));
-        JMenuItem loadJar = new JMenuItem(_("projectLoadJarItem"));
+        JMenuItem add = new JMenuItem(getFromLocale("projectAddCircuitItem"));
+        JMenu load = new JMenu(getFromLocale("projectLoadLibraryItem"));
+        JMenuItem loadBuiltin = new JMenuItem(getFromLocale("projectLoadBuiltinItem"));
+        JMenuItem loadLogisim = new JMenuItem(getFromLocale("projectLoadLogisimItem"));
+        JMenuItem loadJar = new JMenuItem(getFromLocale("projectLoadJarItem"));
 
         ProjectPopup(Project proj) {
-            super(_("projMenu"));
+            super(getFromLocale("projMenu"));
             this.proj = proj;
 
             load.add(loadBuiltin); loadBuiltin.addActionListener(this);
@@ -66,11 +66,11 @@ public class Popups {
             implements ActionListener {
         Project proj;
         Library lib;
-        JMenuItem unload = new JMenuItem(_("projectUnloadLibraryItem"));
-        JMenuItem reload = new JMenuItem(_("projectReloadLibraryItem"));
+        JMenuItem unload = new JMenuItem(getFromLocale("projectUnloadLibraryItem"));
+        JMenuItem reload = new JMenuItem(getFromLocale("projectReloadLibraryItem"));
 
         LibraryPopup(Project proj, Library lib, boolean is_top) {
-            super(_("libMenu"));
+            super(getFromLocale("libMenu"));
             this.proj = proj;
             this.lib = lib;
 
@@ -96,15 +96,15 @@ public class Popups {
             implements ActionListener {
         Project proj;
         Circuit circuit;
-        JMenuItem analyze = new JMenuItem(_("projectAnalyzeCircuitItem"));
-        JMenuItem stats = new JMenuItem(_("projectGetCircuitStatisticsItem"));
-        JMenuItem main = new JMenuItem(_("projectSetAsMainItem"));
-        JMenuItem remove = new JMenuItem(_("projectRemoveCircuitItem"));
-        JMenuItem editLayout = new JMenuItem(_("projectEditCircuitLayoutItem"));
-        JMenuItem editAppearance = new JMenuItem(_("projectEditCircuitAppearanceItem"));
+        JMenuItem analyze = new JMenuItem(getFromLocale("projectAnalyzeCircuitItem"));
+        JMenuItem stats = new JMenuItem(getFromLocale("projectGetCircuitStatisticsItem"));
+        JMenuItem main = new JMenuItem(getFromLocale("projectSetAsMainItem"));
+        JMenuItem remove = new JMenuItem(getFromLocale("projectRemoveCircuitItem"));
+        JMenuItem editLayout = new JMenuItem(getFromLocale("projectEditCircuitLayoutItem"));
+        JMenuItem editAppearance = new JMenuItem(getFromLocale("projectEditCircuitAppearanceItem"));
 
         CircuitPopup(Project proj, Tool tool, Circuit circuit) {
-            super(_("circuitMenu"));
+            super(getFromLocale("circuitMenu"));
             this.proj = proj;
             this.circuit = circuit;
 

@@ -179,7 +179,7 @@ public class AppearanceEditHandler extends EditHandler
         }
 
         canvas.getProject().doAction(new SelectionAction(canvas,
-                __("pasteClipboardAction"), null, add, add,
+                getFromLocale("pasteClipboardAction"), null, add, add,
                 anchorLocation, clip.getAnchorFacing()));
     }
 
@@ -206,7 +206,7 @@ public class AppearanceEditHandler extends EditHandler
 
         if (!remove.isEmpty()) {
             canvas.getProject().doAction(new SelectionAction(canvas,
-                __("deleteSelectionAction"), remove, null, select,
+                getFromLocale("deleteSelectionAction"), remove, null, select,
                 anchorLocation, anchorFacing));
         }
     }
@@ -230,7 +230,7 @@ public class AppearanceEditHandler extends EditHandler
 
         if (!clones.isEmpty()) {
             canvas.getProject().doAction(new SelectionAction(canvas,
-                __("duplicateSelectionAction"), null, clones, select,
+                getFromLocale("duplicateSelectionAction"), null, clones, select,
                 null, null));
         }
     }

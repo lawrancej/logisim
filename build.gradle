@@ -4,13 +4,31 @@ apply plugin: 'application'
 apply plugin: 'launch4j'
 apply plugin: 'sonar-runner'
 
+if (System.properties['os.name'].toLowerCase().contains('mac')) {
+    apply plugin: 'macAppBundle'
+    
+    macAppBundle {
+        mainClassName = "com.cburch.logisim.Main"
+        icon = "LogisimApp.icns"
+    }
+}
+
 mainClassName = "com.cburch.logisim.Main"
 version = '2.7.2'
+title = 'Logisim'
 description = 'Logisim: Logic Simulator'
 test.scanForTestClasses = false
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.8'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': title,
+                   'Implementation-Version': version,
+         		   'Main-Class': mainClassName
+    }
 }
 
 launch4j {
@@ -30,7 +48,9 @@ buildscript {
         classpath \
         'edu.sc.seis:gradle-launch4j:1.0.5',
         'net.sourceforge.nekohtml:nekohtml:1.9.18',
-        'javax.help:javahelp:2.0.05'
+        'javax.help:javahelp:2.0.05',
+        'edu.sc.seis.gradle:macappbundle:2.0.0'
+
     }
 }
 
@@ -108,3 +128,4 @@ processResources << {
         }
     }
 }
+

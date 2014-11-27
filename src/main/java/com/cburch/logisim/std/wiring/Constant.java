@@ -34,7 +34,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Constant extends InstanceFactory {
     public static final Attribute<Integer> ATTR_VALUE
-        = Attributes.forHexInteger("value", __("constantValueAttr"));
+        = Attributes.forHexInteger("value", getFromLocale("constantValueAttr"));
 
     public static InstanceFactory FACTORY = new Constant();
 
@@ -66,12 +66,15 @@ public class Constant extends InstanceFactory {
         @Override
         @SuppressWarnings("unchecked")
         public <V> V getValue(Attribute<V> attr) {
-            if (attr == StdAttr.FACING)
+            if (attr == StdAttr.FACING) {
             	return (V) facing;
-            if (attr == StdAttr.WIDTH)
+            }
+            if (attr == StdAttr.WIDTH) {
             	return (V) width;
-            if (attr == ATTR_VALUE)
+            }
+            if (attr == ATTR_VALUE) {
             	return (V) Integer.valueOf(value.toIntValue());
+            }
             return null;
         }
 
@@ -111,7 +114,7 @@ public class Constant extends InstanceFactory {
     }
 
     public Constant() {
-        super("Constant", __("constantComponent"));
+        super("Constant", getFromLocale("constantComponent"));
         setFacingAttribute(StdAttr.FACING);
         setKeyConfigurator(JoinedConfigurator.create(
                 new ConstantConfigurator(),

@@ -32,7 +32,7 @@ public class ModelMoveHandleAction extends ModelAction {
 
     @Override
     public String getName() {
-        return _("actionMoveHandle");
+        return getFromLocale("actionMoveHandle");
     }
 
     @Override

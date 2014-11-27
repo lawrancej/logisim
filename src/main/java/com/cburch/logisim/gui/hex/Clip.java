@@ -131,15 +131,15 @@ class Clip implements ClipboardOwner {
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(editor.getRootPane(),
                         e.getMessage(),
-                        // _("hexPasteSupportedError"),
-                        _("hexPasteErrorTitle"),
+                        // getFromLocale("hexPasteSupportedError"),
+                        getFromLocale("hexPasteErrorTitle"),
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
         } else {
             JOptionPane.showMessageDialog(editor.getRootPane(),
-                _("hexPasteSupportedError"),
-                _("hexPasteErrorTitle"),
+                getFromLocale("hexPasteSupportedError"),
+                getFromLocale("hexPasteErrorTitle"),
                 JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -153,8 +153,8 @@ class Clip implements ClipboardOwner {
                 model.set(p0, data);
             } else {
                 JOptionPane.showMessageDialog(editor.getRootPane(),
-                        _("hexPasteEndError"),
-                        _("hexPasteErrorTitle"),
+                        getFromLocale("hexPasteEndError"),
+                        getFromLocale("hexPasteErrorTitle"),
                         JOptionPane.ERROR_MESSAGE);
             }
         } else {
@@ -172,8 +172,8 @@ class Clip implements ClipboardOwner {
                 model.set(p0, data);
             } else {
                 JOptionPane.showMessageDialog(editor.getRootPane(),
-                        _("hexPasteSizeError"),
-                        _("hexPasteErrorTitle"),
+                        getFromLocale("hexPasteSizeError"),
+                        getFromLocale("hexPasteErrorTitle"),
                         JOptionPane.ERROR_MESSAGE);
             }
         }

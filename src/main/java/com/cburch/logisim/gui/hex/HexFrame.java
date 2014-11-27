@@ -38,7 +38,7 @@ public class HexFrame extends LFrame {
     private class WindowMenuManager extends WindowMenuItemManager
             implements LocaleListener {
         WindowMenuManager() {
-            super(_("hexFrameMenuItem"), false);
+            super(getFromLocale("hexFrameMenuItem"), false);
             LocaleManager.addLocaleListener(this);
         }
 
@@ -49,7 +49,7 @@ public class HexFrame extends LFrame {
 
         @Override
         public void localeChanged() {
-            setText(_("hexFrameMenuItem"));
+            setText(getFromLocale("hexFrameMenuItem"));
         }
     }
 
@@ -62,7 +62,7 @@ public class HexFrame extends LFrame {
             Object src = event.getSource();
             if (src == open) {
                 JFileChooser chooser = JFileChoosers.createSelected(lastFile);
-                chooser.setDialogTitle(_("openButton"));
+                chooser.setDialogTitle(getFromLocale("openButton"));
                 int choice = chooser.showOpenDialog(HexFrame.this);
                 if (choice == JFileChooser.APPROVE_OPTION) {
                     File f = chooser.getSelectedFile();
@@ -71,12 +71,12 @@ public class HexFrame extends LFrame {
                         lastFile = f;
                     } catch (IOException e) {
                         JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
-                                _("hexOpenErrorTitle"), JOptionPane.ERROR_MESSAGE);
+                                getFromLocale("hexOpenErrorTitle"), JOptionPane.ERROR_MESSAGE);
                     }
                 }
             } else if (src == save) {
                 JFileChooser chooser = JFileChoosers.createSelected(lastFile);
-                chooser.setDialogTitle(_("saveButton"));
+                chooser.setDialogTitle(getFromLocale("saveButton"));
                 int choice = chooser.showSaveDialog(HexFrame.this);
                 if (choice == JFileChooser.APPROVE_OPTION) {
                     File f = chooser.getSelectedFile();
@@ -85,7 +85,7 @@ public class HexFrame extends LFrame {
                         lastFile = f;
                     } catch (IOException e) {
                         JOptionPane.showMessageDialog(HexFrame.this, e.getMessage(),
-                            _("hexSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
+                            getFromLocale("hexSaveErrorTitle"), JOptionPane.ERROR_MESSAGE);
                     }
                 }
             } else if (src == close) {
@@ -97,10 +97,10 @@ public class HexFrame extends LFrame {
 
         @Override
         public void localeChanged() {
-            setTitle(_("hexFrameTitle"));
-            open.setText(_("openButton"));
-            save.setText(_("saveButton"));
-            close.setText(_("closeButton"));
+            setTitle(getFromLocale("hexFrameTitle"));
+            open.setText(getFromLocale("openButton"));
+            save.setText(getFromLocale("saveButton"));
+            close.setText(getFromLocale("closeButton"));
         }
     }
 

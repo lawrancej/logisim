@@ -57,7 +57,7 @@ public class Probe extends InstanceFactory {
     }
 
     public Probe() {
-        super("Probe", __("probeComponent"));
+        super("Probe", getFromLocale("probeComponent"));
         setIconName("probe.svg");
         setFacingAttribute(StdAttr.FACING);
         setInstanceLogger(ProbeLogger.class);

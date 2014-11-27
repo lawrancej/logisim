@@ -18,7 +18,6 @@ import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -148,7 +147,7 @@ public class Frame extends LFrame implements LocaleListener {
     class MyWindowListener extends WindowAdapter {
         @Override
         public void windowClosing(WindowEvent e) {
-            if (confirmClose(_("confirmCloseTitle"))) {
+            if (confirmClose(getFromLocale("confirmCloseTitle"))) {
                 layoutCanvas.closeCanvas();
                 Frame.this.dispose();
             }
@@ -409,9 +408,9 @@ public class Frame extends LFrame implements LocaleListener {
         Circuit circuit = proj.getCurrentCircuit();
         String name = proj.getLogisimFile().getName();
         if (circuit != null) {
-            s = _("titleCircFileKnown", circuit.getName(), name);
+            s = getFromLocale("titleCircFileKnown", circuit.getName(), name);
         } else {
-            s = _("titleFileKnown", name);
+            s = getFromLocale("titleFileKnown", name);
         }
         this.setTitle(s);
         myProjectListener.enableSave();
@@ -492,19 +491,19 @@ public class Frame extends LFrame implements LocaleListener {
     }
 
     public boolean confirmClose() {
-        return confirmClose(_("confirmCloseTitle"));
+        return confirmClose(getFromLocale("confirmCloseTitle"));
     }
 
     // returns true if user is OK with proceeding
     public boolean confirmClose(String title) {
-        String message = _("confirmDiscardMessage", proj.getLogisimFile().getName());
+        String message = getFromLocale("confirmDiscardMessage", proj.getLogisimFile().getName());
 
         if (!proj.isFileDirty()) {
             return true;
         }
 
         toFront();
-        String[] options = { _("saveOption"), _("discardOption"), _("cancelOption") };
+        String[] options = { getFromLocale("saveOption"), getFromLocale("discardOption"), getFromLocale("cancelOption") };
         int result = JOptionPane.showOptionDialog(this,
                 message, title, 0, JOptionPane.QUESTION_MESSAGE, null,
                 options, options[0]);

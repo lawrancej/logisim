@@ -108,12 +108,12 @@ public class EditTool extends Tool {
 
     @Override
     public String getDisplayName() {
-        return _("editTool");
+        return getFromLocale("editTool");
     }
 
     @Override
     public String getDescription() {
-        return _("editToolDesc");
+        return getFromLocale("editToolDesc");
     }
 
     @Override
@@ -362,12 +362,12 @@ public class EditTool extends Tool {
             return wiring;
         }
 
-
         for (Wire w : circ.getWires()) {
         	if (w.contains(loc)) {
         		return wiring;
         	}
         }
+        
         return select;
     }
 
@@ -395,47 +395,40 @@ public class EditTool extends Tool {
             e.consume();
             break;
         case KeyEvent.VK_UP:
-            if (e.getModifiersEx() == 0) {
-                attemptReface(canvas, Direction.NORTH, e);
-            }
-
-            else {
-                                        select.keyPressed(canvas, e);
-            }
-
-            break;
+        	if (e.getModifiersEx() == 0) {
+        		attemptReface(canvas, Direction.NORTH, e);
+        	}
+        	else {
+        		select.keyPressed(canvas, e);
+        	}
+        	break;
         case KeyEvent.VK_DOWN:
-            if (e.getModifiersEx() == 0) {
-                attemptReface(canvas, Direction.SOUTH, e);
-            }
-
-            else {
-            	select.keyPressed(canvas, e);
-            }
-
-            break;
+        	if (e.getModifiersEx() == 0) {
+        		attemptReface(canvas, Direction.SOUTH, e);
+        	}
+        	else {
+        		select.keyPressed(canvas, e);
+        	}
+        	break;
         case KeyEvent.VK_LEFT:
-            if (e.getModifiersEx() == 0) {
-                attemptReface(canvas, Direction.WEST, e);
-            }
-
-            else {
-            	select.keyPressed(canvas, e);
-            }
-
-            break;
+        	if (e.getModifiersEx() == 0) {
+        		attemptReface(canvas, Direction.WEST, e);
+        	}
+        	else {
+        		select.keyPressed(canvas, e);
+        	}
+        	break;
         case KeyEvent.VK_RIGHT:
-            if (e.getModifiersEx() == 0) {
-                attemptReface(canvas, Direction.EAST, e);
-            }
-
-            else {
-            	select.keyPressed(canvas, e);
-            }
-
-            break;
+        	if (e.getModifiersEx() == 0) {
+        		attemptReface(canvas, Direction.EAST, e);
+        	}
+        	else {
+        		select.keyPressed(canvas, e);
+        	}
+        	break;
         case KeyEvent.VK_ALT:
-        	updateLocation(canvas, e); e.consume(); break;
+        	updateLocation(canvas, e); e.consume();
+        	break;
         default:
             select.keyPressed(canvas, e);
         }
@@ -444,7 +437,10 @@ public class EditTool extends Tool {
     @Override
     public void keyReleased(Canvas canvas, KeyEvent e) {
         switch (e.getKeyCode()) {
-        case KeyEvent.VK_ALT:   updateLocation(canvas, e); e.consume(); break;
+        case KeyEvent.VK_ALT:
+        	updateLocation(canvas, e);
+        	e.consume();
+        	break;
         default:
             select.keyReleased(canvas, e);
         }
@@ -455,7 +451,7 @@ public class EditTool extends Tool {
             final Circuit circuit = canvas.getCircuit();
             final Selection sel = canvas.getSelection();
             SetAttributeAction act = new SetAttributeAction(circuit,
-                    __("selectionRefaceAction"));
+                    getFromLocale("selectionRefaceAction"));
             for (Component comp : sel.getComponents()) {
                 if (!(comp instanceof Wire)) {
                     Attribute<Direction> attr = getFacingAttribute(comp);

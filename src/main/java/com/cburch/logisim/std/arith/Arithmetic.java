@@ -12,23 +12,23 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Arithmetic extends Library {
     private static FactoryDescription[] DESCRIPTIONS = {
-        new FactoryDescription("Adder", __("adderComponent"),
+        new FactoryDescription("Adder", getFromLocale("adderComponent"),
                 "adder.svg", "Adder"),
-        new FactoryDescription("Subtractor", __("subtractorComponent"),
+        new FactoryDescription("Subtractor", getFromLocale("subtractorComponent"),
                 "subtractor.svg", "Subtractor"),
-        new FactoryDescription("Multiplier", __("multiplierComponent"),
+        new FactoryDescription("Multiplier", getFromLocale("multiplierComponent"),
                 "multiplier.svg", "Multiplier"),
-        new FactoryDescription("Divider", __("dividerComponent"),
+        new FactoryDescription("Divider", getFromLocale("dividerComponent"),
                 "divider.svg", "Divider"),
-        new FactoryDescription("Negator", __("negatorComponent"),
+        new FactoryDescription("Negator", getFromLocale("negatorComponent"),
                 "negator.svg", "Negator"),
-        new FactoryDescription("Comparator", __("comparatorComponent"),
+        new FactoryDescription("Comparator", getFromLocale("comparatorComponent"),
                 "comparator.svg", "Comparator"),
-        new FactoryDescription("Shifter", __("shifterComponent"),
+        new FactoryDescription("Shifter", getFromLocale("shifterComponent"),
                 "shifter.svg", "Shifter"),
-        new FactoryDescription("BitAdder", __("bitAdderComponent"),
+        new FactoryDescription("BitAdder", getFromLocale("bitAdderComponent"),
                 "bitadder.svg", "BitAdder"),
-        new FactoryDescription("BitFinder", __("bitFinderComponent"),
+        new FactoryDescription("BitFinder", getFromLocale("bitFinderComponent"),
                 "bitfindr.svg", "BitFinder"),
     };
 
@@ -40,7 +40,7 @@ public class Arithmetic extends Library {
     public String getName() { return "Arithmetic"; }
 
     @Override
-    public String getDisplayName() { return _("arithmeticLibrary"); }
+    public String getDisplayName() { return getFromLocale("arithmeticLibrary"); }
 
     @Override
     public List<Tool> getTools() {

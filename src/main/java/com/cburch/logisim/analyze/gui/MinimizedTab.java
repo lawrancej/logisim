@@ -23,7 +23,7 @@ import com.cburch.logisim.analyze.model.AnalyzerModel;
 import com.cburch.logisim.analyze.model.OutputExpressions;
 import com.cburch.logisim.analyze.model.OutputExpressionsEvent;
 import com.cburch.logisim.analyze.model.OutputExpressionsListener;
-import static com.cburch.logisim.util.LocaleString._;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 class MinimizedTab extends AnalyzerTab {
@@ -45,8 +45,8 @@ class MinimizedTab extends AnalyzerTab {
         }
 
         void localeChanged() {
-            choices[0] = _("minimizedSumOfProducts");
-            choices[1] = _("minimizedProductOfSums");
+            choices[0] = getFromLocale("minimizedSumOfProducts");
+            choices[1] = getFromLocale("minimizedProductOfSums");
             fireContentsChanged(this, 0, choices.length);
         }
 
@@ -195,8 +195,8 @@ class MinimizedTab extends AnalyzerTab {
         selector.localeChanged();
         karnaughMap.localeChanged();
         minimizedExpr.localeChanged();
-        setAsExpr.setText(_("minimizedSetButton"));
-        formatLabel.setText(_("minimizedFormat"));
+        setAsExpr.setText(getFromLocale("minimizedSetButton"));
+        formatLabel.setText(getFromLocale("minimizedFormat"));
         ((FormatModel) formatChoice.getModel()).localeChanged();
     }
 

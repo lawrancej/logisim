@@ -3,22 +3,21 @@
 
 package com.cburch.logisim.data;
 
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Direction implements AttributeOptionInterface {
     public static final Direction EAST
-        = new Direction("east", __("directionEastOption"),
-                __("directionEastVertical"), 0);
+        = new Direction("east", getFromLocale("directionEastOption"),
+                getFromLocale("directionEastVertical"), 0);
     public static final Direction WEST
-        = new Direction("west", __("directionWestOption"),
-                __("directionWestVertical"), 1);
+        = new Direction("west", getFromLocale("directionWestOption"),
+                getFromLocale("directionWestVertical"), 1);
     public static final Direction NORTH
-        = new Direction("north", __("directionNorthOption"),
-                __("directionNorthVertical"), 2);
+        = new Direction("north", getFromLocale("directionNorthOption"),
+                getFromLocale("directionNorthVertical"), 2);
     public static final Direction SOUTH
-        = new Direction("south", __("directionSouthOption"),
-                __("directionSouthVertical"), 3);
+        = new Direction("south", getFromLocale("directionSouthOption"),
+                getFromLocale("directionSouthVertical"), 3);
     public static final Direction[] cardinals
         = { NORTH, EAST, SOUTH, WEST };
 
@@ -43,11 +42,11 @@ public class Direction implements AttributeOptionInterface {
     }
 
     private String name;
-    private StringGetter disp;
-    private StringGetter vert;
+    private String disp;
+    private String vert;
     private int id;
 
-    private Direction(String name, StringGetter disp, StringGetter vert, int id) {
+    private Direction(String name, String disp, String vert, int id) {
         this.name = name;
         this.disp = disp;
         this.vert = vert;
@@ -64,7 +63,7 @@ public class Direction implements AttributeOptionInterface {
         return disp.toString();
     }
 
-    public StringGetter getDisplayGetter() {
+    public String getDisplayGetter() {
         return disp;
     }
 
@@ -78,7 +77,10 @@ public class Direction implements AttributeOptionInterface {
     }
 
 	public boolean equals( Direction other ) {
-		return this.id == other.id;
+		if (other != null) {
+			return this.id == other.id;
+		}
+		return false;
 	}
 	
     public double toRadians() {

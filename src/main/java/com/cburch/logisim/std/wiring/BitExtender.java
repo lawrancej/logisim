@@ -27,22 +27,22 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class BitExtender extends InstanceFactory {
     private static final Attribute<BitWidth> ATTR_IN_WIDTH
-        = Attributes.forBitWidth("in_width", __("extenderInAttr"));
+        = Attributes.forBitWidth("in_width", getFromLocale("extenderInAttr"));
     private static final Attribute<BitWidth> ATTR_OUT_WIDTH
-        = Attributes.forBitWidth("out_width", __("extenderOutAttr"));
+        = Attributes.forBitWidth("out_width", getFromLocale("extenderOutAttr"));
     private static final Attribute<AttributeOption> ATTR_TYPE
-        = Attributes.forOption("type", __("extenderTypeAttr"),
+        = Attributes.forOption("type", getFromLocale("extenderTypeAttr"),
             new AttributeOption[] {
-                new AttributeOption("zero", "zero", __("extenderZeroType")),
-                new AttributeOption("one", "one", __("extenderOneType")),
-                new AttributeOption("sign", "sign", __("extenderSignType")),
-                new AttributeOption("input", "input", __("extenderInputType")),
+                new AttributeOption("zero", "zero", getFromLocale("extenderZeroType")),
+                new AttributeOption("one", "one", getFromLocale("extenderOneType")),
+                new AttributeOption("sign", "sign", getFromLocale("extenderSignType")),
+                new AttributeOption("input", "input", getFromLocale("extenderInputType")),
             });
 
     public static final BitExtender FACTORY = new BitExtender();
 
     public BitExtender() {
-        super("Bit Extender", __("extenderComponent"));
+        super("Bit Extender", getFromLocale("extenderComponent"));
         setIconName("extender.svg");
         setAttributes(new Attribute[] {
                 ATTR_IN_WIDTH, ATTR_OUT_WIDTH, ATTR_TYPE
@@ -70,19 +70,19 @@ public class BitExtender extends InstanceFactory {
         String s0;
         String type = getType(painter.getAttributeSet());
         if (type.equals("zero")) {
-            s0 = _("extenderZeroLabel");
+            s0 = getFromLocale("extenderZeroLabel");
         }
 
         else if (type.equals("one")) {
-            s0 = _("extenderOneLabel");
+            s0 = getFromLocale("extenderOneLabel");
         }
 
         else if (type.equals("sign")) {
-            s0 = _("extenderSignLabel");
+            s0 = getFromLocale("extenderSignLabel");
         }
 
         else if (type.equals("input")) {
-            s0 = _("extenderInputLabel");
+            s0 = getFromLocale("extenderInputLabel");
         }
 
         // should never happen
@@ -90,7 +90,7 @@ public class BitExtender extends InstanceFactory {
             s0 = "???";
         }
 
-        String s1 = _("extenderMainLabel");
+        String s1 = getFromLocale("extenderMainLabel");
         Bounds bds = painter.getBounds();
         int x = bds.getX() + bds.getWidth() / 2;
         int y0 = bds.getY() + (bds.getHeight() / 2 + asc) / 2;

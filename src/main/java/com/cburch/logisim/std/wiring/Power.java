@@ -30,7 +30,7 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class Power extends InstanceFactory {
     public Power() {
-        super("Power", __("powerComponent"));
+        super("Power", getFromLocale("powerComponent"));
         setIconName("power.svg");
         setAttributes(new Attribute[] { StdAttr.FACING, StdAttr.WIDTH },
                 new Object[] { Direction.NORTH, BitWidth.ONE });

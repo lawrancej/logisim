@@ -187,7 +187,7 @@ public class AppPreferences {
 
         @Override
         public void localeChanged() {
-            Locale loc = LocaleManager.getLocale();
+            Locale loc = LocaleManager.getFromLocale();
             String lang = loc.getLanguage();
             if (LOCALE != null) {
                 LOCALE.set(lang);

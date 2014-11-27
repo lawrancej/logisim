@@ -39,7 +39,7 @@ public class Rectangle extends Rectangular {
 
     @Override
     public String getDisplayName() {
-        return _("shapeRect");
+        return getFromLocale("shapeRect");
     }
 
     @Override

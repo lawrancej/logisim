@@ -13,7 +13,6 @@ import java.util.Map;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.proj.Action;
-import com.cburch.logisim.util.StringGetter;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public final class CircuitMutation extends CircuitTransaction {
@@ -77,9 +76,9 @@ public final class CircuitMutation extends CircuitTransaction {
         changes.add(change);
     }
 
-    public Action toAction(StringGetter name) {
+    public Action toAction(String name) {
         if (name == null) {
-            name = __("unknownChangeAction");
+            name = getFromLocale("unknownChangeAction");
         }
 
         return new CircuitAction(name, this);

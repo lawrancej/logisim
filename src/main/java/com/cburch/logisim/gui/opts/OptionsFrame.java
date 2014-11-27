@@ -33,7 +33,7 @@ public class OptionsFrame extends LFrame {
     private class WindowMenuManager extends WindowMenuItemManager
             implements LocaleListener {
         WindowMenuManager() {
-            super(_("optionsFrameMenuItem"), false);
+            super(getFromLocale("optionsFrameMenuItem"), false);
         }
 
         @Override
@@ -44,7 +44,7 @@ public class OptionsFrame extends LFrame {
         @Override
         public void localeChanged() {
             String title = project.getLogisimFile().getDisplayName();
-            setText(_("optionsFrameMenuItem", title));
+            setText(getFromLocale("optionsFrameMenuItem", title));
         }
     }
 
@@ -78,8 +78,8 @@ public class OptionsFrame extends LFrame {
                 tabbedPane.setToolTipTextAt(i, panels[i].getToolTipText());
                 panels[i].localeChanged();
             }
-            revert.setText(_("revertButton"));
-            close.setText(_("closeButton"));
+            revert.setText(getFromLocale("revertButton"));
+            close.setText(getFromLocale("closeButton"));
             windowManager.localeChanged();
         }
     }
@@ -154,6 +154,6 @@ public class OptionsFrame extends LFrame {
 
     private static String computeTitle(LogisimFile file) {
         String name = file == null ? "???" : file.getName();
-        return _("optionsFrameTitle", name);
+        return getFromLocale("optionsFrameTitle", name);
     }
 }

@@ -42,19 +42,19 @@ public abstract class EditPopup extends JPopupMenu {
 
     protected void initialize() {
         boolean x = false;
-        x |= add(LogisimMenuBar.CUT, _("editCutItem"));
-        x |= add(LogisimMenuBar.COPY, _("editCopyItem"));
+        x |= add(LogisimMenuBar.CUT, getFromLocale("editCutItem"));
+        x |= add(LogisimMenuBar.COPY, getFromLocale("editCopyItem"));
         if (x) { addSeparator(); x = false; }
-        x |= add(LogisimMenuBar.DELETE, _("editClearItem"));
-        x |= add(LogisimMenuBar.DUPLICATE, _("editDuplicateItem"));
+        x |= add(LogisimMenuBar.DELETE, getFromLocale("editClearItem"));
+        x |= add(LogisimMenuBar.DUPLICATE, getFromLocale("editDuplicateItem"));
         if (x) { addSeparator(); x = false; }
-        x |= add(LogisimMenuBar.RAISE, _("editRaiseItem"));
-        x |= add(LogisimMenuBar.LOWER, _("editLowerItem"));
-        x |= add(LogisimMenuBar.RAISE_TOP, _("editRaiseTopItem"));
-        x |= add(LogisimMenuBar.LOWER_BOTTOM, _("editLowerBottomItem"));
+        x |= add(LogisimMenuBar.RAISE, getFromLocale("editRaiseItem"));
+        x |= add(LogisimMenuBar.LOWER, getFromLocale("editLowerItem"));
+        x |= add(LogisimMenuBar.RAISE_TOP, getFromLocale("editRaiseTopItem"));
+        x |= add(LogisimMenuBar.LOWER_BOTTOM, getFromLocale("editLowerBottomItem"));
         if (x) { addSeparator(); x = false; }
-        x |= add(LogisimMenuBar.ADD_CONTROL, _("editAddControlItem"));
-        x |= add(LogisimMenuBar.REMOVE_CONTROL, _("editRemoveControlItem"));
+        x |= add(LogisimMenuBar.ADD_CONTROL, getFromLocale("editAddControlItem"));
+        x |= add(LogisimMenuBar.REMOVE_CONTROL, getFromLocale("editRemoveControlItem"));
         if (!x && getComponentCount() > 0) { remove(getComponentCount() - 1); }
     }
 

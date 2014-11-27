@@ -27,34 +27,34 @@ import static com.cburch.logisim.util.LocaleString.*;
 
 public class DotMatrix extends InstanceFactory {
     static final AttributeOption INPUT_SELECT
-        = new AttributeOption("select", __("ioInputSelect"));
+        = new AttributeOption("select", getFromLocale("ioInputSelect"));
     static final AttributeOption INPUT_COLUMN
-        = new AttributeOption("column", __("ioInputColumn"));
+        = new AttributeOption("column", getFromLocale("ioInputColumn"));
     static final AttributeOption INPUT_ROW
-        = new AttributeOption("row", __("ioInputRow"));
+        = new AttributeOption("row", getFromLocale("ioInputRow"));
 
     static final AttributeOption SHAPE_CIRCLE
-        = new AttributeOption("circle", __("ioShapeCircle"));
+        = new AttributeOption("circle", getFromLocale("ioShapeCircle"));
     static final AttributeOption SHAPE_SQUARE
-        = new AttributeOption("square", __("ioShapeSquare"));
+        = new AttributeOption("square", getFromLocale("ioShapeSquare"));
 
     static final Attribute<AttributeOption> ATTR_INPUT_TYPE
-        = Attributes.forOption("inputtype", __("ioMatrixInput"),
+        = Attributes.forOption("inputtype", getFromLocale("ioMatrixInput"),
             new AttributeOption[] { INPUT_COLUMN, INPUT_ROW, INPUT_SELECT });
     static final Attribute<Integer> ATTR_MATRIX_COLS
         = Attributes.forIntegerRange("matrixcols",
-                __("ioMatrixCols"), 1, Value.MAX_WIDTH);
+                getFromLocale("ioMatrixCols"), 1, Value.MAX_WIDTH);
     static final Attribute<Integer> ATTR_MATRIX_ROWS
         = Attributes.forIntegerRange("matrixrows",
-                __("ioMatrixRows"), 1, Value.MAX_WIDTH);
+                getFromLocale("ioMatrixRows"), 1, Value.MAX_WIDTH);
     static final Attribute<AttributeOption> ATTR_DOT_SHAPE
-        = Attributes.forOption("dotshape", __("ioMatrixShape"),
+        = Attributes.forOption("dotshape", getFromLocale("ioMatrixShape"),
             new AttributeOption[] { SHAPE_CIRCLE, SHAPE_SQUARE });
     static final Attribute<Integer> ATTR_PERSIST = new DurationAttribute("persist",
-            __("ioMatrixPersistenceAttr"), 0, Integer.MAX_VALUE);
+            getFromLocale("ioMatrixPersistenceAttr"), 0, Integer.MAX_VALUE);
 
     public DotMatrix() {
-        super("DotMatrix", __("dotMatrixComponent"));
+        super("DotMatrix", getFromLocale("dotMatrixComponent"));
         setAttributes(new Attribute<?>[] {
                 ATTR_INPUT_TYPE, ATTR_MATRIX_COLS, ATTR_MATRIX_ROWS,
                 Io.ATTR_ON_COLOR, Io.ATTR_OFF_COLOR,
