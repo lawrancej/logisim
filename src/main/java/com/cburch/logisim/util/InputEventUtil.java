@@ -159,18 +159,7 @@ public class InputEventUtil {
             arr.add(getFromLocale("button3Mod"));
         }
         
-     // TODO create a function (same code in toKeyDisplayString)
-        Iterator<String> it = arr.iterator();
-        if (it.hasNext()) {
-            StringBuilder ret = new StringBuilder();
-            ret.append(it.next());
-            while (it.hasNext()) {
-                ret.append(" ");
-                ret.append(it.next());
-            }
-            return ret.toString();
-        }
-        return "";
+        return StringUtil.join(arr, " ");
     }
 
     public static String toKeyDisplayString(int mods) {
@@ -191,17 +180,6 @@ public class InputEventUtil {
             arr.add(getFromLocale("shiftMod"));
         }
         
-        // TODO create a function (same code in toDisplayString)
-        Iterator<String> it = arr.iterator();
-        if (it.hasNext()) {
-            StringBuilder ret = new StringBuilder();
-            ret.append(it.next());
-            while (it.hasNext()) {
-                ret.append(" ");
-                ret.append(it.next());
-            }
-            return ret.toString();
-        }
-        return "";
+        return StringUtil.join(arr, " ");
     }
 }

@@ -12,11 +12,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.cburch.logisim.prefs.AppPreferences;
+import com.cburch.logisim.util.LocaleSelector.LocaleOption;
 
 @SuppressWarnings("serial")
-class LocaleSelector extends JList
+class LocaleSelector extends JList<LocaleOption>
             implements LocaleListener, ListSelectionListener {
-    private static class LocaleOption implements Runnable {
+    protected static class LocaleOption implements Runnable {
         private Locale locale;
         private String text;
 
@@ -31,11 +32,9 @@ class LocaleSelector extends JList
         }
 
         void update(Locale current) {
-            if (current != null && current.equals(locale)) {
-                text = locale.getDisplayName(locale);
-            } else {
-                text = locale.getDisplayName(locale)
-                    + " / " + locale.getDisplayName(current);
+            text = locale.getDisplayName(locale);
+            if (current == null || !current.equals(locale)) {
+                text += " / " + locale.getDisplayName(current);
             }
         }
 
@@ -52,7 +51,7 @@ class LocaleSelector extends JList
 
     LocaleSelector(Locale[] locales) {
         setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        DefaultListModel model = new DefaultListModel();
+        DefaultListModel<LocaleOption> model = new DefaultListModel<LocaleOption>();
         items = new LocaleOption[locales.length];
         for (int i = 0; i < locales.length; ++i) {
             items[i] = new LocaleOption(locales[i]);
