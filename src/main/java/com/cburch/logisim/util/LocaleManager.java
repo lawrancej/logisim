@@ -18,12 +18,12 @@ public class LocaleManager {
     // static members
     private static final String SETTINGS_NAME = "settings";
     private static ArrayList<LocaleManager> managers = new ArrayList<LocaleManager>();
+
     private static ArrayList<LocaleListener> listeners = new ArrayList<LocaleListener>();
     private static boolean replaceAccents = false;
     private static HashMap<Character,String> repl = null;
     private static Locale curLocale = null;
-    
-    
+
     public static Locale getFromLocale() {
         if (curLocale == null) {
             curLocale = Locale.getDefault();
@@ -47,7 +47,11 @@ public class LocaleManager {
                 }
             }
             if (select == null) {
-            	select = backup == null ? new Locale("en") : backup;
+                if (backup == null) {
+                    select = new Locale("en");
+                } else {
+                    select = backup;
+                }
             }
 
             curLocale = select;
@@ -226,7 +230,7 @@ public class LocaleManager {
             String country;
             if (f.length() >= 2) {
                 language = f.substring(0, 2);
-                country = f.length() >= 5 ? f.substring(3, 5) : null;
+                country = (f.length() >= 5 ? f.substring(3, 5) : null);
             } else {
                 language = null;
                 country = null;
@@ -268,7 +272,8 @@ public class LocaleManager {
         if (i == n) {
             return src;
         }
-        
+
+
         // ok, we'll have to consider replacing accents
         char[] cs = src.toCharArray();
         StringBuilder ret = new StringBuilder(src.substring(0, i));

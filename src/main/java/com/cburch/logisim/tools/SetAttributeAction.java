@@ -82,7 +82,7 @@ public class SetAttributeAction extends Action {
             xnReverse.execute();
         }
 
-        for (int i = oldValues.size() - 1; i >= 0; --i) {
+        for (int i = oldValues.size() - 1; i >= 0; i--) {
             Component comp = comps.get(i);
             Attribute<Object> attr = attrs.get(i);
             Object value = oldValues.get(i);

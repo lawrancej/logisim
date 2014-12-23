@@ -2,16 +2,15 @@ package com.cburch.logisim.util;
 
 import java.util.HashMap;
 import java.util.Locale;
-
 import javax.swing.JComponent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
 /**
  * Given a string, return the locale-specific translation.
  * This class is analogous to GNU gettext.
  *
  * @author Joey Lawrance
+ *
  */
 public class LocaleString {
   
@@ -22,7 +21,6 @@ public class LocaleString {
             "log menu opts prefs proj start std tools util").split(" ");
     private HashMap<String,LocaleManager> sourceMap = new HashMap<String,LocaleManager>();
     private LocaleManager util;
-    
     private LocaleString() {
         for (String section : sections) {
             LocaleManager manager = new LocaleManager("logisim", section);
@@ -32,6 +30,7 @@ public class LocaleString {
             if (section.equals("util")) {
                 util = manager;
             }
+
         }
     }
     
@@ -56,13 +55,13 @@ public class LocaleString {
         return getUtilLocaleManager().createLocaleSelector();
     }
     
-    public static String getFromLocale(String str) {
-        LocaleManager localeManager = getInstance().sourceMap.get(str);
+    public static String getFromLocale(String s) {
+        LocaleManager localeManager = getInstance().sourceMap.get(s);
         if (localeManager == null) {
-          logger.error("Could not get string \"" + str + "\".");
-          return str;
+          logger.error("Could not get string \"" + s + "\".");
+          return s;
         }
-        return getInstance().sourceMap.get(str).get(str);
+        return getInstance().sourceMap.get(s).get(s);
     }
     
     public static String getFromLocale(String key, String... arg) {

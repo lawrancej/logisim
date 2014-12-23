@@ -264,7 +264,6 @@ public class PokeTool extends Tool {
             toolIcon.paintIcon(c.getDestination(), g, x + 2, y + 2);
         } else {
             g.setColor(java.awt.Color.black);
-            // TODO explain the values
             g.drawLine(x + 4, y +  2, x + 4, y + 17);
             g.drawLine(x + 4, y + 17, x + 1, y + 11);
             g.drawLine(x + 4, y + 17, x + 7, y + 11);
@@ -276,8 +275,6 @@ public class PokeTool extends Tool {
     }
 
     @Override
-    public Cursor getCursor() {
-    	return cursor;
-    }
+    public Cursor getCursor() { return cursor; }
 }
 

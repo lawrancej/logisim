@@ -278,7 +278,10 @@ public class EditTool extends Tool {
         if (x >= 0) {
             return updateLocation(canvas, x, lastRawY, e.getModifiersEx());
         }
-        return false;
+
+        else {
+            return false;
+        }
 
     }
 
@@ -304,38 +307,38 @@ public class EditTool extends Tool {
         // already computed
         if (lastX == snapx && lastY == snapy && modsSame) {
             return wireLoc != NULL_LOCATION;
-        }
-
-        Location snap = Location.create(snapx, snapy);
-        if (modsSame) {
-        	Object o = cache.get(snap);
-        	if (o != null) {
-        		lastX = snapx;
-        		lastY = snapy;
-        		canvas.repaint();
-        		boolean ret = ((Boolean) o).booleanValue();
-        		wireLoc = ret ? snap : NULL_LOCATION;
-        		return ret;
-        	}
         } else {
-        	cache.clear();
-        }
+            Location snap = Location.create(snapx, snapy);
+            if (modsSame) {
+                Object o = cache.get(snap);
+                if (o != null) {
+                    lastX = snapx;
+                    lastY = snapy;
+                    canvas.repaint();
+                    boolean ret = ((Boolean) o).booleanValue();
+                    wireLoc = ret ? snap : NULL_LOCATION;
+                    return ret;
+                }
+            } else {
+                cache.clear();
+            }
 
-        boolean ret = isEligible && isWiringPoint(canvas, snap, mods);
-        wireLoc = ret ? snap : NULL_LOCATION;
-        cache.put(snap, Boolean.valueOf(ret));
-        int toRemove = cache.size() - CACHE_MAX_SIZE;
-        Iterator<Location> it = cache.keySet().iterator();
-        while (it.hasNext() && toRemove > 0) {
-        	it.next();
-        	it.remove();
-        	--toRemove;
-        }
+            boolean ret = isEligible && isWiringPoint(canvas, snap, mods);
+            wireLoc = ret ? snap : NULL_LOCATION;
+            cache.put(snap, Boolean.valueOf(ret));
+            int toRemove = cache.size() - CACHE_MAX_SIZE;
+            Iterator<Location> it = cache.keySet().iterator();
+            while (it.hasNext() && toRemove > 0) {
+                it.next();
+                it.remove();
+                toRemove--;
+            }
 
-        lastX = snapx;
-        lastY = snapy;
-        canvas.repaint();
-        return ret;
+            lastX = snapx;
+            lastY = snapy;
+            canvas.repaint();
+            return ret;
+        }
     }
 
     private boolean isWiringPoint(Canvas canvas, Location loc, int modsEx) {
@@ -351,6 +354,7 @@ public class EditTool extends Tool {
                         if (w.contains(loc) && !w.endsAt(loc)) {
                             return select;
                         }
+
                     }
                 }
             }
@@ -362,12 +366,13 @@ public class EditTool extends Tool {
             return wiring;
         }
 
+
         for (Wire w : circ.getWires()) {
-        	if (w.contains(loc)) {
-        		return wiring;
-        	}
+            if (w.contains(loc)) {
+                { return wiring;
+            }
+ }
         }
-        
         return select;
     }
 
@@ -395,40 +400,46 @@ public class EditTool extends Tool {
             e.consume();
             break;
         case KeyEvent.VK_UP:
-        	if (e.getModifiersEx() == 0) {
-        		attemptReface(canvas, Direction.NORTH, e);
-        	}
-        	else {
-        		select.keyPressed(canvas, e);
-        	}
-        	break;
+            if (e.getModifiersEx() == 0) {
+                attemptReface(canvas, Direction.NORTH, e);
+            }
+
+            else {
+                                        select.keyPressed(canvas, e);
+            }
+
+            break;
         case KeyEvent.VK_DOWN:
-        	if (e.getModifiersEx() == 0) {
-        		attemptReface(canvas, Direction.SOUTH, e);
-        	}
-        	else {
-        		select.keyPressed(canvas, e);
-        	}
-        	break;
+            if (e.getModifiersEx() == 0) {
+                attemptReface(canvas, Direction.SOUTH, e);
+            }
+
+            else {
+                                        select.keyPressed(canvas, e);
+            }
+
+            break;
         case KeyEvent.VK_LEFT:
-        	if (e.getModifiersEx() == 0) {
-        		attemptReface(canvas, Direction.WEST, e);
-        	}
-        	else {
-        		select.keyPressed(canvas, e);
-        	}
-        	break;
+            if (e.getModifiersEx() == 0) {
+                attemptReface(canvas, Direction.WEST, e);
+            }
+
+            else {
+                                        select.keyPressed(canvas, e);
+            }
+
+            break;
         case KeyEvent.VK_RIGHT:
-        	if (e.getModifiersEx() == 0) {
-        		attemptReface(canvas, Direction.EAST, e);
-        	}
-        	else {
-        		select.keyPressed(canvas, e);
-        	}
-        	break;
-        case KeyEvent.VK_ALT:
-        	updateLocation(canvas, e); e.consume();
-        	break;
+            if (e.getModifiersEx() == 0) {
+                attemptReface(canvas, Direction.EAST, e);
+            }
+
+            else {
+                                        select.keyPressed(canvas, e);
+            }
+
+            break;
+        case KeyEvent.VK_ALT:   updateLocation(canvas, e); e.consume(); break;
         default:
             select.keyPressed(canvas, e);
         }
@@ -437,10 +448,7 @@ public class EditTool extends Tool {
     @Override
     public void keyReleased(Canvas canvas, KeyEvent e) {
         switch (e.getKeyCode()) {
-        case KeyEvent.VK_ALT:
-        	updateLocation(canvas, e);
-        	e.consume();
-        	break;
+        case KeyEvent.VK_ALT:   updateLocation(canvas, e); e.consume(); break;
         default:
             select.keyReleased(canvas, e);
         }
