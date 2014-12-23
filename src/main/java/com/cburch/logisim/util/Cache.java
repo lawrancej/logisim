@@ -43,8 +43,9 @@ public class Cache {
         Object ret = data[code];
         if (ret != null && ret.equals(value)) {
             return ret;
+        } else {
+            data[code] = value;
+            return value;
         }
-        data[code] = value;
-        return value;
     }
 }

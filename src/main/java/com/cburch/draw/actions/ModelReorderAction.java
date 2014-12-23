@@ -27,19 +27,18 @@ public class ModelReorderAction extends ModelAction {
             if (above != null) {
                 int to = ZOrder.getZIndex(above, model);
                 if (objects.contains(above)) {
-                    --to;
+                    to--;
                 }
                 reqs.add(new ReorderRequest(obj, from, to));
             }
         }
-        
-        // TODO factorize deuplicate code of create* methods
         if (reqs.isEmpty()) {
             return null;
+        } else {
+            Collections.sort(reqs, ReorderRequest.DESCENDING_FROM);
+            repairRequests(reqs);
+            return new ModelReorderAction(model, reqs);
         }
-        Collections.sort(reqs, ReorderRequest.DESCENDING_FROM);
-        repairRequests(reqs);
-        return new ModelReorderAction(model, reqs);
     }
 
     public static ModelReorderAction createLower(CanvasModel model,
@@ -53,18 +52,18 @@ public class ModelReorderAction extends ModelAction {
             if (above != null) {
                 int to = ZOrder.getZIndex(above, model);
                 if (objects.contains(above)) {
-                    ++to;
+                    to++;
                 }
                 reqs.add(new ReorderRequest(obj, from, to));
             }
         }
-        
         if (reqs.isEmpty()) {
             return null;
+        } else {
+            Collections.sort(reqs, ReorderRequest.ASCENDING_FROM);
+            repairRequests(reqs);
+            return new ModelReorderAction(model, reqs);
         }
-        Collections.sort(reqs, ReorderRequest.ASCENDING_FROM);
-        repairRequests(reqs);
-        return new ModelReorderAction(model, reqs);
     }
 
     public static ModelReorderAction createRaiseTop(CanvasModel model,
@@ -77,13 +76,13 @@ public class ModelReorderAction extends ModelAction {
             int from = entry.getValue().intValue();
             reqs.add(new ReorderRequest(obj, from, to));
         }
-        
         if (reqs.isEmpty()) {
             return null;
+        } else {
+            Collections.sort(reqs, ReorderRequest.ASCENDING_FROM);
+            repairRequests(reqs);
+            return new ModelReorderAction(model, reqs);
         }
-        Collections.sort(reqs, ReorderRequest.ASCENDING_FROM);
-        repairRequests(reqs);
-        return new ModelReorderAction(model, reqs);
     }
 
     public static ModelReorderAction createLowerBottom(CanvasModel model,
@@ -96,40 +95,40 @@ public class ModelReorderAction extends ModelAction {
             int from = entry.getValue().intValue();
             reqs.add(new ReorderRequest(obj, from, to));
         }
-        
         if (reqs.isEmpty()) {
             return null;
+        } else {
+            Collections.sort(reqs, ReorderRequest.ASCENDING_FROM);
+            repairRequests(reqs);
+            return new ModelReorderAction(model, reqs);
         }
-        Collections.sort(reqs, ReorderRequest.ASCENDING_FROM);
-        repairRequests(reqs);
-        return new ModelReorderAction(model, reqs);
     }
 
     private static void repairRequests(List<ReorderRequest> reqs) {
-        for (int i = 0, n = reqs.size(); i < n; ++i) {
+        for (int i = 0, n = reqs.size(); i < n; i++) {
             ReorderRequest req = reqs.get(i);
             int from = req.getFromIndex();
             int to = req.getToIndex();
-            for (int j = 0; j < i; ++j) {
+            for (int j = 0; j < i; j++) {
                 ReorderRequest prev = reqs.get(j);
                 int prevFrom = prev.getFromIndex();
                 int prevTo = prev.getToIndex();
                 if (prevFrom <= from && from < prevTo) {
-                    --from;
+                    from--;
                 } else if (prevTo <= from && from < prevFrom) {
-                    ++from;
+                    from++;
                 }
                 if (prevFrom <= to && to < prevTo) {
-                    --to;
+                    to--;
                 } else if (prevTo <= to && to < prevFrom) {
-                    ++to;
+                    to++;
                 }
             }
             if (from != req.getFromIndex() || to != req.getToIndex()) {
                 reqs.set(i, new ReorderRequest(req.getObject(), from, to));
             }
         }
-        for (int i = reqs.size() - 1; i >= 0; --i) {
+        for (int i = reqs.size() - 1; i >= 0; i--) {
             ReorderRequest req = reqs.get(i);
             if (req.getFromIndex() == req.getToIndex()) {
                 reqs.remove(i);
@@ -199,7 +198,7 @@ public class ModelReorderAction extends ModelAction {
     @Override
     void undoSub(CanvasModel model) {
         List<ReorderRequest> inv = new ArrayList<ReorderRequest>(requests.size());
-        for (int i = requests.size() - 1; i >= 0; --i) {
+        for (int i = requests.size() - 1; i >= 0; i--) {
             ReorderRequest r = requests.get(i);
             inv.add(new ReorderRequest(r.getObject(), r.getToIndex(),
                     r.getFromIndex()));

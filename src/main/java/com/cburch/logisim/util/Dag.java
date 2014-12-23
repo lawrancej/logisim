@@ -40,8 +40,9 @@ public class Dag {
         Node baseNode = findNode(base);
         if (baseNode == null || queryNode == null) {
             return !base.equals(query);
+        } else {
+            return canFollow(queryNode, baseNode);
         }
-        return canFollow(queryNode, baseNode);
     }
 
     public boolean addEdge(Object srcData, Object dstData) {
@@ -64,8 +65,11 @@ public class Dag {
         // returns true if the edge could be removed
         Node src = findNode(srcData);
         Node dst = findNode(dstData);
-        
-        if (src == null || dst == null || !src.succs.remove(dst)) {
+        if (src == null || dst == null) {
+            return false;
+        }
+
+        if (!src.succs.remove(dst)) {
             return false;
         }
 
@@ -124,7 +128,8 @@ public class Dag {
         if (data == null) {
             return null;
         }
-        
+
+
         ret = new Node(data);
         nodes.put(data, ret);
         return ret;

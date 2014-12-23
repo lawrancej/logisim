@@ -49,7 +49,7 @@ public class JFileChoosers {
 
     public static JFileChooser create() {
         RuntimeException first = null;
-        for (int i = 0; i < PROP_NAMES.length; ++i) {
+        for (int i = 0; i < PROP_NAMES.length; i++) {
             String prop = PROP_NAMES[i];
             try {
                 String dirname;
@@ -87,26 +87,26 @@ public class JFileChoosers {
     public static JFileChooser createAt(File openDirectory) {
         if (openDirectory == null) {
             return create();
-        }
-
-        try {
-        	return new LogisimFileChooser(openDirectory);
-        } catch (RuntimeException t) {
-        	if (t.getCause() instanceof IOException) {
-        		try { return create(); }
-        		catch (RuntimeException u) {}
-        	}
-        	throw t;
+        } else {
+            try {
+                return new LogisimFileChooser(openDirectory);
+            } catch (RuntimeException t) {
+                if (t.getCause() instanceof IOException) {
+                    try { return create(); }
+                    catch (RuntimeException u) {}
+                }
+                throw t;
+            }
         }
     }
 
     public static JFileChooser createSelected(File selected) {
         if (selected == null) {
             return create();
+        } else {
+            JFileChooser ret = createAt(selected.getParentFile());
+            ret.setSelectedFile(selected);
+            return ret;
         }
-        
-        JFileChooser ret = createAt(selected.getParentFile());
-        ret.setSelectedFile(selected);
-        return ret;
     }
 }

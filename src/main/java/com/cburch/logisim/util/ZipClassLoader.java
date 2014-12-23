@@ -242,8 +242,7 @@ public class ZipClassLoader extends ClassLoader {
 
         if (result instanceof Class) {
             return (Class<?>) result;
-        }
-        if (result instanceof ClassNotFoundException) {
+        } else if (result instanceof ClassNotFoundException) {
             throw (ClassNotFoundException) result;
         } else if (result instanceof Error) {
             throw (Error) result;

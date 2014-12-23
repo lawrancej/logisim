@@ -96,44 +96,48 @@ public class FactoryDescription {
         ComponentFactory ret = factory;
         if (factory != null || factoryLoadAttempted) {
             return ret;
-        }
+        } else {
+            String msg = "";
+            try {
+                msg = "getting class loader";
+                ClassLoader loader = libraryClass.getClassLoader();
+                msg = "getting package name";
+                String name;
+                Package pack = libraryClass.getPackage();
+                if (pack == null) {
+                    name = factoryClassName;
+                } else {
+                    name = pack.getName() + "." + factoryClassName;
+                }
+                msg = "loading class";
+                Class<?> factoryClass = loader.loadClass(name);
+                msg = "creating instance";
+                Object factoryValue = factoryClass.newInstance();
+                msg = "converting to factory";
+                if (factoryValue instanceof ComponentFactory) {
+                    ret = (ComponentFactory) factoryValue;
+                    factory = ret;
+                    factoryLoadAttempted = true;
+                    return ret;
+                }
+            } catch (Exception t) {
+                String name = t.getClass().getName();
+                String m = t.getMessage();
+                if (m != null) {
+                    msg = msg + ": " + name + ": " + m;
+                }
 
-        String msg = "";
-        try {
-        	msg = "getting class loader";
-        	ClassLoader loader = libraryClass.getClassLoader();
-        	msg = "getting package name";
-        	String name;
-        	Package pack = libraryClass.getPackage();
-        	if (pack == null) {
-        		name = factoryClassName;
-        	} else {
-        		name = pack.getName() + "." + factoryClassName;
-        	}
-        	msg = "loading class";
-        	Class<?> factoryClass = loader.loadClass(name);
-        	msg = "creating instance";
-        	Object factoryValue = factoryClass.newInstance();
-        	msg = "converting to factory";
-        	if (factoryValue instanceof ComponentFactory) {
-        		ret = (ComponentFactory) factoryValue;
-        		factory = ret;
-        		factoryLoadAttempted = true;
-        		return ret;
-        	}
-        } catch (Exception t) {
-        	String name = t.getClass().getName();
-    		msg += ": " + name;
-        	String m = t.getMessage();
-        	if (m != null) {
-        		msg += ": " + m;
-        	}
+                else {
+                    msg = msg + ": " + name;
+                }
+
+            }
+            //OK
+            System.err.println("error while " + msg);
+            factory = null;
+            factoryLoadAttempted = true;
+            return null;
         }
-        //OK
-        System.err.println("error while " + msg);
-        factory = null;
-        factoryLoadAttempted = true;
-        return null;
     }
 
     public FactoryDescription setToolTip(String getter) {

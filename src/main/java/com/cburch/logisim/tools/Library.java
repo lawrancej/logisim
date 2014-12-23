@@ -47,7 +47,7 @@ public abstract class Library {
     public int indexOf(ComponentFactory query) {
         int index = -1;
         for (Tool obj : getTools()) {
-            ++index;
+            index++;
             if (obj instanceof AddTool) {
                 AddTool tool = (AddTool) obj;
                 if (tool.getFactory() == query) {

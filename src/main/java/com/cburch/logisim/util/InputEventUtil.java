@@ -93,41 +93,43 @@ public class InputEventUtil {
                 ret.append(it.next());
             }
             return ret.toString();
+        } else {
+            return "";
         }
-        return "";
     }
 
     public static int fromDisplayString(String str) {
         int ret = 0;
         StringTokenizer toks = new StringTokenizer(str);
         while (toks.hasMoreTokens()) {
-        	String s = toks.nextToken();
-        	if (s.equals(getFromLocale("ctrlMod"))) {
-        		ret |= InputEvent.CTRL_DOWN_MASK;
-        	}
+            String s = toks.nextToken();
+            if (s.equals(getFromLocale("ctrlMod"))) {
+                          ret |= InputEvent.CTRL_DOWN_MASK;
+            }
 
-        	else if (s.equals(getFromLocale("altMod"))) {
-        		ret |= InputEvent.ALT_DOWN_MASK;
-        	}
+            else if (s.equals(getFromLocale("altMod"))) {
+                      ret |= InputEvent.ALT_DOWN_MASK;
+            }
 
-        	else if (s.equals(getFromLocale("shiftMod"))) {
-        		ret |= InputEvent.SHIFT_DOWN_MASK;
-        	}
+            else if (s.equals(getFromLocale("shiftMod"))) {
+                    ret |= InputEvent.SHIFT_DOWN_MASK;
+            }
 
-        	else if (s.equals(getFromLocale("button1Mod"))) {
-        		ret |= InputEvent.BUTTON1_DOWN_MASK;
-        	}
+            else if (s.equals(getFromLocale("button1Mod"))) {
+                  ret |= InputEvent.BUTTON1_DOWN_MASK;
+            }
 
-        	else if (s.equals(getFromLocale("button2Mod"))) {
-        		ret |= InputEvent.BUTTON2_DOWN_MASK;
-        	}
+            else if (s.equals(getFromLocale("button2Mod"))) {
+                  ret |= InputEvent.BUTTON2_DOWN_MASK;
+            }
 
-        	else if (s.equals(getFromLocale("button3Mod"))) {
-        		ret |= InputEvent.BUTTON3_DOWN_MASK;
-        	}
-        	else {
-        		throw new NumberFormatException("InputEventUtil");
-        	}
+            else if (s.equals(getFromLocale("button3Mod"))) {
+                  ret |= InputEvent.BUTTON3_DOWN_MASK;
+            }
+
+            else {
+                throw new NumberFormatException("InputEventUtil");
+            }
 
         }
         return ret;
@@ -158,8 +160,25 @@ public class InputEventUtil {
         if ((mods & InputEvent.BUTTON3_DOWN_MASK) != 0) {
             arr.add(getFromLocale("button3Mod"));
         }
-        
-        return StringUtil.join(arr, " ");
+
+
+        if (arr.isEmpty()) {
+            return "";
+        }
+
+
+        Iterator<String> it = arr.iterator();
+        if (it.hasNext()) {
+            StringBuilder ret = new StringBuilder();
+            ret.append(it.next());
+            while (it.hasNext()) {
+                ret.append(" ");
+                ret.append(it.next());
+            }
+            return ret.toString();
+        } else {
+            return "";
+        }
     }
 
     public static String toKeyDisplayString(int mods) {
@@ -179,7 +198,19 @@ public class InputEventUtil {
         if ((mods & Event.SHIFT_MASK) != 0) {
             arr.add(getFromLocale("shiftMod"));
         }
-        
-        return StringUtil.join(arr, " ");
+
+
+        Iterator<String> it = arr.iterator();
+        if (it.hasNext()) {
+            StringBuilder ret = new StringBuilder();
+            ret.append(it.next());
+            while (it.hasNext()) {
+                ret.append(" ");
+                ret.append(it.next());
+            }
+            return ret.toString();
+        } else {
+            return "";
+        }
     }
 }
