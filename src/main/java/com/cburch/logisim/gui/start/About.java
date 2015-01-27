@@ -3,14 +3,15 @@
 
 package com.cburch.logisim.gui.start;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import org.apache.batik.swing.JSVGCanvas;
 import org.apache.batik.swing.gvt.GVTTreeRendererAdapter;
 import org.apache.batik.swing.svg.GVTTreeBuilderAdapter;
@@ -25,8 +26,10 @@ public class About {
 	protected static JSVGCanvas svgCanvas =new JSVGCanvas();
 	
 	public static JComponent createComponents() {
-		final JPanel panel = new JPanel(new BorderLayout());
-		panel.add("Center", svgCanvas);
+		final JPanel panel = new JPanel();
+		panel.add(svgCanvas);
+		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		panel.setBackground(Color.WHITE);
 		svgCanvas.setURI(About.class.getResource("/logisim/drawing.svg").toString());
 		svgCanvas.addSVGDocumentLoaderListener(new SVGDocumentLoaderAdapter() {});
 		svgCanvas.addGVTTreeBuilderListener(new GVTTreeBuilderAdapter() {});
@@ -35,11 +38,7 @@ public class About {
 	}
 
 	public static void showAboutDialog(JFrame owner) {
-		JPanel panel = new JPanel(new BorderLayout());
-		panel.add("Center", createComponents());
-		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
-		JOptionPane.showMessageDialog(owner, panel,
+		JOptionPane.showMessageDialog(owner, createComponents(),
 				"Logisim " + Main.VERSION_NAME, JOptionPane.PLAIN_MESSAGE);
 	}
 }
