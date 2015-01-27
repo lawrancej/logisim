@@ -34,6 +34,7 @@ launch4j {
     // launch4j should know this from the application plugin, right?
     mainClassName = project.mainClassName
     jar = "lib/"+project.name+"-"+project.version+".jar"
+    icon = '../resources/main/logisim/logisim icon.ico'
 }
 
 buildscript {
