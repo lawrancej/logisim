@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 
 import com.cburch.logisim.circuit.Wire;
 import com.cburch.logisim.data.Attribute;
+import com.cburch.logisim.data.AttributeOption;
 import com.cburch.logisim.data.AttributeSet;
+import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
@@ -24,21 +26,40 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
+
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Button extends InstanceFactory {
     private static final int DEPTH = 3;
 
+    static final AttributeOption OUTPUT_01
+    	= new AttributeOption("01", getFromLocale("gateOutput01"));
+    static final AttributeOption OUTPUT_0Z
+    	= new AttributeOption("0Z", getFromLocale("gateOutput0Z"));
+    static final AttributeOption OUTPUT_Z1
+    	= new AttributeOption("Z1", getFromLocale("gateOutputZ1"));
+    static final AttributeOption OUTPUT_Z0
+		= new AttributeOption("Z0", getFromLocale("gateOutputZ0"));
+    static final AttributeOption OUTPUT_10
+		= new AttributeOption("10", getFromLocale("gateOutput10"));
+    static final AttributeOption OUTPUT_1Z
+		= new AttributeOption("1Z", getFromLocale("gateOutput1Z"));
+    public static final Attribute<AttributeOption> ATTR_OUTPUT
+    	= Attributes.forOption("out", getFromLocale("gateOutputAttr"),
+    			new AttributeOption[] { OUTPUT_01, OUTPUT_10, OUTPUT_0Z, OUTPUT_Z1, OUTPUT_Z0, OUTPUT_1Z  });
+
+    
     public Button() {
         super("Button", getFromLocale("buttonComponent"));
         setAttributes(new Attribute[] {
                 StdAttr.FACING, Io.ATTR_COLOR,
                 StdAttr.LABEL, Io.ATTR_LABEL_LOC,
-                StdAttr.LABEL_FONT, Io.ATTR_LABEL_COLOR
+                StdAttr.LABEL_FONT, Io.ATTR_LABEL_COLOR, Button.ATTR_OUTPUT
             }, new Object[] {
                 Direction.EAST, Color.WHITE,
                 "", Io.LABEL_CENTER,
-                StdAttr.DEFAULT_LABEL_FONT, Color.BLACK
+                StdAttr.DEFAULT_LABEL_FONT, Color.BLACK, Button.OUTPUT_01
             });
         setFacingAttribute(StdAttr.FACING);
         setIconName("button.svg");
@@ -139,7 +160,7 @@ public class Button extends InstanceFactory {
 
         Graphics g = painter.getGraphics();
         int depress;
-        if (val == Value.TRUE) {
+        if (val == ButtonStateToValue(true,painter.getAttributeValue(Button.ATTR_OUTPUT))) {
             x += DEPTH;
             y += DEPTH;
             Object labelLoc = painter.getAttributeValue(Io.ATTR_LABEL_LOC);
@@ -192,16 +213,41 @@ public class Button extends InstanceFactory {
         g.translate(-depress, -depress);
         painter.drawPorts();
     }
+    
+    private static Value ButtonStateToValue(Boolean pressed, AttributeOption a){
+    	if(pressed==true){
+        	if((a==Button.OUTPUT_01) | (a==Button.OUTPUT_Z1)){
+        		return Value.TRUE;
+        	}
+        	else if((a==Button.OUTPUT_10) | (a==Button.OUTPUT_Z0)){
+        		return Value.FALSE;
+        	}
+        	else{
+        		return Value.NIL;
+        	}
+    	}
+    	else{
+        	if((a==Button.OUTPUT_10) | (a==Button.OUTPUT_1Z)){
+        		return Value.TRUE;
+        	}
+        	else if((a==Button.OUTPUT_01) | (a==Button.OUTPUT_0Z)){
+        		return Value.FALSE;
+        	}
+        	else{
+        		return Value.NIL;
+        	}    		
+    	}
+    }
 
     public static class Poker extends InstancePoker {
         @Override
         public void mousePressed(InstanceState state, MouseEvent e) {
-            setValue(state, Value.TRUE);
+                setValue(state, ButtonStateToValue(true,state.getAttributeValue(Button.ATTR_OUTPUT)));        		    		
         }
 
         @Override
         public void mouseReleased(InstanceState state, MouseEvent e) {
-            setValue(state, Value.FALSE);
+            setValue(state, ButtonStateToValue(false,state.getAttributeValue(Button.ATTR_OUTPUT)));        		    		
         }
 
         private void setValue(InstanceState state, Value val) {
