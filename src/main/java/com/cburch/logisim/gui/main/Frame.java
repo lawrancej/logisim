@@ -3,6 +3,8 @@
 
 package com.cburch.logisim.gui.main;
 
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -11,18 +13,27 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.IllegalComponentStateException;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.cburch.draw.toolbar.Toolbar;
 import com.cburch.draw.toolbar.ToolbarModel;
@@ -57,7 +68,6 @@ import com.cburch.logisim.util.JFileChoosers;
 import com.cburch.logisim.util.LocaleListener;
 import com.cburch.logisim.util.LocaleManager;
 import com.cburch.logisim.util.VerticalSplitPane;
-import static com.cburch.logisim.util.LocaleString.*;
 
 @SuppressWarnings("serial")
 public class Frame extends LFrame implements LocaleListener {
@@ -184,6 +194,8 @@ public class Frame extends LFrame implements LocaleListener {
     private ZoomModel       layoutZoomModel;
     private LayoutEditHandler layoutEditHandler;
     private AttrTableSelectionModel attrTableSelectionModel;
+    
+    public static final Logger logger = LoggerFactory.getLogger( Frame.class );
 
     // for the Appearance view
     private AppearanceView appearance;
@@ -193,6 +205,14 @@ public class Frame extends LFrame implements LocaleListener {
 
         setBackground(Color.white);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        try {
+        	ArrayList<Image> icons = new ArrayList<Image>();
+        	icons.add(ImageIO.read(Frame.class.getResourceAsStream("/logisim/logisim 32.png")));
+        	icons.add(ImageIO.read(Frame.class.getResourceAsStream("/logisim/logisim 16.png")));
+			setIconImages(icons);
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
         addWindowListener(new MyWindowListener());
 
         proj.addProjectListener(myProjectListener);

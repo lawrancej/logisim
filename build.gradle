@@ -50,7 +50,6 @@ buildscript {
         'net.sourceforge.nekohtml:nekohtml:1.9.18',
         'javax.help:javahelp:2.0.05',
         'edu.sc.seis.gradle:macappbundle:2.0.0'
-
     }
 }
 
@@ -65,7 +64,6 @@ dependencies {
     compile \
     'javax.help:javahelp:2.0.05',
     'com.connectina.swing:fontchooser:1.0',
-    'org.apache.commons:commons-lang3:3.1',
     'net.sourceforge.collections:collections-generic:4.01',
     'org.apache.xmlgraphics:batik-svggen:1.7',
     'org.apache.xmlgraphics:batik-swing:1.7', 
