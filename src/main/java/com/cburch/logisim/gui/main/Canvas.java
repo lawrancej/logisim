@@ -12,6 +12,7 @@ import java.util.*;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.Action;
 import javax.swing.event.*;
 
 import com.cburch.logisim.circuit.*;
@@ -46,7 +47,7 @@ public class Canvas extends JPanel
 
     private class MyListener
             implements MouseInputListener, KeyListener, PopupMenuListener,
-                PropertyChangeListener {
+                PropertyChangeListener, MouseWheelListener {
         boolean menu_on = false;
 
         //
@@ -177,7 +178,7 @@ public class Canvas extends JPanel
         }
 
         //
-        // PopupMenuListener mtehods
+        // PopupMenuListener methods
         //
         @Override
         public void popupMenuCanceled(PopupMenuEvent e) {
@@ -200,6 +201,18 @@ public class Canvas extends JPanel
                 setToolTipText(showTips ? "" : null);
             }
         }
+        
+        @Override
+    	public void mouseWheelMoved(MouseWheelEvent arg0) {
+    		if(arg0.isControlDown()) {
+    			if(arg0.getPreciseWheelRotation() < 0) {
+    				 ZoomControl.spinnerModel.setValue(ZoomControl.spinnerModel.getNextValue());
+    			} else if(arg0.getPreciseWheelRotation() > 0){
+    				 ZoomControl.spinnerModel.setValue(ZoomControl.spinnerModel.getPreviousValue());
+    			}
+    		}
+    		
+    	}
     }
 
     private class MyProjectListener
@@ -563,6 +576,7 @@ public class Canvas extends JPanel
         setBackground(Color.white);
         addMouseListener(myListener);
         addMouseMotionListener(myListener);
+        addMouseWheelListener(myListener);
         addKeyListener(myListener);
 
         proj.addProjectListener(myProjectListener);

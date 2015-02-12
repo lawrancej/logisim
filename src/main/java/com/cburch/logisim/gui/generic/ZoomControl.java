@@ -3,6 +3,8 @@
 
 package com.cburch.logisim.gui.generic;
 
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,10 +12,13 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.AbstractSpinnerModel;
+import javax.swing.Action;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
@@ -23,11 +28,9 @@ import javax.swing.KeyStroke;
 
 import com.cburch.logisim.util.CustomAction;
 
-import static com.cburch.logisim.util.LocaleString.*;
-
 @SuppressWarnings("serial")
 public class ZoomControl extends JPanel {
-    private class SpinnerModel extends AbstractSpinnerModel
+    public class SpinnerModel extends AbstractSpinnerModel
             implements PropertyChangeListener {
         @Override
         public Object getNextValue() {
@@ -147,7 +150,7 @@ public class ZoomControl extends JPanel {
 
     private ZoomModel model;
     private JSpinner spinner;
-    private SpinnerModel spinnerModel;
+    public static SpinnerModel spinnerModel;
     private GridIcon grid;
 
     public void zoomIn() {
@@ -187,6 +190,7 @@ public class ZoomControl extends JPanel {
 
         model.addPropertyChangeListener(ZoomModel.SHOW_GRID, grid);
         model.addPropertyChangeListener(ZoomModel.ZOOM, spinnerModel);
+
     }
 
     public void setZoomModel(ZoomModel value) {

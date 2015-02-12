@@ -3,11 +3,11 @@
 
 package com.cburch.logisim.std.memory;
 
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-import org.apache.commons.lang3.ObjectUtils;
 
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.data.Attribute;
@@ -30,7 +30,6 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.proj.Project;
-import static com.cburch.logisim.util.LocaleString.*;
 
 public class Ram extends Mem {
     static final AttributeOption BUS_COMBINED
@@ -84,8 +83,8 @@ public class Ram extends Mem {
             bus = BUS_COMBINED;
         }
 
-        boolean asynch = ObjectUtils.equals(bus, BUS_ASYNCH);
-        boolean separate = ObjectUtils.equals(bus, BUS_SEPARATE);
+        boolean asynch = bus.equals(BUS_ASYNCH);
+        boolean separate = bus.equals(BUS_SEPARATE);
 
         int portCount = MEM_INPUTS;
         if (asynch) {
@@ -171,8 +170,8 @@ public class Ram extends Mem {
         RamState myState = (RamState) getState(state);
         BitWidth dataBits = state.getAttributeValue(DATA_ATTR);
         Object busVal = state.getAttributeValue(ATTR_BUS);
-        boolean asynch = ObjectUtils.equals(busVal, BUS_ASYNCH);
-        boolean separate = ObjectUtils.equals(busVal, BUS_SEPARATE);
+        boolean asynch = busVal.equals(BUS_ASYNCH);
+        boolean separate = busVal.equals(BUS_SEPARATE);
 
         Value addrValue = state.getPort(ADDR);
         boolean chipSelect = state.getPort(CS) != Value.FALSE;
@@ -223,8 +222,8 @@ public class Ram extends Mem {
     public void paintInstance(InstancePainter painter) {
         super.paintInstance(painter);
         Object busVal = painter.getAttributeValue(ATTR_BUS);
-        boolean asynch = ObjectUtils.equals(busVal, BUS_ASYNCH);
-        boolean separate = ObjectUtils.equals(busVal, BUS_SEPARATE);
+        boolean asynch = busVal.equals(BUS_ASYNCH);
+        boolean separate = busVal.equals(BUS_SEPARATE);
 
         if (!asynch) {
             painter.drawClock(CLK, Direction.NORTH);
