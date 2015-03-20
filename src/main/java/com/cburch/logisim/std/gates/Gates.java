@@ -7,8 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.cburch.logisim.tools.AddTool;
+import com.cburch.logisim.tools.FactoryDescription;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Gates extends Library {
@@ -28,6 +30,7 @@ public class Gates extends Library {
             new AddTool(EvenParityGate.FACTORY),
             new AddTool(ControlledBuffer.FACTORY_BUFFER),
             new AddTool(ControlledBuffer.FACTORY_INVERTER),
+			new AddTool(Gates.class, new FactoryDescription("Relais", getFromLocale("relaisComponent"),"", "Relais")),
         });
     }
 
