@@ -17,6 +17,7 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.Instance;
+import com.cburch.logisim.instance.InstanceData;
 import com.cburch.logisim.instance.InstanceDataSingleton;
 import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstanceLogger;
@@ -26,7 +27,6 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.util.GraphicsUtil;
-
 
 import static com.cburch.logisim.util.LocaleString.*;
 
@@ -87,6 +87,8 @@ public class Button extends InstanceFactory {
             computeTextField(instance);
         } else if (attr == Io.ATTR_LABEL_LOC) {
             computeTextField(instance);
+        } else if (attr == Button.ATTR_OUTPUT) {
+        	instance.fireInvalidated();       
         }
     }
 
@@ -132,7 +134,9 @@ public class Button extends InstanceFactory {
     @Override
     public void propagate(InstanceState state) {
         InstanceDataSingleton data = (InstanceDataSingleton) state.getData();
-        Value val = data == null ? Value.FALSE : (Value) data.getValue();
+        
+        boolean pressed = data == null ? false : ((ButtonData)data.getValue()).getButtonState();
+        Value val =ButtonStateToValue(pressed,state.getAttributeValue(Button.ATTR_OUTPUT));
         state.setPort(0, val, 1);
     }
 
@@ -144,12 +148,12 @@ public class Button extends InstanceFactory {
         int w = bds.getWidth();
         int h = bds.getHeight();
 
-        Value val;
+        boolean val;
         if (painter.getShowState()) {
             InstanceDataSingleton data = (InstanceDataSingleton) painter.getData();
-            val = data == null ? Value.FALSE : (Value) data.getValue();
+            val = data == null ? false : ((ButtonData)data.getValue()).getButtonState();
         } else {
-            val = Value.FALSE;
+            val =false;
         }
 
         Color color = painter.getAttributeValue(Io.ATTR_COLOR);
@@ -160,7 +164,7 @@ public class Button extends InstanceFactory {
 
         Graphics g = painter.getGraphics();
         int depress;
-        if (val == ButtonStateToValue(true,painter.getAttributeValue(Button.ATTR_OUTPUT))) {
+        if (val == true) {
             x += DEPTH;
             y += DEPTH;
             Object labelLoc = painter.getAttributeValue(Io.ATTR_LABEL_LOC);
@@ -242,20 +246,20 @@ public class Button extends InstanceFactory {
     public static class Poker extends InstancePoker {
         @Override
         public void mousePressed(InstanceState state, MouseEvent e) {
-                setValue(state, ButtonStateToValue(true,state.getAttributeValue(Button.ATTR_OUTPUT)));        		    		
+                setValue(state, true);        		    		
         }
 
         @Override
         public void mouseReleased(InstanceState state, MouseEvent e) {
-            setValue(state, ButtonStateToValue(false,state.getAttributeValue(Button.ATTR_OUTPUT)));        		    		
+            setValue(state, false);        		    		
         }
 
-        private void setValue(InstanceState state, Value val) {
+        private void setValue(InstanceState state, boolean buttonState) {
             InstanceDataSingleton data = (InstanceDataSingleton) state.getData();
             if (data == null) {
-                state.setData(new InstanceDataSingleton(val));
+                state.setData(new InstanceDataSingleton(new ButtonData(buttonState,ButtonStateToValue(buttonState,state.getAttributeValue(Button.ATTR_OUTPUT)))));
             } else {
-                data.setValue(val);
+                data.setValue(new ButtonData(buttonState,ButtonStateToValue(buttonState,state.getAttributeValue(Button.ATTR_OUTPUT))));
             }
             state.getInstance().fireInvalidated();
         }
@@ -270,7 +274,32 @@ public class Button extends InstanceFactory {
         @Override
         public Value getLogValue(InstanceState state, Object option) {
             InstanceDataSingleton data = (InstanceDataSingleton) state.getData();
-            return data == null ? Value.FALSE : (Value) data.getValue();
+            return data == null ? Value.FALSE : ((ButtonData)data.getValue()).getOutValue();
         }
     }
+}
+//################ Added Class to transfer Value[] ###########################
+class ButtonData implements InstanceData, Cloneable {
+	boolean buttonState;
+	Value outValue;
+
+	@Override
+	public ButtonData clone() {
+		return clone();
+
+	}
+
+	public ButtonData(boolean buttonState,Value outValue) {
+		this.buttonState = buttonState;
+		this.outValue = outValue;
+	}
+
+	public Value getOutValue() {
+		return outValue;
+	}
+
+	public boolean getButtonState() {
+		return buttonState;
+	}
+
 }
