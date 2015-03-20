@@ -28,6 +28,15 @@ jar {
                    'Implementation-Version': version,
          		   'Main-Class': mainClassName
     }
+    // create a fat jar
+    from {
+              configurations.compile.collect {
+                  it.isDirectory() ? it : zipTree(it)
+              }
+              configurations.runtime.collect {
+                  it.isDirectory() ? it : zipTree(it)
+              }
+          }
 }
 
 launch4j {
@@ -49,7 +58,8 @@ buildscript {
         'edu.sc.seis.gradle:launch4j:1.0.6',
         'net.sourceforge.nekohtml:nekohtml:1.9.18',
         'javax.help:javahelp:2.0.05',
-        'edu.sc.seis.gradle:macappbundle:2.0.0'
+        'edu.sc.seis.gradle:macappbundle:2.0.0',
+        'net.sf.proguard:proguard-gradle:5.2'
     }
 }
 
@@ -67,7 +77,6 @@ dependencies {
     'net.sourceforge.collections:collections-generic:4.01',
     'org.apache.xmlgraphics:batik-svggen:1.7',
     'org.apache.xmlgraphics:batik-swing:1.7', 
-    'org.apache.xmlgraphics:batik-transcoder:1.7',
 
     // Native JDK logger (java.util.logging)
     //'org.slf4j:slf4j-jdk14:1.7.5',
