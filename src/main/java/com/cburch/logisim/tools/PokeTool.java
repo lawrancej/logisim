@@ -264,7 +264,17 @@ public class PokeTool extends Tool {
             toolIcon.paintIcon(c.getDestination(), g, x + 2, y + 2);
         } else {
             g.setColor(java.awt.Color.black);
-            // TODO explain the values
+            /*
+             * The code below draws two arrows. It's only executed if the icon of the PokeTool is not available.
+             * 1st segment is arrow down.
+             * L1 Line Up Down |
+             * L2 Line Mid Left Mid Down \
+             * L3 Line Mid Right Mid Down /
+             * 2nd segment is arrow up.
+             * L1 Line Up Down |
+             * L2 Line Mid Left Mid Up /
+             * L3 Line Mid Right Mid Up \ 
+             */
             g.drawLine(x + 4, y +  2, x + 4, y + 17);
             g.drawLine(x + 4, y + 17, x + 1, y + 11);
             g.drawLine(x + 4, y + 17, x + 7, y + 11);
