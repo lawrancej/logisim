@@ -71,18 +71,18 @@ public class Canvas extends JComponent {
         if (oldValue != null) {
 	        if (!oldValue.equals(value)) {
 	            oldValue.removeCanvasModelListener(listener);
-	
-	            model = value;
-	            this.dispatcher = dispatcher;
-	            if (value != null) {
-	                value.addCanvasModelListener(listener);
-	            }
-	
-	            selection.clearSelected();
-	            repaint();
-	            firePropertyChange(MODEL_PROPERTY, oldValue, value);
 	        }
         }
+        model = value;
+        this.dispatcher = dispatcher;
+        if (value != null) {
+            value.addCanvasModelListener(listener);
+        }
+
+        selection.clearSelected();
+        repaint();
+        firePropertyChange(MODEL_PROPERTY, oldValue, value);
+	            
     }
 
     public void setTool(CanvasTool value) {
