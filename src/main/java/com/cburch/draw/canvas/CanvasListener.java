@@ -10,14 +10,17 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.List;
 
 import com.cburch.draw.model.CanvasModelEvent;
 import com.cburch.draw.model.CanvasModelListener;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.logisim.data.Location;
+import com.cburch.logisim.gui.generic.ZoomControl;
 
-class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
+class CanvasListener implements MouseListener, MouseMotionListener, KeyListener, MouseWheelListener,
         CanvasModelListener {
     private Canvas canvas;
     private CanvasTool tool;
@@ -67,6 +70,18 @@ class CanvasListener implements MouseListener, MouseMotionListener, KeyListener,
         }
     }
 
+    @Override
+	public void mouseWheelMoved(MouseWheelEvent arg0) {
+		if(arg0.isControlDown()) {
+			if(arg0.getPreciseWheelRotation() < 0) {
+				 ZoomControl.spinnerModel.setValue(ZoomControl.spinnerModel.getNextValue());
+			} else if(arg0.getPreciseWheelRotation() > 0){
+				 ZoomControl.spinnerModel.setValue(ZoomControl.spinnerModel.getPreviousValue());
+			}
+		}
+		
+	}    
+    
     @Override
     public void mouseDragged(MouseEvent e) {
         if (isButton1(e)) {
