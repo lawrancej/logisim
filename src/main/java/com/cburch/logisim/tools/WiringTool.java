@@ -452,7 +452,13 @@ public class WiringTool extends Tool {
             toolIcon.paintIcon(c.getDestination(), g, x + 2, y + 2);
         } else {
             g.setColor(java.awt.Color.black);
-            // TODO explain the values
+            /*
+             * Wiring Tool under basics
+             * Icon:
+             * 2nd Line: Box Left
+             * 3rd Line: Box Right
+             * 1st Line: Connection between Boxes
+             */
             g.drawLine(x + 3, y + 13, x + 17, y + 7);
             g.fillOval(x + 1, y + 11, 5, 5);
             g.fillOval(x + 15, y + 5, 5, 5);
