@@ -26,6 +26,10 @@ Logisim's user interface has numerous gotchas that need to be addressed. Here's 
 It is arguably the best free/libre and gratis tool for teaching circuit design.
 That is why its development must continue.
 
+## Newest GitHub build
+If you just want to test the newest developer version to report issues or for new features, download it here.
+[![Build Status](http://mechtecs.tk:8080/job/LOGISIM/badge/icon)](http://mechtecs.tk:8080/job/LOGISIM/)
+[Download](http://84.201.35.242:8080/job/LOGISIM/)
 ## Getting started for developers
 
 The build script recognizes the following commands:
