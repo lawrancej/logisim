@@ -30,6 +30,8 @@ public class Arithmetic extends Library {
                 "bitadder.svg", "BitAdder"),
         new FactoryDescription("BitFinder", getFromLocale("bitFinderComponent"),
                 "bitfindr.svg", "BitFinder"),
+        new FactoryDescription("Pow", getFromLocale("powComponent"),
+                "pow.svg", "Pow"),
     };
 
     private List<Tool> tools = null;
