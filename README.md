@@ -1,5 +1,22 @@
 # README
 
+Logisim es una herramienta de diseño y simulación de circuitos lógicos computacionales. Logisim tiene la capacidad de crear grandes circuitos a partir de otros más simples. Logisim es una herramienta de distribución libre y es posible tener acceso al codigo fuente desarrollado en Java (https://sourceforge.net/projects/circuit).
+
+El curso de Ingeniería de Software I (CC4401) pretende aplicar extensiones a Logisim como proyecto de aplicación para proveer a la herramienta de funcionalidades que mejoren la experiencia de usuario.
+
+## Proyecto Protoboard
+
+Se requiere implementar un “protoboard” que permita simular una serie de circuitos mediante una interfaz interactiva. Un protoboard es una tableta que permite experimentar con circuitos eléctricos de forma física, sin embargo el proyecto del curso pretende desarrollar un simulador de “protoboard” con las funcionalidades básicas.
+
+Se requiere una implementación básica pero funcional que permita realizar lo siguiente:
+
+1. Una interfaz que permita crear un nuevo “protoboard”.
+2. Desarrollar los distintos componentes de protoboard como ser: canal central, buses y pistas.
+3. Proponer proporcionar componentes y chips básicos que implementen un circuito en particular como: flip flop, NAND, NOT, etc.
+4. La interfaz debe permitir crear un circuito utilizando algunos componentes y ejecutar la simulación del circuito mediante leds, relojes, resistencias, entrada positiva, entrada negativa, botón para activar corriente, pulsor, etc.
+5. La interfaz debe permitir construir el circuito de forma sencilla.
+
+
 Logisim is a circuit simulator, [originally available here](http://www.cburch.com/logisim/).
 
 ## Why this fork of Logisim?
