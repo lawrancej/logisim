@@ -68,7 +68,7 @@ public class Canvas extends JComponent {
 
     public void setModel(CanvasModel value, ActionDispatcher dispatcher) {
         CanvasModel oldValue = model;
-        if (!oldValue.equals(value)) {
+        if (oldValue == null || !oldValue.equals(value)) {
             if (oldValue != null) {
                 oldValue.removeCanvasModelListener(listener);
             }
