@@ -1,4 +1,5 @@
-# README
+# Logisim
+[![Build Status](https://travis-ci.org/m4droid/logisim.svg?branch=master)](https://travis-ci.org/m4droid/logisim)
 
 Logisim es una herramienta de diseño y simulación de circuitos lógicos computacionales. Logisim tiene la capacidad de crear grandes circuitos a partir de otros más simples. Logisim es una herramienta de distribución libre y es posible tener acceso al codigo fuente desarrollado en Java (https://sourceforge.net/projects/circuit).
 
