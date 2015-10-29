@@ -8,11 +8,13 @@ import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 
 import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
+import cl.uchile.dcc.cc4401.protosim.components.Led;
 
 public class Protosim extends Library {
 
     private static Tool[] TOOLS = {
             new AddTool(Breadboard.FACTORY),
+            new AddTool(Led.FACTORY)
     };
 
     public Protosim() {
