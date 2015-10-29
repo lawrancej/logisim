@@ -10,8 +10,13 @@ import com.cburch.logisim.tools.Tool;
 import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
 import cl.uchile.dcc.cc4401.protosim.components.Led;
 
+/*
+ * Protosim components library for Logisim
+ * To display it, must be defined in: src/main/resources/logisim/default.templ
+ */
 public class Protosim extends Library {
 
+	// Available tools
     private static Tool[] TOOLS = {
             new AddTool(Breadboard.FACTORY),
             new AddTool(Led.FACTORY)
