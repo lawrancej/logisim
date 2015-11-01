@@ -12,6 +12,7 @@ import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
+import com.cburch.logisim.util.Icons;
 
 public class Clock extends InstanceFactory {
     
@@ -21,6 +22,7 @@ public class Clock extends InstanceFactory {
 
     public Clock() {
         super("Clock");
+        this.setIcon(Icons.getIcon("proto_clock.svg"));
         
         List<Port> ports = new ArrayList<Port>();
         
@@ -56,7 +58,7 @@ public class Clock extends InstanceFactory {
         int y = loc.getY();
 
         Graphics g = painter.getGraphics();
-        g.setColor(Color.black);
+        g.setColor(Color.red);
         g.drawRect(x, y, 660, 190);
 
         painter.drawPorts();
