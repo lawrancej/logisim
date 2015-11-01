@@ -192,7 +192,8 @@ public class ProjectActions {
         }
     }
     /*
-     * Metodo para abrir directamente un archivo con la configuracion de la protoboard
+     * Method to open directly a breadboard configuration , but for the moment this method isn't used
+     * open breadboard with a template configuration is more efficiently 
      */
     public static void doOpenProtoboard(Component parent, Project baseProject) {
     	JFileChooser chooser =new JFileChooser();
@@ -369,5 +370,25 @@ public class ProjectActions {
 
         }
         System.exit(0);
+    }
+    
+    /*
+     * Method to open directly a breadboard configuration with a template configuration 
+     */
+    public static void setTemplate(){
+    	JFileChooser chooser =new JFileChooser();
+    	File selected = chooser.getCurrentDirectory();
+        File selector = new File(selected.toString()+"/breadboard.circ");
+    	AppPreferences.setTemplateFile(selector);
+    	AppPreferences.setTemplateType(AppPreferences.TEMPLATE_CUSTOM);
+    	System.out.println(""+AppPreferences.TEMPLATE_CUSTOM);
+    }
+    
+    /*
+     * Method to reset to default the template configuration 
+     */
+    public static void resetTemplate(){
+    	AppPreferences.getEmptyTemplate();
+    	AppPreferences.setTemplateType(AppPreferences.TEMPLATE_PLAIN);
     }
 }

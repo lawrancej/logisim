@@ -126,7 +126,9 @@ class MenuFile extends Menu implements ActionListener {
         } else if (src == open) {
             ProjectActions.doOpen(proj == null ? null : proj.getFrame().getCanvas(), proj);
         } else if (src == protoboard) {
-            ProjectActions.doOpenProtoboard(proj == null ? null : proj.getFrame().getCanvas(), proj);
+        	ProjectActions.setTemplate();
+        	ProjectActions.doNew(proj);
+        	ProjectActions.resetTemplate();
         } 
         else if (src == close) {
             Frame frame = proj.getFrame();
