@@ -42,6 +42,8 @@ public class TunnelProtoboard extends InstanceFactory {
             }
         }
         
+        //falta agregar estos ports al Hash con el mismo valor int si es que estan conectados
+        //
         for (int i = 0; i <= 64 * 10; i += 10) {
             for (int j = 0; j < 4 * 10; j += 10) {
                 ports.add(new Port(10 + i, 50 + j, Port.INOUT, 1));
@@ -66,7 +68,15 @@ public class TunnelProtoboard extends InstanceFactory {
         Graphics g = painter.getGraphics();
         g.setColor(Color.black);
         g.drawRect(x, y, 660, 190);
-
+        
+        //las lineas tipicas de las proto
+        g.setColor(Color.red);
+        g.drawLine(x+10,y+26, x+650, y+26);
+        g.drawLine(x+10,y+186, x+650, y+186);
+        g.setColor(Color.blue);
+        g.drawLine(x+10,y+3, x+650, y+3);
+        g.drawLine(x+10,y+164, x+650, y+164);
+        
         painter.drawPorts();
     }
 
