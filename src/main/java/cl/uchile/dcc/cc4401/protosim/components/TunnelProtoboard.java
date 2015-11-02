@@ -3,8 +3,8 @@ package cl.uchile.dcc.cc4401.protosim.components;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
@@ -15,22 +15,30 @@ import com.cburch.logisim.instance.Port;
 
 public class TunnelProtoboard extends InstanceFactory {
     
-    public static InstanceFactory FACTORY = new Led();
-    
+    public static InstanceFactory FACTORY = new TunnelProtoboard();
     List<Port> ports;
-
+    HashMap<Port,Integer> connected;
+    
     public TunnelProtoboard() {
         super("TunnelProtoboard");
         
-        List<Port> ports = new ArrayList<Port>();
-        
+        ports = new ArrayList<Port>();
+        connected=new HashMap<Port,Integer>();
         for (int i = 0; i <= 64 * 10; i += 10) {
             for (int j = 0; j < 10; j += 10) {
-                ports.add(new Port(10 + i, 10 + j, Port.INOUT, 1));
-                ports.add(new Port(10 + i, 20 + j, Port.INOUT, 1));
+            	Port port1=new Port(10 + i, 10 + j, Port.INOUT, 1);
+            	Port port2=new Port(10 + i, 20 + j, Port.INOUT, 1);
+                connected.put(port1,new Integer(1));
+                connected.put(port2,new Integer(2));
+                ports.add(port1);
+                ports.add(port2);
                 
-                ports.add(new Port(10 + i, 170 + j, Port.INOUT, 1));
-                ports.add(new Port(10 + i, 180 + j, Port.INOUT, 1));
+                Port port3=new Port(10 + i, 170 + j, Port.INOUT, 1);
+            	Port port4=new Port(10 + i, 180 + j, Port.INOUT, 1);
+                connected.put(port3,new Integer(3));
+                connected.put(port4,new Integer(4));
+                ports.add(port3);
+                ports.add(port4);
             }
         }
         
@@ -40,8 +48,8 @@ public class TunnelProtoboard extends InstanceFactory {
                 ports.add(new Port(10 + i, 110 + j, Port.INOUT, 1));
             }
         }
-                
         setPorts(ports);
+        createAttributeSet();
     }
     
     @Override
@@ -64,7 +72,18 @@ public class TunnelProtoboard extends InstanceFactory {
 
     @Override
     public void propagate(InstanceState state) {
-        
+        // TODO Auto-generated method stub  
+    }
+    
+    public HashMap<Port,Integer> getConnected(){
+    	return connected;
+    }
+    
+    public AttributeSet createAttributeSet() {
+        TunnelProtoboardAttributes atts= new TunnelProtoboardAttributes();
+        atts.setConnected(connected);
+        atts.setPorts(ports);
+        return atts;
     }
 
 }
