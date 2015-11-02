@@ -17,7 +17,7 @@ public class TunnelProtoboard extends InstanceFactory {
     
     public static InstanceFactory FACTORY = new TunnelProtoboard();
     List<Port> ports;
-    HashMap<Port,Integer> connected;
+    HashMap<Port,Integer> connected;//si dos ports tienen el mismo valor estan conectados
     
     public TunnelProtoboard() {
         super("TunnelProtoboard");
