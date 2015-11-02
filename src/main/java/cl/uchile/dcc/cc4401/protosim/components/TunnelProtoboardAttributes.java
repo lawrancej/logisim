@@ -14,9 +14,6 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 
-
-
-
 public class TunnelProtoboardAttributes extends AbstractAttributeSet {
 	
 	List<Port> ports;
