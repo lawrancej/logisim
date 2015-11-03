@@ -14,10 +14,10 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 
-public class TunnelProtoboardAttributes extends AbstractAttributeSet {
+public class BreadboardAttributes extends AbstractAttributeSet {
 	
-	List<Port> ports;
-	HashMap<Port,Integer> connected=new HashMap<Port,Integer>();
+	private List<Port> ports;
+	private HashMap<Port,Integer> connected=new HashMap<Port,Integer>();
 	 
     private static final List<Attribute<?>> ATTRIBUTES
     = Arrays.asList(new Attribute<?>[] {
@@ -34,7 +34,7 @@ public class TunnelProtoboardAttributes extends AbstractAttributeSet {
 	private int labelHAlign;
 	private int labelVAlign;
 	
-	public TunnelProtoboardAttributes() {
+	public BreadboardAttributes() {
 	    facing = Direction.WEST;
 	    width = BitWidth.ONE;
 	    label = "";

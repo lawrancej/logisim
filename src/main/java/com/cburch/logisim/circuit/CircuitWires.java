@@ -32,8 +32,8 @@ import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.std.wiring.PullResistor;
 import com.cburch.logisim.std.wiring.Tunnel;
 import com.cburch.logisim.util.GraphicsUtil;
-import cl.uchile.dcc.cc4401.protosim.components.TunnelProtoboard;
-import cl.uchile.dcc.cc4401.protosim.components.TunnelProtoboardAttributes;
+import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
+import cl.uchile.dcc.cc4401.protosim.components.BreadboardAttributes;
 
 class CircuitWires {
     static class SplitterData {
@@ -274,7 +274,7 @@ class CircuitWires {
             } else if (factory instanceof PullResistor) {
                 pulls.add(comp);
                 comp.getAttributeSet().addAttributeListener(tunnelListener);
-            } else if(factory instanceof TunnelProtoboard){
+            } else if(factory instanceof Breadboard){
             	protoboards.add(comp);
             }
             
@@ -299,7 +299,7 @@ class CircuitWires {
             } else if (factory instanceof PullResistor) {
                 pulls.remove(comp);
                 comp.getAttributeSet().removeAttributeListener(tunnelListener);
-            } else if (factory instanceof TunnelProtoboard){
+            } else if (factory instanceof Breadboard){
             	protoboards.remove(comp);
             }
             
@@ -831,8 +831,8 @@ class CircuitWires {
         
     	for(Component comp : protoboards){
         	
-        	List<Port> ports=((TunnelProtoboardAttributes)comp.getAttributeSet()).getPorts();
-        	HashMap<Port, Integer> connected=((TunnelProtoboardAttributes)comp.getAttributeSet()).getConnected();
+        	List<Port> ports=((BreadboardAttributes)comp.getAttributeSet()).getPorts();
+        	HashMap<Port, Integer> connected=((BreadboardAttributes)comp.getAttributeSet()).getConnected();
         
 	        HashMap<Integer,ArrayList<Location>> portSets = new HashMap<Integer,ArrayList<Location>>();
 	        
@@ -843,7 +843,7 @@ class CircuitWires {
 	                    portSet = new ArrayList<Location>(3);
 	                    portSets.put(connected.get(port), portSet);
 	                }
-	                portSet.add(Location.create(comp.getLocation().getX()+port.dx, comp.getLocation().getY()+port.dy));
+	                portSet.add(Location.create(comp.getLocation().getX()+port.getDx(), comp.getLocation().getY()+port.getDy()));
 	            }
 	        }
 	        
