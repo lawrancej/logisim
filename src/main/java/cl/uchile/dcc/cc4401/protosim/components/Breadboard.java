@@ -20,20 +20,26 @@ public class Breadboard extends InstanceFactory {
 	
 	private List<Port> ports;
 	
-	//If two or more ports have the same integer value, they are connected in the breadboard
+	/*
+	 * If two or more ports have the same integer value,
+	 * they are connected in the breadboard
+	 */
 	private HashMap<Port, Integer> connected;
 
 	public Breadboard() {
 		super("Breadboard");
-		this.setIcon(Icons.getIcon("breadboard.svg"));
+		setIcon(Icons.getIcon("protosimBreadboard.svg"));
+
 		ports = new ArrayList<Port>();
 		connected = new HashMap<Port, Integer>();
+
 		createAndConnectPorts();
-		setPorts(ports);
 		createAttributeSet();
+
+		setPorts(ports);
 	}
 	
-	private void createAndConnectPorts(){
+	private void createAndConnectPorts() {
 		int pinGroup = 1;
 		for (int i = 0; i <= 64 * 10; i += 10) {
 			Port port = new Port(10 + i, 10, Port.INOUT, 1);
@@ -104,10 +110,11 @@ public class Breadboard extends InstanceFactory {
 		g.setColor(Color.black);
 		g.drawRect(x, y, 660, 190);
 
-		// protoboard lines
+		// Breadboard lines
 		g.setColor(Color.red);
 		g.drawLine(x + 10, y + 26, x + 650, y + 26);
 		g.drawLine(x + 10, y + 186, x + 650, y + 186);
+
 		g.setColor(Color.blue);
 		g.drawLine(x + 10, y + 3, x + 650, y + 3);
 		g.drawLine(x + 10, y + 164, x + 650, y + 164);
