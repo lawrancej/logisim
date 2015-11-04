@@ -7,6 +7,7 @@ import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 
+import cl.uchile.dcc.cc4401.protosim.components.ProtosimAndGate;
 import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
 import cl.uchile.dcc.cc4401.protosim.components.Clock;
 import cl.uchile.dcc.cc4401.protosim.components.Led;
@@ -21,9 +22,9 @@ public class Protosim extends Library {
 	// Available tools
     private static Tool[] TOOLS = {
             new AddTool(Breadboard.FACTORY),
+            new AddTool(new ProtosimAndGate()),
             new AddTool(Clock.FACTORY),
             new AddTool(Led.FACTORY)
-
     };
 
     public Protosim() {
