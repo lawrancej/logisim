@@ -3,6 +3,8 @@ package cl.uchile.dcc.cc4401.protosim.components;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Bounds;
@@ -10,16 +12,33 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
+import com.cburch.logisim.instance.Port;
 
-public class AndGate extends InstanceFactory {
-	
-	public AndGate() {
-		super("ProtosimAndGate");
-		setIconName("protosimComponentGateAnd.svg");
-	}
+public class ProtosimAndGate extends InstanceFactory {
 
-	@Override
-	public void paintInstance(InstancePainter painter) {
+    private List<Port> ports;
+
+    public ProtosimAndGate() {
+        super("ProtosimAndGate");
+        setIconName("protosimComponentGateAnd.svg");
+
+        ports = new ArrayList<Port>();
+
+        // Upper ports
+        ports.add(new Port(0, 0, Port.INPUT, 1));
+        ports.add(new Port(10, 0, Port.INPUT, 1));
+        ports.add(new Port(20, 0, Port.OUTPUT, 1));
+
+        // Lower ports
+        ports.add(new Port(0, 30, Port.INPUT, 1));
+        ports.add(new Port(10, 30, Port.INPUT, 1));
+        ports.add(new Port(20, 30, Port.OUTPUT, 1));
+
+        setPorts(ports);
+    }
+
+    @Override
+    public void paintInstance(InstancePainter painter) {
         Location loc = painter.getLocation();
         int x = loc.getX();
         int y = loc.getY();
@@ -46,16 +65,15 @@ public class AndGate extends InstanceFactory {
         g.fillRect(x + 18, y + 25, 4, 5);
         
         painter.drawPorts();
-	}
-	
+    }
+
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
         return Bounds.create(0, 0, 20, 30);
     }
 
-	@Override
-	public void propagate(InstanceState state) {
-		// TODO Auto-generated method stub
-	}
-
+    @Override
+    public void propagate(InstanceState state) {
+        // TODO Auto-generated method stub
+    }
 }
