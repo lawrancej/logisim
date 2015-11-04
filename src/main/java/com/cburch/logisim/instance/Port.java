@@ -18,7 +18,8 @@ public class Port {
     public static final String SHARED = "shared";
 
     private int dx;
-    private int dy;
+ 	private int dy;
+    
     private int type;
     private BitWidth widthFixed;
     private Attribute<BitWidth> widthAttr;
@@ -152,4 +153,12 @@ public class Port {
         }
 
     }
+    
+    public int getDx() {
+ 		return dx;
+ 	}
+
+ 	public int getDy() {
+ 		return dy;
+ 	}
 }
