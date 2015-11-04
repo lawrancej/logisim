@@ -12,6 +12,7 @@ import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
+import com.cburch.logisim.util.Icons;
 
 public class Led extends InstanceFactory {
     
@@ -21,6 +22,7 @@ public class Led extends InstanceFactory {
 
     public Led() {
         super("Led");
+        this.setIcon(Icons.getIcon("proto_led.svg"));
         
         List<Port> ports = new ArrayList<Port>();
         
