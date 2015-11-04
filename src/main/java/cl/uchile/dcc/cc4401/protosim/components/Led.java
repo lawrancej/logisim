@@ -22,7 +22,7 @@ public class Led extends InstanceFactory {
 
     public Led() {
         super("Led");
-        this.setIcon(Icons.getIcon("proto_led.svg"));
+        this.setIcon(Icons.getIcon("protosimComponentLed.svg"));
         
         List<Port> ports = new ArrayList<Port>();
         

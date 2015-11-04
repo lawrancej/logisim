@@ -14,13 +14,13 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 
-public class ProtosimAndGate extends InstanceFactory {
+public class ProtosimAndChip extends InstanceFactory {
 
     private List<Port> ports;
 
-    public ProtosimAndGate() {
-        super("ProtosimAndGate");
-        setIconName("protosimComponentGateAnd.svg");
+    public ProtosimAndChip() {
+        super("ProtosimAndChip");
+        setIconName("protosimComponentChipAnd.svg");
 
         ports = new ArrayList<Port>();
 
@@ -35,6 +35,13 @@ public class ProtosimAndGate extends InstanceFactory {
         ports.add(new Port(20, 30, Port.OUTPUT, Breadboard.PORT_WIDTH));
 
         setPorts(ports);
+    }
+
+    @Override
+    public String getDisplayName() {
+        // TODO: l10n this
+        // return getFromLocale("andChip");
+        return "AND Chip";
     }
 
     @Override
