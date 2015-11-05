@@ -12,6 +12,7 @@ import cl.uchile.dcc.cc4401.protosim.components.Switch;
 import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
 import cl.uchile.dcc.cc4401.protosim.components.Clock;
 import cl.uchile.dcc.cc4401.protosim.components.Led;
+import cl.uchile.dcc.cc4401.protosim.components.Resistor;
 
 
 /*
@@ -26,7 +27,8 @@ public class Protosim extends Library {
             new AddTool(new ProtosimAndChip()),
             new AddTool(Clock.FACTORY),
             new AddTool(Led.FACTORY),
-            new AddTool(Switch.FACTORY)
+            new AddTool(Switch.FACTORY),
+            new AddTool(new Resistor()),
     };
 
     public Protosim() {
