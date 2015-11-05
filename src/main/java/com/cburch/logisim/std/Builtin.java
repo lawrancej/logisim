@@ -16,6 +16,9 @@ import com.cburch.logisim.std.plexers.Plexers;
 import com.cburch.logisim.std.wiring.Wiring;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
+
+import cl.uchile.dcc.cc4401.protosim.libraries.Protosim;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Builtin extends Library {
@@ -30,6 +33,7 @@ public class Builtin extends Library {
             new Arithmetic(),
             new Memory(),
             new Io(),
+            new Protosim(),
         });
     }
 
