@@ -21,7 +21,7 @@ public class Breadboard extends InstanceFactory {
 	public static InstanceFactory FACTORY = new Breadboard();
 	
 	private List<Port> ports;
-	
+
 	/*
 	 * If two or more ports have the same integer value,
 	 * they are connected in the breadboard
@@ -129,11 +129,8 @@ public class Breadboard extends InstanceFactory {
 		// TODO Auto-generated method stub
 	}
 
-	public AttributeSet createAttributeSet() {
-		BreadboardAttributes atts = new BreadboardAttributes();
-		atts.setConnected(connected);
-		atts.setPorts(ports);
-		return atts;
+	public HashMap<Port, Integer> getConnected() {
+		return connected;
 	}
 
 }
