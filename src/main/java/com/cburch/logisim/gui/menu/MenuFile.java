@@ -24,6 +24,7 @@ class MenuFile extends Menu implements ActionListener {
     private LogisimMenuBar menubar;
     private JMenuItem newi = new JMenuItem();
     private JMenuItem open = new JMenuItem();
+    private JMenuItem protoboard = new JMenuItem();
     private OpenRecent openRecent;
     private JMenuItem close = new JMenuItem();
     private JMenuItem save = new JMenuItem();
@@ -43,6 +44,8 @@ class MenuFile extends Menu implements ActionListener {
             KeyEvent.VK_N, menuMask));
         open.setAccelerator(KeyStroke.getKeyStroke(
             KeyEvent.VK_O, menuMask));
+        protoboard.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_N, menuMask));
         close.setAccelerator(KeyStroke.getKeyStroke(
             KeyEvent.VK_W, menuMask | InputEvent.SHIFT_MASK));
         save.setAccelerator(KeyStroke.getKeyStroke(
@@ -55,6 +58,7 @@ class MenuFile extends Menu implements ActionListener {
                 KeyEvent.VK_Q, menuMask));
 
         add(newi);
+        add(protoboard);
         add(open);
         add(openRecent);
         addSeparator();
@@ -76,6 +80,7 @@ class MenuFile extends Menu implements ActionListener {
         Project proj = menubar.getProject();
         newi.addActionListener(this);
         open.addActionListener(this);
+        protoboard.addActionListener(this);
         if (proj == null) {
             close.setEnabled(false);
             save.setEnabled(false);
@@ -94,6 +99,7 @@ class MenuFile extends Menu implements ActionListener {
     public void localeChanged() {
         this.setText(getFromLocale("fileMenu"));
         newi.setText(getFromLocale("fileNewItem"));
+        protoboard.setText(getFromLocale("fileNewProtoboard"));
         open.setText(getFromLocale("fileOpenItem"));
         openRecent.localeChanged();
         close.setText(getFromLocale("fileCloseItem"));
@@ -119,7 +125,12 @@ class MenuFile extends Menu implements ActionListener {
             ProjectActions.doNew(proj);
         } else if (src == open) {
             ProjectActions.doOpen(proj == null ? null : proj.getFrame().getCanvas(), proj);
-        } else if (src == close) {
+        } else if (src == protoboard) {
+        	ProjectActions.setTemplate();
+        	ProjectActions.doNew(proj);
+        	ProjectActions.resetTemplate();
+        } 
+        else if (src == close) {
             Frame frame = proj.getFrame();
             if (frame.confirmClose()) {
                 frame.dispose();
