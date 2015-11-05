@@ -9,12 +9,14 @@ import com.cburch.logisim.tools.Tool;
 
 import cl.uchile.dcc.cc4401.protosim.components.ProtosimAndGate;
 import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
+import cl.uchile.dcc.cc4401.protosim.components.ProtosimNotGate;
 
 public class Protosim extends Library {
 
     private static Tool[] TOOLS = {
             new AddTool(Breadboard.FACTORY),
             new AddTool(new ProtosimAndGate()),
+            new AddTool(new ProtosimNotGate()),
     };
 
     public Protosim() {
