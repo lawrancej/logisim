@@ -1,7 +1,6 @@
 package cl.uchile.dcc.cc4401.protosim.components;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,27 +13,35 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 
-public class ProtosimNotGate extends InstanceFactory {
+public class Resistor extends InstanceFactory {
 
     private List<Port> ports;
 
-    public ProtosimNotGate() {
-        super("ProtosimNotGate");
-        setIconName("protosimComponentGateNot.svg");
+    public Resistor() {
+        super("Resistor");
+        setIconName("protosimComponentResistor.svg");
 
         ports = new ArrayList<Port>();
-
+        /*
         // Upper ports
-        ports.add(new Port(0, 0, Port.INPUT, 1));
-        ports.add(new Port(10, 0, Port.INPUT, 1));
-        ports.add(new Port(20, 0, Port.OUTPUT, 1));
+        ports.add(new Port(0, 0, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(10, 0, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(20, 0, Port.OUTPUT, Breadboard.PORT_WIDTH));
 
         // Lower ports
-        ports.add(new Port(0, 30, Port.INPUT, 1));
-        ports.add(new Port(10, 30, Port.INPUT, 1));
-        ports.add(new Port(20, 30, Port.OUTPUT, 1));
+        ports.add(new Port(0, 30, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(10, 30, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(20, 30, Port.OUTPUT, Breadboard.PORT_WIDTH));
+        */
 
         setPorts(ports);
+    }
+
+    @Override
+    public String getDisplayName() {
+        // TODO: l10n this
+        // return getFromLocale("Resistance");
+        return "Resistor";
     }
 
     @Override
@@ -45,31 +52,22 @@ public class ProtosimNotGate extends InstanceFactory {
 
         Graphics g = painter.getGraphics();
 
-        // Chip
+        g.setColor(new Color(170, 126, 57));
+        g.fillRect(x+6, y - 4, 28, 8);
+        g.setColor(Color.red);
+        g.fillRect(x+10, y-4, 5, 8);
         g.setColor(Color.black);
-        g.fillRect(x - 2, y + 5, 24, 20);
-
-        // Text
-        g.setColor(Color.white);
-        g.setFont(new Font("Courier", Font.BOLD, 9));
-        g.drawString("NOT", x + 2, y + 17);
-
-        // Pins
+        g.fillRect(x+18, y-4, 5, 8);
         g.setColor(Color.gray);
-        g.fillRect(x - 2, y, 4, 5);
-        g.fillRect(x + 8, y, 4, 5);
-        g.fillRect(x + 18, y, 4, 5);
+        g.fillRect(x, y-2, 6, 4);
+        g.fillRect(x+34, y-2, 6, 4);
 
-        g.fillRect(x - 2, y + 25, 4, 5);
-        g.fillRect(x + 8, y + 25, 4, 5);
-        g.fillRect(x + 18, y + 25, 4, 5);
-        
         painter.drawPorts();
     }
 
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
-        return Bounds.create(0, 0, 20, 30);
+        return Bounds.create(0, -5, 40, 10);
     }
 
     @Override

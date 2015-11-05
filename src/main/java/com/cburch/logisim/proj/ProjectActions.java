@@ -107,13 +107,11 @@ public class ProjectActions {
         if (monitor != null) {
             monitor.setProgress(SplashScreen.PROJECT_CREATE);
         }
-
         Project ret = new Project(file);
 
         if (monitor != null) {
             monitor.setProgress(SplashScreen.FRAME_CREATE);
         }
-
         SwingUtilities.invokeLater(new CreateFrame(loader, ret, isStartup));
         return ret;
     }
@@ -165,11 +163,9 @@ public class ProjectActions {
         if (monitor != null) {
             monitor.setProgress(SplashScreen.FILE_LOAD);
         }
-
         Loader loader = new Loader(monitor);
         LogisimFile file = loader.openLogisimFile(source, substitutions);
         AppPreferences.updateRecentFile(source);
-
         return completeProject(monitor, loader, file, false);
     }
 
@@ -185,16 +181,25 @@ public class ProjectActions {
             chooser = JFileChoosers.create();
         }
         chooser.setFileFilter(Loader.LOGISIM_FILTER);
-
         int returnVal = chooser.showOpenDialog(parent);
         if (returnVal != JFileChooser.APPROVE_OPTION) {
             return;
         }
-
         File selected = chooser.getSelectedFile();
+        System.out.println("9"+selected.toString());
         if (selected != null) {
             doOpen(parent, baseProject, selected);
         }
+    }
+    /*
+     * Method to open directly a breadboard configuration , but for the moment this method isn't used
+     * open breadboard with a template configuration is more efficiently 
+     */
+    public static void doOpenProtoboard(Component parent, Project baseProject) {
+    	JFileChooser chooser =new JFileChooser();
+    	File selected = chooser.getCurrentDirectory();
+        File selector = new File(selected.toString()+"/protoboard.circ");
+        doOpen(parent, baseProject, selector);
     }
 
     public static Project doOpen(Component parent,
@@ -365,5 +370,25 @@ public class ProjectActions {
 
         }
         System.exit(0);
+    }
+    
+    /*
+     * Method to open directly a breadboard configuration with a template configuration 
+     */
+    public static void setTemplate(){
+    	JFileChooser chooser =new JFileChooser();
+    	File selected = chooser.getCurrentDirectory();
+        File selector = new File(selected.toString()+"/breadboard.circ");
+    	AppPreferences.setTemplateFile(selector);
+    	AppPreferences.setTemplateType(AppPreferences.TEMPLATE_CUSTOM);
+    	System.out.println(""+AppPreferences.TEMPLATE_CUSTOM);
+    }
+    
+    /*
+     * Method to reset to default the template configuration 
+     */
+    public static void resetTemplate(){
+    	AppPreferences.getEmptyTemplate();
+    	AppPreferences.setTemplateType(AppPreferences.TEMPLATE_PLAIN);
     }
 }

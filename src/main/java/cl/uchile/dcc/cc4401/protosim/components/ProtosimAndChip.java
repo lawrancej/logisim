@@ -14,27 +14,34 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 
-public class ProtosimAndGate extends InstanceFactory {
+public class ProtosimAndChip extends InstanceFactory {
 
     private List<Port> ports;
 
-    public ProtosimAndGate() {
-        super("ProtosimAndGate");
-        setIconName("protosimComponentGateAnd.svg");
+    public ProtosimAndChip() {
+        super("ProtosimAndChip");
+        setIconName("protosimComponentChipAnd.svg");
 
         ports = new ArrayList<Port>();
 
         // Upper ports
-        ports.add(new Port(0, 0, Port.INPUT, 1));
-        ports.add(new Port(10, 0, Port.INPUT, 1));
-        ports.add(new Port(20, 0, Port.OUTPUT, 1));
+        ports.add(new Port(0, 0, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(10, 0, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(20, 0, Port.OUTPUT, Breadboard.PORT_WIDTH));
 
         // Lower ports
-        ports.add(new Port(0, 30, Port.INPUT, 1));
-        ports.add(new Port(10, 30, Port.INPUT, 1));
-        ports.add(new Port(20, 30, Port.OUTPUT, 1));
+        ports.add(new Port(0, 30, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(10, 30, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(20, 30, Port.OUTPUT, Breadboard.PORT_WIDTH));
 
         setPorts(ports);
+    }
+
+    @Override
+    public String getDisplayName() {
+        // TODO: l10n this
+        // return getFromLocale("andChip");
+        return "AND Chip";
     }
 
     @Override

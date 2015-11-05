@@ -27,10 +27,13 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.Instance;
+import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.std.wiring.PullResistor;
 import com.cburch.logisim.std.wiring.Tunnel;
 import com.cburch.logisim.util.GraphicsUtil;
+import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
+
 
 class CircuitWires {
     static class SplitterData {
@@ -156,6 +159,8 @@ class CircuitWires {
     // of Components with PullResistor factory
     private HashSet<Component> pulls = new HashSet<Component>();
     final CircuitPoints points = new CircuitPoints();
+    // of Components with Breadboard
+    private HashSet<Component> breadboards = new HashSet<Component>();
 
     // derived data
     private Bounds bounds = Bounds.EMPTY_BOUNDS;
@@ -269,7 +274,10 @@ class CircuitWires {
             } else if (factory instanceof PullResistor) {
                 pulls.add(comp);
                 comp.getAttributeSet().addAttributeListener(tunnelListener);
+            } else if(factory instanceof Breadboard){
+            	breadboards.add(comp);
             }
+            
         }
         if (added) {
             points.add(comp);
@@ -291,7 +299,10 @@ class CircuitWires {
             } else if (factory instanceof PullResistor) {
                 pulls.remove(comp);
                 comp.getAttributeSet().removeAttributeListener(tunnelListener);
+            } else if (factory instanceof Breadboard){
+            	breadboards.remove(comp);
             }
+            
         }
         points.remove(comp);
         voidBundleMap();
@@ -623,6 +634,7 @@ class CircuitWires {
         // create bundles corresponding to wires and tunnels
         connectWires(ret);
         connectTunnels(ret);
+        connectBreadboards(ret);
         connectPullResistors(ret);
 
         // merge any WireBundle objects united by previous steps
@@ -814,6 +826,57 @@ class CircuitWires {
             b.addPullValue(PullResistor.getPullValue(instance));
         }
     }
+    
+    private void connectBreadboards(BundleMap ret) {
+        
+    	for(Component comp : breadboards){
+        	
+        	List<Port> ports=(((Breadboard) comp.getFactory()).getPorts());
+        	HashMap<Port, Integer> connected=(((Breadboard) comp.getFactory()).getConnected());
+        
+	        HashMap<Integer,ArrayList<Location>> portSets = new HashMap<Integer,ArrayList<Location>>();
+	        
+	        for (Port port : ports) {
+	            if (!((connected.get(port))==(null))) {
+	                ArrayList<Location> portSet = portSets.get(connected.get(port));
+	                if (portSet == null) {
+	                    portSet = new ArrayList<Location>(3);
+	                    portSets.put(connected.get(port), portSet);
+	                }
+	                portSet.add(Location.create(comp.getLocation().getX()+port.getDx(), comp.getLocation().getY()+port.getDy()));
+	            }
+	        }
+	        
+	        for (ArrayList<Location> portSet : portSets.values()) {
+	            WireBundle foundBundle = null;
+	            Location foundLocation = null;
+	            for (Location loc : portSet) {
+	                WireBundle b = ret.getBundleAt(loc);
+	                if (b != null) {
+	                    foundBundle = b;
+	                    foundLocation = loc;
+	                    break;
+	                }
+	            }
+	            if (foundBundle == null) {
+	                foundLocation = portSet.get(0);
+	                foundBundle = ret.createBundleAt(foundLocation);
+	            }
+	            for (Location loc : portSet) {
+	                if (loc != foundLocation) {
+	                    WireBundle b = ret.getBundleAt(loc);
+	                    if (b == null) {
+	                        foundBundle.points.add(loc);
+	                        ret.setBundleAt(loc, foundBundle);
+	                    } else {
+	                        b.unite(foundBundle);
+	                    }
+	                }
+	            }
+	        }
+        }
+    }
+    
 
     private Value getThreadValue(CircuitState state, WireThread t) {
         Value ret = Value.UNKNOWN;
