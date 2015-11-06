@@ -23,7 +23,7 @@ public class Protosim extends Library {
     private static Tool[] TOOLS = {
             new AddTool(Breadboard.FACTORY),
             new AddTool(NotChip.FACTORY),
-            new AddTool(new AndChip()),
+            new AddTool(AndChip.FACTORY),
             new AddTool(Resistor.FACTORY),
     };
 

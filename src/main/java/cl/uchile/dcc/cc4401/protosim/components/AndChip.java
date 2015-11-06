@@ -7,18 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cburch.logisim.data.AttributeSet;
+import com.cburch.logisim.data.BitWidth;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
+import com.cburch.logisim.data.Value;
 import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 
-public class ProtosimAndChip extends InstanceFactory {
+public class AndChip extends InstanceFactory {
+	
+	public static InstanceFactory FACTORY = new AndChip();
 
     private List<Port> ports;
 
-    public ProtosimAndChip() {
+    public AndChip() {
         super("ProtosimAndChip");
         setIconName("protosimComponentChipAnd.svg");
 
@@ -81,6 +85,26 @@ public class ProtosimAndChip extends InstanceFactory {
 
     @Override
     public void propagate(InstanceState state) {
-        // TODO Auto-generated method stub
+    	setOutputValue(state, 0, 1, 2);
+    	setOutputValue(state, 3, 4, 5);
+    }
+    
+    private void setOutputValue(InstanceState state, int portAIndex, int portBIndex, int portOutIndex) {
+        Value valueA = state.getPort(portAIndex);
+        Value valueB = state.getPort(portBIndex);
+        
+        Value result;
+        if (valueA.isUnknown() || valueB.isUnknown()) {
+        	result = Value.createKnown(BitWidth.create(Breadboard.PORT_WIDTH), 0);
+        } else {
+            int voltageA = valueA.toIntValue();
+            int voltageB = valueB.toIntValue();
+
+            result = Value.createKnown(
+            		BitWidth.create(Breadboard.PORT_WIDTH),
+            		(voltageA != 0 && voltageB != 0) ? Math.min(voltageA, voltageB) : 0);
+        }
+
+        state.setPort(portOutIndex, result, Breadboard.DELAY);
     }
 }
