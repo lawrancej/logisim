@@ -14,6 +14,8 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 
 public class Resistor extends InstanceFactory {
+	
+	public static InstanceFactory FACTORY = new Resistor();
 
     private List<Port> ports;
 

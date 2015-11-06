@@ -22,7 +22,7 @@ public class Clock extends InstanceFactory {
 
     public Clock() {
         super("Clock");
-        this.setIcon(Icons.getIcon("proto_clock.svg"));
+        this.setIcon(Icons.getIcon("protosimComponentClock.svg"));
         
         List<Port> ports = new ArrayList<Port>();
         

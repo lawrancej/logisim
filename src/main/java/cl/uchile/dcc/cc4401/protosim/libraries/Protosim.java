@@ -7,12 +7,9 @@ import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
 import com.cburch.logisim.tools.Tool;
 
-import cl.uchile.dcc.cc4401.protosim.components.ProtosimAndChip;
-import cl.uchile.dcc.cc4401.protosim.components.Switch;
+import cl.uchile.dcc.cc4401.protosim.components.AndChip;
 import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
-import cl.uchile.dcc.cc4401.protosim.components.Clock;
-import cl.uchile.dcc.cc4401.protosim.components.Led;
-import cl.uchile.dcc.cc4401.protosim.components.ProtosimNotChip;
+import cl.uchile.dcc.cc4401.protosim.components.NotChip;
 import cl.uchile.dcc.cc4401.protosim.components.Resistor;
 
 
@@ -25,14 +22,9 @@ public class Protosim extends Library {
 	// Available tools
     private static Tool[] TOOLS = {
             new AddTool(Breadboard.FACTORY),
-            new AddTool(Clock.FACTORY),
-            new AddTool(Led.FACTORY),
-            new AddTool(new ProtosimNotChip()),
-            new AddTool(new ProtosimAndChip()),
-            new AddTool(Clock.FACTORY),
-            new AddTool(Led.FACTORY),
-            new AddTool(Switch.FACTORY),
-            new AddTool(new Resistor()),
+            new AddTool(NotChip.FACTORY),
+            new AddTool(new AndChip()),
+            new AddTool(Resistor.FACTORY),
     };
 
     public Protosim() {

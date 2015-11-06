@@ -48,6 +48,7 @@ public class Switch extends InstanceFactory {
         ports = new ArrayList<Port>();
         connected = new HashMap<Port, Integer>();
         
+        /*
         setAttributes(new Attribute[] {
                 StdAttr.FACING, Io.ATTR_COLOR,
                 StdAttr.LABEL, Io.ATTR_LABEL_LOC,
@@ -57,6 +58,8 @@ public class Switch extends InstanceFactory {
                 "", Io.LABEL_CENTER,
                 StdAttr.DEFAULT_LABEL_FONT, Color.BLACK
             });
+        */     
+       
         setFacingAttribute(StdAttr.FACING);
         setIconName("protosimComponentSwitch.svg");
         //setPorts(new Port[] { new Port(0, 0, Port.OUTPUT, 1) });
@@ -103,15 +106,18 @@ public class Switch extends InstanceFactory {
 
     @Override
     protected void instanceAttributeChanged(Instance instance, Attribute<?> attr) {
+    	/*
         if (attr == StdAttr.FACING) {
             instance.recomputeBounds();
             computeTextField(instance);
         } else if (attr == Io.ATTR_LABEL_LOC) {
             computeTextField(instance);
         }
+        */
     }
 
     private void computeTextField(Instance instance) {
+    	/*
         Direction facing = instance.getAttributeValue(StdAttr.FACING);
         Object labelLoc = instance.getAttributeValue(Io.ATTR_LABEL_LOC);
 
@@ -148,6 +154,7 @@ public class Switch extends InstanceFactory {
 
         instance.setTextField(StdAttr.LABEL, StdAttr.LABEL_FONT,
                 x, y, halign, valign);
+        */
     }
 
     @Override
@@ -167,6 +174,7 @@ public class Switch extends InstanceFactory {
 
     @Override
     public void paintInstance(InstancePainter painter) {
+    	/*
         Bounds bds = painter.getBounds();
         int x = bds.getX();
         int y = bds.getY();
@@ -237,10 +245,11 @@ public class Switch extends InstanceFactory {
         }
 
         g.translate(depress, depress);
-        g.setColor(painter.getAttributeValue(Io.ATTR_LABEL_COLOR));
+//        g.setColor(painter.getAttributeValue(Io.ATTR_LABEL_COLOR));
         painter.drawLabel();
         g.translate(-depress, -depress);
         painter.drawPorts();
+        */
     }
 
     public static class Poker extends InstancePoker {

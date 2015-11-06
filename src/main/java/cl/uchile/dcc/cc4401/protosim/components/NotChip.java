@@ -14,13 +14,15 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 
-public class ProtosimNotChip extends InstanceFactory {
+public class NotChip extends InstanceFactory {
+	
+	public static InstanceFactory FACTORY = new NotChip();
 
     private List<Port> ports;
 
-    public ProtosimNotChip() {
+    public NotChip() {
         super("ProtosimNotChip");
-        setIconName("protosimComponentChipNot.svg");
+        setIconName("protosimComponentChipAnd.svg");
 
         ports = new ArrayList<Port>();
 
