@@ -22,3 +22,4 @@ bin/
 
 # OS specific
 Thumbs.db
+*.exe
