@@ -31,7 +31,7 @@ public class Protosim extends Library {
             new AddTool(AndChip.FACTORY),
             new AddTool(Resistor.FACTORY),
             //new AddTool(Switch.FACTORY),
-            //new AddTool(Led.FACTORY),
+            new AddTool(Led.FACTORY),
             new AddTool(Clock.FACTORY),
             new AddTool(NandChip.FACTORY),
             new AddTool(OrChip.FACTORY),
