@@ -1,6 +1,7 @@
 package cl.uchile.dcc.cc4401.protosim.components;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,31 +25,19 @@ public class Led extends InstanceFactory {
         super("Led");
         this.setIcon(Icons.getIcon("protosimComponentLed.svg"));
         
-        List<Port> ports = new ArrayList<Port>();
-        
-        for (int i = 0; i <= 64 * 10; i += 10) {
-            for (int j = 0; j < 10; j += 10) {
-                ports.add(new Port(10 + i, 10 + j, Port.INOUT, 1));
-                ports.add(new Port(10 + i, 20 + j, Port.INOUT, 1));
-                
-                ports.add(new Port(10 + i, 170 + j, Port.INOUT, 1));
-                ports.add(new Port(10 + i, 180 + j, Port.INOUT, 1));
-            }
-        }
-        
-        for (int i = 0; i <= 64 * 10; i += 10) {
-            for (int j = 0; j < 4 * 10; j += 10) {
-                ports.add(new Port(10 + i, 50 + j, Port.INOUT, 1));
-                ports.add(new Port(10 + i, 110 + j, Port.INOUT, 1));
-            }
-        }
-                
+        ports = new ArrayList<Port>();
+
+        // Lower ports
+        ports.add(new Port(0, 20, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(10, 20, Port.INPUT, Breadboard.PORT_WIDTH));
+
+
         setPorts(ports);
     }
     
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
-        return Bounds.create(0, 0, 660, 190);
+    	return Bounds.create(0, 0, 20, 30);
     }
 
     @Override
@@ -58,8 +47,18 @@ public class Led extends InstanceFactory {
         int y = loc.getY();
 
         Graphics g = painter.getGraphics();
+        
+
+        // Chip
         g.setColor(Color.black);
-        g.drawRect(x, y, 660, 190);
+        g.fillRect(x - 5, y + 5, 20, 5);
+
+
+        // Pins
+        g.setColor(Color.gray);
+ 
+        g.fillRect(x - 2, y + 10, 4, 10);
+        g.fillRect(x + 8, y + 10, 4, 10);
 
         painter.drawPorts();
     }
