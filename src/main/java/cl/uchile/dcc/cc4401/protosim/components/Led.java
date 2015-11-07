@@ -13,6 +13,7 @@ import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
+import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
 
 public class Led extends InstanceFactory {
@@ -37,7 +38,7 @@ public class Led extends InstanceFactory {
     
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
-    	return Bounds.create(0, 0, 20, 30);
+    	return Bounds.create(-6, -6, 20, 25);
     }
 
     @Override
@@ -49,9 +50,20 @@ public class Led extends InstanceFactory {
         Graphics g = painter.getGraphics();
         
 
+        
+        // fill if electricity is flowing 
+        // TODO : set the on and of
+        g.setColor(Color.green);
+        g.fillOval(x-1, y - 4, 12, 12);
+        
+        
         // Chip
         g.setColor(Color.black);
         g.fillRect(x - 5, y + 5, 20, 5);
+        GraphicsUtil.drawCenteredArc(g, x+4, y+1, 7, 0, 180);
+        g.drawLine(x - 3, y + 5, x - 3, y + 1);
+        g.drawLine(x + 11, y + 5, x + 11, y + 1);
+        
 
 
         // Pins
