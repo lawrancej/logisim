@@ -15,14 +15,14 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.util.Icons;
 
-public class Clock extends InstanceFactory {
+public class NandChip extends InstanceFactory {
     
-    public static InstanceFactory FACTORY = new Clock();
+    public static InstanceFactory FACTORY = new NandChip();
     
 
-    public Clock() {
-        super("Clock");
-        this.setIcon(Icons.getIcon("protosimComponentClock.svg"));   
+    public NandChip() {
+        super("Nand");
+        this.setIcon(Icons.getIcon("protosimComponentChipNand.svg"));   
     }
     
     @Override
@@ -45,7 +45,7 @@ public class Clock extends InstanceFactory {
         // Text
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.BOLD, 9));
-        g.drawString("CLK", x + 2, y + 17);
+        g.drawString("Nand", x , y + 17);
 
         // Pins
         g.setColor(Color.gray);

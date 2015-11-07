@@ -14,34 +14,36 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 
-public class ProtosimAndChip extends InstanceFactory {
+public class NotChip extends InstanceFactory {
+	
+	public static InstanceFactory FACTORY = new NotChip();
 
     private List<Port> ports;
 
-    public ProtosimAndChip() {
-        super("ProtosimAndChip");
+    public NotChip() {
+        super("ProtosimNotChip");
         setIconName("protosimComponentChipAnd.svg");
 
         ports = new ArrayList<Port>();
 
         // Upper ports
-        ports.add(new Port(0, 0, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(10, 0, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(20, 0, Port.OUTPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(0, 0, Port.INPUT, 1));
+        ports.add(new Port(10, 0, Port.INPUT, 1));
+        ports.add(new Port(20, 0, Port.OUTPUT, 1));
 
         // Lower ports
-        ports.add(new Port(0, 30, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(10, 30, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(20, 30, Port.OUTPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(0, 30, Port.INPUT, 1));
+        ports.add(new Port(10, 30, Port.INPUT, 1));
+        ports.add(new Port(20, 30, Port.OUTPUT, 1));
 
         setPorts(ports);
     }
-
+    
     @Override
     public String getDisplayName() {
         // TODO: l10n this
         // return getFromLocale("andChip");
-        return "AND Chip";
+        return "NOT Chip";
     }
 
     @Override
@@ -59,7 +61,7 @@ public class ProtosimAndChip extends InstanceFactory {
         // Text
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.BOLD, 9));
-        g.drawString("AND", x + 2, y + 17);
+        g.drawString("NOT", x + 2, y + 17);
 
         // Pins
         g.setColor(Color.gray);
