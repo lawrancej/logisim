@@ -24,17 +24,10 @@ public class Resistor extends InstanceFactory {
         setIconName("protosimComponentResistor.svg");
 
         ports = new ArrayList<Port>();
-        /*
-        // Upper ports
-        ports.add(new Port(0, 0, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(10, 0, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(20, 0, Port.OUTPUT, Breadboard.PORT_WIDTH));
 
-        // Lower ports
-        ports.add(new Port(0, 30, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(10, 30, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(20, 30, Port.OUTPUT, Breadboard.PORT_WIDTH));
-        */
+        ports.add(new Port(0, 0, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(40, 0, Port.OUTPUT, Breadboard.PORT_WIDTH));
+
 
         setPorts(ports);
     }
