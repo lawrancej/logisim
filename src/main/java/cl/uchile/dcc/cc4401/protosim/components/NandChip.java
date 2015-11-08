@@ -13,32 +13,21 @@ import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
 
-public class Led extends InstanceFactory {
+public class NandChip extends InstanceFactory {
     
-    public static InstanceFactory FACTORY = new Led();
+    public static InstanceFactory FACTORY = new NandChip();
     
-    List<Port> ports;
 
-    public Led() {
-        super("Led");
-        this.setIcon(Icons.getIcon("protosimComponentLed.svg"));
-        
-        ports = new ArrayList<Port>();
-
-        // Lower ports
-        ports.add(new Port(0, 20, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(10, 20, Port.INPUT, Breadboard.PORT_WIDTH));
-
-
-        setPorts(ports);
+    public NandChip() {
+        super("Nand");
+        this.setIcon(Icons.getIcon("protosimComponentChipNand.svg"));   
     }
     
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
-    	return Bounds.create(-6, -6, 20, 25);
+        return Bounds.create(0, 0, 20, 30);
     }
 
     @Override
@@ -48,33 +37,28 @@ public class Led extends InstanceFactory {
         int y = loc.getY();
 
         Graphics g = painter.getGraphics();
-        
 
-        
-        // fill if electricity is flowing 
-        // TODO : set the on and of
-        g.setColor(Color.green);
-        g.fillOval(x-1, y - 4, 12, 12);
-        
-        
         // Chip
         g.setColor(Color.black);
-        g.fillRect(x - 5, y + 5, 20, 5);
-        GraphicsUtil.drawCenteredArc(g, x+4, y+1, 7, 0, 180);
-        g.drawLine(x - 3, y + 5, x - 3, y + 1);
-        g.drawLine(x + 11, y + 5, x + 11, y + 1);
-        
+        g.fillRect(x - 2, y + 5, 24, 20);
 
+        // Text
+        g.setColor(Color.white);
+        g.setFont(new Font("Courier", Font.BOLD, 9));
+        g.drawString("Nand", x , y + 17);
 
         // Pins
         g.setColor(Color.gray);
- 
-        g.fillRect(x - 2, y + 10, 4, 10);
-        g.fillRect(x + 8, y + 10, 4, 10);
+        g.fillRect(x - 2, y, 4, 5);
+        g.fillRect(x + 8, y, 4, 5);
+        g.fillRect(x + 18, y, 4, 5);
 
+        g.fillRect(x - 2, y + 25, 4, 5);
+        g.fillRect(x + 8, y + 25, 4, 5);
+        g.fillRect(x + 18, y + 25, 4, 5);
+        
         painter.drawPorts();
     }
-
     @Override
     public void propagate(InstanceState state) {
         // TODO Auto-generated method stub  

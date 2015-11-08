@@ -33,6 +33,7 @@ import com.cburch.logisim.std.wiring.PullResistor;
 import com.cburch.logisim.std.wiring.Tunnel;
 import com.cburch.logisim.util.GraphicsUtil;
 import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
+import cl.uchile.dcc.cc4401.protosim.components.Switch;
 
 
 class CircuitWires {
@@ -161,6 +162,8 @@ class CircuitWires {
     final CircuitPoints points = new CircuitPoints();
     // of Components with Breadboard
     private HashSet<Component> breadboards = new HashSet<Component>();
+    // of Components with Switch
+    private HashSet<Component> switchs = new HashSet<Component>();
 
     // derived data
     private Bounds bounds = Bounds.EMPTY_BOUNDS;
@@ -276,6 +279,8 @@ class CircuitWires {
                 comp.getAttributeSet().addAttributeListener(tunnelListener);
             } else if(factory instanceof Breadboard){
             	breadboards.add(comp);
+            }else if(factory instanceof Switch){
+            	switchs.add(comp);
             }
             
         }
@@ -301,6 +306,8 @@ class CircuitWires {
                 comp.getAttributeSet().removeAttributeListener(tunnelListener);
             } else if (factory instanceof Breadboard){
             	breadboards.remove(comp);
+            }else if (factory instanceof Switch){
+            	switchs.remove(comp);
             }
             
         }
@@ -635,6 +642,7 @@ class CircuitWires {
         connectWires(ret);
         connectTunnels(ret);
         connectBreadboards(ret);
+        connectSwitches(ret);
         connectPullResistors(ret);
 
         // merge any WireBundle objects united by previous steps
@@ -877,6 +885,56 @@ class CircuitWires {
         }
     }
     
+    
+ private void connectSwitches(BundleMap ret) {
+        
+    	for(Component comp : switchs){
+        	
+        	List<Port> ports=(((Switch) comp.getFactory()).getPorts());
+        	HashMap<Port, Integer> connected=(((Switch) comp.getFactory()).getConnected());
+        
+	        HashMap<Integer,ArrayList<Location>> portSets = new HashMap<Integer,ArrayList<Location>>();
+	        
+	        for (Port port : ports) {
+	            if (!((connected.get(port))==(null))) {
+	                ArrayList<Location> portSet = portSets.get(connected.get(port));
+	                if (portSet == null) {
+	                    portSet = new ArrayList<Location>(3);
+	                    portSets.put(connected.get(port), portSet);
+	                }
+	                portSet.add(Location.create(comp.getLocation().getX()+port.getDx(), comp.getLocation().getY()+port.getDy()));
+	            }
+	        }
+	        
+	        for (ArrayList<Location> portSet : portSets.values()) {
+	            WireBundle foundBundle = null;
+	            Location foundLocation = null;
+	            for (Location loc : portSet) {
+	                WireBundle b = ret.getBundleAt(loc);
+	                if (b != null) {
+	                    foundBundle = b;
+	                    foundLocation = loc;
+	                    break;
+	                }
+	            }
+	            if (foundBundle == null) {
+	                foundLocation = portSet.get(0);
+	                foundBundle = ret.createBundleAt(foundLocation);
+	            }
+	            for (Location loc : portSet) {
+	                if (loc != foundLocation) {
+	                    WireBundle b = ret.getBundleAt(loc);
+	                    if (b == null) {
+	                        foundBundle.points.add(loc);
+	                        ret.setBundleAt(loc, foundBundle);
+	                    } else {
+	                        b.unite(foundBundle);
+	                    }
+	                }
+	            }
+	        }
+        }
+    }
 
     private Value getThreadValue(CircuitState state, WireThread t) {
         Value ret = Value.UNKNOWN;

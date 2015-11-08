@@ -13,21 +13,37 @@ import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.util.Icons;
 
-public class Clock extends InstanceFactory {
-    
-    public static InstanceFactory FACTORY = new Clock();
-    
+public class NotChip extends InstanceFactory {
+	
+	public static InstanceFactory FACTORY = new NotChip();
 
-    public Clock() {
-        super("Clock");
-        this.setIcon(Icons.getIcon("protosimComponentClock.svg"));   
+    private List<Port> ports;
+
+    public NotChip() {
+        super("ProtosimNotChip");
+        setIconName("protosimComponentChipAnd.svg");
+
+        ports = new ArrayList<Port>();
+
+        // Upper ports
+        ports.add(new Port(0, 0, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(10, 0, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(20, 0, Port.OUTPUT, Breadboard.PORT_WIDTH));
+
+        // Lower ports
+        ports.add(new Port(0, 30, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(10, 30, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(20, 30, Port.OUTPUT, Breadboard.PORT_WIDTH));
+
+        setPorts(ports);
     }
     
     @Override
-    public Bounds getOffsetBounds(AttributeSet attrs) {
-        return Bounds.create(0, 0, 20, 30);
+    public String getDisplayName() {
+        // TODO: l10n this
+        // return getFromLocale("andChip");
+        return "NOT Chip";
     }
 
     @Override
@@ -45,7 +61,7 @@ public class Clock extends InstanceFactory {
         // Text
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.BOLD, 9));
-        g.drawString("CLK", x + 2, y + 17);
+        g.drawString("NOT", x + 2, y + 17);
 
         // Pins
         g.setColor(Color.gray);
@@ -59,9 +75,14 @@ public class Clock extends InstanceFactory {
         
         painter.drawPorts();
     }
+
     @Override
-    public void propagate(InstanceState state) {
-        // TODO Auto-generated method stub  
+    public Bounds getOffsetBounds(AttributeSet attrs) {
+        return Bounds.create(0, 0, 20, 30);
     }
 
+    @Override
+    public void propagate(InstanceState state) {
+        // TODO Auto-generated method stub
+    }
 }

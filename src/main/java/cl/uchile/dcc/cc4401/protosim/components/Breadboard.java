@@ -17,6 +17,7 @@ import com.cburch.logisim.util.Icons;
 public class Breadboard extends InstanceFactory {
 
 	public static final int PORT_WIDTH = 32;
+	public static final int DELAY = 1;
 
 	public static InstanceFactory FACTORY = new Breadboard();
 	
