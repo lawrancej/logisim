@@ -22,7 +22,7 @@ public class NotChip extends InstanceFactory {
 
     public NotChip() {
         super("ProtosimNotChip");
-        setIconName("protosimComponentChipAnd.svg");
+        setIconName("protosimComponentChipNot.svg");
 
         ports = new ArrayList<Port>();
 
