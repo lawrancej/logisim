@@ -1,7 +1,6 @@
 package cl.uchile.dcc.cc4401.protosim.components;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
