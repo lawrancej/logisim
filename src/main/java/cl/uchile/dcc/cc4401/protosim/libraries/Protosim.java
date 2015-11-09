@@ -10,6 +10,7 @@ import com.cburch.logisim.tools.Tool;
 import cl.uchile.dcc.cc4401.protosim.components.AndChip;
 import cl.uchile.dcc.cc4401.protosim.components.Breadboard;
 import cl.uchile.dcc.cc4401.protosim.components.Clock;
+import cl.uchile.dcc.cc4401.protosim.components.FlipFlopChip;
 import cl.uchile.dcc.cc4401.protosim.components.Led;
 import cl.uchile.dcc.cc4401.protosim.components.NandChip;
 import cl.uchile.dcc.cc4401.protosim.components.NotChip;
@@ -35,6 +36,7 @@ public class Protosim extends Library {
             new AddTool(Clock.FACTORY),
             new AddTool(NandChip.FACTORY),
             new AddTool(OrChip.FACTORY),
+            new AddTool(FlipFlopChip.FACTORY)
     };
 
     public Protosim() {
