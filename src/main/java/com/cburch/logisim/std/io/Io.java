@@ -16,9 +16,9 @@ import com.cburch.logisim.tools.Tool;
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class Io extends Library {
-    static final AttributeOption LABEL_CENTER = new AttributeOption("center", "center", getFromLocale("ioLabelCenter"));
+    public static final AttributeOption LABEL_CENTER = new AttributeOption("center", "center", getFromLocale("ioLabelCenter"));
 
-    static final Attribute<Color> ATTR_COLOR = Attributes.forColor("color",
+    public static final Attribute<Color> ATTR_COLOR = Attributes.forColor("color",
             getFromLocale("ioColorAttr"));
     static final Attribute<Color> ATTR_ON_COLOR
         = Attributes.forColor("color", getFromLocale("ioOnColor"));
@@ -26,11 +26,11 @@ public class Io extends Library {
         = Attributes.forColor("offcolor", getFromLocale("ioOffColor"));
     static final Attribute<Color> ATTR_BACKGROUND
         = Attributes.forColor("bg", getFromLocale("ioBackgroundColor"));
-    static final Attribute<Object> ATTR_LABEL_LOC = Attributes.forOption("labelloc",
+    public static final Attribute<Object> ATTR_LABEL_LOC = Attributes.forOption("labelloc",
             getFromLocale("ioLabelLocAttr"),
             new Object[] { LABEL_CENTER, Direction.NORTH, Direction.SOUTH,
                 Direction.EAST, Direction.WEST });
-    static final Attribute<Color> ATTR_LABEL_COLOR = Attributes.forColor("labelcolor",
+    public static final Attribute<Color> ATTR_LABEL_COLOR = Attributes.forColor("labelcolor",
             getFromLocale("ioLabelColorAttr"));
     static final Attribute<Boolean> ATTR_ACTIVE = Attributes.forBoolean("active",
             getFromLocale("ioActiveAttr"));
