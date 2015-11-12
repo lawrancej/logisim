@@ -3,8 +3,6 @@ package cl.uchile.dcc.cc4401.protosim.components;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Bounds;
@@ -12,38 +10,21 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
+import com.cburch.logisim.util.Icons;
 
-public class NotChip extends InstanceFactory {
-	
-	public static InstanceFactory FACTORY = new NotChip();
+public class OrChip extends InstanceFactory {
+    
+    public static InstanceFactory FACTORY = new OrChip();
+    
 
-    private List<Port> ports;
-
-    public NotChip() {
-        super("ProtosimNotChip");
-        setIconName("protosimComponentChipNot.svg");
-
-        ports = new ArrayList<Port>();
-
-        // Upper ports
-        ports.add(new Port(0, 0, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(10, 0, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(20, 0, Port.OUTPUT, Breadboard.PORT_WIDTH));
-
-        // Lower ports
-        ports.add(new Port(0, 30, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(10, 30, Port.INPUT, Breadboard.PORT_WIDTH));
-        ports.add(new Port(20, 30, Port.OUTPUT, Breadboard.PORT_WIDTH));
-
-        setPorts(ports);
+    public OrChip() {
+        super("Or");
+        this.setIcon(Icons.getIcon("protosimComponentChipOr.svg"));   
     }
     
     @Override
-    public String getDisplayName() {
-        // TODO: l10n this
-        // return getFromLocale("andChip");
-        return "NOT Chip";
+    public Bounds getOffsetBounds(AttributeSet attrs) {
+        return Bounds.create(0, 0, 20, 30);
     }
 
     @Override
@@ -61,7 +42,7 @@ public class NotChip extends InstanceFactory {
         // Text
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.BOLD, 9));
-        g.drawString("NOT", x + 2, y + 17);
+        g.drawString("OR", x + 4, y + 17);
 
         // Pins
         g.setColor(Color.gray);
@@ -75,14 +56,9 @@ public class NotChip extends InstanceFactory {
         
         painter.drawPorts();
     }
-
-    @Override
-    public Bounds getOffsetBounds(AttributeSet attrs) {
-        return Bounds.create(0, 0, 20, 30);
-    }
-
     @Override
     public void propagate(InstanceState state) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub  
     }
+
 }

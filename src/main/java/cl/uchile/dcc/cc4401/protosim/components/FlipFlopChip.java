@@ -14,15 +14,15 @@ import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 
-public class NotChip extends InstanceFactory {
+public class FlipFlopChip extends InstanceFactory {
 	
-	public static InstanceFactory FACTORY = new NotChip();
+	public static InstanceFactory FACTORY = new FlipFlopChip();
 
     private List<Port> ports;
 
-    public NotChip() {
-        super("ProtosimNotChip");
-        setIconName("protosimComponentChipNot.svg");
+    public FlipFlopChip() {
+        super("FlipFlopChip");
+        setIconName("protosimComponentFlipFlop.svg");
 
         ports = new ArrayList<Port>();
 
@@ -38,12 +38,12 @@ public class NotChip extends InstanceFactory {
 
         setPorts(ports);
     }
-    
+
     @Override
     public String getDisplayName() {
         // TODO: l10n this
         // return getFromLocale("andChip");
-        return "NOT Chip";
+        return "Flip-Flop Chip";
     }
 
     @Override
@@ -60,8 +60,9 @@ public class NotChip extends InstanceFactory {
 
         // Text
         g.setColor(Color.white);
-        g.setFont(new Font("Courier", Font.BOLD, 9));
-        g.drawString("NOT", x + 2, y + 17);
+        g.setFont(new Font("Courier", Font.BOLD, 8));
+        g.drawString("FLIP", x, y + 13);
+        g.drawString("FLOP", x, y + 22);
 
         // Pins
         g.setColor(Color.gray);
@@ -83,6 +84,7 @@ public class NotChip extends InstanceFactory {
 
     @Override
     public void propagate(InstanceState state) {
-        // TODO Auto-generated method stub
+ 
     }
+    
 }
