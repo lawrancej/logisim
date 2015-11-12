@@ -1,7 +1,5 @@
 package cl.uchile.dcc.cc4401.protosim.components;
 
-import static com.cburch.logisim.util.LocaleString.getFromLocale;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -41,13 +39,11 @@ public class Switch extends InstanceFactory {
 	 * they are connected in the Switch
 	 */
 	private HashMap<Port, Integer> connected;
-     //BreadboardAttributes atts = new BreadboardAttributes();
     public Switch() {
         super("Switch");
         this.setIcon(Icons.getIcon("protosimComponentSwitch.svg"));
         ports = new ArrayList<Port>();
         connected = new HashMap<Port, Integer>();
-        
         
         setAttributes(new Attribute[] {
                 StdAttr.FACING, Io.ATTR_COLOR,
@@ -59,39 +55,24 @@ public class Switch extends InstanceFactory {
                 StdAttr.DEFAULT_LABEL_FONT, Color.BLACK
             });
             
-       
         setFacingAttribute(StdAttr.FACING);
         setIconName("protosimComponentSwitch.svg");
-        //setPorts(new Port[] { new Port(0, 0, Port.OUTPUT, 1) });
-        //ports.add(new Port(0, 0, Port.INOUT, 1)); //right port
-        //ports.add(new Port(-20, 0, Port.INOUT, 1));//left port
         setPorts(ports); 
         createAndConnectPorts();
         setInstancePoker(Poker.class);
         setInstanceLogger(Logger.class);
     }
     
+    /*This method creates the ports and connect an internal wiring between the two pins, when pressed, (still in development, but this is the idea)*/
     private void createAndConnectPorts() {
 		int pinGroup = 1;
 		for (int i = -20; i <= 0; i += 20) {
 			Port port = new Port( i, 0, Port.INOUT, PORT_WIDTH);
 			ports.add(port);
 			connected.put(port, pinGroup);
-			//System.out.println("crear y desconectar");
 		}
 	}
     
-   /* private void createAndDisconnectPorts() {
-		int pinGroup = 1;
-		for (int i = -20; i <= 0; i += 20) {
-			Port port = new Port( i, 0, Port.INOUT, PORT_WIDTH);
-			ports.add(port);
-			connected.put(port, pinGroup);
-			pinGroup++;
-		}
-	}
-    */
-   
     @Override
     public Bounds getOffsetBounds(AttributeSet attrs) {
         Direction facing = attrs.getValue(StdAttr.FACING);
@@ -154,21 +135,17 @@ public class Switch extends InstanceFactory {
 
         instance.setTextField(StdAttr.LABEL, StdAttr.LABEL_FONT,
                 x, y, halign, valign);
-        
     }
 
     @Override
     public void propagate(InstanceState state) {
         InstanceDataSingleton data = (InstanceDataSingleton) state.getData();
         Value val = data == null ? Value.FALSE : (Value) data.getValue();
-        //state.setPort(0, val, 1); //state of right port
-       //state.setPort(1, val, 1); //state of left port
       if (val.toString()=="1"){
         setPorts(ports); 
         createAndConnectPorts();
-        System.out.println("push press");
       }else{
-          System.out.println("push unpress");  
+         //DisconnectPorts (still in development, but this is the idea)//
       }
     }
 
