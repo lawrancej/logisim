@@ -22,7 +22,7 @@ public class Led extends InstanceFactory {
     List<Port> ports;
 
     public Led() {
-        super("Led");
+        super("LED");
         this.setIcon(Icons.getIcon("protosimComponentLed.svg"));
         
         ports = new ArrayList<Port>();
@@ -53,15 +53,15 @@ public class Led extends InstanceFactory {
         // fill if electricity is flowing 
         // TODO : set the on and of
         g.setColor(Color.green);
-        g.fillOval(x-1, y - 4, 12, 12);
+        g.fillOval(x - 2, y - 6, 14, 16);
         
         
         // Chip
         g.setColor(Color.black);
         g.fillRect(x - 5, y + 5, 20, 5);
-        GraphicsUtil.drawCenteredArc(g, x+4, y+1, 7, 0, 180);
-        g.drawLine(x - 3, y + 5, x - 3, y + 1);
-        g.drawLine(x + 11, y + 5, x + 11, y + 1);
+        GraphicsUtil.drawCenteredArc(g, x+5, y+1, 7, 0, 180);
+        g.drawLine(x - 2, y + 5, x - 2, y + 1);
+        g.drawLine(x + 12, y + 5, x + 12, y + 1);
         
 
 
