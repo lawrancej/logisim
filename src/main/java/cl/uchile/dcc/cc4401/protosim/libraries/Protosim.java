@@ -29,16 +29,19 @@ public class Protosim extends Library {
 	// Available tools
     private static Tool[] TOOLS = {
             new AddTool(Breadboard.FACTORY),
-            new AddTool(NotChip.FACTORY),
-            new AddTool(AndChip.FACTORY),
-            new AddTool(Resistor.FACTORY),
+            
             //new AddTool(Switch.FACTORY),
+            new AddTool(VoltageGenerator.FACTORY),
+            
+            new AddTool(Resistor.FACTORY),  
             new AddTool(Led.FACTORY),
             new AddTool(Clock.FACTORY),
-            new AddTool(NandChip.FACTORY),
-            new AddTool(OrChip.FACTORY),
             new AddTool(FlipFlopChip.FACTORY),
-            new AddTool(VoltageGenerator.FACTORY)
+            
+            new AddTool(NotChip.FACTORY),
+            new AddTool(AndChip.FACTORY),
+            new AddTool(OrChip.FACTORY),
+            new AddTool(NandChip.FACTORY),
     };
 
     public Protosim() {
