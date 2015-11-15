@@ -37,7 +37,7 @@ public class VoltageGenerator extends InstanceFactory {
     public String getDisplayName() {
         // TODO: l10n this
         // return getFromLocale("andChip");
-        return "VOLTAGE GENERATOR";
+        return "Voltage Generator";
     }
 
     @Override

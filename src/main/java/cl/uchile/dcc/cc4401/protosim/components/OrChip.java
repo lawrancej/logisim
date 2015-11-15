@@ -18,7 +18,7 @@ public class OrChip extends InstanceFactory {
     
 
     public OrChip() {
-        super("Or");
+        super("OR");
         this.setIcon(Icons.getIcon("protosimComponentChipOr.svg"));   
     }
     

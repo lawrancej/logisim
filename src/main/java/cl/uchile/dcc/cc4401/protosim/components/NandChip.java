@@ -18,7 +18,7 @@ public class NandChip extends InstanceFactory {
     
 
     public NandChip() {
-        super("Nand");
+        super("NAND");
         this.setIcon(Icons.getIcon("protosimComponentChipNand.svg"));   
     }
     
@@ -42,7 +42,7 @@ public class NandChip extends InstanceFactory {
         // Text
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.BOLD, 9));
-        g.drawString("Nand", x , y + 17);
+        g.drawString("NAND", x , y + 17);
 
         // Pins
         g.setColor(Color.gray);
