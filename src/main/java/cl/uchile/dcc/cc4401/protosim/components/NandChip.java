@@ -23,7 +23,7 @@ public class NandChip extends InstanceFactory {
     
 
     public NandChip() {
-        super("NAND");
+        super("NAND Chip");
         this.setIcon(Icons.getIcon("protosimComponentChipNand.svg")); 
         ports = new ArrayList<Port>();
 

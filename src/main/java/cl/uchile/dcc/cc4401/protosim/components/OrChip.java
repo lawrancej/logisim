@@ -21,10 +21,8 @@ public class OrChip extends InstanceFactory {
     
     private List<Port> ports;
 
-    
-
     public OrChip() {
-        super("OR");
+        super("OR Chip");
         this.setIcon(Icons.getIcon("protosimComponentChipOr.svg")); 
         ports = new ArrayList<Port>();
 

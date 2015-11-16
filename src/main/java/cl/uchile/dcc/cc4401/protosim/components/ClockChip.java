@@ -15,15 +15,14 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.util.Icons;
 
-public class Clock extends InstanceFactory {
+public class ClockChip extends InstanceFactory {
     
-    public static InstanceFactory FACTORY = new Clock();
+    public static InstanceFactory FACTORY = new ClockChip();
     
     private List<Port> ports;
-    
 
-    public Clock() {
-        super("Clock");
+    public ClockChip() {
+        super("Clock Chip");
         this.setIcon(Icons.getIcon("protosimComponentClock.svg")); 
         
         ports = new ArrayList<Port>();
