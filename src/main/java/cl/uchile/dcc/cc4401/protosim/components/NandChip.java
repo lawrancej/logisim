@@ -3,6 +3,8 @@ package cl.uchile.dcc.cc4401.protosim.components;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.data.Bounds;
@@ -10,16 +12,32 @@ import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.InstanceFactory;
 import com.cburch.logisim.instance.InstancePainter;
 import com.cburch.logisim.instance.InstanceState;
+import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.util.Icons;
 
 public class NandChip extends InstanceFactory {
     
     public static InstanceFactory FACTORY = new NandChip();
     
+    private List<Port> ports;
+    
 
     public NandChip() {
-        super("Nand");
-        this.setIcon(Icons.getIcon("protosimComponentChipNand.svg"));   
+        super("NAND");
+        this.setIcon(Icons.getIcon("protosimComponentChipNand.svg")); 
+        ports = new ArrayList<Port>();
+
+        // Upper ports
+        ports.add(new Port(0, 0, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(10, 0, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(20, 0, Port.OUTPUT, Breadboard.PORT_WIDTH));
+
+        // Lower ports
+        ports.add(new Port(0, 30, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(10, 30, Port.INPUT, Breadboard.PORT_WIDTH));
+        ports.add(new Port(20, 30, Port.OUTPUT, Breadboard.PORT_WIDTH));
+
+        setPorts(ports);
     }
     
     @Override
@@ -42,7 +60,7 @@ public class NandChip extends InstanceFactory {
         // Text
         g.setColor(Color.white);
         g.setFont(new Font("Courier", Font.BOLD, 9));
-        g.drawString("Nand", x , y + 17);
+        g.drawString("NAND", x , y + 17);
 
         // Pins
         g.setColor(Color.gray);
