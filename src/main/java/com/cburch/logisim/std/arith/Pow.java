@@ -42,8 +42,8 @@ public class Pow extends InstanceFactory {
         setIconName("pow.svg");
 
         Port[] ps = new Port[3];
-        ps[IN0]   = new Port(-40, -10, Port.INPUT,  StdAttr.WIDTH);
-        ps[IN1]   = new Port(-40,  10, Port.INPUT,  StdAttr.WIDTH);
+        ps[IN0]   = new Port(-40,  10, Port.INPUT,  StdAttr.WIDTH);
+        ps[IN1]   = new Port(-40, -10, Port.INPUT,  StdAttr.WIDTH);
         ps[OUT]   = new Port(  0,   0, Port.OUTPUT, StdAttr.WIDTH);
         ps[IN0].setToolTip(getFromLocale("powInputNumTip"));
         ps[IN1].setToolTip(getFromLocale("powInputExpTip"));
