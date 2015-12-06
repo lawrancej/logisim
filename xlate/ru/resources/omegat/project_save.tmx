@@ -3326,7 +3326,7 @@
     </tu>
     <tu>
       <tuv lang="EN">
-        <seg>Greater: 1 if A is greator than B</seg>
+        <seg>Greater: 1 if A is greater than B</seg>
       </tuv>
       <tuv lang="RU-RU" changedate="20100930T191812Z" changeid="lilovip">
         <seg>Больше: 1, если A больше, чем B</seg>
