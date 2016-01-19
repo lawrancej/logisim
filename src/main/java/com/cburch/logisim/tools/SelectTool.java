@@ -27,6 +27,7 @@ import com.cburch.logisim.gui.main.Canvas;
 import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.gui.main.SelectionActions;
 import com.cburch.logisim.gui.main.Selection.Event;
+import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Action;
 import com.cburch.logisim.proj.Project;
@@ -38,12 +39,14 @@ import com.cburch.logisim.tools.move.MoveGesture;
 import com.cburch.logisim.tools.move.MoveRequestListener;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import static com.cburch.logisim.util.LocaleString.*;
 
 public class SelectTool extends Tool {
@@ -237,15 +240,19 @@ public class SelectTool extends Tool {
         Collection<Component> in_sel = sel.getComponentsContaining(start, g);
         if (!in_sel.isEmpty()) {
             if ((e.getModifiers() & InputEvent.SHIFT_MASK) == 0) {
+                if (e.getClickCount() == 2) { //double click event
+                	PopUpLabelAction.triggerLabel(proj, sel, 
+                			e.getXOnScreen(), e.getYOnScreen());
+				}
                 setState(proj, MOVING);
                 proj.repaintCanvas();
                 return;
             }
             
             Action act = SelectionActions.drop(sel, in_sel);
-            if (act != null) {
-            	proj.doAction(act);
-            }
+			if (act != null) {
+				proj.doAction(act);
+			} 
         }
 
         // if the user clicks into a component outside selection, user
