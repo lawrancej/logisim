@@ -28,7 +28,7 @@ That is why its development must continue.
 
 ## Newest GitHub build
 If you just want to test the newest developer version to report issues or for new features, download it here.
-[![Build Status](http://mechtecs.tk:8080/job/LOGISIM/badge/icon)](http://mechtecs.tk:8080/job/LOGISIM/)
+[![Build Status](http://84.201.35.242:8080/job/LOGISIM/badge/icon)](http://mechtecs.tk:8080/job/LOGISIM/)
 [Download](http://84.201.35.242:8080/job/LOGISIM/)
 ## Getting started for developers
 
