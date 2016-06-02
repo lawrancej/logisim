@@ -149,7 +149,7 @@ public class AppPreferences {
     public static final PrefMonitor<String> DIALOG_DIRECTORY
         = create(new PrefMonitorString("dialogDirectory", ""));
 
-    public static final PrefMonitor<String> LOOK_AND_FEEL = create(new PrefMonitorString("lookAndFeel", UIManager.getSystemLookAndFeelClassName()));
+    public static final PrefMonitor<String> LOOK_AND_FEEL = create(new PrefMonitorString("lookAndFeel", "javax.swing.plaf.nimbus.NimbusLookAndFeel"));
     
     //
     // methods for accessing preferences
