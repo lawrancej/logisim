@@ -13,8 +13,8 @@ import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Value;
 
 @SuppressWarnings("serial")
-class SelectionList extends JList {
-    private class Model extends AbstractListModel
+class SelectionList extends JList<SelectionItem> {
+    private class Model extends AbstractListModel<SelectionItem>
             implements ModelListener {
         @Override
         public int getSize() {
@@ -22,7 +22,7 @@ class SelectionList extends JList {
         }
 
         @Override
-        public Object getElementAt(int index) {
+        public SelectionItem getElementAt(int index) {
             return selection.get(index);
         }
 
