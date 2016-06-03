@@ -3,17 +3,6 @@
 
 package com.cburch.logisim.gui.main;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Collections;
-import java.util.Set;
-
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.WidthIncompatibilityData;
@@ -30,11 +19,17 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.Tool;
 import com.cburch.logisim.util.GraphicsUtil;
 
+import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Collections;
+import java.util.Set;
+
 class CanvasPainter implements PropertyChangeListener {
     private static final Set<Component> NO_COMPONENTS = Collections.emptySet();
 
-    private Canvas canvas;
-    private GridPainter grid;
+    private final Canvas canvas;
+    private final GridPainter grid;
     private Component haloedComponent = null;
     private Circuit haloedCircuit = null;
     private WireSet highlightedWires = WireSet.EMPTY;
@@ -86,10 +81,10 @@ class CanvasPainter implements PropertyChangeListener {
         Bounds bds = c.getBounds(g).expand(7);
         int w = bds.getWidth();
         int h = bds.getHeight();
-        double a = Canvas.SQRT_2 * w;
-        double b = Canvas.SQRT_2 * h;
-        canvas.repaint((int) Math.round(bds.getX() + w/2.0 - a/2.0),
-            (int) Math.round(bds.getY() + h/2.0 - b/2.0),
+        double a = Canvas.SQRT_2 * (double) w;
+        double b = Canvas.SQRT_2 * (double) h;
+        canvas.repaint((int) Math.round((double) bds.getX() + (double) w /2.0 - a/2.0),
+            (int) Math.round((double) bds.getY() + (double) h /2.0 - b/2.0),
             (int) Math.round(a), (int) Math.round(b));
     }
 
@@ -161,10 +156,10 @@ class CanvasPainter implements PropertyChangeListener {
             Bounds bds = haloedComponent.getBounds(g).expand(5);
             int w = bds.getWidth();
             int h = bds.getHeight();
-            double a = Canvas.SQRT_2 * w;
-            double b = Canvas.SQRT_2 * h;
-            g.drawOval((int) Math.round(bds.getX() + w/2.0 - a/2.0),
-                (int) Math.round(bds.getY() + h/2.0 - b/2.0),
+            double a = Canvas.SQRT_2 * (double) w;
+            double b = Canvas.SQRT_2 * (double) h;
+            g.drawOval((int) Math.round((double) bds.getX() + (double) w /2.0 - a/2.0),
+                (int) Math.round((double) bds.getY() + (double) h /2.0 - b/2.0),
                 (int) Math.round(a), (int) Math.round(b));
             GraphicsUtil.switchToWidth(g, 1);
             g.setColor(Color.BLACK);
@@ -189,7 +184,7 @@ class CanvasPainter implements PropertyChangeListener {
         }
     }
 
-    private void drawWidthIncompatibilityData(Graphics base, Graphics g, Project proj) {
+    private static void drawWidthIncompatibilityData(Graphics base, Graphics g, Project proj) {
         Set<WidthIncompatibilityData> exceptions;
         exceptions = proj.getCurrentCircuit().getWidthIncompatibilityData();
         if (exceptions == null || exceptions.size() == 0) {
@@ -219,7 +214,7 @@ class CanvasPainter implements PropertyChangeListener {
 
 
                 // compute the caption combining all similar points
-                String caption = "" + w.getWidth();
+                String caption = String.valueOf(w.getWidth());
                 for (int j = i + 1; j < ex.size(); j++) {
                     if (ex.getPoint(j).equals(p)) {
                         { caption += "/" + ex.getBitWidth(j);

@@ -4,16 +4,16 @@
 package com.cburch.logisim.data;
 
 
-import javax.swing.JComboBox;
+import javax.swing.*;
 
-public class BitWidth implements Comparable<BitWidth> {
+public final class BitWidth implements Comparable<BitWidth> {
     public static final BitWidth UNKNOWN = new BitWidth(0);
     public static final BitWidth ONE = new BitWidth(1);
 
     private static BitWidth[] prefab = null;
 
     static class Attribute extends com.cburch.logisim.data.Attribute<BitWidth> {
-        private BitWidth[] choices;
+        private final BitWidth[] choices;
 
         public Attribute(String name, String disp) {
             super(name, disp);
@@ -36,7 +36,7 @@ public class BitWidth implements Comparable<BitWidth> {
 
         @Override
         public java.awt.Component getCellEditor(BitWidth value) {
-            JComboBox combo = new JComboBox(choices);
+            JComboBox<BitWidth> combo = new JComboBox<>(choices);
             if (value != null) {
                 int wid = value.getWidth();
                 if (wid <= 0 || wid > prefab.length) {
@@ -48,7 +48,7 @@ public class BitWidth implements Comparable<BitWidth> {
         }
     }
 
-    final int width;
+    private final int width;
 
     private BitWidth(int width) {
         this.width = width;
@@ -95,7 +95,7 @@ public class BitWidth implements Comparable<BitWidth> {
 
     @Override
     public String toString() {
-        return "" + width;
+        return String.valueOf(width);
     }
 
     public static BitWidth create(int width) {
@@ -114,15 +114,16 @@ public class BitWidth implements Comparable<BitWidth> {
         }
     }
 
-    public static BitWidth parse(String str) {
-        if (str == null || str.length() == 0) {
+    private static BitWidth parse(String str) {
+        String str1 = str;
+        if (str1 == null || str1.length() == 0) {
             throw new NumberFormatException("Width string cannot be null");
         }
-        if (str.charAt(0) == '/') {
-            str = str.substring(1);
+        if ((int) str1.charAt(0) == (int) '/') {
+            str1 = str1.substring(1);
         }
 
-        return create(Integer.parseInt(str));
+        return create(Integer.parseInt(str1));
     }
 
     private static void ensurePrefab() {

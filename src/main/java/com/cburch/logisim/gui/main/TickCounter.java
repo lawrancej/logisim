@@ -6,13 +6,14 @@ package com.cburch.logisim.gui.main;
 import com.cburch.logisim.circuit.Simulator;
 import com.cburch.logisim.circuit.SimulatorEvent;
 import com.cburch.logisim.circuit.SimulatorListener;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 class TickCounter implements SimulatorListener {
     private static final int QUEUE_LENGTH = 1000;
 
-    private long[] queueTimes;
-    private double[] queueRates;
+    private final long[] queueTimes;
+    private final double[] queueRates;
     private int queueStart;
     private int queueSize;
     private double tickFrequency;
@@ -79,7 +80,7 @@ class TickCounter implements SimulatorListener {
             if (startTime == endTime || curSize <= 1) {
                 rate = Double.MAX_VALUE;
             } else {
-                rate = 1000.0 * (curSize - 1) / (endTime - startTime);
+                rate = 1000.0 * (double) (curSize - 1) / (double) (endTime - startTime);
             }
             queueTimes[end] = endTime;
             queueRates[end] = rate;
@@ -98,7 +99,7 @@ class TickCounter implements SimulatorListener {
                 end -= maxSize;
             }
             double rate = queueRates[end];
-            if (rate <= 0 || rate == Double.MAX_VALUE) {
+            if (rate <= 0.0 || rate == Double.MAX_VALUE) {
                 return "";
             } else {
                 // Figure out the minimum over the previous 100 readings, and
@@ -153,7 +154,7 @@ class TickCounter implements SimulatorListener {
         }
     }
 
-    private String roundString(double val, double min) {
+    private static String roundString(double val, double min) {
         // round so we have only three significant digits
         // invariant: a = 10^i
         int i = 0;
@@ -161,19 +162,19 @@ class TickCounter implements SimulatorListener {
         double a = 1.0;
         double bm = min;
         double bv = val;
-        if (bm >= 1000) {
-            while (bm >= 1000) {
+        if (bm >= 1000.0) {
+            while (bm >= 1000.0) {
                 i++;
-                a *= 10;
-                bm /= 10;
-                bv /= 10;
+                a *= 10.0;
+                bm /= 10.0;
+                bv /= 10.0;
             }
         } else {
-            while (bm < 100) {
+            while (bm < 100.0) {
                 i--;
-                a /= 10;
-                bm *= 10;
-                bv *= 10;
+                a /= 10.0;
+                bm *= 10.0;
+                bv *= 10.0;
             }
         }
 
@@ -183,10 +184,10 @@ class TickCounter implements SimulatorListener {
 
         // nothing after decimal point
         if (i >= 0) {
-            return "" + (int) Math.round(a * Math.round(bv));
+            return String.valueOf((int) Math.round(a * (double) Math.round(bv)));
         // keep some after decimal point
         } else {
-            return String.format("%." + (-i) + "f", Double.valueOf(a * bv));
+            return String.format("%." + (-i) + 'f', a * bv);
         }
     }
 }

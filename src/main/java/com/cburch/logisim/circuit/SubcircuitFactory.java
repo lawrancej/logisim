@@ -3,40 +3,22 @@
 
 package com.cburch.logisim.circuit;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.Map;
-
-import javax.swing.JPopupMenu;
-import javax.swing.JMenuItem;
-
 import com.cburch.logisim.comp.Component;
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Location;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.tools.MenuExtender;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringUtil;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Map;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class SubcircuitFactory extends InstanceFactory {
     private class CircuitFeature implements MenuExtender, ActionListener {
@@ -174,7 +156,7 @@ public class SubcircuitFactory extends InstanceFactory {
             i++;
             Location loc = portLoc.getKey();
             Instance pin = portLoc.getValue();
-            String type = Pin.FACTORY.isInputPin(pin) ? Port.INPUT : Port.OUTPUT;
+            String type = Pin.isInputPin(pin) ? Port.INPUT : Port.OUTPUT;
             BitWidth width = pin.getAttributeValue(StdAttr.WIDTH);
             ports[i] = new Port(loc.getX(), loc.getY(), type, width);
             pins[i] = pin;
@@ -247,11 +229,11 @@ public class SubcircuitFactory extends InstanceFactory {
         for (int i = 0; i < pins.length; i++) {
             Instance pin = pins[i];
             InstanceState pinState = subState.getInstanceState(pin);
-            if (Pin.FACTORY.isInputPin(pin)) {
+            if (Pin.isInputPin(pin)) {
                 Value newVal = superState.getPort(i);
-                Value oldVal = Pin.FACTORY.getValue(pinState);
+                Value oldVal = Pin.getValue(pinState);
                 if (!newVal.equals(oldVal)) {
-                    Pin.FACTORY.setValue(pinState, newVal);
+                    Pin.setValue(pinState, newVal);
                     Pin.FACTORY.propagate(pinState);
                 }
             // it is output-only

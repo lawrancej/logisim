@@ -3,25 +3,13 @@
 
 package com.cburch.logisim.std.io;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.Attributes;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
 import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import java.awt.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class Tty extends InstanceFactory {
     private static final int CLR = 0;
@@ -173,7 +161,7 @@ public class Tty extends InstanceFactory {
                 y += ROW_HEIGHT;
             }
         } else {
-            String str = getFromLocale("ttyDesc", "" + rows, "" + cols);
+            String str = getFromLocale("ttyDesc", String.valueOf(rows), String.valueOf(cols));
             FontMetrics fm = g.getFontMetrics();
             int strWidth = fm.stringWidth(str);
             if (strWidth + BORDER > bds.getWidth()) {
@@ -186,7 +174,7 @@ public class Tty extends InstanceFactory {
         }
     }
 
-    private TtyState getTtyState(InstanceState state) {
+    private static TtyState getTtyState(InstanceState state) {
         int rows = getRowCount(state.getAttributeValue(ATTR_ROWS));
         int cols = getColumnCount(state.getAttributeValue(ATTR_COLUMNS));
         TtyState ret = (TtyState) state.getData();
@@ -199,13 +187,13 @@ public class Tty extends InstanceFactory {
         return ret;
     }
 
-    public void sendToStdout(InstanceState state) {
+    public static void sendToStdout(InstanceState state) {
         TtyState tty = getTtyState(state);
         tty.setSendStdout(true);
     }
 
     private static int getRowCount(Object val) {
-        if (val instanceof Integer) return ((Integer) val).intValue();
+        if (val instanceof Integer) return (Integer) val;
         else {
             return 4;
         }
@@ -213,7 +201,7 @@ public class Tty extends InstanceFactory {
     }
 
     private static int getColumnCount(Object val) {
-        if (val instanceof Integer) return ((Integer) val).intValue();
+        if (val instanceof Integer) return (Integer) val;
         else {
             return 16;
         }

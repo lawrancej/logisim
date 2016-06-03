@@ -3,22 +3,20 @@
 
 package com.cburch.logisim.circuit;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import com.cburch.logisim.circuit.CircuitState;
-import com.cburch.logisim.circuit.Wire;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.util.GraphicsUtil;
 
-class SplitterPainter {
+import java.awt.*;
+
+final class SplitterPainter {
     private static final int SPINE_WIDTH = Wire.WIDTH + 2;
     private static final int SPINE_DOT = Wire.WIDTH + 4;
+
+    private SplitterPainter() {
+    }
 
     static void drawLines(ComponentDrawContext context,
             SplitterAttributes attrs, Location origin) {
@@ -42,7 +40,7 @@ class SplitterPainter {
         Graphics g = context.getGraphics();
         Color oldColor = g.getColor();
         GraphicsUtil.switchToWidth(g, Wire.WIDTH);
-        for (int i = 0, n = attrs.fanout; i < n; i++) {
+        for (int i = 0, n = (int) attrs.fanout; i < n; i++) {
             if (showState) {
                 Value val = state.getValue(Location.create(x, y));
                 g.setColor(val.getColor());
@@ -59,7 +57,7 @@ class SplitterPainter {
         int spine1y = y0 + parms.getSpine1Y();
         // centered
         if (spine0x == spine1x && spine0y == spine1y) {
-            int fanout = attrs.fanout;
+            int fanout = (int) attrs.fanout;
             spine0x = x0 + parms.getEnd0X() + parms.getEndToSpineDeltaX();
             spine0y = y0 + parms.getEnd0Y() + parms.getEndToSpineDeltaY();
             spine1x = spine0x + (fanout - 1) * parms.getEndToEndDeltaX();
@@ -101,18 +99,18 @@ class SplitterPainter {
     static void drawLabels(ComponentDrawContext context,
             SplitterAttributes attrs, Location origin) {
         // compute labels
-        String[] ends = new String[attrs.fanout + 1];
+        String[] ends = new String[(int) attrs.fanout + 1];
         int curEnd = -1;
         int cur0 = 0;
         for (int i = 0, n = attrs.bit_end.length; i <= n; i++) {
-            int bit = i == n ? -1 : attrs.bit_end[i];
+            int bit = (int) (i == n ? (byte) -1 : attrs.bit_end[i]);
             if (bit != curEnd) {
                 int cur1 = i - 1;
                 String toAdd;
                 if (curEnd <= 0) {
                     toAdd = null;
                 } else if (cur0 == cur1) {
-                    toAdd = "" + cur0;
+                    toAdd = String.valueOf(cur0);
                 } else {
                     toAdd = cur0 + "-" + cur1;
                 }
@@ -121,7 +119,7 @@ class SplitterPainter {
                     if (old == null) {
                         ends[curEnd] = toAdd;
                     } else {
-                        ends[curEnd] = old + "," + toAdd;
+                        ends[curEnd] = old + ',' + toAdd;
                     }
                 }
                 curEnd = bit;
@@ -148,7 +146,7 @@ class SplitterPainter {
         int valign = parms.getTextVertAlign();
         x += (halign == GraphicsUtil.H_RIGHT ? -1 : 1) * (SPINE_WIDTH / 2 + 1);
         y += valign == GraphicsUtil.V_TOP ? 0 : -3;
-        for (int i = 0, n = attrs.fanout; i < n; i++) {
+        for (int i = 0, n = (int) attrs.fanout; i < n; i++) {
             String text = ends[i + 1];
             if (text != null) {
                 GraphicsUtil.drawText(g, text, x, y, halign, valign);
@@ -165,7 +163,7 @@ class SplitterPainter {
         Graphics g = context.getGraphics();
         CircuitState state = context.getCircuitState();
         Direction facing = attrs.facing;
-        int fanout = attrs.fanout;
+        int fanout = (int) attrs.fanout;
         SplitterParameters parms = attrs.getParameters();
 
         g.setColor(Color.BLACK);

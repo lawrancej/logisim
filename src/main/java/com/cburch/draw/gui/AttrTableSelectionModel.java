@@ -3,9 +3,6 @@
 
 package com.cburch.draw.gui;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.cburch.draw.actions.ModelChangeAttributeAction;
 import com.cburch.draw.canvas.Canvas;
 import com.cburch.draw.canvas.Selection;
@@ -18,11 +15,15 @@ import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
 import com.cburch.logisim.gui.generic.AttrTableSetException;
 import com.cburch.logisim.gui.generic.AttributeSetTableModel;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 class AttrTableSelectionModel extends AttributeSetTableModel
         implements SelectionListener {
-    private Canvas canvas;
+    private final Canvas canvas;
 
     public AttrTableSelectionModel(Canvas canvas) {
         super(new SelectionAttributes(canvas.getSelection()));
@@ -53,12 +54,12 @@ class AttrTableSelectionModel extends AttributeSetTableModel
         if (firstObject == null) {
             return null;
         } else if (commonClass == null) {
-            return getFromLocale("selectionVarious", "" + totalCount);
+            return getFromLocale("selectionVarious", String.valueOf(totalCount));
         } else if (commonCount == 1) {
             return getFromLocale("selectionOne", firstObject.getDisplayName());
         } else {
             return getFromLocale("selectionMultiple", firstObject.getDisplayName(),
-                    "" + commonCount);
+                    String.valueOf(commonCount));
         }
     }
 
@@ -67,9 +68,9 @@ class AttrTableSelectionModel extends AttributeSetTableModel
             throws AttrTableSetException {
         SelectionAttributes attrs = (SelectionAttributes) getAttributeSet();
         Map<AttributeMapKey, Object> oldVals;
-        oldVals = new HashMap<AttributeMapKey, Object>();
+        oldVals = new HashMap<>();
         Map<AttributeMapKey, Object> newVals;
-        newVals = new HashMap<AttributeMapKey, Object>();
+        newVals = new HashMap<>();
         for (Map.Entry<AttributeSet, CanvasObject> ent : attrs.entries()) {
             AttributeMapKey key = new AttributeMapKey(attr, ent.getValue());
             oldVals.put(key, ent.getKey().getValue(attr));

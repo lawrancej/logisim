@@ -3,23 +3,16 @@
 
 package com.cburch.logisim.gui.start;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Map;
-
 import com.cburch.logisim.circuit.Analyze;
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.Propagator;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Value;
+import com.cburch.logisim.file.FileStatistics;
 import com.cburch.logisim.file.LoadFailedException;
 import com.cburch.logisim.file.Loader;
 import com.cburch.logisim.file.LogisimFile;
-import com.cburch.logisim.file.FileStatistics;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.proj.Project;
@@ -28,9 +21,18 @@ import com.cburch.logisim.std.io.Tty;
 import com.cburch.logisim.std.memory.Ram;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.tools.Library;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
-public class TtyInterface {
+public final class TtyInterface {
     public static final int FORMAT_TABLE = 1;
     public static final int FORMAT_SPEED = 2;
     public static final int FORMAT_TTY = 4;
@@ -39,8 +41,11 @@ public class TtyInterface {
 
     private static boolean lastIsNewline = true;
 
+    private TtyInterface() {
+    }
+
     public static void sendFromTty(char c) {
-        lastIsNewline = c == '\n';
+        lastIsNewline = (int) c == (int) '\n';
         //OK
         System.out.print(c);
     }
@@ -79,12 +84,12 @@ public class TtyInterface {
         Project proj = new Project(file);
         Circuit circuit = file.getMainCircuit();
         Map<Instance, String> pinNames = Analyze.getPinLabels(circuit);
-        ArrayList<Instance> outputPins = new ArrayList<Instance>();
+        ArrayList<Instance> outputPins = new ArrayList<>();
         Instance haltPin = null;
         for (Map.Entry<Instance, String> entry : pinNames.entrySet()) {
             Instance pin = entry.getKey();
             String pinName = entry.getValue();
-            if (!Pin.FACTORY.isInputPin(pin)) {
+            if (!Pin.isInputPin(pin)) {
                 outputPins.add(pin);
                 if (pinName.equals("halt")) {
                     haltPin = pin;
@@ -127,27 +132,27 @@ public class TtyInterface {
 
         }
         String fmt = "%" + countDigits(total.getUniqueCount()) + "d\t"
-            + "%" + countDigits(total.getRecursiveCount()) + "d\t";
+            + '%' + countDigits(total.getRecursiveCount()) + "d\t";
         String fmtNormal = fmt + "%-" + maxName + "s\t%s\n";
         for (FileStatistics.Count count : stats.getCounts()) {
             Library lib = count.getLibrary();
             String libName = lib == null ? "-" : lib.getDisplayName();
             //OK
             System.out.printf(fmtNormal,
-                    Integer.valueOf(count.getUniqueCount()),
-                    Integer.valueOf(count.getRecursiveCount()),
+                    count.getUniqueCount(),
+                    count.getRecursiveCount(),
                     count.getFactory().getDisplayName(), libName);
         }
         FileStatistics.Count totalWithout = stats.getTotalWithoutSubcircuits();
         //OK
         System.out.printf(fmt + "%s\n",
-                Integer.valueOf(totalWithout.getUniqueCount()),
-                Integer.valueOf(totalWithout.getRecursiveCount()),
+                totalWithout.getUniqueCount(),
+                totalWithout.getRecursiveCount(),
                 getFromLocale("statsTotalWithout"));
         //OK
         System.out.printf(fmt + "%s\n",
-                Integer.valueOf(total.getUniqueCount()),
-                Integer.valueOf(total.getRecursiveCount()),
+                total.getUniqueCount(),
+                total.getRecursiveCount(),
                 getFromLocale("statsTotalWith"));
     }
 
@@ -192,7 +197,7 @@ public class TtyInterface {
             if (factory instanceof Tty) {
                 Tty ttyFactory = (Tty) factory;
                 InstanceState ttyState = circState.getInstanceState(comp);
-                ttyFactory.sendToStdout(ttyState);
+                Tty.sendToStdout(ttyState);
                 found = true;
             } else if (factory instanceof Keyboard) {
                 keybStates.add(circState.getInstanceState(comp));
@@ -207,7 +212,7 @@ public class TtyInterface {
     }
 
     private static int runSimulation(CircuitState circState,
-            ArrayList<Instance> outputPins, Instance haltPin, int format) {
+                                     Iterable<Instance> outputPins, Instance haltPin, int format) {
         boolean showTable = (format & FORMAT_TABLE) != 0;
         boolean showSpeed = (format & FORMAT_SPEED) != 0;
         boolean showTty = (format & FORMAT_TTY) != 0;
@@ -216,7 +221,7 @@ public class TtyInterface {
         ArrayList<InstanceState> keyboardStates = null;
         StdinThread stdinThread = null;
         if (showTty) {
-            keyboardStates = new ArrayList<InstanceState>();
+            keyboardStates = new ArrayList<>();
             boolean ttyFound = prepareForTty(circState, keyboardStates);
             if (!ttyFound) {
                 //OK
@@ -232,16 +237,16 @@ public class TtyInterface {
         }
 
         int retCode;
-        long tickCount = 0;
+        long tickCount = 0L;
         long start = System.currentTimeMillis();
         boolean halted = false;
         ArrayList<Value> prevOutputs = null;
         Propagator prop = circState.getPropagator();
         while (true) {
-            ArrayList<Value> curOutputs = new ArrayList<Value>();
+            ArrayList<Value> curOutputs = new ArrayList<>();
             for (Instance pin : outputPins) {
                 InstanceState pinState = circState.getInstanceState(pin);
-                Value val = Pin.FACTORY.getValue(pinState);
+                Value val = Pin.getValue(pinState);
                 if (pin == haltPin) {
                     halted |= val.equals(Value.TRUE);
                 } else if (showTable) {
@@ -295,8 +300,8 @@ public class TtyInterface {
         return retCode;
     }
 
-    private static void displayTableRow(ArrayList<Value> prevOutputs,
-            ArrayList<Value> curOutputs) {
+    private static void displayTableRow(List<Value> prevOutputs,
+                                        List<Value> curOutputs) {
         boolean shouldPrint = false;
         if (prevOutputs == null) {
             shouldPrint = true;
@@ -326,17 +331,17 @@ public class TtyInterface {
     }
 
     private static void displaySpeed(long tickCount, long elapse) {
-        double hertz = (double) tickCount / elapse * 1000.0;
+        double hertz = (double) tickCount / (double) elapse * 1000.0;
         double precision;
-        if (hertz >= 100) {
+        if (hertz >= 100.0) {
             precision = 1.0;
         }
 
-        else if (hertz >= 10) {
+        else if (hertz >= 10.0) {
             precision = 0.1;
         }
 
-        else if (hertz >= 1) {
+        else if (hertz >= 1.0) {
             precision = 0.01;
         }
 
@@ -348,9 +353,9 @@ public class TtyInterface {
             precision = 0.0000001;
         }
 
-        hertz = (int) (hertz / precision) * precision;
-        String hertzStr = hertz == (int) hertz ? "" + (int) hertz : "" + hertz;
-        System.out.println(getFromLocale("ttySpeedMsg", hertzStr, "" + tickCount, "" + elapse));
+        hertz = (double) (int) (hertz / precision) * precision;
+        String hertzStr = hertz == (double) (int) hertz ? String.valueOf((int) hertz) : String.valueOf(hertz);
+        System.out.println(getFromLocale("ttySpeedMsg", hertzStr, String.valueOf(tickCount), String.valueOf(elapse)));
     }
 
     // It's possible to avoid using the separate thread using System.in.available(),
@@ -358,10 +363,10 @@ public class TtyInterface {
     // is not interactively echoed until System.in.read() is invoked.
     private static class StdinThread extends Thread {
         // of char[]
-        private LinkedList<char[]> queue;
+        private final LinkedList<char[]> queue;
 
-        public StdinThread() {
-            queue = new LinkedList<char[]>();
+        private StdinThread() {
+            queue = new LinkedList<>();
         }
 
         public char[] getBuffer() {

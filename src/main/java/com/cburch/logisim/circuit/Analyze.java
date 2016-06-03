@@ -3,21 +3,7 @@
 
 package com.cburch.logisim.circuit;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
-import com.cburch.logisim.analyze.model.AnalyzerModel;
-import com.cburch.logisim.analyze.model.Entry;
-import com.cburch.logisim.analyze.model.Expression;
-import com.cburch.logisim.analyze.model.Expressions;
-import com.cburch.logisim.analyze.model.TruthTable;
+import com.cburch.logisim.analyze.model.*;
 import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
@@ -27,7 +13,10 @@ import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.StdAttr;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.std.wiring.Pin;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import java.util.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 public class Analyze {
@@ -99,7 +88,7 @@ public class Analyze {
 
 
             String defaultList;
-            if (Pin.FACTORY.isInputPin(pin)) {
+            if (Pin.isInputPin(pin)) {
                 defaultList = getFromLocale("defaultInputLabels");
                 if (defaultList.indexOf(",") < 0) {
                     defaultList = "a,b,c,d,e,f,g,h";
@@ -170,7 +159,6 @@ public class Analyze {
                 afterWhitespace = true;
             } else {
                 // just ignore any other characters
-                ;
             }
         }
         if (end != null && ret.length() > 0) {
@@ -201,7 +189,7 @@ public class Analyze {
         for (Map.Entry<Instance, String> entry : pinNames.entrySet()) {
             Instance pin = entry.getKey();
             String label = entry.getValue();
-            if (Pin.FACTORY.isInputPin(pin)) {
+            if (Pin.isInputPin(pin)) {
                 expressionMap.currentCause = Instance.getComponentFor(pin);
                 Expression e = Expressions.variable(label);
                 expressionMap.put(pin.getLocation(), e);
@@ -318,7 +306,6 @@ public class Analyze {
                 }
             } else if (comp.getFactory() instanceof Pin) {
                 // pins are handled elsewhere
-                ;
             } else {
                 // pins are handled elsewhere
                 throw new AnalyzeException.CannotHandle(comp.getFactory().getDisplayName());
@@ -352,7 +339,7 @@ public class Analyze {
         ArrayList<String> outputNames = new ArrayList<String>();
         for (Map.Entry<Instance, String> entry : pinLabels.entrySet()) {
             Instance pin = entry.getKey();
-            if (Pin.FACTORY.isInputPin(pin)) {
+            if (Pin.isInputPin(pin)) {
                 inputPins.add(pin);
                 inputNames.add(entry.getValue());
             } else {
@@ -371,7 +358,7 @@ public class Analyze {
                 Instance pin = inputPins.get(j);
                 InstanceState pinState = circuitState.getInstanceState(pin);
                 boolean value = TruthTable.isInputSet(i, j, inputCount);
-                Pin.FACTORY.setValue(pinState, value ? Value.TRUE : Value.FALSE);
+                Pin.setValue(pinState, value ? Value.TRUE : Value.FALSE);
             }
 
             Propagator prop = circuitState.getPropagator();
@@ -391,7 +378,7 @@ public class Analyze {
                     Instance pin = outputPins.get(j);
                     InstanceState pinState = circuitState.getInstanceState(pin);
                     Entry out;
-                    Value outValue = Pin.FACTORY.getValue(pinState).get(0);
+                    Value outValue = Pin.getValue(pinState).get(0);
                     if (outValue == Value.TRUE) {
                         out = Entry.ONE;
                     }

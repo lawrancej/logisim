@@ -3,24 +3,19 @@
 
 package com.cburch.logisim.gui.appear;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Collection;
-import java.util.Collections;
-
-import javax.swing.JComponent;
-
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.circuit.appear.AppearancePort;
-import com.cburch.logisim.comp.Component;
 import com.cburch.logisim.comp.ComponentDrawContext;
 import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.util.GraphicsUtil;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @SuppressWarnings("serial")
 public class LayoutThumbnail extends JComponent {
@@ -66,7 +61,7 @@ public class LayoutThumbnail extends JComponent {
                     circuitState, g, gCopy);
             context.setShowState(false);
             context.setShowColor(false);
-            circuit.draw(context, Collections.<Component>emptySet());
+            circuit.draw(context, Collections.emptySet());
             if (ports != null) {
                 gCopy.setColor(AppearancePort.COLOR);
                 int width = Math.max(4, (int) ((2 / scale) + 0.5));
@@ -77,7 +72,7 @@ public class LayoutThumbnail extends JComponent {
                     int y = b.getY();
                     int w = b.getWidth();
                     int h = b.getHeight();
-                    if (Pin.FACTORY.isInputPin(port)) {
+                    if (Pin.isInputPin(port)) {
                         gCopy.drawRect(x, y, w, h);
                     } else {
                         if (b.getWidth() > 25) {

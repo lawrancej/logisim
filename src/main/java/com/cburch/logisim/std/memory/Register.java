@@ -3,26 +3,17 @@
 
 package com.cburch.logisim.std.memory;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringUtil;
-import static com.cburch.logisim.util.LocaleString.*;
 
-public class Register extends InstanceFactory {
+import java.awt.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
+class Register extends InstanceFactory {
     private static final int DELAY = 8;
     private static final int OUT = 0;
     private static final int IN  = 1;
@@ -115,7 +106,7 @@ public class Register extends InstanceFactory {
             }
         } else {
             a = getFromLocale("registerLabel");
-            b = getFromLocale("registerWidthLabel", "" + widthVal.getWidth());
+            b = getFromLocale("registerWidthLabel", String.valueOf(widthVal.getWidth()));
         }
 
         // draw boundary, label

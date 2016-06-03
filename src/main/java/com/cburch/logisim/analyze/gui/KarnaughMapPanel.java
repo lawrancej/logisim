@@ -3,30 +3,16 @@
 
 package com.cburch.logisim.analyze.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import com.cburch.logisim.analyze.model.*;
+import com.cburch.logisim.util.GraphicsUtil;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.JPanel;
-
-import com.cburch.logisim.analyze.model.AnalyzerModel;
-import com.cburch.logisim.analyze.model.OutputExpressionsEvent;
-import com.cburch.logisim.analyze.model.OutputExpressionsListener;
-import com.cburch.logisim.analyze.model.Entry;
-import com.cburch.logisim.analyze.model.Implicant;
-import com.cburch.logisim.analyze.model.TruthTable;
-import com.cburch.logisim.analyze.model.TruthTableEvent;
-import com.cburch.logisim.analyze.model.TruthTableListener;
-import com.cburch.logisim.analyze.model.VariableList;
-import com.cburch.logisim.util.GraphicsUtil;
 import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
-@SuppressWarnings("serial")
 class KarnaughMapPanel extends JPanel implements TruthTablePanel {
     private static final Font HEAD_FONT = new Font("Serif", Font.BOLD, 14);
     private static final Font BODY_FONT = new Font("Serif", Font.PLAIN, 14);
@@ -68,8 +54,7 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
 
     }
 
-    private MyListener myListener = new MyListener();
-    private AnalyzerModel model;
+    private final AnalyzerModel model;
     private String output;
     private int headHeight;
     private int cellWidth = 1;
@@ -82,6 +67,7 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
 
     public KarnaughMapPanel(AnalyzerModel model) {
         this.model = model;
+        MyListener myListener = new MyListener();
         model.getOutputExpressions().addOutputExpressionsListener(myListener);
         model.getTruthTable().addTruthTableListener(myListener);
         setToolTipText(" ");
@@ -345,8 +331,8 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
         int count = 0;
         for (Implicant sq : imp.getTerms()) {
             int tableRow = sq.getRow();
-            int row = getRow(tableRow, rows, cols);
-            int col = getCol(tableRow, rows, cols);
+            int row = getRow(tableRow, cols);
+            int col = getCol(tableRow, cols);
             if (row == 1) {
                 oneRowFound = true;
             }
@@ -461,9 +447,9 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
         return ret.toString();
     }
 
-    private String label(int row, int rows) {
+    private static String label(int row, int rows) {
         switch (rows) {
-        case 2: return "" + row;
+        case 2: return String.valueOf(row);
         case 4:
             switch (row) {
             case 0: return "00";
@@ -475,11 +461,11 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
         }
     }
 
-    private int getTableRow(int row, int col, int rows, int cols) {
+    private static int getTableRow(int row, int col, int rows, int cols) {
         return toRow(row, rows) * cols + toRow(col, cols);
     }
 
-    private int toRow(int row, int rows) {
+    private static int toRow(int row, int rows) {
         if (rows == 4) {
             switch (row) {
             case 2: return 3;
@@ -491,7 +477,7 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
         }
     }
 
-    private int getRow(int tableRow, int rows, int cols) {
+    private static int getRow(int tableRow, int cols) {
         int ret = tableRow / cols;
         switch (ret) {
         case 2: return 3;
@@ -500,7 +486,7 @@ class KarnaughMapPanel extends JPanel implements TruthTablePanel {
         }
     }
 
-    private int getCol(int tableRow, int rows, int cols) {
+    private static int getCol(int tableRow, int cols) {
         int ret = tableRow % cols;
         switch (ret) {
         case 2: return 3;

@@ -3,33 +3,17 @@
 
 package com.cburch.logisim.std.memory;
 
-import static com.cburch.logisim.util.LocaleString.getFromLocale;
+import com.cburch.logisim.circuit.CircuitState;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.gui.hex.HexFrame;
+import com.cburch.logisim.instance.*;
+import com.cburch.logisim.proj.Project;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import com.cburch.logisim.circuit.CircuitState;
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeEvent;
-import com.cburch.logisim.data.AttributeListener;
-import com.cburch.logisim.data.AttributeOption;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.AttributeSets;
-import com.cburch.logisim.data.Attributes;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Location;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.gui.hex.HexFrame;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceData;
-import com.cburch.logisim.instance.InstanceLogger;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.proj.Project;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class Ram extends Mem {
     static final AttributeOption BUS_COMBINED
@@ -59,7 +43,7 @@ public class Ram extends Mem {
     private static Object[][] logOptions = new Object[9][];
 
     public Ram() {
-        super("RAM", getFromLocale("ramComponent"), 3);
+        super("RAM", getFromLocale("ramComponent"));
         setIconName("ram.svg");
         setInstanceLogger(Logger.class);
     }
@@ -101,7 +85,7 @@ public class Ram extends Mem {
 
         Port[] ps = new Port[portCount];
 
-        configureStandardPorts(instance, ps);
+        configureStandardPorts(ps);
         ps[OE]  = new Port(-50, 40, Port.INPUT, 1);
         ps[OE].setToolTip(getFromLocale("ramOETip"));
         ps[CLR] = new Port(-30, 40, Port.INPUT, 1);
