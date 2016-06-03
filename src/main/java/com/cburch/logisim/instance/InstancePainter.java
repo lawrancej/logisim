@@ -3,7 +3,7 @@
 
 package com.cburch.logisim.instance;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 import com.cburch.logisim.circuit.Circuit;
 import com.cburch.logisim.circuit.CircuitState;
@@ -16,6 +16,8 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.data.Value;
 import com.cburch.logisim.proj.Project;
+import com.cburch.logisim.std.gates.AbstractGate;
+import com.cburch.logisim.std.gates.GateAttributes;
 
 public class InstancePainter implements InstanceState {
     private ComponentDrawContext context;
@@ -240,5 +242,47 @@ public class InstancePainter implements InstanceState {
         if (comp != null) {
             comp.drawLabel(context);
         }
+    }
+
+    public void drawNegatedInput(Direction facing, Location inputLocation) {
+        Location center = inputLocation.translate(facing, 5);
+        drawDongle(getLocation().getX() + center.getX(),
+                getLocation().getY() + center.getY());
+    }
+
+    public void paintRectangular(int width, int height, AbstractGate gate) {
+        int don = gate.isNegateOutput() ? 10 : 0;
+        drawRectangle(-width, -height / 2, width - don, height,
+                gate.getRectangularLabel(getAttributeSet()));
+        if (gate.isNegateOutput()) {
+            drawDongle(-5, 0);
+        }
+    }
+
+    public void paintNegatedInputs(AbstractGate gate) {
+        for (int i = 0; i < ((GateAttributes) getAttributeSet()).inputs; i++) {
+            int negatedBit = (((GateAttributes) getAttributeSet()).negated >> i) & 1;
+            if (negatedBit == 1) {
+                drawNegatedInput(((GateAttributes) getAttributeSet()).facing, gate.getInputOffset((GateAttributes) getAttributeSet(), i));
+            }
+        }
+    }
+
+    public void moveToLocation() {
+        getGraphics().translate(getLocation().getX(), getLocation().getY());
+    }
+
+    public void setBaseColor(Color baseColor) {
+        getGraphics().setColor(baseColor);
+    }
+
+    public double rotate() {
+        double rotate = 0.0;
+        if (((GateAttributes) getAttributeSet()).facing != Direction.EAST && getGraphics() instanceof Graphics2D) {
+            rotate = -((GateAttributes) getAttributeSet()).facing.toRadians();
+            Graphics2D g2 = (Graphics2D) getGraphics();
+            g2.rotate(rotate);
+        }
+        return rotate;
     }
 }

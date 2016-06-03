@@ -56,7 +56,6 @@ class WindowOptions extends OptionsPanel {
         lookAndFeel = new PrefOptionList(AppPreferences.LOOK_AND_FEEL,
             getFromLocale("lookAndFeel"),
             new PrefOption[] {
-                new PrefOption(UIManager.getSystemLookAndFeelClassName(), getFromLocale("systemLookAndFeel")),
                 new PrefOption(NimbusLookAndFeel.class.getName(), getFromLocale("nimbusLookAndFeel")),
                 new PrefOption(MotifLookAndFeel.class.getName(), getFromLocale("motifLookAndFeel")),
                 new PrefOption(MetalLookAndFeel.class.getName(), getFromLocale("metalLookAndFeel")),

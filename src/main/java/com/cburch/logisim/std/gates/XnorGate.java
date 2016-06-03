@@ -28,7 +28,7 @@ class XnorGate extends AbstractGate {
     }
 
     @Override
-    protected String getRectangularLabel(AttributeSet attrs) {
+    public String getRectangularLabel(AttributeSet attrs) {
         return XorGate.FACTORY.getRectangularLabel(attrs);
     }
 

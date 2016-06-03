@@ -19,7 +19,7 @@ applicationName = 'Logisim'
 description = 'Logisim: Logic Simulator'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.2'
+    gradleVersion = '2.13'
 }
 
 jar {
@@ -68,27 +68,29 @@ repositories {
 }
 
 dependencies {
-    compile \
-    'javax.help:javahelp:2.0.05',
-    'net.sourceforge.collections:collections-generic:4.01',
-    'org.apache.xmlgraphics:batik-svggen:1.7',
-    'org.apache.xmlgraphics:batik-swing:1.7',
+    compile 'javax.help:javahelp:2.0.05',
+            'net.sourceforge.collections:collections-generic:4.01',
+            'org.apache.xmlgraphics:batik-svggen:1.7',
+            'org.apache.xmlgraphics:batik-swing:1.7',
 
-    // Native JDK logger (java.util.logging)
-    //'org.slf4j:slf4j-jdk14:1.7.5',
+            // Native JDK logger (java.util.logging)
+            //'org.slf4j:slf4j-jdk14:1.7.5',
 
-    // Simplified logger (less lines)
-    'org.slf4j:slf4j-simple:1.6.1',
+            // Simplified logger (less lines)
+            'org.slf4j:slf4j-simple:1.6.1',
 
-    // Logging does nothing (use for release builds)
-    //'org.slf4j:slf4j-nop:1.7.5',
+            // Logging does nothing (use for release builds)
+            //'org.slf4j:slf4j-nop:1.7.5',
 
-	'com.itextpdf:itextpdf:5.5.0',
+            'com.itextpdf:itextpdf:5.5.0',
+
 
     // Local dependencies convention: ./libs/*.jar
     fileTree(dir: 'libs', include: '*.jar')
 
-    testCompile 'junit:junit:4.11'
+    testCompile 'org.hamcrest:hamcrest-all:1.3', 'junit:junit:4.11',
+            'org.mockito:mockito-all:1.10.19'
+
 }
 
 processResources << {

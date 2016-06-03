@@ -6,7 +6,6 @@ package com.cburch.logisim.std.gates;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.Map;
 
 import javax.swing.Icon;
 
@@ -38,10 +37,15 @@ import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.Icons;
 
-abstract class AbstractGate extends InstanceFactory {
-    private String[] iconNames = new String[3];
-    private SVGIcon[] icons = new SVGIcon[3];
+public abstract class AbstractGate extends InstanceFactory {
+    private final String[] iconNames = new String[3];
+    private final SVGIcon[] icons = new SVGIcon[3];
     private int bonusWidth = 0;
+
+    public boolean isNegateOutput() {
+        return negateOutput;
+    }
+
     private boolean negateOutput = false;
     private boolean isXor = false;
     private String rectLabel = "";
@@ -80,7 +84,7 @@ abstract class AbstractGate extends InstanceFactory {
     public Bounds getOffsetBounds(AttributeSet attrsBase) {
         GateAttributes attrs = (GateAttributes) attrsBase;
         Direction facing = attrs.facing;
-        int size = ((Integer) attrs.size.getValue()).intValue();
+        int size = (Integer) attrs.size.getValue();
         int inputs = attrs.inputs;
         if (inputs % 2 == 0) {
             inputs++;
@@ -158,69 +162,51 @@ abstract class AbstractGate extends InstanceFactory {
     }
 
     private void paintBase(InstancePainter painter) {
-        GateAttributes attrs = (GateAttributes) painter.getAttributeSet();
-        Direction facing = attrs.facing;
-        int inputs = attrs.inputs;
-        int negated = attrs.negated;
 
-        Object shape = painter.getGateShape();
-        Location loc = painter.getLocation();
-        Bounds bds = painter.getOffsetBounds();
-        int width = bds.getWidth();
-        int height = bds.getHeight();
-        if (facing == Direction.NORTH || facing == Direction.SOUTH) {
-            int t = width; width = height; height = t;
+        Color baseColor = painter.getGraphics().getColor();
+
+        if (painter.getGateShape() == AppPreferences.SHAPE_SHAPED && paintInputLines) {
+            PainterShaped.paintInputLines(painter, this);
+        } else if (((GateAttributes) painter.getAttributeSet()).negated != 0) {
+            painter.paintNegatedInputs(this);
         }
-        if (negated != 0) {
+
+        painter.setBaseColor(baseColor);
+        painter.moveToLocation();
+        double rotate = painter.rotate();
+
+        int width = painter.getOffsetBounds().getWidth();
+        int height = painter.getOffsetBounds().getHeight();
+        if (((GateAttributes) painter.getAttributeSet()).facing == Direction.NORTH || ((GateAttributes) painter.getAttributeSet()).facing == Direction.SOUTH) {
+            int t = width;
+            width = height;
+            height = t;
+        }
+
+        if (((GateAttributes) painter.getAttributeSet()).negated != 0) {
             width -= 10;
         }
 
-        Graphics g = painter.getGraphics();
-        Color baseColor = g.getColor();
-        if (shape == AppPreferences.SHAPE_SHAPED && paintInputLines) {
-            PainterShaped.paintInputLines(painter, this);
-        } else if (negated != 0) {
-            for (int i = 0; i < inputs; i++) {
-                int negatedBit = (negated >> i) & 1;
-                if (negatedBit == 1) {
-                    Location in = getInputOffset(attrs, i);
-                    Location cen = in.translate(facing, 5);
-                    painter.drawDongle(loc.getX() + cen.getX(),
-                            loc.getY() + cen.getY());
-                }
-            }
-        }
-
-        g.setColor(baseColor);
-        g.translate(loc.getX(), loc.getY());
-        double rotate = 0.0;
-        if (facing != Direction.EAST && g instanceof Graphics2D) {
-            rotate = -facing.toRadians();
-            Graphics2D g2 = (Graphics2D) g;
-            g2.rotate(rotate);
-        }
-
-        if (shape == AppPreferences.SHAPE_RECTANGULAR) {
-            paintRectangular(painter, width, height);
-        } else if (shape == AppPreferences.SHAPE_DIN40700) {
-            paintDinShape(painter, width, height, inputs);
+        if (painter.getGateShape() == AppPreferences.SHAPE_RECTANGULAR) {
+            painter.paintRectangular(width, height, this);
+        } else if (painter.getGateShape() == AppPreferences.SHAPE_DIN40700) {
+            paintDinShape(painter, width, height, ((GateAttributes) painter.getAttributeSet()).inputs);
         // SHAPE_SHAPED
         } else {
             if (negateOutput) {
-                g.translate(-10, 0);
+                painter.getGraphics().translate(-10, 0);
                 paintShape(painter, width - 10, height);
                 painter.drawDongle(5, 0);
-                g.translate(10, 0);
+                painter.getGraphics().translate(10, 0);
             } else {
                 paintShape(painter, width, height);
             }
         }
 
         if (rotate != 0.0) {
-            ((Graphics2D) g).rotate(-rotate);
+            ((Graphics2D) painter.getGraphics()).rotate(-rotate);
         }
-        g.translate(-loc.getX(), -loc.getY());
-
+        painter.getGraphics().translate(-painter.getLocation().getX(), -painter.getLocation().getY());
         painter.drawLabel();
     }
 
@@ -323,7 +309,7 @@ abstract class AbstractGate extends InstanceFactory {
         rectLabel = value;
     }
 
-    protected String getRectangularLabel(AttributeSet attrs) {
+    public String getRectangularLabel(AttributeSet attrs) {
         return rectLabel;
     }
 
@@ -334,17 +320,6 @@ abstract class AbstractGate extends InstanceFactory {
 
     protected abstract void paintShape(InstancePainter painter,
             int width, int height);
-
-    protected void paintRectangular(InstancePainter painter,
-            int width, int height) {
-        int don = negateOutput ? 10 : 0;
-        AttributeSet attrs = painter.getAttributeSet();
-        painter.drawRectangle(-width, -height / 2, width - don, height,
-                getRectangularLabel(attrs));
-        if (negateOutput) {
-            painter.drawDongle(-5, 0);
-        }
-    }
 
     protected abstract void paintDinShape(InstancePainter painter,
             int width, int height, int inputs);
@@ -387,7 +362,7 @@ abstract class AbstractGate extends InstanceFactory {
     private void computeLabel(Instance instance) {
         GateAttributes attrs = (GateAttributes) instance.getAttributeSet();
         Direction facing = attrs.facing;
-        int baseWidth = ((Integer) attrs.size.getValue()).intValue();
+        int baseWidth = (Integer) attrs.size.getValue();
 
         int axis = baseWidth / 2 + (negateOutput ? 10 : 0);
         int perp = 0;
@@ -414,7 +389,7 @@ abstract class AbstractGate extends InstanceFactory {
                 TextField.H_CENTER, TextField.V_CENTER);
     }
 
-    void computePorts(Instance instance) {
+    private void computePorts(Instance instance) {
         GateAttributes attrs = (GateAttributes) instance.getAttributeSet();
         int inputs = attrs.inputs;
 
@@ -454,7 +429,7 @@ abstract class AbstractGate extends InstanceFactory {
                 }
             }
         }
-        Value out = null;
+        Value out;
         if (numInputs == 0 || error) {
             out = Value.createError(attrs.width);
         } else {
@@ -491,54 +466,46 @@ abstract class AbstractGate extends InstanceFactory {
     @Override
     protected Object getInstanceFeature(final Instance instance, Object key) {
         if (key == WireRepair.class) {
-            return new WireRepair() {
-                @Override
-                public boolean shouldRepairWire(WireRepairData data) {
-                    return AbstractGate.this.shouldRepairWire(instance, data);
-                }
-            };
+            return (WireRepair) data -> AbstractGate.this.shouldRepairWire(instance, data);
         }
         if (key == ExpressionComputer.class) {
-            return new ExpressionComputer() {
-                @Override
-                public void computeExpression(Map<Location,Expression> expressionMap) {
-                    GateAttributes attrs = (GateAttributes) instance.getAttributeSet();
-                    int inputCount = attrs.inputs;
-                    int negated = attrs.negated;
+            return (ExpressionComputer) expressionMap -> {
+                GateAttributes attrs1 = (GateAttributes) instance.getAttributeSet();
+                int inputCount = attrs1.inputs;
+                int negated = attrs1.negated;
 
-                    Expression[] inputs = new Expression[inputCount];
-                    int numInputs = 0;
-                    for (int i = 1; i <= inputCount; i++) {
-                        Expression e = expressionMap.get(instance.getPortLocation(i));
-                        if (e != null) {
-                            int negatedBit = (negated >> (i - 1)) & 1;
-                            if (negatedBit == 1) {
-                                e = Expressions.not(e);
-                            }
-                            inputs[numInputs] = e;
-                            ++numInputs;
+                Expression[] inputs = new Expression[inputCount];
+                int numInputs = 0;
+                for (int i = 1; i <= inputCount; i++) {
+                    Expression e = expressionMap.get(instance.getPortLocation(i));
+                    if (e != null) {
+                        int negatedBit = (negated >> (i - 1)) & 1;
+                        if (negatedBit == 1) {
+                            e = Expressions.not(e);
                         }
+                        inputs[numInputs] = e;
+                        ++numInputs;
                     }
-                    if (numInputs > 0) {
-                        Expression out = AbstractGate.this.computeExpression(inputs, numInputs);
-                        expressionMap.put(instance.getPortLocation(0), out);
-                    }
+                }
+                if (numInputs > 0) {
+                    Expression out = AbstractGate.this.computeExpression(inputs, numInputs);
+                    expressionMap.put(instance.getPortLocation(0), out);
                 }
             };
         }
         return super.getInstanceFeature(instance, key);
     }
 
-    Location getInputOffset(GateAttributes attrs, int index) {
+    public Location getInputOffset(GateAttributes attrs, int index) {
         int inputs = attrs.inputs;
         Direction facing = attrs.facing;
-        int size = ((Integer) attrs.size.getValue()).intValue();
+        int size = (Integer) attrs.size.getValue();
         int axisLength = size + bonusWidth + (negateOutput ? 10 : 0);
         int negated = attrs.negated;
 
         int skipStart;
         int skipDist;
-        int skipLowerEven = 10;
+        int skipLowerEven;
         if (inputs <= 3) {
             if (size < 40) {
                 skipStart = -5;
