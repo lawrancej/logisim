@@ -5,7 +5,7 @@ require 'nokogiri' # Don't forget to do this first: gem install nokogiri
 repositories.remote << 'http://repo1.maven.org/maven2' << 'http://nexus.gephi.org/nexus/content/repositories/public'
 
 JAVAHELP = artifact('javax.help:javahelp:jar:2.0.05')
-MRJADAPTER = download artifact('net.roydesign:mrjadapter:jar:1.1') => 'http://www.docjar.com/jar/MRJAdapter.jar'
+MRJADAPTER = download artifact('net.roydesign:mrjadapter:jar:1.1') => 'http://www.docjar.com/jar/mrjadapter-1.3.jar'
 COLORPICKER = download artifact('com.bric:colorpicker:jar:1.0') => 'http://javagraphics.java.net/jars/ColorPicker.jar'
 FONTCHOOSER = artifact('com.connectina.swing:fontchooser:jar:1.0')
 COMMONS_LANG = artifact('org.apache.commons:commons-lang3:jar:3.1')

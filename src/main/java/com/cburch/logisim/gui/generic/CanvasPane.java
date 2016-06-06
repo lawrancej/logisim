@@ -3,6 +3,11 @@
 
 package com.cburch.logisim.gui.generic;
 
+import com.cburch.logisim.util.MacCompatibility;
+
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -10,12 +15,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
-
-import com.cburch.logisim.util.MacCompatibility;
 
 @SuppressWarnings("serial")
 public class CanvasPane extends JScrollPane {
@@ -66,7 +65,7 @@ public class CanvasPane extends JScrollPane {
         this.contents = contents;
         this.listener = new Listener();
         this.zoomModel = null;
-        if (MacCompatibility.mrjVersion >= 0.0) {
+        if (MacCompatibility.isMacOSX()) {
             setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
             setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         }
