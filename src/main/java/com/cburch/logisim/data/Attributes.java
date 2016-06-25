@@ -3,20 +3,20 @@
 
 package com.cburch.logisim.data;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
+import com.bric.colorpicker.ColorPicker;
+import com.cburch.logisim.util.FontUtil;
+import com.cburch.logisim.util.JInputComponent;
+import com.connectina.swing.fontchooser.JFontChooser;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 
-import com.bric.swing.ColorPicker;
-import com.cburch.logisim.util.FontUtil;
-import com.cburch.logisim.util.JInputComponent;
-import com.connectina.swing.fontchooser.JFontChooser;
-import static com.cburch.logisim.util.LocaleString.*;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 public class Attributes {
