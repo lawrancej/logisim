@@ -35,7 +35,6 @@ If you just want to test the newest developer version to report issues or for ne
 The build script recognizes the following commands:
 
 	./gradlew build     # Build application jar
-	./gradlew eclipse   # Build Eclipse configuration
 	./gradlew createExe # Build logisim executable
 	./gradlew run       # Run logisim from gradle
 	./gradlew sonar     # Examine problems using Sonar
