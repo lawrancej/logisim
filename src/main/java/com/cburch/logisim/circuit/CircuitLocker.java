@@ -3,10 +3,7 @@
 
 package com.cburch.logisim.circuit;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -61,24 +58,22 @@ class CircuitLocker {
     static Map<Circuit,Lock> acquireLocks(CircuitTransaction xn,
             CircuitMutatorImpl mutator) {
         Map<Circuit,Integer> requests = xn.getAccessedCircuits();
-        Map<Circuit,Lock> circuitLocks = new HashMap<Circuit,Lock>();
+        Map<Circuit,Lock> circuitLocks = new HashMap<>();
         // Acquire locks in serial-number order to avoid deadlock
-        Circuit[] lockOrder = requests.keySet().toArray(new Circuit[0]);
+        Set<Circuit> var = requests.keySet();
+        Circuit[] lockOrder = var.toArray(new Circuit[var.size()]);
         Arrays.sort(lockOrder, new CircuitComparator());
         try {
             for (Circuit circ : lockOrder) {
                 Integer access = requests.get(circ);
                 CircuitLocker locker = circ.getLocker();
-                if (access == CircuitTransaction.READ_ONLY) {
+                if (CircuitTransaction.READ_ONLY.equals(access)) {
                     Lock lock = locker.circuitLock.readLock();
                     lock.lock();
                     circuitLocks.put(circ, lock);
-                } else if (access == CircuitTransaction.READ_WRITE) {
+                } else if (CircuitTransaction.READ_WRITE.equals(access)) {
                     Thread curThread = Thread.currentThread();
-                    if (locker.mutatingThread == curThread) {
-                        // nothing to do - thread already has lock
-                        ;
-                    } else {
+                    if (locker.mutatingThread != curThread) {
                         Lock lock = locker.circuitLock.writeLock();
                         lock.lock();
                         circuitLocks.put(circ, lock);

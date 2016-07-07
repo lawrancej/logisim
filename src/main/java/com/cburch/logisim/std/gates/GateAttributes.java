@@ -15,7 +15,7 @@ import com.cburch.logisim.data.Direction;
 import com.cburch.logisim.instance.StdAttr;
 import static com.cburch.logisim.util.LocaleString.*;
 
-class GateAttributes extends AbstractAttributeSet {
+public class GateAttributes extends AbstractAttributeSet {
     static final int MAX_INPUTS = 32;
     static final int DELAY = 1;
 
@@ -52,17 +52,17 @@ class GateAttributes extends AbstractAttributeSet {
             new AttributeOption[] { OUTPUT_01, OUTPUT_0Z, OUTPUT_Z1 });
 
 
-    Direction facing = Direction.EAST;
-    BitWidth width = BitWidth.ONE;
-    AttributeOption size = SIZE_NARROW;
-    int inputs = 2;
-    int negated = 0;
-    AttributeOption out = OUTPUT_01;
-    AttributeOption xorBehave;
-    String label = "";
-    Font labelFont = StdAttr.DEFAULT_LABEL_FONT;
+    public Direction facing = Direction.EAST;
+    public BitWidth width = BitWidth.ONE;
+    public AttributeOption size = SIZE_NARROW;
+    public int inputs = 2;
+    public int negated = 0;
+    public AttributeOption out = OUTPUT_01;
+    public AttributeOption xorBehave;
+    public String label = "";
+    public Font labelFont = StdAttr.DEFAULT_LABEL_FONT;
 
-    GateAttributes(boolean isXor) {
+    public GateAttributes(boolean isXor) {
         xorBehave = isXor ? XOR_ONE : null;
     }
 

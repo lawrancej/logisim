@@ -3,29 +3,18 @@
 
 package com.cburch.logisim.std.plexers;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 import com.cburch.logisim.LogisimVersion;
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Location;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString.*;
 
-public class Demultiplexer extends InstanceFactory {
+import java.awt.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
+class Demultiplexer extends InstanceFactory {
     public Demultiplexer() {
         super("Demultiplexer", getFromLocale("demultiplexerComponent"));
         setAttributes(new Attribute[] {
@@ -46,7 +35,7 @@ public class Demultiplexer extends InstanceFactory {
     public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
         if (attr == Plexers.ATTR_ENABLE) {
             int newer = ver.compareTo(LogisimVersion.get(2, 6, 3, 220));
-            return Boolean.valueOf(newer >= 0);
+            return newer >= 0;
         } else {
             return super.getDefaultAttributeValue(attr, ver);
         }
@@ -92,12 +81,12 @@ public class Demultiplexer extends InstanceFactory {
         }
     }
 
-    private void updatePorts(Instance instance) {
+    private static void updatePorts(Instance instance) {
         Direction facing = instance.getAttributeValue(StdAttr.FACING);
         Object selectLoc = instance.getAttributeValue(Plexers.ATTR_SELECT_LOC);
         BitWidth data = instance.getAttributeValue(StdAttr.WIDTH);
         BitWidth select = instance.getAttributeValue(Plexers.ATTR_SELECT);
-        boolean enable = instance.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+        boolean enable = instance.getAttributeValue(Plexers.ATTR_ENABLE);
         int outputs = 1 << select.getWidth();
         Port[] ps = new Port[outputs + (enable ? 3 : 2)];
         Location sel;
@@ -156,7 +145,7 @@ public class Demultiplexer extends InstanceFactory {
         ps[ps.length - 1] = new Port(0, 0, Port.INPUT, data.getWidth());
 
         for (int i = 0; i < outputs; i++) {
-            ps[i].setToolTip(getFromLocale("demultiplexerOutTip", "" + i));
+            ps[i].setToolTip(getFromLocale("demultiplexerOutTip", String.valueOf(i)));
         }
         ps[outputs].setToolTip(getFromLocale("demultiplexerSelectTip"));
         if (enable) {
@@ -173,14 +162,14 @@ public class Demultiplexer extends InstanceFactory {
         BitWidth data = state.getAttributeValue(StdAttr.WIDTH);
         BitWidth select = state.getAttributeValue(Plexers.ATTR_SELECT);
         Boolean threeState = state.getAttributeValue(Plexers.ATTR_TRISTATE);
-        boolean enable = state.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+        boolean enable = state.getAttributeValue(Plexers.ATTR_ENABLE);
         int outputs = 1 << select.getWidth();
         Value en = enable ? state.getPort(outputs + 1) : Value.TRUE;
 
         // determine output values
         // the default output
         Value others;
-        if (threeState.booleanValue()) {
+        if (threeState) {
             others = Value.createUnknown(data);
         } else {
             others = Value.createKnown(data, 0);
@@ -226,7 +215,7 @@ public class Demultiplexer extends InstanceFactory {
         Bounds bds = painter.getBounds();
         Direction facing = painter.getAttributeValue(StdAttr.FACING);
         BitWidth select = painter.getAttributeValue(Plexers.ATTR_SELECT);
-        boolean enable = painter.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+        boolean enable = painter.getAttributeValue(Plexers.ATTR_ENABLE);
         int outputs = 1 << select.getWidth();
 
         // draw select and enable inputs

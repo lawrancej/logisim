@@ -3,36 +3,24 @@
 
 package com.cburch.logisim.std.memory;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeOption;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.Attributes;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
 import com.cburch.logisim.util.StringUtil;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import java.awt.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class Counter extends InstanceFactory {
     static final AttributeOption ON_GOAL_WRAP = new AttributeOption("wrap",
             "wrap", getFromLocale("counterGoalWrap"));
-    static final AttributeOption ON_GOAL_STAY = new AttributeOption("stay",
+    private static final AttributeOption ON_GOAL_STAY = new AttributeOption("stay",
             "stay", getFromLocale("counterGoalStay"));
-    static final AttributeOption ON_GOAL_CONT = new AttributeOption("continue",
+    private static final AttributeOption ON_GOAL_CONT = new AttributeOption("continue",
             "continue", getFromLocale("counterGoalContinue"));
-    static final AttributeOption ON_GOAL_LOAD = new AttributeOption("load",
+    private static final AttributeOption ON_GOAL_LOAD = new AttributeOption("load",
             "load", getFromLocale("counterGoalLoad"));
 
     static final Attribute<Integer> ATTR_MAX = Attributes.forHexInteger("max",
@@ -100,7 +88,7 @@ public class Counter extends InstanceFactory {
 
         BitWidth dataWidth = state.getAttributeValue(StdAttr.WIDTH);
         Object triggerType = state.getAttributeValue(StdAttr.EDGE_TRIGGER);
-        int max = state.getAttributeValue(ATTR_MAX).intValue();
+        int max = state.getAttributeValue(ATTR_MAX);
         Value clock = state.getPort(CK);
         boolean triggered = data.updateClock(clock, triggerType);
 
@@ -198,7 +186,7 @@ public class Counter extends InstanceFactory {
             }
         } else {
             a = getFromLocale("counterLabel");
-            b = getFromLocale("registerWidthLabel", "" + widthVal.getWidth());
+            b = getFromLocale("registerWidthLabel", String.valueOf(widthVal.getWidth()));
         }
 
         // draw boundary, label

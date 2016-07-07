@@ -3,13 +3,14 @@
 
 package com.cburch.logisim.data;
 
-import java.awt.Color;
+import com.cburch.logisim.util.Cache;
+
+import java.awt.*;
 import java.util.Arrays;
 
-import com.cburch.logisim.util.Cache;
-import static com.cburch.logisim.util.LocaleString.*;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
-public class Value {
+public final class Value {
     public static final Value FALSE   = new Value(1, 0, 0, 0);
     public static final Value TRUE    = new Value(1, 0, 0, 1);
     public static final Value UNKNOWN = new Value(1, 0, 1, 0);
@@ -21,14 +22,14 @@ public class Value {
     public static final Color NIL_COLOR = Color.GRAY;
     public static final Color FALSE_COLOR = new Color(0, 100, 0);
     public static final Color TRUE_COLOR = new Color(0, 210, 0);
-    public static final Color UNKNOWN_COLOR = new Color(40, 40, 255);
+    private static final Color UNKNOWN_COLOR = new Color(40, 40, 255);
     public static final Color ERROR_COLOR = new Color(192, 0, 0);
     public static final Color WIDTH_ERROR_COLOR = new Color(255, 123, 0);
-    public static final Color MULTI_COLOR = Color.BLACK;
+    private static final Color MULTI_COLOR = Color.BLACK;
 
     private static final Cache cache = new Cache();
 
-    public static Value create(Value[] values) {
+    public static Value create(Value... values) {
         if (values.length == 0) {
             return NIL;
         }
@@ -51,7 +52,7 @@ public class Value {
             }
 
             else if (values[i] == FALSE) {
-                  /* do nothing */;
+                  /* do nothing */
             }
 
             else if (values[i] == UNKNOWN) {
@@ -83,39 +84,34 @@ public class Value {
     }
 
     private static Value create(int width, int error, int unknown, int value) {
+        int value1 = value;
         if (width == 0) {
             return Value.NIL;
         } else if (width == 1) {
             if ((error & 1) != 0) {
-                      return Value.ERROR;
-            }
-
-            else if ((unknown & 1) != 0) {
-                   return Value.UNKNOWN;
-            }
-
-            else if ((value & 1) != 0) {
-                 return Value.TRUE;
-            }
-
-            else {
+                return Value.ERROR;
+            } else if ((unknown & 1) != 0) {
+                return Value.UNKNOWN;
+            } else if ((value1 & 1) != 0) {
+                return Value.TRUE;
+            } else {
                 return Value.FALSE;
             }
 
         } else {
             int mask = (width == 32 ? -1 : ~(-1 << width));
-            error = error & mask;
-            unknown = unknown & mask & ~error;
-            value = value & mask & ~unknown & ~error;
+            error &= mask;
+            unknown &= mask & ~error;
+            value1 &= mask & ~unknown & ~error;
 
-            int hashCode = 31 * (31 * (31 * width + error) + unknown) + value;
+            int hashCode = 31 * (31 * (31 * width + error) + unknown) + value1;
             Object cached = cache.get(hashCode);
             if (cached != null) {
                 Value val = (Value) cached;
-                if (val.value == value && val.width == width && val.error == error
+                if (val.value == value1 && val.width == width && val.error == error
                         && val.unknown == unknown) return val;
             }
-            Value ret= new Value(width, error, unknown, value);
+            Value ret = new Value(width, error, unknown, value1);
             cache.put(hashCode, ret);
             return ret;
         }
@@ -298,7 +294,7 @@ public class Value {
             for (int i = width - 1; i >= 0; i--) {
                 ret.append(get(i).toString());
                 if (i % 4 == 0 && i != 0) {
-                    ret.append(" ");
+                    ret.append(' ');
                 }
 
             }
@@ -306,7 +302,7 @@ public class Value {
         }
     }
 
-    public String toOctalString() {
+    private String toOctalString() {
         if (width <= 1) {
             return toString();
         } else {
@@ -333,7 +329,7 @@ public class Value {
                     }
 
                 }
-                if (c[i] == '?') {
+                if (c[i] == (int) '?') {
                     c[i] = Character.forDigit(v, 8);
                 }
 
@@ -369,7 +365,7 @@ public class Value {
                     }
 
                 }
-                if (c[i] == '?') {
+                if (c[i] == (int) '?') {
                     c[i] = Character.forDigit(v, 16);
                 }
 
@@ -397,9 +393,9 @@ public class Value {
             if (width < 32 && (value >> (width - 1)) != 0) {
                 value |= (-1) << width;
             }
-            return "" + value;
+            return String.valueOf(value);
         } else {
-            return "" + (value & 0xFFFFFFFFL);
+            return String.valueOf((long) value & 0xFFFFFFFFL);
         }
     }
 
@@ -450,7 +446,7 @@ public class Value {
             for (int i = width - 1; i >= 0; i--) {
                 ret.append(get(i).toString());
                 if (i % 4 == 0 && i != 0) {
-                    ret.append(" ");
+                    ret.append(' ');
                 }
 
             }

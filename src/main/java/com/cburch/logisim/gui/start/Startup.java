@@ -291,6 +291,8 @@ public class Startup {
             // we're using the GUI: Set up the Look&Feel to match the platform
             System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Logisim");
             System.setProperty("apple.laf.useScreenMenuBar", "true");
+            System.setProperty("awt.useSystemAAFontSettings","lcd");
+            System.setProperty("swing.aatext", "true");
 
             LocaleManager.setReplaceAccents(false);
 

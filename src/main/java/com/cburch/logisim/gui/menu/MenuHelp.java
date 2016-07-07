@@ -7,19 +7,18 @@ import com.cburch.logisim.gui.generic.LFrame;
 import com.cburch.logisim.gui.start.About;
 import com.cburch.logisim.util.MacCompatibility;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.net.URL;
-import java.util.Locale;
-
 import javax.help.HelpSet;
 import javax.help.JHelp;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+import java.util.Locale;
 
-import static com.cburch.logisim.util.LocaleString.*;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 class MenuHelp extends JMenu implements ActionListener {
@@ -44,7 +43,7 @@ class MenuHelp extends JMenu implements ActionListener {
         add(tutorial);
         add(guide);
         add(library);
-        if (!MacCompatibility.isAboutAutomaticallyPresent()) {
+        if (!MacCompatibility.isMacOSX()) {
             addSeparator();
             add(about);
         }

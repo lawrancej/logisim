@@ -3,50 +3,35 @@
 
 package com.cburch.logisim.std.wiring;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import com.cburch.logisim.analyze.model.Expression;
+import com.cburch.logisim.analyze.model.Expressions;
+import com.cburch.logisim.circuit.ExpressionComputer;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
+import com.cburch.logisim.tools.key.BitWidthConfigurator;
+import com.cburch.logisim.tools.key.JoinedConfigurator;
+import com.cburch.logisim.util.GraphicsUtil;
+
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import com.cburch.logisim.analyze.model.Expression;
-import com.cburch.logisim.analyze.model.Expressions;
-import com.cburch.logisim.circuit.ExpressionComputer;
-import com.cburch.logisim.data.AbstractAttributeSet;
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.Attributes;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Location;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
-import com.cburch.logisim.tools.key.BitWidthConfigurator;
-import com.cburch.logisim.tools.key.JoinedConfigurator;
-import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString.*;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class Constant extends InstanceFactory {
     public static final Attribute<Integer> ATTR_VALUE
         = Attributes.forHexInteger("value", getFromLocale("constantValueAttr"));
 
-    public static InstanceFactory FACTORY = new Constant();
+    public static final InstanceFactory FACTORY = new Constant();
 
     private static final Color BACKGROUND_COLOR = new Color(230, 230, 230);
 
     private static final List<Attribute<?>> ATTRIBUTES
-        = Arrays.asList(new Attribute<?>[] {
-                StdAttr.FACING, StdAttr.WIDTH, ATTR_VALUE
-        });
+        = Arrays.asList(StdAttr.FACING, StdAttr.WIDTH, ATTR_VALUE);
 
     private static class ConstantAttributes extends AbstractAttributeSet {
-        private Direction facing = Direction.EAST;;
+        private Direction facing = Direction.EAST;
         private BitWidth width = BitWidth.ONE;
         private Value value = Value.TRUE;
 
@@ -64,7 +49,6 @@ public class Constant extends InstanceFactory {
         }
 
         @Override
-        @SuppressWarnings("unchecked")
         public <V> V getValue(Attribute<V> attr) {
             if (attr == StdAttr.FACING) {
             	return (V) facing;
@@ -87,26 +71,27 @@ public class Constant extends InstanceFactory {
                 this.value = this.value.extendWidth(width.getWidth(),
                         this.value.get(this.value.getWidth() - 1));
             } else if (attr == ATTR_VALUE) {
-                int val = ((Integer) value).intValue();
+                int val = (Integer) value;
                 this.value = Value.createKnown(width, val);
             } else {
                 throw new IllegalArgumentException("unknown attribute " + attr);
             }
             fireAttributeValueChanged(attr, value);
         }
+
     }
 
     private static class ConstantExpression implements ExpressionComputer {
-        private Instance instance;
+        private final Instance instance;
 
-        public ConstantExpression(Instance instance) {
+        private ConstantExpression(Instance instance) {
             this.instance = instance;
         }
 
         @Override
         public void computeExpression(Map<Location,Expression> expressionMap) {
             AttributeSet attrs = instance.getAttributeSet();
-            int intValue = attrs.getValue(ATTR_VALUE).intValue();
+            int intValue = attrs.getValue(ATTR_VALUE);
 
             expressionMap.put(instance.getLocation(),
                     Expressions.constant(intValue));
@@ -132,7 +117,7 @@ public class Constant extends InstanceFactory {
         updatePorts(instance);
     }
 
-    private void updatePorts(Instance instance) {
+    private static void updatePorts(Instance instance) {
         Port[] ps = { new Port(0, 0, Port.OUTPUT, StdAttr.WIDTH) };
         instance.setPorts(ps);
     }
@@ -158,7 +143,7 @@ public class Constant extends InstanceFactory {
     @Override
     public void propagate(InstanceState state) {
         BitWidth width = state.getAttributeValue(StdAttr.WIDTH);
-        int value = state.getAttributeValue(ATTR_VALUE).intValue();
+        int value = state.getAttributeValue(ATTR_VALUE);
         state.setPort(0, Value.createKnown(width, value), 1);
     }
 
@@ -215,7 +200,7 @@ public class Constant extends InstanceFactory {
             }
         }
         if (ret == null) {
-            throw new IllegalArgumentException("unrecognized arguments " + facing + " " + width);
+            throw new IllegalArgumentException("unrecognized arguments " + facing + ' ' + width);
         }
         return ret;
     }
@@ -236,10 +221,10 @@ public class Constant extends InstanceFactory {
 
         Graphics g = painter.getGraphics();
         if (w == 1) {
-            int v = painter.getAttributeValue(ATTR_VALUE).intValue();
+            int v = painter.getAttributeValue(ATTR_VALUE);
             Value val = v == 1 ? Value.TRUE : Value.FALSE;
             g.setColor(val.getColor());
-            GraphicsUtil.drawCenteredText(g, "" + v, 10, 9);
+            GraphicsUtil.drawCenteredText(g, String.valueOf(v), 10, 9);
         } else {
             g.setFont(g.getFont().deriveFont(9.0f));
             GraphicsUtil.drawCenteredText(g, "x" + w, 10, 9);
@@ -249,7 +234,7 @@ public class Constant extends InstanceFactory {
 
     @Override
     public void paintGhost(InstancePainter painter) {
-        int v = painter.getAttributeValue(ATTR_VALUE).intValue();
+        int v = painter.getAttributeValue(ATTR_VALUE);
         String vStr = Integer.toHexString(v);
         Bounds bds = getOffsetBounds(painter.getAttributeSet());
 
@@ -264,7 +249,7 @@ public class Constant extends InstanceFactory {
     public void paintInstance(InstancePainter painter) {
         Bounds bds = painter.getOffsetBounds();
         BitWidth width = painter.getAttributeValue(StdAttr.WIDTH);
-        int intValue = painter.getAttributeValue(ATTR_VALUE).intValue();
+        int intValue = painter.getAttributeValue(ATTR_VALUE);
         Value v = Value.createKnown(width, intValue);
         Location loc = painter.getLocation();
         int x = loc.getX();

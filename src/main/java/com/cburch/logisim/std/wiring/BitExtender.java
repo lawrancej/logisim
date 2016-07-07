@@ -3,29 +3,17 @@
 
 package com.cburch.logisim.std.wiring;
 
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeOption;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.Attributes;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString.*;
 
-public class BitExtender extends InstanceFactory {
+import java.awt.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
+public final class BitExtender extends InstanceFactory {
     private static final Attribute<BitWidth> ATTR_IN_WIDTH
         = Attributes.forBitWidth("in_width", getFromLocale("extenderInAttr"));
     private static final Attribute<BitWidth> ATTR_OUT_WIDTH
@@ -41,7 +29,7 @@ public class BitExtender extends InstanceFactory {
 
     public static final BitExtender FACTORY = new BitExtender();
 
-    public BitExtender() {
+    private BitExtender() {
         super("Bit Extender", getFromLocale("extenderComponent"));
         setIconName("extender.svg");
         setAttributes(new Attribute[] {
@@ -69,25 +57,24 @@ public class BitExtender extends InstanceFactory {
 
         String s0;
         String type = getType(painter.getAttributeSet());
-        if (type.equals("zero")) {
-            s0 = getFromLocale("extenderZeroLabel");
-        }
+        switch (type) {
+            case "zero":
+                s0 = getFromLocale("extenderZeroLabel");
+                break;
+            case "one":
+                s0 = getFromLocale("extenderOneLabel");
+                break;
+            case "sign":
+                s0 = getFromLocale("extenderSignLabel");
+                break;
+            case "input":
+                s0 = getFromLocale("extenderInputLabel");
+                break;
 
-        else if (type.equals("one")) {
-            s0 = getFromLocale("extenderOneLabel");
-        }
-
-        else if (type.equals("sign")) {
-            s0 = getFromLocale("extenderSignLabel");
-        }
-
-        else if (type.equals("input")) {
-            s0 = getFromLocale("extenderInputLabel");
-        }
-
-        // should never happen
-        else {
-            s0 = "???";
+            // should never happen
+            default:
+                s0 = "???";
+                break;
         }
 
         String s1 = getFromLocale("extenderMainLabel");
@@ -102,8 +89,8 @@ public class BitExtender extends InstanceFactory {
 
         BitWidth w0 = painter.getAttributeValue(ATTR_OUT_WIDTH);
         BitWidth w1 = painter.getAttributeValue(ATTR_IN_WIDTH);
-        painter.drawPort(0, "" + w0.getWidth(), Direction.WEST);
-        painter.drawPort(1, "" + w1.getWidth(), Direction.EAST);
+        painter.drawPort(0, String.valueOf(w0.getWidth()), Direction.WEST);
+        painter.drawPort(1, String.valueOf(w1.getWidth()), Direction.EAST);
         if (type.equals("input")) {
             painter.drawPort(2);
         }
@@ -129,7 +116,7 @@ public class BitExtender extends InstanceFactory {
         }
     }
 
-    private void configurePorts(Instance instance) {
+    private static void configurePorts(Instance instance) {
         Port p0 = new Port(0, 0, Port.OUTPUT, ATTR_OUT_WIDTH);
         Port p1 = new Port(-40, 0, Port.INPUT, ATTR_IN_WIDTH);
         String type = getType(instance.getAttributeSet());
@@ -146,19 +133,24 @@ public class BitExtender extends InstanceFactory {
         BitWidth wout = state.getAttributeValue(ATTR_OUT_WIDTH);
         String type = getType(state.getAttributeSet());
         Value extend;
-        if (type.equals("one")) {
-            extend = Value.TRUE;
-        } else if (type.equals("sign")) {
-            int win = in.getWidth();
-            extend = win > 0 ? in.get(win - 1) : Value.ERROR;
-        } else if (type.equals("input")) {
-            extend = state.getPort(2);
-            if (extend.getWidth() != 1) {
-                extend = Value.ERROR;
-            }
+        switch (type) {
+            case "one":
+                extend = Value.TRUE;
+                break;
+            case "sign":
+                int win = in.getWidth();
+                extend = win > 0 ? in.get(win - 1) : Value.ERROR;
+                break;
+            case "input":
+                extend = state.getPort(2);
+                if (extend.getWidth() != 1) {
+                    extend = Value.ERROR;
+                }
 
-        } else {
-            extend = Value.FALSE;
+                break;
+            default:
+                extend = Value.FALSE;
+                break;
         }
 
         Value out = in.extendWidth(wout.getWidth(), extend);
@@ -166,7 +158,7 @@ public class BitExtender extends InstanceFactory {
     }
 
 
-    private String getType(AttributeSet attrs) {
+    private static String getType(AttributeSet attrs) {
         AttributeOption topt = attrs.getValue(ATTR_TYPE);
         return (String) topt.getValue();
     }

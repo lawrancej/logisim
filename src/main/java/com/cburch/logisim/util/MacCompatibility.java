@@ -3,51 +3,16 @@
 
 package com.cburch.logisim.util;
 
+import net.roydesign.io.DocumentFile;
+import net.roydesign.mac.MRJAdapter;
+import net.roydesign.mac.SystemAnalyzer;
+
+import javax.swing.JMenuBar;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JMenuBar;
-
-import net.roydesign.mac.MRJAdapter;
-
 public class MacCompatibility {
     private MacCompatibility() { }
-
-    public static final double mrjVersion;
-
-    static {
-        double versionValue;
-        try {
-            versionValue = MRJAdapter.mrjVersion;
-        } catch (Exception t) {
-            versionValue = 0.0;
-        }
-        mrjVersion = versionValue;
-    }
-
-    public static boolean isAboutAutomaticallyPresent() {
-        try {
-            return MRJAdapter.isAboutAutomaticallyPresent();
-        } catch (Exception t) {
-            return false;
-        }
-    }
-
-    public static boolean isPreferencesAutomaticallyPresent() {
-        try {
-            return MRJAdapter.isPreferencesAutomaticallyPresent();
-        } catch (Exception t) {
-            return false;
-        }
-    }
-
-    public static boolean isQuitAutomaticallyPresent() {
-        try {
-            return MRJAdapter.isQuitAutomaticallyPresent();
-        } catch (Exception t) {
-            return false;
-        }
-    }
 
     public static boolean isSwingUsingScreenMenuBar() {
         try {
@@ -68,7 +33,7 @@ public class MacCompatibility {
         IOException ioExcept = null;
         try {
             try {
-                MRJAdapter.setFileCreatorAndType(dest, app, type);
+                DocumentFile.setFileCreatorAndType(dest, app, type);
             } catch (IOException e) {
                 ioExcept = e;
             }
@@ -76,7 +41,10 @@ public class MacCompatibility {
         if (ioExcept != null) {
             throw ioExcept;
         }
+    }
 
+    public static boolean isMacOSX() {
+        return SystemAnalyzer.isMacOSX();
     }
 
 }

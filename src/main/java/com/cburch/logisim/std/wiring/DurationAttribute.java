@@ -3,14 +3,15 @@
 
 package com.cburch.logisim.std.wiring;
 
-import javax.swing.JTextField;
-
 import com.cburch.logisim.data.Attribute;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import javax.swing.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class DurationAttribute extends Attribute<Integer> {
-    private int min;
-    private int max;
+    private final int min;
+    private final int max;
 
     public DurationAttribute(String name, String disp, int min, int max) {
         super(name, disp);
@@ -22,10 +23,10 @@ public class DurationAttribute extends Attribute<Integer> {
     public Integer parse(String value) {
         try {
             Integer ret = Integer.valueOf(value);
-            if (ret.intValue() < min) {
-                throw new NumberFormatException(getFromLocale("durationSmallMessage", "" + min));
-            } else if (ret.intValue() > max) {
-                throw new NumberFormatException(getFromLocale("durationLargeMessage", "" + max));
+            if (ret < min) {
+                throw new NumberFormatException(getFromLocale("durationSmallMessage", String.valueOf(min)));
+            } else if (ret > max) {
+                throw new NumberFormatException(getFromLocale("durationLargeMessage", String.valueOf(max)));
             }
             return ret;
         } catch (NumberFormatException e) {
@@ -35,7 +36,7 @@ public class DurationAttribute extends Attribute<Integer> {
 
     @Override
     public String toDisplayString(Integer value) {
-        if (value.equals(Integer.valueOf(1))) {
+        if (value.equals(1)) {
             return getFromLocale("clockDurationOneValue");
         } else {
             return getFromLocale("clockDurationValue",

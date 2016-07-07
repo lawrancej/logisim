@@ -3,12 +3,6 @@
 
 package com.cburch.logisim.circuit.appear;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.Arrays;
-import java.util.List;
-
-import org.apache.commons.collections15.list.UnmodifiableList;
 import com.cburch.draw.model.CanvasObject;
 import com.cburch.draw.model.Handle;
 import com.cburch.draw.model.HandleGesture;
@@ -16,7 +10,13 @@ import com.cburch.logisim.data.Bounds;
 import com.cburch.logisim.data.Location;
 import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.std.wiring.Pin;
-import static com.cburch.logisim.util.LocaleString.*;
+import org.apache.commons.collections15.list.UnmodifiableList;
+
+import java.awt.*;
+import java.util.Arrays;
+import java.util.List;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class AppearancePort extends AppearanceElement {
     private static final int INPUT_RADIUS = 4;
@@ -75,7 +75,7 @@ public class AppearancePort extends AppearanceElement {
 
     private boolean isInput() {
         Instance p = pin;
-        return p == null || Pin.FACTORY.isInputPin(p);
+        return p == null || Pin.isInputPin(p);
     }
 
     @Override
@@ -98,11 +98,10 @@ public class AppearancePort extends AppearanceElement {
         Location loc = getLocation();
 
         int r = isInput() ? INPUT_RADIUS : OUTPUT_RADIUS;
-        return UnmodifiableList.decorate(Arrays.asList(new Handle[] {
-                new Handle(this, loc.translate(-r, -r)),
+        return UnmodifiableList.decorate(Arrays.asList(new Handle(this, loc.translate(-r, -r)),
                 new Handle(this, loc.translate(r, -r)),
                 new Handle(this, loc.translate(r, r)),
-                new Handle(this, loc.translate(-r, r)) }));
+                new Handle(this, loc.translate(-r, r))));
     }
 
     @Override

@@ -3,18 +3,6 @@
 
 package com.cburch.logisim.std.memory;
 
-import java.awt.Window;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.NoSuchElementException;
-import java.util.StringTokenizer;
-import java.util.WeakHashMap;
-
-import javax.swing.JLabel;
-
 import com.cburch.logisim.circuit.CircuitState;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.AttributeSet;
@@ -27,7 +15,19 @@ import com.cburch.logisim.instance.Instance;
 import com.cburch.logisim.instance.InstanceState;
 import com.cburch.logisim.instance.Port;
 import com.cburch.logisim.proj.Project;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
+import java.util.WeakHashMap;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class Rom extends Mem {
     public static Attribute<MemContents> CONTENTS_ATTR = new ContentsAttribute();
@@ -37,7 +37,7 @@ public class Rom extends Mem {
     private WeakHashMap<Instance,MemListener> memListeners;
 
     public Rom() {
-        super("ROM", getFromLocale("romComponent"), 0);
+        super("ROM", getFromLocale("romComponent"));
         setIconName("rom.svg");
         memListeners = new WeakHashMap<Instance,MemListener>();
     }
@@ -45,7 +45,7 @@ public class Rom extends Mem {
     @Override
     void configurePorts(Instance instance) {
         Port[] ps = new Port[MEM_INPUTS];
-        configureStandardPorts(instance, ps);
+        configureStandardPorts(ps);
         instance.setPorts(ps);
     }
 

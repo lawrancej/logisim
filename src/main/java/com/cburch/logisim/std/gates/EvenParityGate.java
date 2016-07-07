@@ -26,13 +26,13 @@ class EvenParityGate extends AbstractGate {
 
     @Override
     protected void paintShape(InstancePainter painter, int width, int height) {
-        paintRectangular(painter, width, height);
+        painter.paintRectangular(width, height, this);
     }
 
     @Override
     protected void paintDinShape(InstancePainter painter, int width, int height,
             int inputs) {
-        paintRectangular(painter, width, height);
+        painter.paintRectangular(width, height, this);
     }
 
     @Override

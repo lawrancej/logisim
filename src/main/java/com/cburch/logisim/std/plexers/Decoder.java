@@ -3,28 +3,17 @@
 
 package com.cburch.logisim.std.plexers;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 import com.cburch.logisim.LogisimVersion;
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Location;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString.*;
 
-public class Decoder extends InstanceFactory {
+import java.awt.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
+class Decoder extends InstanceFactory {
     public Decoder() {
         super("Decoder", getFromLocale("decoderComponent"));
         setAttributes(new Attribute[] {
@@ -43,7 +32,7 @@ public class Decoder extends InstanceFactory {
     public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
         if (attr == Plexers.ATTR_ENABLE) {
             int newer = ver.compareTo(LogisimVersion.get(2, 6, 3, 220));
-            return Boolean.valueOf(newer >= 0);
+            return newer >= 0;
         } else {
             return super.getDefaultAttributeValue(attr, ver);
         }
@@ -97,11 +86,11 @@ public class Decoder extends InstanceFactory {
         }
     }
 
-    private void updatePorts(Instance instance) {
+    private static void updatePorts(Instance instance) {
         Direction facing = instance.getAttributeValue(StdAttr.FACING);
         Object selectLoc = instance.getAttributeValue(Plexers.ATTR_SELECT_LOC);
         BitWidth select = instance.getAttributeValue(Plexers.ATTR_SELECT);
-        boolean enable = instance.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+        boolean enable = instance.getAttributeValue(Plexers.ATTR_ENABLE);
         int outputs = 1 << select.getWidth();
         Port[] ps = new Port[outputs + (enable ? 2 : 1)];
         if (outputs == 2) {
@@ -156,7 +145,7 @@ public class Decoder extends InstanceFactory {
             ps[outputs + 1] = new Port(en.getX(), en.getY(), Port.INPUT, BitWidth.ONE);
         }
         for (int i = 0; i < outputs; i++) {
-            ps[i].setToolTip(getFromLocale("decoderOutTip", "" + i));
+            ps[i].setToolTip(getFromLocale("decoderOutTip", String.valueOf(i)));
         }
         ps[outputs].setToolTip(getFromLocale("decoderSelectTip"));
         if (enable) {
@@ -171,13 +160,13 @@ public class Decoder extends InstanceFactory {
         BitWidth data = BitWidth.ONE;
         BitWidth select = state.getAttributeValue(Plexers.ATTR_SELECT);
         Boolean threeState = state.getAttributeValue(Plexers.ATTR_TRISTATE);
-        boolean enable = state.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+        boolean enable = state.getAttributeValue(Plexers.ATTR_ENABLE);
         int outputs = 1 << select.getWidth();
 
         // determine default output values
         // the default output
         Value others;
-        if (threeState.booleanValue()) {
+        if (threeState) {
             others = Value.UNKNOWN;
         } else {
             others = Value.FALSE;
@@ -227,7 +216,7 @@ public class Decoder extends InstanceFactory {
         Direction facing = painter.getAttributeValue(StdAttr.FACING);
         Object selectLoc = painter.getAttributeValue(Plexers.ATTR_SELECT_LOC);
         BitWidth select = painter.getAttributeValue(Plexers.ATTR_SELECT);
-        boolean enable = painter.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+        boolean enable = painter.getAttributeValue(Plexers.ATTR_ENABLE);
         int selMult = selectLoc == Plexers.SELECT_TOP_RIGHT ? -1 : 1;
         int outputs = 1 << select.getWidth();
 

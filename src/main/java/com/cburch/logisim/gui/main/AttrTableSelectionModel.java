@@ -10,17 +10,16 @@ import com.cburch.logisim.comp.ComponentFactory;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.gui.generic.AttrTableSetException;
 import com.cburch.logisim.gui.generic.AttributeSetTableModel;
-import com.cburch.logisim.gui.main.AttrTableCircuitModel;
-import com.cburch.logisim.gui.main.Selection;
 import com.cburch.logisim.gui.main.Selection.Event;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.tools.SetAttributeAction;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 class AttrTableSelectionModel extends AttributeSetTableModel
         implements Selection.Listener {
-    private Project project;
-    private Frame frame;
+    private final Project project;
+    private final Frame frame;
 
     public AttrTableSelectionModel(Project project, Frame frame) {
         super(frame.getCanvas().getSelection().getAttributeSet());
@@ -63,7 +62,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
         }
 
         if (variousFound) {
-            return getFromLocale("selectionVarious", "" + totalCount);
+            return getFromLocale("selectionVarious", String.valueOf(totalCount));
         } else if (factoryCount == 0) {
             String circName = frame.getCanvas().getCircuit().getName();
             return getFromLocale("circuitAttrTitle", circName);
@@ -71,7 +70,7 @@ class AttrTableSelectionModel extends AttributeSetTableModel
             return getFromLocale("selectionOne", factory.getDisplayName());
         } else {
             return getFromLocale("selectionMultiple", factory.getDisplayName(),
-                    "" + factoryCount);
+                    String.valueOf(factoryCount));
         }
     }
 
@@ -86,11 +85,9 @@ class AttrTableSelectionModel extends AttributeSetTableModel
         } else {
             SetAttributeAction act = new SetAttributeAction(circuit,
                     getFromLocale("selectionAttributeAction"));
-            for (Component comp : selection.getComponents()) {
-                if (!(comp instanceof Wire)) {
-                    act.set(comp, attr, value);
-                }
-            }
+            selection.getComponents().stream().filter(comp -> !(comp instanceof Wire)).forEach(comp -> {
+                act.set(comp, attr, value);
+            });
             project.doAction(act);
         }
     }

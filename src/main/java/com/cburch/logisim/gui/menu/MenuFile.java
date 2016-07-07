@@ -3,21 +3,21 @@
 
 package com.cburch.logisim.gui.menu;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
-
 import com.cburch.logisim.gui.main.Frame;
 import com.cburch.logisim.gui.opts.OptionsFrame;
 import com.cburch.logisim.gui.prefs.PreferencesFrame;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
 import com.cburch.logisim.util.MacCompatibility;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 class MenuFile extends Menu implements ActionListener {
@@ -64,11 +64,11 @@ class MenuFile extends Menu implements ActionListener {
         addSeparator();
         add(exportImage);
         add(print);
-        if (!MacCompatibility.isPreferencesAutomaticallyPresent()) {
+        if (!MacCompatibility.isMacOSX()) {
             addSeparator();
             add(prefs);
         }
-        if (!MacCompatibility.isQuitAutomaticallyPresent()) {
+        if (!MacCompatibility.isMacOSX()) {
             addSeparator();
             add(quit);
         }

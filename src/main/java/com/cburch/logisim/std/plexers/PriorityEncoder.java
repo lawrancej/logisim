@@ -3,26 +3,16 @@
 
 package com.cburch.logisim.std.plexers;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString.*;
 
-public class PriorityEncoder extends InstanceFactory {
+import java.awt.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
+class PriorityEncoder extends InstanceFactory {
     private static final int OUT = 0;
     private static final int EN_IN = 1;
     private static final int EN_OUT = 2;
@@ -77,7 +67,7 @@ public class PriorityEncoder extends InstanceFactory {
         }
     }
 
-    private void updatePorts(Instance instance) {
+    private static void updatePorts(Instance instance) {
         Object dir = instance.getAttributeValue(StdAttr.FACING);
         BitWidth select = instance.getAttributeValue(Plexers.ATTR_SELECT);
         int n = 1 << select.getWidth();
@@ -105,7 +95,7 @@ public class PriorityEncoder extends InstanceFactory {
         }
 
         for (int i = 0; i < n; i++) {
-            ps[i].setToolTip(getFromLocale("priorityEncoderInTip", "" + i));
+            ps[i].setToolTip(getFromLocale("priorityEncoderInTip", String.valueOf(i)));
         }
         ps[n + OUT].setToolTip(getFromLocale("priorityEncoderOutTip"));
         ps[n + EN_IN].setToolTip(getFromLocale("priorityEncoderEnableInTip"));

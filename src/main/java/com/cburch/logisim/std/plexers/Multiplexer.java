@@ -3,29 +3,18 @@
 
 package com.cburch.logisim.std.plexers;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 import com.cburch.logisim.LogisimVersion;
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.AttributeSet;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Location;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.Instance;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
 import com.cburch.logisim.tools.key.BitWidthConfigurator;
 import com.cburch.logisim.tools.key.JoinedConfigurator;
 import com.cburch.logisim.util.GraphicsUtil;
-import static com.cburch.logisim.util.LocaleString.*;
 
-public class Multiplexer extends InstanceFactory {
+import java.awt.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
+
+class Multiplexer extends InstanceFactory {
     public Multiplexer() {
         super("Multiplexer", getFromLocale("multiplexerComponent"));
         setAttributes(new Attribute[] {
@@ -46,7 +35,7 @@ public class Multiplexer extends InstanceFactory {
     public Object getDefaultAttributeValue(Attribute<?> attr, LogisimVersion ver) {
         if (attr == Plexers.ATTR_ENABLE) {
             int newer = ver.compareTo(LogisimVersion.get(2, 6, 3, 220));
-            return Boolean.valueOf(newer >= 0);
+            return newer >= 0;
         } else {
             return super.getDefaultAttributeValue(attr, ver);
         }
@@ -91,12 +80,12 @@ public class Multiplexer extends InstanceFactory {
         }
     }
 
-    private void updatePorts(Instance instance) {
+    private static void updatePorts(Instance instance) {
         Direction dir = instance.getAttributeValue(StdAttr.FACING);
         Object selectLoc = instance.getAttributeValue(Plexers.ATTR_SELECT_LOC);
         BitWidth data = instance.getAttributeValue(StdAttr.WIDTH);
         BitWidth select = instance.getAttributeValue(Plexers.ATTR_SELECT);
-        boolean enable = instance.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+        boolean enable = instance.getAttributeValue(Plexers.ATTR_ENABLE);
 
         int selMult = selectLoc == Plexers.SELECT_BOTTOM_LEFT ? 1 : -1;
         int inputs = 1 << select.getWidth();
@@ -156,7 +145,7 @@ public class Multiplexer extends InstanceFactory {
         ps[ps.length - 1] = new Port(0, 0, Port.OUTPUT, data.getWidth());
 
         for (int i = 0; i < inputs; i++) {
-            ps[i].setToolTip(getFromLocale("multiplexerInTip", "" + i));
+            ps[i].setToolTip(getFromLocale("multiplexerInTip", String.valueOf(i)));
         }
         ps[inputs].setToolTip(getFromLocale("multiplexerSelectTip"));
         if (enable) {
@@ -171,7 +160,7 @@ public class Multiplexer extends InstanceFactory {
     public void propagate(InstanceState state) {
         BitWidth data = state.getAttributeValue(StdAttr.WIDTH);
         BitWidth select = state.getAttributeValue(Plexers.ATTR_SELECT);
-        boolean enable = state.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+        boolean enable = state.getAttributeValue(Plexers.ATTR_ENABLE);
         int inputs = 1 << select.getWidth();
         Value en = enable ? state.getPort(inputs + 1) : Value.TRUE;
         Value out;
@@ -208,7 +197,7 @@ public class Multiplexer extends InstanceFactory {
         Bounds bds = painter.getBounds();
         Direction facing = painter.getAttributeValue(StdAttr.FACING);
         BitWidth select = painter.getAttributeValue(Plexers.ATTR_SELECT);
-        boolean enable = painter.getAttributeValue(Plexers.ATTR_ENABLE).booleanValue();
+        boolean enable = painter.getAttributeValue(Plexers.ATTR_ENABLE);
         int inputs = 1 << select.getWidth();
 
         // draw stubs for select/enable inputs that aren't on instance boundary

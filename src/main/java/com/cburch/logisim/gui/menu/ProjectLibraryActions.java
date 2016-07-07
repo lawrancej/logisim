@@ -3,6 +3,13 @@
 
 package com.cburch.logisim.gui.menu;
 
+import com.cburch.logisim.file.Loader;
+import com.cburch.logisim.file.LogisimFile;
+import com.cburch.logisim.file.LogisimFileActions;
+import com.cburch.logisim.proj.Project;
+import com.cburch.logisim.tools.Library;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,17 +17,7 @@ import java.util.List;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
-import javax.swing.JFileChooser;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-
-import com.cburch.logisim.file.Loader;
-import com.cburch.logisim.file.LogisimFile;
-import com.cburch.logisim.file.LogisimFileActions;
-import com.cburch.logisim.proj.Project;
-import com.cburch.logisim.tools.Library;
-import static com.cburch.logisim.util.LocaleString.*;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 public class ProjectLibraryActions {
@@ -28,18 +25,19 @@ public class ProjectLibraryActions {
 
     private static class LibraryJList extends JList<Library> {
         LibraryJList(List<Library> libraries) {
-            setListData(libraries.toArray(new Library[]{}));
+            setListData(libraries.toArray(new Library[libraries.size()]));
         }
 
         Library[] getSelectedLibraries() {
-            return this.getSelectedValuesList().toArray(new Library[]{});
+            List<Library> var = this.getSelectedValuesList();
+            return var.toArray(new Library[var.size()]);
         }
     }
 
-    public static void doLoadBuiltinLibrary(Project proj) {
+    static void doLoadBuiltinLibrary(Project proj) {
         LogisimFile file = proj.getLogisimFile();
         List<Library> baseBuilt = file.getLoader().getBuiltin().getLibraries();
-        ArrayList<Library> builtins = new ArrayList<Library>(baseBuilt);
+        ArrayList<Library> builtins = new ArrayList<>(baseBuilt);
         builtins.removeAll(file.getLibraries());
         if (builtins.isEmpty()) {
             JOptionPane.showMessageDialog(proj.getFrame(),
@@ -62,7 +60,7 @@ public class ProjectLibraryActions {
         }
     }
 
-    public static void doLoadLogisimLibrary(Project proj) {
+    static void doLoadLogisimLibrary(Project proj) {
         Loader loader = proj.getLogisimFile().getLoader();
         JFileChooser chooser = loader.createChooser();
         chooser.setDialogTitle(getFromLocale("loadLogisimDialogTitle"));
@@ -77,7 +75,7 @@ public class ProjectLibraryActions {
         }
     }
 
-    public static void doLoadJarLibrary(Project proj) {
+    static void doLoadJarLibrary(Project proj) {
         Loader loader = proj.getLogisimFile().getLoader();
         JFileChooser chooser = loader.createChooser();
         chooser.setDialogTitle(getFromLocale("loadJarDialogTitle"));
@@ -90,17 +88,11 @@ public class ProjectLibraryActions {
             // try to retrieve the class name from the "Library-Class"
             // attribute in the manifest. This section of code was contributed
             // by Christophe Jacquet (Request Tracker #2024431).
-            JarFile jarFile = null;
-            try {
-                jarFile = new JarFile(f);
+            try (JarFile jarFile = new JarFile(f)) {
                 Manifest manifest = jarFile.getManifest();
                 className = manifest.getMainAttributes().getValue("Library-Class");
             } catch (IOException e) {
                 // if opening the JAR file failed, do nothing
-            } finally {
-                if (jarFile != null) {
-                    try { jarFile.close(); } catch (IOException e) { }
-                }
             }
 
             // if the class name was not found, go back to the good old dialog
@@ -123,9 +115,9 @@ public class ProjectLibraryActions {
         }
     }
 
-    public static void doUnloadLibraries(Project proj) {
+    static void doUnloadLibraries(Project proj) {
         LogisimFile file = proj.getLogisimFile();
-        ArrayList<Library> canUnload = new ArrayList<Library>();
+        ArrayList<Library> canUnload = new ArrayList<>();
         for (Library lib : file.getLibraries()) {
             String message = file.getUnloadLibraryMessage(lib);
             if (message == null) {

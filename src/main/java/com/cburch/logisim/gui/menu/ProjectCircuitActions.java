@@ -3,21 +3,6 @@
 
 package com.cburch.logisim.gui.menu;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
-import java.util.ArrayList;
-import java.util.Map;
-
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import com.cburch.logisim.analyze.gui.Analyzer;
 import com.cburch.logisim.analyze.gui.AnalyzerManager;
 import com.cburch.logisim.analyze.model.AnalyzerModel;
@@ -31,7 +16,15 @@ import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.std.wiring.Pin;
 import com.cburch.logisim.tools.AddTool;
 import com.cburch.logisim.tools.Library;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import java.util.ArrayList;
+import java.util.Map;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class ProjectCircuitActions {
     private ProjectCircuitActions() { }
@@ -141,7 +134,7 @@ public class ProjectCircuitActions {
         ArrayList<String> outputNames = new ArrayList<String>();
         for (Map.Entry<Instance, String> entry : pinNames.entrySet()) {
             Instance pin = entry.getKey();
-            boolean isInput = Pin.FACTORY.isInputPin(pin);
+            boolean isInput = Pin.isInputPin(pin);
             if (isInput) {
                 inputNames.add(entry.getValue());
             } else {

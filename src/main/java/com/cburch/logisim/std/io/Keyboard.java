@@ -3,25 +3,14 @@
 
 package com.cburch.logisim.std.io;
 
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+import com.cburch.logisim.data.*;
+import com.cburch.logisim.instance.*;
+
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.cburch.logisim.data.Attribute;
-import com.cburch.logisim.data.Attributes;
-import com.cburch.logisim.data.BitWidth;
-import com.cburch.logisim.data.Bounds;
-import com.cburch.logisim.data.Direction;
-import com.cburch.logisim.data.Value;
-import com.cburch.logisim.instance.InstanceFactory;
-import com.cburch.logisim.instance.InstancePainter;
-import com.cburch.logisim.instance.InstancePoker;
-import com.cburch.logisim.instance.InstanceState;
-import com.cburch.logisim.instance.Port;
-import com.cburch.logisim.instance.StdAttr;
-import static com.cburch.logisim.util.LocaleString.*;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 public class Keyboard extends InstanceFactory {
     private static final int CLR = 0;
@@ -34,7 +23,7 @@ public class Keyboard extends InstanceFactory {
     private static final int DELAY1 = 11;
 
     static final int WIDTH = 145;
-    static final int HEIGHT = 25;
+    private static final int HEIGHT = 25;
 
     private static final Font DEFAULT_FONT = new Font("monospaced", Font.PLAIN, 12);
     // control-L
@@ -91,9 +80,9 @@ public class Keyboard extends InstanceFactory {
 
             c = state.getChar(0);
         }
-        Value out = Value.createKnown(BitWidth.create(7), c & 0x7F);
+        Value out = Value.createKnown(BitWidth.create(7), (int) c & 0x7F);
         circState.setPort(OUT, out, DELAY0);
-        circState.setPort(AVL, c != '\0' ? Value.TRUE : Value.FALSE, DELAY1);
+        circState.setPort(AVL, (int) c != (int) '\0' ? Value.TRUE : Value.FALSE, DELAY1);
     }
 
     @Override
@@ -111,14 +100,14 @@ public class Keyboard extends InstanceFactory {
             String str;
             int dispStart;
             int dispEnd;
-            ArrayList<Integer> specials = new ArrayList<Integer>();
+            ArrayList<Integer> specials = new ArrayList<>();
             FontMetrics fm = null;
             KeyboardData state = getKeyboardState(painter);
             synchronized(state) {
                 str = state.toString();
                 for (int i = state.getNextSpecial(0); i >= 0; i = state.getNextSpecial(i + 1)) {
                     char c = state.getChar(i);
-                    specials.add(Integer.valueOf(c << 16 | i));
+                    specials.add(c << 16 | i);
                 }
                 if (!state.isDisplayValid()) {
                     fm = g.getFontMetrics(DEFAULT_FONT);
@@ -135,7 +124,7 @@ public class Keyboard extends InstanceFactory {
         } else {
             Bounds bds = painter.getBounds();
             int len = getBufferLength(painter.getAttributeValue(ATTR_BUFFER));
-            String str = getFromLocale("keybDesc", "" + len);
+            String str = getFromLocale("keybDesc", String.valueOf(len));
             FontMetrics fm = g.getFontMetrics();
             int x = bds.getX() + (WIDTH - fm.stringWidth(str)) / 2;
             int y = bds.getY() + (HEIGHT + fm.getAscent()) / 2;
@@ -143,7 +132,7 @@ public class Keyboard extends InstanceFactory {
         }
     }
 
-    private void drawDots(Graphics g, int x, int y, int width, int ascent) {
+    private static void drawDots(Graphics g, int x, int y, int width) {
         int r = width / 10;
         if (r < 1) r = 1;
         int d = 2 * r;
@@ -153,49 +142,50 @@ public class Keyboard extends InstanceFactory {
     }
 
     private void drawBuffer(Graphics g, FontMetrics fm, String str,
-            int dispStart, int dispEnd, ArrayList<Integer> specials, Bounds bds) {
+                            int dispStart, int dispEnd, ArrayList<Integer> specials, Bounds bds) {
+        FontMetrics fm1 = fm;
         int x = bds.getX();
         int y = bds.getY();
 
         g.setFont(DEFAULT_FONT);
-        if (fm == null) fm = g.getFontMetrics();
-        int asc = fm.getAscent();
+        if (fm1 == null) fm1 = g.getFontMetrics();
+        int asc = fm1.getAscent();
         int x0 = x + 8;
         int ys = y + (HEIGHT + asc) / 2;
-        int dotsWidth = fm.stringWidth("m");
+        int dotsWidth = fm1.stringWidth("m");
         int xs;
         if (dispStart > 0) {
             g.drawString(str.substring(0, 1), x0, ys);
-            xs = x0 + fm.stringWidth(str.charAt(0) + "m");
-            drawDots(g, xs - dotsWidth, ys, dotsWidth, asc);
+            xs = x0 + fm1.stringWidth(str.charAt(0) + "m");
+            drawDots(g, xs - dotsWidth, ys, dotsWidth);
             String sub = str.substring(dispStart, dispEnd);
             g.drawString(sub, xs, ys);
             if (dispEnd < str.length()) {
-                drawDots(g, xs + fm.stringWidth(sub), ys, dotsWidth, asc);
+                drawDots(g, xs + fm1.stringWidth(sub), ys, dotsWidth);
             }
         } else if (dispEnd < str.length()) {
             String sub = str.substring(dispStart, dispEnd);
             xs = x0;
             g.drawString(sub, xs, ys);
-            drawDots(g, xs + fm.stringWidth(sub), ys, dotsWidth, asc);
+            drawDots(g, xs + fm1.stringWidth(sub), ys, dotsWidth);
         } else {
             xs = x0;
             g.drawString(str, xs, ys);
         }
 
         if (specials.size() > 0) {
-            drawSpecials(specials, x0, xs, ys, asc, g, fm,
+            drawSpecials(specials, x0, xs, ys, asc, g, fm1,
                     str, dispStart, dispEnd);
         }
     }
 
-    private void drawSpecials(ArrayList<Integer> specials, int x0, int xs, int ys,
-            int asc, Graphics g, FontMetrics fm,
-            String str, int dispStart, int dispEnd) {
+    private static void drawSpecials(Iterable<Integer> specials, int x0, int xs, int ys,
+                                     int asc, Graphics g, FontMetrics fm,
+                                     String str, int dispStart, int dispEnd) {
         int[] px = new int[3];
         int[] py = new int[3];
         for (Integer special : specials) {
-            int code = special.intValue();
+            int code = special;
             int pos = code & 0xFF;
             int w0;
             int w1;
@@ -213,14 +203,14 @@ public class Keyboard extends InstanceFactory {
             w1--;
 
             int key = code >> 16;
-            if (key == '\b') {
+            if (key == (int) '\b') {
                 int y1 = ys - asc / 2;
                 g.drawLine(w0, y1, w1, y1);
                 px[0] = w0 + 3; py[0] = y1 - 3;
                 px[1] = w0;     py[1] = y1;
                 px[2] = w0 + 3; py[2] = y1 + 3;
                 g.drawPolyline(px, py, 3);
-            } else if (key == '\n') {
+            } else if (key == (int) '\n') {
                 int y1 = ys - 3;
                 px[0] = w1; py[0] = ys - asc;
                 px[1] = w1; py[1] = y1;
@@ -230,14 +220,14 @@ public class Keyboard extends InstanceFactory {
                 px[1] = w0;     py[1] = y1;
                 px[2] = w0 + 3; py[2] = y1 + 3;
                 g.drawPolyline(px, py, 3);
-            } else if (key == FORM_FEED) {
+            } else if (key == (int) FORM_FEED) {
                 g.drawRect(w0, ys - asc, w1 - w0, asc);
             }
         }
     }
 
     private static int getBufferLength(Object bufferAttr) {
-        if (bufferAttr instanceof Integer) return ((Integer) bufferAttr).intValue();
+        if (bufferAttr instanceof Integer) return (Integer) bufferAttr;
         else {
             return 32;
         }
@@ -256,14 +246,14 @@ public class Keyboard extends InstanceFactory {
         return ret;
     }
 
-    public static void addToBuffer(InstanceState state, char[] newChars) {
+    public static void addToBuffer(InstanceState state, char... newChars) {
         KeyboardData keyboardData = getKeyboardState(state);
-        for (int i = 0; i < newChars.length; i++) {
-            keyboardData.insert(newChars[i]);
+        for (char newChar : newChars) {
+            keyboardData.insert(newChar);
         }
     }
 
-    public static class Poker extends InstancePoker {
+    private static class Poker extends InstancePoker {
         @Override
         public void keyPressed(InstanceState state, KeyEvent e) {
             KeyboardData data = getKeyboardState(state);
@@ -288,9 +278,9 @@ public class Keyboard extends InstanceFactory {
             KeyboardData data = getKeyboardState(state);
             char ch = e.getKeyChar();
             boolean changed = false;
-            if (ch != KeyEvent.CHAR_UNDEFINED) {
-                if (!Character.isISOControl(ch) || ch == '\b' || ch == '\n'
-                        || ch == FORM_FEED) {
+            if ((int) ch != (int) KeyEvent.CHAR_UNDEFINED) {
+                if (!Character.isISOControl(ch) || (int) ch == (int) '\b' || (int) ch == (int) '\n'
+                        || (int) ch == (int) FORM_FEED) {
                     synchronized(data) { changed = data.insert(ch); }
                     e.consume();
                 }
@@ -298,7 +288,7 @@ public class Keyboard extends InstanceFactory {
             if (changed) state.getInstance().fireInvalidated();
         }
 
-        public void draw(InstancePainter painter) {
+        public static void draw(InstancePainter painter) {
             KeyboardData data = getKeyboardState(painter);
             Bounds bds = painter.getInstance().getBounds();
             Graphics g = painter.getGraphics();

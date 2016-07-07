@@ -3,6 +3,13 @@
 
 package com.cburch.logisim.util;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Point;
@@ -11,15 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.KeyStroke;
-import javax.swing.WindowConstants;
-
-import static com.cburch.logisim.util.LocaleString.*;
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 @SuppressWarnings("serial")
 public class WindowMenu extends JMenu {
@@ -29,7 +28,7 @@ public class WindowMenu extends JMenu {
             WindowMenu.this.setText(getFromLocale("windowMenu"));
             minimize.setText(getFromLocale("windowMinimizeItem"));
             close.setText(getFromLocale("windowCloseItem"));
-            zoom.setText(MacCompatibility.isQuitAutomaticallyPresent() ?
+            zoom.setText(MacCompatibility.isMacOSX() ?
                     getFromLocale("windowZoomItemMac") : getFromLocale("windowZoomItem"));
         }
 

@@ -6,13 +6,14 @@ package com.cburch.logisim.std.gates;
 import com.cburch.logisim.data.Attribute;
 import com.cburch.logisim.data.Attributes;
 import com.cburch.logisim.data.Direction;
-import static com.cburch.logisim.util.LocaleString.*;
+
+import static com.cburch.logisim.util.LocaleString.getFromLocale;
 
 class NegateAttribute extends Attribute<Boolean> {
-    private static Attribute<Boolean> BOOLEAN_ATTR = Attributes.forBoolean("negateDummy");
+    private static final Attribute<Boolean> BOOLEAN_ATTR = Attributes.forBoolean("negateDummy");
 
-    int index;
-    private Direction side;
+    final int index;
+    private final Direction side;
 
     public NegateAttribute(int index, Direction side) {
         super("negate" + index, null);
@@ -37,9 +38,9 @@ class NegateAttribute extends Attribute<Boolean> {
 
     @Override
     public String getDisplayName() {
-        String ret = getFromLocale("gateNegateAttr", "" + (index + 1));
+        String ret = getFromLocale("gateNegateAttr", String.valueOf(index + 1));
         if (side != null) {
-            ret += " (" + side.toVerticalDisplayString() + ")";
+            ret += " (" + side.toVerticalDisplayString() + ')';
         }
         return ret;
     }

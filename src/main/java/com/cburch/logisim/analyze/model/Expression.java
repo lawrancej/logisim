@@ -4,6 +4,7 @@
 package com.cburch.logisim.analyze.model;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Expression {
     public static final int OR_LEVEL = 0;
@@ -11,22 +12,22 @@ public abstract class Expression {
     public static final int AND_LEVEL = 2;
     public static final int NOT_LEVEL = 3;
 
-    static interface Visitor {
-        public void visitAnd(Expression a, Expression b);
-        public void visitOr(Expression a, Expression b);
-        public void visitXor(Expression a, Expression b);
-        public void visitNot(Expression a);
-        public void visitVariable(String name);
-        public void visitConstant(int value);
+    interface Visitor {
+        void visitAnd(Expression a, Expression b);
+        void visitOr(Expression a, Expression b);
+        void visitXor(Expression a, Expression b);
+        void visitNot(Expression a);
+        void visitVariable(String name);
+        void visitConstant(int value);
     }
 
-    static interface IntVisitor {
-        public int visitAnd(Expression a, Expression b);
-        public int visitOr(Expression a, Expression b);
-        public int visitXor(Expression a, Expression b);
-        public int visitNot(Expression a);
-        public int visitVariable(String name);
-        public int visitConstant(int value);
+    interface IntVisitor {
+        int visitAnd(Expression a, Expression b);
+        int visitOr(Expression a, Expression b);
+        int visitXor(Expression a, Expression b);
+        int visitNot(Expression a);
+        int visitVariable(String name);
+        int visitConstant(int value);
     }
 
     public abstract int getPrecedence();
@@ -77,13 +78,13 @@ public abstract class Expression {
 
             private void binary(Expression a, Expression b, int level, String op) {
                 if (a.getPrecedence() < level) {
-                    text.append("("); a.visit(this); text.append(")");
+                    text.append('('); a.visit(this); text.append(')');
                 } else {
                     a.visit(this);
                 }
                 text.append(op);
                 if (b.getPrecedence() < level) {
-                    text.append("("); b.visit(this); text.append(")");
+                    text.append('('); b.visit(this); text.append(')');
                 } else {
                     b.visit(this);
                 }
@@ -91,9 +92,9 @@ public abstract class Expression {
 
             @Override
             public void visitNot(Expression a) {
-                text.append("~");
+                text.append('~');
                 if (a.getPrecedence() < NOT_LEVEL) {
-                    text.append("("); a.visit(this); text.append(")");
+                    text.append('('); a.visit(this); text.append(')');
                 } else {
                     a.visit(this);
                 }
@@ -106,14 +107,14 @@ public abstract class Expression {
 
             @Override
             public void visitConstant(int value) {
-                text.append("" + Integer.toString(value, 16));
+                text.append(Integer.toString(value, 16));
             }
         });
         return text.toString();
     }
 
     public boolean isCircular() {
-        final HashSet<Expression> visited = new HashSet<Expression>();
+        final Set<Expression> visited = new HashSet<>();
         visited.add(this);
         return 1 == visit(new IntVisitor() {
             @Override
@@ -296,53 +297,60 @@ public abstract class Expression {
     }
 
     public boolean isCnf() {
-        return 1 == visit(new IntVisitor() {
-            int level = 0;
+        return 1 == visit(new CnfIntVisitor());
+    }
 
-            @Override
-            public int visitAnd(Expression a, Expression b) {
-                if (level > 1) {
-                    return 0;
-                }
+    private static class CnfIntVisitor implements IntVisitor {
+        int level = 0;
 
-                int oldLevel = level;
-                level = 1;
-                int ret = a.visit(this) == 1 && b.visit(this) == 1 ? 1 : 0;
-                level = oldLevel;
-                return ret;
-            }
-            @Override
-            public int visitOr(Expression a, Expression b) {
-                if (level > 0) {
-                    return 0;
-                }
-
-                return a.visit(this) == 1 && b.visit(this) == 1 ? 1 : 0;
-            }
-            @Override
-            public int visitXor(Expression a, Expression b) {
+        @Override
+        public int visitAnd(Expression a, Expression b) {
+            if (level > 1) {
                 return 0;
             }
-            @Override
-            public int visitNot(Expression a) {
-                if (level == 2) {
-                    return 0;
-                }
 
-                int oldLevel = level;
-                level = 2;
-                int ret = a.visit(this);
-                level = oldLevel;
-                return ret;
+            int oldLevel = level;
+            level = 1;
+            int ret = a.visit(this) == 1 && b.visit(this) == 1 ? 1 : 0;
+            level = oldLevel;
+            return ret;
+        }
+
+        @Override
+        public int visitOr(Expression a, Expression b) {
+            if (level > 0) {
+                return 0;
             }
-            @Override
-            public int visitVariable(String name) {
-                return 1;
+
+            return a.visit(this) == 1 && b.visit(this) == 1 ? 1 : 0;
+        }
+
+        @Override
+        public int visitXor(Expression a, Expression b) {
+            return 0;
+        }
+
+        @Override
+        public int visitNot(Expression a) {
+            if (level == 2) {
+                return 0;
             }
-            @Override
-            public int visitConstant(int value) {
-                return 1;
-            }
-        });
+
+            int oldLevel = level;
+            level = 2;
+            int ret = a.visit(this);
+            level = oldLevel;
+            return ret;
+        }
+
+        @Override
+        public int visitVariable(String name) {
+            return 1;
+        }
+
+        @Override
+        public int visitConstant(int value) {
+            return 1;
+        }
     }
 }
