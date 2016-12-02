@@ -215,7 +215,7 @@ class MemContentsSub {
         @Override
         void load(int start, int[] values, int mask) {
             int n = Math.min(values.length, data.length - start);
-            for (int i = 0; i < n; i++) {
+            for (int i = start; i < n; i++) {
                 data[i] = values[i] & mask;
             }
         }
