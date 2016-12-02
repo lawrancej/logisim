@@ -32,7 +32,6 @@ public class Canvas extends JComponent {
 
         addMouseListener(listener);
         addMouseMotionListener(listener);
-        addMouseWheelListener(listener);
         addKeyListener(listener);
         setPreferredSize(new Dimension(200, 200));
     }
@@ -69,21 +68,21 @@ public class Canvas extends JComponent {
 
     public void setModel(CanvasModel value, ActionDispatcher dispatcher) {
         CanvasModel oldValue = model;
-        if (oldValue != null) {
-	        if (!oldValue.equals(value)) {
-	            oldValue.removeCanvasModelListener(listener);
-	        }
-        }
-        model = value;
-        this.dispatcher = dispatcher;
-        if (value != null) {
-            value.addCanvasModelListener(listener);
-        }
+        if (!oldValue.equals(value)) {
+            if (oldValue != null) {
+                oldValue.removeCanvasModelListener(listener);
+            }
 
-        selection.clearSelected();
-        repaint();
-        firePropertyChange(MODEL_PROPERTY, oldValue, value);
-	            
+            model = value;
+            this.dispatcher = dispatcher;
+            if (value != null) {
+                value.addCanvasModelListener(listener);
+            }
+
+            selection.clearSelected();
+            repaint();
+            firePropertyChange(MODEL_PROPERTY, oldValue, value);
+        }
     }
 
     public void setTool(CanvasTool value) {

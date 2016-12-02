@@ -6,7 +6,7 @@ apply plugin: 'sonar-runner'
 
 if (System.properties['os.name'].toLowerCase().contains('mac')) {
     apply plugin: 'macAppBundle'
-    
+
     macAppBundle {
         mainClassName = "com.cburch.logisim.Main"
         icon = "LogisimApp.icns"
@@ -65,18 +65,14 @@ buildscript {
 
 repositories {
     mavenCentral()
-    maven {
-        url 'http://nexus.gephi.org/nexus/content/repositories/public'
-    }
 }
 
 dependencies {
     compile \
     'javax.help:javahelp:2.0.05',
-    'com.connectina.swing:fontchooser:1.0',
     'net.sourceforge.collections:collections-generic:4.01',
     'org.apache.xmlgraphics:batik-svggen:1.7',
-    'org.apache.xmlgraphics:batik-swing:1.7', 
+    'org.apache.xmlgraphics:batik-swing:1.7',
 
     // Native JDK logger (java.util.logging)
     //'org.slf4j:slf4j-jdk14:1.7.5',
@@ -135,4 +131,3 @@ processResources << {
         }
     }
 }
-
