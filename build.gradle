@@ -3,6 +3,8 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'launch4j'
 apply plugin: 'sonar-runner'
+apply plugin: 'cobertura'
+apply plugin: 'com.github.kt3k.coveralls'
 
 if (System.properties['os.name'].toLowerCase().contains('mac')) {
     apply plugin: 'macAppBundle'
@@ -59,7 +61,9 @@ buildscript {
         'net.sourceforge.nekohtml:nekohtml:1.9.18',
         'javax.help:javahelp:2.0.05',
         'edu.sc.seis.gradle:macappbundle:2.0.0',
-        'net.sf.proguard:proguard-gradle:5.2'
+        'net.sf.proguard:proguard-gradle:5.2',
+        'net.saliman:gradle-cobertura-plugin:2.2.8',
+        'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0x'
     }
 }
 
@@ -89,6 +93,13 @@ dependencies {
     fileTree(dir: 'libs', include: '*.jar')
 
     testCompile 'junit:junit:4.11'
+}
+
+cobertura {
+	coverageFormats = ['html', 'xml']
+	coverageIgnoreTrivial = true
+	coverageIgnores = ['org.slf4j.Logger.*']
+	coverageReportDir = new File("$buildDir/reports/cobertura")
 }
 
 processResources << {
